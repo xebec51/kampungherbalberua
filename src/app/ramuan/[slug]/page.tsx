@@ -15,6 +15,8 @@ type RecipeDetailPageProps = {
   }>;
 };
 
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return recipes
     .filter((recipe) => recipe.published)

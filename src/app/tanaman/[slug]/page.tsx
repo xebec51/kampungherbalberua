@@ -15,6 +15,8 @@ type PlantDetailPageProps = {
   }>;
 };
 
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return plants
     .filter((plant) => plant.published)

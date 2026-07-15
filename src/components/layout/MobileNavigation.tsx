@@ -25,7 +25,7 @@ export function MobileNavigation() {
   }, [open]);
 
   return (
-    <div className="md:hidden">
+    <div className="lg:hidden">
       <button
         aria-controls={menuId}
         aria-expanded={open}

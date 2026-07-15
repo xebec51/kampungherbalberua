@@ -9,7 +9,7 @@ export function Header() {
     <header className="sticky top-0 z-30 border-b border-herbal-green/10 bg-herbal-cream/95 backdrop-blur">
       <Container className="relative flex min-h-20 items-center justify-between gap-4">
         <Logo />
-        <nav aria-label="Navigasi utama" className="hidden items-center gap-1 md:flex">
+        <nav aria-label="Navigasi utama" className="hidden items-center gap-1 lg:flex">
           {mainNavigation.map((item) => (
             <NavigationLink href={item.href} key={item.href} label={item.label} />
           ))}
