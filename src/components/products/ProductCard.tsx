@@ -2,16 +2,10 @@ import Link from "next/link";
 import type { Product } from "@/types";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 import { StatusBadge } from "@/components/ui/StatusBadge";
+import { formatPrice, getAvailabilityLabel } from "@/lib/formatters";
 
 type ProductCardProps = {
   product: Product;
-};
-
-const availabilityLabel: Record<Product["availability"], string> = {
-  tersedia: "Tersedia",
-  terbatas: "Terbatas",
-  habis: "Habis",
-  "segera-tersedia": "Segera tersedia",
 };
 
 export function ProductCard({ product }: ProductCardProps) {
@@ -25,7 +19,7 @@ export function ProductCard({ product }: ProductCardProps) {
         <div className="flex flex-wrap items-center gap-2">
           <StatusBadge tone="green">{product.category}</StatusBadge>
           <StatusBadge tone="neutral">
-            {availabilityLabel[product.availability]}
+            {getAvailabilityLabel(product.availability)}
           </StatusBadge>
         </div>
         <h3 className="mt-4 text-xl font-bold text-herbal-ink">
@@ -37,7 +31,7 @@ export function ProductCard({ product }: ProductCardProps) {
           {product.description}
         </p>
         <p className="mt-4 text-sm font-semibold text-herbal-brown">
-          Harga segera tersedia
+          {formatPrice(product.price, product.unit)}
         </p>
         <Link
           className="mt-5 inline-flex text-sm font-semibold text-herbal-green hover:underline"
