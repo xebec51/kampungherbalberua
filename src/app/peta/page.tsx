@@ -3,12 +3,14 @@ import { Container } from "@/components/ui/Container";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { StatusBadge } from "@/components/ui/StatusBadge";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Peta Kampung | Kampung Herbal Berua",
+export const metadata: Metadata = createPageMetadata({
+  title: "Peta Kampung",
   description:
     "Halaman placeholder pemetaan Kampung Herbal Berua bersama tim Perencanaan Wilayah dan Kota.",
-};
+  path: "/peta",
+});
 
 const plannedLayers = [
   "Tanaman",

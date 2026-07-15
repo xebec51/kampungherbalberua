@@ -3,12 +3,14 @@ import { Container } from "@/components/ui/Container";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { StatusBadge } from "@/components/ui/StatusBadge";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Tentang | Kampung Herbal Berua",
+export const metadata: Metadata = createPageMetadata({
+  title: "Tentang",
   description:
     "Profil singkat Kampung Herbal RT 009/RW 006 Kelurahan Berua, Kecamatan Biringkanaya, Kota Makassar.",
-};
+  path: "/tentang",
+});
 
 export default function AboutPage() {
   return (

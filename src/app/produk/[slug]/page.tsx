@@ -6,6 +6,7 @@ import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { getProductBySlug, products } from "@/data/products";
 import { formatPrice, getAvailabilityLabel } from "@/lib/formatters";
+import { createPageMetadata } from "@/lib/metadata";
 import { createWhatsAppUrl } from "@/lib/whatsapp";
 
 type ProductDetailPageProps = {
@@ -25,15 +26,18 @@ export async function generateMetadata({
   const product = getProductBySlug(slug);
 
   if (!product) {
-    return {
-      title: "Produk tidak ditemukan | Kampung Herbal Berua",
-    };
+    return createPageMetadata({
+      title: "Produk tidak ditemukan",
+      description: "Data produk yang diminta belum tersedia.",
+      path: "/produk",
+    });
   }
 
-  return {
-    title: `${product.name} | Produk Warga Kampung Herbal Berua`,
+  return createPageMetadata({
+    title: product.name,
     description: product.description,
-  };
+    path: `/produk/${product.slug}`,
+  });
 }
 
 export default async function ProductDetailPage({

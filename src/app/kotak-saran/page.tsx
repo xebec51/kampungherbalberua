@@ -3,12 +3,14 @@ import { SuggestionForm } from "@/components/forms/SuggestionForm";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { StatusBadge } from "@/components/ui/StatusBadge";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Kotak Saran | Kampung Herbal Berua",
+export const metadata: Metadata = createPageMetadata({
+  title: "Kotak Saran",
   description:
     "Antarmuka kotak saran Kampung Herbal Berua tanpa penyimpanan database pada tahap pertama.",
-};
+  path: "/kotak-saran",
+});
 
 export default function SuggestionPage() {
   return (

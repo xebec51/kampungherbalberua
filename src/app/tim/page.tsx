@@ -3,12 +3,14 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { teamMembers } from "@/data/team";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Tim KKN | Kampung Herbal Berua",
+export const metadata: Metadata = createPageMetadata({
+  title: "Tim KKN",
   description:
     "Informasi tim KKN Kampung Herbal Berua tanpa menampilkan nomor telepon atau data pribadi sensitif.",
-};
+  path: "/tim",
+});
 
 export default function TeamPage() {
   return (

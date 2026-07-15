@@ -4,12 +4,14 @@ import { Container } from "@/components/ui/Container";
 import { Disclaimer } from "@/components/ui/Disclaimer";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { plantCategories, plants } from "@/data/plants";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Tanaman TOGA | Kampung Herbal Berua",
+export const metadata: Metadata = createPageMetadata({
+  title: "Tanaman TOGA",
   description:
     "Katalog demonstrasi tanaman TOGA Kampung Herbal Berua dengan pencarian dan filter kategori.",
-};
+  path: "/tanaman",
+});
 
 export default function PlantsPage() {
   return (

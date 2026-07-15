@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-label="Ilustrasi placeholder kegiatan">
+  <rect width="640" height="480" fill="#EEF1EC"/>
+  <rect x="142" y="124" width="356" height="236" rx="18" fill="#FFFFFF" stroke="#2F6B3C" stroke-width="10"/>
+  <circle cx="232" cy="214" r="38" fill="#2F6B3C" opacity="0.75"/>
+  <circle cx="320" cy="214" r="38" fill="#9A4C1E" opacity="0.65"/>
+  <circle cx="408" cy="214" r="38" fill="#1F3D2B" opacity="0.75"/>
+  <path d="M202 298h236" stroke="#2F6B3C" stroke-width="14" stroke-linecap="round" opacity="0.45"/>
+  <text x="320" y="430" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#1F3D2B">Placeholder Kegiatan</text>
+</svg>

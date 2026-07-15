@@ -4,12 +4,14 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { programs } from "@/data/programs";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Kinerja RT | Kampung Herbal Berua",
+export const metadata: Metadata = createPageMetadata({
+  title: "Kinerja RT",
   description:
     "Informasi program RT Kampung Herbal Berua dengan status progres yang masih dalam pendataan.",
-};
+  path: "/kinerja-rt",
+});
 
 export default function RtPerformancePage() {
   return (

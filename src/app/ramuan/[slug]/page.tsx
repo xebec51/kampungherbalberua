@@ -7,6 +7,7 @@ import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { getRecipeBySlug, recipes } from "@/data/recipes";
 import { getValidationStatusLabel } from "@/lib/formatters";
+import { createPageMetadata } from "@/lib/metadata";
 
 type RecipeDetailPageProps = {
   params: Promise<{
@@ -27,15 +28,18 @@ export async function generateMetadata({
   const recipe = getRecipeBySlug(slug);
 
   if (!recipe) {
-    return {
-      title: "Ramuan tidak ditemukan | Kampung Herbal Berua",
-    };
+    return createPageMetadata({
+      title: "Ramuan tidak ditemukan",
+      description: "Data ramuan yang diminta belum tersedia.",
+      path: "/ramuan",
+    });
   }
 
-  return {
-    title: `${recipe.name} | Ramuan Sehat Kampung Herbal Berua`,
+  return createPageMetadata({
+    title: recipe.name,
     description: recipe.shortDescription,
-  };
+    path: `/ramuan/${recipe.slug}`,
+  });
 }
 
 export default async function RecipeDetailPage({

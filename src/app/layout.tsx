@@ -2,13 +2,10 @@ import type { Metadata } from "next";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { SkipLink } from "@/components/layout/SkipLink";
+import { createRootMetadata } from "@/lib/metadata";
 import "./globals.css";
 
-export const metadata: Metadata = {
-  title: "Kampung Herbal Berua",
-  description:
-    "Portal digital Kampung Herbal RT 009/RW 006 Kelurahan Berua.",
-};
+export const metadata: Metadata = createRootMetadata();
 
 export default function RootLayout({
   children,

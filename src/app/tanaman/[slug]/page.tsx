@@ -7,6 +7,7 @@ import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { getPlantBySlug, plants } from "@/data/plants";
 import { getValidationStatusLabel } from "@/lib/formatters";
+import { createPageMetadata } from "@/lib/metadata";
 
 type PlantDetailPageProps = {
   params: Promise<{
@@ -27,15 +28,18 @@ export async function generateMetadata({
   const plant = getPlantBySlug(slug);
 
   if (!plant) {
-    return {
-      title: "Tanaman tidak ditemukan | Kampung Herbal Berua",
-    };
+    return createPageMetadata({
+      title: "Tanaman tidak ditemukan",
+      description: "Data tanaman yang diminta belum tersedia.",
+      path: "/tanaman",
+    });
   }
 
-  return {
-    title: `${plant.localName} | Tanaman TOGA Kampung Herbal Berua`,
+  return createPageMetadata({
+    title: plant.localName,
     description: plant.shortDescription,
-  };
+    path: `/tanaman/${plant.slug}`,
+  });
 }
 
 export default async function PlantDetailPage({ params }: PlantDetailPageProps) {

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-label="Ilustrasi placeholder tanaman">
+  <rect width="640" height="480" fill="#EAF3E8"/>
+  <rect x="188" y="315" width="264" height="74" rx="10" fill="#9A4C1E" opacity="0.22"/>
+  <path d="M320 338V155" stroke="#2F6B3C" stroke-width="16" stroke-linecap="round"/>
+  <path d="M316 232c-72-4-126-45-148-112 82-10 145 28 168 98" fill="#2F6B3C" opacity="0.82"/>
+  <path d="M328 276c74-8 127-50 149-118-84-6-146 35-169 105" fill="#1F3D2B" opacity="0.82"/>
+  <text x="320" y="430" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#1F3D2B">Placeholder Tanaman</text>
+</svg>

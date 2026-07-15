@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-label="Ilustrasi placeholder produk">
+  <rect width="640" height="480" fill="#FFFFFF"/>
+  <rect x="190" y="148" width="260" height="210" rx="20" fill="#EAF3E8" stroke="#2F6B3C" stroke-width="10"/>
+  <path d="M242 148c10-44 54-72 92-48 32 20 42 52 42 48" fill="none" stroke="#9A4C1E" stroke-width="12" stroke-linecap="round"/>
+  <rect x="238" y="218" width="164" height="68" rx="10" fill="#2F6B3C" opacity="0.84"/>
+  <text x="320" y="260" text-anchor="middle" font-family="Arial, sans-serif" font-size="23" font-weight="700" fill="#FFFFFF">Produk</text>
+  <text x="320" y="430" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#1F3D2B">Placeholder Produk</text>
+</svg>

@@ -4,12 +4,14 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { products } from "@/data/products";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Produk Warga | Kampung Herbal Berua",
+export const metadata: Metadata = createPageMetadata({
+  title: "Produk Warga",
   description:
     "Katalog demonstrasi produk warga Kampung Herbal Berua yang akan dilengkapi setelah pendataan.",
-};
+  path: "/produk",
+});
 
 export default function ProductsPage() {
   return (

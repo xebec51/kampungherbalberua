@@ -4,12 +4,14 @@ import { Container } from "@/components/ui/Container";
 import { Disclaimer } from "@/components/ui/Disclaimer";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { recipes } from "@/data/recipes";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Ramuan Sehat | Kampung Herbal Berua",
+export const metadata: Metadata = createPageMetadata({
+  title: "Ramuan Sehat",
   description:
     "Daftar demonstrasi ramuan sehat Kampung Herbal Berua untuk edukasi pemanfaatan tradisional.",
-};
+  path: "/ramuan",
+});
 
 export default function RecipesPage() {
   return (

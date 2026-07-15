@@ -4,12 +4,14 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { activities } from "@/data/activities";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Kegiatan | Kampung Herbal Berua",
+export const metadata: Metadata = createPageMetadata({
+  title: "Kegiatan",
   description:
     "Dokumentasi kegiatan demonstrasi Kampung Herbal Berua yang akan diperbarui dengan arsip lapangan.",
-};
+  path: "/kegiatan",
+});
 
 export default function ActivitiesPage() {
   return (

@@ -3,12 +3,14 @@ import { Container } from "@/components/ui/Container";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { StatusBadge } from "@/components/ui/StatusBadge";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Kunjungan Edukasi | Kampung Herbal Berua",
+export const metadata: Metadata = createPageMetadata({
+  title: "Kunjungan Edukasi",
   description:
     "Informasi awal kunjungan edukasi Kampung Herbal Berua yang masih disusun.",
-};
+  path: "/wisata",
+});
 
 const visitItems = [
   "Kebun herbal",
