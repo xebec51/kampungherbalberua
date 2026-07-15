@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import { Footer } from "@/components/layout/Footer";
+import { Header } from "@/components/layout/Header";
+import { SkipLink } from "@/components/layout/SkipLink";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -14,7 +17,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id">
-      <body>{children}</body>
+      <body>
+        <SkipLink />
+        <Header />
+        <main id="konten-utama">{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 }

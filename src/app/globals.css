@@ -1,8 +1,20 @@
 @import "tailwindcss";
 
+@theme {
+  --color-herbal-green: #2f6b3c;
+  --color-herbal-deep: #1f3d2b;
+  --color-herbal-soft: #eaf3e8;
+  --color-herbal-brown: #9a4c1e;
+  --color-herbal-cream: #f8f6f0;
+  --color-herbal-white: #ffffff;
+  --color-herbal-ink: #17211b;
+  --color-herbal-muted: #5c675f;
+}
+
 :root {
   --background: #f8f6f0;
   --foreground: #17211b;
+  --font-sans: Arial, Helvetica, sans-serif;
 }
 
 * {
@@ -18,12 +30,24 @@ body {
   margin: 0;
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
 }
 
 a {
   color: inherit;
   text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+::selection {
+  background: #2f6b3c;
+  color: #ffffff;
 }
 
 @media (prefers-reduced-motion: reduce) {

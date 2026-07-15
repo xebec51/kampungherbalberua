@@ -1,6 +1,6 @@
 export default function Home() {
   return (
-    <main className="mx-auto flex min-h-screen max-w-4xl flex-col items-start justify-center px-6 py-16">
+    <div className="mx-auto flex min-h-[calc(100vh-5rem)] max-w-4xl flex-col items-start justify-center px-6 py-16">
       <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#2F6B3C]">
         Kampung Herbal Berua
       </p>
@@ -11,6 +11,6 @@ export default function Home() {
         Portal informasi digital Kampung Herbal RT 009/RW 006 Kelurahan Berua
         sedang disiapkan sebagai fondasi halaman publik tahap pertama.
       </p>
-    </main>
+    </div>
   );
 }
