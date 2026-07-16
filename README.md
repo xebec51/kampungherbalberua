@@ -4,6 +4,14 @@ Portal digital Kampung Herbal RT 009/RW 006 Kelurahan Berua untuk informasi tana
 
 Website ini merupakan fondasi tahap pertama untuk ruang informasi publik Kampung Herbal Berua, Kecamatan Biringkanaya, Kota Makassar. Fokus tahap ini adalah halaman publik, struktur data lokal, desain responsif, dan dokumentasi pengembangan agar integrasi lanjutan dapat dilakukan secara bertahap.
 
+## Production
+
+Website sudah terdeploy di Vercel:
+
+<https://kampungherbalberua.vercel.app/>
+
+Deployment dilakukan melalui Vercel dan tidak dikelola secara manual dari repository ini. Perubahan pada `main` tidak otomatis berarti deployment production berubah tanpa proses deploy Vercel yang sesuai.
+
 ## Tujuan
 
 - Mengenalkan tanaman obat keluarga dan pemanfaatan tradisional secara aman.
@@ -63,12 +71,19 @@ Kedua perintah tersebut wajib dijalankan setelah perubahan utama.
 src/
   app/                 Route App Router dan metadata route
   components/          Komponen layout, home, kartu, form, dan UI dasar
-  data/                Data lokal TypeScript tahap pertama
+  data/                Data lokal TypeScript (fallback)
   lib/                 Helper format, metadata, utilitas, dan WhatsApp
+    data/              Data-access layer (query tanaman, mapper)
+    supabase/          Konfigurasi dan client Supabase
   types/               Tipe data konten
 public/
   icons/               Ikon lokal
   images/placeholders/ Aset placeholder lokal
+supabase/
+  migrations/          Migration SQL
+  seed.sql             Seed data demonstrasi
+docs/
+  supabase-setup.md    Panduan setup Supabase
 ```
 
 ## Data Demonstrasi
@@ -113,25 +128,55 @@ Contoh variabel tersedia di `.env.example`.
 
 ```env
 NEXT_PUBLIC_SUPABASE_URL=
-NEXT_PUBLIC_SUPABASE_ANON_KEY=
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
 ```
 
-Jangan membuat atau mengisi `.env.local` dengan kredensial palsu untuk tahap ini.
+Jangan membuat atau mengisi `.env.local` dengan kredensial palsu. Aplikasi tetap dapat di-build dan dijalankan tanpa environment Supabase — lihat [Status Database dan Supabase](#status-database-dan-supabase).
+
+## Status Database dan Supabase
+
+Sprint ini menambahkan fondasi database Supabase untuk modul tanaman TOGA. Cakupan yang sudah tersedia:
+
+- Migration SQL untuk tabel `profiles` dan `plants`, lengkap dengan enum, trigger `updated_at`, trigger pembuatan profile otomatis, index, dan Row Level Security (RLS).
+- Seed data demonstrasi untuk enam tanaman (Jahe, Kunyit, Serai, Daun Sirih, Bunga Telang, Temulawak).
+- Data-access layer (`src/lib/data/plants.ts`) yang membaca dari Supabase saat tersedia.
+- **Local fallback**: apabila environment Supabase belum dikonfigurasi, client tidak dapat dibuat, query gagal, atau tabel masih kosong, aplikasi otomatis menggunakan data lokal di `src/data/plants.ts`. Perilaku ini berlaku pada beranda, katalog tanaman, halaman detail tanaman, dan sitemap sehingga situs tetap berfungsi penuh tanpa database.
+- Halaman yang sudah memakai data-access layer: `/`, `/tanaman`, `/tanaman/[slug]`, dan `sitemap.xml`.
+
+Belum tersedia pada sprint ini (lihat juga [Fitur yang Sengaja Ditunda](#fitur-yang-sengaja-ditunda)):
+
+- Login dan dashboard admin.
+- CRUD melalui antarmuka.
+- Supabase Storage / upload gambar.
+- Migrasi modul ramuan, produk, kegiatan, dan program RT ke database.
+
+**Service-role key tidak digunakan** di aplikasi ini. Seluruh akses database publik menggunakan publishable key yang tunduk pada RLS. Otorisasi data sepenuhnya ditegakkan oleh RLS di database, bukan oleh kode aplikasi.
+
+RLS mengatur: pengunjung publik hanya dapat membaca tanaman berstatus `published`; staf aktif (`editor`, `validator`, `admin`) dapat membaca seluruh data termasuk draft; hanya `editor` dan `admin` yang dapat menambah/mengubah data; hanya `admin` yang dapat menghapus data; pengguna tidak dapat menaikkan role miliknya sendiri.
+
+Panduan lengkap menghubungkan project Supabase, menjalankan migration, seed, dan menetapkan admin pertama ada di [docs/supabase-setup.md](docs/supabase-setup.md).
 
 ## Roadmap
 
-- Integrasi Supabase untuk data tanaman, ramuan, produk, kegiatan, dan kotak saran.
-- Autentikasi admin dan dashboard pengelolaan konten.
+- Migrasi data ramuan, produk, kegiatan, dan program RT ke Supabase.
+- Autentikasi admin dan dashboard pengelolaan konten (termasuk alur validasi oleh validator).
+- Supabase Storage untuk foto dokumentasi dan aset lapangan.
 - Integrasi pemetaan PWK menggunakan data denah, koordinat, GeoJSON, atau KML.
 - HerbaCode dan QR Code dinamis setelah data tanaman diverifikasi.
-- Penyimpanan foto dokumentasi dan aset lapangan.
-- Deployment Vercel setelah konfigurasi domain dan environment siap.
+- Penyimpanan kotak saran ke database.
 
 ## Fitur yang Sengaja Ditunda
 
-Tahap pertama belum mengimplementasikan Supabase, database, login admin, dashboard admin, CRUD, penyimpanan foto, Leaflet, peta interaktif, GeoJSON/KML runtime, QR Code dinamis, pembayaran, checkout, kurir, rekam medis, data kesehatan individual, notifikasi WhatsApp otomatis, pengiriman formulir ke server, atau deployment Vercel.
+Sprint ini belum mengimplementasikan: login admin, dashboard admin, CRUD melalui antarmuka, Supabase Storage, upload gambar, pengiriman kotak saran ke database, migrasi ramuan/produk/kegiatan/program RT ke database, Leaflet, peta interaktif, GeoJSON/KML runtime, QR Code dinamis, pembayaran, checkout, kurir, rekam medis, data kesehatan individual, dan notifikasi WhatsApp otomatis.
+
+## Perintah yang Tidak Boleh Dijalankan Terhadap Production Tanpa Backup
+
+- `npx supabase db push` ke project production tanpa peninjauan SQL dan backup terlebih dahulu.
+- `npx supabase db reset` — perintah ini hanya untuk database lokal/development, **jangan pernah** dijalankan terhadap project remote.
+- Menjalankan `supabase/seed.sql` terhadap database production di luar proses seed yang eksplisit dan disengaja.
+- Mengubah atau menghapus policy RLS langsung dari SQL editor production tanpa peninjauan.
 
 ## Status Proyek
 
-Website publik tahap pertama sudah memiliki route utama, data lokal demonstrasi, desain responsif, metadata, sitemap, robots, ikon lokal, dan struktur yang siap menerima integrasi lanjutan.
+Website publik tahap pertama sudah live di Vercel dengan route utama, desain responsif, metadata, sitemap, robots, dan ikon lokal. Sprint saat ini menambahkan fondasi database Supabase untuk modul tanaman, dengan data lokal tetap dipertahankan sebagai fallback selama fase migrasi. Modul ramuan, produk, kegiatan, dan program RT masih memakai data lokal sepenuhnya.
