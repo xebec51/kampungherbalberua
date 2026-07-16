@@ -3,7 +3,8 @@ export type PlantCategory = "Rimpang" | "Daun" | "Bunga" | "Batang" | "Lainnya";
 export type ValidationStatus =
   | "data-demonstrasi"
   | "menunggu-verifikasi"
-  | "terverifikasi";
+  | "terverifikasi"
+  | "ditolak";
 
 export type Plant = {
   id: string;
