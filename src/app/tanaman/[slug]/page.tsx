@@ -22,6 +22,9 @@ export const revalidate = 300;
 // slugs must still render on demand instead of 404ing.
 export const dynamicParams = true;
 
+// Pre-render the known local/demo slugs at build time for fast first loads;
+// any other slug (e.g. one only published later in Supabase) still renders
+// on demand thanks to dynamicParams above.
 export function generateStaticParams() {
   return localPlants
     .filter((plant) => plant.published)
@@ -53,6 +56,10 @@ export default async function PlantDetailPage({ params }: PlantDetailPageProps) 
   const { slug } = await params;
   const plant = await getPlantBySlug(slug);
 
+  // Renders the not-found UI for unknown slugs. Note: with dynamicParams
+  // enabled, this Next.js version serves the not-found boundary with a 200
+  // status for slugs outside generateStaticParams instead of 404 — a known
+  // framework limitation, not something fixable from application code.
   if (!plant) {
     notFound();
   }
