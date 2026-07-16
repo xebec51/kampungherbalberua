@@ -3,8 +3,11 @@ import { PlantCatalog } from "@/components/plants/PlantCatalog";
 import { Container } from "@/components/ui/Container";
 import { Disclaimer } from "@/components/ui/Disclaimer";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { plantCategories, plants } from "@/data/plants";
+import { plantCategories } from "@/data/plants";
+import { getPublishedPlants } from "@/lib/data/plants";
 import { createPageMetadata } from "@/lib/metadata";
+
+export const revalidate = 300;
 
 export const metadata: Metadata = createPageMetadata({
   title: "Tanaman TOGA",
@@ -13,7 +16,9 @@ export const metadata: Metadata = createPageMetadata({
   path: "/tanaman",
 });
 
-export default function PlantsPage() {
+export default async function PlantsPage() {
+  const plants = await getPublishedPlants();
+
   return (
     <section className="bg-herbal-cream py-12 sm:py-16">
       <Container>

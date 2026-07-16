@@ -244,11 +244,3 @@ export const plants: Plant[] = [
     published: true,
   },
 ];
-
-export function getPlantBySlug(slug: string) {
-  return plants.find((plant) => plant.slug === slug && plant.published);
-}
-
-export const featuredPlants = plants.filter(
-  (plant) => plant.featured && plant.published,
-);
