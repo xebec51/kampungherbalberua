@@ -44,6 +44,19 @@ Pedoman ini berlaku untuk seluruh perubahan pada repository Kampung Herbal Berua
 - Jangan menulis bahwa ramuan aman untuk semua orang.
 - Sertakan peringatan agar ibu hamil, anak-anak, lansia, penderita penyakit tertentu, dan pengguna obat rutin berkonsultasi dengan tenaga kesehatan.
 
+## Database dan Supabase
+
+- Seluruh schema database harus dibuat melalui migration SQL di `supabase/migrations/`, bukan melalui perubahan manual pada database.
+- Row Level Security (RLS) wajib diaktifkan untuk setiap tabel di skema `public`.
+- Jangan menggunakan service-role key pada aplikasi publik atau kode yang berjalan di browser.
+- Seluruh query database harus berada dalam data-access layer (`src/lib/data/`), bukan langsung di komponen atau route.
+- Komponen UI tidak boleh bergantung langsung pada row database (snake_case); gunakan mapper ke tipe aplikasi.
+- Migration tidak boleh dijalankan ke project Supabase remote tanpa instruksi eksplisit dari pengguna.
+- Data lokal TypeScript tetap menjadi fallback selama fase migrasi ke Supabase berlangsung.
+- File `database.types.ts` harus digenerasi ulang setelah schema project remote berubah atau baru terhubung.
+- Jangan membuat policy RLS terbuka (`using (true)`) untuk operasi insert, update, atau delete.
+- Jangan menampilkan detail error database (pesan mentah Supabase/Postgres) kepada pengunjung publik.
+
 ## Git dan Kualitas
 
 - Jalankan `npm run lint` dan `npm run build` setelah perubahan utama.

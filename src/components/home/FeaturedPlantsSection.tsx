@@ -2,9 +2,11 @@ import { PlantCard } from "@/components/plants/PlantCard";
 import { Container } from "@/components/ui/Container";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { featuredPlants } from "@/data/plants";
+import { getFeaturedPlants } from "@/lib/data/plants";
 
-export function FeaturedPlantsSection() {
+export async function FeaturedPlantsSection() {
+  const featuredPlants = await getFeaturedPlants(3);
+
   return (
     <section className="bg-white py-16">
       <Container>
@@ -19,7 +21,7 @@ export function FeaturedPlantsSection() {
           </LinkButton>
         </div>
         <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {featuredPlants.slice(0, 3).map((plant) => (
+          {featuredPlants.map((plant) => (
             <PlantCard key={plant.id} plant={plant} />
           ))}
         </div>

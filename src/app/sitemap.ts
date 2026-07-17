@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
-import { plants } from "@/data/plants";
 import { products } from "@/data/products";
 import { recipes } from "@/data/recipes";
+import { getPlantSlugs } from "@/lib/data/plants";
 import { absoluteUrl } from "@/lib/metadata";
 
 const staticRoutes = [
@@ -18,10 +18,12 @@ const staticRoutes = [
   "/tim",
 ];
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
+  const plantSlugs = await getPlantSlugs();
+
   const dynamicRoutes = [
-    ...plants.filter((plant) => plant.published).map((plant) => `/tanaman/${plant.slug}`),
+    ...plantSlugs.map((slug) => `/tanaman/${slug}`),
     ...recipes
       .filter((recipe) => recipe.published)
       .map((recipe) => `/ramuan/${recipe.slug}`),

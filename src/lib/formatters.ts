@@ -10,6 +10,7 @@ export function getValidationStatusLabel(status: ValidationStatus) {
     "data-demonstrasi": "Data demonstrasi",
     "menunggu-verifikasi": "Menunggu verifikasi",
     terverifikasi: "Terverifikasi",
+    ditolak: "Ditolak",
   };
 
   return labels[status];

@@ -5,7 +5,8 @@ import { Container } from "@/components/ui/Container";
 import { Disclaimer } from "@/components/ui/Disclaimer";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 import { StatusBadge } from "@/components/ui/StatusBadge";
-import { getPlantBySlug, plants } from "@/data/plants";
+import { plants as localPlants } from "@/data/plants";
+import { getPlantBySlug } from "@/lib/data/plants";
 import { getValidationStatusLabel } from "@/lib/formatters";
 import { createPageMetadata } from "@/lib/metadata";
 
@@ -15,10 +16,17 @@ type PlantDetailPageProps = {
   }>;
 };
 
-export const dynamicParams = false;
+export const revalidate = 300;
 
+// Database plants can be published without a full site rebuild, so new
+// slugs must still render on demand instead of 404ing.
+export const dynamicParams = true;
+
+// Pre-render the known local/demo slugs at build time for fast first loads;
+// any other slug (e.g. one only published later in Supabase) still renders
+// on demand thanks to dynamicParams above.
 export function generateStaticParams() {
-  return plants
+  return localPlants
     .filter((plant) => plant.published)
     .map((plant) => ({ slug: plant.slug }));
 }
@@ -27,7 +35,7 @@ export async function generateMetadata({
   params,
 }: PlantDetailPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const plant = getPlantBySlug(slug);
+  const plant = await getPlantBySlug(slug);
 
   if (!plant) {
     return createPageMetadata({
@@ -46,8 +54,12 @@ export async function generateMetadata({
 
 export default async function PlantDetailPage({ params }: PlantDetailPageProps) {
   const { slug } = await params;
-  const plant = getPlantBySlug(slug);
+  const plant = await getPlantBySlug(slug);
 
+  // Renders the not-found UI for unknown slugs. Note: with dynamicParams
+  // enabled, this Next.js version serves the not-found boundary with a 200
+  // status for slugs outside generateStaticParams instead of 404 — a known
+  // framework limitation, not something fixable from application code.
   if (!plant) {
     notFound();
   }
