@@ -3,10 +3,30 @@ import { NextResponse, type NextRequest } from "next/server";
 import type { Database } from "@/lib/supabase/database.types";
 import { getSupabaseConfig } from "@/lib/supabase/config";
 
+function isProtectedAdminPath(request: NextRequest) {
+  const pathname = request.nextUrl.pathname;
+  return pathname.startsWith("/admin") && !pathname.startsWith("/admin/login");
+}
+
+function redirectToAdminLogin(request: NextRequest) {
+  const redirectUrl = request.nextUrl.clone();
+  const nextPath = `${request.nextUrl.pathname}${request.nextUrl.search}`;
+
+  redirectUrl.pathname = "/admin/login";
+  redirectUrl.search = "";
+  redirectUrl.searchParams.set("next", nextPath);
+
+  return NextResponse.redirect(redirectUrl);
+}
+
 export async function proxy(request: NextRequest) {
   const supabaseConfig = getSupabaseConfig();
 
   if (!supabaseConfig) {
+    if (isProtectedAdminPath(request)) {
+      return redirectToAdminLogin(request);
+    }
+
     return NextResponse.next({
       request,
     });
@@ -41,7 +61,11 @@ export async function proxy(request: NextRequest) {
     },
   );
 
-  await supabase.auth.getUser();
+  const { data } = await supabase.auth.getUser();
+
+  if (isProtectedAdminPath(request) && !data.user) {
+    return redirectToAdminLogin(request);
+  }
 
   return response;
 }
