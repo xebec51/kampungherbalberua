@@ -7,7 +7,6 @@ import {
   canEditContent,
 } from "@/lib/auth/permissions";
 import { requireStaff } from "@/lib/auth/require-staff";
-import type { ContentStatus, ValidationStatus } from "@/lib/supabase/database.types";
 import {
   createHealthZone,
   deleteHealthZone,
@@ -16,23 +15,19 @@ import {
   type HealthZoneAdminInput,
   type HealthZoneAdminRecord,
 } from "@/lib/data/admin/health-zones";
-
-const contentStatuses = [
-  "draft",
-  "pending_review",
-  "published",
-  "archived",
-] as const satisfies readonly ContentStatus[];
-
-const validationStatuses = [
-  "data_demonstrasi",
-  "pending",
-  "verified",
-  "rejected",
-] as const satisfies readonly ValidationStatus[];
-
-const editorContentStatuses = ["draft", "pending_review"] as const;
-const editorValidationStatuses = ["data_demonstrasi", "pending"] as const;
+import {
+  canRoleUseContentStatus,
+  canRoleUseValidationStatus,
+  contentStatuses,
+  hasVerifiedRequirements,
+  isAllowed,
+  isValidSlug,
+  isValidZoneCode,
+  normalizeImagePath,
+  normalizeOptionalText,
+  parseTextareaLines,
+  validationStatuses,
+} from "@/lib/validation/content";
 
 type ParsedZoneInput =
   | {
@@ -50,22 +45,11 @@ function readText(formData: FormData, name: string) {
 }
 
 function readOptionalText(formData: FormData, name: string) {
-  const value = readText(formData, name);
-  return value.length > 0 ? value : null;
+  return normalizeOptionalText(readText(formData, name));
 }
 
 function readLines(formData: FormData, name: string) {
-  return readText(formData, name)
-    .split(/\r?\n/)
-    .map((line) => line.trim())
-    .filter(Boolean);
-}
-
-function isAllowed<T extends string>(
-  value: string,
-  options: readonly T[],
-): value is T {
-  return options.includes(value as T);
+  return parseTextareaLines(readText(formData, name));
 }
 
 function parseZoneFormData(formData: FormData, role: string): ParsedZoneInput {
@@ -79,16 +63,16 @@ function parseZoneFormData(formData: FormData, role: string): ParsedZoneInput {
   const overview = readText(formData, "overview");
   const contentStatus = readText(formData, "content_status");
   const validationStatus = readText(formData, "validation_status");
-  const imagePath = readOptionalText(formData, "image_path");
+  const imagePathResult = normalizeImagePath(readText(formData, "image_path"));
   const validatorName = readOptionalText(formData, "validator_name");
   const sourceNotes = readLines(formData, "source_notes");
   const blockRanges = readLines(formData, "block_ranges");
 
-  if (!/^khb-z[0-9]{2}$/.test(zoneCode)) {
+  if (!isValidZoneCode(zoneCode)) {
     return { data: null, error: "Kode zona wajib mengikuti format khb-zNN." };
   }
 
-  if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) {
+  if (!isValidSlug(slug)) {
     return { data: null, error: "Slug wajib huruf kecil, angka, atau tanda hubung." };
   }
 
@@ -128,8 +112,8 @@ function parseZoneFormData(formData: FormData, role: string): ParsedZoneInput {
 
   if (
     role === "editor" &&
-    (!isAllowed(contentStatus, editorContentStatuses) ||
-      !isAllowed(validationStatus, editorValidationStatuses))
+    (!canRoleUseContentStatus(role, contentStatus) ||
+      !canRoleUseValidationStatus(role, validationStatus))
   ) {
     return {
       data: null,
@@ -137,20 +121,15 @@ function parseZoneFormData(formData: FormData, role: string): ParsedZoneInput {
     };
   }
 
-  if (validationStatus === "verified" && (!validatorName || sourceNotes.length === 0)) {
+  if (!hasVerifiedRequirements(validationStatus, validatorName, sourceNotes)) {
     return {
       data: null,
       error: "Status terverifikasi wajib memiliki validator dan sumber.",
     };
   }
 
-  if (
-    imagePath &&
-    (!imagePath.startsWith("/images/") ||
-      imagePath.toLowerCase().includes("javascript:") ||
-      imagePath.includes("://"))
-  ) {
-    return { data: null, error: "Path gambar harus lokal dan diawali /images/." };
+  if (imagePathResult.error) {
+    return { data: null, error: imagePathResult.error };
   }
 
   return {
@@ -161,7 +140,7 @@ function parseZoneFormData(formData: FormData, role: string): ParsedZoneInput {
       featured: formData.get("featured") === "on",
       health_topic: healthTopic,
       healthy_habits: readLines(formData, "healthy_habits"),
-      image_path: imagePath,
+      image_path: imagePathResult.value,
       important_notes: readLines(formData, "important_notes"),
       location_notes: readOptionalText(formData, "location_notes"),
       overview,

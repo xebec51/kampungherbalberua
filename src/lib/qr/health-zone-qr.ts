@@ -4,7 +4,7 @@ import { absoluteUrl } from "@/lib/metadata";
 const zoneCodePattern = /^khb-z[0-9]{2}$/;
 
 export function getHealthZoneQrTarget(zoneCode: string) {
-  const normalizedCode = zoneCode.trim().toLowerCase();
+  const normalizedCode = zoneCode.trim();
 
   if (!zoneCodePattern.test(normalizedCode)) {
     throw new Error("Kode zona tidak valid.");

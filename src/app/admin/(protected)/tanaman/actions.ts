@@ -8,11 +8,6 @@ import {
   canPublishContent,
 } from "@/lib/auth/permissions";
 import { requireStaff } from "@/lib/auth/require-staff";
-import type {
-  ContentStatus,
-  PlantCategory,
-  ValidationStatus,
-} from "@/lib/supabase/database.types";
 import {
   createPlant,
   deletePlant,
@@ -21,31 +16,19 @@ import {
   type PlantAdminInput,
   type PlantAdminRecord,
 } from "@/lib/data/admin/plants";
-
-const contentStatuses = [
-  "draft",
-  "pending_review",
-  "published",
-  "archived",
-] as const satisfies readonly ContentStatus[];
-
-const validationStatuses = [
-  "data_demonstrasi",
-  "pending",
-  "verified",
-  "rejected",
-] as const satisfies readonly ValidationStatus[];
-
-const plantCategories = [
-  "rimpang",
-  "daun",
-  "bunga",
-  "batang",
-  "lainnya",
-] as const satisfies readonly PlantCategory[];
-
-const editorContentStatuses = ["draft", "pending_review"] as const;
-const editorValidationStatuses = ["data_demonstrasi", "pending"] as const;
+import {
+  canRoleUseContentStatus,
+  canRoleUseValidationStatus,
+  contentStatuses,
+  hasVerifiedRequirements,
+  isAllowed,
+  isValidSlug,
+  normalizeImagePath,
+  normalizeOptionalText,
+  parseTextareaLines,
+  plantCategories,
+  validationStatuses,
+} from "@/lib/validation/content";
 
 type ParsedPlantInput =
   | {
@@ -63,22 +46,11 @@ function readText(formData: FormData, name: string) {
 }
 
 function readOptionalText(formData: FormData, name: string) {
-  const value = readText(formData, name);
-  return value.length > 0 ? value : null;
+  return normalizeOptionalText(readText(formData, name));
 }
 
 function readLines(formData: FormData, name: string) {
-  return readText(formData, name)
-    .split(/\r?\n/)
-    .map((line) => line.trim())
-    .filter(Boolean);
-}
-
-function isAllowed<T extends string>(
-  value: string,
-  options: readonly T[],
-): value is T {
-  return options.includes(value as T);
+  return parseTextareaLines(readText(formData, name));
 }
 
 function parsePlantFormData(formData: FormData, role: string): ParsedPlantInput {
@@ -89,11 +61,11 @@ function parsePlantFormData(formData: FormData, role: string): ParsedPlantInput 
   const category = readText(formData, "category");
   const contentStatus = readText(formData, "content_status");
   const validationStatus = readText(formData, "validation_status");
-  const imagePath = readOptionalText(formData, "image_path");
+  const imagePathResult = normalizeImagePath(readText(formData, "image_path"));
   const validatorName = readOptionalText(formData, "validator_name");
   const sourceNotes = readOptionalText(formData, "source_notes");
 
-  if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) {
+  if (!isValidSlug(slug)) {
     return { data: null, error: "Slug wajib huruf kecil, angka, atau tanda hubung." };
   }
 
@@ -119,8 +91,8 @@ function parsePlantFormData(formData: FormData, role: string): ParsedPlantInput 
 
   if (
     role === "editor" &&
-    (!isAllowed(contentStatus, editorContentStatuses) ||
-      !isAllowed(validationStatus, editorValidationStatuses))
+    (!canRoleUseContentStatus(role, contentStatus) ||
+      !canRoleUseValidationStatus(role, validationStatus))
   ) {
     return {
       data: null,
@@ -128,20 +100,15 @@ function parsePlantFormData(formData: FormData, role: string): ParsedPlantInput 
     };
   }
 
-  if (validationStatus === "verified" && (!validatorName || !sourceNotes)) {
+  if (!hasVerifiedRequirements(validationStatus, validatorName, sourceNotes)) {
     return {
       data: null,
       error: "Status terverifikasi wajib memiliki validator dan sumber.",
     };
   }
 
-  if (
-    imagePath &&
-    (!imagePath.startsWith("/images/") ||
-      imagePath.toLowerCase().includes("javascript:") ||
-      imagePath.includes("://"))
-  ) {
-    return { data: null, error: "Path gambar harus lokal dan diawali /images/." };
+  if (imagePathResult.error) {
+    return { data: null, error: imagePathResult.error };
   }
 
   return {
@@ -151,7 +118,7 @@ function parsePlantFormData(formData: FormData, role: string): ParsedPlantInput 
       content_status: contentStatus,
       description,
       featured: formData.get("featured") === "on",
-      image_path: imagePath,
+      image_path: imagePathResult.value,
       local_name: localName,
       location_status: readOptionalText(formData, "location_status"),
       other_names: readLines(formData, "other_names"),
