@@ -88,9 +88,23 @@ Pedoman ini berlaku untuk seluruh perubahan pada repository Kampung Herbal Berua
 - Foto papan atau zona hanya digunakan sebagai dokumentasi visual.
 - Foto tidak boleh digunakan untuk mengidentifikasi orang, mengambil nomor telepon, alamat rumah, metadata EXIF, GPS, atau data pribadi lain.
 
+## Automated Testing
+
+- Fitur tidak dianggap selesai bila automated test terkait masih gagal.
+- Bug harus disertai regression test yang membuktikan perilaku yang diperbaiki.
+- Rule RLS wajib diuji dengan pgTAP di `supabase/tests/`.
+- Flow publik dan admin wajib diuji dengan Playwright bila menyentuh route, form, autentikasi, atau CRUD.
+- CI tidak boleh memakai database production, project Supabase remote, atau service-role key production.
+- Fixture test harus terpisah dari `supabase/seed.sql` production.
+- Hasil test harus deterministic dan tidak bergantung pada urutan eksekusi acak.
+- Data test harus memakai prefix jelas seperti `E2E-` dan dibersihkan setelah test.
+- Manual testing bukan gate utama untuk merge; automated test adalah gate utama.
+- QR fisik tetap memerlukan satu acceptance scan manual sebelum cetak massal.
+
 ## Git dan Kualitas
 
 - Jalankan `npm run lint` dan `npm run build` setelah perubahan utama.
+- Jalankan automated test yang relevan (`npm run test:unit`, `npm run test:db`, `npm run test:e2e`, atau `npm run test:ci`) setelah perubahan utama.
 - Setiap tahap perubahan harus dibuatkan commit lokal.
 - Gunakan Conventional Commits.
 - Jangan melakukan push tanpa instruksi eksplisit.

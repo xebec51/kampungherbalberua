@@ -70,6 +70,43 @@ npm run build
 
 Kedua perintah tersebut wajib dijalankan setelah perubahan utama.
 
+## Automated Testing
+
+Automated test menjadi gate utama untuk validasi fitur publik, Supabase, RLS, admin, CRUD tanaman, CRUD zona kesehatan, QR permanen, dan role `viewer`, `editor`, `validator`, serta `admin`.
+
+Perintah utama:
+
+```bash
+npm run test
+npm run test:unit
+npm run test:db
+npm run test:e2e
+npm run test:e2e:report
+npm run test:ci
+```
+
+`npm run test:unit` menjalankan Vitest. `npm run test:db` menjalankan pgTAP melalui Supabase CLI lokal. `npm run test:e2e` menjalankan Playwright Chromium. `npm run test:ci` menjalankan lint, build, unit test, database test, dan E2E.
+
+Database dan E2E test membutuhkan Docker karena memakai Supabase local development. Jalankan hanya terhadap Supabase lokal:
+
+```bash
+npx supabase start
+npx supabase db reset
+npm run test:db
+npm run test:e2e
+npx supabase stop
+```
+
+Playwright report dapat dibuka dengan:
+
+```bash
+npm run test:e2e:report
+```
+
+GitHub Actions menjalankan check `quality`, `database-test`, dan `e2e` pada Pull Request menuju `main`, push ke `main`, dan manual `workflow_dispatch`. Workflow preview smoke berjalan terpisah saat deployment preview sukses dan hanya memeriksa halaman publik non-destruktif. Branch protection disarankan mensyaratkan check `quality`, `database-test`, `e2e`, dan `preview-smoke` bila workflow preview dipakai.
+
+Detail strategi dan troubleshooting tersedia di [docs/testing.md](docs/testing.md).
+
 ## Struktur Folder
 
 ```text
@@ -89,10 +126,12 @@ public/
 supabase/
   migrations/          Migration SQL
   seed.sql             Seed data demonstrasi
+  tests/               pgTAP, RLS test, dan fixture lokal automated test
 docs/
   admin-dashboard.md   Panduan dashboard admin
   qr-deployment.md     Panduan unduh dan uji QR zona
   supabase-setup.md    Panduan setup Supabase
+  testing.md           Strategi automated testing dan CI
   zona-kesehatan.md    Dokumentasi modul zona
   zona-photo-manifest.md Manifest foto zona yang diharapkan
 ```
@@ -197,6 +236,7 @@ Panduan operasional:
 - [docs/admin-dashboard.md](docs/admin-dashboard.md)
 - [docs/zona-kesehatan.md](docs/zona-kesehatan.md)
 - [docs/qr-deployment.md](docs/qr-deployment.md)
+- [docs/testing.md](docs/testing.md)
 - [docs/zona-photo-manifest.md](docs/zona-photo-manifest.md)
 
 ## Migration Manual
