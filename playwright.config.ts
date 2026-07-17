@@ -2,6 +2,18 @@ import { defineConfig, devices } from "@playwright/test";
 
 const baseURL = process.env.PLAYWRIGHT_BASE_URL ?? "http://127.0.0.1:3000";
 const isCI = Boolean(process.env.CI);
+const webServerEnv = {
+  NEXT_PUBLIC_SITE_URL: baseURL,
+  ...(process.env.NEXT_PUBLIC_SUPABASE_URL
+    ? { NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL }
+    : {}),
+  ...(process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
+    ? {
+        NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY:
+          process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,
+      }
+    : {}),
+};
 
 export default defineConfig({
   expect: {
@@ -22,9 +34,7 @@ export default defineConfig({
     ? undefined
     : {
         command: "npm run dev -- --hostname 127.0.0.1 --port 3000",
-        env: {
-          NEXT_PUBLIC_SITE_URL: baseURL,
-        },
+        env: webServerEnv,
         reuseExistingServer: !isCI,
         timeout: 120_000,
         url: baseURL,
