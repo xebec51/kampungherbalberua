@@ -3,6 +3,7 @@ import { Container } from "@/components/ui/Container";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { StatusBadge } from "@/components/ui/StatusBadge";
+import { getPublishedHealthZones } from "@/lib/data/health-zones";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = createPageMetadata({
@@ -13,23 +14,21 @@ export const metadata: Metadata = createPageMetadata({
 });
 
 const plannedLayers = [
-  "Tanaman",
-  "Jalan dan lorong",
-  "Fasilitas umum",
-  "Lokasi kunjungan",
-  "Produk atau UMKM warga",
-  "Data kesehatan agregat",
+  "Sembilan jalan atau zona kesehatan tematik",
+  "Blok tiap zona untuk kebutuhan papan informasi",
+  "Rute kunjungan edukasi tanpa data pribadi warga",
+  "Denah final bersama tim Perencanaan Wilayah dan Kota",
 ];
 
-const acceptedFormats = ["Gambar denah", "Tabel koordinat", "GeoJSON", "KML"];
+export default async function MapPage() {
+  const zones = await getPublishedHealthZones();
 
-export default function MapPage() {
   return (
     <section className="bg-herbal-cream py-12 sm:py-16">
       <Container>
         <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
           <SectionHeading
-            description="Halaman ini disiapkan untuk menampung hasil denah dan pemetaan Kampung Herbal. Peta interaktif belum diaktifkan pada tahap pertama."
+            description="Kawasan Kampung Herbal Harmony dibagi menjadi sembilan zona tematik. Denah interaktif belum dipasang dan masih disusun bersama tim Perencanaan Wilayah dan Kota."
             eyebrow="Pemetaan"
             title="Peta Kampung Herbal"
           />
@@ -45,11 +44,17 @@ export default function MapPage() {
           />
           <div className="grid gap-5">
             <InfoPanel title="Lapisan peta yang direncanakan" values={plannedLayers} />
-            <InfoPanel title="Format data yang dapat diterima" values={acceptedFormats} />
+            <InfoPanel
+              title="Zona tematik"
+              values={zones.map(
+                (zone) =>
+                  `${zone.streetName} - ${zone.zoneName} (${zone.blockRanges.join(", ")})`,
+              )}
+            />
             <div className="rounded-md border border-herbal-green/10 bg-white p-5 text-sm leading-7 text-herbal-muted shadow-sm">
-              Data kesehatan hanya akan ditampilkan dalam bentuk agregat per zona
-              dan tidak menampilkan identitas warga, alamat rumah, atau kondisi
-              kesehatan individual.
+              Zona pada halaman ini bukan diagnosis wilayah dan bukan data
+              penyakit warga. Website tidak menampilkan peta rumah pasien,
+              alamat warga, koordinat pasien, atau kondisi kesehatan per rumah.
             </div>
           </div>
         </div>
