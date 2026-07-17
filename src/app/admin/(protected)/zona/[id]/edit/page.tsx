@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AdminNotice } from "@/components/admin/AdminNotice";
+import { HealthZoneQrPanel } from "@/components/admin/HealthZoneQrPanel";
 import { HealthZoneAdminForm } from "@/components/admin/HealthZoneAdminForm";
 import { updateHealthZoneAction } from "@/app/admin/(protected)/zona/actions";
 import { canEditContent } from "@/lib/auth/permissions";
@@ -90,6 +91,7 @@ export default async function EditZonePage({
           tone="error"
         />
       ) : null}
+      <HealthZoneQrPanel zone={result.data} />
       <HealthZoneAdminForm
         action={updateHealthZoneAction.bind(null, result.data.id)}
         mode="edit"
