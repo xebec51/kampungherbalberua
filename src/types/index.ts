@@ -6,6 +6,8 @@ export type ValidationStatus =
   | "terverifikasi"
   | "ditolak";
 
+export type ContentStatus = "draft" | "pending-review" | "published" | "archived";
+
 export type Plant = {
   id: string;
   slug: string;
@@ -27,6 +29,31 @@ export type Plant = {
   validationStatus: ValidationStatus;
   featured: boolean;
   published: boolean;
+};
+
+export type HealthZone = {
+  id: string;
+  zoneCode: string;
+  slug: string;
+  programName: string;
+  streetName: string;
+  zoneName: string;
+  blockRanges: string[];
+  healthTopic: string;
+  signText: string | null;
+  shortDescription: string;
+  overview: string;
+  educationalPoints: string[];
+  healthyHabits: string[];
+  importantNotes: string[];
+  sourceNotes: string[];
+  imagePath: string | null;
+  locationNotes: string | null;
+  validatorName: string;
+  validationStatus: ValidationStatus;
+  contentStatus: ContentStatus;
+  featured: boolean;
+  publishedAt: string | null;
 };
 
 export type RecipeIngredient = {
