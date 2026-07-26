@@ -67,7 +67,8 @@ select ok(pg_temp.lives($$insert into public.health_zones (zone_code, slug, stre
 select ok(pg_temp.lives($$update public.plants set short_description = 'Updated draft' where slug = 'pgtap-editor-plant'$$), 'editor can update own draft plant');
 select ok(pg_temp.throws($$update public.plants set content_status = 'published' where slug = 'pgtap-editor-plant'$$), 'editor cannot publish plant');
 select ok(pg_temp.throws($$update public.health_zones set validation_status = 'verified', validator_name = 'Editor', source_notes = array['Source'] where zone_code = 'khb-z86'$$), 'editor cannot set verified zone');
-select ok(pg_temp.throws($$delete from public.plants where slug = 'pgtap-editor-plant'$$), 'editor cannot delete plant');
+delete from public.plants where slug = 'pgtap-editor-plant';
+select is((select count(*) from public.plants where slug = 'pgtap-editor-plant'), 1::bigint, 'editor cannot delete plant');
 select is((select updated_by from public.plants where slug = 'pgtap-editor-plant'), '20000000-0000-0000-0000-000000000001'::uuid, 'updated_by set to editor auth user');
 select is((select created_by from public.plants where slug = 'pgtap-editor-plant'), '20000000-0000-0000-0000-000000000001'::uuid, 'created_by set to editor auth user');
 select ok(pg_temp.lives($$update public.plants set created_by = '20000000-0000-0000-0000-000000000003' where slug = 'pgtap-editor-plant'$$), 'editor forged created_by update statement does not error');
@@ -81,8 +82,10 @@ set local request.jwt.claim.sub = '20000000-0000-0000-0000-000000000002';
 select is((select count(*) from public.plants where slug like 'pgtap-staff-%'), 2::bigint, 'validator can read all plants');
 select is((select count(*) from public.health_zones where zone_code in ('khb-z84', 'khb-z85')), 2::bigint, 'validator can read all zones');
 select ok(pg_temp.throws($$insert into public.plants (slug, local_name, category, short_description, description) values ('pgtap-validator-plant', 'Validator Plant', 'rimpang', 'Short', 'Desc')$$), 'validator cannot insert plant');
-select ok(pg_temp.throws($$update public.health_zones set zone_name = 'Validator Update' where zone_code = 'khb-z84'$$), 'validator cannot update zone');
-select ok(pg_temp.throws($$delete from public.health_zones where zone_code = 'khb-z84'$$), 'validator cannot delete zone');
+update public.health_zones set zone_name = 'Validator Update' where zone_code = 'khb-z84';
+select is((select zone_name from public.health_zones where zone_code = 'khb-z84'), 'Zona Draft', 'validator cannot update zone');
+delete from public.health_zones where zone_code = 'khb-z84';
+select is((select count(*) from public.health_zones where zone_code = 'khb-z84'), 1::bigint, 'validator cannot delete zone');
 
 reset role;
 set local role authenticated;

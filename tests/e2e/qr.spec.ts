@@ -7,7 +7,7 @@ test.beforeAll(async () => {
 });
 
 test.afterAll(async () => {
-  await cleanupE2EData();
+  await cleanupE2EData({ failOnError: false });
 });
 
 test("QR permanen redirect sementara dan kode invalid 404", async ({ request }) => {

@@ -68,7 +68,8 @@ select is((select count(*) from public.plants where slug = 'pgtap-draft-plant'),
 select is((select count(*) from public.health_zones where zone_code = 'khb-z81'), 0::bigint, 'viewer cannot read draft health zone');
 select ok(pg_temp.throws($$insert into public.plants (slug, local_name, category, short_description, description) values ('viewer-insert', 'Viewer', 'rimpang', 'Short', 'Desc')$$), 'viewer cannot mutate plants');
 select ok(pg_temp.throws($$insert into public.health_zones (zone_code, slug, street_name, zone_name, block_ranges, health_topic, short_description, overview) values ('khb-z83', 'viewer-zone', 'Jl. Viewer', 'Zona Viewer', array['V1'], 'Topic', 'Short', 'Overview')$$), 'viewer cannot mutate health zones');
-select ok(pg_temp.throws($$update public.profiles set role = 'admin' where id = auth.uid()$$), 'viewer cannot change own role');
+update public.profiles set role = 'admin' where id = auth.uid();
+select is((select role from public.profiles where id = auth.uid()), 'viewer'::public.app_role, 'viewer cannot change own role');
 
 select * from finish();
 

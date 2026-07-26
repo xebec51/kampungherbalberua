@@ -2,17 +2,13 @@ import { defineConfig, devices } from "@playwright/test";
 
 const baseURL = process.env.PLAYWRIGHT_BASE_URL ?? "http://127.0.0.1:3000";
 const isCI = Boolean(process.env.CI);
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL ?? process.env.SUPABASE_URL;
+const supabasePublishableKey =
+  process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ?? process.env.SUPABASE_ANON_KEY;
 const webServerEnv = {
   NEXT_PUBLIC_SITE_URL: baseURL,
-  ...(process.env.NEXT_PUBLIC_SUPABASE_URL
-    ? { NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL }
-    : {}),
-  ...(process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
-    ? {
-        NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY:
-          process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,
-      }
-    : {}),
+  NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: supabasePublishableKey ?? "",
+  NEXT_PUBLIC_SUPABASE_URL: supabaseUrl ?? "",
 };
 
 export default defineConfig({

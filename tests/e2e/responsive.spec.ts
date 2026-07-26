@@ -1,5 +1,5 @@
 import { expect, test, type Page } from "@playwright/test";
-import { loginAs } from "./helpers/auth";
+import { expectDashboard, loginAs } from "./helpers/auth";
 
 const viewports = [
   { height: 812, name: "mobile", width: 375 },
@@ -28,10 +28,12 @@ for (const viewport of viewports) {
     }
 
     await loginAs(page, "admin");
+    await expectDashboard(page);
     await page.goto("/admin/zona");
     await expectNoHorizontalOverflow(page);
 
     await page.goto("/admin/zona/baru");
+    await expect(page.getByRole("heading", { name: "Tambah Zona Kesehatan" })).toBeVisible();
     await expect(page.getByRole("button", { name: "Simpan zona" })).toBeVisible();
     await expectNoHorizontalOverflow(page);
   });

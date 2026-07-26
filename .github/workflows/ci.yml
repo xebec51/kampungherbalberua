@@ -61,15 +61,42 @@ jobs:
         run: npm ci
 
       - name: Setup Supabase CLI
-        uses: supabase/setup-cli@v1
+        uses: supabase/setup-cli@v3
         with:
-          version: latest
+          version: 2.109.1
 
       - name: Start Supabase local
         run: supabase start
 
       - name: Reset local database
         run: supabase db reset
+
+      - name: Inspect local Supabase env names
+        shell: bash
+        run: supabase status -o env | sed -E 's/=.*/=<redacted>/'
+
+      - name: Export local Supabase environment
+        shell: bash
+        run: |
+          set -euo pipefail
+          status="$(supabase status -o env \
+            --override-name api.url=SUPABASE_URL \
+            --override-name auth.anon_key=SUPABASE_ANON_KEY \
+            --override-name auth.service_role_key=SUPABASE_SERVICE_ROLE_KEY)"
+          read_env() {
+            printf '%s\n' "$status" | sed -n "s/^$1=//p" | tr -d '"'
+          }
+          supabase_url="$(read_env SUPABASE_URL)"
+          anon_key="$(read_env SUPABASE_ANON_KEY)"
+          service_role_key="$(read_env SUPABASE_SERVICE_ROLE_KEY)"
+          {
+            echo "SUPABASE_URL=$supabase_url"
+            echo "SUPABASE_ANON_KEY=$anon_key"
+            echo "SUPABASE_SERVICE_ROLE_KEY=$service_role_key"
+          } >> "$GITHUB_ENV"
+
+      - name: Wait for local Supabase
+        run: npm run wait:supabase
 
       - name: Run pgTAP database tests
         run: npm run test:db
@@ -103,15 +130,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Install PostgreSQL client
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y postgresql-client
-
       - name: Setup Supabase CLI
-        uses: supabase/setup-cli@v1
+        uses: supabase/setup-cli@v3
         with:
-          version: latest
+          version: 2.109.1
 
       - name: Install Playwright Chromium
         run: npx playwright install --with-deps chromium
@@ -125,17 +147,29 @@ jobs:
       - name: Export local Supabase environment
         shell: bash
         run: |
-          status="$(supabase status -o env)"
-          api_url="$(printf '%s\n' "$status" | sed -n 's/^API_URL=//p' | tr -d '"')"
-          anon_key="$(printf '%s\n' "$status" | sed -n 's/^ANON_KEY=//p' | tr -d '"')"
-          db_url="$(printf '%s\n' "$status" | sed -n 's/^DB_URL=//p' | tr -d '"')"
-          echo "NEXT_PUBLIC_SUPABASE_URL=$api_url" >> "$GITHUB_ENV"
+          set -euo pipefail
+          status="$(supabase status -o env \
+            --override-name api.url=SUPABASE_URL \
+            --override-name auth.anon_key=SUPABASE_ANON_KEY \
+            --override-name auth.service_role_key=SUPABASE_SERVICE_ROLE_KEY)"
+          read_env() {
+            printf '%s\n' "$status" | sed -n "s/^$1=//p" | tr -d '"'
+          }
+          supabase_url="$(read_env SUPABASE_URL)"
+          anon_key="$(read_env SUPABASE_ANON_KEY)"
+          service_role_key="$(read_env SUPABASE_SERVICE_ROLE_KEY)"
+          echo "SUPABASE_URL=$supabase_url" >> "$GITHUB_ENV"
+          echo "SUPABASE_ANON_KEY=$anon_key" >> "$GITHUB_ENV"
+          echo "SUPABASE_SERVICE_ROLE_KEY=$service_role_key" >> "$GITHUB_ENV"
+          echo "NEXT_PUBLIC_SUPABASE_URL=$supabase_url" >> "$GITHUB_ENV"
           echo "NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=$anon_key" >> "$GITHUB_ENV"
           echo "NEXT_PUBLIC_SITE_URL=http://127.0.0.1:3000" >> "$GITHUB_ENV"
-          echo "SUPABASE_DB_URL=$db_url" >> "$GITHUB_ENV"
 
-      - name: Load E2E fixtures
-        run: psql "$SUPABASE_DB_URL" -f supabase/tests/fixtures/e2e-fixtures.sql
+      - name: Wait for local Supabase
+        run: npm run wait:supabase
+
+      - name: Create E2E Auth users
+        run: npm run setup:e2e-users
 
       - name: Run Playwright E2E
         env:

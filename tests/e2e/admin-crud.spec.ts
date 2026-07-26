@@ -7,7 +7,7 @@ test.beforeAll(async () => {
 });
 
 test.afterAll(async () => {
-  await cleanupE2EData();
+  await cleanupE2EData({ failOnError: false });
 });
 
 test("editor dapat membuat dan mengubah draft tanaman tetapi tidak dapat publish/delete", async ({

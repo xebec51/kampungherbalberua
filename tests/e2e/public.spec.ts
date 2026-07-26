@@ -8,7 +8,9 @@ test("beranda menampilkan heading utama dan zona featured", async ({ page }) => 
     }),
   ).toBeVisible();
   await expect(page.getByRole("heading", { name: "Jelajahi Zona Kesehatan" })).toBeVisible();
-  await expect(page.getByText("Jl. Digestia")).toBeVisible();
+  await expect(
+    page.getByRole("link", { exact: true, name: "Jl. Digestia" }),
+  ).toBeVisible();
 });
 
 test("katalog tanaman tampil, pencarian bekerja, dan detail jahe dapat dibuka", async ({
@@ -25,8 +27,12 @@ test("katalog tanaman tampil, pencarian bekerja, dan detail jahe dapat dibuka", 
 
 test("zona kesehatan menampilkan sembilan zona, blok, dan disclaimer", async ({ page }) => {
   await page.goto("/zona-kesehatan");
-  await expect(page.getByText("Jl. Digestia")).toBeVisible();
-  await expect(page.getByText("Jl. Pediatria")).toBeVisible();
+  await expect(
+    page.getByRole("link", { exact: true, name: "Jl. Digestia" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("link", { exact: true, name: "Jl. Pediatria" }),
+  ).toBeVisible();
   await expect(page.getByText("Blok E1-10, H1-5")).toBeVisible();
   await expect(page.getByText("bukan diagnosis, resep, atau pengganti konsultasi")).toBeVisible();
 });
@@ -34,7 +40,12 @@ test("zona kesehatan menampilkan sembilan zona, blok, dan disclaimer", async ({ 
 test("peta menampilkan sembilan jalan dan placeholder PWK", async ({ page }) => {
   await page.goto("/peta");
   await expect(page.getByText("sembilan zona tematik")).toBeVisible();
-  await expect(page.getByText("tim Perencanaan Wilayah dan Kota")).toBeVisible();
+  await expect(
+    page.getByText(
+      "Pemetaan sedang disusun bersama tim Perencanaan Wilayah dan Kota",
+      { exact: true },
+    ),
+  ).toBeVisible();
   await expect(page.getByText("Jl. Digestia - Zona Pencernaan Sehat")).toBeVisible();
 });
 

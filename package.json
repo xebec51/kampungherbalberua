@@ -9,10 +9,13 @@
     "lint": "eslint",
     "test": "npm run test:unit && npm run test:db && npm run test:e2e",
     "test:unit": "vitest run",
-    "test:e2e": "playwright test",
+    "test:e2e": "playwright test --grep-invert @preview",
+    "test:preview": "playwright test tests/e2e/preview-smoke.spec.ts",
     "test:e2e:report": "playwright show-report",
     "test:db": "supabase test db",
-    "test:ci": "npm run lint && npm run build && npm run test:unit && npm run test:db && npm run test:e2e"
+    "test:ci": "npm run lint && npm run build && npm run test:unit && npm run test:db && npm run test:e2e",
+    "setup:e2e-users": "node --experimental-strip-types tests/e2e/setup/create-test-users.ts",
+    "wait:supabase": "node --experimental-strip-types tests/e2e/setup/wait-for-supabase.ts"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.3",
