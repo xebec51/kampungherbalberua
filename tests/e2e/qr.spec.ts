@@ -48,13 +48,17 @@ test("endpoint download QR menghasilkan SVG dan PNG dengan filename aman", async
 
   await loginAs(page, "admin");
 
-  const svg = await page.request.get(`/admin/zona/${data.id}/qr?format=svg`);
-  expect(svg.ok()).toBe(true);
+  const svg = await page.request.get(`/admin/zona/${data.id}/qr?format=svg`, {
+    maxRedirects: 0,
+  });
+  expect(svg.status()).toBe(200);
   expect(svg.headers()["content-type"]).toContain("image/svg+xml");
   expect(svg.headers()["content-disposition"]).toContain("qr-khb-z01-digestia.svg");
 
-  const png = await page.request.get(`/admin/zona/${data.id}/qr?format=png`);
-  expect(png.ok()).toBe(true);
+  const png = await page.request.get(`/admin/zona/${data.id}/qr?format=png`, {
+    maxRedirects: 0,
+  });
+  expect(png.status()).toBe(200);
   expect(png.headers()["content-type"]).toContain("image/png");
   expect(png.headers()["content-disposition"]).toContain("qr-khb-z01-digestia.png");
 

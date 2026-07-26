@@ -136,8 +136,10 @@ test("admin zona dapat publish, mengunduh QR, mengubah slug, archive, dan delete
   await page.goto("/zona-kesehatan/e2e-admin-zone");
   await expect(page.getByRole("heading", { name: "Jl. E2E Admin" })).toBeVisible();
 
-  const svg = await page.request.get(`/admin/zona/${zoneId}/qr?format=svg`);
-  expect(svg.ok()).toBe(true);
+  const svg = await page.request.get(`/admin/zona/${zoneId}/qr?format=svg`, {
+    maxRedirects: 0,
+  });
+  expect(svg.status()).toBe(200);
   expect(svg.headers()["content-type"]).toContain("image/svg+xml");
 
   await page.goto(`/admin/zona/${zoneId}/edit`);
