@@ -30,16 +30,16 @@ const quickLinks = [
 
 export function QuickAccessSection() {
   return (
-    <section className="relative z-10 -mt-14 bg-transparent pb-16">
+    <section className="relative z-10 -mt-16 bg-transparent pb-16">
       <Container>
-        <div className="grid gap-px overflow-hidden rounded-md border border-herbal-green/15 bg-herbal-green/15 shadow-[0_24px_70px_rgba(17,27,21,0.16)] sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-3 rounded-md border border-white/[0.45] bg-white/70 p-3 shadow-[0_24px_70px_rgba(17,27,21,0.18)] backdrop-blur sm:grid-cols-2 lg:grid-cols-4">
           {quickLinks.map((item) => (
             <Link
-              className="group bg-white p-6 transition hover:bg-herbal-mist focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
+              className="group grid min-h-44 rounded-md border border-herbal-green/10 bg-white p-5 transition hover:-translate-y-1 hover:border-herbal-green/25 hover:bg-herbal-mist hover:shadow-[0_18px_42px_rgba(17,27,21,0.12)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
               href={item.href}
               key={item.href}
             >
-              <span className="text-xs font-bold uppercase tracking-[0.16em] text-herbal-brown">
+              <span className="flex h-10 w-10 items-center justify-center rounded-md bg-[#f7d774] text-sm font-extrabold text-[#111b15]">
                 {item.index}
               </span>
               <h2 className="mt-4 text-xl font-bold text-herbal-ink group-hover:text-herbal-green">
@@ -48,7 +48,7 @@ export function QuickAccessSection() {
               <p className="mt-3 text-sm leading-6 text-herbal-muted">
                 {item.description}
               </p>
-              <span className="mt-5 inline-flex text-sm font-semibold text-herbal-green group-hover:text-herbal-deep">
+              <span className="mt-5 inline-flex text-sm font-bold text-herbal-green group-hover:text-herbal-deep">
                 Buka halaman
               </span>
             </Link>

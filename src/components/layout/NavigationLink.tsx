@@ -38,7 +38,7 @@ export function NavigationLink({
           : "px-3 py-2 text-sm",
         active
           ? "bg-herbal-soft text-herbal-deep"
-          : "text-herbal-muted hover:bg-white hover:text-herbal-green",
+          : "text-herbal-ink hover:bg-herbal-soft hover:text-herbal-green",
       )}
       href={href}
       onClick={onClick}
