@@ -5,6 +5,11 @@ const isCI = Boolean(process.env.CI);
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL ?? process.env.SUPABASE_URL;
 const supabasePublishableKey =
   process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ?? process.env.SUPABASE_ANON_KEY;
+const vercelAutomationBypassSecret =
+  process.env.VERCEL_AUTOMATION_BYPASS_SECRET?.trim();
+const extraHTTPHeaders = vercelAutomationBypassSecret
+  ? { "x-vercel-protection-bypass": vercelAutomationBypassSecret }
+  : undefined;
 const webServerEnv = {
   NEXT_PUBLIC_SITE_URL: baseURL,
   NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: supabasePublishableKey ?? "",
@@ -22,6 +27,7 @@ export default defineConfig({
   timeout: 60_000,
   use: {
     baseURL,
+    extraHTTPHeaders,
     screenshot: "only-on-failure",
     trace: "on-first-retry",
     video: "retain-on-failure",

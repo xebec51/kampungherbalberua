@@ -1,7 +1,21 @@
-import { expect, test } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
+
+async function expectPreviewIsAccessible(page: Page) {
+  const loginHeading = page.getByRole("heading", {
+    exact: true,
+    name: "Log in to Vercel",
+  });
+
+  if (await loginHeading.isVisible({ timeout: 1_000 }).catch(() => false)) {
+    throw new Error(
+      "Preview deployment dilindungi Vercel. Atur VERCEL_AUTOMATION_BYPASS_SECRET sebagai GitHub Actions secret.",
+    );
+  }
+}
 
 test("preview deployment public smoke @preview", async ({ page, request }) => {
   await page.goto("/");
+  await expectPreviewIsAccessible(page);
   await expect(
     page.getByRole("heading", {
       exact: true,
