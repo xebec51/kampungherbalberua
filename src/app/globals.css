@@ -1,19 +1,22 @@
 @import "tailwindcss";
 
 @theme {
-  --color-herbal-green: #2f6b3c;
-  --color-herbal-deep: #1f3d2b;
-  --color-herbal-soft: #eaf3e8;
-  --color-herbal-brown: #9a4c1e;
-  --color-herbal-cream: #f8f6f0;
+  --color-herbal-green: #27643a;
+  --color-herbal-deep: #163522;
+  --color-herbal-soft: #e3efe4;
+  --color-herbal-brown: #7a3717;
+  --color-herbal-cream: #f5f4ec;
   --color-herbal-white: #ffffff;
-  --color-herbal-ink: #17211b;
-  --color-herbal-muted: #5c675f;
+  --color-herbal-ink: #111b15;
+  --color-herbal-muted: #46544c;
+  --color-herbal-sage: #b9cdbb;
+  --color-herbal-clay: #c6733c;
+  --color-herbal-mist: #eef3ef;
 }
 
 :root {
-  --background: #f8f6f0;
-  --foreground: #17211b;
+  --background: #f5f4ec;
+  --foreground: #111b15;
   --font-sans: Arial, Helvetica, sans-serif;
 }
 
@@ -30,7 +33,9 @@ body {
   min-height: 100vh;
   margin: 0;
   overflow-x: clip;
-  background: var(--background);
+  background:
+    radial-gradient(circle at top left, rgba(39, 100, 58, 0.08), transparent 34rem),
+    var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
 }

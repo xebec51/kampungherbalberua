@@ -7,9 +7,9 @@ type StatusBadgeProps = {
 };
 
 const toneClass = {
-  green: "border-herbal-green/20 bg-herbal-soft text-herbal-deep",
-  brown: "border-herbal-brown/20 bg-[#F5E9DF] text-herbal-brown",
-  neutral: "border-herbal-muted/20 bg-white text-herbal-muted",
+  green: "border-herbal-green/25 bg-herbal-soft text-herbal-deep",
+  brown: "border-herbal-brown/25 bg-[#f2dfd2] text-herbal-brown",
+  neutral: "border-herbal-muted/25 bg-white text-herbal-ink",
 };
 
 export function StatusBadge({

@@ -57,9 +57,54 @@ Pedoman ini berlaku untuk seluruh perubahan pada repository Kampung Herbal Berua
 - Jangan membuat policy RLS terbuka (`using (true)`) untuk operasi insert, update, atau delete.
 - Jangan menampilkan detail error database (pesan mentah Supabase/Postgres) kepada pengunjung publik.
 
+## Autentikasi, Role, dan Otorisasi Admin
+
+- Server Action wajib memeriksa session, profile, status aktif, dan role sebelum mutation.
+- UI bukan lapisan otorisasi; penyembunyian tombol tidak boleh menjadi satu-satunya proteksi.
+- Role, user id, `created_by`, `updated_by`, `validator_id`, dan `published_at` tidak boleh diterima dari browser.
+- Role harus dibaca dari `public.profiles` di server dan tetap dibatasi oleh RLS.
+- Registrasi publik, OAuth, magic link, dan pengelolaan pengguna melalui dashboard tidak tersedia.
+- `viewer` tidak boleh membuka `/admin`.
+- `editor` dapat membuat dan mengubah draft atau pending review, tetapi tidak dapat publish, verified, rejected, atau delete.
+- `validator` bersifat read-only pada sprint ini.
+- `admin` mengelola publikasi, arsip, validasi, dan delete.
+- Error login harus umum dan tidak boleh mengungkapkan apakah email terdaftar.
+
+## Zona Kesehatan dan QR Permanen
+
+- `zone_code` adalah identitas permanen QR dan tidak boleh berubah setelah zona pernah dipublikasikan.
+- QR zona selalu memakai route berbasis `zone_code`, misalnya `/z/khb-z01`.
+- QR tidak boleh memakai slug sebagai identitas permanen karena slug boleh berubah.
+- Target QR harus dibangun server-side dari data zona dan `NEXT_PUBLIC_SITE_URL`, bukan dari input bebas pengguna.
+- QR dibuat saat diminta dan tidak disimpan ke Supabase Storage.
+- Route QR tidak boleh melakukan tracking scan, menyimpan cookie, meminta lokasi, atau mengambil data pribadi.
+- Mutation tanaman dan zona wajib melakukan revalidation untuk halaman publik, admin, dan sitemap yang terkait.
+
+## Materi Kesehatan dan Privasi Foto
+
+- Materi kesehatan tidak boleh membuat klaim diagnosis, penyembuhan, pencegahan penyakit, dosis pengobatan, atau pengganti obat dokter.
+- Gunakan bahasa konservatif seperti "materi edukasi umum", "kebiasaan hidup sehat", "pemanfaatan tradisional", dan "bukan pengganti konsultasi".
+- Informasi untuk anak, ibu hamil, ibu menyusui, lansia, penderita penyakit tertentu, dan pengguna obat rutin harus diarahkan untuk berkonsultasi dengan tenaga kesehatan.
+- Foto papan atau zona hanya digunakan sebagai dokumentasi visual.
+- Foto tidak boleh digunakan untuk mengidentifikasi orang, mengambil nomor telepon, alamat rumah, metadata EXIF, GPS, atau data pribadi lain.
+
+## Automated Testing
+
+- Fitur tidak dianggap selesai bila automated test terkait masih gagal.
+- Bug harus disertai regression test yang membuktikan perilaku yang diperbaiki.
+- Rule RLS wajib diuji dengan pgTAP di `supabase/tests/`.
+- Flow publik dan admin wajib diuji dengan Playwright bila menyentuh route, form, autentikasi, atau CRUD.
+- CI tidak boleh memakai database production, project Supabase remote, atau service-role key production.
+- Fixture test harus terpisah dari `supabase/seed.sql` production.
+- Hasil test harus deterministic dan tidak bergantung pada urutan eksekusi acak.
+- Data test harus memakai prefix jelas seperti `E2E-` dan dibersihkan setelah test.
+- Manual testing bukan gate utama untuk merge; automated test adalah gate utama.
+- QR fisik tetap memerlukan satu acceptance scan manual sebelum cetak massal.
+
 ## Git dan Kualitas
 
 - Jalankan `npm run lint` dan `npm run build` setelah perubahan utama.
+- Jalankan automated test yang relevan (`npm run test:unit`, `npm run test:db`, `npm run test:e2e`, atau `npm run test:ci`) setelah perubahan utama.
 - Setiap tahap perubahan harus dibuatkan commit lokal.
 - Gunakan Conventional Commits.
 - Jangan melakukan push tanpa instruksi eksplisit.

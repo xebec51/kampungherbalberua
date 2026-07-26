@@ -1,5 +1,6 @@
 import { DataDisclaimerSection } from "@/components/home/DataDisclaimerSection";
 import { FeaturedPlantsSection } from "@/components/home/FeaturedPlantsSection";
+import { FeaturedHealthZonesSection } from "@/components/home/FeaturedHealthZonesSection";
 import { FeaturedProductsSection } from "@/components/home/FeaturedProductsSection";
 import { HerbaCodeSection } from "@/components/home/HerbaCodeSection";
 import { HeroSection } from "@/components/home/HeroSection";
@@ -17,6 +18,7 @@ export default function Home() {
       <HeroSection />
       <QuickAccessSection />
       <ProfileSection />
+      <FeaturedHealthZonesSection />
       <FeaturedPlantsSection />
       <HerbaCodeSection />
       <MapPreviewSection />

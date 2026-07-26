@@ -1,0 +1,197 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: quality
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
+
+      - name: Audit production dependencies
+        run: npm audit --omit=dev
+
+      - name: Unit tests
+        run: npm run test:unit
+
+  database-test:
+    name: database-test
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Setup Supabase CLI
+        uses: supabase/setup-cli@v3
+        with:
+          version: 2.109.1
+
+      - name: Start Supabase local
+        run: supabase start
+
+      - name: Reset local database
+        run: supabase db reset
+
+      - name: Inspect local Supabase env names
+        shell: bash
+        run: supabase status -o env | sed -E 's/=.*/=<redacted>/'
+
+      - name: Export local Supabase environment
+        shell: bash
+        run: |
+          set -euo pipefail
+          status="$(supabase status -o env \
+            --override-name api.url=SUPABASE_URL \
+            --override-name auth.anon_key=SUPABASE_ANON_KEY \
+            --override-name auth.service_role_key=SUPABASE_SERVICE_ROLE_KEY)"
+          read_env() {
+            printf '%s\n' "$status" | sed -n "s/^$1=//p" | tr -d '"'
+          }
+          supabase_url="$(read_env SUPABASE_URL)"
+          anon_key="$(read_env SUPABASE_ANON_KEY)"
+          service_role_key="$(read_env SUPABASE_SERVICE_ROLE_KEY)"
+          {
+            echo "SUPABASE_URL=$supabase_url"
+            echo "SUPABASE_ANON_KEY=$anon_key"
+            echo "SUPABASE_SERVICE_ROLE_KEY=$service_role_key"
+          } >> "$GITHUB_ENV"
+
+      - name: Wait for local Supabase
+        run: npm run wait:supabase
+
+      - name: Run pgTAP database tests
+        run: npm run test:db
+
+      - name: Upload Supabase logs on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: supabase-logs
+          path: supabase/.temp/**
+          if-no-files-found: ignore
+
+      - name: Stop Supabase local
+        if: always()
+        run: supabase stop --no-backup
+
+  e2e:
+    name: e2e
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Setup Supabase CLI
+        uses: supabase/setup-cli@v3
+        with:
+          version: 2.109.1
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Start Supabase local
+        run: supabase start
+
+      - name: Reset local database
+        run: supabase db reset
+
+      - name: Export local Supabase environment
+        shell: bash
+        run: |
+          set -euo pipefail
+          status="$(supabase status -o env \
+            --override-name api.url=SUPABASE_URL \
+            --override-name auth.anon_key=SUPABASE_ANON_KEY \
+            --override-name auth.service_role_key=SUPABASE_SERVICE_ROLE_KEY)"
+          read_env() {
+            printf '%s\n' "$status" | sed -n "s/^$1=//p" | tr -d '"'
+          }
+          supabase_url="$(read_env SUPABASE_URL)"
+          anon_key="$(read_env SUPABASE_ANON_KEY)"
+          service_role_key="$(read_env SUPABASE_SERVICE_ROLE_KEY)"
+          echo "SUPABASE_URL=$supabase_url" >> "$GITHUB_ENV"
+          echo "SUPABASE_ANON_KEY=$anon_key" >> "$GITHUB_ENV"
+          echo "SUPABASE_SERVICE_ROLE_KEY=$service_role_key" >> "$GITHUB_ENV"
+          echo "NEXT_PUBLIC_SUPABASE_URL=$supabase_url" >> "$GITHUB_ENV"
+          echo "NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=$anon_key" >> "$GITHUB_ENV"
+          echo "NEXT_PUBLIC_SITE_URL=http://127.0.0.1:3000" >> "$GITHUB_ENV"
+
+      - name: Wait for local Supabase
+        run: npm run wait:supabase
+
+      - name: Create E2E Auth users
+        run: npm run setup:e2e-users
+
+      - name: Run Playwright E2E
+        env:
+          PLAYWRIGHT_BASE_URL: http://127.0.0.1:3000
+        run: npm run test:e2e
+
+      - name: Upload Playwright HTML report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          if-no-files-found: ignore
+
+      - name: Upload Playwright failure artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-test-results
+          path: test-results/
+          if-no-files-found: ignore
+
+      - name: Stop Supabase local
+        if: always()
+        run: supabase stop --no-backup

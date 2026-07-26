@@ -166,6 +166,118 @@ export type Database = {
           },
         ];
       };
+      health_zones: {
+        Row: {
+          id: string;
+          zone_code: string;
+          slug: string;
+          program_name: string;
+          street_name: string;
+          zone_name: string;
+          block_ranges: string[];
+          health_topic: string;
+          sign_text: string | null;
+          short_description: string;
+          overview: string;
+          educational_points: string[];
+          healthy_habits: string[];
+          important_notes: string[];
+          source_notes: string[];
+          image_path: string | null;
+          location_notes: string | null;
+          validator_name: string | null;
+          validator_id: string | null;
+          validation_status: ValidationStatus;
+          content_status: ContentStatus;
+          featured: boolean;
+          published_at: string | null;
+          created_by: string | null;
+          updated_by: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          zone_code: string;
+          slug: string;
+          program_name?: string;
+          street_name: string;
+          zone_name: string;
+          block_ranges?: string[];
+          health_topic: string;
+          sign_text?: string | null;
+          short_description: string;
+          overview: string;
+          educational_points?: string[];
+          healthy_habits?: string[];
+          important_notes?: string[];
+          source_notes?: string[];
+          image_path?: string | null;
+          location_notes?: string | null;
+          validator_name?: string | null;
+          validator_id?: string | null;
+          validation_status?: ValidationStatus;
+          content_status?: ContentStatus;
+          featured?: boolean;
+          published_at?: string | null;
+          created_by?: string | null;
+          updated_by?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          zone_code?: string;
+          slug?: string;
+          program_name?: string;
+          street_name?: string;
+          zone_name?: string;
+          block_ranges?: string[];
+          health_topic?: string;
+          sign_text?: string | null;
+          short_description?: string;
+          overview?: string;
+          educational_points?: string[];
+          healthy_habits?: string[];
+          important_notes?: string[];
+          source_notes?: string[];
+          image_path?: string | null;
+          location_notes?: string | null;
+          validator_name?: string | null;
+          validator_id?: string | null;
+          validation_status?: ValidationStatus;
+          content_status?: ContentStatus;
+          featured?: boolean;
+          published_at?: string | null;
+          created_by?: string | null;
+          updated_by?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "health_zones_validator_id_fkey";
+            columns: ["validator_id"];
+            isOneToOne: false;
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "health_zones_created_by_fkey";
+            columns: ["created_by"];
+            isOneToOne: false;
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "health_zones_updated_by_fkey";
+            columns: ["updated_by"];
+            isOneToOne: false;
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
     };
     Views: Record<string, never>;
     Functions: {

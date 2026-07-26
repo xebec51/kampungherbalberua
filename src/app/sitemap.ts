@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { products } from "@/data/products";
 import { recipes } from "@/data/recipes";
+import { getHealthZoneSlugs } from "@/lib/data/health-zones";
 import { getPlantSlugs } from "@/lib/data/plants";
 import { absoluteUrl } from "@/lib/metadata";
 
@@ -10,6 +11,7 @@ const staticRoutes = [
   "/tanaman",
   "/ramuan",
   "/peta",
+  "/zona-kesehatan",
   "/wisata",
   "/produk",
   "/kegiatan",
@@ -21,9 +23,11 @@ const staticRoutes = [
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
   const plantSlugs = await getPlantSlugs();
+  const zoneSlugs = await getHealthZoneSlugs();
 
   const dynamicRoutes = [
     ...plantSlugs.map((slug) => `/tanaman/${slug}`),
+    ...zoneSlugs.map((slug) => `/zona-kesehatan/${slug}`),
     ...recipes
       .filter((recipe) => recipe.published)
       .map((recipe) => `/ramuan/${recipe.slug}`),

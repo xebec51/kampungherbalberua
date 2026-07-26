@@ -6,26 +6,40 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "npm run test:unit && npm run test:db && npm run test:e2e",
+    "test:unit": "vitest run",
+    "test:e2e": "playwright test --grep-invert @preview",
+    "test:preview": "playwright test tests/e2e/preview-smoke.spec.ts",
+    "test:e2e:report": "playwright show-report",
+    "test:db": "supabase test db",
+    "test:ci": "npm run lint && npm run build && npm run test:unit && npm run test:db && npm run test:e2e",
+    "setup:e2e-users": "node --experimental-strip-types tests/e2e/setup/create-test-users.ts",
+    "wait:supabase": "node --experimental-strip-types tests/e2e/setup/wait-for-supabase.ts"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.3",
     "@supabase/supabase-js": "^2.110.6",
     "next": "^16.2.10",
+    "qrcode": "^1.5.4",
     "react": "^19.2.7",
     "react-dom": "^19.2.7"
   },
   "devDependencies": {
+    "@playwright/test": "^1.61.1",
     "@tailwindcss/postcss": "^4.3.2",
     "@types/node": "^24.10.0",
+    "@types/qrcode": "^1.5.6",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
     "eslint": "^9.39.5",
     "eslint-config-next": "^16.2.10",
     "tailwindcss": "^4.3.2",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.10"
   },
   "overrides": {
-    "postcss": "^8.5.10"
+    "postcss": "^8.5.10",
+    "sharp": "0.35.3"
   }
 }
