@@ -1,5 +1,12 @@
 import { expect, test } from "@playwright/test";
-import { expectDashboard, loginAs, logout, testPassword, testUsers } from "./helpers/auth";
+import {
+  expectDashboard,
+  expectRoleBadge,
+  loginAs,
+  logout,
+  testPassword,
+  testUsers,
+} from "./helpers/auth";
 
 test("pengguna belum login diarahkan dari admin ke login", async ({ page }) => {
   await page.goto("/admin");
@@ -24,14 +31,14 @@ test("viewer login ditolak", async ({ page }) => {
 test("editor dapat membuka dashboard dan logout", async ({ page }) => {
   await loginAs(page, "editor");
   await expectDashboard(page);
-  await expect(page.getByText("Editor")).toBeVisible();
+  await expectRoleBadge(page, "editor");
   await logout(page);
 });
 
 test("validator membuka dashboard read-only", async ({ page }) => {
   await loginAs(page, "validator");
   await expectDashboard(page);
-  await expect(page.getByText("Validator")).toBeVisible();
+  await expectRoleBadge(page, "validator");
   await page.goto("/admin/tanaman");
   await expect(page.getByRole("link", { name: "Tambah Tanaman" })).toHaveCount(0);
 });
@@ -39,7 +46,7 @@ test("validator membuka dashboard read-only", async ({ page }) => {
 test("admin membuka dashboard penuh", async ({ page }) => {
   await loginAs(page, "admin");
   await expectDashboard(page);
-  await expect(page.getByText("Admin")).toBeVisible();
+  await expectRoleBadge(page, "admin");
   await page.goto("/admin/zona");
   await expect(page.getByRole("link", { name: "Tambah Zona" })).toBeVisible();
 });
