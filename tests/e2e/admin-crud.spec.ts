@@ -45,11 +45,30 @@ test("validator dapat membaca daftar tetapi forged update ditolak", async ({ pag
   await expect(page.getByRole("link", { name: "Tambah Tanaman" })).toHaveCount(0);
 
   const validator = await signInE2EClient("validator");
-  const { error } = await validator
+  const forgedDescription = "Forged validator update";
+  const { data: beforeUpdate, error: beforeUpdateError } = await validator
     .from("plants")
-    .update({ short_description: "Forged validator update" })
-    .eq("slug", "jahe");
-  expect(error).not.toBeNull();
+    .select("short_description")
+    .eq("slug", "jahe")
+    .single();
+  expect(beforeUpdateError).toBeNull();
+
+  const { data: updatedRows, error: updateError } = await validator
+    .from("plants")
+    .update({ short_description: forgedDescription })
+    .eq("slug", "jahe")
+    .select("short_description");
+  expect(updateError).toBeNull();
+  expect(updatedRows).toHaveLength(0);
+
+  const { data: afterUpdate, error: afterUpdateError } = await validator
+    .from("plants")
+    .select("short_description")
+    .eq("slug", "jahe")
+    .single();
+  expect(afterUpdateError).toBeNull();
+  expect(afterUpdate?.short_description).toBe(beforeUpdate?.short_description);
+  expect(afterUpdate?.short_description).not.toBe(forgedDescription);
   await validator.auth.signOut();
 });
 
@@ -76,7 +95,10 @@ test("admin dapat membuat, publish, archive, dan delete tanaman", async ({
   await expect(page.getByText("Tanaman berhasil diarsipkan.")).toBeVisible();
 
   await page.goto(`/tanaman/${slug}`);
-  await expect(page.getByText("Tanaman tidak ditemukan")).toBeVisible();
+  await expect(page).toHaveTitle(/Tanaman tidak ditemukan/);
+  await expect(
+    page.getByRole("heading", { name: "E2E-Admin Plant" }),
+  ).toHaveCount(0);
 
   await page.goto(`/admin/tanaman?q=${slug}`);
   await page.getByText("Hapus permanen").click();
