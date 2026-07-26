@@ -13,9 +13,9 @@ const variants = {
   primary:
     "bg-herbal-green text-white shadow-sm hover:bg-herbal-deep focus-visible:outline-herbal-brown",
   secondary:
-    "border border-herbal-green bg-white text-herbal-green hover:bg-herbal-soft focus-visible:outline-herbal-brown",
+    "border border-herbal-green/70 bg-white text-herbal-deep hover:bg-herbal-soft focus-visible:outline-herbal-brown",
   ghost:
-    "text-herbal-green hover:bg-herbal-soft focus-visible:outline-herbal-brown",
+    "text-herbal-deep hover:bg-herbal-soft focus-visible:outline-herbal-brown",
 };
 
 export function LinkButton({
