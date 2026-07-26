@@ -167,6 +167,7 @@ alter table public.health_zones enable row level security;
 
 grant select on public.health_zones to anon, authenticated;
 grant insert, update, delete on public.health_zones to authenticated;
+grant select, insert, update, delete on public.health_zones to service_role;
 
 create policy "health_zones_select_published"
   on public.health_zones

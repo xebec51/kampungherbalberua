@@ -183,11 +183,13 @@ alter table public.plants enable row level security;
 -- Base table grants. Supabase does not auto-expose newly created tables, so
 -- these are required in addition to the RLS policies below, which remain
 -- the actual authorization boundary.
-grant usage on schema public to anon, authenticated;
+grant usage on schema public to anon, authenticated, service_role;
 grant select on public.profiles to authenticated;
 grant update on public.profiles to authenticated;
+grant select, insert, update, delete on public.profiles to service_role;
 grant select on public.plants to anon, authenticated;
 grant insert, update, delete on public.plants to authenticated;
+grant select, insert, update, delete on public.plants to service_role;
 
 -- profiles policies -----------------------------------------------------
 

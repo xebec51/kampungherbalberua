@@ -1,6 +1,6 @@
 begin;
 
-select plan(25);
+select plan(28);
 
 select has_table('public', 'profiles', 'profiles table exists');
 select has_table('public', 'plants', 'plants table exists');
@@ -136,6 +136,21 @@ select ok(
       and polname = 'health_zones_delete_admin'
   ),
   'health_zones admin delete policy exists'
+);
+
+select ok(
+  has_table_privilege('service_role', 'public.profiles', 'SELECT, INSERT, UPDATE, DELETE'),
+  'service_role can manage profiles for local E2E fixture setup'
+);
+
+select ok(
+  has_table_privilege('service_role', 'public.plants', 'SELECT, INSERT, UPDATE, DELETE'),
+  'service_role can clean local E2E plant data'
+);
+
+select ok(
+  has_table_privilege('service_role', 'public.health_zones', 'SELECT, INSERT, UPDATE, DELETE'),
+  'service_role can clean local E2E zone data'
 );
 
 select ok(
