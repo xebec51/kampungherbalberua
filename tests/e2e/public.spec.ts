@@ -11,6 +11,11 @@ test("beranda menampilkan heading utama dan zona featured", async ({ page }) => 
   await expect(
     page.getByRole("link", { exact: true, name: "Jl. Digestia" }),
   ).toBeVisible();
+  await expect(
+    page.getByRole("img", {
+      name: "Foto papan Jl. Digestia Zona Pencernaan Sehat",
+    }),
+  ).toBeVisible();
 });
 
 test("katalog tanaman tampil, pencarian bekerja, dan detail jahe dapat dibuka", async ({
@@ -33,6 +38,7 @@ test("zona kesehatan menampilkan sembilan zona, blok, dan disclaimer", async ({ 
   await expect(
     page.getByRole("link", { exact: true, name: "Jl. Pediatria" }),
   ).toBeVisible();
+  await expect(page.getByRole("img", { name: /^Foto papan Jl\./ })).toHaveCount(9);
   await expect(page.getByText("Blok E1-10, H1-5")).toBeVisible();
   await expect(page.getByText("bukan diagnosis, resep, atau pengganti konsultasi")).toBeVisible();
 });
