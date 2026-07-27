@@ -49,6 +49,29 @@ test("peta menampilkan sembilan jalan dan placeholder PWK", async ({ page }) => 
   await expect(page.getByText("Jl. Digestia - Zona Pencernaan Sehat")).toBeVisible();
 });
 
+test("produk menyediakan tautan pemesanan WhatsApp publik", async ({ page }) => {
+  await page.goto("/produk");
+
+  const productCard = page.getByRole("article").filter({
+    has: page.getByRole("heading", {
+      exact: true,
+      name: "Bibit Tanaman TOGA",
+    }),
+  });
+  await expect(productCard.getByRole("link", { name: "Pesan via WhatsApp" })).toHaveAttribute(
+    "href",
+    /https:\/\/wa\.me\/6289623080501\?text=/,
+  );
+
+  await productCard.getByRole("link", { name: "Detail produk" }).click();
+  await expect(page).toHaveURL(/\/produk\/bibit-tanaman-toga$/);
+  await expect(page.getByRole("heading", { name: "Bibit Tanaman TOGA" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Pesan via WhatsApp" })).toHaveAttribute(
+    "href",
+    /Bibit%20Tanaman%20TOGA/,
+  );
+});
+
 test("sitemap dan robots dapat diakses dengan canonical zona tanpa route QR", async ({
   request,
 }) => {
