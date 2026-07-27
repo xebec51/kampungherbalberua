@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { isActivePath } from "@/lib/navigation";
 import { cn } from "@/lib/utils";
 
 type NavigationLinkProps = {
@@ -9,26 +10,23 @@ type NavigationLinkProps = {
   label: string;
   onClick?: () => void;
   mobile?: boolean;
+  nested?: boolean;
   tone?: "default" | "hero" | "solid";
+  variant?: "link" | "cta";
 };
-
-function isActivePath(pathname: string, href: string) {
-  if (href === "/") {
-    return pathname === "/";
-  }
-
-  return pathname === href || pathname.startsWith(`${href}/`);
-}
 
 export function NavigationLink({
   href,
   label,
   onClick,
   mobile = false,
+  nested = false,
   tone = "default",
+  variant = "link",
 }: NavigationLinkProps) {
   const pathname = usePathname();
   const active = isActivePath(pathname, href);
+  const isCta = variant === "cta";
   const defaultStyle = active
     ? "bg-herbal-soft !text-herbal-deep"
     : "!text-herbal-ink hover:bg-herbal-soft hover:!text-herbal-green";
@@ -38,6 +36,9 @@ export function NavigationLink({
   const solidStyle = active
     ? "bg-white !text-herbal-deep"
     : "!text-white/90 hover:bg-white/[0.14] hover:!text-white";
+  const ctaStyle = active
+    ? "bg-herbal-brown !text-white ring-2 ring-white/70"
+    : "bg-herbal-brown !text-white shadow-sm hover:bg-[#5f280f]";
 
   return (
     <Link
@@ -47,16 +48,21 @@ export function NavigationLink({
         tone === "default"
           ? "focus-visible:outline-herbal-brown"
           : "focus-visible:outline-white",
-        mobile
-          ? "block px-3 py-3 text-base"
-          : "px-3 py-2 text-sm",
-        mobile
-          ? defaultStyle
-          : tone === "hero"
-            ? heroStyle
-            : tone === "solid"
-              ? solidStyle
-              : defaultStyle,
+        mobile ? "flex min-h-11 items-center px-3 py-2 text-base" : "px-3 py-2 text-sm",
+        nested && "pl-7",
+        isCta &&
+          (mobile
+            ? "mt-2 justify-center px-4 font-bold"
+            : "min-h-10 px-4 font-bold"),
+        isCta
+          ? ctaStyle
+          : mobile
+            ? defaultStyle
+            : tone === "hero"
+              ? heroStyle
+              : tone === "solid"
+                ? solidStyle
+                : defaultStyle,
       )}
       href={href}
       onClick={onClick}

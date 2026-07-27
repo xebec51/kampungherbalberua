@@ -22,6 +22,7 @@ export function FeaturedProductsSection() {
         <AutoCarousel
           ariaLabel="Carousel produk pilihan warga"
           className="mt-8"
+          edgeTone="white"
           itemClassName="basis-[82%] sm:basis-[46%] lg:basis-[31%] xl:max-w-[19.5rem]"
         >
           {featuredProducts.map((product) => (

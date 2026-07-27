@@ -17,6 +17,10 @@ Pedoman ini berlaku untuk seluruh perubahan pada repository Kampung Herbal Berua
 
 - Gunakan semantic HTML.
 - Pastikan navigasi dapat digunakan dengan keyboard.
+- Navbar utama publik sebaiknya maksimal sekitar 5-6 elemen top-level; halaman sekunder dikelompokkan secara semantik.
+- Dropdown navigasi wajib accessible: tidak hanya hover, memakai aria yang tepat, dapat ditutup dengan Escape, dan tetap dapat digunakan keyboard.
+- Seluruh route publik harus tetap tersedia pada mobile meskipun desktop memakai dropdown.
+- CTA navigasi tidak boleh menggantikan akses link yang jelas dan tetap wajib memiliki kontras yang cukup.
 - Gunakan elemen heading secara berurutan.
 - Semua form harus memiliki label yang jelas.
 - Semua gambar harus memiliki alt text.

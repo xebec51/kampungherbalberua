@@ -1,6 +1,11 @@
 import Link from "next/link";
 import type { Recipe } from "@/types";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
+import {
+  PublicCard,
+  PublicCardAction,
+  PublicCardBody,
+} from "@/components/ui/PublicCard";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { getValidationStatusLabel } from "@/lib/formatters";
 
@@ -10,32 +15,33 @@ type RecipeCardProps = {
 
 export function RecipeCard({ recipe }: RecipeCardProps) {
   return (
-    <article className="flex h-full flex-col overflow-hidden rounded-md border border-herbal-green/10 bg-white shadow-sm">
+    <PublicCard>
       <ImagePlaceholder
+        className="aspect-[16/10] !rounded-none !border-0 !shadow-none"
         label={`Ilustrasi placeholder ramuan ${recipe.name}`}
         variant="recipe"
       />
-      <div className="flex flex-1 flex-col p-5">
+      <PublicCardBody>
         <div className="flex flex-wrap items-center gap-2">
           <StatusBadge tone="brown">
             {getValidationStatusLabel(recipe.validationStatus)}
           </StatusBadge>
         </div>
-        <h3 className="mt-4 text-xl font-bold text-herbal-ink">
-          <Link className="hover:text-herbal-green" href={`/ramuan/${recipe.slug}`}>
+        <h3 className="mt-4 text-lg font-bold leading-tight text-herbal-ink">
+          <Link
+            className="hover:text-herbal-green"
+            href={`/ramuan/${recipe.slug}`}
+          >
             {recipe.name}
           </Link>
         </h3>
-        <p className="mt-4 flex-1 text-sm leading-6 text-herbal-muted">
+        <p className="mt-3 line-clamp-3 flex-1 text-sm leading-6 text-herbal-muted">
           {recipe.shortDescription}
         </p>
-        <Link
-          className="mt-5 inline-flex text-sm font-semibold text-herbal-green hover:underline"
-          href={`/ramuan/${recipe.slug}`}
-        >
+        <PublicCardAction href={`/ramuan/${recipe.slug}`}>
           Lihat detail ramuan
-        </Link>
-      </div>
-    </article>
+        </PublicCardAction>
+      </PublicCardBody>
+    </PublicCard>
   );
 }

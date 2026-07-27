@@ -26,7 +26,6 @@ async function fetchPublishedPlantsFromDatabase(): Promise<Plant[] | null> {
     .order("local_name", { ascending: true });
 
   if (error) {
-    console.error("Gagal memuat data tanaman dari Supabase", { code: error.code });
     return null;
   }
 

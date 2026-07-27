@@ -19,7 +19,6 @@ async function fetchPublishedHealthZonesFromDatabase(): Promise<HealthZone[] | n
     .order("zone_code", { ascending: true });
 
   if (error) {
-    console.error("Gagal memuat zona kesehatan dari Supabase", { code: error.code });
     return null;
   }
 

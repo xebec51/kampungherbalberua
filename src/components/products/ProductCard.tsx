@@ -1,6 +1,11 @@
 import Link from "next/link";
 import type { Product } from "@/types";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
+import {
+  PublicCard,
+  PublicCardAction,
+  PublicCardBody,
+} from "@/components/ui/PublicCard";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { formatPrice, getAvailabilityLabel } from "@/lib/formatters";
 import { createProductOrderWhatsAppUrl } from "@/lib/whatsapp";
@@ -13,21 +18,24 @@ export function ProductCard({ product }: ProductCardProps) {
   const whatsappUrl = createProductOrderWhatsAppUrl(product);
 
   return (
-    <article className="flex h-full flex-col overflow-hidden rounded-md border border-herbal-green/10 bg-white shadow-sm">
+    <PublicCard>
       <ImagePlaceholder
-        className="aspect-[16/10]"
+        className="aspect-[16/10] !rounded-none !border-0 !shadow-none"
         label={`Ilustrasi placeholder produk ${product.name}`}
         variant="product"
       />
-      <div className="flex flex-1 flex-col p-4">
+      <PublicCardBody>
         <div className="flex flex-wrap items-center gap-2">
           <StatusBadge tone="green">{product.category}</StatusBadge>
           <StatusBadge tone="neutral">
             {getAvailabilityLabel(product.availability)}
           </StatusBadge>
         </div>
-        <h3 className="mt-4 text-lg font-bold text-herbal-ink">
-          <Link className="hover:text-herbal-green" href={`/produk/${product.slug}`}>
+        <h3 className="mt-4 text-lg font-bold leading-tight text-herbal-ink">
+          <Link
+            className="hover:text-herbal-green"
+            href={`/produk/${product.slug}`}
+          >
             {product.name}
           </Link>
         </h3>
@@ -37,16 +45,13 @@ export function ProductCard({ product }: ProductCardProps) {
         <p className="mt-3 text-sm font-semibold text-herbal-brown">
           {formatPrice(product.price, product.unit)}
         </p>
-        <div className="mt-4 grid gap-2 sm:grid-cols-2">
-          <Link
-            className="inline-flex min-h-10 items-center justify-center rounded-md border border-herbal-green/60 bg-white px-3 py-2 text-sm font-semibold text-herbal-deep transition hover:bg-herbal-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
-            href={`/produk/${product.slug}`}
-          >
+        <div className="mt-4 grid gap-2">
+          <PublicCardAction className="mt-0" href={`/produk/${product.slug}`}>
             Detail produk
-          </Link>
+          </PublicCardAction>
           {whatsappUrl ? (
             <a
-              className="inline-flex min-h-10 items-center justify-center rounded-md bg-herbal-green px-3 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-herbal-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
+              className="inline-flex min-h-10 items-center justify-center rounded-md bg-herbal-green px-4 py-2 text-sm font-bold text-white shadow-sm transition hover:bg-herbal-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
               href={whatsappUrl}
               rel="noreferrer"
               target="_blank"
@@ -55,7 +60,7 @@ export function ProductCard({ product }: ProductCardProps) {
             </a>
           ) : null}
         </div>
-      </div>
-    </article>
+      </PublicCardBody>
+    </PublicCard>
   );
 }

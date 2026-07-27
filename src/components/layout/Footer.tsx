@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Logo } from "@/components/layout/Logo";
 import { Container } from "@/components/ui/Container";
 import { PartnerLogos } from "@/components/ui/PartnerLogos";
-import { footerNavigation, mainNavigation } from "@/data/navigation";
+import { footerMainNavigation, footerNavigation } from "@/data/navigation";
 
 export function Footer() {
   return (
@@ -26,7 +26,7 @@ export function Footer() {
         <nav aria-label="Navigasi footer utama">
           <h2 className="text-sm font-semibold text-herbal-ink">Menu Utama</h2>
           <ul className="mt-4 grid gap-2 text-sm text-herbal-muted">
-            {mainNavigation.slice(1, 6).map((item) => (
+            {footerMainNavigation.map((item) => (
               <li key={item.href}>
                 <Link className="hover:text-herbal-green hover:underline" href={item.href}>
                   {item.label}
