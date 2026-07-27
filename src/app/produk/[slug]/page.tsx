@@ -7,7 +7,7 @@ import { StatusBadge } from "@/components/ui/StatusBadge";
 import { getProductBySlug, products } from "@/data/products";
 import { formatPrice, getAvailabilityLabel } from "@/lib/formatters";
 import { createPageMetadata } from "@/lib/metadata";
-import { createWhatsAppUrl } from "@/lib/whatsapp";
+import { createProductOrderWhatsAppUrl } from "@/lib/whatsapp";
 
 type ProductDetailPageProps = {
   params: Promise<{
@@ -52,10 +52,7 @@ export default async function ProductDetailPage({
     notFound();
   }
 
-  const whatsappUrl = createWhatsAppUrl(
-    product.whatsappNumber,
-    `Halo, saya ingin bertanya tentang ${product.name} dari Kampung Herbal Berua.`,
-  );
+  const whatsappUrl = createProductOrderWhatsAppUrl(product);
 
   return (
     <article className="bg-herbal-cream py-12 sm:py-16">
@@ -105,7 +102,7 @@ export default async function ProductDetailPage({
                   rel="noreferrer"
                   target="_blank"
                 >
-                  Pesan melalui WhatsApp
+                  Pesan via WhatsApp
                 </a>
               ) : (
                 <button
