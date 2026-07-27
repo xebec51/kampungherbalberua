@@ -44,53 +44,63 @@ export function AutoCarousel({
   const trackRef = useRef<HTMLDivElement>(null);
   const glideTimeoutRef = useRef<number | null>(null);
   const [canScroll, setCanScroll] = useState(false);
+  const [glideDirection, setGlideDirection] = useState<
+    "next" | "previous" | null
+  >(null);
   const [isGliding, setIsGliding] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
-  const scrollByItem = useCallback((direction: 1 | -1) => {
-    const track = trackRef.current;
-    const firstItem = track?.querySelector<HTMLElement>("[data-carousel-item]");
+  const scrollByItem = useCallback(
+    (direction: 1 | -1) => {
+      const track = trackRef.current;
+      const firstItem = track?.querySelector<HTMLElement>(
+        "[data-carousel-item]",
+      );
 
-    if (!track || !firstItem) {
-      return;
-    }
+      if (!track || !firstItem) {
+        return;
+      }
 
-    const styles = window.getComputedStyle(track);
-    const gap =
-      Number.parseFloat(styles.columnGap || styles.gap || "0") || 16;
-    const step = (firstItem.getBoundingClientRect().width + gap) * direction;
-    const maxScrollLeft = track.scrollWidth - track.clientWidth;
+      const styles = window.getComputedStyle(track);
+      const gap =
+        Number.parseFloat(styles.columnGap || styles.gap || "0") || 16;
+      const step = (firstItem.getBoundingClientRect().width + gap) * direction;
+      const maxScrollLeft = track.scrollWidth - track.clientWidth;
 
-    if (maxScrollLeft <= 0) {
-      return;
-    }
+      if (maxScrollLeft <= 0) {
+        return;
+      }
 
-    setIsGliding(true);
+      setIsGliding(true);
+      setGlideDirection(direction > 0 ? "next" : "previous");
 
-    if (glideTimeoutRef.current) {
-      window.clearTimeout(glideTimeoutRef.current);
-    }
+      if (glideTimeoutRef.current) {
+        window.clearTimeout(glideTimeoutRef.current);
+      }
 
-    glideTimeoutRef.current = window.setTimeout(() => {
-      setIsGliding(false);
-    }, 700);
+      glideTimeoutRef.current = window.setTimeout(() => {
+        setIsGliding(false);
+        setGlideDirection(null);
+      }, 700);
 
-    let nextLeft = track.scrollLeft + step;
+      let nextLeft = track.scrollLeft + step;
 
-    if (direction > 0 && nextLeft >= maxScrollLeft - 2) {
-      nextLeft = 0;
-    }
+      if (direction > 0 && nextLeft >= maxScrollLeft - 2) {
+        nextLeft = 0;
+      }
 
-    if (direction < 0 && nextLeft <= 0) {
-      nextLeft = maxScrollLeft;
-    }
+      if (direction < 0 && nextLeft <= 0) {
+        nextLeft = maxScrollLeft;
+      }
 
-    track.scrollTo({
-      behavior: prefersReducedMotion ? "auto" : "smooth",
-      left: Math.max(0, Math.min(nextLeft, maxScrollLeft)),
-    });
-  }, [prefersReducedMotion]);
+      track.scrollTo({
+        behavior: prefersReducedMotion ? "auto" : "smooth",
+        left: Math.max(0, Math.min(nextLeft, maxScrollLeft)),
+      });
+    },
+    [prefersReducedMotion],
+  );
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -159,6 +169,7 @@ export function AutoCarousel({
       <div
         aria-label={ariaLabel}
         className="carousel-track flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth px-1 py-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        data-glide-direction={glideDirection ?? undefined}
         data-gliding={isGliding}
         ref={trackRef}
         role="region"
@@ -207,19 +218,47 @@ export function AutoCarousel({
       >
         <button
           aria-label="Geser kartu ke kiri"
-          className="pointer-events-auto inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/70 bg-white/90 text-2xl font-bold leading-none text-herbal-deep shadow-[0_14px_34px_rgba(17,27,21,0.18)] backdrop-blur transition hover:-translate-x-0.5 hover:bg-herbal-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown sm:h-11 sm:w-11"
+          className="pointer-events-auto inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/70 bg-white/90 text-herbal-deep shadow-[0_14px_34px_rgba(17,27,21,0.18)] backdrop-blur transition hover:-translate-x-0.5 hover:bg-herbal-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown sm:h-11 sm:w-11"
           onClick={() => scrollByItem(-1)}
           type="button"
         >
-          <span aria-hidden="true">{"‹"}</span>
+          <svg
+            aria-hidden="true"
+            className="h-5 w-5"
+            fill="none"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 5l-5 5 5 5"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+            />
+          </svg>
         </button>
         <button
           aria-label="Geser kartu ke kanan"
-          className="pointer-events-auto inline-flex h-10 w-10 items-center justify-center rounded-full border border-herbal-green/20 bg-herbal-green/95 text-2xl font-bold leading-none text-white shadow-[0_14px_34px_rgba(17,27,21,0.22)] backdrop-blur transition hover:translate-x-0.5 hover:bg-herbal-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown sm:h-11 sm:w-11"
+          className="pointer-events-auto inline-flex h-10 w-10 items-center justify-center rounded-full border border-herbal-green/20 bg-herbal-green/95 text-white shadow-[0_14px_34px_rgba(17,27,21,0.22)] backdrop-blur transition hover:translate-x-0.5 hover:bg-herbal-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown sm:h-11 sm:w-11"
           onClick={() => scrollByItem(1)}
           type="button"
         >
-          <span aria-hidden="true">{"›"}</span>
+          <svg
+            aria-hidden="true"
+            className="h-5 w-5"
+            fill="none"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M8 5l5 5-5 5"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+            />
+          </svg>
         </button>
       </div>
     </div>

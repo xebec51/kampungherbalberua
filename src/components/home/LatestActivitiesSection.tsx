@@ -1,4 +1,5 @@
 import { ActivityCard } from "@/components/programs/ActivityCard";
+import { AutoCarousel } from "@/components/ui/AutoCarousel";
 import { Container } from "@/components/ui/Container";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -18,11 +19,15 @@ export function LatestActivitiesSection() {
             Lihat Kegiatan
           </LinkButton>
         </div>
-        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <AutoCarousel
+          ariaLabel="Carousel kegiatan terbaru"
+          className="mt-8"
+          itemClassName="basis-[82%] sm:basis-[46%] lg:basis-[30%] xl:basis-[23%] xl:max-w-[18.5rem]"
+        >
           {featuredActivities.map((activity) => (
             <ActivityCard activity={activity} key={activity.id} />
           ))}
-        </div>
+        </AutoCarousel>
       </Container>
     </section>
   );

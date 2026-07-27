@@ -1,4 +1,5 @@
 import { PlantCard } from "@/components/plants/PlantCard";
+import { AutoCarousel } from "@/components/ui/AutoCarousel";
 import { Container } from "@/components/ui/Container";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -20,11 +21,16 @@ export async function FeaturedPlantsSection() {
             Lihat Semua Tanaman
           </LinkButton>
         </div>
-        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <AutoCarousel
+          ariaLabel="Carousel tanaman pilihan"
+          className="mt-8"
+          edgeTone="white"
+          itemClassName="basis-[82%] sm:basis-[46%] lg:basis-[31%] xl:max-w-[19.5rem]"
+        >
           {featuredPlants.map((plant) => (
             <PlantCard key={plant.id} plant={plant} />
           ))}
-        </div>
+        </AutoCarousel>
       </Container>
     </section>
   );
