@@ -1,13 +1,32 @@
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 
-export function Logo() {
+type LogoProps = {
+  tone?: "default" | "hero" | "solid";
+};
+
+export function Logo({ tone = "default" }: LogoProps) {
+  const lightText = tone === "hero" || tone === "solid";
+
   return (
     <Link
       href="/"
-      className="inline-flex items-center gap-3 rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-herbal-brown"
+      className={cn(
+        "inline-flex items-center gap-3 rounded-md focus-visible:outline-2 focus-visible:outline-offset-4",
+        lightText ? "focus-visible:outline-white" : "focus-visible:outline-herbal-brown",
+      )}
       aria-label="Kampung Herbal Berua"
     >
-      <span className="flex h-10 w-10 items-center justify-center rounded-md bg-herbal-green text-white shadow-sm">
+      <span
+        className={cn(
+          "flex h-10 w-10 items-center justify-center rounded-md shadow-sm transition-colors",
+          tone === "hero"
+            ? "border border-white/[0.35] bg-white/[0.14] text-white backdrop-blur"
+            : tone === "solid"
+              ? "bg-white text-herbal-green"
+              : "bg-herbal-green text-white",
+        )}
+      >
         <svg
           aria-hidden="true"
           className="h-6 w-6"
@@ -31,10 +50,20 @@ export function Logo() {
         </svg>
       </span>
       <span className="leading-tight">
-        <span className="block text-sm font-bold text-herbal-ink">
+        <span
+          className={cn(
+            "block text-sm font-bold",
+            lightText ? "text-white" : "text-herbal-ink",
+          )}
+        >
           Kampung Herbal
         </span>
-        <span className="block text-xs font-medium text-herbal-muted">
+        <span
+          className={cn(
+            "block text-xs font-medium",
+            lightText ? "text-white/[0.82]" : "text-herbal-muted",
+          )}
+        >
           Berua RT 009/RW 006
         </span>
       </span>

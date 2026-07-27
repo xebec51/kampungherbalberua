@@ -19,7 +19,7 @@ const heroStats = [
 
 export function HeroSection() {
   return (
-    <section className="relative isolate flex min-h-[calc(100svh-5rem)] items-center overflow-hidden bg-herbal-deep text-white">
+    <section className="relative isolate flex min-h-svh items-center overflow-hidden bg-herbal-deep text-white">
       <Image
         alt="Lorong Kampung Herbal Berua dengan pot tanaman obat keluarga di pagi hari"
         className="absolute inset-0 -z-30 h-full w-full object-cover"

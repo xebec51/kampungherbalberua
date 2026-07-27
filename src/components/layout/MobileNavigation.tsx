@@ -5,7 +5,11 @@ import { mainNavigation } from "@/data/navigation";
 import { NavigationLink } from "@/components/layout/NavigationLink";
 import { cn } from "@/lib/utils";
 
-export function MobileNavigation() {
+type MobileNavigationProps = {
+  tone?: "default" | "hero" | "solid";
+};
+
+export function MobileNavigation({ tone = "default" }: MobileNavigationProps) {
   const [open, setOpen] = useState(false);
   const menuId = useId();
 
@@ -30,7 +34,14 @@ export function MobileNavigation() {
         aria-controls={menuId}
         aria-expanded={open}
         aria-label={open ? "Tutup menu navigasi" : "Buka menu navigasi"}
-        className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-herbal-green/20 bg-white text-herbal-deep shadow-sm transition hover:bg-herbal-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
+        className={cn(
+          "inline-flex h-11 w-11 items-center justify-center rounded-md border shadow-sm transition focus-visible:outline-2 focus-visible:outline-offset-2",
+          tone === "hero"
+            ? "border-white/[0.35] bg-white/[0.14] text-white backdrop-blur hover:bg-white/[0.22] focus-visible:outline-white"
+            : tone === "solid"
+              ? "border-white/[0.25] bg-white text-herbal-deep hover:bg-herbal-soft focus-visible:outline-white"
+              : "border-herbal-green/20 bg-white text-herbal-deep hover:bg-herbal-soft focus-visible:outline-herbal-brown",
+        )}
         onClick={() => setOpen((current) => !current)}
         type="button"
       >
