@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Logo } from "@/components/layout/Logo";
 import { MobileNavigation } from "@/components/layout/MobileNavigation";
+import { NavigationDropdown } from "@/components/layout/NavigationDropdown";
 import { NavigationLink } from "@/components/layout/NavigationLink";
 import { Container } from "@/components/ui/Container";
 import { mainNavigation } from "@/data/navigation";
@@ -13,6 +14,7 @@ export function Header() {
   const pathname = usePathname();
   const isHome = pathname === "/";
   const [scrolled, setScrolled] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const solid = !isHome || scrolled;
   const navigationTone = solid ? "solid" : "hero";
 
@@ -46,15 +48,36 @@ export function Header() {
     >
       <Container className="relative flex min-h-20 items-center justify-between gap-4">
         <Logo tone={solid ? "solid" : "hero"} />
-        <nav aria-label="Navigasi utama" className="hidden items-center gap-1 lg:flex">
-          {mainNavigation.map((item) => (
-            <NavigationLink
-              href={item.href}
-              key={item.href}
-              label={item.label}
-              tone={navigationTone}
-            />
-          ))}
+        <nav
+          aria-label="Navigasi utama"
+          className="hidden items-center gap-1 lg:flex"
+        >
+          {mainNavigation.map((item) => {
+            if (item.type === "group") {
+              return (
+                <NavigationDropdown
+                  item={item}
+                  key={item.label}
+                  onOpenChange={(open) =>
+                    setOpenDropdown(open ? item.label : null)
+                  }
+                  open={openDropdown === item.label}
+                  tone={navigationTone}
+                />
+              );
+            }
+
+            return (
+              <NavigationLink
+                href={item.href}
+                key={item.href}
+                label={item.label}
+                onClick={() => setOpenDropdown(null)}
+                tone={navigationTone}
+                variant={item.type === "cta" ? "cta" : "link"}
+              />
+            );
+          })}
         </nav>
         <MobileNavigation tone={navigationTone} />
       </Container>

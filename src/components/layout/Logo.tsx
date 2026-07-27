@@ -12,7 +12,7 @@ export function Logo({ tone = "default" }: LogoProps) {
     <Link
       href="/"
       className={cn(
-        "inline-flex items-center gap-3 rounded-md focus-visible:outline-2 focus-visible:outline-offset-4",
+        "inline-flex shrink-0 items-center gap-3 rounded-md focus-visible:outline-2 focus-visible:outline-offset-4",
         lightText ? "focus-visible:outline-white" : "focus-visible:outline-herbal-brown",
       )}
       aria-label="Kampung Herbal Berua"
