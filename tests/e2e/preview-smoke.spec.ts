@@ -22,6 +22,14 @@ test("preview deployment public smoke @preview", async ({ page, request }) => {
       name: "Mengenal Tanaman, Merawat Kesehatan, Memberdayakan Warga",
     }),
   ).toBeVisible();
+  const nav = page.getByRole("navigation", { name: "Navigasi utama" });
+  await expect(nav.getByRole("link", { exact: true, name: "Beranda" })).toBeVisible();
+  await expect(nav.getByRole("button", { name: "Edukasi" })).toBeVisible();
+  await expect(nav.getByRole("link", { exact: true, name: "Produk" })).toBeVisible();
+  await expect(nav.getByRole("link", { exact: true, name: "Kotak Saran" })).toBeVisible();
+  await nav.getByRole("button", { name: "Edukasi" }).click();
+  await expect(page.getByRole("menuitem", { name: "Tanaman TOGA" })).toBeVisible();
+  await page.keyboard.press("Escape");
 
   await page.goto("/tanaman");
   await expect(page.getByLabel("Cari tanaman")).toBeVisible();
