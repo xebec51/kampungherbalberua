@@ -1,11 +1,12 @@
 import { HealthZoneCard } from "@/components/zones/HealthZoneCard";
+import { AutoCarousel } from "@/components/ui/AutoCarousel";
 import { Container } from "@/components/ui/Container";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { getFeaturedHealthZones } from "@/lib/data/health-zones";
+import { getPublishedHealthZones } from "@/lib/data/health-zones";
 
 export async function FeaturedHealthZonesSection() {
-  const zones = await getFeaturedHealthZones(3);
+  const zones = await getPublishedHealthZones();
 
   return (
     <section className="bg-herbal-cream py-16">
@@ -20,11 +21,15 @@ export async function FeaturedHealthZonesSection() {
             Lihat Semua Zona
           </LinkButton>
         </div>
-        <div className="mt-8 grid gap-5 md:grid-cols-3">
+        <AutoCarousel
+          ariaLabel="Carousel zona kesehatan"
+          className="mt-8"
+          itemClassName="basis-[82%] sm:basis-[46%] lg:basis-[30%] xl:basis-[23%] xl:max-w-[19.5rem]"
+        >
           {zones.map((zone) => (
             <HealthZoneCard key={zone.zoneCode} zone={zone} />
           ))}
-        </div>
+        </AutoCarousel>
       </Container>
     </section>
   );

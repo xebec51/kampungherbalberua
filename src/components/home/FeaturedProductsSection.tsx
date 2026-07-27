@@ -1,4 +1,5 @@
 import { ProductCard } from "@/components/products/ProductCard";
+import { AutoCarousel } from "@/components/ui/AutoCarousel";
 import { Container } from "@/components/ui/Container";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -18,11 +19,15 @@ export function FeaturedProductsSection() {
             Lihat Katalog Produk
           </LinkButton>
         </div>
-        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <AutoCarousel
+          ariaLabel="Carousel produk pilihan warga"
+          className="mt-8"
+          itemClassName="basis-[82%] sm:basis-[46%] lg:basis-[31%] xl:max-w-[19.5rem]"
+        >
           {featuredProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
-        </div>
+        </AutoCarousel>
       </Container>
     </section>
   );

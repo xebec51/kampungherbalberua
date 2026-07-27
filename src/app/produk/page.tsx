@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ProductCard } from "@/components/products/ProductCard";
+import { AutoCarousel } from "@/components/ui/AutoCarousel";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { StatusBadge } from "@/components/ui/StatusBadge";
@@ -25,11 +26,15 @@ export default function ProductsPage() {
           />
           <StatusBadge tone="brown">Data demonstrasi</StatusBadge>
         </div>
-        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <AutoCarousel
+          ariaLabel="Carousel katalog produk warga"
+          className="mt-8"
+          itemClassName="basis-[82%] sm:basis-[46%] lg:basis-[31%] xl:max-w-[19.5rem]"
+        >
           {products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
-        </div>
+        </AutoCarousel>
       </Container>
     </section>
   );
