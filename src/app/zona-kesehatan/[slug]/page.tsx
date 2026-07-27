@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
 import { Disclaimer } from "@/components/ui/Disclaimer";
-import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
+import { SafeImage } from "@/components/ui/SafeImage";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { healthZones as localHealthZones } from "@/data/health-zones";
 import {
@@ -79,9 +79,13 @@ export default async function HealthZoneDetailPage({
 
         <div className="mt-8 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
-            <ImagePlaceholder
-              label={`Placeholder foto papan ${zone.streetName}`}
-              variant="map"
+            <SafeImage
+              alt={`Foto papan ${zone.streetName} ${zone.zoneName}`}
+              fallbackLabel={`Placeholder foto papan ${zone.streetName}`}
+              fallbackVariant="map"
+              priority
+              sizes="(min-width: 1024px) 45vw, 100vw"
+              src={zone.imagePath}
             />
             <div className="mt-5 rounded-md border border-herbal-green/10 bg-white p-5 shadow-sm">
               <h2 className="text-base font-bold text-herbal-ink">

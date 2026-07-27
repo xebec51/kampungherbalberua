@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { HealthZone } from "@/types";
-import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
+import { SafeImage } from "@/components/ui/SafeImage";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { getValidationStatusLabel } from "@/lib/formatters";
 
@@ -10,10 +10,14 @@ type HealthZoneCardProps = {
 
 export function HealthZoneCard({ zone }: HealthZoneCardProps) {
   return (
-    <article className="flex h-full flex-col overflow-hidden rounded-md border border-herbal-green/10 bg-white shadow-sm">
-      <ImagePlaceholder
-        label={`Placeholder foto papan ${zone.streetName}`}
-        variant="map"
+    <article className="group flex h-full flex-col overflow-hidden rounded-md border border-herbal-green/10 bg-white shadow-sm">
+      <SafeImage
+        alt={`Foto papan ${zone.streetName} ${zone.zoneName}`}
+        fallbackLabel={`Placeholder foto papan ${zone.streetName}`}
+        fallbackVariant="map"
+        imageClassName="transition duration-500 group-hover:scale-[1.03]"
+        sizes="(min-width: 768px) 33vw, 100vw"
+        src={zone.imagePath}
       />
       <div className="flex flex-1 flex-col p-5">
         <div className="flex flex-wrap gap-2">
