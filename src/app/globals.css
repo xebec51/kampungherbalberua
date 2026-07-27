@@ -57,6 +57,42 @@ textarea {
   color: #ffffff;
 }
 
+.carousel-card {
+  animation: carousel-card-in 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--carousel-index, 0) * 70ms);
+}
+
+.carousel-card > * {
+  transition:
+    border-color 420ms ease,
+    box-shadow 420ms ease,
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.carousel-card:hover > *,
+.carousel-card:focus-within > * {
+  border-color: rgba(39, 100, 58, 0.28);
+  box-shadow: 0 20px 42px rgba(17, 27, 21, 0.14);
+  transform: translateY(-0.25rem);
+}
+
+.carousel-track[data-gliding="true"] .carousel-card > * {
+  transform: translateY(-0.125rem);
+}
+
+@keyframes carousel-card-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0.8rem, 0.55rem, 0) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -65,5 +101,17 @@ textarea {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .carousel-card {
+    animation: none;
+  }
+
+  .carousel-card > *,
+  .carousel-card:hover > *,
+  .carousel-card:focus-within > *,
+  .carousel-track[data-gliding="true"] .carousel-card > * {
+    box-shadow: 0 1px 3px rgba(17, 27, 21, 0.08);
+    transform: none;
   }
 }
