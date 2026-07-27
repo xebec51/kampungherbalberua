@@ -1,4 +1,5 @@
 import { Container } from "@/components/ui/Container";
+import { PartnerLogos } from "@/components/ui/PartnerLogos";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
 const profilePoints = [
@@ -39,6 +40,16 @@ export function ProfileSection() {
             untuk pendataan, dan cukup kuat untuk berkembang saat materi
             lapangan mulai lengkap.
           </p>
+          <div className="mt-6 rounded-md border border-herbal-green/15 bg-herbal-green/[0.08] p-5">
+            <h3 className="text-sm font-bold uppercase tracking-[0.14em] text-herbal-brown">
+              Kolaborasi Program
+            </h3>
+            <p className="mt-3 text-sm leading-6 text-herbal-muted">
+              Identitas KKN Universitas Hasanuddin dan Pemerintah Kota Makassar
+              ditampilkan sebagai bagian dari dokumentasi program.
+            </p>
+            <PartnerLogos className="mt-4" />
+          </div>
         </div>
         <dl className="overflow-hidden rounded-md border border-herbal-green/15 bg-white shadow-[0_18px_50px_rgba(17,27,21,0.1)]">
           {profilePoints.map((item) => (

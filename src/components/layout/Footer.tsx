@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Logo } from "@/components/layout/Logo";
 import { Container } from "@/components/ui/Container";
+import { PartnerLogos } from "@/components/ui/PartnerLogos";
 import { footerNavigation, mainNavigation } from "@/data/navigation";
 
 export function Footer() {
@@ -13,6 +14,14 @@ export function Footer() {
             Portal informasi digital Kampung Herbal RT 009/RW 006 Kelurahan
             Berua, Kecamatan Biringkanaya, Kota Makassar.
           </p>
+          <div className="mt-6">
+            <h2 className="text-sm font-semibold text-herbal-ink">Kolaborasi</h2>
+            <PartnerLogos
+              className="mt-3"
+              compact
+              itemClassName="bg-herbal-cream"
+            />
+          </div>
         </div>
         <nav aria-label="Navigasi footer utama">
           <h2 className="text-sm font-semibold text-herbal-ink">Menu Utama</h2>
