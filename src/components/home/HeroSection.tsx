@@ -28,7 +28,7 @@ export function HeroSection() {
         sizes="100vw"
         src="/images/home/kampung-herbal-hero.png"
       />
-      <div className="absolute inset-0 -z-20 bg-[linear-gradient(180deg,rgba(8,20,13,0.42)_0%,rgba(8,20,13,0.66)_48%,rgba(8,20,13,0.93)_100%)]" />
+      <div className="absolute inset-0 -z-20 bg-[linear-gradient(180deg,rgba(8,20,13,0.5)_0%,rgba(8,20,13,0.72)_48%,rgba(8,20,13,0.94)_100%)]" />
       <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_center,rgba(198,115,60,0.16),transparent_34rem)]" />
       <div className="absolute inset-x-0 bottom-0 -z-10 h-48 bg-gradient-to-t from-herbal-ink to-transparent" />
 
@@ -37,7 +37,7 @@ export function HeroSection() {
           <span className="inline-flex rounded-full border border-white/[0.35] bg-white/[0.18] px-5 py-2 text-sm font-bold text-white shadow-[0_10px_30px_rgba(0,0,0,0.24)] backdrop-blur">
             RT 009/RW 006 Kelurahan Berua
           </span>
-          <h1 className="mt-6 max-w-5xl break-words text-4xl font-extrabold tracking-normal text-white drop-shadow-[0_4px_26px_rgba(0,0,0,0.64)] sm:text-6xl lg:text-7xl">
+          <h1 className="mt-6 max-w-4xl break-words text-3xl font-extrabold leading-tight tracking-normal text-white drop-shadow-[0_5px_24px_rgba(0,0,0,0.82)] sm:text-5xl lg:text-6xl">
             Mengenal Tanaman, Merawat Kesehatan, Memberdayakan Warga
           </h1>
           <p className="mt-6 max-w-3xl break-words text-base leading-8 text-white drop-shadow-[0_3px_16px_rgba(0,0,0,0.58)] sm:text-xl">
