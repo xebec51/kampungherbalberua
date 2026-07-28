@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
 import { Disclaimer } from "@/components/ui/Disclaimer";
-import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
+import { SafeImage } from "@/components/ui/SafeImage";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { plants as localPlants } from "@/data/plants";
 import { getPlantBySlug } from "@/lib/data/plants";
@@ -76,9 +76,13 @@ export default async function PlantDetailPage({ params }: PlantDetailPageProps) 
 
         <div className="mt-8 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
-            <ImagePlaceholder
-              label={`Ilustrasi placeholder tanaman ${plant.localName}`}
-              variant="plant"
+            <SafeImage
+              alt={`Tanaman ${plant.localName}`}
+              fallbackLabel={`Ilustrasi placeholder tanaman ${plant.localName}`}
+              fallbackVariant="plant"
+              imageClassName="object-cover"
+              sizes="(max-width: 1024px) 100vw, 45vw"
+              src={plant.image}
             />
             <div className="mt-5 grid gap-4 sm:grid-cols-2">
               <div className="rounded-md border border-herbal-green/10 bg-white p-5 shadow-sm">
