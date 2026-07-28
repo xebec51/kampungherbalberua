@@ -9,12 +9,14 @@ import {
 import { researchPlantImages } from "./lib/research.ts";
 import { bootstrapMediaBuckets } from "./lib/storage.ts";
 import { uploadApprovedPlantImages } from "./lib/media-files.ts";
+import { applyPlantTaxonomy } from "./lib/plant-taxonomy.ts";
 import { migrateZoneImages } from "./lib/zone-migration.ts";
 
 type MediaCommand =
   | "bootstrap"
   | "poster:validate"
   | "poster:import"
+  | "taxonomy:plants"
   | "research:plants"
   | "migrate:zones"
   | "import"
@@ -34,6 +36,7 @@ const COMMANDS = new Set<MediaCommand>([
   "bootstrap",
   "poster:validate",
   "poster:import",
+  "taxonomy:plants",
   "research:plants",
   "migrate:zones",
   "import",
@@ -58,8 +61,10 @@ function parseOptions(argv: string[]): CliOptions {
   for (let index = 0; index < flags.length; index += 1) {
     const flag = flags[index];
 
-    if (flag === "--limit") {
-      const value = flags[index + 1];
+    if (flag === "--limit" || flag.startsWith("--limit=")) {
+      const value = flag.includes("=")
+        ? flag.slice(flag.indexOf("=") + 1)
+        : flags[index + 1];
       const parsed = Number.parseInt(value ?? "", 10);
 
       if (!Number.isFinite(parsed) || parsed <= 0) {
@@ -67,18 +72,20 @@ function parseOptions(argv: string[]): CliOptions {
       }
 
       options.limit = parsed;
-      index += 1;
+      index += flag.includes("=") ? 0 : 1;
     }
 
-    if (flag === "--only") {
-      const value = flags[index + 1];
+    if (flag === "--only" || flag.startsWith("--only=")) {
+      const value = flag.includes("=")
+        ? flag.slice(flag.indexOf("=") + 1)
+        : flags[index + 1];
 
       if (!value) {
         throw new Error("--only wajib memiliki nilai");
       }
 
       options.only = value;
-      index += 1;
+      index += flag.includes("=") ? 0 : 1;
     }
   }
 
@@ -172,6 +179,24 @@ async function runPlantResearch(options: CliOptions) {
   );
 }
 
+async function runPlantTaxonomy(options: CliOptions) {
+  assertExecuteAllowed(options);
+
+  if (options.dryRun) {
+    loadMediaImportEnv();
+  }
+
+  const supabase = createMediaAdminClient();
+  const summary = await applyPlantTaxonomy(supabase, {
+    dryRun: options.dryRun,
+    limit: options.limit,
+  });
+
+  console.log(
+    `Taxonomy tanaman: dry_run=${summary.dryRun}, confirmed=${summary.confirmed}, candidate=${summary.candidate}, reused=${summary.existingPlantsReused}, draft=${summary.draftPlantsCreated}, mapped=${summary.sourceEntriesMapped}, unresolved=${summary.unresolved}, failures=${summary.failures.length}`,
+  );
+}
+
 async function runMediaImport(options: CliOptions) {
   assertExecuteAllowed(options);
 
@@ -237,6 +262,11 @@ async function main() {
 
   if (options.command === "poster:import") {
     await runPosterImport(options);
+    return;
+  }
+
+  if (options.command === "taxonomy:plants") {
+    await runPlantTaxonomy(options);
     return;
   }
 
