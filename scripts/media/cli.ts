@@ -6,6 +6,7 @@ import {
   importPosterWorkbook,
   validatePosterWorkbook,
 } from "./lib/poster.ts";
+import { researchPlantImages } from "./lib/research.ts";
 import { bootstrapMediaBuckets } from "./lib/storage.ts";
 
 type MediaCommand =
@@ -153,6 +154,22 @@ async function runPosterImport(options: CliOptions) {
   );
 }
 
+async function runPlantResearch(options: CliOptions) {
+  if (options.execute) {
+    loadMediaImportEnv();
+  }
+
+  const supabase = createMediaAdminClient();
+  const summary = await researchPlantImages(supabase, {
+    limit: options.limit,
+    only: options.only,
+  });
+
+  console.log(
+    `Riset gambar tanaman: kandidat=${summary.candidates}, approved=${summary.approved}, unresolved=${summary.unresolved}, rejected=${summary.rejected}`,
+  );
+}
+
 async function main() {
   const options = parseOptions(process.argv.slice(2));
 
@@ -180,6 +197,11 @@ async function main() {
 
   if (options.command === "poster:import") {
     await runPosterImport(options);
+    return;
+  }
+
+  if (options.command === "research:plants") {
+    await runPlantResearch(options);
     return;
   }
 
