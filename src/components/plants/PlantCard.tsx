@@ -1,11 +1,11 @@
 import Link from "next/link";
 import type { Plant } from "@/types";
-import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 import {
   PublicCard,
   PublicCardAction,
   PublicCardBody,
 } from "@/components/ui/PublicCard";
+import { SafeImage } from "@/components/ui/SafeImage";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 
 type PlantCardProps = {
@@ -15,10 +15,14 @@ type PlantCardProps = {
 export function PlantCard({ plant }: PlantCardProps) {
   return (
     <PublicCard>
-      <ImagePlaceholder
+      <SafeImage
+        alt={`Tanaman ${plant.localName}`}
         className="aspect-[16/10] !rounded-none !border-0 !shadow-none"
-        label={`Ilustrasi placeholder tanaman ${plant.localName}`}
-        variant="plant"
+        fallbackLabel={`Ilustrasi placeholder tanaman ${plant.localName}`}
+        fallbackVariant="plant"
+        imageClassName="object-cover"
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        src={plant.image}
       />
       <PublicCardBody>
         <div className="flex flex-wrap items-center gap-2">

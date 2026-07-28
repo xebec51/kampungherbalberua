@@ -138,11 +138,38 @@ test("katalog tanaman tampil, pencarian bekerja, dan detail jahe dapat dibuka", 
 }) => {
   await page.goto("/tanaman");
   await expect(page.getByRole("heading", { name: "Tanaman TOGA Kampung Herbal Berua" })).toBeVisible();
+  await expect(page.getByRole("img", { name: "Tanaman Jahe" })).toBeVisible();
+  await expect(page.getByRole("img", { name: "Tanaman Jahe" })).toHaveAttribute(
+    "src",
+    /supabase\.co|storage/,
+  );
   await page.getByLabel("Cari tanaman").fill("jahe");
   await expect(page.getByText("Menampilkan 1 hasil tanaman.")).toBeVisible();
   await page.getByRole("link", { name: "Jahe", exact: true }).click();
   await expect(page).toHaveURL(/\/tanaman\/jahe$/);
   await expect(page.getByRole("heading", { name: "Jahe" })).toBeVisible();
+  await expect(page.getByRole("img", { name: "Tanaman Jahe" })).toBeVisible();
+});
+
+test("gambar tanaman tampil pada beranda dan halaman detail tanaman", async ({
+  page,
+}) => {
+  await page.goto("/");
+  await expect(page.getByRole("img", { name: /^Tanaman / }).first()).toBeVisible();
+
+  const detailPages = [
+    { alt: "Tanaman Jahe", slug: "jahe" },
+    { alt: "Tanaman Serai", slug: "serai" },
+    { alt: "Tanaman Daun Sirih", slug: "daun-sirih" },
+    { alt: "Tanaman Bunga Telang", slug: "bunga-telang" },
+  ];
+
+  for (const detailPage of detailPages) {
+    await page.goto(`/tanaman/${detailPage.slug}`);
+    const image = page.getByRole("img", { name: detailPage.alt });
+    await expect(image).toBeVisible();
+    await expect(image).toHaveAttribute("src", /supabase\.co|storage/);
+  }
 });
 
 test("zona kesehatan menampilkan sembilan zona, blok, dan disclaimer", async ({ page }) => {
