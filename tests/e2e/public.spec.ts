@@ -140,18 +140,27 @@ test("katalog tanaman tampil, pencarian bekerja, dan detail jahe dapat dibuka", 
 }) => {
   await page.goto("/tanaman");
   await expect(page.getByRole("heading", { name: "Tanaman Kampung Herbal Harmony" })).toBeVisible();
-  await expect(page.getByText("Menampilkan 89 hasil tanaman.")).toBeVisible();
+  await expect(page.getByText("Menampilkan 89 dari total 89 tanaman.")).toBeVisible();
+  const firstCatalogImage = page.getByRole("img", { name: /tanaman/i }).first();
+  await expect(firstCatalogImage).toBeVisible();
+  await expect(firstCatalogImage).toHaveAttribute("src", publicImageSourcePattern);
+
+  await expect(page.getByLabel("Filter bagian")).toBeVisible();
+  await expect(page.getByLabel("Jenis gambar")).toBeVisible();
+  await expect(page.getByLabel("Urutkan")).toBeVisible();
+  await expect(page.getByRole("link", { name: "Cincau", exact: true })).toBeVisible();
+  await expect(page.getByText("Ilustrasi referensi").first()).toBeVisible();
+
+  for (const plantName of ["Garcinia", "Rosemary", "Merigold", "Willow Bark"]) {
+    await page.getByLabel("Cari tanaman").fill(plantName);
+    await expect(page.getByRole("link", { name: plantName, exact: true })).toBeVisible();
+  }
+
+  await page.getByLabel("Cari tanaman").fill("jahe");
+  await expect(page.getByText("Menampilkan 1 dari total 89 tanaman.")).toBeVisible();
   const jaheCatalogImage = page.getByRole("img", { name: /Jahe/ }).first();
   await expect(jaheCatalogImage).toBeVisible();
   await expect(jaheCatalogImage).toHaveAttribute("src", publicImageSourcePattern);
-  await expect(page.getByRole("link", { name: "Cincau", exact: true })).toBeVisible();
-  await expect(page.getByRole("link", { name: "Garcinia", exact: true })).toBeVisible();
-  await expect(page.getByRole("link", { name: "Rosemary", exact: true })).toBeVisible();
-  await expect(page.getByRole("link", { name: "Merigold", exact: true })).toBeVisible();
-  await expect(page.getByRole("link", { name: "Willow Bark", exact: true })).toBeVisible();
-  await expect(page.getByText("Ilustrasi referensi").first()).toBeVisible();
-  await page.getByLabel("Cari tanaman").fill("jahe");
-  await expect(page.getByText("Menampilkan 1 hasil tanaman.")).toBeVisible();
   await page.getByRole("link", { name: "Jahe", exact: true }).click();
   await expect(page).toHaveURL(/\/tanaman\/jahe$/);
   await expect(page.getByRole("heading", { name: "Jahe" })).toBeVisible();
@@ -163,9 +172,9 @@ test("filter zona dan detail poster-only bekerja tanpa teks kosong", async ({
 }) => {
   await page.goto("/tanaman");
   await page.getByLabel("Filter zona").selectOption({ label: "Zona Jantung Sehat" });
-  await expect(page.getByText(/Menampilkan \d+ hasil tanaman\./)).toBeVisible();
+  await expect(page.getByText(/Menampilkan \d+ dari total 89 tanaman\./)).toBeVisible();
   await page.getByRole("button", { name: "Reset filter" }).click();
-  await expect(page.getByText("Menampilkan 89 hasil tanaman.")).toBeVisible();
+  await expect(page.getByText("Menampilkan 89 dari total 89 tanaman.")).toBeVisible();
 
   await page.getByLabel("Cari tanaman").fill("cincau");
   await expect(page.getByRole("link", { name: "Cincau", exact: true })).toBeVisible();
@@ -173,7 +182,7 @@ test("filter zona dan detail poster-only bekerja tanpa teks kosong", async ({
   await expect(page).toHaveURL(/\/tanaman\/cincau$/);
   await expect(page.getByRole("heading", { name: "Cincau" })).toBeVisible();
   await expect(page.getByText("Nama ini dicantumkan pada poster Kampung Herbal Harmony.")).toBeVisible();
-  await expect(page.getByText("Ilustrasi referensi")).toBeVisible();
+  await expect(page.getByText("Ilustrasi referensi", { exact: true }).first()).toBeVisible();
   await expect(page.getByRole("img", { name: "Ilustrasi referensi untuk tanaman Cincau" })).toBeVisible();
   await expect(page.getByText(/undefined|null/i)).toHaveCount(0);
 });
@@ -255,6 +264,8 @@ test("halaman sumber gambar dapat dibuka tanpa data privat", async ({ page }) =>
   await expect(page.getByText("Atribusi Media")).toBeVisible();
   await expect(page.getByText("original private")).toHaveCount(0);
   await expect(page.getByText("Ilustrasi referensi tanaman herbal poster")).toBeVisible();
+  await expect(page.getByText("Kreator").first()).toBeVisible();
+  await expect(page.getByText("Lisensi").first()).toBeVisible();
   await expectNoHorizontalOverflow(page);
 });
 
