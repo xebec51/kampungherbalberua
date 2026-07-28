@@ -16,6 +16,7 @@ type ResearchPlant = {
 };
 
 export type PlantImageManifestItem = {
+  accessedAt: string | null;
   altText: string;
   attribution: string | null;
   candidateScore: number;
@@ -30,9 +31,21 @@ export type PlantImageManifestItem = {
   localName: string;
   plantCode: string | null;
   scientificName: string | null;
+  selectionReason: string | null;
   sourceFile: string | null;
   sourcePage: string | null;
+  sourceScientificName: string | null;
   status: string;
+};
+
+type PlantImageResearchSummary = {
+  approved: number;
+  candidates: number;
+  eligiblePlants: number;
+  fullResearchCompleted: boolean;
+  rejected: number;
+  unresolved: number;
+  wikimediaRequests: number;
 };
 
 const REJECTED_TITLE_MARKERS = [
@@ -40,7 +53,12 @@ const REJECTED_TITLE_MARKERS = [
   "logo",
   "collage",
   "packaging",
+  "powder",
+  "bubuk",
   "product",
+  "spice",
+  "ground",
+  "molida",
   "medicine",
   "tablet",
   "capsule",
@@ -113,6 +131,7 @@ function decideCandidate(
 
   if (!scientificName) {
     return {
+      accessedAt: null,
       altText: `Placeholder tanaman ${plant.local_name}`,
       attribution: null,
       candidateScore: 0,
@@ -127,8 +146,10 @@ function decideCandidate(
       localName: plant.local_name,
       plantCode: plant.plant_code,
       scientificName,
+      selectionReason: null,
       sourceFile: null,
       sourcePage: null,
+      sourceScientificName: scientificName,
       status: "unresolved",
     };
   }
@@ -143,6 +164,7 @@ function decideCandidate(
 
   if (!winner) {
     return {
+      accessedAt: null,
       altText: `Placeholder tanaman ${plant.local_name}`,
       attribution: null,
       candidateScore: 0,
@@ -157,8 +179,10 @@ function decideCandidate(
       localName: plant.local_name,
       plantCode: plant.plant_code,
       scientificName,
+      selectionReason: null,
       sourceFile: null,
       sourcePage: null,
+      sourceScientificName: scientificName,
       status: "unresolved",
     };
   }
@@ -182,6 +206,7 @@ function decideCandidate(
     cleanEnough
   ) {
     return {
+      accessedAt: new Date().toISOString(),
       altText: `Foto tanaman ${plant.local_name} (${scientificName})`,
       attribution: candidate.attributionText,
       candidateScore: winner.score,
@@ -196,13 +221,16 @@ function decideCandidate(
       localName: plant.local_name,
       plantCode: plant.plant_code,
       scientificName,
+      selectionReason: winner.reason,
       sourceFile: candidate.sourceFileUrl,
       sourcePage: candidate.sourcePageUrl,
+      sourceScientificName: scientificName,
       status: "approved",
     };
   }
 
   return {
+    accessedAt: new Date().toISOString(),
     altText: `Placeholder tanaman ${plant.local_name}`,
     attribution: candidate.attributionText,
     candidateScore: winner.score,
@@ -219,8 +247,10 @@ function decideCandidate(
     localName: plant.local_name,
     plantCode: plant.plant_code,
     scientificName,
+    selectionReason: winner.reason,
     sourceFile: candidate.sourceFileUrl,
     sourcePage: candidate.sourcePageUrl,
+    sourceScientificName: scientificName,
     status: candidate.licenseStatus,
   };
 }
@@ -266,6 +296,7 @@ export async function researchPlantImages(
 ) {
   const plants = await getResearchPlants(supabase, options);
   const manifest: PlantImageManifestItem[] = [];
+  let wikimediaRequests = 0;
 
   for (const plant of plants) {
     const scientificName = plant.scientific_name?.trim();
@@ -273,20 +304,28 @@ export async function researchPlantImages(
       ? await searchWikimediaImages(scientificName, 5)
       : [];
 
+    if (scientificName) {
+      wikimediaRequests += 1;
+    }
+
     manifest.push(decideCandidate(plant, candidates));
   }
 
   const unresolved = manifest.filter((item) => item.decision === "unresolved");
   const rejected = manifest.filter((item) => item.decision === "rejected");
-
-  writeJson("data/media/manifests/plant-images.json", manifest);
-  writeJson("data/media/reports/unresolved-plants.json", unresolved);
-  writeJson("data/media/reports/rejected-images.json", rejected);
-
-  return {
+  const summary: PlantImageResearchSummary = {
     approved: manifest.filter((item) => item.decision === "approved").length,
     candidates: manifest.length,
+    eligiblePlants: plants.length,
+    fullResearchCompleted: plants.length > 0 && unresolved.length === 0,
     rejected: rejected.length,
     unresolved: unresolved.length,
+    wikimediaRequests,
   };
+
+  writeJson("data/media/manifests/plant-images.json", manifest);
+  writeJson("data/media/reports/rejected-images.json", rejected);
+  writeJson("data/media/reports/plant-image-summary.json", summary);
+
+  return summary;
 }

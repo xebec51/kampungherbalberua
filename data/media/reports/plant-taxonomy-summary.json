@@ -1,0 +1,16 @@
+{
+  "ambiguousNamesHeld": 12,
+  "candidate": 0,
+  "confirmed": 17,
+  "disputed": 12,
+  "draftPlantsAvailable": 11,
+  "draftPlantsCreated": 0,
+  "dryRun": false,
+  "existingPlantsReused": 17,
+  "failures": [],
+  "sourceEntriesMapped": 93,
+  "sourceEntriesMappedTotal": 93,
+  "totalRawNames": 89,
+  "unresolved": 73,
+  "unresolvedEntries": 113
+}
