@@ -9,6 +9,7 @@ import {
 import { researchPlantImages } from "./lib/research.ts";
 import { bootstrapMediaBuckets } from "./lib/storage.ts";
 import { uploadApprovedPlantImages } from "./lib/media-files.ts";
+import { migrateZoneImages } from "./lib/zone-migration.ts";
 
 type MediaCommand =
   | "bootstrap"
@@ -190,6 +191,25 @@ async function runMediaImport(options: CliOptions) {
   );
 }
 
+async function runZoneMigration(options: CliOptions) {
+  assertExecuteAllowed(options);
+
+  if (options.dryRun) {
+    loadMediaImportEnv();
+  }
+
+  const supabase = createMediaAdminClient();
+  const summary = await migrateZoneImages(supabase, {
+    dryRun: options.dryRun,
+    limit: options.limit,
+    only: options.only,
+  });
+
+  console.log(
+    `Migrasi zona: dry_run=${summary.dryRun}, zona=${summary.zonesConsidered}, original=${summary.originalUploaded}, public=${summary.publicUploaded}, attachments=${summary.zoneAttachments}, failures=${summary.failures.length}`,
+  );
+}
+
 async function main() {
   const options = parseOptions(process.argv.slice(2));
 
@@ -222,6 +242,11 @@ async function main() {
 
   if (options.command === "research:plants") {
     await runPlantResearch(options);
+    return;
+  }
+
+  if (options.command === "migrate:zones") {
+    await runZoneMigration(options);
     return;
   }
 

@@ -1,5 +1,6 @@
 import { cache } from "react";
 import { plants as localPlants } from "@/data/plants";
+import { getPrimaryPlantMediaMap } from "@/lib/data/media";
 import { mapPlantRowToPlant } from "@/lib/data/plant-mapper";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import type { Plant } from "@/types";
@@ -33,7 +34,19 @@ async function fetchPublishedPlantsFromDatabase(): Promise<Plant[] | null> {
     return null;
   }
 
-  return data.map(mapPlantRowToPlant);
+  const plants = data.map(mapPlantRowToPlant);
+  const mediaByPlantId = await getPrimaryPlantMediaMap(
+    plants.map((plant) => plant.id),
+  );
+
+  return plants.map((plant) => {
+    const media = mediaByPlantId.get(plant.id);
+
+    return {
+      ...plant,
+      image: media?.publicUrl ?? plant.image,
+    };
+  });
 }
 
 /**

@@ -79,7 +79,11 @@ async function downloadImage(url: string) {
   };
 }
 
-async function optimizeWebp(buffer: Buffer, maxWidth: number, maxHeight: number) {
+export async function optimizeWebp(
+  buffer: Buffer,
+  maxWidth: number,
+  maxHeight: number,
+) {
   return sharp(buffer, { failOn: "warning" })
     .rotate()
     .resize({
@@ -92,7 +96,7 @@ async function optimizeWebp(buffer: Buffer, maxWidth: number, maxHeight: number)
     .toBuffer({ resolveWithObject: true });
 }
 
-function storageKey(input: {
+export function storageKey(input: {
   entityKey: string;
   hash: string;
   role: string;
@@ -110,7 +114,7 @@ function storageKey(input: {
   )}.webp`;
 }
 
-async function uploadNoOverwrite(
+export async function uploadNoOverwrite(
   supabase: SupabaseClient<Database>,
   bucket: "media-originals" | "media-public",
   path: string,

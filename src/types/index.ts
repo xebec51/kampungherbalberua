@@ -8,6 +8,23 @@ export type ValidationStatus =
 
 export type ContentStatus = "draft" | "pending-review" | "published" | "archived";
 
+export type PublicMediaAsset = {
+  id: string;
+  title: string;
+  altText: string;
+  caption: string | null;
+  imageType: string | null;
+  publicUrl: string;
+  width: number | null;
+  height: number | null;
+  creatorName: string | null;
+  licenseCode: string | null;
+  licenseUrl: string | null;
+  attributionText: string | null;
+  changesMade: string | null;
+  sourcePageUrl: string | null;
+};
+
 export type Plant = {
   id: string;
   slug: string;

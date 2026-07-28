@@ -4,31 +4,41 @@ import Image from "next/image";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
+import type { PublicMediaAsset } from "@/types";
 
 type SafeImageProps = {
-  src: string | null;
+  src?: string | null;
+  media?: PublicMediaAsset | null;
   alt: string;
   fallbackLabel: string;
   fallbackVariant?: "plant" | "recipe" | "product" | "activity" | "map";
   className?: string;
   imageClassName?: string;
+  labelIllustration?: boolean;
   priority?: boolean;
   sizes?: string;
+  showAttribution?: boolean;
 };
 
 export function SafeImage({
   src,
+  media,
   alt,
   fallbackLabel,
   fallbackVariant = "plant",
   className,
   imageClassName,
+  labelIllustration = false,
   priority = false,
   sizes = "100vw",
+  showAttribution = false,
 }: SafeImageProps) {
   const [hasError, setHasError] = useState(false);
+  const resolvedSrc = media?.publicUrl ?? src;
+  const resolvedAlt = media?.altText ?? alt;
+  const attribution = media?.attributionText ?? media?.creatorName ?? null;
 
-  if (!src || hasError) {
+  if (!resolvedSrc || hasError) {
     return (
       <ImagePlaceholder
         className={className}
@@ -46,14 +56,24 @@ export function SafeImage({
       )}
     >
       <Image
-        alt={alt}
+        alt={resolvedAlt}
         className={cn("object-cover", imageClassName)}
         fill
         onError={() => setHasError(true)}
         priority={priority}
         sizes={sizes}
-        src={src}
+        src={resolvedSrc}
       />
+      {labelIllustration ? (
+        <span className="absolute left-3 top-3 rounded-full bg-white/90 px-3 py-1 text-xs font-bold text-herbal-deep shadow-sm">
+          Ilustrasi
+        </span>
+      ) : null}
+      {showAttribution && attribution ? (
+        <figcaption className="absolute inset-x-0 bottom-0 bg-herbal-deep/80 px-3 py-2 text-xs leading-5 text-white">
+          {attribution}
+        </figcaption>
+      ) : null}
     </figure>
   );
 }
