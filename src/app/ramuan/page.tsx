@@ -9,7 +9,7 @@ import { createPageMetadata } from "@/lib/metadata";
 export const metadata: Metadata = createPageMetadata({
   title: "Ramuan Sehat",
   description:
-    "Daftar demonstrasi ramuan sehat Kampung Herbal Berua untuk edukasi pemanfaatan tradisional.",
+    "Daftar materi awal ramuan sehat Kampung Herbal Berua untuk edukasi pemanfaatan tradisional.",
   path: "/ramuan",
 });
 

@@ -7,7 +7,7 @@ import type {
 
 export function getValidationStatusLabel(status: ValidationStatus) {
   const labels: Record<ValidationStatus, string> = {
-    "data-demonstrasi": "Data demonstrasi",
+    "data-demonstrasi": "Data awal",
     "menunggu-verifikasi": "Menunggu verifikasi",
     terverifikasi: "Terverifikasi",
     ditolak: "Ditolak",

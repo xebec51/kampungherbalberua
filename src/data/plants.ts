@@ -19,7 +19,7 @@ export const plants: Plant[] = [
     shortDescription:
       "Rimpang aromatik yang secara tradisional digunakan untuk membantu menghangatkan tubuh.",
     description:
-      "Jahe merupakan tanaman rimpang beraroma kuat yang sering dimanfaatkan dalam minuman hangat dan bumbu dapur. Informasi ini bersifat demonstrasi dan perlu diverifikasi sebelum publikasi final.",
+      "Jahe merupakan tanaman rimpang beraroma kuat yang sering dimanfaatkan dalam minuman hangat dan bumbu dapur. Informasi ini masih berupa materi awal dan dapat dilengkapi setelah verifikasi.",
     usedParts: ["Rimpang"],
     traditionalUses: [
       "Secara tradisional digunakan untuk membantu menghangatkan tubuh.",
@@ -42,7 +42,7 @@ export const plants: Plant[] = [
     ],
     image: "/images/placeholders/plant.svg",
     locationStatus: "Lokasi tanaman sedang dipetakan.",
-    source: "Data demonstrasi berdasarkan pengetahuan umum tanaman TOGA.",
+    source: "Materi awal berdasarkan pengetahuan umum tanaman TOGA.",
     validator: "Menunggu verifikasi tim Farmasi atau tenaga kesehatan.",
     validationStatus: "data-demonstrasi",
     featured: true,
@@ -81,7 +81,7 @@ export const plants: Plant[] = [
     ],
     image: "/images/placeholders/plant.svg",
     locationStatus: "Lokasi tanaman sedang dipetakan.",
-    source: "Data demonstrasi berdasarkan pengetahuan umum tanaman TOGA.",
+    source: "Materi awal berdasarkan pengetahuan umum tanaman TOGA.",
     validator: "Menunggu verifikasi tim Farmasi atau tenaga kesehatan.",
     validationStatus: "data-demonstrasi",
     featured: true,
@@ -97,7 +97,7 @@ export const plants: Plant[] = [
     shortDescription:
       "Tanaman beraroma segar yang umum digunakan pada masakan dan seduhan tradisional.",
     description:
-      "Serai memiliki batang beraroma lemon yang banyak digunakan dalam dapur rumah tangga. Informasi ini merupakan data demonstrasi untuk struktur katalog tahap pertama.",
+      "Serai memiliki batang beraroma lemon yang banyak digunakan dalam dapur rumah tangga. Informasi ini masih berupa materi awal katalog dan menunggu verifikasi.",
     usedParts: ["Batang", "Daun"],
     traditionalUses: [
       "Secara tradisional digunakan untuk membantu memberi rasa hangat dan segar pada minuman.",
@@ -120,7 +120,7 @@ export const plants: Plant[] = [
     ],
     image: "/images/placeholders/plant.svg",
     locationStatus: "Lokasi tanaman sedang dipetakan.",
-    source: "Data demonstrasi berdasarkan pengetahuan umum tanaman TOGA.",
+    source: "Materi awal berdasarkan pengetahuan umum tanaman TOGA.",
     validator: "Menunggu verifikasi tim Farmasi atau tenaga kesehatan.",
     validationStatus: "data-demonstrasi",
     featured: true,
@@ -159,7 +159,7 @@ export const plants: Plant[] = [
     ],
     image: "/images/placeholders/plant.svg",
     locationStatus: "Lokasi tanaman sedang dipetakan.",
-    source: "Data demonstrasi berdasarkan pengetahuan umum tanaman TOGA.",
+    source: "Materi awal berdasarkan pengetahuan umum tanaman TOGA.",
     validator: "Menunggu verifikasi tim Farmasi atau tenaga kesehatan.",
     validationStatus: "data-demonstrasi",
     featured: false,
@@ -175,7 +175,7 @@ export const plants: Plant[] = [
     shortDescription:
       "Bunga berwarna biru yang sering dimanfaatkan sebagai pewarna alami minuman.",
     description:
-      "Bunga telang dikenal karena warna birunya yang menarik dan sering digunakan sebagai pewarna alami. Data ini masih demonstrasi dan belum menjadi rekomendasi kesehatan.",
+      "Bunga telang dikenal karena warna birunya yang menarik dan sering digunakan sebagai pewarna alami. Materi ini masih awal dan belum menjadi rekomendasi kesehatan.",
     usedParts: ["Bunga"],
     traditionalUses: [
       "Secara tradisional digunakan untuk memberi warna alami pada minuman.",
@@ -198,7 +198,7 @@ export const plants: Plant[] = [
     ],
     image: "/images/placeholders/plant.svg",
     locationStatus: "Lokasi tanaman sedang dipetakan.",
-    source: "Data demonstrasi berdasarkan pengetahuan umum tanaman TOGA.",
+    source: "Materi awal berdasarkan pengetahuan umum tanaman TOGA.",
     validator: "Menunggu verifikasi tim Farmasi atau tenaga kesehatan.",
     validationStatus: "data-demonstrasi",
     featured: true,
@@ -214,7 +214,7 @@ export const plants: Plant[] = [
     shortDescription:
       "Rimpang khas Indonesia yang umum dikenalkan dalam edukasi tanaman obat keluarga.",
     description:
-      "Temulawak merupakan tanaman rimpang yang sering dikaitkan dengan tradisi jamu Indonesia. Informasi ini disediakan sebagai contoh struktur data dan menunggu verifikasi.",
+      "Temulawak merupakan tanaman rimpang yang sering dikaitkan dengan tradisi jamu Indonesia. Informasi ini disediakan sebagai materi awal dan menunggu verifikasi.",
     usedParts: ["Rimpang"],
     traditionalUses: [
       "Secara tradisional digunakan untuk membantu menjaga kebugaran.",
@@ -237,7 +237,7 @@ export const plants: Plant[] = [
     ],
     image: "/images/placeholders/plant.svg",
     locationStatus: "Lokasi tanaman sedang dipetakan.",
-    source: "Data demonstrasi berdasarkan pengetahuan umum tanaman TOGA.",
+    source: "Materi awal berdasarkan pengetahuan umum tanaman TOGA.",
     validator: "Menunggu verifikasi tim Farmasi atau tenaga kesehatan.",
     validationStatus: "data-demonstrasi",
     featured: false,

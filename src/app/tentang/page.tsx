@@ -35,14 +35,15 @@ export default function AboutPage() {
                 produk masyarakat.
               </p>
               <p>
-                Tahap pertama berfokus pada halaman publik dan struktur data
-                lokal. Integrasi database, admin, QR Code dinamis, dan peta
-                interaktif disiapkan untuk tahap berikutnya.
+                Kampung Herbal Harmony adalah bagian dari inisiatif ini:
+                pengenalan tanaman, zona edukasi kesehatan, dan informasi
+                wilayah yang bisa dipahami pengunjung meskipun tidak sedang
+                berada di lokasi.
               </p>
             </div>
           </div>
           <div className="rounded-md border border-herbal-green/10 bg-white p-6 shadow-sm">
-            <StatusBadge tone="brown">Data demonstrasi</StatusBadge>
+            <StatusBadge tone="brown">Berkembang bertahap</StatusBadge>
             <h2 className="mt-4 text-2xl font-bold text-herbal-ink">
               Ruang integrasi proker
             </h2>

@@ -17,9 +17,9 @@ const pageSize = 24;
 
 const imageKindOptions = [
   { label: allImagesLabel, value: "" },
-  { label: "Foto spesifik", value: "specific" },
-  { label: "Ilustrasi referensi", value: "reference" },
-  { label: "Ilustrasi umum", value: "generic" },
+  { label: "Foto tanaman", value: "specific" },
+  { label: "Gambar pendamping", value: "reference" },
+  { label: "Ilustrasi sementara", value: "generic" },
 ];
 
 const sortOptions = [
@@ -27,8 +27,8 @@ const sortOptions = [
   { label: "Z-A", value: "za" },
   { label: "Paling sering muncul", value: "frekuensi" },
   { label: "Paling banyak zona", value: "zona" },
-  { label: "Foto paling spesifik", value: "spesifik" },
-  { label: "Nama dari poster", value: "poster" },
+  { label: "Gambar paling spesifik", value: "spesifik" },
+  { label: "Urutan katalog Harmony", value: "poster" },
 ];
 
 const allowedSorts = new Set(sortOptions.map((option) => option.value));
@@ -75,23 +75,22 @@ export function PosterPlantCatalog({ plants }: PosterPlantCatalogProps) {
 
     return plants
       .filter((plant) => {
-      const matchesCollection =
-        !collection ||
-        plant.collections.includes(collection);
-      const matchesPart = !part || plant.partCategory === part;
-      const matchesImageKind = !imageKind || plant.imageKind === imageKind;
-      const searchableText = [
-        plant.rawName,
-        plant.normalizedName,
-        plant.localName,
-        plant.scientificName ?? "",
-        plant.partCategory,
-        ...plant.collections,
-        ...plant.searchAliases,
-        String(plant.posterNumbers.join(" ")),
-      ]
-        .join(" ")
-        .toLowerCase();
+        const matchesCollection =
+          !collection || plant.collections.includes(collection);
+        const matchesPart = !part || plant.partCategory === part;
+        const matchesImageKind = !imageKind || plant.imageKind === imageKind;
+        const searchableText = [
+          plant.rawName,
+          plant.normalizedName,
+          plant.localName,
+          plant.scientificName ?? "",
+          plant.partCategory,
+          ...plant.collections,
+          ...plant.searchAliases,
+          String(plant.posterNumbers.join(" ")),
+        ]
+          .join(" ")
+          .toLowerCase();
 
         return (
           matchesCollection &&
@@ -235,7 +234,7 @@ export function PosterPlantCatalog({ plants }: PosterPlantCatalogProps) {
           </button>
         </div>
         <p className="mt-4 text-sm text-herbal-muted" aria-live="polite">
-          Menampilkan {filteredPlants.length} dari total {plants.length} tanaman.
+          Menampilkan {filteredPlants.length} dari {plants.length} tanaman dalam katalog Harmony.
         </p>
         {activeFilters.length > 0 ? (
           <div className="mt-3 flex flex-wrap gap-2">
@@ -246,7 +245,7 @@ export function PosterPlantCatalog({ plants }: PosterPlantCatalogProps) {
                 onClick={() => updateParam(filter.key, "")}
                 type="button"
               >
-                {filter.label} x
+                {filter.label} - hapus
               </button>
             ))}
           </div>
@@ -256,8 +255,12 @@ export function PosterPlantCatalog({ plants }: PosterPlantCatalogProps) {
       {filteredPlants.length > 0 ? (
         <>
           <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {visiblePlants.map((plant) => (
-              <PosterPlantCard key={plant.normalizedName} plant={plant} />
+            {visiblePlants.map((plant, index) => (
+              <PosterPlantCard
+                key={plant.normalizedName}
+                plant={plant}
+                priority={index < 3}
+              />
             ))}
           </div>
           {hasMore ? (

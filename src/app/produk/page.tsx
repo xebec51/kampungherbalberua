@@ -10,7 +10,7 @@ import { createPageMetadata } from "@/lib/metadata";
 export const metadata: Metadata = createPageMetadata({
   title: "Produk Warga",
   description:
-    "Katalog demonstrasi produk warga Kampung Herbal Berua yang akan dilengkapi setelah pendataan.",
+    "Ruang katalog produk warga Kampung Herbal Berua yang akan dilengkapi setelah pendataan dan persetujuan pengelola.",
   path: "/produk",
 });
 
@@ -20,11 +20,11 @@ export default function ProductsPage() {
       <Container>
         <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
           <SectionHeading
-            description="Katalog ini masih berupa data demonstrasi. Harga, stok, kontak produsen, dan detail produk akan ditambahkan setelah pendataan lapangan dan persetujuan pengelola."
+            description="Ruang ini disiapkan untuk menampilkan produk warga yang sudah terdata. Harga, stok, kontak produsen, dan foto produk akan ditambahkan setelah pendataan lapangan dan persetujuan pengelola."
             eyebrow="Produk Warga"
             title="Katalog produk Kampung Herbal"
           />
-          <StatusBadge tone="brown">Data demonstrasi</StatusBadge>
+          <StatusBadge tone="brown">Data awal</StatusBadge>
         </div>
         <AutoCarousel
           ariaLabel="Carousel katalog produk warga"

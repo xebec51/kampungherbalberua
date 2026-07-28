@@ -39,7 +39,7 @@ export default async function MapPage() {
         <div className="mt-8 grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
           <ImagePlaceholder
             className="aspect-[16/10]"
-            label="Ilustrasi placeholder peta Kampung Herbal"
+            label="Gambar sementara peta Kampung Herbal"
             variant="map"
           />
           <div className="grid gap-5">

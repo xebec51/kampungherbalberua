@@ -16,7 +16,7 @@ export function ProgramCard({ program }: ProgramCardProps) {
     <PublicCard>
       <ImagePlaceholder
         className="aspect-[16/10] !rounded-none !border-0 !shadow-none"
-        label={`Ilustrasi placeholder program ${program.title}`}
+        label={`Gambar sementara program ${program.title}`}
         variant={program.image.includes("map") ? "map" : "activity"}
       />
       <PublicCardBody>

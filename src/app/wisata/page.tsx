@@ -36,7 +36,7 @@ export default function TourismPage() {
             <PublicCard key={item}>
               <ImagePlaceholder
                 className="aspect-[16/10] !rounded-none !border-0 !shadow-none"
-                label={`Ilustrasi placeholder ${item.toLowerCase()}`}
+                label={`Gambar sementara ${item.toLowerCase()}`}
                 variant={item.includes("produk") ? "product" : "plant"}
               />
               <PublicCardBody>

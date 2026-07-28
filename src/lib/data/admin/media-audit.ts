@@ -85,6 +85,7 @@ export async function getAdminMediaAuditSummary() {
 
     if (
       media.title === "Ilustrasi referensi tanaman herbal poster" ||
+      media.title === "Ilustrasi sementara katalog tanaman Kampung Herbal Harmony" ||
       review?.relevance_status === "generic_fallback"
     ) {
       genericPosterImages += 1;

@@ -14,11 +14,16 @@ type SafeImageProps = {
   fallbackVariant?: "plant" | "recipe" | "product" | "activity" | "map";
   className?: string;
   imageClassName?: string;
+  illustrationLabel?: string;
   labelIllustration?: boolean;
   priority?: boolean;
   sizes?: string;
   showAttribution?: boolean;
 };
+
+function shouldBypassOptimizer(src: string) {
+  return src.includes(".supabase.co/storage/v1/object/public/");
+}
 
 export function SafeImage({
   src,
@@ -28,6 +33,7 @@ export function SafeImage({
   fallbackVariant = "plant",
   className,
   imageClassName,
+  illustrationLabel = "Gambar pendamping",
   labelIllustration = false,
   priority = false,
   sizes = "100vw",
@@ -61,12 +67,13 @@ export function SafeImage({
         fill
         onError={() => setHasError(true)}
         priority={priority}
+        unoptimized={shouldBypassOptimizer(resolvedSrc)}
         sizes={sizes}
         src={resolvedSrc}
       />
       {labelIllustration ? (
         <span className="absolute left-3 top-3 rounded-full bg-white/90 px-3 py-1 text-xs font-bold text-herbal-deep shadow-sm">
-          Ilustrasi
+          {illustrationLabel}
         </span>
       ) : null}
       {showAttribution && attribution ? (

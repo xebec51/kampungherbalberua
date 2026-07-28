@@ -5,25 +5,25 @@ const quickLinks = [
   {
     index: "01",
     title: "Tanaman TOGA",
-    description: "Katalog tanaman obat keluarga dengan status verifikasi.",
+    description: "Kenali tanaman yang dikenalkan dalam katalog Kampung Herbal Harmony.",
     href: "/tanaman",
   },
   {
     index: "02",
     title: "Ramuan Sehat",
-    description: "Edukasi pemanfaatan tradisional yang menunggu validasi.",
+    description: "Baca edukasi pemanfaatan tradisional dengan bahasa yang aman.",
     href: "/ramuan",
   },
   {
     index: "03",
     title: "Peta Kampung",
-    description: "Ruang integrasi denah dan pemetaan hasil tim PWK.",
+    description: "Pahami pembagian zona edukasi kesehatan di wilayah kampung.",
     href: "/peta",
   },
   {
     index: "04",
     title: "Produk Warga",
-    description: "Katalog awal produk masyarakat yang akan didata bertahap.",
+    description: "Lihat katalog awal produk yang dapat berkembang bersama warga.",
     href: "/produk",
   },
 ];

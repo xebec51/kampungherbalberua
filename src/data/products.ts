@@ -22,7 +22,7 @@ export const products: Product[] = [
     name: "Minuman Herbal",
     category: "Minuman",
     description:
-      "Placeholder produk minuman herbal warga. Detail komposisi, izin, harga, dan kontak akan ditambahkan setelah pendataan.",
+      "Ruang awal produk minuman herbal warga. Detail komposisi, izin, harga, dan kontak akan ditambahkan setelah pendataan.",
     price: null,
     unit: "per botol",
     image: "/images/placeholders/product.svg",
@@ -37,7 +37,7 @@ export const products: Product[] = [
     name: "Paket Tanaman Dalam Pot",
     category: "Tanaman pot",
     description:
-      "Contoh paket tanaman pekarangan untuk kunjungan edukasi atau kebutuhan rumah tangga. Data masih demonstrasi.",
+      "Contoh paket tanaman pekarangan untuk kunjungan edukasi atau kebutuhan rumah tangga. Informasi produk masih dilengkapi.",
     price: null,
     unit: "per paket",
     image: "/images/placeholders/product.svg",

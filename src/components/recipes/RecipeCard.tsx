@@ -18,7 +18,7 @@ export function RecipeCard({ recipe }: RecipeCardProps) {
     <PublicCard>
       <ImagePlaceholder
         className="aspect-[16/10] !rounded-none !border-0 !shadow-none"
-        label={`Ilustrasi placeholder ramuan ${recipe.name}`}
+        label={`Gambar sementara ramuan ${recipe.name}`}
         variant="recipe"
       />
       <PublicCardBody>
@@ -39,7 +39,7 @@ export function RecipeCard({ recipe }: RecipeCardProps) {
           {recipe.shortDescription}
         </p>
         <PublicCardAction href={`/ramuan/${recipe.slug}`}>
-          Lihat detail ramuan
+          Buka detail ramuan
         </PublicCardAction>
       </PublicCardBody>
     </PublicCard>

@@ -32,7 +32,7 @@ export default async function AdminMediaAuditPage() {
           Kualitas Gambar Katalog
         </h2>
         <p className="mt-3 max-w-2xl text-sm leading-6 text-herbal-muted">
-          Pantau gambar tanaman poster yang masih generik, penggunaan ulang
+          Pantau gambar katalog Harmony yang masih generik, penggunaan ulang
           berlebihan, metadata lisensi, dan item yang perlu ditinjau.
         </p>
       </header>
@@ -45,9 +45,9 @@ export default async function AdminMediaAuditPage() {
         <>
           <section className="grid gap-4 md:grid-cols-4">
             <MetricCard label="Total media" value={audit.totalMedia} />
-            <MetricCard label="Attachment poster" value={audit.posterAttachments} />
+            <MetricCard label="Attachment katalog" value={audit.posterAttachments} />
             <MetricCard label="Foto spesifik" value={audit.specificPosterImages} />
-            <MetricCard label="Ilustrasi umum" value={audit.genericPosterImages} />
+            <MetricCard label="Ilustrasi sementara" value={audit.genericPosterImages} />
             <MetricCard label="Reuse berlebihan" value={audit.excessiveReuse.length} />
             <MetricCard label="Resolusi rendah" value={audit.lowResolution} />
             <MetricCard label="Atribusi belum lengkap" value={audit.incompleteAttribution} />
@@ -66,7 +66,7 @@ export default async function AdminMediaAuditPage() {
             <div className="mt-4 grid gap-4">
               {audit.excessiveReuse.length === 0 ? (
                 <p className="text-sm leading-6 text-herbal-muted">
-                  Tidak ada media yang dipakai lebih dari tiga item poster.
+                  Tidak ada media yang dipakai lebih dari tiga item katalog.
                 </p>
               ) : (
                 audit.excessiveReuse.map((item) => (

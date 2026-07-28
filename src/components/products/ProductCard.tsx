@@ -21,7 +21,7 @@ export function ProductCard({ product }: ProductCardProps) {
     <PublicCard>
       <ImagePlaceholder
         className="aspect-[16/10] !rounded-none !border-0 !shadow-none"
-        label={`Ilustrasi placeholder produk ${product.name}`}
+        label={`Gambar sementara produk ${product.name}`}
         variant="product"
       />
       <PublicCardBody>

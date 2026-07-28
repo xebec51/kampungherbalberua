@@ -25,8 +25,8 @@ export const revalidate = 300;
 export const dynamicParams = true;
 
 const imageKindLabels = {
-  generic: "Ilustrasi umum",
-  reference: "Ilustrasi referensi",
+  generic: "Ilustrasi sementara",
+  reference: "Gambar pendamping",
   specific: "Foto tanaman",
 };
 
@@ -61,7 +61,7 @@ export async function generateMetadata({
     description:
       posterPlant?.description ??
       plant?.shortDescription ??
-      "Katalog tanaman Kampung Herbal Harmony.",
+      "Profil tanaman dalam katalog Kampung Herbal Harmony.",
     path: `/tanaman/${posterPlant?.slug ?? plant?.slug}`,
   });
 }
@@ -105,9 +105,12 @@ export default async function PlantDetailPage({ params }: PlantDetailPageProps) 
           <div>
             <SafeImage
               alt={`Tanaman ${plant.localName}`}
-              fallbackLabel={`Ilustrasi placeholder tanaman ${plant.localName}`}
+              fallbackLabel={`Gambar sementara tanaman ${plant.localName}`}
               fallbackVariant="plant"
               imageClassName="object-cover"
+              illustrationLabel={posterPlant ? imageKindLabels[posterPlant.imageKind] : undefined}
+              labelIllustration={posterPlant?.imageIsIllustration ?? false}
+              priority
               sizes="(max-width: 1024px) 100vw, 45vw"
               src={image}
             />
@@ -218,12 +221,15 @@ function PosterOnlyPlantDetail({ plant }: { plant: PosterPlantCatalogItem }) {
             <SafeImage
               alt={
                 plant.imageIsIllustration
-                  ? `Ilustrasi referensi untuk tanaman ${plant.rawName}`
+                  ? `Gambar pendamping untuk tanaman ${plant.rawName}`
                   : `Foto tanaman ${plant.rawName}`
               }
-              fallbackLabel={`Ilustrasi placeholder tanaman ${plant.rawName}`}
+              fallbackLabel={`Gambar sementara tanaman ${plant.rawName}`}
               fallbackVariant="plant"
               imageClassName="object-cover"
+              illustrationLabel={imageKindLabels[plant.imageKind]}
+              labelIllustration={plant.imageIsIllustration}
+              priority
               sizes="(max-width: 1024px) 100vw, 45vw"
               src={plant.image}
             />
@@ -247,7 +253,7 @@ function PosterOnlyPlantDetail({ plant }: { plant: PosterPlantCatalogItem }) {
 
           <div>
             <div className="flex flex-wrap gap-2">
-              <StatusBadge tone="brown">Nama dari poster</StatusBadge>
+              <StatusBadge tone="brown">Katalog Harmony</StatusBadge>
               <StatusBadge tone={plant.imageKind === "specific" ? "green" : "brown"}>
                 {imageKindLabels[plant.imageKind]}
               </StatusBadge>
@@ -262,7 +268,9 @@ function PosterOnlyPlantDetail({ plant }: { plant: PosterPlantCatalogItem }) {
               </p>
             ) : null}
             <p className="mt-6 text-base leading-8 text-herbal-muted">
-              Nama ini dicantumkan pada poster Kampung Herbal Harmony.
+              Tanaman ini tercatat dalam katalog edukasi Kampung Herbal Harmony,
+              program pengenalan tanaman dan zona kesehatan di RT 009/RW 006
+              Kelurahan Berua.
             </p>
             <PosterOccurrencePanel plant={plant} />
             <div className="mt-8">
@@ -284,13 +292,15 @@ function PosterOccurrencePanel({ plant }: { plant: PosterPlantCatalogItem }) {
   return (
     <section className="mt-8 rounded-md border border-herbal-green/10 bg-white p-5 text-sm leading-6 text-herbal-muted shadow-sm">
       <h2 className="text-base font-bold text-herbal-ink">
-        Kemunculan pada poster
+        Catatan katalog Harmony
       </h2>
       <p className="mt-3">
-        Muncul {plant.posterOccurrenceCount} kali pada nomor poster{" "}
-        {plant.posterNumbers.join(", ")}.
+        Tercatat {plant.posterOccurrenceCount} kali dalam pendataan zona edukasi.
+        Nomor katalog: {plant.posterNumbers.join(", ")}.
       </p>
-      <p className="mt-2">Zona: {plant.collections.join(", ")}.</p>
+      <p className="mt-2">
+        Zona edukasi: {plant.collections.join(", ")}.
+      </p>
       <p className="mt-2">Sumber: {plant.sourceLabel}.</p>
       <div className="mt-5 grid gap-3 border-t border-herbal-green/10 pt-4">
         <h3 className="font-bold text-herbal-ink">Sumber gambar</h3>

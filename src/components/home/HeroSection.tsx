@@ -9,7 +9,7 @@ const heroStats = [
   },
   {
     label: "Fokus Edukasi",
-    value: "Tanaman TOGA",
+    value: "Katalog Tanaman",
   },
   {
     label: "Identitas QR",
@@ -37,20 +37,20 @@ export function HeroSection() {
           <span className="inline-flex rounded-full border border-white/[0.35] bg-white/[0.18] px-5 py-2 text-sm font-bold text-white shadow-[0_10px_30px_rgba(0,0,0,0.24)] backdrop-blur">
             RT 009/RW 006 Kelurahan Berua
           </span>
-          <h1 className="mt-6 max-w-4xl break-words text-3xl font-extrabold leading-tight tracking-normal text-white drop-shadow-[0_5px_24px_rgba(0,0,0,0.82)] sm:text-5xl lg:text-6xl">
-            Mengenal Tanaman, Merawat Kesehatan, Memberdayakan Warga
+          <h1 className="mt-6 max-w-4xl break-words text-3xl font-extrabold leading-tight tracking-normal text-white drop-shadow-[0_5px_24px_rgba(0,0,0,0.82)] sm:text-4xl lg:text-5xl">
+            Kampung Herbal Harmony Berua
           </h1>
           <p className="mt-6 max-w-3xl break-words text-base leading-8 text-white drop-shadow-[0_3px_16px_rgba(0,0,0,0.58)] sm:text-xl">
-            Portal informasi digital Kampung Herbal Berua yang menghubungkan
-            pengetahuan tanaman obat keluarga, zona kesehatan, potensi wilayah,
-            produk masyarakat, dan aspirasi warga.
+            Portal digital untuk mengenal tanaman, zona edukasi kesehatan,
+            peta wilayah, kegiatan, produk warga, dan aspirasi masyarakat RT
+            009/RW 006 Kelurahan Berua dari mana saja.
           </p>
           <div className="mt-8 flex w-full max-w-xl flex-col gap-3 sm:flex-row sm:justify-center">
             <Link
               className="inline-flex min-h-14 items-center justify-center rounded-md bg-[#f7d774] px-7 py-3 text-base font-extrabold !text-[#111b15] shadow-[0_18px_45px_rgba(0,0,0,0.28)] transition hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#f7d774]"
               href="/tanaman"
             >
-              Jelajahi Tanaman TOGA
+              Jelajahi Katalog Tanaman
             </Link>
             <Link
               className="inline-flex min-h-14 items-center justify-center rounded-md border border-white/[0.55] bg-white/[0.14] px-7 py-3 text-base font-bold text-white shadow-[0_18px_45px_rgba(0,0,0,0.18)] backdrop-blur transition hover:bg-white hover:!text-[#111b15] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"

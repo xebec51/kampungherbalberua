@@ -65,10 +65,11 @@ type PosterGroup = {
 };
 
 const POSTER_DESCRIPTION =
-  "Nama ini dicantumkan pada poster Kampung Herbal Harmony. Informasi identitas dan materi edukasi dapat dilengkapi setelah proses verifikasi.";
+  "Nama tanaman ini tercatat dalam katalog edukasi Kampung Herbal Harmony, program pengenalan tanaman dan zona kesehatan di RT 009/RW 006 Kelurahan Berua. Informasi identitas dan materi edukasi dapat dilengkapi setelah proses verifikasi.";
 const FALLBACK_POSTER_IMAGE = "/images/placeholders/plant.svg";
 const FALLBACK_ATTRIBUTION =
-  "Ilustrasi placeholder lokal untuk nama tanaman poster yang belum mempunyai media berlisensi di lingkungan ini.";
+  "Ilustrasi sementara untuk tanaman katalog Kampung Herbal Harmony yang belum mempunyai media berlisensi di lingkungan ini.";
+const HARMONY_SOURCE_LABEL = "Katalog Edukasi Kampung Herbal Harmony";
 
 type ManifestPosterPlant = {
   rawName: string;
@@ -233,7 +234,7 @@ function fallbackPosterCatalog() {
         searchAliases: posterPlantSearchAliases[item.normalizedName] ?? [],
         scientificName: null,
         slug: item.slug,
-        sourceLabel: "Peta Tanaman Obat Kampung Herbal Harmony",
+        sourceLabel: HARMONY_SOURCE_LABEL,
         sourcePageUrl: null,
       }) satisfies PosterPlantCatalogItem,
   );
@@ -410,7 +411,7 @@ export const getPosterPlantCatalog = cache(async () => {
         searchAliases: posterPlantSearchAliases[group.normalizedName] ?? [],
         scientificName: plant?.scientific_name ?? null,
         slug,
-        sourceLabel: "Peta Tanaman Obat Kampung Herbal Harmony",
+        sourceLabel: HARMONY_SOURCE_LABEL,
         sourcePageUrl: media?.sourcePageUrl ?? null,
       } satisfies PosterPlantCatalogItem;
     })

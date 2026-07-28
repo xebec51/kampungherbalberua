@@ -18,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id">
+    <html data-scroll-behavior="smooth" lang="id">
       <body>
         <SkipLink />
         <Header />

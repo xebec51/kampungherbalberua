@@ -65,7 +65,7 @@ export default async function ProductDetailPage({
         />
         <div className="mt-8 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
           <ImagePlaceholder
-            label={`Ilustrasi placeholder produk ${product.name}`}
+            label={`Gambar sementara produk ${product.name}`}
             variant="product"
           />
 
@@ -75,7 +75,7 @@ export default async function ProductDetailPage({
               <StatusBadge tone="neutral">
                 {getAvailabilityLabel(product.availability)}
               </StatusBadge>
-              <StatusBadge tone="brown">Data demonstrasi</StatusBadge>
+              <StatusBadge tone="brown">Data awal</StatusBadge>
             </div>
             <h1 className="mt-5 text-4xl font-bold text-herbal-ink sm:text-5xl">
               {product.name}
@@ -114,8 +114,8 @@ export default async function ProductDetailPage({
                 </button>
               )}
               <p className="mt-3 text-sm leading-6 text-herbal-muted">
-                Katalog belum mendukung keranjang, checkout, pembayaran, kurir,
-                atau manajemen stok pada tahap pertama.
+                Fitur pemesanan lengkap akan disiapkan setelah data produk,
+                stok, kontak, dan persetujuan pengelola tersedia.
               </p>
             </div>
           </div>

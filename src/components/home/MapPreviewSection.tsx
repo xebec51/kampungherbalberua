@@ -10,7 +10,7 @@ export function MapPreviewSection() {
       <Container className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
         <ImagePlaceholder
           className="aspect-[16/10]"
-          label="Ilustrasi placeholder pratinjau peta Kampung Herbal"
+          label="Gambar sementara pratinjau peta Kampung Herbal"
           variant="map"
         />
         <div>

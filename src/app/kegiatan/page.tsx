@@ -9,7 +9,7 @@ import { createPageMetadata } from "@/lib/metadata";
 export const metadata: Metadata = createPageMetadata({
   title: "Kegiatan",
   description:
-    "Dokumentasi kegiatan demonstrasi Kampung Herbal Berua yang akan diperbarui dengan arsip lapangan.",
+    "Dokumentasi awal kegiatan Kampung Herbal Berua yang akan diperbarui dengan arsip lapangan.",
   path: "/kegiatan",
 });
 
@@ -19,7 +19,7 @@ export default function ActivitiesPage() {
       <Container>
         <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
           <SectionHeading
-            description="Kartu kegiatan saat ini menampilkan data demonstrasi. Foto dan tanggal akan diperbarui menggunakan dokumentasi lapangan."
+            description="Kartu kegiatan saat ini menampilkan dokumentasi awal. Foto dan tanggal akan diperbarui menggunakan arsip lapangan."
             eyebrow="Dokumentasi"
             title="Kegiatan KKN dan Kampung Herbal"
           />

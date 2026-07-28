@@ -4,14 +4,19 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 
 const profilePoints = [
   {
-    label: "Lokasi",
+    label: "Wilayah",
     value:
       "RT 009/RW 006, Kelurahan Berua, Kecamatan Biringkanaya, Kota Makassar.",
   },
   {
-    label: "Data",
+    label: "Harmony",
     value:
-      "Konten tahap pertama masih berupa data demonstrasi dan akan diperbarui setelah pendataan lapangan selesai.",
+      "Kampung Herbal Harmony adalah program pengenalan tanaman, zona edukasi kesehatan, dan potensi kampung dalam satu identitas digital.",
+  },
+  {
+    label: "Katalog",
+    value:
+      "Pengunjung dapat mengenali nama tanaman, zona tempat tanaman dikenalkan, dan gambar pendamping tanpa harus berada di lokasi.",
   },
   {
     label: "Edukasi",
@@ -19,9 +24,9 @@ const profilePoints = [
       "Informasi kesehatan ditulis sebagai pemanfaatan tradisional dan bukan pengganti konsultasi tenaga kesehatan.",
   },
   {
-    label: "Integrasi",
+    label: "Status",
     value:
-      "Struktur website disiapkan agar hasil program KKN tiap bidang dapat dihubungkan bertahap.",
+      "Sebagian materi masih dapat diperbarui setelah pendataan dan verifikasi selesai.",
   },
 ];
 
@@ -31,14 +36,14 @@ export function ProfileSection() {
       <Container className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
         <div>
           <SectionHeading
-            description="Portal ini disiapkan sebagai ruang informasi publik untuk menghubungkan program Kampung Herbal, data tanaman TOGA, kegiatan warga, hasil pemetaan, dan layanan aspirasi masyarakat."
+            description="Portal ini memperkenalkan Kampung Herbal Harmony sebagai program edukasi berbasis wilayah. Pengunjung dapat memahami tanaman, zona kesehatan, peta kampung, produk warga, dan kegiatan program dari satu tempat."
             eyebrow="Profil Singkat"
             title="Kampung Herbal Berua"
           />
           <p className="mt-6 border-l-4 border-herbal-clay bg-white/70 px-5 py-4 text-base leading-7 text-herbal-muted shadow-sm">
-            Website ini dirancang untuk terasa dekat dengan warga, tetap rapi
-            untuk pendataan, dan cukup kuat untuk berkembang saat materi
-            lapangan mulai lengkap.
+            Website ini bukan hanya papan informasi digital. Isinya disusun
+            agar warga, pengunjung, dan mitra program dapat memahami konteks
+            Kampung Herbal Harmony meskipun tidak sedang berada di Berua.
           </p>
           <div className="mt-6 rounded-md border border-herbal-green/15 bg-herbal-green/[0.08] p-5">
             <h3 className="text-sm font-bold uppercase tracking-[0.14em] text-herbal-brown">
