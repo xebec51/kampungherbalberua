@@ -92,6 +92,25 @@ Pedoman ini berlaku untuk seluruh perubahan pada repository Kampung Herbal Berua
 - Foto papan atau zona hanya digunakan sebagai dokumentasi visual.
 - Foto tidak boleh digunakan untuk mengidentifikasi orang, mengambil nomor telepon, alamat rumah, metadata EXIF, GPS, atau data pribadi lain.
 
+## Media Library, Lisensi, dan Atribusi
+
+- Semua media konten publik menggunakan Media Library global; asset sistem seperti icon UI, placeholder, dan logo inti boleh tetap lokal.
+- Gambar internet hanya boleh digunakan bila identitas objek jelas, sumber asli dapat diverifikasi, lisensi masuk whitelist proyek, dan atribusi dapat disimpan.
+- Google Images, Pinterest, marketplace, media sosial, agregator tanpa sumber asli, dan situs tanpa lisensi jelas bukan sumber gambar.
+- Jangan melakukan hotlink; gambar yang lolos harus diunduh dari sumber resmi, dibersihkan metadata EXIF/GPS, dioptimalkan, lalu disajikan dari storage proyek.
+- Gambar berlisensi eksternal wajib memiliki source page, source file, creator atau attribution text, license code, license URL, accessed date, changes made, dan alt text.
+- Gambar tidak boleh dipublikasikan sebelum `rights_status` approved dan `privacy_status` approved atau not_required.
+- Nama tanaman ambigu tidak boleh otomatis disamakan dengan spesies tertentu; simpan sebagai unresolved atau candidate sampai ada verifikasi botani.
+- Produk tidak boleh memakai foto internet sebagai foto produk nyata; gunakan placeholder sampai foto produk warga tersedia.
+- Kegiatan, program, peta, dan tim tidak boleh memakai foto stok atau foto internet sebagai dokumentasi nyata.
+- Foto tim hanya boleh berasal dari persetujuan anggota; jangan mencari foto orang di internet, melakukan face matching, atau menebak identitas.
+- Ramuan boleh memakai ilustrasi berlisensi dengan label "Ilustrasi"; jangan menyatakan ilustrasi sebagai produk atau dokumentasi warga.
+- Atribusi gambar wajib tersedia di halaman publik dan tidak boleh dimasukkan ke alt text.
+- Secret media import hanya boleh dibaca oleh script lokal dari `.env.media-import.local`; jangan memasukkan secret ke aplikasi Next.js, `NEXT_PUBLIC_*`, browser, database, log, atau Git.
+- Remote media import harus default dry-run dan hanya boleh melakukan perubahan dengan flag `--execute` serta guard project ref yang tepat.
+- Bulk import tidak boleh delete, overwrite object, atau mempublikasikan gambar unresolved/rejected.
+- Bug media yang memengaruhi lisensi, privasi, upload, atau publikasi harus disertai regression test.
+
 ## Automated Testing
 
 - Fitur tidak dianggap selesai bila automated test terkait masih gagal.

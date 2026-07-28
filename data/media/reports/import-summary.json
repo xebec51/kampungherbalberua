@@ -1,0 +1,18 @@
+{
+  "collectionCount": 20,
+  "duplicatePosterNumbers": [],
+  "entryCount": 206,
+  "gap157to166Absent": true,
+  "missingRequiredSheets": [],
+  "status": "valid",
+  "uniqueRawNameCount": 89,
+  "zoneCount": 20,
+  "dryRun": false,
+  "entriesUpserted": 206,
+  "plantNamesUpserted": 89,
+  "plantsCreated": 0,
+  "plantsMatched": 4,
+  "sourceCode": "KHB-POSTER-216-2026",
+  "sourceRowsUpserted": 1,
+  "unresolvedNames": 85
+}

@@ -1,0 +1,66 @@
+{
+  "projectRef": "xkvgpauprhggykaxffkh",
+  "migrationsApplied": [
+    "20260717001000_enforce_plant_admin_workflow.sql",
+    "20260717002000_create_health_zones.sql",
+    "20260728090000_create_global_media_library.sql",
+    "20260728091000_create_plant_poster_source.sql",
+    "20260728092000_create_media_storage_policies.sql",
+    "20260728093000_allow_service_role_media_import.sql",
+    "20260728094000_read_service_role_from_jwt_claims.sql"
+  ],
+  "storage": {
+    "bucketsCreated": 2,
+    "bucketsVerified": ["media-originals", "media-public"],
+    "storageBytesUsed": 695168
+  },
+  "poster": {
+    "claimedTotal": 216,
+    "observedEntryTotal": 206,
+    "collectionCount": 20,
+    "uniqueRawNameCount": 89,
+    "existingPlantNamesMatched": 4,
+    "posterEntriesMatched": 29,
+    "unresolvedPlantNames": 85,
+    "unresolvedPosterEntries": 177,
+    "draftPlantsCreated": 0
+  },
+  "zoneMedia": {
+    "zonesConsidered": 9,
+    "healthZonesUpserted": 9,
+    "originalsUploaded": 9,
+    "publicDerivativesUploaded": 9,
+    "healthZoneAttachments": 9,
+    "duplicateAssetsReused": 0,
+    "failures": 0
+  },
+  "plantResearch": {
+    "wikimediaRequests": 0,
+    "candidateImages": 0,
+    "approvedImages": 0,
+    "rejectedImages": 0,
+    "originalsUploaded": 0,
+    "publicDerivativesUploaded": 0,
+    "plantAttachments": 0,
+    "downloadedBytes": 0
+  },
+  "remoteVerification": {
+    "mediaAssets": 9,
+    "plantMedia": 0,
+    "healthZoneMedia": 9,
+    "healthZones": 9,
+    "plantSourceEntries": 206,
+    "plantNames": 89,
+    "rightsApproved": 9,
+    "privacyApprovedOrNotRequired": 9,
+    "contentPublished": 9,
+    "originalPathsPresent": 9,
+    "publicPathsPresent": 9
+  },
+  "safety": {
+    "remoteDeletes": 0,
+    "remoteOverwrites": 0,
+    "secretPrinted": false,
+    "migrationRepairUsed": false
+  }
+}

@@ -193,6 +193,16 @@ test("produk menyediakan tautan pemesanan WhatsApp publik", async ({ page }) => 
   );
 });
 
+test("halaman sumber gambar dapat dibuka tanpa data privat", async ({ page }) => {
+  await page.goto("/sumber-gambar");
+  await expect(
+    page.getByRole("heading", { exact: true, name: "Sumber Gambar" }),
+  ).toBeVisible();
+  await expect(page.getByText("Atribusi Media")).toBeVisible();
+  await expect(page.getByText("original private")).toHaveCount(0);
+  await expectNoHorizontalOverflow(page);
+});
+
 test("sitemap dan robots dapat diakses dengan canonical zona tanpa route QR", async ({
   request,
 }) => {
@@ -200,6 +210,7 @@ test("sitemap dan robots dapat diakses dengan canonical zona tanpa route QR", as
   expect(sitemap.ok()).toBe(true);
   const sitemapText = await sitemap.text();
   expect(sitemapText).toContain("/zona-kesehatan/digestia");
+  expect(sitemapText).toContain("/sumber-gambar");
   expect(sitemapText).not.toContain("/z/khb-z01");
 
   const robots = await request.get("/robots.txt");

@@ -1,6 +1,7 @@
 import { cache } from "react";
 import { healthZones as localHealthZones } from "@/data/health-zones";
 import { mapHealthZoneRowToHealthZone } from "@/lib/data/health-zone-mapper";
+import { getPrimaryHealthZoneMediaMap } from "@/lib/data/media";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import type { HealthZone } from "@/types";
 
@@ -26,7 +27,19 @@ async function fetchPublishedHealthZonesFromDatabase(): Promise<HealthZone[] | n
     return null;
   }
 
-  return data.map(mapHealthZoneRowToHealthZone);
+  const zones = data.map(mapHealthZoneRowToHealthZone);
+  const mediaByZoneId = await getPrimaryHealthZoneMediaMap(
+    zones.map((zone) => zone.id),
+  );
+
+  return zones.map((zone) => {
+    const media = mediaByZoneId.get(zone.id);
+
+    return {
+      ...zone,
+      imagePath: media?.publicUrl ?? zone.imagePath,
+    };
+  });
 }
 
 const getPublishedHealthZoneSource = cache(async (): Promise<HealthZone[]> => {

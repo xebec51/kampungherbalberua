@@ -18,6 +18,7 @@ const staticRoutes = [
   "/kinerja-rt",
   "/kotak-saran",
   "/tim",
+  "/sumber-gambar",
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

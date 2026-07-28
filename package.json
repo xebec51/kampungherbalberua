@@ -15,7 +15,15 @@
     "test:db": "supabase test db",
     "test:ci": "npm run lint && npm run build && npm run test:unit && npm run test:db && npm run test:e2e",
     "setup:e2e-users": "node --experimental-strip-types tests/e2e/setup/create-test-users.ts",
-    "wait:supabase": "node --experimental-strip-types tests/e2e/setup/wait-for-supabase.ts"
+    "wait:supabase": "node --experimental-strip-types tests/e2e/setup/wait-for-supabase.ts",
+    "media": "node --experimental-strip-types scripts/media/cli.ts",
+    "media:bootstrap": "node --experimental-strip-types scripts/media/cli.ts bootstrap",
+    "media:poster:validate": "node --experimental-strip-types scripts/media/cli.ts poster:validate",
+    "media:poster:import": "node --experimental-strip-types scripts/media/cli.ts poster:import",
+    "media:research:plants": "node --experimental-strip-types scripts/media/cli.ts research:plants",
+    "media:migrate:zones": "node --experimental-strip-types scripts/media/cli.ts migrate:zones",
+    "media:import": "node --experimental-strip-types scripts/media/cli.ts import",
+    "media:report": "node --experimental-strip-types scripts/media/cli.ts report"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.3",
@@ -34,9 +42,11 @@
     "@types/react-dom": "^19.2.0",
     "eslint": "^9.39.5",
     "eslint-config-next": "^16.2.10",
+    "sharp": "0.35.3",
     "tailwindcss": "^4.3.2",
     "typescript": "^6.0.3",
-    "vitest": "^4.1.10"
+    "vitest": "^4.1.10",
+    "xlsx": "^0.18.5"
   },
   "overrides": {
     "postcss": "^8.5.10",

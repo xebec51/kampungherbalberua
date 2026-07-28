@@ -73,6 +73,11 @@ web_modules/
 .env
 .env.*
 !.env.example
+.env.media-import.local
+data/media-work/
+data/media-cache/
+data/media-downloads/
+data/media-output/
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache

@@ -12,6 +12,7 @@ const adminNavigation = [
   { href: "/admin", label: "Dashboard" },
   { href: "/admin/tanaman", label: "Tanaman" },
   { href: "/admin/zona", label: "Zona Kesehatan" },
+  { href: "/admin/media", label: "Media" },
   { href: "/", label: "Lihat Website" },
 ];
 
