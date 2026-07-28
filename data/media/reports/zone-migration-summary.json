@@ -1,10 +1,11 @@
 {
-  "dryRun": true,
+  "dryRun": false,
   "duplicateFilesReused": 0,
   "failures": [],
-  "mediaAssetsInserted": 0,
-  "originalUploaded": 0,
-  "publicUploaded": 0,
-  "zoneAttachments": 0,
+  "healthZonesUpserted": 9,
+  "mediaAssetsInserted": 9,
+  "originalUploaded": 9,
+  "publicUploaded": 9,
+  "zoneAttachments": 9,
   "zonesConsidered": 9
 }
