@@ -60,7 +60,7 @@ async function wait(ms: number) {
   await new Promise((resolveWait) => setTimeout(resolveWait, ms));
 }
 
-async function downloadImage(url: string) {
+export async function downloadImage(url: string) {
   assertWikimediaDownloadUrl(url);
   const env = loadMediaImportEnv();
   let lastStatus = 0;
