@@ -2,6 +2,10 @@ import { existsSync, mkdirSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { createMediaAdminClient } from "./lib/supabase-admin.ts";
 import { loadMediaImportEnv } from "./lib/env.ts";
+import {
+  importPosterWorkbook,
+  validatePosterWorkbook,
+} from "./lib/poster.ts";
 import { bootstrapMediaBuckets } from "./lib/storage.ts";
 
 type MediaCommand =
@@ -120,6 +124,35 @@ async function runPlaceholderCommand(options: CliOptions) {
   );
 }
 
+async function runPosterValidate() {
+  const summary = validatePosterWorkbook();
+
+  console.log(
+    `Workbook poster: status=${summary.status}, zona=${summary.zoneCount}, entri=${summary.entryCount}, nama_unik=${summary.uniqueRawNameCount}`,
+  );
+
+  if (summary.status !== "valid") {
+    throw new Error("Validasi workbook poster gagal");
+  }
+}
+
+async function runPosterImport(options: CliOptions) {
+  assertExecuteAllowed(options);
+
+  if (options.dryRun) {
+    loadMediaImportEnv();
+  }
+
+  const supabase = createMediaAdminClient();
+  const summary = await importPosterWorkbook(supabase, {
+    dryRun: options.dryRun,
+  });
+
+  console.log(
+    `Import poster: dry_run=${summary.dryRun}, source=${summary.sourceRowsUpserted}, koleksi=${summary.collectionCount}, entri=${summary.entryCount}, nama_unik=${summary.uniqueRawNameCount}, matched=${summary.plantsMatched}, unresolved=${summary.unresolvedNames}`,
+  );
+}
+
 async function main() {
   const options = parseOptions(process.argv.slice(2));
 
@@ -137,6 +170,16 @@ async function main() {
 
   if (options.command === "bootstrap") {
     await runBootstrap();
+    return;
+  }
+
+  if (options.command === "poster:validate") {
+    await runPosterValidate();
+    return;
+  }
+
+  if (options.command === "poster:import") {
+    await runPosterImport(options);
     return;
   }
 

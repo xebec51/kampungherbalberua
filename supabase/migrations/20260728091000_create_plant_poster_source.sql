@@ -156,6 +156,9 @@ create index plant_names_normalized_name_idx on public.plant_names (normalized_n
 create index plant_names_name_type_idx on public.plant_names (name_type);
 create index plant_names_source_id_idx on public.plant_names (source_id);
 
+create unique index plant_names_source_normalized_name_idx
+  on public.plant_names (source_id, normalized_name);
+
 create unique index plant_names_one_preferred_per_plant_type_idx
   on public.plant_names (plant_id, name_type)
   where is_preferred and plant_id is not null;
