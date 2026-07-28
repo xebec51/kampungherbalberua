@@ -79,6 +79,50 @@ export type ContentMediaType =
   | "site"
   | "map";
 
+export type MediaQualityEntityType =
+  | "plant"
+  | "poster_plant"
+  | "health_zone"
+  | "recipe"
+  | "product"
+  | "activity"
+  | "program"
+  | "team"
+  | "site"
+  | "map";
+
+export type MediaRelevanceStatus =
+  | "exact"
+  | "common_name_match"
+  | "corrected_spelling_match"
+  | "material_match"
+  | "illustration_reference"
+  | "generic_fallback"
+  | "irrelevant"
+  | "needs_review";
+
+export type MediaQualityStatus =
+  | "approved"
+  | "acceptable"
+  | "low_resolution"
+  | "poor_crop"
+  | "misleading"
+  | "broken"
+  | "needs_review";
+
+export type MediaDuplicateStatus =
+  | "unique"
+  | "intentionally_reused"
+  | "generic_reuse"
+  | "excessive_reuse";
+
+export type MediaAttachmentHistoryAction =
+  | "attach"
+  | "replace_primary"
+  | "mark_non_primary"
+  | "restore"
+  | "classify";
+
 export type PlantNameType =
   | "preferred_local"
   | "alternate_local"
@@ -487,6 +531,124 @@ export type Database = {
           {
             foreignKeyName: "media_assets_updated_by_fkey";
             columns: ["updated_by"];
+            isOneToOne: false;
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      media_quality_reviews: {
+        Row: {
+          id: string;
+          media_id: string;
+          entity_type: MediaQualityEntityType;
+          entity_key: string;
+          relevance_status: MediaRelevanceStatus;
+          quality_status: MediaQualityStatus;
+          duplicate_status: MediaDuplicateStatus;
+          review_notes: string | null;
+          reviewed_by: string | null;
+          reviewed_at: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          media_id: string;
+          entity_type: MediaQualityEntityType;
+          entity_key: string;
+          relevance_status: MediaRelevanceStatus;
+          quality_status: MediaQualityStatus;
+          duplicate_status?: MediaDuplicateStatus;
+          review_notes?: string | null;
+          reviewed_by?: string | null;
+          reviewed_at?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          media_id?: string;
+          entity_type?: MediaQualityEntityType;
+          entity_key?: string;
+          relevance_status?: MediaRelevanceStatus;
+          quality_status?: MediaQualityStatus;
+          duplicate_status?: MediaDuplicateStatus;
+          review_notes?: string | null;
+          reviewed_by?: string | null;
+          reviewed_at?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "media_quality_reviews_media_id_fkey";
+            columns: ["media_id"];
+            isOneToOne: false;
+            referencedRelation: "media_assets";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "media_quality_reviews_reviewed_by_fkey";
+            columns: ["reviewed_by"];
+            isOneToOne: false;
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      media_attachment_history: {
+        Row: {
+          id: string;
+          entity_type: MediaQualityEntityType;
+          entity_key: string;
+          old_media_id: string | null;
+          new_media_id: string;
+          action: MediaAttachmentHistoryAction;
+          changed_by: string | null;
+          change_reason: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          entity_type: MediaQualityEntityType;
+          entity_key: string;
+          old_media_id?: string | null;
+          new_media_id: string;
+          action: MediaAttachmentHistoryAction;
+          changed_by?: string | null;
+          change_reason?: string | null;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          entity_type?: MediaQualityEntityType;
+          entity_key?: string;
+          old_media_id?: string | null;
+          new_media_id?: string;
+          action?: MediaAttachmentHistoryAction;
+          changed_by?: string | null;
+          change_reason?: string | null;
+          created_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "media_attachment_history_old_media_id_fkey";
+            columns: ["old_media_id"];
+            isOneToOne: false;
+            referencedRelation: "media_assets";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "media_attachment_history_new_media_id_fkey";
+            columns: ["new_media_id"];
+            isOneToOne: false;
+            referencedRelation: "media_assets";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "media_attachment_history_changed_by_fkey";
+            columns: ["changed_by"];
             isOneToOne: false;
             referencedRelation: "profiles";
             referencedColumns: ["id"];
