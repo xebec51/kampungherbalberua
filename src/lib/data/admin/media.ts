@@ -1,5 +1,6 @@
 import { getPublicMediaUrl } from "@/lib/data/media-mapper";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import type { ContentStatus } from "@/lib/supabase/database.types";
 
 export type AdminMediaListItem = {
   id: string;
@@ -32,6 +33,17 @@ type MediaQueryOptions = {
   q?: string;
   status?: string;
 };
+
+const contentStatuses: readonly ContentStatus[] = [
+  "draft",
+  "pending_review",
+  "published",
+  "archived",
+];
+
+function isContentStatus(value: string | undefined): value is ContentStatus {
+  return Boolean(value && contentStatuses.includes(value as ContentStatus));
+}
 
 function mapListItem(row: {
   checksum_sha256: string;
@@ -75,7 +87,7 @@ export async function getAdminMediaAssets(options: MediaQueryOptions = {}) {
     .order("created_at", { ascending: false })
     .limit(80);
 
-  if (options.status) {
+  if (isContentStatus(options.status)) {
     query = query.eq("content_status", options.status);
   }
 

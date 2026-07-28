@@ -3,6 +3,7 @@ import {
   mapMediaAssetRowToPublicMedia,
   type MediaAssetRow,
 } from "@/lib/data/media-mapper";
+import type { ContentMediaType } from "@/lib/supabase/database.types";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import type { PublicMediaAsset } from "@/types";
 
@@ -90,7 +91,7 @@ export const getPrimaryHealthZoneMediaMap = cache(
 );
 
 export const getContentMediaSlotMap = cache(
-  async (contentType: string, contentKeys: string[]) => {
+  async (contentType: ContentMediaType, contentKeys: string[]) => {
     const client = await createSupabaseServerClient();
 
     if (!client || contentKeys.length === 0) {
