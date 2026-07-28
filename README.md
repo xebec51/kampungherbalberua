@@ -36,6 +36,7 @@ Kampung Herbal Berua membutuhkan portal digital yang dapat menjadi induk integra
 - Katalog produk warga dengan detail produk dan tombol WhatsApp nonaktif saat kontak belum tersedia.
 - Halaman tentang, peta, kunjungan edukasi, kegiatan, kinerja RT, kotak saran, dan tim KKN.
 - Metadata dasar, Open Graph, sitemap, robots, ikon lokal, loading UI, dan not-found UI.
+- Media Library global untuk metadata gambar, sumber, atribusi, fallback lokal, admin media dasar, dan halaman `/sumber-gambar`.
 
 ## Teknologi
 
@@ -43,6 +44,7 @@ Kampung Herbal Berua membutuhkan portal digital yang dapat menjadi induk integra
 - TypeScript strict
 - Tailwind CSS
 - Supabase Auth, Supabase SSR, dan PostgreSQL RLS
+- Supabase Storage untuk `media-originals` dan `media-public`
 - QR Code server-side dengan `qrcode`
 - ESLint
 - npm
@@ -106,6 +108,32 @@ npm run test:e2e:report
 GitHub Actions menjalankan check `quality`, `database-test`, dan `e2e` pada Pull Request menuju `main`, push ke `main`, dan manual `workflow_dispatch`. Workflow preview smoke berjalan terpisah saat deployment preview sukses dan hanya memeriksa halaman publik non-destruktif. Branch protection disarankan mensyaratkan check `quality`, `database-test`, `e2e`, dan `preview-smoke` bila workflow preview dipakai.
 
 Detail strategi dan troubleshooting tersedia di [docs/testing.md](docs/testing.md).
+
+## Media Library dan Atribusi
+
+Media konten dikelola melalui schema `media_assets` dan tabel attachment untuk tanaman, zona kesehatan, serta slot konten transisi. Gambar public disajikan dari bucket `media-public`, sedangkan original yang sudah dibersihkan metadata privasi disimpan private di `media-originals`.
+
+Command media:
+
+```bash
+npm run media:bootstrap
+npm run media:poster:validate
+npm run media:poster:import -- --dry-run
+npm run media:migrate:zones -- --dry-run
+npm run media:research:plants -- --dry-run
+npm run media:import -- --dry-run
+```
+
+Execute remote hanya boleh dilakukan dengan `.env.media-import.local`, project ref yang tepat, dan flag `--execute`. Secret media import tidak boleh masuk aplikasi, browser, Vercel, log, atau Git.
+
+Dokumentasi terkait:
+
+- [docs/media-library.md](docs/media-library.md)
+- [docs/media-import.md](docs/media-import.md)
+- [docs/image-licensing.md](docs/image-licensing.md)
+- [docs/image-attribution.md](docs/image-attribution.md)
+- [docs/media-troubleshooting.md](docs/media-troubleshooting.md)
+- [docs/plant-poster-import.md](docs/plant-poster-import.md)
 
 ## Struktur Folder
 
