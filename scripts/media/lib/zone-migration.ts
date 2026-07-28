@@ -15,6 +15,7 @@ type ZoneMigrationSummary = {
   dryRun: boolean;
   duplicateFilesReused: number;
   failures: string[];
+  healthZonesUpserted: number;
   mediaAssetsInserted: number;
   originalUploaded: number;
   publicUploaded: number;
@@ -65,6 +66,7 @@ export async function migrateZoneImages(
     dryRun: options.dryRun,
     duplicateFilesReused: 0,
     failures: [],
+    healthZonesUpserted: 0,
     mediaAssetsInserted: 0,
     originalUploaded: 0,
     publicUploaded: 0,
@@ -109,9 +111,56 @@ export async function migrateZoneImages(
       .eq("zone_code", zone.zoneCode)
       .maybeSingle();
 
-    if (zoneError || !zoneRow) {
-      summary.failures.push(`${zone.zoneCode}: zona belum ada di database`);
+    if (zoneError) {
+      summary.failures.push(`${zone.zoneCode}: ${zoneError.message}`);
       continue;
+    }
+
+    let healthZoneId = zoneRow?.id ?? null;
+
+    if (!healthZoneId) {
+      const { data: upsertedZone, error: upsertZoneError } = await supabase
+        .from("health_zones")
+        .upsert(
+          {
+            block_ranges: zone.blockRanges,
+            content_status: "published",
+            educational_points: zone.educationalPoints,
+            featured: zone.featured,
+            health_topic: zone.healthTopic,
+            healthy_habits: zone.healthyHabits,
+            image_path: zone.imagePath,
+            important_notes: zone.importantNotes,
+            location_notes: zone.locationNotes,
+            overview: zone.overview,
+            program_name: zone.programName,
+            published_at: zone.publishedAt,
+            short_description: zone.shortDescription,
+            sign_text: zone.signText,
+            slug: zone.slug,
+            source_notes: zone.sourceNotes,
+            street_name: zone.streetName,
+            validation_status: "data_demonstrasi",
+            validator_name: zone.validatorName,
+            zone_code: zone.zoneCode,
+            zone_name: zone.zoneName,
+          },
+          { onConflict: "zone_code" },
+        )
+        .select("id")
+        .single();
+
+      if (upsertZoneError || !upsertedZone) {
+        summary.failures.push(
+          `${zone.zoneCode}: gagal upsert zona - ${
+            upsertZoneError?.message ?? "data kosong"
+          }`,
+        );
+        continue;
+      }
+
+      healthZoneId = upsertedZone.id;
+      summary.healthZonesUpserted += 1;
     }
 
     const originalUpload = await uploadNoOverwrite(
@@ -184,7 +233,7 @@ export async function migrateZoneImages(
       .from("health_zone_media")
       .upsert(
         {
-          health_zone_id: zoneRow.id,
+          health_zone_id: healthZoneId,
           is_primary: true,
           media_id: mediaId,
           role: "documentation",
