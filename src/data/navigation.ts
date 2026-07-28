@@ -58,5 +58,6 @@ export const footerNavigation: DirectNavigationItem[] = [
   { type: "link", label: "Zona Kesehatan", href: "/zona-kesehatan" },
   { type: "link", label: "Kunjungan Edukasi", href: "/wisata" },
   { type: "link", label: "Tim KKN", href: "/tim" },
+  { type: "link", label: "Sumber Gambar", href: "/sumber-gambar" },
   { type: "link", label: "Kotak Saran", href: "/kotak-saran" },
 ];
