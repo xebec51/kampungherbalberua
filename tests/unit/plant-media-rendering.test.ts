@@ -71,7 +71,7 @@ describe("plant media rendering", () => {
       React.createElement(PlantCard, { plant: { ...plant, image: "" } }),
     );
 
-    expect(html).toContain("Ilustrasi placeholder tanaman Jahe");
+    expect(html).toContain("Gambar sementara tanaman Jahe");
     expect(html).not.toContain("<img");
   });
 
@@ -102,6 +102,6 @@ describe("plant media rendering", () => {
       "utf8",
     );
 
-    expect(homeSectionSource).toContain("<PlantCard key={plant.id} plant={plant} />");
+    expect(homeSectionSource).toContain("<PlantCard key={plant.id} plant={plant} priority={index === 0} />");
   });
 });

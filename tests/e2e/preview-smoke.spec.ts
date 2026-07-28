@@ -19,7 +19,7 @@ test("preview deployment public smoke @preview", async ({ page, request }) => {
   await expect(
     page.getByRole("heading", {
       exact: true,
-      name: "Mengenal Tanaman, Merawat Kesehatan, Memberdayakan Warga",
+      name: "Kampung Herbal Harmony Berua",
     }),
   ).toBeVisible();
   const nav = page.getByRole("navigation", { name: "Navigasi utama" });
