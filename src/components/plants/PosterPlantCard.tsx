@@ -12,7 +12,27 @@ type PosterPlantCardProps = {
   plant: PosterPlantCatalogItem;
 };
 
+const imageBadge = {
+  generic: {
+    label: "Ilustrasi umum",
+    title: "Gambar umum digunakan sementara karena gambar spesifik belum tersedia.",
+    tone: "neutral" as const,
+  },
+  reference: {
+    label: "Ilustrasi referensi",
+    title: "Gambar relevan dengan nama tanaman, tetapi bukan verifikasi identitas.",
+    tone: "brown" as const,
+  },
+  specific: {
+    label: "Foto tanaman",
+    title: "Gambar dipilih berdasarkan kecocokan nama atau identitas tanaman.",
+    tone: "green" as const,
+  },
+};
+
 export function PosterPlantCard({ plant }: PosterPlantCardProps) {
+  const badge = imageBadge[plant.imageKind];
+
   return (
     <PublicCard>
       <SafeImage
@@ -33,9 +53,10 @@ export function PosterPlantCard({ plant }: PosterPlantCardProps) {
           <StatusBadge tone={plant.linkedPlantId ? "green" : "brown"}>
             {plant.linkedPlantId ? "Terhubung ke data tanaman" : "Nama dari poster"}
           </StatusBadge>
-          {plant.imageIsIllustration ? (
-            <StatusBadge tone="brown">Ilustrasi referensi</StatusBadge>
-          ) : null}
+          <span title={badge.title}>
+            <StatusBadge tone={badge.tone}>{badge.label}</StatusBadge>
+          </span>
+          <StatusBadge tone="neutral">{plant.partCategory}</StatusBadge>
         </div>
         <h3 className="mt-4 text-lg font-bold leading-tight text-herbal-ink">
           <Link
@@ -51,7 +72,7 @@ export function PosterPlantCard({ plant }: PosterPlantCardProps) {
           </p>
         ) : null}
         <p className="mt-3 text-sm leading-6 text-herbal-muted">
-          Muncul {plant.posterOccurrenceCount} kali pada poster.
+          Muncul {plant.posterOccurrenceCount} kali pada {plant.collections.length} zona.
         </p>
         <p className="mt-2 line-clamp-2 text-sm leading-6 text-herbal-muted">
           Zona: {plant.collections.slice(0, 3).join(", ")}

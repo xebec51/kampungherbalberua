@@ -41,6 +41,12 @@ export default async function AdminMediaPage({
           Pantau metadata, status hak, privasi, sumber, lisensi, dan duplikasi
           checksum untuk seluruh gambar website.
         </p>
+        <Link
+          className="mt-5 inline-flex min-h-11 items-center rounded-md border border-herbal-green/30 px-4 py-2 text-sm font-bold text-herbal-green hover:bg-herbal-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
+          href="/admin/media/audit"
+        >
+          Buka audit media
+        </Link>
       </header>
 
       <form className="grid gap-3 rounded-md border border-herbal-green/10 bg-white p-4 shadow-sm md:grid-cols-[1fr_12rem_auto]">

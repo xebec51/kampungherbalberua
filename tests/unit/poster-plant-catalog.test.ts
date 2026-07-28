@@ -10,6 +10,7 @@ type Summary = {
   catalogItemsWithImage: number;
   exactImages: number;
   genericFallbackImages: number;
+  illustrationImages: number;
   linkedPlants: number;
   posterOnlyItems: number;
   uniquePosterNames: number;
@@ -17,7 +18,8 @@ type Summary = {
 
 type PosterImageReportItem = {
   imageIsIllustration: boolean;
-  imageSource: "plant_media" | "generic_wikimedia";
+  imageRelevanceStatus: string;
+  imageSource: "plant_media" | "poster_label_media" | "generic_wikimedia";
   licenseCode: string | null;
   rawName: string;
   sourcePageUrl: string | null;
@@ -28,6 +30,17 @@ type PosterCatalogManifestItem = {
   posterNumbers: number[];
   rawName: string;
   slug: string;
+};
+
+type CatalogImageAuditReport = {
+  catalogItems: number;
+  catalogItemsWithImage: number;
+  genericFallbackImages: number;
+  researchTargets: unknown[];
+};
+
+type CatalogImageDuplicateReport = {
+  excessiveReuseGroups: unknown[];
 };
 
 function readJson<T>(path: string): T {
@@ -51,7 +64,8 @@ describe("public poster plant catalog", () => {
     );
 
     expect(summary.catalogItemsWithImage).toBe(89);
-    expect(summary.exactImages + summary.genericFallbackImages).toBe(89);
+    expect(summary.exactImages + summary.illustrationImages).toBe(89);
+    expect(summary.genericFallbackImages).toBe(0);
   });
 
   it("slug poster stabil dan tidak bergantung pada slug plants", () => {
@@ -99,16 +113,32 @@ describe("public poster plant catalog", () => {
       "data/media/reports/poster-plant-images.json",
     );
     const illustrations = report.filter(
-      (item) => item.imageSource === "generic_wikimedia",
+      (item) => item.imageSource === "poster_label_media",
     );
 
     expect(illustrations.length).toBeGreaterThan(0);
 
     for (const item of illustrations) {
       expect(item.imageIsIllustration).toBe(true);
+      expect(item.imageRelevanceStatus).not.toBe("generic_fallback");
       expect(item.sourcePageUrl).toMatch(/^https:\/\/commons\.wikimedia\.org\//);
       expect(item.licenseCode).toBeTruthy();
     }
+  });
+
+  it("audit gambar katalog tidak menyisakan fallback generik atau reuse berlebihan", () => {
+    const audit = readJson<CatalogImageAuditReport>(
+      "data/media/reports/catalog-image-audit-before.json",
+    );
+    const duplicates = readJson<CatalogImageDuplicateReport>(
+      "data/media/reports/catalog-image-duplicates.json",
+    );
+
+    expect(audit.catalogItems).toBe(89);
+    expect(audit.catalogItemsWithImage).toBe(89);
+    expect(audit.genericFallbackImages).toBe(0);
+    expect(audit.researchTargets).toHaveLength(0);
+    expect(duplicates.excessiveReuseGroups).toHaveLength(0);
   });
 
   it("data layer poster tidak memfilter status internal plants", () => {

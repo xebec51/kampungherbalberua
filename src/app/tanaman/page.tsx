@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import { PosterPlantCatalog } from "@/components/plants/PosterPlantCatalog";
 import { Container } from "@/components/ui/Container";
@@ -26,7 +27,9 @@ export default async function PlantsPage() {
           eyebrow="Katalog Tanaman"
           title="Tanaman Kampung Herbal Harmony"
         />
-        <PosterPlantCatalog plants={plants} />
+        <Suspense fallback={<p className="mt-8 text-sm text-herbal-muted">Memuat katalog tanaman...</p>}>
+          <PosterPlantCatalog plants={plants} />
+        </Suspense>
         <div className="mt-8">
           <Disclaimer>
             Informasi tanaman pada website ini disediakan untuk edukasi mengenai

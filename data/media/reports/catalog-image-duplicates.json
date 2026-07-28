@@ -1,0 +1,58 @@
+{
+  "checksumGroups": [
+    {
+      "checksum": "c7f1605a5656c7972e1f1cefe22b2d22fd9e894fb08eb51c4e36f8f5fb3d5417",
+      "count": 2,
+      "names": [
+        "Daun Katuk",
+        "Katuk"
+      ]
+    },
+    {
+      "checksum": "5e3695a030fe747352eec01bae1305ee6334b6ea050ad0ae611752e82a4938e8",
+      "count": 2,
+      "names": [
+        "Daun Salam",
+        "Salam"
+      ]
+    },
+    {
+      "checksum": "47b991f8bb84f09fd25b59e43f648937babf714e3b0804d0530be7d857df0bb9",
+      "count": 2,
+      "names": [
+        "Kunyit Putih",
+        "Temu Putih"
+      ]
+    }
+  ],
+  "excessiveReuseGroups": [],
+  "mediaGroups": [
+    {
+      "count": 2,
+      "mediaId": "c15ca96e-977d-42a9-ae19-4d839f160669",
+      "names": [
+        "Daun Katuk",
+        "Katuk"
+      ],
+      "title": "Gambar referensi Daun Katuk"
+    },
+    {
+      "count": 2,
+      "mediaId": "ce5fea7e-9735-4a8b-8280-ac21a8e33a8d",
+      "names": [
+        "Daun Salam",
+        "Salam"
+      ],
+      "title": "Gambar referensi Daun Salam"
+    },
+    {
+      "count": 2,
+      "mediaId": "c077f751-42af-40b2-9efa-4bd6c5237697",
+      "names": [
+        "Kunyit Putih",
+        "Temu Putih"
+      ],
+      "title": "Gambar referensi Kunyit Putih"
+    }
+  ]
+}

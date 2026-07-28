@@ -11,6 +11,7 @@ import { bootstrapMediaBuckets } from "./lib/storage.ts";
 import { uploadApprovedPlantImages } from "./lib/media-files.ts";
 import { applyPlantTaxonomy } from "./lib/plant-taxonomy.ts";
 import { researchPosterPlantImages } from "./lib/poster-plant-images.ts";
+import { auditCatalogImages } from "./lib/catalog-image-audit.ts";
 import { migrateZoneImages } from "./lib/zone-migration.ts";
 
 type MediaCommand =
@@ -20,6 +21,7 @@ type MediaCommand =
   | "taxonomy:plants"
   | "research:plants"
   | "research:poster-plants"
+  | "audit:catalog-images"
   | "migrate:zones"
   | "import"
   | "report";
@@ -29,9 +31,13 @@ type CliOptions = {
   dryRun: boolean;
   execute: boolean;
   forceResearch: boolean;
+  keepExistingSpecific: boolean;
   limit?: number;
+  maxReuse: number;
+  minScore: number;
   offset?: number;
   only?: string;
+  replaceGeneric: boolean;
   resume: boolean;
 };
 
@@ -42,6 +48,7 @@ const COMMANDS = new Set<MediaCommand>([
   "taxonomy:plants",
   "research:plants",
   "research:poster-plants",
+  "audit:catalog-images",
   "migrate:zones",
   "import",
   "report",
@@ -59,6 +66,10 @@ function parseOptions(argv: string[]): CliOptions {
     dryRun: !flags.includes("--execute"),
     execute: flags.includes("--execute"),
     forceResearch: flags.includes("--force-research"),
+    keepExistingSpecific: !flags.includes("--replace-specific"),
+    maxReuse: 3,
+    minScore: 62,
+    replaceGeneric: flags.includes("--replace-generic"),
     resume: flags.includes("--resume"),
   };
 
@@ -105,6 +116,34 @@ function parseOptions(argv: string[]): CliOptions {
       options.offset = parsed;
       index += flag.includes("=") ? 0 : 1;
     }
+
+    if (flag === "--min-score" || flag.startsWith("--min-score=")) {
+      const value = flag.includes("=")
+        ? flag.slice(flag.indexOf("=") + 1)
+        : flags[index + 1];
+      const parsed = Number.parseInt(value ?? "", 10);
+
+      if (!Number.isFinite(parsed) || parsed < 0 || parsed > 100) {
+        throw new Error("--min-score wajib berupa angka 0-100");
+      }
+
+      options.minScore = parsed;
+      index += flag.includes("=") ? 0 : 1;
+    }
+
+    if (flag === "--max-reuse" || flag.startsWith("--max-reuse=")) {
+      const value = flag.includes("=")
+        ? flag.slice(flag.indexOf("=") + 1)
+        : flags[index + 1];
+      const parsed = Number.parseInt(value ?? "", 10);
+
+      if (!Number.isFinite(parsed) || parsed < 1) {
+        throw new Error("--max-reuse wajib berupa angka positif");
+      }
+
+      options.maxReuse = parsed;
+      index += flag.includes("=") ? 0 : 1;
+    }
   }
 
   return options;
@@ -140,9 +179,13 @@ async function runPlaceholderCommand(options: CliOptions) {
     dryRun: options.dryRun,
     execute: options.execute,
     forceResearch: options.forceResearch,
+    keepExistingSpecific: options.keepExistingSpecific,
     limit: options.limit ?? null,
+    maxReuse: options.maxReuse,
+    minScore: options.minScore,
     offset: options.offset ?? null,
     only: options.only ?? null,
+    replaceGeneric: options.replaceGeneric,
     resume: options.resume,
     status: "not_implemented_yet",
   };
@@ -206,13 +249,27 @@ async function runPosterPlantResearch(options: CliOptions) {
   const supabase = createMediaAdminClient();
   const summary = await researchPosterPlantImages(supabase, {
     dryRun: options.dryRun,
+    keepExistingSpecific: options.keepExistingSpecific,
     limit: options.limit,
+    maxReuse: options.maxReuse,
+    minScore: options.minScore,
     offset: options.offset,
     only: options.only,
+    replaceGeneric: options.replaceGeneric,
   });
 
   console.log(
     `Riset gambar poster tanaman: unique=${summary.uniquePosterNames}, catalog=${summary.catalogItems}, with_image=${summary.catalogItemsWithImage}, reused=${summary.reusedPlantMedia}, attachments=${summary.attachmentCount}, failures=${summary.failures.length}`,
+  );
+}
+
+async function runCatalogImageAudit() {
+  loadMediaImportEnv();
+  const supabase = createMediaAdminClient();
+  const summary = await auditCatalogImages(supabase);
+
+  console.log(
+    `Audit katalog gambar: catalog=${summary.catalogItems}, entries=${summary.posterEntries}, with_image=${summary.catalogItemsWithImage}, generic=${summary.genericFallbackImages}, duplicates=${summary.duplicateChecksumGroups.length}, targets=${summary.researchTargets.length}`,
   );
 }
 
@@ -314,6 +371,11 @@ async function main() {
 
   if (options.command === "research:poster-plants") {
     await runPosterPlantResearch(options);
+    return;
+  }
+
+  if (options.command === "audit:catalog-images") {
+    await runCatalogImageAudit();
     return;
   }
 
