@@ -55,7 +55,7 @@ export function chooseLicense(
     return {
       code: null,
       reason: "Lisensi kosong atau tidak tersedia.",
-      status: "needs_clarification",
+      status: "rejected",
       url: null,
     };
   }

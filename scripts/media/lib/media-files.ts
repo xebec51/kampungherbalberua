@@ -5,15 +5,18 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import sharp from "sharp";
 import type { Database } from "../../../src/lib/supabase/database.types.ts";
 import type { PlantImageManifestItem } from "./research.ts";
+import { loadMediaImportEnv } from "./env.ts";
 
 type UploadSummary = {
   downloadedBytes: number;
   duplicateFilesReused: number;
+  failures: string[];
   mediaAssetsInserted: number;
   originalUploaded: number;
   plantAttachments: number;
   publicUploaded: number;
   rejected: number;
+  retries: number;
 };
 
 const WIKIMEDIA_DOWNLOAD_HOSTS = new Set(["upload.wikimedia.org"]);
@@ -53,30 +56,50 @@ export function detectImageMime(buffer: Buffer) {
   throw new Error("Magic bytes bukan JPEG, PNG, atau WebP");
 }
 
+async function wait(ms: number) {
+  await new Promise((resolveWait) => setTimeout(resolveWait, ms));
+}
+
 async function downloadImage(url: string) {
   assertWikimediaDownloadUrl(url);
+  const env = loadMediaImportEnv();
+  let lastStatus = 0;
 
-  const response = await fetch(url, {
-    signal: AbortSignal.timeout(20000),
-  });
+  for (let attempt = 1; attempt <= 4; attempt += 1) {
+    const response = await fetch(url, {
+      headers: {
+        "User-Agent": env.WIKIMEDIA_USER_AGENT,
+      },
+      signal: AbortSignal.timeout(20000),
+    });
 
-  if (!response.ok) {
-    throw new Error(`Download gambar gagal: HTTP ${response.status}`);
+    lastStatus = response.status;
+
+    if (response.ok) {
+      const contentType = response.headers.get("content-type") ?? "";
+
+      if (!/^image\/(jpeg|png|webp)/i.test(contentType)) {
+        throw new Error(`Content-Type gambar ditolak: ${contentType}`);
+      }
+
+      const buffer = Buffer.from(await response.arrayBuffer());
+      const detectedMime = detectImageMime(buffer);
+
+      return {
+        buffer,
+        detectedMime,
+        retries: attempt - 1,
+      };
+    }
+
+    if (![429, 500, 502, 503, 504].includes(response.status)) {
+      break;
+    }
+
+    await wait(attempt * 2500);
   }
 
-  const contentType = response.headers.get("content-type") ?? "";
-
-  if (!/^image\/(jpeg|png|webp)/i.test(contentType)) {
-    throw new Error(`Content-Type gambar ditolak: ${contentType}`);
-  }
-
-  const buffer = Buffer.from(await response.arrayBuffer());
-  const detectedMime = detectImageMime(buffer);
-
-  return {
-    buffer,
-    detectedMime,
-  };
+  throw new Error(`Download gambar gagal: HTTP ${lastStatus}`);
 }
 
 export async function optimizeWebp(
@@ -169,11 +192,13 @@ export async function uploadApprovedPlantImages(
   const summary: UploadSummary = {
     downloadedBytes: 0,
     duplicateFilesReused: 0,
+    failures: [],
     mediaAssetsInserted: 0,
     originalUploaded: 0,
     plantAttachments: 0,
     publicUploaded: 0,
     rejected: 0,
+    retries: 0,
   };
 
   for (const item of manifest) {
@@ -182,8 +207,22 @@ export async function uploadApprovedPlantImages(
       continue;
     }
 
-    const downloaded = await downloadImage(item.sourceFile);
+    let downloaded: Awaited<ReturnType<typeof downloadImage>>;
+
+    try {
+      downloaded = await downloadImage(item.sourceFile);
+    } catch (error) {
+      summary.failures.push(
+        `${item.localName}: ${
+          error instanceof Error ? error.message : "download gagal"
+        }`,
+      );
+      summary.rejected += 1;
+      continue;
+    }
+
     summary.downloadedBytes += downloaded.buffer.length;
+    summary.retries += downloaded.retries;
 
     const original = await optimizeWebp(downloaded.buffer, 2200, 2200);
     const publicVariant = await optimizeWebp(downloaded.buffer, 1200, 900);
