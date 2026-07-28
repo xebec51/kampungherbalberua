@@ -1,6 +1,6 @@
 begin;
 
-select plan(44);
+select plan(45);
 
 select has_table('public', 'media_assets', 'media_assets table exists');
 select has_table('public', 'plant_media', 'plant_media table exists');

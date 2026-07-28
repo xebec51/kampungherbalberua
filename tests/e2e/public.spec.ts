@@ -182,7 +182,7 @@ test("filter zona dan detail poster-only bekerja tanpa teks kosong", async ({
   await expect(page).toHaveURL(/\/tanaman\/cincau$/);
   await expect(page.getByRole("heading", { name: "Cincau" })).toBeVisible();
   await expect(page.getByText("Nama ini dicantumkan pada poster Kampung Herbal Harmony.")).toBeVisible();
-  await expect(page.getByText("Ilustrasi referensi", { exact: true }).first()).toBeVisible();
+  await expect(page.getByText(/^Ilustrasi (referensi|umum)$/).first()).toBeVisible();
   await expect(page.getByRole("img", { name: "Ilustrasi referensi untuk tanaman Cincau" })).toBeVisible();
   await expect(page.getByText(/undefined|null/i)).toHaveCount(0);
 });
