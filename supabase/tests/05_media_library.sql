@@ -1,6 +1,6 @@
 begin;
 
-select plan(22);
+select plan(30);
 
 select has_table('public', 'media_assets', 'media_assets table exists');
 select has_table('public', 'plant_media', 'plant_media table exists');
@@ -10,6 +10,7 @@ select has_table('public', 'plant_sources', 'plant_sources table exists');
 select has_table('public', 'plant_collections', 'plant_collections table exists');
 select has_table('public', 'plant_source_entries', 'plant_source_entries table exists');
 select has_table('public', 'plant_names', 'plant_names table exists');
+select has_table('public', 'plant_source_label_media', 'plant_source_label_media table exists');
 
 select ok(
   (select relrowsecurity from pg_class where oid = 'public.media_assets'::regclass),
@@ -26,6 +27,10 @@ select ok(
 select ok(
   (select relrowsecurity from pg_class where oid = 'public.content_media_slots'::regclass),
   'content_media_slots RLS enabled'
+);
+select ok(
+  (select relrowsecurity from pg_class where oid = 'public.plant_source_label_media'::regclass),
+  'plant_source_label_media RLS enabled'
 );
 
 select ok(
@@ -117,6 +122,60 @@ select ok(
       and indexname = 'plant_names_source_normalized_name_idx'
   ),
   'poster plant name idempotency index exists'
+);
+
+select ok(
+  exists (
+    select 1 from pg_indexes
+    where schemaname = 'public'
+      and indexname = 'plant_source_label_media_one_primary_idx'
+  ),
+  'one primary poster label media index exists'
+);
+
+select ok(
+  exists (
+    select 1 from pg_policy
+    where polrelid = 'public.plant_source_label_media'::regclass
+      and polname = 'plant_source_label_media_select_public'
+  ),
+  'poster label media public select policy exists'
+);
+
+select ok(
+  exists (
+    select 1 from pg_policy
+    where polrelid = 'public.plant_sources'::regclass
+      and polname = 'plant_sources_select_public'
+  ),
+  'poster source public select policy exists'
+);
+
+select ok(
+  exists (
+    select 1 from pg_policy
+    where polrelid = 'public.plant_collections'::regclass
+      and polname = 'plant_collections_select_public'
+  ),
+  'poster collection public select policy exists'
+);
+
+select ok(
+  exists (
+    select 1 from pg_policy
+    where polrelid = 'public.plant_source_entries'::regclass
+      and polname = 'plant_source_entries_select_public_poster'
+  ),
+  'poster entry public select policy exists'
+);
+
+select ok(
+  exists (
+    select 1 from pg_constraint
+    where conrelid = 'public.plant_source_label_media'::regclass
+      and conname = 'plant_source_label_media_media_id_fkey'
+  ),
+  'poster label media keeps media foreign key'
 );
 
 select * from finish();
