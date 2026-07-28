@@ -24,6 +24,12 @@ export const revalidate = 300;
 // slugs must still render on demand instead of 404ing.
 export const dynamicParams = true;
 
+const imageKindLabels = {
+  generic: "Ilustrasi umum",
+  reference: "Ilustrasi referensi",
+  specific: "Foto tanaman",
+};
+
 // Pre-render the known local/demo slugs at build time for fast first loads;
 // any other slug (e.g. one only published later in Supabase) still renders
 // on demand thanks to dynamicParams above.
@@ -140,8 +146,10 @@ export default async function PlantDetailPage({ params }: PlantDetailPageProps) 
               <StatusBadge tone="brown">
                 {getValidationStatusLabel(plant.validationStatus)}
               </StatusBadge>
-              {posterPlant?.imageIsIllustration ? (
-                <StatusBadge tone="brown">Ilustrasi referensi</StatusBadge>
+              {posterPlant ? (
+                <StatusBadge tone={posterPlant.imageKind === "specific" ? "green" : "brown"}>
+                  {imageKindLabels[posterPlant.imageKind]}
+                </StatusBadge>
               ) : null}
             </div>
             <h1 className="mt-5 text-4xl font-bold text-herbal-ink sm:text-5xl">
@@ -240,9 +248,10 @@ function PosterOnlyPlantDetail({ plant }: { plant: PosterPlantCatalogItem }) {
           <div>
             <div className="flex flex-wrap gap-2">
               <StatusBadge tone="brown">Nama dari poster</StatusBadge>
-              {plant.imageIsIllustration ? (
-                <StatusBadge tone="brown">Ilustrasi referensi</StatusBadge>
-              ) : null}
+              <StatusBadge tone={plant.imageKind === "specific" ? "green" : "brown"}>
+                {imageKindLabels[plant.imageKind]}
+              </StatusBadge>
+              <StatusBadge tone="neutral">{plant.partCategory}</StatusBadge>
             </div>
             <h1 className="mt-5 text-4xl font-bold text-herbal-ink sm:text-5xl">
               {plant.rawName}
@@ -283,7 +292,47 @@ function PosterOccurrencePanel({ plant }: { plant: PosterPlantCatalogItem }) {
       </p>
       <p className="mt-2">Zona: {plant.collections.join(", ")}.</p>
       <p className="mt-2">Sumber: {plant.sourceLabel}.</p>
+      <div className="mt-5 grid gap-3 border-t border-herbal-green/10 pt-4">
+        <h3 className="font-bold text-herbal-ink">Sumber gambar</h3>
+        <MetadataLine label="Jenis gambar" value={imageKindLabels[plant.imageKind]} />
+        <MetadataLine label="Kreator" value={plant.creatorName} />
+        <MetadataLine label="Lisensi" value={plant.licenseCode} />
+        <MetadataLine label="Perubahan" value={plant.changesMade} />
+        {plant.sourcePageUrl ? (
+          <a
+            className="font-semibold text-herbal-green hover:underline"
+            href={plant.sourcePageUrl}
+            rel="noreferrer"
+            target="_blank"
+          >
+            Buka halaman sumber gambar
+          </a>
+        ) : null}
+        {plant.licenseUrl ? (
+          <a
+            className="font-semibold text-herbal-green hover:underline"
+            href={plant.licenseUrl}
+            rel="noreferrer"
+            target="_blank"
+          >
+            Buka lisensi gambar
+          </a>
+        ) : null}
+      </div>
     </section>
+  );
+}
+
+function MetadataLine({ label, value }: { label: string; value: string | null }) {
+  if (!value?.trim()) {
+    return null;
+  }
+
+  return (
+    <p>
+      <span className="font-semibold text-herbal-ink">{label}: </span>
+      {value}
+    </p>
   );
 }
 

@@ -152,7 +152,7 @@ export const getPublishedMediaAttributions = cache(async () => {
     .order("title", { ascending: true });
 
   if (error) {
-    return [] as PublicMediaAsset[];
+    return [posterFallbackAttribution];
   }
 
   const mediaItems = (data ?? [])

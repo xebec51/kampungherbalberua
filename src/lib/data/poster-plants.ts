@@ -1,11 +1,18 @@
 import { cache } from "react";
 import { createClient } from "@supabase/supabase-js";
 import posterPlantManifest from "../../../data/media/manifests/poster-plant-catalog.json";
+import { getPosterPlantPartCategory } from "../../../data/poster-plants/part-categories";
+import { posterPlantSearchAliases } from "../../../data/poster-plants/search-aliases";
 import { mapMediaAssetRowToPublicMedia } from "@/lib/data/media-mapper";
 import type { MediaAssetRow } from "@/lib/data/media-mapper";
 import { getSupabaseConfig } from "@/lib/supabase/config";
 import type { Database } from "@/lib/supabase/database.types";
-import type { PlantCategory, PosterPlantCatalogItem } from "@/types";
+import type {
+  MediaRelevanceStatus,
+  PlantCategory,
+  PosterPlantCatalogItem,
+  PublicImageKind,
+} from "@/types";
 
 export const POSTER_SOURCE_CODE = "KHB-POSTER-216-2026";
 
@@ -40,6 +47,13 @@ type LabelMediaRow = {
   normalized_name: string;
   label_as_illustration: boolean;
   media_assets: MediaAssetRow | null;
+};
+
+type QualityReviewRow = {
+  duplicate_status: string;
+  entity_key: string;
+  quality_status: string;
+  relevance_status: MediaRelevanceStatus;
 };
 
 type PosterGroup = {
@@ -147,25 +161,76 @@ function mediaMapFromLabelRows(rows: LabelMediaRow[] | null) {
   return mediaByName;
 }
 
+function reviewMapFromRows(rows: QualityReviewRow[] | null) {
+  return new Map((rows ?? []).map((row) => [row.entity_key, row]));
+}
+
+function imageKindFromRelevance(
+  relevance: MediaRelevanceStatus,
+): PublicImageKind {
+  if (relevance === "exact" || relevance === "common_name_match") {
+    return "specific";
+  }
+
+  if (
+    relevance === "corrected_spelling_match" ||
+    relevance === "material_match" ||
+    relevance === "illustration_reference"
+  ) {
+    return "reference";
+  }
+
+  return "generic";
+}
+
+function inferRelevanceStatus(input: {
+  hasPlantMedia: boolean;
+  hasLabelMedia: boolean;
+  isFallback: boolean;
+  review?: QualityReviewRow | null;
+}): MediaRelevanceStatus {
+  if (input.review?.relevance_status) {
+    return input.review.relevance_status;
+  }
+
+  if (input.hasPlantMedia) {
+    return "exact";
+  }
+
+  if (input.hasLabelMedia && !input.isFallback) {
+    return "illustration_reference";
+  }
+
+  return "generic_fallback";
+}
+
 function fallbackPosterCatalog() {
   return (posterPlantManifest as ManifestPosterPlant[]).map(
     (item) =>
       ({
         attributionText: FALLBACK_ATTRIBUTION,
         category: null,
+        changesMade: "Tidak ada perubahan.",
         collections: item.collections,
+        creatorName: "Kampung Herbal Berua",
         description: POSTER_DESCRIPTION,
         id: item.normalizedName,
         image: FALLBACK_POSTER_IMAGE,
         imageIsIllustration: true,
+        imageDuplicateStatus: "generic_reuse",
+        imageKind: "generic",
+        imageRelevanceStatus: "generic_fallback",
         licenseCode: "Aset lokal",
+        licenseUrl: null,
         linkedPlantId: null,
         linkedPlantSlug: null,
         localName: item.rawName,
         normalizedName: item.normalizedName,
+        partCategory: getPosterPlantPartCategory(item.normalizedName),
         posterNumbers: item.posterNumbers,
         posterOccurrenceCount: item.posterNumbers.length,
         rawName: item.rawName,
+        searchAliases: posterPlantSearchAliases[item.normalizedName] ?? [],
         scientificName: null,
         slug: item.slug,
         sourceLabel: "Peta Tanaman Obat Kampung Herbal Harmony",
@@ -287,6 +352,13 @@ export const getPosterPlantCatalog = cache(async () => {
   const labelMediaByName = mediaMapFromLabelRows(
     labelMedia as LabelMediaRow[] | null,
   );
+  const { data: qualityReviews } = await client
+    .from("media_quality_reviews")
+    .select("entity_key, relevance_status, quality_status, duplicate_status")
+    .eq("entity_type", "poster_plant");
+  const qualityReviewBySlug = reviewMapFromRows(
+    qualityReviews as QualityReviewRow[] | null,
+  );
   const usedSlugs = new Set<string>();
 
   return Array.from(groups.values())
@@ -299,27 +371,43 @@ export const getPosterPlantCatalog = cache(async () => {
         : null;
       const labelMedia = labelMediaByName.get(group.normalizedName) ?? null;
       const media = plantMedia ?? labelMedia?.media ?? null;
-      const isIllustration = plantMedia ? false : (labelMedia?.illustration ?? true);
+      const isFallback = !media;
+      const isIllustration = !plantMedia;
       const slug = stableSlug(group.rawName, usedSlugs);
+      const review = qualityReviewBySlug.get(slug) ?? null;
+      const relevanceStatus = inferRelevanceStatus({
+        hasLabelMedia: Boolean(labelMedia),
+        hasPlantMedia: Boolean(plantMedia),
+        isFallback,
+        review,
+      });
 
       return {
         attributionText: media?.attributionText ?? null,
         category: toPlantCategory(plant?.category),
+        changesMade: media?.changesMade ?? null,
         collections: Array.from(group.collections).sort((a, b) =>
           a.localeCompare(b, "id"),
         ),
+        creatorName: media?.creatorName ?? null,
         description: POSTER_DESCRIPTION,
         id: group.normalizedName,
         image: media?.publicUrl ?? FALLBACK_POSTER_IMAGE,
         imageIsIllustration: isIllustration,
+        imageDuplicateStatus: review?.duplicate_status ?? null,
+        imageKind: imageKindFromRelevance(relevanceStatus),
+        imageRelevanceStatus: relevanceStatus,
         licenseCode: media?.licenseCode ?? "Aset lokal",
+        licenseUrl: media?.licenseUrl ?? null,
         linkedPlantId: group.linkedPlantId,
         linkedPlantSlug: plant?.slug ?? null,
         localName: plant?.canonical_local_name ?? plant?.local_name ?? group.rawName,
         normalizedName: group.normalizedName,
+        partCategory: getPosterPlantPartCategory(group.normalizedName),
         posterNumbers: group.posterNumbers.sort((a, b) => a - b),
         posterOccurrenceCount: group.posterNumbers.length,
         rawName: group.rawName,
+        searchAliases: posterPlantSearchAliases[group.normalizedName] ?? [],
         scientificName: plant?.scientific_name ?? null,
         slug,
         sourceLabel: "Peta Tanaman Obat Kampung Herbal Harmony",
