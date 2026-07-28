@@ -1,1 +1,1282 @@
-[]
+[
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Ginjal Sehat"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "alang-alang",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      31
+    ],
+    "rawName": "Alang-alang",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Detoks dan Anti Oksidan"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "anggur",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      215
+    ],
+    "rawName": "Anggur",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Otak Cerdas",
+      "Zona Tidur & Relaksasi"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "ashwagandha",
+    "occurrenceCount": 2,
+    "posterNumbers": [
+      84,
+      144
+    ],
+    "rawName": "Ashwagandha",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Kesehatan Mata"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "bayam merah",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      151
+    ],
+    "rawName": "Bayam Merah",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Ginjal Sehat",
+      "Zona Jantung Sehat"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "belimbing wuluh",
+    "occurrenceCount": 2,
+    "posterNumbers": [
+      36,
+      52
+    ],
+    "rawName": "Belimbing Wuluh",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Pernapasan Lega"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "beluntas",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      75
+    ],
+    "rawName": "Beluntas",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Kulit Cantik"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "binahong",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      99
+    ],
+    "rawName": "Binahong",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Kesehatan Mata"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "blueberry",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      154
+    ],
+    "rawName": "Blueberry",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Antiinflamasi & Nyeri",
+      "Zona Tulang & Sendi"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "boswellia",
+    "occurrenceCount": 2,
+    "posterNumbers": [
+      115,
+      173
+    ],
+    "rawName": "Boswellia",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Nama poster berada dalam daftar ambigu dan belum memiliki bukti konteks Kampung Herbal Harmony yang cukup kuat.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Otak Cerdas"
+    ],
+    "identificationStatus": "disputed",
+    "mappingStatus": "unresolved",
+    "normalizedName": "brahmi",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      82
+    ],
+    "rawName": "Brahmi",
+    "researchStatus": "blocked_ambiguous"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Anti Kanker (Potensial)"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "brokoli",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      123
+    ],
+    "rawName": "Brokoli",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Gula Darah Terkendali"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "brotowali",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      58
+    ],
+    "rawName": "Brotowali",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Kulit Cantik"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "calendula",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      104
+    ],
+    "rawName": "Calendula",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Kulit Cantik",
+      "Zona Tidur & Relaksasi"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "chamomile",
+    "occurrenceCount": 2,
+    "posterNumbers": [
+      106,
+      138
+    ],
+    "rawName": "Chamomile",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Nama poster berada dalam daftar ambigu dan belum memiliki bukti konteks Kampung Herbal Harmony yang cukup kuat.",
+    "candidateScientificNames": [
+      "Cyclea barbata",
+      "Platostoma palustre",
+      "Mesona chinensis"
+    ],
+    "collections": [
+      "Zona Pencernaan Sehat"
+    ],
+    "identificationStatus": "disputed",
+    "mappingStatus": "unresolved",
+    "normalizedName": "cincau",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      23
+    ],
+    "rawName": "Cincau",
+    "researchStatus": "blocked_ambiguous"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Tulang & Sendi"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "cissus",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      170
+    ],
+    "rawName": "Cissus",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Hati Sehat",
+      "Zona Antiinflamasi & Nyeri",
+      "Zona Tulang & Sendi"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "daun dewa",
+    "occurrenceCount": 3,
+    "posterNumbers": [
+      42,
+      110,
+      174
+    ],
+    "rawName": "Daun Dewa",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Nama poster berada dalam daftar ambigu dan belum memiliki bukti konteks Kampung Herbal Harmony yang cukup kuat.",
+    "candidateScientificNames": [
+      "Psidium guajava",
+      "Syzygium aqueum",
+      "Syzygium samarangense"
+    ],
+    "collections": [
+      "Zona Anak Ceria",
+      "Zona Kesehatan Mulut"
+    ],
+    "identificationStatus": "disputed",
+    "mappingStatus": "unresolved",
+    "normalizedName": "daun jambu",
+    "occurrenceCount": 2,
+    "posterNumbers": [
+      94,
+      180
+    ],
+    "rawName": "Daun Jambu",
+    "researchStatus": "blocked_ambiguous"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Kesehatan Mata"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "daun katuk",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      152
+    ],
+    "rawName": "Daun Katuk",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Detoks dan Anti Oksidan"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "daun salam",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      216
+    ],
+    "rawName": "Daun Salam",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Pencernaan Sehat"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "daun ungu",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      22
+    ],
+    "rawName": "Daun Ungu",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Kesehatan Perempuan"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "delima",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      201
+    ],
+    "rawName": "Delima",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Kesehatan Perempuan"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "dong quai",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      202
+    ],
+    "rawName": "Dong Quai",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Nama poster berada dalam daftar ambigu dan belum memiliki bukti konteks Kampung Herbal Harmony yang cukup kuat.",
+    "candidateScientificNames": [
+      "Melaleuca cajuputi",
+      "Eucalyptus globulus"
+    ],
+    "collections": [
+      "Zona Pernapasan Lega"
+    ],
+    "identificationStatus": "disputed",
+    "mappingStatus": "unresolved",
+    "normalizedName": "eucalyptus",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      76
+    ],
+    "rawName": "Eucalyptus",
+    "researchStatus": "blocked_ambiguous"
+  },
+  {
+    "ambiguityReason": "Nama poster berada dalam daftar ambigu dan belum memiliki bukti konteks Kampung Herbal Harmony yang cukup kuat.",
+    "candidateScientificNames": [
+      "Garcinia mangostana",
+      "Garcinia gummi-gutta"
+    ],
+    "collections": [
+      "Zona Obesitas & Metabolik"
+    ],
+    "identificationStatus": "disputed",
+    "mappingStatus": "unresolved",
+    "normalizedName": "garcinia",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      130
+    ],
+    "rawName": "Garcinia",
+    "researchStatus": "blocked_ambiguous"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Otak Cerdas"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "ginkgo",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      80
+    ],
+    "rawName": "Ginkgo",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Kesehatan Mata"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "goji berry",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      156
+    ],
+    "rawName": "Goji Berry",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Pernapasan Lega",
+      "Zona Anak Ceria",
+      "Zona Kesehatan Mulut"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "jeruk nipis",
+    "occurrenceCount": 3,
+    "posterNumbers": [
+      69,
+      93,
+      186
+    ],
+    "rawName": "Jeruk Nipis",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Detoks dan Anti Oksidan"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "kakao",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      214
+    ],
+    "rawName": "Kakao",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Pencernaan Sehat"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "kapulaga",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      17
+    ],
+    "rawName": "Kapulaga",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Anak Ceria",
+      "Zona Kesehatan Perempuan"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "katuk",
+    "occurrenceCount": 2,
+    "posterNumbers": [
+      90,
+      198
+    ],
+    "rawName": "Katuk",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Gula Darah Terkendali",
+      "Zona Obesitas & Metabolik",
+      "Zona Kesehatan Mulut",
+      "Zona Anti Mikroba",
+      "Zona Detoks dan Anti Oksidan"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "kayu manis",
+    "occurrenceCount": 5,
+    "posterNumbers": [
+      62,
+      129,
+      179,
+      192,
+      211
+    ],
+    "rawName": "Kayu Manis",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [
+      "Melaleuca cajuputi",
+      "Eucalyptus globulus"
+    ],
+    "collections": [
+      "Zona Pernapasan Lega"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "kayu putih",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      71
+    ],
+    "rawName": "Kayu Putih",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Ginjal Sehat"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "keji beling",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      29
+    ],
+    "rawName": "Keji Beling",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Anti Kanker (Potensial)"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "keladi tikus",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      118
+    ],
+    "rawName": "Keladi Tikus",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Pencernaan Sehat",
+      "Zona Otak Cerdas",
+      "Zona Tidur & Relaksasi",
+      "Zona Kesehatan Mulut",
+      "Zona Kesehatan Perempuan"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "kemangi",
+    "occurrenceCount": 5,
+    "posterNumbers": [
+      20,
+      85,
+      145,
+      185,
+      204
+    ],
+    "rawName": "Kemangi",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Pencernaan Sehat"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "ketumbar",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      16
+    ],
+    "rawName": "Ketumbar",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Obesitas & Metabolik"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "kopi hijau",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      136
+    ],
+    "rawName": "Kopi Hijau",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Detoks dan Anti Oksidan"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "kulit manggis",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      209
+    ],
+    "rawName": "Kulit Manggis",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Nama poster berada dalam daftar ambigu dan belum memiliki bukti konteks Kampung Herbal Harmony yang cukup kuat.",
+    "candidateScientificNames": [
+      "Curcuma zedoaria",
+      "Curcuma mangga"
+    ],
+    "collections": [
+      "Zona Pencernaan Sehat"
+    ],
+    "identificationStatus": "disputed",
+    "mappingStatus": "unresolved",
+    "normalizedName": "kunyit putih",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      24
+    ],
+    "rawName": "Kunyit Putih",
+    "researchStatus": "blocked_ambiguous"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Otak Cerdas",
+      "Zona Kulit Cantik",
+      "Zona Tidur & Relaksasi"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "lavender",
+    "occurrenceCount": 3,
+    "posterNumbers": [
+      79,
+      103,
+      137
+    ],
+    "rawName": "Lavender",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Otak Cerdas",
+      "Zona Tidur & Relaksasi"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "lemon balm",
+    "occurrenceCount": 2,
+    "posterNumbers": [
+      83,
+      139
+    ],
+    "rawName": "Lemon Balm",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Gula Darah Terkendali",
+      "Zona Anti Kanker (Potensial)"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "mahkota dewa",
+    "occurrenceCount": 2,
+    "posterNumbers": [
+      63,
+      126
+    ],
+    "rawName": "Mahkota Dewa",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Tidur & Relaksasi"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "melati",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      146
+    ],
+    "rawName": "Melati",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Gula Darah Terkendali"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "mengkudu",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      64
+    ],
+    "rawName": "Mengkudu",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Imunitas Kuat",
+      "Zona Ginjal Sehat",
+      "Zona Hati Sehat",
+      "Zona Anti Kanker (Potensial)",
+      "Zona Anti Mikroba"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "meniran",
+    "occurrenceCount": 5,
+    "posterNumbers": [
+      1,
+      30,
+      39,
+      121,
+      194
+    ],
+    "rawName": "Meniran",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Nama poster berada dalam daftar ambigu dan belum memiliki bukti konteks Kampung Herbal Harmony yang cukup kuat.",
+    "candidateScientificNames": [
+      "Tagetes erecta",
+      "Calendula officinalis"
+    ],
+    "collections": [
+      "Zona Kesehatan Mata"
+    ],
+    "identificationStatus": "disputed",
+    "mappingStatus": "unresolved",
+    "normalizedName": "merigold",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      153
+    ],
+    "rawName": "Merigold",
+    "researchStatus": "blocked_ambiguous"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Imunitas Kuat",
+      "Zona Kulit Cantik"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "miana",
+    "occurrenceCount": 2,
+    "posterNumbers": [
+      11,
+      100
+    ],
+    "rawName": "Miana",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Pencernaan Sehat",
+      "Zona Kesehatan Mulut"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "mint",
+    "occurrenceCount": 2,
+    "posterNumbers": [
+      18,
+      182
+    ],
+    "rawName": "Mint",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Nama poster berada dalam daftar ambigu dan belum memiliki bukti konteks Kampung Herbal Harmony yang cukup kuat.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Kesehatan Mulut"
+    ],
+    "identificationStatus": "disputed",
+    "mappingStatus": "unresolved",
+    "normalizedName": "miswak",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      181
+    ],
+    "rawName": "Miswak",
+    "researchStatus": "blocked_ambiguous"
+  },
+  {
+    "ambiguityReason": "Nama poster berada dalam daftar ambigu dan belum memiliki bukti konteks Kampung Herbal Harmony yang cukup kuat.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Anti Mikroba"
+    ],
+    "identificationStatus": "disputed",
+    "mappingStatus": "unresolved",
+    "normalizedName": "neem",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      195
+    ],
+    "rawName": "Neem",
+    "researchStatus": "blocked_ambiguous"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Anti Mikroba"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "oregano",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      196
+    ],
+    "rawName": "Oregano",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Detoks dan Anti Oksidan"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "pala",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      213
+    ],
+    "rawName": "Pala",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Hati Sehat"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "paliasa",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      40
+    ],
+    "rawName": "Paliasa",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Gula Darah Terkendali"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "pare",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      57
+    ],
+    "rawName": "Pare",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Tidur & Relaksasi"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "passion flower",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      141
+    ],
+    "rawName": "Passion Flower",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Ginjal Sehat"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "rambut jagung",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      32
+    ],
+    "rawName": "Rambut Jagung",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [
+      "Salvia rosmarinus",
+      "Rosmarinus officinalis"
+    ],
+    "collections": [
+      "Zona Otak Cerdas",
+      "Zona Antiinflamasi & Nyeri",
+      "Zona Tidur & Relaksasi",
+      "Zona Tulang & Sendi"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "rosemary",
+    "occurrenceCount": 4,
+    "posterNumbers": [
+      78,
+      114,
+      143,
+      175
+    ],
+    "rawName": "Rosemary",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Kesehatan Mata"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "safron",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      155
+    ],
+    "rawName": "Safron",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Pernapasan Lega"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "saga",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      72
+    ],
+    "rawName": "Saga",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Otak Cerdas",
+      "Zona Kesehatan Mulut"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "sage",
+    "occurrenceCount": 2,
+    "posterNumbers": [
+      81,
+      183
+    ],
+    "rawName": "Sage",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Nama poster berada dalam daftar ambigu dan belum memiliki bukti konteks Kampung Herbal Harmony yang cukup kuat.",
+    "candidateScientificNames": [
+      "Syzygium polyanthum",
+      "Eugenia polyantha"
+    ],
+    "collections": [
+      "Zona Jantung Sehat",
+      "Zona Gula Darah Terkendali"
+    ],
+    "identificationStatus": "disputed",
+    "mappingStatus": "unresolved",
+    "normalizedName": "salam",
+    "occurrenceCount": 2,
+    "posterNumbers": [
+      50,
+      59
+    ],
+    "rawName": "Salam",
+    "researchStatus": "blocked_ambiguous"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Ginjal Sehat",
+      "Zona Jantung Sehat"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "seledri",
+    "occurrenceCount": 2,
+    "posterNumbers": [
+      34,
+      47
+    ],
+    "rawName": "Seledri",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Ginjal Sehat"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "sidaguri",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      33
+    ],
+    "rawName": "Sidaguri",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Anti Kanker (Potensial)"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "sirsak",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      117
+    ],
+    "rawName": "Sirsak",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Pencernaan Sehat"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "tapak liman",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      26
+    ],
+    "rawName": "Tapak Liman",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Jantung Sehat",
+      "Zona Kulit Cantik",
+      "Zona Anti Kanker (Potensial)",
+      "Zona Obesitas & Metabolik",
+      "Zona Kesehatan Mulut",
+      "Zona Detoks dan Anti Oksidan"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "teh hijau",
+    "occurrenceCount": 6,
+    "posterNumbers": [
+      56,
+      105,
+      124,
+      127,
+      184,
+      210
+    ],
+    "rawName": "Teh Hijau",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Ginjal Sehat",
+      "Zona Jantung Sehat"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "tempuyung",
+    "occurrenceCount": 2,
+    "posterNumbers": [
+      28,
+      53
+    ],
+    "rawName": "Tempuyung",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Pencernaan Sehat"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "temu mangga",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      25
+    ],
+    "rawName": "Temu Mangga",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Nama poster berada dalam daftar ambigu dan belum memiliki bukti konteks Kampung Herbal Harmony yang cukup kuat.",
+    "candidateScientificNames": [
+      "Curcuma zedoaria",
+      "Curcuma mangga"
+    ],
+    "collections": [
+      "Zona Kesehatan Perempuan"
+    ],
+    "identificationStatus": "disputed",
+    "mappingStatus": "unresolved",
+    "normalizedName": "temu putih",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      199
+    ],
+    "rawName": "Temu Putih",
+    "researchStatus": "blocked_ambiguous"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Tidur & Relaksasi"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "valerian",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      140
+    ],
+    "rawName": "Valerian",
+    "researchStatus": "pending_taxonomy_review"
+  },
+  {
+    "ambiguityReason": "Nama poster berada dalam daftar ambigu dan belum memiliki bukti konteks Kampung Herbal Harmony yang cukup kuat.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Antiinflamasi & Nyeri"
+    ],
+    "identificationStatus": "disputed",
+    "mappingStatus": "unresolved",
+    "normalizedName": "willow bark",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      116
+    ],
+    "rawName": "Willow Bark",
+    "researchStatus": "blocked_ambiguous"
+  },
+  {
+    "ambiguityReason": "Belum memiliki mapping taxonomy terverifikasi pada batch ini.",
+    "candidateScientificNames": [],
+    "collections": [
+      "Zona Kesehatan Mata"
+    ],
+    "identificationStatus": "unresolved",
+    "mappingStatus": "unresolved",
+    "normalizedName": "wortel",
+    "occurrenceCount": 1,
+    "posterNumbers": [
+      147
+    ],
+    "rawName": "Wortel",
+    "researchStatus": "pending_taxonomy_review"
+  }
+]

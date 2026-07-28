@@ -1,9 +1,11 @@
 {
-  "downloadedBytes": 0,
-  "duplicateFilesReused": 0,
-  "mediaAssetsInserted": 0,
-  "originalUploaded": 0,
-  "plantAttachments": 0,
-  "publicUploaded": 0,
-  "rejected": 0
+  "downloadedBytes": 64615503,
+  "duplicateFilesReused": 13,
+  "failures": [],
+  "mediaAssetsInserted": 2,
+  "originalUploaded": 2,
+  "plantAttachments": 15,
+  "publicUploaded": 2,
+  "rejected": 0,
+  "retries": 0
 }
