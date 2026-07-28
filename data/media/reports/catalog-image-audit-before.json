@@ -1,0 +1,247 @@
+{
+  "brokenPublicUrls": [],
+  "catalogItems": 89,
+  "catalogItemsWithImage": 89,
+  "duplicateChecksumGroups": [
+    {
+      "checksum": "c7f1605a5656c7972e1f1cefe22b2d22fd9e894fb08eb51c4e36f8f5fb3d5417",
+      "count": 2,
+      "names": [
+        "Daun Katuk",
+        "Katuk"
+      ]
+    },
+    {
+      "checksum": "5e3695a030fe747352eec01bae1305ee6334b6ea050ad0ae611752e82a4938e8",
+      "count": 2,
+      "names": [
+        "Daun Salam",
+        "Salam"
+      ]
+    },
+    {
+      "checksum": "47b991f8bb84f09fd25b59e43f648937babf714e3b0804d0530be7d857df0bb9",
+      "count": 2,
+      "names": [
+        "Kunyit Putih",
+        "Temu Putih"
+      ]
+    }
+  ],
+  "genericFallbackImages": 0,
+  "illustrationImages": 29,
+  "incompleteAttribution": [],
+  "lowResolutionMedia": [
+    {
+      "height": 900,
+      "mediaId": "30c1553d-613a-4194-9533-766a2dd30848",
+      "title": "Gambar referensi Ashwagandha",
+      "width": 675
+    },
+    {
+      "height": 900,
+      "mediaId": "1d03c556-be99-43c3-aa5e-aee03578e079",
+      "title": "Gambar referensi Belimbing Wuluh",
+      "width": 506
+    },
+    {
+      "height": 900,
+      "mediaId": "d562b4c4-3753-434f-bb29-20e989408730",
+      "title": "Gambar referensi Beluntas",
+      "width": 675
+    },
+    {
+      "height": 900,
+      "mediaId": "0eb28754-0184-4c4d-9731-4a9bfb7f5741",
+      "title": "Gambar referensi Blueberry",
+      "width": 675
+    },
+    {
+      "height": 900,
+      "mediaId": "d7c059a0-0fc0-4bb3-8054-a14b80c2ee8d",
+      "title": "Gambar referensi Brahmi",
+      "width": 507
+    },
+    {
+      "height": 900,
+      "mediaId": "11e942cc-b945-47fc-b04a-fd0ba7b97d15",
+      "title": "Gambar referensi Brokoli",
+      "width": 1125
+    },
+    {
+      "height": 900,
+      "mediaId": "387d886d-b894-4ded-85f3-d4a2652554fe",
+      "title": "Gambar referensi Brotowali",
+      "width": 886
+    },
+    {
+      "height": 900,
+      "mediaId": "2d516d13-d65a-4449-83d7-56f31f8d7ed8",
+      "title": "Gambar referensi Calendula",
+      "width": 679
+    },
+    {
+      "height": 900,
+      "mediaId": "a68aa60b-5202-42bc-b5f5-69cc0790bf75",
+      "title": "Gambar referensi Cincau",
+      "width": 506
+    },
+    {
+      "height": 900,
+      "mediaId": "1a6fe747-07d0-4a43-85f3-3f92c3f69c9f",
+      "title": "Gambar referensi Cissus",
+      "width": 675
+    },
+    {
+      "height": 900,
+      "mediaId": "1d2f2ceb-00cb-45ac-8eee-c3f2200a1a07",
+      "title": "Gambar referensi Dong Quai",
+      "width": 624
+    },
+    {
+      "height": 900,
+      "mediaId": "eb05399e-9541-4de4-a99d-5d7fa227a056",
+      "title": "Gambar referensi Ginkgo",
+      "width": 1042
+    },
+    {
+      "height": 900,
+      "mediaId": "e4dae03c-1e4d-48ec-8a8d-41aad90724fd",
+      "title": "Gambar referensi Goji Berry",
+      "width": 675
+    },
+    {
+      "height": 900,
+      "mediaId": "512bdab6-d117-4d0e-9c60-dc7586008cb3",
+      "title": "Gambar referensi Jeruk Nipis",
+      "width": 600
+    },
+    {
+      "height": 900,
+      "mediaId": "ef73afd3-efbf-4bf6-9ff6-0ee19e583a25",
+      "title": "Gambar referensi Kapulaga",
+      "width": 675
+    },
+    {
+      "height": 900,
+      "mediaId": "c2507d28-a80e-49eb-a8d6-b6b6f8b7b4aa",
+      "title": "Gambar referensi Kayu Putih",
+      "width": 675
+    },
+    {
+      "height": 900,
+      "mediaId": "6f8a2041-d024-4758-9b3c-7f6c66801ef0",
+      "title": "Gambar referensi Keji Beling",
+      "width": 600
+    },
+    {
+      "height": 900,
+      "mediaId": "6acd9bdd-b762-4a1b-a5fb-39e42c82e026",
+      "title": "Gambar referensi Kulit Manggis",
+      "width": 675
+    },
+    {
+      "height": 900,
+      "mediaId": "33df67e7-cc23-479f-a8d5-b73629149ace",
+      "title": "Gambar referensi Lavender",
+      "width": 602
+    },
+    {
+      "height": 900,
+      "mediaId": "518fdbe5-b82d-44fb-8aef-95d7472d4956",
+      "title": "Gambar referensi Lemon Balm",
+      "width": 598
+    },
+    {
+      "height": 900,
+      "mediaId": "04428726-43cf-4458-b1c9-a62bb1a1fa5f",
+      "title": "Gambar referensi Melati",
+      "width": 675
+    },
+    {
+      "height": 900,
+      "mediaId": "8b96fbd8-f56a-4e5e-99db-f088e5191443",
+      "title": "Gambar referensi Mengkudu",
+      "width": 620
+    },
+    {
+      "height": 900,
+      "mediaId": "ad379cd4-114f-41c8-8640-12a8168094a4",
+      "title": "Gambar referensi Meniran",
+      "width": 675
+    },
+    {
+      "height": 900,
+      "mediaId": "1b869509-9413-40ba-bfe1-63b80007d8cd",
+      "title": "Gambar referensi Miana",
+      "width": 675
+    },
+    {
+      "height": 900,
+      "mediaId": "401da577-cf71-4cfd-bf99-501dbda82b72",
+      "title": "Gambar referensi Mint",
+      "width": 675
+    },
+    {
+      "height": 900,
+      "mediaId": "e80756d0-5cb4-4010-8410-132472eee005",
+      "title": "Gambar referensi Oregano",
+      "width": 600
+    },
+    {
+      "height": 900,
+      "mediaId": "5d224ca4-e987-4d55-8541-c5dbe0f86292",
+      "title": "Gambar referensi Pala",
+      "width": 892
+    },
+    {
+      "height": 900,
+      "mediaId": "b334aabb-e4fa-424f-86e7-4d3bdb65b881",
+      "title": "Gambar referensi Rosemary",
+      "width": 1186
+    },
+    {
+      "height": 900,
+      "mediaId": "a00bd1cb-1669-41aa-853f-3c792de04777",
+      "title": "Gambar referensi Sage",
+      "width": 900
+    },
+    {
+      "height": 900,
+      "mediaId": "6b1e25e1-0fa1-4c1c-ba60-ad156df4a168",
+      "title": "Gambar referensi Sirsak",
+      "width": 675
+    },
+    {
+      "height": 900,
+      "mediaId": "fff4b7b3-f7b8-4088-8a85-2ee1d3865464",
+      "title": "Gambar referensi Tapak Liman",
+      "width": 675
+    },
+    {
+      "height": 900,
+      "mediaId": "31966549-8b4f-4766-ad30-9743de521b7d",
+      "title": "Gambar referensi Tempuyung",
+      "width": 675
+    },
+    {
+      "height": 900,
+      "mediaId": "d9b4b757-9352-4ac4-a5cc-b284ea54e61d",
+      "title": "Gambar referensi Temu Mangga",
+      "width": 675
+    },
+    {
+      "height": 900,
+      "mediaId": "936f4283-bc6e-46a8-bc39-d87cbb5371bf",
+      "title": "Gambar referensi Valerian",
+      "width": 643
+    }
+  ],
+  "missingLicense": [],
+  "missingSourcePage": [],
+  "posterEntries": 206,
+  "researchTargets": [],
+  "reusedMediaCount": 3,
+  "specificImages": 75,
+  "uniquePosterNames": 89
+}
