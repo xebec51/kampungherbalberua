@@ -8,6 +8,7 @@ import {
 } from "./lib/poster.ts";
 import { researchPlantImages } from "./lib/research.ts";
 import { bootstrapMediaBuckets } from "./lib/storage.ts";
+import { uploadApprovedPlantImages } from "./lib/media-files.ts";
 
 type MediaCommand =
   | "bootstrap"
@@ -170,6 +171,25 @@ async function runPlantResearch(options: CliOptions) {
   );
 }
 
+async function runMediaImport(options: CliOptions) {
+  assertExecuteAllowed(options);
+
+  if (options.dryRun) {
+    loadMediaImportEnv();
+  }
+
+  const supabase = createMediaAdminClient();
+  const summary = await uploadApprovedPlantImages(supabase, {
+    dryRun: options.dryRun,
+    limit: options.limit,
+    only: options.only,
+  });
+
+  console.log(
+    `Import media: original=${summary.originalUploaded}, public=${summary.publicUploaded}, assets=${summary.mediaAssetsInserted}, attachments=${summary.plantAttachments}, reused=${summary.duplicateFilesReused}, rejected=${summary.rejected}`,
+  );
+}
+
 async function main() {
   const options = parseOptions(process.argv.slice(2));
 
@@ -202,6 +222,11 @@ async function main() {
 
   if (options.command === "research:plants") {
     await runPlantResearch(options);
+    return;
+  }
+
+  if (options.command === "import") {
+    await runMediaImport(options);
     return;
   }
 
