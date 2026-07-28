@@ -1,33 +1,32 @@
 import type { Metadata } from "next";
-import { PlantCatalog } from "@/components/plants/PlantCatalog";
+import { PosterPlantCatalog } from "@/components/plants/PosterPlantCatalog";
 import { Container } from "@/components/ui/Container";
 import { Disclaimer } from "@/components/ui/Disclaimer";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { plantCategories } from "@/data/plants";
-import { getPublishedPlants } from "@/lib/data/plants";
+import { getPosterPlantCatalog } from "@/lib/data/poster-plants";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const revalidate = 300;
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Tanaman TOGA",
+  title: "Tanaman Kampung Herbal Harmony",
   description:
-    "Katalog demonstrasi tanaman TOGA Kampung Herbal Berua dengan pencarian dan filter kategori.",
+    "Katalog nama tanaman yang tercantum pada Peta Tanaman Obat Kampung Herbal Harmony.",
   path: "/tanaman",
 });
 
 export default async function PlantsPage() {
-  const plants = await getPublishedPlants();
+  const plants = await getPosterPlantCatalog();
 
   return (
     <section className="bg-herbal-cream py-12 sm:py-16">
       <Container>
         <SectionHeading
-          description="Daftar ini masih berupa data demonstrasi. Setiap informasi tanaman perlu diverifikasi oleh tim Farmasi atau tenaga kesehatan sebelum menjadi rujukan publik final."
+          description="Katalog nama tanaman yang tercantum pada Peta Tanaman Obat Kampung Herbal Harmony. Gambar tertentu merupakan ilustrasi referensi dari sumber berlisensi."
           eyebrow="Katalog Tanaman"
-          title="Tanaman TOGA Kampung Herbal Berua"
+          title="Tanaman Kampung Herbal Harmony"
         />
-        <PlantCatalog categories={plantCategories} plants={plants} />
+        <PosterPlantCatalog plants={plants} />
         <div className="mt-8">
           <Disclaimer>
             Informasi tanaman pada website ini disediakan untuk edukasi mengenai

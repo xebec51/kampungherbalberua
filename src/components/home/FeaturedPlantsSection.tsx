@@ -17,9 +17,11 @@ export async function FeaturedPlantsSection() {
             eyebrow="Tanaman Pilihan"
             title="Katalog awal tanaman TOGA"
           />
-          <LinkButton href="/tanaman" variant="secondary">
-            Lihat Semua Tanaman
-          </LinkButton>
+          <div className="flex flex-wrap gap-3">
+            <LinkButton href="/tanaman" variant="secondary">
+              Lihat seluruh tanaman dari poster
+            </LinkButton>
+          </div>
         </div>
         <AutoCarousel
           ariaLabel="Carousel tanaman pilihan"

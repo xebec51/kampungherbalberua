@@ -48,6 +48,28 @@ export type Plant = {
   published: boolean;
 };
 
+export type PosterPlantCatalogItem = {
+  id: string;
+  rawName: string;
+  normalizedName: string;
+  slug: string;
+  posterOccurrenceCount: number;
+  posterNumbers: number[];
+  collections: string[];
+  linkedPlantId: string | null;
+  linkedPlantSlug: string | null;
+  localName: string;
+  scientificName: string | null;
+  category: PlantCategory | null;
+  image: string | null;
+  imageIsIllustration: boolean;
+  sourceLabel: string;
+  description: string;
+  attributionText: string | null;
+  sourcePageUrl: string | null;
+  licenseCode: string | null;
+};
+
 export type HealthZone = {
   id: string;
   zoneCode: string;
