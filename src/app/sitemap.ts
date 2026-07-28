@@ -3,6 +3,7 @@ import { products } from "@/data/products";
 import { recipes } from "@/data/recipes";
 import { getHealthZoneSlugs } from "@/lib/data/health-zones";
 import { getPlantSlugs } from "@/lib/data/plants";
+import { getPosterPlantSlugs } from "@/lib/data/poster-plants";
 import { absoluteUrl } from "@/lib/metadata";
 
 const staticRoutes = [
@@ -24,10 +25,12 @@ const staticRoutes = [
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
   const plantSlugs = await getPlantSlugs();
+  const posterPlantSlugs = await getPosterPlantSlugs();
   const zoneSlugs = await getHealthZoneSlugs();
+  const allPlantSlugs = Array.from(new Set([...plantSlugs, ...posterPlantSlugs]));
 
   const dynamicRoutes = [
-    ...plantSlugs.map((slug) => `/tanaman/${slug}`),
+    ...allPlantSlugs.map((slug) => `/tanaman/${slug}`),
     ...zoneSlugs.map((slug) => `/zona-kesehatan/${slug}`),
     ...recipes
       .filter((recipe) => recipe.published)

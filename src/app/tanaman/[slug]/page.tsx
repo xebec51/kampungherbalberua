@@ -7,8 +7,10 @@ import { SafeImage } from "@/components/ui/SafeImage";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { plants as localPlants } from "@/data/plants";
 import { getPlantBySlug } from "@/lib/data/plants";
+import { getPosterPlantBySlug } from "@/lib/data/poster-plants";
 import { getValidationStatusLabel } from "@/lib/formatters";
 import { createPageMetadata } from "@/lib/metadata";
+import type { PosterPlantCatalogItem } from "@/types";
 
 type PlantDetailPageProps = {
   params: Promise<{
@@ -35,9 +37,12 @@ export async function generateMetadata({
   params,
 }: PlantDetailPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const plant = await getPlantBySlug(slug);
+  const posterPlant = await getPosterPlantBySlug(slug);
+  const plant = posterPlant?.linkedPlantSlug
+    ? await getPlantBySlug(posterPlant.linkedPlantSlug)
+    : await getPlantBySlug(slug);
 
-  if (!plant) {
+  if (!posterPlant && !plant) {
     return createPageMetadata({
       title: "Tanaman tidak ditemukan",
       description: "Data tanaman yang diminta belum tersedia.",
@@ -46,23 +51,39 @@ export async function generateMetadata({
   }
 
   return createPageMetadata({
-    title: plant.localName,
-    description: plant.shortDescription,
-    path: `/tanaman/${plant.slug}`,
+    title: posterPlant?.rawName ?? plant?.localName ?? "Tanaman",
+    description:
+      posterPlant?.description ??
+      plant?.shortDescription ??
+      "Katalog tanaman Kampung Herbal Harmony.",
+    path: `/tanaman/${posterPlant?.slug ?? plant?.slug}`,
   });
 }
 
 export default async function PlantDetailPage({ params }: PlantDetailPageProps) {
   const { slug } = await params;
-  const plant = await getPlantBySlug(slug);
+  const posterPlant = await getPosterPlantBySlug(slug);
+  const plant = posterPlant?.linkedPlantSlug
+    ? await getPlantBySlug(posterPlant.linkedPlantSlug)
+    : await getPlantBySlug(slug);
 
   // Renders the not-found UI for unknown slugs. Note: with dynamicParams
   // enabled, this Next.js version serves the not-found boundary with a 200
   // status for slugs outside generateStaticParams instead of 404 — a known
   // framework limitation, not something fixable from application code.
+  if (!posterPlant && !plant) {
+    notFound();
+  }
+
+  if (!plant && posterPlant) {
+    return <PosterOnlyPlantDetail plant={posterPlant} />;
+  }
+
   if (!plant) {
     notFound();
   }
+
+  const image = posterPlant?.image ?? plant.image;
 
   return (
     <article className="bg-herbal-cream py-12 sm:py-16">
@@ -82,7 +103,7 @@ export default async function PlantDetailPage({ params }: PlantDetailPageProps) 
               fallbackVariant="plant"
               imageClassName="object-cover"
               sizes="(max-width: 1024px) 100vw, 45vw"
-              src={plant.image}
+              src={image}
             />
             <div className="mt-5 grid gap-4 sm:grid-cols-2">
               <div className="rounded-md border border-herbal-green/10 bg-white p-5 shadow-sm">
@@ -119,6 +140,9 @@ export default async function PlantDetailPage({ params }: PlantDetailPageProps) 
               <StatusBadge tone="brown">
                 {getValidationStatusLabel(plant.validationStatus)}
               </StatusBadge>
+              {posterPlant?.imageIsIllustration ? (
+                <StatusBadge tone="brown">Ilustrasi referensi</StatusBadge>
+              ) : null}
             </div>
             <h1 className="mt-5 text-4xl font-bold text-herbal-ink sm:text-5xl">
               {plant.localName}
@@ -156,6 +180,7 @@ export default async function PlantDetailPage({ params }: PlantDetailPageProps) 
               <p className="mt-3">{plant.source}</p>
               <p className="mt-2">{plant.validator}</p>
             </div>
+            {posterPlant ? <PosterOccurrencePanel plant={posterPlant} /> : null}
 
             <div className="mt-8">
               <Disclaimer>
@@ -169,6 +194,96 @@ export default async function PlantDetailPage({ params }: PlantDetailPageProps) 
         </div>
       </Container>
     </article>
+  );
+}
+
+function PosterOnlyPlantDetail({ plant }: { plant: PosterPlantCatalogItem }) {
+  return (
+    <article className="bg-herbal-cream py-12 sm:py-16">
+      <Container>
+        <Breadcrumb
+          items={[{ label: "Tanaman", href: "/tanaman" }, { label: plant.rawName }]}
+        />
+
+        <div className="mt-8 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+          <div>
+            <SafeImage
+              alt={
+                plant.imageIsIllustration
+                  ? `Ilustrasi referensi untuk tanaman ${plant.rawName}`
+                  : `Foto tanaman ${plant.rawName}`
+              }
+              fallbackLabel={`Ilustrasi placeholder tanaman ${plant.rawName}`}
+              fallbackVariant="plant"
+              imageClassName="object-cover"
+              sizes="(max-width: 1024px) 100vw, 45vw"
+              src={plant.image}
+            />
+            {plant.attributionText || plant.sourcePageUrl ? (
+              <div className="mt-4 rounded-md border border-herbal-green/10 bg-white p-4 text-sm leading-6 text-herbal-muted shadow-sm">
+                <h2 className="font-bold text-herbal-ink">Sumber gambar</h2>
+                {plant.attributionText ? <p className="mt-2">{plant.attributionText}</p> : null}
+                {plant.sourcePageUrl ? (
+                  <a
+                    className="mt-2 inline-block font-semibold text-herbal-green hover:underline"
+                    href={plant.sourcePageUrl}
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    Halaman sumber
+                  </a>
+                ) : null}
+              </div>
+            ) : null}
+          </div>
+
+          <div>
+            <div className="flex flex-wrap gap-2">
+              <StatusBadge tone="brown">Nama dari poster</StatusBadge>
+              {plant.imageIsIllustration ? (
+                <StatusBadge tone="brown">Ilustrasi referensi</StatusBadge>
+              ) : null}
+            </div>
+            <h1 className="mt-5 text-4xl font-bold text-herbal-ink sm:text-5xl">
+              {plant.rawName}
+            </h1>
+            {plant.scientificName ? (
+              <p className="mt-2 text-lg italic text-herbal-muted">
+                {plant.scientificName}
+              </p>
+            ) : null}
+            <p className="mt-6 text-base leading-8 text-herbal-muted">
+              Nama ini dicantumkan pada poster Kampung Herbal Harmony.
+            </p>
+            <PosterOccurrencePanel plant={plant} />
+            <div className="mt-8">
+              <Disclaimer>
+                Informasi tanaman pada website ini disediakan untuk edukasi
+                mengenai pemanfaatan tradisional. Informasi ini bukan diagnosis,
+                resep, atau pengganti konsultasi dengan dokter, apoteker, maupun
+                tenaga kesehatan lainnya.
+              </Disclaimer>
+            </div>
+          </div>
+        </div>
+      </Container>
+    </article>
+  );
+}
+
+function PosterOccurrencePanel({ plant }: { plant: PosterPlantCatalogItem }) {
+  return (
+    <section className="mt-8 rounded-md border border-herbal-green/10 bg-white p-5 text-sm leading-6 text-herbal-muted shadow-sm">
+      <h2 className="text-base font-bold text-herbal-ink">
+        Kemunculan pada poster
+      </h2>
+      <p className="mt-3">
+        Muncul {plant.posterOccurrenceCount} kali pada nomor poster{" "}
+        {plant.posterNumbers.join(", ")}.
+      </p>
+      <p className="mt-2">Zona: {plant.collections.join(", ")}.</p>
+      <p className="mt-2">Sumber: {plant.sourceLabel}.</p>
+    </section>
   );
 }
 

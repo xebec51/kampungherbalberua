@@ -1,0 +1,21 @@
+{
+  "approvedImages": 1,
+  "attachmentCount": 75,
+  "catalogItems": 89,
+  "catalogItemsWithImage": 89,
+  "duplicateMediaReused": 74,
+  "exactImages": 14,
+  "failures": [],
+  "genericFallbackImages": 75,
+  "illustrationImages": 75,
+  "linkedPlants": 16,
+  "posterOnlyItems": 73,
+  "retries": 0,
+  "reusedPlantMedia": 14,
+  "searchedNames": 75,
+  "storageBytes": 215294,
+  "uniquePosterNames": 89,
+  "uploadedDerivatives": 1,
+  "uploadedOriginals": 1,
+  "wikimediaRequests": 1
+}

@@ -1,0 +1,1215 @@
+[
+  {
+    "rawName": "Adas",
+    "normalizedName": "adas",
+    "slug": "adas",
+    "posterNumbers": [
+      15,
+      73,
+      91,
+      203
+    ],
+    "collections": [
+      "Zona Anak Ceria",
+      "Zona Kesehatan Perempuan",
+      "Zona Pencernaan Sehat",
+      "Zona Pernapasan Lega"
+    ]
+  },
+  {
+    "rawName": "Alang-alang",
+    "normalizedName": "alang-alang",
+    "slug": "alang-alang",
+    "posterNumbers": [
+      31
+    ],
+    "collections": [
+      "Zona Ginjal Sehat"
+    ]
+  },
+  {
+    "rawName": "Anggur",
+    "normalizedName": "anggur",
+    "slug": "anggur",
+    "posterNumbers": [
+      215
+    ],
+    "collections": [
+      "Zona Detoks dan Anti Oksidan"
+    ]
+  },
+  {
+    "rawName": "Ashwagandha",
+    "normalizedName": "ashwagandha",
+    "slug": "ashwagandha",
+    "posterNumbers": [
+      84,
+      144
+    ],
+    "collections": [
+      "Zona Otak Cerdas",
+      "Zona Tidur & Relaksasi"
+    ]
+  },
+  {
+    "rawName": "Bawang Putih",
+    "normalizedName": "bawang putih",
+    "slug": "bawang-putih",
+    "posterNumbers": [
+      9,
+      49,
+      122,
+      187
+    ],
+    "collections": [
+      "Zona Anti Kanker (Potensial)",
+      "Zona Anti Mikroba",
+      "Zona Imunitas Kuat",
+      "Zona Jantung Sehat"
+    ]
+  },
+  {
+    "rawName": "Bayam Merah",
+    "normalizedName": "bayam merah",
+    "slug": "bayam-merah",
+    "posterNumbers": [
+      151
+    ],
+    "collections": [
+      "Zona Kesehatan Mata"
+    ]
+  },
+  {
+    "rawName": "Belimbing Wuluh",
+    "normalizedName": "belimbing wuluh",
+    "slug": "belimbing-wuluh",
+    "posterNumbers": [
+      36,
+      52
+    ],
+    "collections": [
+      "Zona Ginjal Sehat",
+      "Zona Jantung Sehat"
+    ]
+  },
+  {
+    "rawName": "Beluntas",
+    "normalizedName": "beluntas",
+    "slug": "beluntas",
+    "posterNumbers": [
+      75
+    ],
+    "collections": [
+      "Zona Pernapasan Lega"
+    ]
+  },
+  {
+    "rawName": "Binahong",
+    "normalizedName": "binahong",
+    "slug": "binahong",
+    "posterNumbers": [
+      99
+    ],
+    "collections": [
+      "Zona Kulit Cantik"
+    ]
+  },
+  {
+    "rawName": "Blueberry",
+    "normalizedName": "blueberry",
+    "slug": "blueberry",
+    "posterNumbers": [
+      154
+    ],
+    "collections": [
+      "Zona Kesehatan Mata"
+    ]
+  },
+  {
+    "rawName": "Boswellia",
+    "normalizedName": "boswellia",
+    "slug": "boswellia",
+    "posterNumbers": [
+      115,
+      173
+    ],
+    "collections": [
+      "Zona Antiinflamasi & Nyeri",
+      "Zona Tulang & Sendi"
+    ]
+  },
+  {
+    "rawName": "Brahmi",
+    "normalizedName": "brahmi",
+    "slug": "brahmi",
+    "posterNumbers": [
+      82
+    ],
+    "collections": [
+      "Zona Otak Cerdas"
+    ]
+  },
+  {
+    "rawName": "Brokoli",
+    "normalizedName": "brokoli",
+    "slug": "brokoli",
+    "posterNumbers": [
+      123
+    ],
+    "collections": [
+      "Zona Anti Kanker (Potensial)"
+    ]
+  },
+  {
+    "rawName": "Brotowali",
+    "normalizedName": "brotowali",
+    "slug": "brotowali",
+    "posterNumbers": [
+      58
+    ],
+    "collections": [
+      "Zona Gula Darah Terkendali"
+    ]
+  },
+  {
+    "rawName": "Calendula",
+    "normalizedName": "calendula",
+    "slug": "calendula",
+    "posterNumbers": [
+      104
+    ],
+    "collections": [
+      "Zona Kulit Cantik"
+    ]
+  },
+  {
+    "rawName": "Cengkeh",
+    "normalizedName": "cengkeh",
+    "slug": "cengkeh",
+    "posterNumbers": [
+      112,
+      176,
+      178,
+      191,
+      212
+    ],
+    "collections": [
+      "Zona Anti Mikroba",
+      "Zona Antiinflamasi & Nyeri",
+      "Zona Detoks dan Anti Oksidan",
+      "Zona Kesehatan Mulut",
+      "Zona Tulang & Sendi"
+    ]
+  },
+  {
+    "rawName": "Chamomile",
+    "normalizedName": "chamomile",
+    "slug": "chamomile",
+    "posterNumbers": [
+      106,
+      138
+    ],
+    "collections": [
+      "Zona Kulit Cantik",
+      "Zona Tidur & Relaksasi"
+    ]
+  },
+  {
+    "rawName": "Cincau",
+    "normalizedName": "cincau",
+    "slug": "cincau",
+    "posterNumbers": [
+      23
+    ],
+    "collections": [
+      "Zona Pencernaan Sehat"
+    ]
+  },
+  {
+    "rawName": "Cissus",
+    "normalizedName": "cissus",
+    "slug": "cissus",
+    "posterNumbers": [
+      170
+    ],
+    "collections": [
+      "Zona Tulang & Sendi"
+    ]
+  },
+  {
+    "rawName": "Daun Dewa",
+    "normalizedName": "daun dewa",
+    "slug": "daun-dewa",
+    "posterNumbers": [
+      42,
+      110,
+      174
+    ],
+    "collections": [
+      "Zona Antiinflamasi & Nyeri",
+      "Zona Hati Sehat",
+      "Zona Tulang & Sendi"
+    ]
+  },
+  {
+    "rawName": "Daun Jambu",
+    "normalizedName": "daun jambu",
+    "slug": "daun-jambu",
+    "posterNumbers": [
+      94,
+      180
+    ],
+    "collections": [
+      "Zona Anak Ceria",
+      "Zona Kesehatan Mulut"
+    ]
+  },
+  {
+    "rawName": "Daun Katuk",
+    "normalizedName": "daun katuk",
+    "slug": "daun-katuk",
+    "posterNumbers": [
+      152
+    ],
+    "collections": [
+      "Zona Kesehatan Mata"
+    ]
+  },
+  {
+    "rawName": "Daun Salam",
+    "normalizedName": "daun salam",
+    "slug": "daun-salam",
+    "posterNumbers": [
+      216
+    ],
+    "collections": [
+      "Zona Detoks dan Anti Oksidan"
+    ]
+  },
+  {
+    "rawName": "Daun Ungu",
+    "normalizedName": "daun ungu",
+    "slug": "daun-ungu",
+    "posterNumbers": [
+      22
+    ],
+    "collections": [
+      "Zona Pencernaan Sehat"
+    ]
+  },
+  {
+    "rawName": "Delima",
+    "normalizedName": "delima",
+    "slug": "delima",
+    "posterNumbers": [
+      201
+    ],
+    "collections": [
+      "Zona Kesehatan Perempuan"
+    ]
+  },
+  {
+    "rawName": "Dong Quai",
+    "normalizedName": "dong quai",
+    "slug": "dong-quai",
+    "posterNumbers": [
+      202
+    ],
+    "collections": [
+      "Zona Kesehatan Perempuan"
+    ]
+  },
+  {
+    "rawName": "Eucalyptus",
+    "normalizedName": "eucalyptus",
+    "slug": "eucalyptus",
+    "posterNumbers": [
+      76
+    ],
+    "collections": [
+      "Zona Pernapasan Lega"
+    ]
+  },
+  {
+    "rawName": "Garcinia",
+    "normalizedName": "garcinia",
+    "slug": "garcinia",
+    "posterNumbers": [
+      130
+    ],
+    "collections": [
+      "Zona Obesitas & Metabolik"
+    ]
+  },
+  {
+    "rawName": "Ginkgo",
+    "normalizedName": "ginkgo",
+    "slug": "ginkgo",
+    "posterNumbers": [
+      80
+    ],
+    "collections": [
+      "Zona Otak Cerdas"
+    ]
+  },
+  {
+    "rawName": "Goji Berry",
+    "normalizedName": "goji berry",
+    "slug": "goji-berry",
+    "posterNumbers": [
+      156
+    ],
+    "collections": [
+      "Zona Kesehatan Mata"
+    ]
+  },
+  {
+    "rawName": "Jahe",
+    "normalizedName": "jahe",
+    "slug": "jahe",
+    "posterNumbers": [
+      4,
+      12,
+      67,
+      92,
+      108,
+      131,
+      167,
+      190
+    ],
+    "collections": [
+      "Zona Anak Ceria",
+      "Zona Anti Mikroba",
+      "Zona Antiinflamasi & Nyeri",
+      "Zona Imunitas Kuat",
+      "Zona Obesitas & Metabolik",
+      "Zona Pencernaan Sehat",
+      "Zona Pernapasan Lega",
+      "Zona Tulang & Sendi"
+    ]
+  },
+  {
+    "rawName": "Jeruk Nipis",
+    "normalizedName": "jeruk nipis",
+    "slug": "jeruk-nipis",
+    "posterNumbers": [
+      69,
+      93,
+      186
+    ],
+    "collections": [
+      "Zona Anak Ceria",
+      "Zona Kesehatan Mulut",
+      "Zona Pernapasan Lega"
+    ]
+  },
+  {
+    "rawName": "Jinten Hitam",
+    "normalizedName": "jinten hitam",
+    "slug": "jinten-hitam",
+    "posterNumbers": [
+      10,
+      134
+    ],
+    "collections": [
+      "Zona Imunitas Kuat",
+      "Zona Obesitas & Metabolik"
+    ]
+  },
+  {
+    "rawName": "Kakao",
+    "normalizedName": "kakao",
+    "slug": "kakao",
+    "posterNumbers": [
+      214
+    ],
+    "collections": [
+      "Zona Detoks dan Anti Oksidan"
+    ]
+  },
+  {
+    "rawName": "Kapulaga",
+    "normalizedName": "kapulaga",
+    "slug": "kapulaga",
+    "posterNumbers": [
+      17
+    ],
+    "collections": [
+      "Zona Pencernaan Sehat"
+    ]
+  },
+  {
+    "rawName": "Katuk",
+    "normalizedName": "katuk",
+    "slug": "katuk",
+    "posterNumbers": [
+      90,
+      198
+    ],
+    "collections": [
+      "Zona Anak Ceria",
+      "Zona Kesehatan Perempuan"
+    ]
+  },
+  {
+    "rawName": "Kayu Manis",
+    "normalizedName": "kayu manis",
+    "slug": "kayu-manis",
+    "posterNumbers": [
+      62,
+      129,
+      179,
+      192,
+      211
+    ],
+    "collections": [
+      "Zona Anti Mikroba",
+      "Zona Detoks dan Anti Oksidan",
+      "Zona Gula Darah Terkendali",
+      "Zona Kesehatan Mulut",
+      "Zona Obesitas & Metabolik"
+    ]
+  },
+  {
+    "rawName": "Kayu Putih",
+    "normalizedName": "kayu putih",
+    "slug": "kayu-putih",
+    "posterNumbers": [
+      71
+    ],
+    "collections": [
+      "Zona Pernapasan Lega"
+    ]
+  },
+  {
+    "rawName": "Keji Beling",
+    "normalizedName": "keji beling",
+    "slug": "keji-beling",
+    "posterNumbers": [
+      29
+    ],
+    "collections": [
+      "Zona Ginjal Sehat"
+    ]
+  },
+  {
+    "rawName": "Keladi Tikus",
+    "normalizedName": "keladi tikus",
+    "slug": "keladi-tikus",
+    "posterNumbers": [
+      118
+    ],
+    "collections": [
+      "Zona Anti Kanker (Potensial)"
+    ]
+  },
+  {
+    "rawName": "Kelor",
+    "normalizedName": "kelor",
+    "slug": "kelor",
+    "posterNumbers": [
+      3,
+      43,
+      51,
+      60,
+      86,
+      89,
+      128,
+      148,
+      171,
+      208
+    ],
+    "collections": [
+      "Zona Anak Ceria",
+      "Zona Detoks dan Anti Oksidan",
+      "Zona Gula Darah Terkendali",
+      "Zona Hati Sehat",
+      "Zona Imunitas Kuat",
+      "Zona Jantung Sehat",
+      "Zona Kesehatan Mata",
+      "Zona Obesitas & Metabolik",
+      "Zona Otak Cerdas",
+      "Zona Tulang & Sendi"
+    ]
+  },
+  {
+    "rawName": "Kemangi",
+    "normalizedName": "kemangi",
+    "slug": "kemangi",
+    "posterNumbers": [
+      20,
+      85,
+      145,
+      185,
+      204
+    ],
+    "collections": [
+      "Zona Kesehatan Mulut",
+      "Zona Kesehatan Perempuan",
+      "Zona Otak Cerdas",
+      "Zona Pencernaan Sehat",
+      "Zona Tidur & Relaksasi"
+    ]
+  },
+  {
+    "rawName": "Kencur",
+    "normalizedName": "kencur",
+    "slug": "kencur",
+    "posterNumbers": [
+      68,
+      88
+    ],
+    "collections": [
+      "Zona Anak Ceria",
+      "Zona Pernapasan Lega"
+    ]
+  },
+  {
+    "rawName": "Ketumbar",
+    "normalizedName": "ketumbar",
+    "slug": "ketumbar",
+    "posterNumbers": [
+      16
+    ],
+    "collections": [
+      "Zona Pencernaan Sehat"
+    ]
+  },
+  {
+    "rawName": "Kopi Hijau",
+    "normalizedName": "kopi hijau",
+    "slug": "kopi-hijau",
+    "posterNumbers": [
+      136
+    ],
+    "collections": [
+      "Zona Obesitas & Metabolik"
+    ]
+  },
+  {
+    "rawName": "Kulit Manggis",
+    "normalizedName": "kulit manggis",
+    "slug": "kulit-manggis",
+    "posterNumbers": [
+      209
+    ],
+    "collections": [
+      "Zona Detoks dan Anti Oksidan"
+    ]
+  },
+  {
+    "rawName": "Kumis Kucing",
+    "normalizedName": "kumis kucing",
+    "slug": "kumis-kucing",
+    "posterNumbers": [
+      27,
+      54,
+      111
+    ],
+    "collections": [
+      "Zona Antiinflamasi & Nyeri",
+      "Zona Ginjal Sehat",
+      "Zona Jantung Sehat"
+    ]
+  },
+  {
+    "rawName": "Kunyit",
+    "normalizedName": "kunyit",
+    "slug": "kunyit",
+    "posterNumbers": [
+      5,
+      14,
+      38,
+      101,
+      107,
+      119,
+      132,
+      168,
+      189,
+      197
+    ],
+    "collections": [
+      "Zona Anti Kanker (Potensial)",
+      "Zona Anti Mikroba",
+      "Zona Antiinflamasi & Nyeri",
+      "Zona Hati Sehat",
+      "Zona Imunitas Kuat",
+      "Zona Kesehatan Perempuan",
+      "Zona Kulit Cantik",
+      "Zona Obesitas & Metabolik",
+      "Zona Pencernaan Sehat",
+      "Zona Tulang & Sendi"
+    ]
+  },
+  {
+    "rawName": "Kunyit Putih",
+    "normalizedName": "kunyit putih",
+    "slug": "kunyit-putih",
+    "posterNumbers": [
+      24
+    ],
+    "collections": [
+      "Zona Pencernaan Sehat"
+    ]
+  },
+  {
+    "rawName": "Lavender",
+    "normalizedName": "lavender",
+    "slug": "lavender",
+    "posterNumbers": [
+      79,
+      103,
+      137
+    ],
+    "collections": [
+      "Zona Kulit Cantik",
+      "Zona Otak Cerdas",
+      "Zona Tidur & Relaksasi"
+    ]
+  },
+  {
+    "rawName": "Lemon Balm",
+    "normalizedName": "lemon balm",
+    "slug": "lemon-balm",
+    "posterNumbers": [
+      83,
+      139
+    ],
+    "collections": [
+      "Zona Otak Cerdas",
+      "Zona Tidur & Relaksasi"
+    ]
+  },
+  {
+    "rawName": "Lidah Buaya",
+    "normalizedName": "lidah buaya",
+    "slug": "lidah-buaya",
+    "posterNumbers": [
+      21,
+      46,
+      97
+    ],
+    "collections": [
+      "Zona Hati Sehat",
+      "Zona Kulit Cantik",
+      "Zona Pencernaan Sehat"
+    ]
+  },
+  {
+    "rawName": "Mahkota Dewa",
+    "normalizedName": "mahkota dewa",
+    "slug": "mahkota-dewa",
+    "posterNumbers": [
+      63,
+      126
+    ],
+    "collections": [
+      "Zona Anti Kanker (Potensial)",
+      "Zona Gula Darah Terkendali"
+    ]
+  },
+  {
+    "rawName": "Melati",
+    "normalizedName": "melati",
+    "slug": "melati",
+    "posterNumbers": [
+      146
+    ],
+    "collections": [
+      "Zona Tidur & Relaksasi"
+    ]
+  },
+  {
+    "rawName": "Mengkudu",
+    "normalizedName": "mengkudu",
+    "slug": "mengkudu",
+    "posterNumbers": [
+      64
+    ],
+    "collections": [
+      "Zona Gula Darah Terkendali"
+    ]
+  },
+  {
+    "rawName": "Meniran",
+    "normalizedName": "meniran",
+    "slug": "meniran",
+    "posterNumbers": [
+      1,
+      30,
+      39,
+      121,
+      194
+    ],
+    "collections": [
+      "Zona Anti Kanker (Potensial)",
+      "Zona Anti Mikroba",
+      "Zona Ginjal Sehat",
+      "Zona Hati Sehat",
+      "Zona Imunitas Kuat"
+    ]
+  },
+  {
+    "rawName": "Merigold",
+    "normalizedName": "merigold",
+    "slug": "merigold",
+    "posterNumbers": [
+      153
+    ],
+    "collections": [
+      "Zona Kesehatan Mata"
+    ]
+  },
+  {
+    "rawName": "Miana",
+    "normalizedName": "miana",
+    "slug": "miana",
+    "posterNumbers": [
+      11,
+      100
+    ],
+    "collections": [
+      "Zona Imunitas Kuat",
+      "Zona Kulit Cantik"
+    ]
+  },
+  {
+    "rawName": "Mint",
+    "normalizedName": "mint",
+    "slug": "mint",
+    "posterNumbers": [
+      18,
+      182
+    ],
+    "collections": [
+      "Zona Kesehatan Mulut",
+      "Zona Pencernaan Sehat"
+    ]
+  },
+  {
+    "rawName": "Miswak",
+    "normalizedName": "miswak",
+    "slug": "miswak",
+    "posterNumbers": [
+      181
+    ],
+    "collections": [
+      "Zona Kesehatan Mulut"
+    ]
+  },
+  {
+    "rawName": "Neem",
+    "normalizedName": "neem",
+    "slug": "neem",
+    "posterNumbers": [
+      195
+    ],
+    "collections": [
+      "Zona Anti Mikroba"
+    ]
+  },
+  {
+    "rawName": "Oregano",
+    "normalizedName": "oregano",
+    "slug": "oregano",
+    "posterNumbers": [
+      196
+    ],
+    "collections": [
+      "Zona Anti Mikroba"
+    ]
+  },
+  {
+    "rawName": "Pala",
+    "normalizedName": "pala",
+    "slug": "pala",
+    "posterNumbers": [
+      213
+    ],
+    "collections": [
+      "Zona Detoks dan Anti Oksidan"
+    ]
+  },
+  {
+    "rawName": "Paliasa",
+    "normalizedName": "paliasa",
+    "slug": "paliasa",
+    "posterNumbers": [
+      40
+    ],
+    "collections": [
+      "Zona Hati Sehat"
+    ]
+  },
+  {
+    "rawName": "Pare",
+    "normalizedName": "pare",
+    "slug": "pare",
+    "posterNumbers": [
+      57
+    ],
+    "collections": [
+      "Zona Gula Darah Terkendali"
+    ]
+  },
+  {
+    "rawName": "Passion Flower",
+    "normalizedName": "passion flower",
+    "slug": "passion-flower",
+    "posterNumbers": [
+      141
+    ],
+    "collections": [
+      "Zona Tidur & Relaksasi"
+    ]
+  },
+  {
+    "rawName": "Pegagan",
+    "normalizedName": "pegagan",
+    "slug": "pegagan",
+    "posterNumbers": [
+      8,
+      35,
+      45,
+      55,
+      66,
+      77,
+      96,
+      98,
+      142,
+      149,
+      172,
+      206
+    ],
+    "collections": [
+      "Zona Anak Ceria",
+      "Zona Ginjal Sehat",
+      "Zona Gula Darah Terkendali",
+      "Zona Hati Sehat",
+      "Zona Imunitas Kuat",
+      "Zona Jantung Sehat",
+      "Zona Kesehatan Mata",
+      "Zona Kesehatan Perempuan",
+      "Zona Kulit Cantik",
+      "Zona Otak Cerdas",
+      "Zona Tidur & Relaksasi",
+      "Zona Tulang & Sendi"
+    ]
+  },
+  {
+    "rawName": "Rambut Jagung",
+    "normalizedName": "rambut jagung",
+    "slug": "rambut-jagung",
+    "posterNumbers": [
+      32
+    ],
+    "collections": [
+      "Zona Ginjal Sehat"
+    ]
+  },
+  {
+    "rawName": "Rosella",
+    "normalizedName": "rosella",
+    "slug": "rosella",
+    "posterNumbers": [
+      7,
+      44,
+      48,
+      65,
+      95,
+      125,
+      135,
+      150,
+      205,
+      207
+    ],
+    "collections": [
+      "Zona Anak Ceria",
+      "Zona Anti Kanker (Potensial)",
+      "Zona Detoks dan Anti Oksidan",
+      "Zona Gula Darah Terkendali",
+      "Zona Hati Sehat",
+      "Zona Imunitas Kuat",
+      "Zona Jantung Sehat",
+      "Zona Kesehatan Mata",
+      "Zona Kesehatan Perempuan",
+      "Zona Obesitas & Metabolik"
+    ]
+  },
+  {
+    "rawName": "Rosemary",
+    "normalizedName": "rosemary",
+    "slug": "rosemary",
+    "posterNumbers": [
+      78,
+      114,
+      143,
+      175
+    ],
+    "collections": [
+      "Zona Antiinflamasi & Nyeri",
+      "Zona Otak Cerdas",
+      "Zona Tidur & Relaksasi",
+      "Zona Tulang & Sendi"
+    ]
+  },
+  {
+    "rawName": "Safron",
+    "normalizedName": "safron",
+    "slug": "safron",
+    "posterNumbers": [
+      155
+    ],
+    "collections": [
+      "Zona Kesehatan Mata"
+    ]
+  },
+  {
+    "rawName": "Saga",
+    "normalizedName": "saga",
+    "slug": "saga",
+    "posterNumbers": [
+      72
+    ],
+    "collections": [
+      "Zona Pernapasan Lega"
+    ]
+  },
+  {
+    "rawName": "Sage",
+    "normalizedName": "sage",
+    "slug": "sage",
+    "posterNumbers": [
+      81,
+      183
+    ],
+    "collections": [
+      "Zona Kesehatan Mulut",
+      "Zona Otak Cerdas"
+    ]
+  },
+  {
+    "rawName": "Salam",
+    "normalizedName": "salam",
+    "slug": "salam",
+    "posterNumbers": [
+      50,
+      59
+    ],
+    "collections": [
+      "Zona Gula Darah Terkendali",
+      "Zona Jantung Sehat"
+    ]
+  },
+  {
+    "rawName": "Sambiloto",
+    "normalizedName": "sambiloto",
+    "slug": "sambiloto",
+    "posterNumbers": [
+      2,
+      41,
+      61,
+      193
+    ],
+    "collections": [
+      "Zona Anti Mikroba",
+      "Zona Gula Darah Terkendali",
+      "Zona Hati Sehat",
+      "Zona Imunitas Kuat"
+    ]
+  },
+  {
+    "rawName": "Seledri",
+    "normalizedName": "seledri",
+    "slug": "seledri",
+    "posterNumbers": [
+      34,
+      47
+    ],
+    "collections": [
+      "Zona Ginjal Sehat",
+      "Zona Jantung Sehat"
+    ]
+  },
+  {
+    "rawName": "Serai",
+    "normalizedName": "serai",
+    "slug": "serai",
+    "posterNumbers": [
+      19,
+      74,
+      113
+    ],
+    "collections": [
+      "Zona Antiinflamasi & Nyeri",
+      "Zona Pencernaan Sehat",
+      "Zona Pernapasan Lega"
+    ]
+  },
+  {
+    "rawName": "Sidaguri",
+    "normalizedName": "sidaguri",
+    "slug": "sidaguri",
+    "posterNumbers": [
+      33
+    ],
+    "collections": [
+      "Zona Ginjal Sehat"
+    ]
+  },
+  {
+    "rawName": "Sirih",
+    "normalizedName": "sirih",
+    "slug": "sirih",
+    "posterNumbers": [
+      70,
+      102,
+      177,
+      188,
+      200
+    ],
+    "collections": [
+      "Zona Anti Mikroba",
+      "Zona Kesehatan Mulut",
+      "Zona Kesehatan Perempuan",
+      "Zona Kulit Cantik",
+      "Zona Pernapasan Lega"
+    ]
+  },
+  {
+    "rawName": "Sirsak",
+    "normalizedName": "sirsak",
+    "slug": "sirsak",
+    "posterNumbers": [
+      117
+    ],
+    "collections": [
+      "Zona Anti Kanker (Potensial)"
+    ]
+  },
+  {
+    "rawName": "Tapak Liman",
+    "normalizedName": "tapak liman",
+    "slug": "tapak-liman",
+    "posterNumbers": [
+      26
+    ],
+    "collections": [
+      "Zona Pencernaan Sehat"
+    ]
+  },
+  {
+    "rawName": "Teh Hijau",
+    "normalizedName": "teh hijau",
+    "slug": "teh-hijau",
+    "posterNumbers": [
+      56,
+      105,
+      124,
+      127,
+      184,
+      210
+    ],
+    "collections": [
+      "Zona Anti Kanker (Potensial)",
+      "Zona Detoks dan Anti Oksidan",
+      "Zona Jantung Sehat",
+      "Zona Kesehatan Mulut",
+      "Zona Kulit Cantik",
+      "Zona Obesitas & Metabolik"
+    ]
+  },
+  {
+    "rawName": "Tempuyung",
+    "normalizedName": "tempuyung",
+    "slug": "tempuyung",
+    "posterNumbers": [
+      28,
+      53
+    ],
+    "collections": [
+      "Zona Ginjal Sehat",
+      "Zona Jantung Sehat"
+    ]
+  },
+  {
+    "rawName": "Temu Mangga",
+    "normalizedName": "temu mangga",
+    "slug": "temu-mangga",
+    "posterNumbers": [
+      25
+    ],
+    "collections": [
+      "Zona Pencernaan Sehat"
+    ]
+  },
+  {
+    "rawName": "Temu Putih",
+    "normalizedName": "temu putih",
+    "slug": "temu-putih",
+    "posterNumbers": [
+      199
+    ],
+    "collections": [
+      "Zona Kesehatan Perempuan"
+    ]
+  },
+  {
+    "rawName": "Temulawak",
+    "normalizedName": "temulawak",
+    "slug": "temulawak",
+    "posterNumbers": [
+      6,
+      13,
+      37,
+      87,
+      109,
+      120,
+      133,
+      169
+    ],
+    "collections": [
+      "Zona Anak Ceria",
+      "Zona Anti Kanker (Potensial)",
+      "Zona Antiinflamasi & Nyeri",
+      "Zona Hati Sehat",
+      "Zona Imunitas Kuat",
+      "Zona Obesitas & Metabolik",
+      "Zona Pencernaan Sehat",
+      "Zona Tulang & Sendi"
+    ]
+  },
+  {
+    "rawName": "Valerian",
+    "normalizedName": "valerian",
+    "slug": "valerian",
+    "posterNumbers": [
+      140
+    ],
+    "collections": [
+      "Zona Tidur & Relaksasi"
+    ]
+  },
+  {
+    "rawName": "Willow Bark",
+    "normalizedName": "willow bark",
+    "slug": "willow-bark",
+    "posterNumbers": [
+      116
+    ],
+    "collections": [
+      "Zona Antiinflamasi & Nyeri"
+    ]
+  },
+  {
+    "rawName": "Wortel",
+    "normalizedName": "wortel",
+    "slug": "wortel",
+    "posterNumbers": [
+      147
+    ],
+    "collections": [
+      "Zona Kesehatan Mata"
+    ]
+  }
+]

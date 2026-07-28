@@ -21,6 +21,7 @@
     "media:poster:validate": "node --experimental-strip-types scripts/media/cli.ts poster:validate",
     "media:poster:import": "node --experimental-strip-types scripts/media/cli.ts poster:import",
     "media:research:plants": "node --experimental-strip-types scripts/media/cli.ts research:plants",
+    "media:research:poster-plants": "node --experimental-strip-types scripts/media/cli.ts research:poster-plants",
     "media:migrate:zones": "node --experimental-strip-types scripts/media/cli.ts migrate:zones",
     "media:import": "node --experimental-strip-types scripts/media/cli.ts import",
     "media:report": "node --experimental-strip-types scripts/media/cli.ts report"

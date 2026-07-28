@@ -10,6 +10,7 @@ import { researchPlantImages } from "./lib/research.ts";
 import { bootstrapMediaBuckets } from "./lib/storage.ts";
 import { uploadApprovedPlantImages } from "./lib/media-files.ts";
 import { applyPlantTaxonomy } from "./lib/plant-taxonomy.ts";
+import { researchPosterPlantImages } from "./lib/poster-plant-images.ts";
 import { migrateZoneImages } from "./lib/zone-migration.ts";
 
 type MediaCommand =
@@ -18,6 +19,7 @@ type MediaCommand =
   | "poster:import"
   | "taxonomy:plants"
   | "research:plants"
+  | "research:poster-plants"
   | "migrate:zones"
   | "import"
   | "report";
@@ -28,6 +30,7 @@ type CliOptions = {
   execute: boolean;
   forceResearch: boolean;
   limit?: number;
+  offset?: number;
   only?: string;
   resume: boolean;
 };
@@ -38,6 +41,7 @@ const COMMANDS = new Set<MediaCommand>([
   "poster:import",
   "taxonomy:plants",
   "research:plants",
+  "research:poster-plants",
   "migrate:zones",
   "import",
   "report",
@@ -87,6 +91,20 @@ function parseOptions(argv: string[]): CliOptions {
       options.only = value;
       index += flag.includes("=") ? 0 : 1;
     }
+
+    if (flag === "--offset" || flag.startsWith("--offset=")) {
+      const value = flag.includes("=")
+        ? flag.slice(flag.indexOf("=") + 1)
+        : flags[index + 1];
+      const parsed = Number.parseInt(value ?? "", 10);
+
+      if (!Number.isFinite(parsed) || parsed < 0) {
+        throw new Error("--offset wajib berupa angka non-negatif");
+      }
+
+      options.offset = parsed;
+      index += flag.includes("=") ? 0 : 1;
+    }
   }
 
   return options;
@@ -123,6 +141,7 @@ async function runPlaceholderCommand(options: CliOptions) {
     execute: options.execute,
     forceResearch: options.forceResearch,
     limit: options.limit ?? null,
+    offset: options.offset ?? null,
     only: options.only ?? null,
     resume: options.resume,
     status: "not_implemented_yet",
@@ -176,6 +195,24 @@ async function runPlantResearch(options: CliOptions) {
 
   console.log(
     `Riset gambar tanaman: kandidat=${summary.candidates}, approved=${summary.approved}, unresolved=${summary.unresolved}, rejected=${summary.rejected}`,
+  );
+}
+
+async function runPosterPlantResearch(options: CliOptions) {
+  if (options.execute) {
+    loadMediaImportEnv();
+  }
+
+  const supabase = createMediaAdminClient();
+  const summary = await researchPosterPlantImages(supabase, {
+    dryRun: options.dryRun,
+    limit: options.limit,
+    offset: options.offset,
+    only: options.only,
+  });
+
+  console.log(
+    `Riset gambar poster tanaman: unique=${summary.uniquePosterNames}, catalog=${summary.catalogItems}, with_image=${summary.catalogItemsWithImage}, reused=${summary.reusedPlantMedia}, attachments=${summary.attachmentCount}, failures=${summary.failures.length}`,
   );
 }
 
@@ -272,6 +309,11 @@ async function main() {
 
   if (options.command === "research:plants") {
     await runPlantResearch(options);
+    return;
+  }
+
+  if (options.command === "research:poster-plants") {
+    await runPosterPlantResearch(options);
     return;
   }
 

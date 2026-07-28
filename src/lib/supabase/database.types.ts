@@ -621,6 +621,57 @@ export type Database = {
           },
         ];
       };
+      plant_source_label_media: {
+        Row: {
+          source_id: string;
+          normalized_name: string;
+          raw_name: string;
+          slug: string;
+          media_id: string;
+          role: string;
+          is_primary: boolean;
+          label_as_illustration: boolean;
+          created_at: string;
+        };
+        Insert: {
+          source_id: string;
+          normalized_name: string;
+          raw_name: string;
+          slug: string;
+          media_id: string;
+          role?: string;
+          is_primary?: boolean;
+          label_as_illustration?: boolean;
+          created_at?: string;
+        };
+        Update: {
+          source_id?: string;
+          normalized_name?: string;
+          raw_name?: string;
+          slug?: string;
+          media_id?: string;
+          role?: string;
+          is_primary?: boolean;
+          label_as_illustration?: boolean;
+          created_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "plant_source_label_media_source_id_fkey";
+            columns: ["source_id"];
+            isOneToOne: false;
+            referencedRelation: "plant_sources";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "plant_source_label_media_media_id_fkey";
+            columns: ["media_id"];
+            isOneToOne: false;
+            referencedRelation: "media_assets";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
       plant_sources: {
         Row: {
           id: string;

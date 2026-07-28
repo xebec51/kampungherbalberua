@@ -10,11 +10,17 @@ const vercelAutomationBypassSecret =
 const extraHTTPHeaders = vercelAutomationBypassSecret
   ? { "x-vercel-protection-bypass": vercelAutomationBypassSecret }
   : undefined;
-const webServerEnv = {
+const webServerEnv: Record<string, string> = {
   NEXT_PUBLIC_SITE_URL: baseURL,
-  NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: supabasePublishableKey ?? "",
-  NEXT_PUBLIC_SUPABASE_URL: supabaseUrl ?? "",
 };
+
+if (supabasePublishableKey) {
+  webServerEnv.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY = supabasePublishableKey;
+}
+
+if (supabaseUrl) {
+  webServerEnv.NEXT_PUBLIC_SUPABASE_URL = supabaseUrl;
+}
 
 export default defineConfig({
   expect: {

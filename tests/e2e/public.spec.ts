@@ -7,6 +7,8 @@ async function expectNoHorizontalOverflow(page: Page) {
   expect(hasOverflow).toBe(false);
 }
 
+const publicImageSourcePattern = /supabase\.co|storage|\/images\/placeholders\/plant\.svg/;
+
 test("beranda menampilkan heading utama dan zona featured", async ({ page }) => {
   await page.goto("/");
   await expect(
@@ -137,18 +139,43 @@ test("katalog tanaman tampil, pencarian bekerja, dan detail jahe dapat dibuka", 
   page,
 }) => {
   await page.goto("/tanaman");
-  await expect(page.getByRole("heading", { name: "Tanaman TOGA Kampung Herbal Berua" })).toBeVisible();
-  await expect(page.getByRole("img", { name: "Tanaman Jahe" })).toBeVisible();
-  await expect(page.getByRole("img", { name: "Tanaman Jahe" })).toHaveAttribute(
-    "src",
-    /supabase\.co|storage/,
-  );
+  await expect(page.getByRole("heading", { name: "Tanaman Kampung Herbal Harmony" })).toBeVisible();
+  await expect(page.getByText("Menampilkan 89 hasil tanaman.")).toBeVisible();
+  const jaheCatalogImage = page.getByRole("img", { name: /Jahe/ }).first();
+  await expect(jaheCatalogImage).toBeVisible();
+  await expect(jaheCatalogImage).toHaveAttribute("src", publicImageSourcePattern);
+  await expect(page.getByRole("link", { name: "Cincau", exact: true })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Garcinia", exact: true })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Rosemary", exact: true })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Merigold", exact: true })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Willow Bark", exact: true })).toBeVisible();
+  await expect(page.getByText("Ilustrasi referensi").first()).toBeVisible();
   await page.getByLabel("Cari tanaman").fill("jahe");
   await expect(page.getByText("Menampilkan 1 hasil tanaman.")).toBeVisible();
   await page.getByRole("link", { name: "Jahe", exact: true }).click();
   await expect(page).toHaveURL(/\/tanaman\/jahe$/);
   await expect(page.getByRole("heading", { name: "Jahe" })).toBeVisible();
   await expect(page.getByRole("img", { name: "Tanaman Jahe" })).toBeVisible();
+});
+
+test("filter zona dan detail poster-only bekerja tanpa teks kosong", async ({
+  page,
+}) => {
+  await page.goto("/tanaman");
+  await page.getByLabel("Filter zona").selectOption({ label: "Zona Jantung Sehat" });
+  await expect(page.getByText(/Menampilkan \d+ hasil tanaman\./)).toBeVisible();
+  await page.getByRole("button", { name: "Reset filter" }).click();
+  await expect(page.getByText("Menampilkan 89 hasil tanaman.")).toBeVisible();
+
+  await page.getByLabel("Cari tanaman").fill("cincau");
+  await expect(page.getByRole("link", { name: "Cincau", exact: true })).toBeVisible();
+  await page.getByRole("link", { name: "Cincau", exact: true }).click();
+  await expect(page).toHaveURL(/\/tanaman\/cincau$/);
+  await expect(page.getByRole("heading", { name: "Cincau" })).toBeVisible();
+  await expect(page.getByText("Nama ini dicantumkan pada poster Kampung Herbal Harmony.")).toBeVisible();
+  await expect(page.getByText("Ilustrasi referensi")).toBeVisible();
+  await expect(page.getByRole("img", { name: "Ilustrasi referensi untuk tanaman Cincau" })).toBeVisible();
+  await expect(page.getByText(/undefined|null/i)).toHaveCount(0);
 });
 
 test("gambar tanaman tampil pada beranda dan halaman detail tanaman", async ({
@@ -168,7 +195,7 @@ test("gambar tanaman tampil pada beranda dan halaman detail tanaman", async ({
     await page.goto(`/tanaman/${detailPage.slug}`);
     const image = page.getByRole("img", { name: detailPage.alt });
     await expect(image).toBeVisible();
-    await expect(image).toHaveAttribute("src", /supabase\.co|storage/);
+    await expect(image).toHaveAttribute("src", publicImageSourcePattern);
   }
 });
 
@@ -227,6 +254,7 @@ test("halaman sumber gambar dapat dibuka tanpa data privat", async ({ page }) =>
   ).toBeVisible();
   await expect(page.getByText("Atribusi Media")).toBeVisible();
   await expect(page.getByText("original private")).toHaveCount(0);
+  await expect(page.getByText("Ilustrasi referensi tanaman herbal poster")).toBeVisible();
   await expectNoHorizontalOverflow(page);
 });
 
