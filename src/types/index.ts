@@ -8,6 +8,30 @@ export type ValidationStatus =
 
 export type ContentStatus = "draft" | "pending-review" | "published" | "archived";
 
+export type PosterPlantPartCategory =
+  | "Daun"
+  | "Rimpang"
+  | "Bunga"
+  | "Buah"
+  | "Biji"
+  | "Batang"
+  | "Akar"
+  | "Kulit"
+  | "Umbi"
+  | "Herbal utuh"
+  | "Bahan olahan"
+  | "Tidak diklasifikasikan";
+
+export type MediaRelevanceStatus =
+  | "exact"
+  | "common_name_match"
+  | "corrected_spelling_match"
+  | "material_match"
+  | "illustration_reference"
+  | "generic_fallback";
+
+export type PublicImageKind = "specific" | "reference" | "generic";
+
 export type PublicMediaAsset = {
   id: string;
   title: string;
@@ -23,6 +47,9 @@ export type PublicMediaAsset = {
   attributionText: string | null;
   changesMade: string | null;
   sourcePageUrl: string | null;
+  relevanceStatus?: MediaRelevanceStatus | null;
+  duplicateStatus?: string | null;
+  usageCount?: number | null;
 };
 
 export type Plant = {
@@ -61,13 +88,21 @@ export type PosterPlantCatalogItem = {
   localName: string;
   scientificName: string | null;
   category: PlantCategory | null;
+  partCategory: PosterPlantPartCategory;
   image: string | null;
   imageIsIllustration: boolean;
+  imageKind: PublicImageKind;
+  imageRelevanceStatus: MediaRelevanceStatus;
+  imageDuplicateStatus: string | null;
   sourceLabel: string;
   description: string;
   attributionText: string | null;
+  creatorName: string | null;
+  changesMade: string | null;
   sourcePageUrl: string | null;
   licenseCode: string | null;
+  licenseUrl: string | null;
+  searchAliases: string[];
 };
 
 export type HealthZone = {
