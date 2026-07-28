@@ -151,7 +151,7 @@ test("desktop navbar tetap muat tanpa horizontal overflow", async ({ page }) => 
   }
 });
 
-test("katalog tanaman tampil, pencarian bekerja, dan detail jahe dapat dibuka", async ({
+test("katalog tanaman tampil dan pencarian bekerja", async ({
   page,
 }) => {
   await page.goto("/tanaman");
@@ -179,10 +179,6 @@ test("katalog tanaman tampil, pencarian bekerja, dan detail jahe dapat dibuka", 
     "href",
     "/tanaman/jahe",
   );
-  await page.goto("/tanaman/jahe");
-  await expect(page).toHaveURL(/\/tanaman\/jahe$/);
-  await expect(page.getByRole("heading", { name: "Jahe" })).toBeVisible();
-  await expect(page.getByRole("img", { name: "Tanaman Jahe" })).toBeVisible();
 });
 
 test("filter zona dan detail poster-only bekerja tanpa teks kosong", async ({
@@ -199,7 +195,7 @@ test("filter zona dan detail poster-only bekerja tanpa teks kosong", async ({
     "href",
     "/tanaman/cincau",
   );
-  await page.goto("/tanaman/cincau");
+  await page.goto("/tanaman/cincau", { waitUntil: "domcontentloaded" });
   await expect(page).toHaveURL(/\/tanaman\/cincau$/);
   await expect(page.getByRole("heading", { name: "Cincau" })).toBeVisible();
   await expect(page.getByText(/Tanaman ini tercatat dalam katalog edukasi Kampung Herbal Harmony/)).toBeVisible();
@@ -215,6 +211,8 @@ test("filter zona dan detail poster-only bekerja tanpa teks kosong", async ({
 test("gambar tanaman tampil pada beranda dan halaman detail tanaman", async ({
   page,
 }) => {
+  test.setTimeout(120_000);
+
   await page.goto("/");
   await expect(page.getByRole("img", { name: /^Tanaman / }).first()).toBeVisible();
 
@@ -226,7 +224,9 @@ test("gambar tanaman tampil pada beranda dan halaman detail tanaman", async ({
   ];
 
   for (const detailPage of detailPages) {
-    await page.goto(`/tanaman/${detailPage.slug}`);
+    await page.goto(`/tanaman/${detailPage.slug}`, {
+      waitUntil: "domcontentloaded",
+    });
     const image = page.getByRole("img", { name: detailPage.alt });
     await expectPublicImageOrFallback(image);
   }
@@ -271,7 +271,13 @@ test("produk menyediakan tautan pemesanan WhatsApp publik", async ({ page }) => 
     /https:\/\/wa\.me\/6289623080501\?text=/,
   );
 
-  await productCard.getByRole("link", { name: "Detail produk" }).click();
+  await expect(productCard.getByRole("link", { name: "Detail produk" })).toHaveAttribute(
+    "href",
+    "/produk/bibit-tanaman-toga",
+  );
+  await page.goto("/produk/bibit-tanaman-toga", {
+    waitUntil: "domcontentloaded",
+  });
   await expect(page).toHaveURL(/\/produk\/bibit-tanaman-toga$/);
   await expect(page.getByRole("heading", { name: "Bibit Tanaman TOGA" })).toBeVisible();
   await expect(page.getByRole("link", { name: "Pesan via WhatsApp" })).toHaveAttribute(

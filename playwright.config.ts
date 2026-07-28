@@ -2,7 +2,10 @@ import { defineConfig, devices } from "@playwright/test";
 
 const baseURL = process.env.PLAYWRIGHT_BASE_URL ?? "http://127.0.0.1:3000";
 const isCI = Boolean(process.env.CI);
-const packageManagerCommand = process.platform === "win32" ? "npm.cmd" : "npm";
+const webServerCommand =
+  process.platform === "win32"
+    ? "node_modules\\.bin\\next.cmd dev --hostname 127.0.0.1 --port 3000"
+    : "npm run dev -- --hostname 127.0.0.1 --port 3000";
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL ?? process.env.SUPABASE_URL;
 const supabasePublishableKey =
   process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ?? process.env.SUPABASE_ANON_KEY;
@@ -42,7 +45,7 @@ export default defineConfig({
   webServer: process.env.PLAYWRIGHT_SKIP_WEB_SERVER
     ? undefined
     : {
-        command: `${packageManagerCommand} run dev -- --hostname 127.0.0.1 --port 3000`,
+        command: webServerCommand,
         env: webServerEnv,
         reuseExistingServer: !isCI,
         timeout: 120_000,

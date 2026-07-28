@@ -5,6 +5,24 @@ import { mapPlantRowToPlant } from "@/lib/data/plant-mapper";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import type { Plant } from "@/types";
 
+const publicPlantQueryTimeoutMs = 5_000;
+
+async function withPublicPlantTimeout<T>(promise: Promise<T | null>) {
+  let timeoutId: ReturnType<typeof setTimeout> | undefined;
+
+  const timeout = new Promise<null>((resolve) => {
+    timeoutId = setTimeout(() => resolve(null), publicPlantQueryTimeoutMs);
+  });
+
+  try {
+    return await Promise.race([promise.catch(() => null), timeout]);
+  } finally {
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+  }
+}
+
 /**
  * Fetches published plants from Supabase. Returns null (never throws) when
  * Supabase is not configured, the client cannot be created, the query
@@ -56,7 +74,7 @@ async function fetchPublishedPlantsFromDatabase(): Promise<Plant[] | null> {
  * issue duplicate queries during the same render.
  */
 const getPublishedPlantSource = cache(async (): Promise<Plant[]> => {
-  const databasePlants = await fetchPublishedPlantsFromDatabase();
+  const databasePlants = await withPublicPlantTimeout(fetchPublishedPlantsFromDatabase());
   return databasePlants ?? localPlants.filter((plant) => plant.published);
 });
 
