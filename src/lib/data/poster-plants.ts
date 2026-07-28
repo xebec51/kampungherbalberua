@@ -1,5 +1,6 @@
 import { cache } from "react";
 import { createClient } from "@supabase/supabase-js";
+import posterPlantManifest from "../../../data/media/manifests/poster-plant-catalog.json";
 import { mapMediaAssetRowToPublicMedia } from "@/lib/data/media-mapper";
 import type { MediaAssetRow } from "@/lib/data/media-mapper";
 import { getSupabaseConfig } from "@/lib/supabase/config";
@@ -51,6 +52,17 @@ type PosterGroup = {
 
 const POSTER_DESCRIPTION =
   "Nama ini dicantumkan pada poster Kampung Herbal Harmony. Informasi identitas dan materi edukasi dapat dilengkapi setelah proses verifikasi.";
+const FALLBACK_POSTER_IMAGE = "/images/placeholders/plant.svg";
+const FALLBACK_ATTRIBUTION =
+  "Ilustrasi placeholder lokal untuk nama tanaman poster yang belum mempunyai media berlisensi di lingkungan ini.";
+
+type ManifestPosterPlant = {
+  rawName: string;
+  normalizedName: string;
+  slug: string;
+  posterNumbers: number[];
+  collections: string[];
+};
 
 export function normalizePosterName(value: string) {
   return value
@@ -135,11 +147,38 @@ function mediaMapFromLabelRows(rows: LabelMediaRow[] | null) {
   return mediaByName;
 }
 
+function fallbackPosterCatalog() {
+  return (posterPlantManifest as ManifestPosterPlant[]).map(
+    (item) =>
+      ({
+        attributionText: FALLBACK_ATTRIBUTION,
+        category: null,
+        collections: item.collections,
+        description: POSTER_DESCRIPTION,
+        id: item.normalizedName,
+        image: FALLBACK_POSTER_IMAGE,
+        imageIsIllustration: true,
+        licenseCode: "Aset lokal",
+        linkedPlantId: null,
+        linkedPlantSlug: null,
+        localName: item.rawName,
+        normalizedName: item.normalizedName,
+        posterNumbers: item.posterNumbers,
+        posterOccurrenceCount: item.posterNumbers.length,
+        rawName: item.rawName,
+        scientificName: null,
+        slug: item.slug,
+        sourceLabel: "Peta Tanaman Obat Kampung Herbal Harmony",
+        sourcePageUrl: null,
+      }) satisfies PosterPlantCatalogItem,
+  );
+}
+
 export const getPosterPlantCatalog = cache(async () => {
   const config = getSupabaseConfig();
 
   if (!config) {
-    return [] as PosterPlantCatalogItem[];
+    return fallbackPosterCatalog();
   }
 
   const client = createClient<Database>(config.url, config.publishableKey, {
@@ -157,7 +196,7 @@ export const getPosterPlantCatalog = cache(async () => {
     .single();
 
   if (sourceError || !source) {
-    return [] as PosterPlantCatalogItem[];
+    return fallbackPosterCatalog();
   }
 
   const { data: entries, error: entriesError } = await client
@@ -167,7 +206,11 @@ export const getPosterPlantCatalog = cache(async () => {
     .order("poster_number", { ascending: true });
 
   if (entriesError || !entries) {
-    return [] as PosterPlantCatalogItem[];
+    return fallbackPosterCatalog();
+  }
+
+  if (entries.length === 0) {
+    return fallbackPosterCatalog();
   }
 
   const { data: collections } = await client
@@ -267,9 +310,9 @@ export const getPosterPlantCatalog = cache(async () => {
         ),
         description: POSTER_DESCRIPTION,
         id: group.normalizedName,
-        image: media?.publicUrl ?? null,
+        image: media?.publicUrl ?? FALLBACK_POSTER_IMAGE,
         imageIsIllustration: isIllustration,
-        licenseCode: media?.licenseCode ?? null,
+        licenseCode: media?.licenseCode ?? "Aset lokal",
         linkedPlantId: group.linkedPlantId,
         linkedPlantSlug: plant?.slug ?? null,
         localName: plant?.canonical_local_name ?? plant?.local_name ?? group.rawName,

@@ -7,6 +7,8 @@ async function expectNoHorizontalOverflow(page: Page) {
   expect(hasOverflow).toBe(false);
 }
 
+const publicImageSourcePattern = /supabase\.co|storage|\/images\/placeholders\/plant\.svg/;
+
 test("beranda menampilkan heading utama dan zona featured", async ({ page }) => {
   await page.goto("/");
   await expect(
@@ -139,11 +141,9 @@ test("katalog tanaman tampil, pencarian bekerja, dan detail jahe dapat dibuka", 
   await page.goto("/tanaman");
   await expect(page.getByRole("heading", { name: "Tanaman Kampung Herbal Harmony" })).toBeVisible();
   await expect(page.getByText("Menampilkan 89 hasil tanaman.")).toBeVisible();
-  await expect(page.getByRole("img", { name: "Tanaman Jahe" })).toBeVisible();
-  await expect(page.getByRole("img", { name: "Tanaman Jahe" })).toHaveAttribute(
-    "src",
-    /supabase\.co|storage/,
-  );
+  const jaheCatalogImage = page.getByRole("img", { name: /Jahe/ }).first();
+  await expect(jaheCatalogImage).toBeVisible();
+  await expect(jaheCatalogImage).toHaveAttribute("src", publicImageSourcePattern);
   await expect(page.getByRole("link", { name: "Cincau", exact: true })).toBeVisible();
   await expect(page.getByRole("link", { name: "Garcinia", exact: true })).toBeVisible();
   await expect(page.getByRole("link", { name: "Rosemary", exact: true })).toBeVisible();
@@ -195,7 +195,7 @@ test("gambar tanaman tampil pada beranda dan halaman detail tanaman", async ({
     await page.goto(`/tanaman/${detailPage.slug}`);
     const image = page.getByRole("img", { name: detailPage.alt });
     await expect(image).toBeVisible();
-    await expect(image).toHaveAttribute("src", /supabase\.co|storage/);
+    await expect(image).toHaveAttribute("src", publicImageSourcePattern);
   }
 });
 

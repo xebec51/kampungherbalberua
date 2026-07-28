@@ -7,6 +7,24 @@ import type { ContentMediaType } from "@/lib/supabase/database.types";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import type { PublicMediaAsset } from "@/types";
 
+const posterFallbackAttribution: PublicMediaAsset = {
+  altText: "Ilustrasi referensi untuk nama tanaman poster",
+  attributionText:
+    "Ilustrasi placeholder lokal untuk nama tanaman poster yang belum mempunyai media berlisensi di lingkungan ini.",
+  caption: "Ilustrasi referensi untuk katalog tanaman poster.",
+  changesMade: "Tidak ada perubahan.",
+  creatorName: "Kampung Herbal Berua",
+  height: null,
+  id: "poster-plant-local-placeholder",
+  imageType: "illustration",
+  licenseCode: "Aset lokal",
+  licenseUrl: null,
+  publicUrl: "/images/placeholders/plant.svg",
+  sourcePageUrl: null,
+  title: "Ilustrasi referensi tanaman herbal poster",
+  width: null,
+};
+
 type PlantMediaJoinRow = {
   plant_id: string;
   media_assets: MediaAssetRow | null;
@@ -121,7 +139,7 @@ export const getPublishedMediaAttributions = cache(async () => {
   const client = await createSupabaseServerClient();
 
   if (!client) {
-    return [] as PublicMediaAsset[];
+    return [posterFallbackAttribution];
   }
 
   const { data, error } = await client
@@ -137,7 +155,17 @@ export const getPublishedMediaAttributions = cache(async () => {
     return [] as PublicMediaAsset[];
   }
 
-  return (data ?? [])
+  const mediaItems = (data ?? [])
     .map(mapMediaAssetRowToPublicMedia)
     .filter((media): media is PublicMediaAsset => Boolean(media));
+
+  if (
+    !mediaItems.some(
+      (media) => media.title === posterFallbackAttribution.title,
+    )
+  ) {
+    mediaItems.push(posterFallbackAttribution);
+  }
+
+  return mediaItems;
 });
