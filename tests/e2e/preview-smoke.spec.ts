@@ -42,6 +42,11 @@ test("preview deployment public smoke @preview", async ({ page, request }) => {
   await page.goto("/zona-kesehatan/digestia");
   await expect(page.getByText("khb-z01", { exact: true })).toBeVisible();
 
+  await page.goto("/sumber-gambar");
+  await expect(
+    page.getByRole("heading", { exact: true, name: "Sumber Gambar" }),
+  ).toBeVisible();
+
   const qr = await request.get("/z/khb-z01", { maxRedirects: 0 });
   expect(qr.status()).toBe(307);
 
