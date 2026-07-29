@@ -2,10 +2,13 @@ import { defineConfig, devices } from "@playwright/test";
 
 const baseURL = process.env.PLAYWRIGHT_BASE_URL ?? "http://127.0.0.1:3000";
 const isCI = Boolean(process.env.CI);
+const parsedBaseURL = new URL(baseURL);
+const webServerHost = parsedBaseURL.hostname || "127.0.0.1";
+const webServerPort = parsedBaseURL.port || "3000";
 const webServerCommand =
   process.platform === "win32"
-    ? "node_modules\\.bin\\next.cmd dev --hostname 127.0.0.1 --port 3000"
-    : "npm run dev -- --hostname 127.0.0.1 --port 3000";
+    ? `node_modules\\.bin\\next.cmd dev --hostname ${webServerHost} --port ${webServerPort}`
+    : `npm run dev -- --hostname ${webServerHost} --port ${webServerPort}`;
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL ?? process.env.SUPABASE_URL;
 const supabasePublishableKey =
   process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ?? process.env.SUPABASE_ANON_KEY;

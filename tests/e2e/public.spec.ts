@@ -145,7 +145,7 @@ test("desktop navbar tetap muat tanpa horizontal overflow", async ({ page }) => 
 
   for (const viewport of viewports) {
     await page.setViewportSize(viewport);
-    await page.goto("/");
+    await page.goto("/", { waitUntil: "domcontentloaded" });
     await expect(page.getByRole("navigation", { name: "Navigasi utama" })).toBeVisible();
     await expectNoHorizontalOverflow(page);
   }
