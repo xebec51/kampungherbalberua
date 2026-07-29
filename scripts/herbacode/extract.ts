@@ -1,4 +1,5 @@
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { createHash } from "node:crypto";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { inflateRawSync } from "node:zlib";
 
@@ -73,6 +74,7 @@ export type HerbaCodePlant = {
 export type HerbaCodeData = {
   corrections: HerbaCodeTitleCorrection[];
   documentPath: string;
+  documentSha256: string | null;
   entries: HerbaCodeEntry[];
   sourceCode: string;
   sourceTitle: string;
@@ -547,6 +549,7 @@ export function extractHerbaCodeFromParagraphs(
   return {
     corrections,
     documentPath,
+    documentSha256: null,
     entries,
     sourceCode: HERBACODE_SOURCE_CODE,
     sourceTitle: HERBACODE_SOURCE_TITLE,
@@ -563,8 +566,23 @@ export function readDocxParagraphs(docxPath = HERBACODE_DOCUMENT_PATH) {
   return extractParagraphs(documentXml);
 }
 
+export function readFileSha256(path = HERBACODE_DOCUMENT_PATH) {
+  return createHash("sha256")
+    .update(readFileSync(resolve(process.cwd(), path)))
+    .digest("hex");
+}
+
 export function extractHerbaCodeFromDocx(docxPath = HERBACODE_DOCUMENT_PATH) {
-  return extractHerbaCodeFromParagraphs(readDocxParagraphs(docxPath), docxPath);
+  if (!existsSync(resolve(process.cwd(), docxPath))) {
+    return JSON.parse(
+      readFileSync(resolve(process.cwd(), HERBACODE_DATA_PATH), "utf8"),
+    ) as HerbaCodeData;
+  }
+
+  return {
+    ...extractHerbaCodeFromParagraphs(readDocxParagraphs(docxPath), docxPath),
+    documentSha256: readFileSha256(docxPath),
+  };
 }
 
 export function writeJsonFile(path: string, data: unknown) {

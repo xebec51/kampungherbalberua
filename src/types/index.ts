@@ -151,7 +151,7 @@ export type HealthZone = {
   zoneCode: string;
   slug: string;
   programName: string;
-  streetName: string;
+  streetName: string | null;
   zoneName: string;
   blockRanges: string[];
   healthTopic: string;

@@ -112,7 +112,7 @@ export function HealthZoneAdminForm({
             disabled={disabled}
             label="Nama jalan"
             name="street_name"
-            required
+            help="Kosongkan bila data jalan riil belum tersedia."
           />
           <TextField
             defaultValue={text(zone?.zone_name)}

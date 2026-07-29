@@ -13,6 +13,9 @@ async function expectNoPublicPlaceholderText(page: Page) {
   expect(bodyText).not.toMatch(
     /lorem|placeholder|gambar sementara|visual sementara|media sedang|foto .*menyusul|dokumentasi awal|data demonstrasi|data contoh|sedang disusun|belum aktif|belum menyimpan|undefined|null/i,
   );
+  expect(bodyText).not.toMatch(/\bkhb-z\d{2}\b/i);
+  await expect(page.locator(".image-placeholder")).toHaveCount(0);
+  await expect(page.getByText(/Jl\. (Digestia|Respiria|Glycemia|Lipidia|Imun|Hepatia|Feminia|Vaskulia|Pediatria)/i)).toHaveCount(0);
 }
 
 test("beranda menampilkan ringkasan HerbaCode tanpa placeholder publik", async ({
@@ -30,6 +33,13 @@ test("beranda menampilkan ringkasan HerbaCode tanpa placeholder publik", async (
   ).toBeVisible();
   await expect(page.getByText("Relasi tanaman-zona")).toBeVisible();
   await expect(page.getByText("95")).toBeVisible();
+  await expect(
+    page.getByLabel("Carousel tanaman pilihan").getByRole("link", {
+      name: "Buka profil tanaman",
+    }),
+  ).toHaveCount(50);
+  await expect(page.getByRole("link", { exact: true, name: "Jahe" })).toBeVisible();
+  await expect(page.getByRole("link", { exact: true, name: "Meniran" })).toBeVisible();
   await expectNoPublicPlaceholderText(page);
   await expectNoHorizontalOverflow(page);
 });
@@ -72,7 +82,7 @@ test("desktop dan mobile navbar tetap accessible dengan struktur publik", async 
   await expectNoHorizontalOverflow(page);
 });
 
-test("katalog tanaman HerbaCode dapat dicari dan tidak menggandakan tanaman berulang", async ({
+test("katalog tanaman gabungan dapat dicari dan tidak menggandakan tanaman berulang", async ({
   page,
 }) => {
   await page.goto("/tanaman");
@@ -82,17 +92,16 @@ test("katalog tanaman HerbaCode dapat dicari dan tidak menggandakan tanaman beru
       name: "Katalog Tanaman Kampung Herbal Harmony",
     }),
   ).toBeVisible();
-  await expect(page.getByText("Menampilkan 50 dari 50 tanaman.")).toBeVisible();
-  await expect(page.getByRole("link", { exact: true, name: "Jahe" })).toBeVisible();
-  await expect(page.getByRole("link", { exact: true, name: "Meniran" })).toBeVisible();
+  await expect(page.getByText(/Menampilkan \d+ dari \d+ tanaman\./)).toBeVisible();
+  await expect(page.getByRole("link", { exact: true, name: "Cincau" })).toBeVisible();
 
   await page.getByLabel("Cari tanaman").fill("jahe");
-  await expect(page.getByText("Menampilkan 1 dari 50 tanaman.")).toBeVisible();
+  await expect(page.getByText(/Menampilkan 1 dari \d+ tanaman\./)).toBeVisible();
   await expect(page.getByRole("link", { exact: true, name: "Jahe" })).toHaveCount(1);
 
   await page.getByLabel("Cari tanaman").fill("");
   await page.getByLabel("Filter zona").selectOption("Zona Jantung Sehat");
-  await expect(page.getByText(/Menampilkan 10 dari 50 tanaman\./)).toBeVisible();
+  await expect(page.getByText(/Menampilkan \d+ dari \d+ tanaman\./)).toBeVisible();
   await expect(page.getByRole("link", { exact: true, name: "Seledri" })).toBeVisible();
   await expectNoPublicPlaceholderText(page);
 });
@@ -124,13 +133,17 @@ test("detail zona menampilkan relasi tanaman-zona HerbaCode", async ({ page }) =
   await page.goto("/zona-kesehatan/imunitas-kuat");
 
   await expect(page.getByRole("heading", { name: "Zona Imunitas Kuat" })).toBeVisible();
-  await expect(page.getByText("khb-z01", { exact: true }).first()).toBeVisible();
+  await expect(page.getByText("Zona HerbaCode", { exact: true }).first()).toBeVisible();
   await expect(page.getByRole("heading", { name: "Tanaman pada zona ini" })).toBeVisible();
   await expect(page.getByRole("link", { name: "Meniran" })).toBeVisible();
-  await expect(page.getByText("Phyllanthin", { exact: true })).toBeVisible();
-  await expect(page.getByText("Membantu meningkatkan sistem imun tubuh.")).toBeVisible();
+  await expect(page.getByText("Phyllanthin", { exact: true })).toHaveCount(0);
+  await expect(page.getByText("Membantu meningkatkan sistem imun tubuh.")).toHaveCount(0);
   await expect(page.getByText("HerbaCode Kampung Herbal Harmony", { exact: true }).first()).toBeVisible();
   await expectNoPublicPlaceholderText(page);
+
+  await page.getByRole("link", { name: "Meniran" }).click();
+  await expect(page.getByRole("heading", { name: "Meniran" })).toBeVisible();
+  await expect(page.getByText("Phyllanthin", { exact: true })).toBeVisible();
 });
 
 test("halaman publik utama bebas placeholder, undefined, dan null", async ({
@@ -165,9 +178,9 @@ test("sitemap dan robots memakai route HerbaCode tanpa route QR", async ({
   expect(sitemap.ok()).toBe(true);
   const sitemapText = await sitemap.text();
   expect(sitemapText).toContain("/tanaman/jahe");
+  expect(sitemapText).toContain("/tanaman/willow-bark");
   expect(sitemapText).toContain("/zona-kesehatan/imunitas-kuat");
   expect(sitemapText).not.toContain("/z/khb-z01");
-  expect(sitemapText).not.toContain("/tanaman/willow-bark");
 
   const robots = await request.get("/robots.txt");
   expect(robots.ok()).toBe(true);

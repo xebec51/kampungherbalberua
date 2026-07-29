@@ -42,7 +42,9 @@ export async function generateMetadata({
   const result = await getHealthZoneByIdForAdmin(id);
 
   return createPageMetadata({
-    title: result.data ? `Edit ${result.data.street_name}` : "Edit Zona",
+    title: result.data
+      ? `Edit ${result.data.street_name ?? result.data.zone_name}`
+      : "Edit Zona",
     description: "Form edit zona kesehatan Kampung Herbal Harmony.",
     path: `/admin/zona/${id}/edit`,
   });
@@ -80,7 +82,7 @@ export default async function EditZonePage({
           Edit Zona Kesehatan
         </h2>
         <p className="mt-3 max-w-2xl text-sm leading-6 text-herbal-muted">
-          {result.data.street_name}. Target QR permanen saat ini: {targetUrl}
+          {result.data.street_name ?? result.data.zone_name}. Target QR permanen saat ini: {targetUrl}
         </p>
       </header>
       <AdminNotice message={successMessages[query.success ?? ""]} />

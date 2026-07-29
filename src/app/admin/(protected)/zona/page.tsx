@@ -250,14 +250,18 @@ function ZoneAdminCard({ canDelete, canEdit, role, zone }: ZoneAdminCardProps) {
             {zone.featured ? <StatusBadge>Featured</StatusBadge> : null}
           </div>
           <h3 className="mt-3 text-xl font-bold text-herbal-ink">
-            {zone.street_name}
-          </h3>
-          <p className="mt-1 text-sm font-semibold text-herbal-green">
             {zone.zone_name}
-          </p>
-          <p className="mt-2 text-sm text-herbal-muted">
-            Blok {zone.block_ranges.join(", ")}
-          </p>
+          </h3>
+          {zone.street_name ? (
+            <p className="mt-1 text-sm font-semibold text-herbal-green">
+              {zone.street_name}
+            </p>
+          ) : null}
+          {zone.block_ranges.length > 0 ? (
+            <p className="mt-2 text-sm text-herbal-muted">
+              Blok {zone.block_ranges.join(", ")}
+            </p>
+          ) : null}
           <p className="mt-3 max-w-3xl text-sm leading-6 text-herbal-muted">
             {zone.short_description}
           </p>

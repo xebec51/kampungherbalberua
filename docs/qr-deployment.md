@@ -5,7 +5,7 @@ QR zona selalu memakai `zone_code`, bukan slug.
 ## Prinsip
 
 1. Target QR adalah `/z/[zone_code]`.
-2. Contoh: `https://kampungherbalberua.vercel.app/z/khb-z01`.
+2. Contoh pola: `https://kampungherbalberua.vercel.app/z/{zone_code}`.
 3. Route `/z/[zone_code]` melakukan redirect sementara ke slug aktif.
 4. Perubahan slug tidak memerlukan cetak ulang QR.
 5. Tidak ada tracking scan.

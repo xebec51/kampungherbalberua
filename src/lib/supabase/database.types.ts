@@ -298,7 +298,7 @@ export type Database = {
           zone_code: string;
           slug: string;
           program_name: string;
-          street_name: string;
+          street_name: string | null;
           zone_name: string;
           block_ranges: string[];
           health_topic: string;
@@ -327,7 +327,7 @@ export type Database = {
           zone_code: string;
           slug: string;
           program_name?: string;
-          street_name: string;
+          street_name?: string | null;
           zone_name: string;
           block_ranges?: string[];
           health_topic: string;
@@ -356,7 +356,7 @@ export type Database = {
           zone_code?: string;
           slug?: string;
           program_name?: string;
-          street_name?: string;
+          street_name?: string | null;
           zone_name?: string;
           block_ranges?: string[];
           health_topic?: string;
@@ -400,6 +400,102 @@ export type Database = {
             columns: ["updated_by"];
             isOneToOne: false;
             referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      streets: {
+        Row: {
+          id: string;
+          slug: string;
+          street_name: string;
+          description: string | null;
+          source_notes: string[];
+          validation_status: ValidationStatus;
+          content_status: ContentStatus;
+          created_by: string | null;
+          updated_by: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          slug: string;
+          street_name: string;
+          description?: string | null;
+          source_notes?: string[];
+          validation_status?: ValidationStatus;
+          content_status?: ContentStatus;
+          created_by?: string | null;
+          updated_by?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          slug?: string;
+          street_name?: string;
+          description?: string | null;
+          source_notes?: string[];
+          validation_status?: ValidationStatus;
+          content_status?: ContentStatus;
+          created_by?: string | null;
+          updated_by?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "streets_created_by_fkey";
+            columns: ["created_by"];
+            isOneToOne: false;
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "streets_updated_by_fkey";
+            columns: ["updated_by"];
+            isOneToOne: false;
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      health_zone_streets: {
+        Row: {
+          health_zone_id: string;
+          street_id: string;
+          sort_order: number;
+          notes: string | null;
+          created_at: string;
+        };
+        Insert: {
+          health_zone_id: string;
+          street_id: string;
+          sort_order?: number;
+          notes?: string | null;
+          created_at?: string;
+        };
+        Update: {
+          health_zone_id?: string;
+          street_id?: string;
+          sort_order?: number;
+          notes?: string | null;
+          created_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "health_zone_streets_health_zone_id_fkey";
+            columns: ["health_zone_id"];
+            isOneToOne: false;
+            referencedRelation: "health_zones";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "health_zone_streets_street_id_fkey";
+            columns: ["street_id"];
+            isOneToOne: false;
+            referencedRelation: "streets";
             referencedColumns: ["id"];
           },
         ];
@@ -1082,6 +1178,10 @@ export type Database = {
           source_document_name: string;
           title_correction_notes: string[];
           content_status: ContentStatus;
+          validation_status: ValidationStatus;
+          validator_id: string | null;
+          validator_name: string | null;
+          validated_at: string | null;
           created_at: string;
           updated_at: string;
         };
@@ -1107,6 +1207,10 @@ export type Database = {
           source_document_name: string;
           title_correction_notes?: string[];
           content_status?: ContentStatus;
+          validation_status?: ValidationStatus;
+          validator_id?: string | null;
+          validator_name?: string | null;
+          validated_at?: string | null;
           created_at?: string;
           updated_at?: string;
         };
@@ -1132,6 +1236,10 @@ export type Database = {
           source_document_name?: string;
           title_correction_notes?: string[];
           content_status?: ContentStatus;
+          validation_status?: ValidationStatus;
+          validator_id?: string | null;
+          validator_name?: string | null;
+          validated_at?: string | null;
           created_at?: string;
           updated_at?: string;
         };
@@ -1155,6 +1263,48 @@ export type Database = {
             columns: ["plant_id"];
             isOneToOne: false;
             referencedRelation: "plants";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      herbacode_entry_history: {
+        Row: {
+          id: string;
+          entry_id: string;
+          action: string;
+          change_summary: Json;
+          changed_by: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          entry_id: string;
+          action: string;
+          change_summary?: Json;
+          changed_by?: string | null;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          entry_id?: string;
+          action?: string;
+          change_summary?: Json;
+          changed_by?: string | null;
+          created_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "herbacode_entry_history_entry_id_fkey";
+            columns: ["entry_id"];
+            isOneToOne: false;
+            referencedRelation: "herbacode_plant_zone_entries";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "herbacode_entry_history_changed_by_fkey";
+            columns: ["changed_by"];
+            isOneToOne: false;
+            referencedRelation: "profiles";
             referencedColumns: ["id"];
           },
         ];

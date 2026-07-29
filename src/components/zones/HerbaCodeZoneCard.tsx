@@ -5,7 +5,6 @@ import {
   PublicCardAction,
   PublicCardBody,
 } from "@/components/ui/PublicCard";
-import { SafeImage } from "@/components/ui/SafeImage";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 
 type HerbaCodeZoneCardProps = {
@@ -15,18 +14,9 @@ type HerbaCodeZoneCardProps = {
 export function HerbaCodeZoneCard({ zone }: HerbaCodeZoneCardProps) {
   return (
     <PublicCard>
-      <SafeImage
-        alt={zone.title}
-        className="aspect-[16/10] !rounded-none !border-0 !shadow-none"
-        fallbackLabel={zone.title}
-        fallbackVariant="map"
-        imageClassName="object-cover"
-        sizes="(min-width: 1280px) 20rem, (min-width: 768px) 32vw, 86vw"
-        src={null}
-      />
       <PublicCardBody>
         <div className="flex flex-wrap gap-2">
-          <StatusBadge tone="green">{zone.zoneCode}</StatusBadge>
+          <StatusBadge tone="green">Zona HerbaCode</StatusBadge>
           <StatusBadge tone="brown">{zone.plantCount} tanaman</StatusBadge>
         </div>
         <h3 className="mt-4 line-clamp-2 text-lg font-extrabold leading-tight text-herbal-ink">

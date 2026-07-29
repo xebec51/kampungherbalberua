@@ -21,7 +21,7 @@ export async function MapPreviewSection() {
                 className="rounded-md border border-herbal-green/10 bg-white p-4 text-sm font-semibold text-herbal-ink shadow-sm"
                 key={zone.zoneCode}
               >
-                {zone.zoneCode} - {zone.title}
+                {zone.title}
               </li>
             ))}
           </ul>

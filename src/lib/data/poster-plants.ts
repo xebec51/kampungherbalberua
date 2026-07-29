@@ -65,10 +65,7 @@ type PosterGroup = {
 };
 
 const POSTER_DESCRIPTION =
-  "Nama tanaman ini tercatat dalam katalog edukasi Kampung Herbal Harmony, program pengenalan tanaman dan zona kesehatan di RT 009/RW 006 Kelurahan Berua. Informasi identitas dan materi edukasi dapat dilengkapi setelah proses verifikasi.";
-const FALLBACK_POSTER_IMAGE = "/images/placeholders/plant.svg";
-const FALLBACK_ATTRIBUTION =
-  "Visual sementara untuk tanaman katalog Kampung Herbal Harmony yang belum mempunyai media berlisensi di lingkungan ini.";
+  "Nama tanaman ini tercatat dalam katalog edukasi Kampung Herbal Harmony, program pengenalan tanaman dan zona kesehatan di RT 009/RW 006 Kelurahan Berua.";
 const HARMONY_SOURCE_LABEL = "Katalog Edukasi Kampung Herbal Harmony";
 
 type ManifestPosterPlant = {
@@ -209,19 +206,19 @@ function fallbackPosterCatalog() {
   return (posterPlantManifest as ManifestPosterPlant[]).map(
     (item) =>
       ({
-        attributionText: FALLBACK_ATTRIBUTION,
+        attributionText: null,
         category: null,
         changesMade: "Tidak ada perubahan.",
         collections: item.collections,
         creatorName: "Kampung Herbal Berua",
         description: POSTER_DESCRIPTION,
         id: item.normalizedName,
-        image: FALLBACK_POSTER_IMAGE,
+        image: null,
         imageIsIllustration: true,
         imageDuplicateStatus: "generic_reuse",
         imageKind: "generic",
         imageRelevanceStatus: "generic_fallback",
-        licenseCode: "Aset lokal",
+        licenseCode: null,
         licenseUrl: null,
         linkedPlantId: null,
         linkedPlantSlug: null,
@@ -393,7 +390,7 @@ export const getPosterPlantCatalog = cache(async () => {
         creatorName: media?.creatorName ?? null,
         description: POSTER_DESCRIPTION,
         id: group.normalizedName,
-        image: media?.publicUrl ?? FALLBACK_POSTER_IMAGE,
+        image: media?.publicUrl ?? null,
         imageIsIllustration: isIllustration,
         imageDuplicateStatus: review?.duplicate_status ?? null,
         imageKind: imageKindFromRelevance(relevanceStatus),

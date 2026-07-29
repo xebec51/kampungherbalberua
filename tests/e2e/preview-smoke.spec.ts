@@ -43,7 +43,7 @@ test("preview deployment public smoke @preview", async ({ page, request }) => {
   ).toBeVisible();
 
   await page.goto("/zona-kesehatan/imunitas-kuat");
-  await expect(page.getByText("khb-z01", { exact: true })).toBeVisible();
+  await expect(page.getByText("Zona HerbaCode", { exact: true }).first()).toBeVisible();
 
   await page.goto("/sumber-gambar");
   await expect(
@@ -60,7 +60,7 @@ test("preview deployment public smoke @preview", async ({ page, request }) => {
   await expect(
     page.getByRole("heading", { exact: true, name: "Zona HerbaCode" }),
   ).toBeVisible();
-  await expect(page.getByText("khb-z09 - Zona Kesehatan Perempuan")).toBeVisible();
+  await expect(page.getByText("Zona Kesehatan Perempuan")).toBeVisible();
 
   expect((await request.get("/sitemap.xml")).ok()).toBe(true);
   expect((await request.get("/robots.txt")).ok()).toBe(true);

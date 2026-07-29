@@ -74,7 +74,7 @@ describe("plant media rendering", () => {
     );
   });
 
-  it("HerbaCodePlantCard merender placeholder visual ketika media tidak ada", async () => {
+  it("HerbaCodePlantCard menyembunyikan slot gambar ketika media tidak ada", async () => {
     const { HerbaCodePlantCard } = await import(
       "../../src/components/plants/HerbaCodePlantCard"
     );
@@ -85,12 +85,12 @@ describe("plant media rendering", () => {
     );
 
     expect(html).not.toContain("<img");
-    expect(html).toContain("image-placeholder");
-    expect(html).toContain('aria-label="Tanaman Jahe"');
+    expect(html).not.toContain("image-placeholder");
+    expect(html).not.toContain('role="img"');
     expect(html).not.toMatch(/gambar sementara|menyusul/i);
   });
 
-  it("HerbaCodeZoneCard merender placeholder visual untuk zona tanpa foto", async () => {
+  it("HerbaCodeZoneCard tidak menampilkan kode zona atau placeholder visual", async () => {
     const { HerbaCodeZoneCard } = await import(
       "../../src/components/zones/HerbaCodeZoneCard"
     );
@@ -106,8 +106,8 @@ describe("plant media rendering", () => {
     );
 
     expect(html).not.toContain("<img");
-    expect(html).toContain("image-placeholder");
-    expect(html).toContain('aria-label="Zona Imunitas Kuat"');
+    expect(html).not.toContain("image-placeholder");
+    expect(html).not.toContain("khb-z01");
     expect(html).not.toMatch(/gambar sementara|menyusul/i);
   });
 
@@ -123,13 +123,14 @@ describe("plant media rendering", () => {
     expect(safeImageSource).toContain("!resolvedSrc || isLocalPlaceholder(resolvedSrc)");
   });
 
-  it("halaman detail tanaman memakai SafeImage agar media kosong mendapat placeholder", () => {
+  it("halaman detail tanaman hanya memakai SafeImage saat media tersedia", () => {
     const detailPageSource = readFileSync(
       "src/app/tanaman/[slug]/page.tsx",
       "utf8",
     );
 
     expect(detailPageSource).toContain('import { SafeImage }');
+    expect(detailPageSource).toContain("plant.image ? (");
     expect(detailPageSource).toContain("src={plant.image}");
   });
 

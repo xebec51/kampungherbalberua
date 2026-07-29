@@ -25,7 +25,7 @@ export default async function MapPage() {
         <div className="mt-8 grid gap-5 lg:grid-cols-[1fr_0.8fr]">
           <InfoPanel
             title="Zona HerbaCode"
-            values={zones.map((zone) => `${zone.zoneCode} - ${zone.title}`)}
+            values={zones.map((zone) => zone.title)}
           />
           <div className="rounded-md border border-herbal-green/10 bg-white p-5 text-sm leading-7 text-herbal-muted shadow-sm">
             Zona pada halaman ini bukan diagnosis wilayah dan bukan data

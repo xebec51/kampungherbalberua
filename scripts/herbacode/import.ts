@@ -1,3 +1,4 @@
+import { existsSync, readFileSync } from "node:fs";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type {
   ContentStatus,
@@ -34,6 +35,11 @@ type PlantRow = Pick<
   | "slug"
 >;
 
+type HealthZoneRow = Pick<
+  Database["public"]["Tables"]["health_zones"]["Row"],
+  "id" | "zone_code"
+>;
+
 type PlantNameRow = Pick<
   Database["public"]["Tables"]["plant_names"]["Row"],
   "name" | "normalized_name" | "plant_id"
@@ -41,7 +47,7 @@ type PlantNameRow = Pick<
 
 type ExistingPlantMatch = {
   matchKey: string;
-  method: "alias" | "scientific";
+  method: "alias" | "exact" | "scientific";
   plantId: string;
 };
 
@@ -53,7 +59,13 @@ type ImportPlanPlant = {
 
 export type HerbaCodeImportSummary = {
   corrections: HerbaCodeData["corrections"];
+  duplicateMappings: Array<{
+    localName: string;
+    plantIds: string[];
+    reason: string;
+  }>;
   documentEntryCount: number;
+  documentSha256: string | null;
   dryRun: boolean;
   failedMappings: Array<{
     localName: string;
@@ -61,6 +73,15 @@ export type HerbaCodeImportSummary = {
     zoneTitle: string;
   }>;
   matchedUniquePlants: number;
+  matchReport: {
+    alias: number;
+    ambiguous: number;
+    duplicate: number;
+    exact: number;
+    new: number;
+    scientific: number;
+    unmapped: number;
+  };
   newPlants: number;
   relationCount: number;
   sourceCode: string;
@@ -78,6 +99,16 @@ type PlantNameUpsert = Database["public"]["Tables"]["plant_names"]["Insert"];
 
 const publishedStatus: ContentStatus = "published";
 const validationStatus: ValidationStatus = "pending";
+
+function readStoredHerbaCodeData(): HerbaCodeData {
+  return JSON.parse(readFileSync(HERBACODE_DATA_PATH, "utf8")) as HerbaCodeData;
+}
+
+function loadHerbaCodeData() {
+  return existsSync(HERBACODE_DOCUMENT_PATH)
+    ? extractHerbaCodeFromDocx()
+    : readStoredHerbaCodeData();
+}
 
 function unique(values: string[]) {
   return Array.from(
@@ -164,7 +195,10 @@ function findExistingPlantMatch(
     if (plantId) {
       return {
         matchKey: candidate,
-        method: "alias",
+        method:
+          normalized === normalizeHerbaCodeName(plant.localName)
+            ? "exact"
+            : "alias",
         plantId,
       } satisfies ExistingPlantMatch;
     }
@@ -267,7 +301,7 @@ function buildHealthZoneUpsert(zone: HerbaCodeData["zones"][number], nowIso: str
     sign_text: zone.title,
     slug: zone.slug,
     source_notes: [HERBACODE_SOURCE_TITLE],
-    street_name: zone.title,
+    street_name: null,
     validation_status: validationStatus,
     zone_code: zone.zoneCode,
     zone_name: zone.title,
@@ -322,18 +356,46 @@ async function readExistingPlants(supabase: SupabaseClient<Database>) {
   };
 }
 
+async function readExistingHealthZones(supabase: SupabaseClient<Database>) {
+  const { data, error } = await supabase
+    .from("health_zones")
+    .select("id, zone_code");
+
+  if (error) {
+    throw new Error(`Gagal membaca zona existing: ${error.message}`);
+  }
+
+  return new Map(
+    ((data ?? []) as HealthZoneRow[]).map((zone) => [zone.zone_code, zone.id]),
+  );
+}
+
 function buildSummary(
   data: HerbaCodeData,
   plans: ImportPlanPlant[],
   dryRun: boolean,
 ): HerbaCodeImportSummary {
   const failedMappings: HerbaCodeImportSummary["failedMappings"] = [];
+  const duplicateMappings: HerbaCodeImportSummary["duplicateMappings"] = [];
+  const matchReport = {
+    alias: plans.filter((plan) => plan.existingMatch?.method === "alias").length,
+    ambiguous: 0,
+    duplicate: duplicateMappings.length,
+    exact: plans.filter((plan) => plan.existingMatch?.method === "exact").length,
+    new: plans.filter((plan) => !plan.existingMatch).length,
+    scientific: plans.filter((plan) => plan.existingMatch?.method === "scientific")
+      .length,
+    unmapped: failedMappings.length,
+  };
 
   return {
     corrections: data.corrections,
+    documentSha256: data.documentSha256,
+    duplicateMappings,
     documentEntryCount: data.entries.length,
     dryRun,
     failedMappings,
+    matchReport,
     matchedUniquePlants: plans.filter((plan) => plan.existingMatch).length,
     newPlants: plans.filter((plan) => !plan.existingMatch).length,
     relationCount: data.entries.length,
@@ -387,67 +449,46 @@ async function upsertSource(
 async function upsertHealthZones(
   supabase: SupabaseClient<Database>,
   data: HerbaCodeData,
+  existingZoneIdsByCode: Map<string, string>,
   nowIso: string,
 ) {
-  const rows = data.zones.map((zone) => buildHealthZoneUpsert(zone, nowIso));
-  const { data: zones, error } = await supabase
-    .from("health_zones")
-    .upsert(rows, { onConflict: "zone_code" })
-    .select("id, zone_code");
+  const rows = data.zones
+    .filter((zone) => !existingZoneIdsByCode.has(zone.zoneCode))
+    .map((zone) => buildHealthZoneUpsert(zone, nowIso));
 
-  if (error) {
-    throw new Error(`Gagal upsert zona HerbaCode: ${error.message}`);
+  if (rows.length > 0) {
+    const { data: insertedZones, error } = await supabase
+      .from("health_zones")
+      .insert(rows)
+      .select("id, zone_code");
+
+    if (error) {
+      throw new Error(`Gagal membuat zona HerbaCode baru: ${error.message}`);
+    }
+
+    for (const zone of insertedZones ?? []) {
+      existingZoneIdsByCode.set(zone.zone_code, zone.id);
+    }
   }
 
-  return new Map((zones ?? []).map((zone) => [zone.zone_code, zone.id]));
+  return existingZoneIdsByCode;
 }
 
 async function upsertPlants(
   supabase: SupabaseClient<Database>,
   plans: ImportPlanPlant[],
-  existingById: Map<string, PlantRow>,
   nowIso: string,
 ) {
-  const matchedRows = plans
-    .filter((plan) => plan.existingMatch)
-    .map((plan) =>
-      buildPlantUpsert(
-        plan,
-        existingById.get(plan.existingMatch?.plantId ?? "") ?? null,
-        nowIso,
-      ),
-    );
   const newRows = plans
     .filter((plan) => !plan.existingMatch)
     .map((plan) => buildPlantUpsert(plan, null, nowIso));
   const plantIdsByKey = new Map<string, string>();
 
-  if (matchedRows.length > 0) {
-    const { data, error } = await supabase
-      .from("plants")
-      .upsert(matchedRows, { onConflict: "id" })
-      .select("id, slug");
+  for (const plan of plans.filter((item) => item.existingMatch)) {
+    const id = plan.existingMatch?.plantId;
 
-    if (error) {
-      throw new Error(`Gagal upsert tanaman HerbaCode existing: ${error.message}`);
-    }
-
-    for (const plan of plans.filter((item) => item.existingMatch)) {
-      const id = plan.existingMatch?.plantId;
-
-      if (id) {
-        plantIdsByKey.set(plan.plant.plantKey, id);
-      }
-    }
-
-    for (const row of data ?? []) {
-      const plan = plans.find(
-        (item) => item.existingMatch?.plantId === row.id,
-      );
-
-      if (plan) {
-        plantIdsByKey.set(plan.plant.plantKey, row.id);
-      }
+    if (id) {
+      plantIdsByKey.set(plan.plant.plantKey, id);
     }
   }
 
@@ -580,8 +621,9 @@ export async function importHerbaCode(
   supabase: SupabaseClient<Database>,
   options: { dryRun: boolean },
 ) {
-  const data = extractHerbaCodeFromDocx();
+  const data = loadHerbaCodeData();
   const existing = await readExistingPlants(supabase);
+  const existingZoneIdsByCode = await readExistingHealthZones(supabase);
   const indexes = buildExistingPlantIndexes(existing.plants, existing.plantNames);
   const plans = buildPlantPlans(data, indexes);
   const summary = buildSummary(data, plans, options.dryRun);
@@ -595,11 +637,15 @@ export async function importHerbaCode(
 
   const nowIso = new Date().toISOString();
   const sourceId = await upsertSource(supabase, data);
-  const zoneIdsByCode = await upsertHealthZones(supabase, data, nowIso);
+  const zoneIdsByCode = await upsertHealthZones(
+    supabase,
+    data,
+    existingZoneIdsByCode,
+    nowIso,
+  );
   const plantIdsByKey = await upsertPlants(
     supabase,
     plans,
-    indexes.plantById,
     nowIso,
   );
 
@@ -617,10 +663,11 @@ export async function importHerbaCode(
 }
 
 export function extractHerbaCodeOnly() {
-  const data = extractHerbaCodeFromDocx();
+  const data = loadHerbaCodeData();
   const summary = {
     corrections: data.corrections,
     documentEntryCount: data.entries.length,
+    documentSha256: data.documentSha256,
     sourceCode: HERBACODE_SOURCE_CODE,
     sourceDocumentName: HERBACODE_SOURCE_TITLE,
     uniquePlantsInDocument: data.uniquePlants.length,
