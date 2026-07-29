@@ -23,16 +23,18 @@ export function HerbaCodePlantCard({
 
   return (
     <PublicCard className={className}>
-      <SafeImage
-        alt={`Tanaman ${plant.localName}`}
-        className="aspect-[16/10] !rounded-none !border-0 !shadow-none"
-        fallbackLabel={`Tanaman ${plant.localName}`}
-        fallbackVariant="plant"
-        imageClassName="object-cover"
-        priority={priority}
-        sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, (max-width: 1279px) 30vw, 18rem"
-        src={plant.image}
-      />
+      {plant.image ? (
+        <SafeImage
+          alt={`Tanaman ${plant.localName}`}
+          className="aspect-[16/10] !rounded-none !border-0 !shadow-none"
+          fallbackLabel={`Tanaman ${plant.localName}`}
+          fallbackVariant="plant"
+          imageClassName="object-cover"
+          priority={priority}
+          sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, (max-width: 1279px) 30vw, 18rem"
+          src={plant.image}
+        />
+      ) : null}
       <PublicCardBody>
         <div className="flex flex-wrap items-center gap-2">
           <StatusBadge tone="green">HerbaCode</StatusBadge>

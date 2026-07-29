@@ -3,10 +3,10 @@ import { AutoCarousel } from "@/components/ui/AutoCarousel";
 import { Container } from "@/components/ui/Container";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { getFeaturedHerbaCodePlants } from "@/lib/data/herbacode";
+import { getHerbaCodePlantCatalog } from "@/lib/data/herbacode";
 
 export async function FeaturedPlantsSection() {
-  const featuredPlants = await getFeaturedHerbaCodePlants(3);
+  const featuredPlants = await getHerbaCodePlantCatalog();
 
   return (
     <section className="home-section bg-gradient-to-b from-white via-herbal-cream to-white py-14 sm:py-16">

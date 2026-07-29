@@ -14,8 +14,12 @@ import {
   getPublishedPlantDetailBySlug,
   type PublishedPlantDetail,
 } from "@/lib/data/plants";
+import {
+  getPosterPlantBySlug,
+  getPosterPlantSlugs,
+} from "@/lib/data/poster-plants";
 import { createPageMetadata } from "@/lib/metadata";
-import type { HerbaCodePlantZoneEntry } from "@/types";
+import type { HerbaCodePlantZoneEntry, PosterPlantCatalogItem } from "@/types";
 
 type PlantDetailPageProps = {
   params: Promise<{
@@ -27,7 +31,11 @@ export const revalidate = 300;
 export const dynamicParams = true;
 
 export async function generateStaticParams() {
-  const slugs = await getHerbaCodePlantSlugs();
+  const [herbaCodeSlugs, posterSlugs] = await Promise.all([
+    getHerbaCodePlantSlugs(),
+    getPosterPlantSlugs(),
+  ]);
+  const slugs = Array.from(new Set([...herbaCodeSlugs, ...posterSlugs]));
 
   return slugs.map((slug) => ({ slug }));
 }
@@ -46,6 +54,16 @@ export async function generateMetadata({
         title: catalogPlant.localName,
         description: catalogPlant.shortDescription,
         path: `/tanaman/${catalogPlant.slug}`,
+      });
+    }
+
+    const posterPlant = await getPosterPlantBySlug(slug);
+
+    if (posterPlant) {
+      return createPageMetadata({
+        title: posterPlant.rawName,
+        description: posterPlant.description,
+        path: `/tanaman/${posterPlant.slug}`,
       });
     }
 
@@ -70,11 +88,17 @@ export default async function PlantDetailPage({ params }: PlantDetailPageProps) 
   if (!plant) {
     const catalogPlant = await getPublishedPlantDetailBySlug(slug);
 
-    if (!catalogPlant) {
-      notFound();
+    if (catalogPlant) {
+      return <CatalogPlantDetail plant={catalogPlant} />;
     }
 
-    return <CatalogPlantDetail plant={catalogPlant} />;
+    const posterPlant = await getPosterPlantBySlug(slug);
+
+    if (posterPlant) {
+      return <PosterPlantDetail plant={posterPlant} />;
+    }
+
+    notFound();
   }
 
   const activeCompounds = uniqueEntryValues(
@@ -103,17 +127,23 @@ export default async function PlantDetailPage({ params }: PlantDetailPageProps) 
         />
 
         <div
-          className="mt-8 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]"
+          className={
+            plant.image
+              ? "mt-8 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]"
+              : "mt-8"
+          }
         >
-          <SafeImage
-            alt={`Tanaman ${plant.localName}`}
-            fallbackLabel={`Tanaman ${plant.localName}`}
-            fallbackVariant="plant"
-            imageClassName="object-cover"
-            priority
-            sizes="(max-width: 1024px) 100vw, 45vw"
-            src={plant.image}
-          />
+          {plant.image ? (
+            <SafeImage
+              alt={`Tanaman ${plant.localName}`}
+              fallbackLabel={`Tanaman ${plant.localName}`}
+              fallbackVariant="plant"
+              imageClassName="object-cover"
+              priority
+              sizes="(max-width: 1024px) 100vw, 45vw"
+              src={plant.image}
+            />
+          ) : null}
 
           <div>
             <div className="flex flex-wrap gap-2">
@@ -196,17 +226,23 @@ function CatalogPlantDetail({ plant }: { plant: PublishedPlantDetail }) {
         />
 
         <div
-          className="mt-8 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]"
+          className={
+            plant.image
+              ? "mt-8 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]"
+              : "mt-8"
+          }
         >
-          <SafeImage
-            alt={`Tanaman ${plant.localName}`}
-            fallbackLabel={`Tanaman ${plant.localName}`}
-            fallbackVariant="plant"
-            imageClassName="object-cover"
-            priority
-            sizes="(max-width: 1024px) 100vw, 45vw"
-            src={plant.image}
-          />
+          {plant.image ? (
+            <SafeImage
+              alt={`Tanaman ${plant.localName}`}
+              fallbackLabel={`Tanaman ${plant.localName}`}
+              fallbackVariant="plant"
+              imageClassName="object-cover"
+              priority
+              sizes="(max-width: 1024px) 100vw, 45vw"
+              src={plant.image}
+            />
+          ) : null}
 
           <div>
             <div className="flex flex-wrap gap-2">
@@ -246,6 +282,92 @@ function CatalogPlantDetail({ plant }: { plant: PublishedPlantDetail }) {
             edukasi mengenai pemanfaatan tradisional. Informasi ini bukan
             diagnosis, resep, atau pengganti konsultasi dengan dokter, apoteker,
             maupun tenaga kesehatan lainnya.
+          </Disclaimer>
+        </div>
+      </Container>
+    </article>
+  );
+}
+
+function PosterPlantDetail({ plant }: { plant: PosterPlantCatalogItem }) {
+  const image =
+    plant.image && !plant.image.startsWith("/images/placeholders/")
+      ? plant.image
+      : null;
+  const sourceDetails = [
+    plant.sourceLabel,
+    plant.attributionText,
+    plant.licenseCode,
+  ].filter((value): value is string => Boolean(value?.trim()));
+
+  return (
+    <article className="bg-herbal-cream py-12 sm:py-16">
+      <Container>
+        <Breadcrumb
+          items={[
+            { label: "Tanaman", href: "/tanaman" },
+            { label: plant.rawName },
+          ]}
+        />
+
+        <div
+          className={
+            image ? "mt-8 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]" : "mt-8"
+          }
+        >
+          {image ? (
+            <SafeImage
+              alt={
+                plant.imageIsIllustration
+                  ? `Visual referensi untuk tanaman ${plant.rawName}`
+                  : `Foto tanaman ${plant.rawName}`
+              }
+              fallbackLabel={`Tanaman ${plant.rawName}`}
+              fallbackVariant="plant"
+              imageClassName="object-cover"
+              priority
+              sizes="(max-width: 1024px) 100vw, 45vw"
+              src={image}
+            />
+          ) : null}
+
+          <div>
+            <div className="flex flex-wrap gap-2">
+              <StatusBadge tone="green">Katalog Harmony</StatusBadge>
+              {plant.posterOccurrenceCount > 0 ? (
+                <StatusBadge tone="brown">
+                  {plant.posterOccurrenceCount} kemunculan poster
+                </StatusBadge>
+              ) : null}
+            </div>
+            <h1 className="mt-5 text-4xl font-bold text-herbal-ink sm:text-5xl">
+              {plant.rawName}
+            </h1>
+            {plant.scientificName ? (
+              <p className="mt-2 text-lg italic text-herbal-muted">
+                {plant.scientificName}
+              </p>
+            ) : null}
+            <p className="mt-6 max-w-3xl text-base leading-8 text-herbal-muted">
+              {plant.description}
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-8 grid gap-6 lg:grid-cols-2">
+          <DetailSection title="Zona katalog" values={plant.collections} />
+          <DetailSection
+            title="Nomor poster"
+            values={plant.posterNumbers.map((number) => String(number))}
+          />
+          <DetailSection title="Sumber" values={sourceDetails} />
+        </div>
+
+        <div className="mt-8">
+          <Disclaimer>
+            Entri katalog poster ini tidak menambahkan manfaat atau cara
+            pemanfaatan di luar dokumen HerbaCode. Informasi kesehatan tetap
+            perlu diverifikasi oleh tenaga kesehatan.
           </Disclaimer>
         </div>
       </Container>

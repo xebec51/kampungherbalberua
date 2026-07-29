@@ -137,12 +137,16 @@ export const getPublishedMediaAttributions = cache(async () => {
     return [];
   }
 
+  const fakeStreetPattern =
+    /Jl\. (Digestia|Respiria|Glycemia|Lipidia|Imun|Hepatia|Feminia|Vaskulia|Pediatria)/i;
+
   return (data ?? [])
     .map(mapMediaAssetRowToPublicMedia)
     .filter((media): media is PublicMediaAsset => Boolean(media))
     .filter(
       (media) =>
         !media.publicUrl.startsWith("/images/placeholders/") &&
+        !fakeStreetPattern.test(`${media.title} ${media.altText} ${media.caption ?? ""}`) &&
         !/sementara|placeholder/i.test(`${media.title} ${media.caption ?? ""}`),
     );
 });

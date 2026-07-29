@@ -24,23 +24,30 @@ export function PosterPlantCard({
   priority = false,
 }: PosterPlantCardProps) {
   const partCategory = visiblePartCategory(plant.partCategory);
+  const image =
+    plant.image && !plant.image.startsWith("/images/placeholders/")
+      ? plant.image
+      : null;
+  const href = `/tanaman/${plant.linkedPlantSlug ?? plant.slug}`;
 
   return (
     <PublicCard className={className}>
-      <SafeImage
-        alt={
-          plant.imageIsIllustration
-            ? `Visual referensi untuk tanaman ${plant.rawName}`
-            : `Foto tanaman ${plant.rawName}`
-        }
-        className="aspect-[16/10] !rounded-none !border-0 !shadow-none"
-        fallbackLabel={`Gambar sementara tanaman ${plant.rawName}`}
-        fallbackVariant="plant"
-        imageClassName="object-cover"
-        priority={priority}
-        sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, (max-width: 1279px) 30vw, 18rem"
-        src={plant.image}
-      />
+      {image ? (
+        <SafeImage
+          alt={
+            plant.imageIsIllustration
+              ? `Visual referensi untuk tanaman ${plant.rawName}`
+              : `Foto tanaman ${plant.rawName}`
+          }
+          className="aspect-[16/10] !rounded-none !border-0 !shadow-none"
+          fallbackLabel={`Tanaman ${plant.rawName}`}
+          fallbackVariant="plant"
+          imageClassName="object-cover"
+          priority={priority}
+          sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, (max-width: 1279px) 30vw, 18rem"
+          src={image}
+        />
+      ) : null}
       <PublicCardBody>
         <div className="flex flex-wrap items-center gap-2">
           {partCategory ? (
@@ -53,7 +60,7 @@ export function PosterPlantCard({
         <h3 className={partCategory || plant.linkedPlantId ? "mt-4 line-clamp-2 text-lg font-extrabold leading-tight text-herbal-ink" : "line-clamp-2 text-lg font-extrabold leading-tight text-herbal-ink"}>
           <Link
             className="transition hover:text-herbal-green"
-            href={`/tanaman/${plant.slug}`}
+            href={href}
           >
             {plant.rawName}
           </Link>
@@ -73,7 +80,7 @@ export function PosterPlantCard({
           Zona: {plant.collections.slice(0, 3).join(", ")}
           {plant.collections.length > 3 ? "..." : ""}
         </p>
-        <PublicCardAction href={`/tanaman/${plant.slug}`}>
+        <PublicCardAction href={href}>
           Lihat detail
         </PublicCardAction>
       </PublicCardBody>

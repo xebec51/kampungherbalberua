@@ -7,12 +7,14 @@ import {
   useMemo,
   useState,
 } from "react";
+import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import type { PosterPlantCatalogItem } from "@/types";
 import { PosterPlantCard } from "@/components/plants/PosterPlantCard";
 import { EmptyState } from "@/components/ui/EmptyState";
 
 type PosterPlantCatalogProps = {
+  claimedPosterEntryCount: number;
   plants: PosterPlantCatalogItem[];
 };
 
@@ -35,7 +37,10 @@ function normalize(value: string) {
   return value.toLowerCase().trim();
 }
 
-export function PosterPlantCatalog({ plants }: PosterPlantCatalogProps) {
+export function PosterPlantCatalog({
+  claimedPosterEntryCount,
+  plants,
+}: PosterPlantCatalogProps) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -70,6 +75,20 @@ export function PosterPlantCatalog({ plants }: PosterPlantCatalogProps) {
       Array.from(new Set(plants.map((plant) => plant.partCategory))).sort(
         (a, b) => a.localeCompare(b, "id"),
       ),
+    [plants],
+  );
+  const posterEntries = useMemo(
+    () =>
+      plants
+        .flatMap((plant) =>
+          plant.posterNumbers.map((posterNumber) => ({
+            href: `/tanaman/${plant.linkedPlantSlug ?? plant.slug}`,
+            name: plant.rawName,
+            posterNumber,
+            zones: plant.collections,
+          })),
+        )
+        .sort((left, right) => left.posterNumber - right.posterNumber),
     [plants],
   );
 
@@ -157,9 +176,6 @@ export function PosterPlantCatalog({ plants }: PosterPlantCatalogProps) {
         return a.rawName.localeCompare(b.rawName, "id");
       });
   }, [collection, deferredQueryInput, imageKind, part, plants, sort]);
-  const visiblePlants = filteredPlants.slice(0, visibleCount);
-  const hasMore = visibleCount < filteredPlants.length;
-
   function resetFilters() {
     setQueryInput("");
     router.replace(pathname, { scroll: false });
@@ -172,6 +188,10 @@ export function PosterPlantCatalog({ plants }: PosterPlantCatalogProps) {
     collection ? { key: "zona", label: `Zona: ${collection}` } : null,
     part ? { key: "bagian", label: `Bagian: ${part}` } : null,
   ].filter((item): item is { key: string; label: string } => Boolean(item));
+  const hasActiveFilters = activeFilters.length > 0 || Boolean(imageKind);
+  const visibleLimit = hasActiveFilters ? filteredPlants.length : visibleCount;
+  const visiblePlants = filteredPlants.slice(0, visibleLimit);
+  const hasMore = !hasActiveFilters && visibleCount < filteredPlants.length;
 
   return (
     <div className="mt-8">
@@ -307,6 +327,44 @@ export function PosterPlantCatalog({ plants }: PosterPlantCatalogProps) {
           />
         </div>
       )}
+
+      {posterEntries.length > 0 ? (
+        <section className="mt-10 rounded-md border border-herbal-green/10 bg-white p-5 shadow-sm">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <h2 className="text-lg font-bold text-herbal-ink">
+                Daftar nomor poster lama
+              </h2>
+              <p className="mt-2 text-sm leading-6 text-herbal-muted">
+                Menampilkan {posterEntries.length} dari{" "}
+                {claimedPosterEntryCount} nomor poster sumber. Nomor 157-166
+                tidak ada pada sumber poster yang terbaca.
+              </p>
+            </div>
+          </div>
+          <div className="mt-5 grid gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {posterEntries.map((entry) => (
+              <Link
+                className="rounded-md border border-herbal-green/10 bg-herbal-cream/40 p-3 text-sm transition hover:border-herbal-green/35 hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
+                href={entry.href}
+                key={entry.posterNumber}
+              >
+                <span className="text-xs font-bold uppercase tracking-[0.12em] text-herbal-brown">
+                  No. {entry.posterNumber}
+                </span>
+                <span className="mt-1 block font-bold text-herbal-ink">
+                  {entry.name}
+                </span>
+                {entry.zones.length > 0 ? (
+                  <span className="mt-1 line-clamp-2 block text-xs leading-5 text-herbal-muted">
+                    {entry.zones.join(", ")}
+                  </span>
+                ) : null}
+              </Link>
+            ))}
+          </div>
+        </section>
+      ) : null}
     </div>
   );
 }

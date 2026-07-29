@@ -10,6 +10,7 @@ type AdminProtectedLayoutProps = {
 
 const adminNavigation = [
   { href: "/admin", label: "Dashboard" },
+  { href: "/admin/herbacode", label: "HerbaCode" },
   { href: "/admin/tanaman", label: "Tanaman" },
   { href: "/admin/zona", label: "Zona Kesehatan" },
   { href: "/admin/media", label: "Media" },

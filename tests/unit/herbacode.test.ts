@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import {
   extractHerbaCodeFromDocx,
@@ -70,5 +71,18 @@ describe("HerbaCode extraction", () => {
     expect(jintanHitam?.preparationMethods).toContain(
       "Dikonsumsi dalam bentuk biji, minyak, maupun kapsul herbal terstandar.",
     );
+  });
+
+  it("menyimpan SHA-256 dokumen pada JSON ekstraksi", () => {
+    expect(data.documentSha256).toMatch(/^[a-f0-9]{64}$/);
+  });
+
+  it("importer tidak mengisi jalan dari zona atau meng-upsert ulang plant existing", () => {
+    const source = readFileSync("scripts/herbacode/import.ts", "utf8");
+
+    expect(source).toContain("street_name: null");
+    expect(source).not.toContain("street_name: zone.title");
+    expect(source).not.toContain("upsert(matchedRows");
+    expect(source).toContain("readStoredHerbaCodeData");
   });
 });

@@ -1,6 +1,6 @@
 begin;
 
-select plan(9);
+select plan(11);
 
 create function pg_temp.throws(sql text)
 returns boolean
@@ -55,6 +55,10 @@ select ok(pg_temp.throws($$insert into public.health_zones (zone_code, slug, str
 select ok(pg_temp.throws($$insert into public.health_zones (zone_code, slug, street_name, zone_name, block_ranges, health_topic, short_description, overview, validation_status, validator_name, source_notes, content_status) values ('khb-z94', 'pgtap-verified-no-source', 'Jl. Verified', 'Zona Verified', array['V1'], 'Topic', 'Short', 'Overview', 'verified', 'Validator', array[]::text[], 'published')$$), 'verified without source_notes fails');
 
 select ok(pg_temp.lives($$insert into public.health_zones (zone_code, slug, street_name, zone_name, block_ranges, health_topic, short_description, overview, validation_status, validator_name, source_notes, content_status) values ('khb-z95', 'pgtap-verified-ok', 'Jl. Verified', 'Zona Verified', array['V1'], 'Topic', 'Short', 'Overview', 'verified', 'Validator', array['Source'], 'published')$$), 'verified with validator and source succeeds for admin');
+
+select ok(pg_temp.lives($$insert into public.health_zones (zone_code, slug, zone_name, block_ranges, health_topic, short_description, overview, content_status) values ('khb-z96', 'pgtap-no-street-zone', 'Zona Tanpa Jalan', array[]::text[], 'Topic', 'Short', 'Overview', 'draft')$$), 'health zone can exist without street_name');
+
+select ok(pg_temp.lives($$insert into public.streets (slug, street_name, content_status) values ('pgtap-real-street', 'Jl. PGTAP Riil', 'published')$$), 'real street entity can be created separately');
 
 select * from finish();
 

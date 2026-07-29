@@ -74,10 +74,16 @@ web_modules/
 .env.*
 !.env.example
 .env.media-import.local
+
+# Large source documents are represented by extracted JSON + SHA-256.
+herba code.docx
+*.docx
+
 data/media-work/
 data/media-cache/
 data/media-downloads/
 data/media-output/
+data/db-backups/
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache

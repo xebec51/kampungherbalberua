@@ -56,7 +56,7 @@ function parseZoneFormData(formData: FormData, role: string): ParsedZoneInput {
   const zoneCode = readText(formData, "zone_code").toLowerCase();
   const slug = readText(formData, "slug").toLowerCase();
   const programName = readText(formData, "program_name");
-  const streetName = readText(formData, "street_name");
+  const streetName = readOptionalText(formData, "street_name");
   const zoneName = readText(formData, "zone_name");
   const healthTopic = readText(formData, "health_topic");
   const shortDescription = readText(formData, "short_description");
@@ -78,7 +78,6 @@ function parseZoneFormData(formData: FormData, role: string): ParsedZoneInput {
 
   if (
     !programName ||
-    !streetName ||
     !zoneName ||
     !healthTopic ||
     !shortDescription ||
@@ -95,7 +94,7 @@ function parseZoneFormData(formData: FormData, role: string): ParsedZoneInput {
     zoneCode.length > 20 ||
     slug.length > 100 ||
     programName.length > 120 ||
-    streetName.length > 120 ||
+    (streetName?.length ?? 0) > 120 ||
     zoneName.length > 160 ||
     shortDescription.length > 320
   ) {

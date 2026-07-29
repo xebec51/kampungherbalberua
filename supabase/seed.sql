@@ -82,7 +82,7 @@ insert into public.health_zones (
   'khb-z01',
   'digestia',
   'Kampung Herbal Harmony',
-  'Jl. Digestia',
+  null,
   'Zona Pencernaan Sehat',
   array['E1-10', 'H1-5'],
   'Edukasi umum mengenai sistem pencernaan dan kebiasaan hidup sehat.',
@@ -106,7 +106,7 @@ insert into public.health_zones (
   'khb-z02',
   'respiria',
   'Kampung Herbal Harmony',
-  'Jl. Respiria',
+  null,
   'Zona Pernapasan Sehat',
   array['A1-7', 'D1-4', 'D9-14'],
   'Edukasi umum mengenai sistem pernapasan dan lingkungan sehat.',
@@ -130,7 +130,7 @@ insert into public.health_zones (
   'khb-z03',
   'glycemia',
   'Kampung Herbal Harmony',
-  'Jl. Glycemia',
+  null,
   'Zona Gula Darah Terkendali',
   array['H6-10', 'J2-4'],
   'Edukasi umum mengenai pola hidup sehat dan pemantauan gula darah oleh tenaga kesehatan.',
@@ -154,7 +154,7 @@ insert into public.health_zones (
   'khb-z04',
   'lipidia',
   'Kampung Herbal Harmony',
-  'Jl. Lipidia',
+  null,
   'Zona Lemak Sehat',
   array['D5-14', 'E1-4', 'E13-14'],
   'Edukasi umum mengenai pola makan seimbang dan kesehatan metabolik.',
@@ -178,7 +178,7 @@ insert into public.health_zones (
   'khb-z05',
   'imun',
   'Kampung Herbal Harmony',
-  'Jl. Imun',
+  null,
   'Zona Daya Tahan Tubuh',
   array['B1-9', 'C1-7'],
   'Edukasi umum mengenai kebiasaan hidup sehat yang mendukung daya tahan tubuh.',
@@ -202,7 +202,7 @@ insert into public.health_zones (
   'khb-z06',
   'hepatia',
   'Kampung Herbal Harmony',
-  'Jl. Hepatia',
+  null,
   'Zona Hati Sehat',
   array['C8-13', 'F1-5'],
   'Edukasi umum mengenai fungsi hati dan perilaku hidup sehat.',
@@ -226,7 +226,7 @@ insert into public.health_zones (
   'khb-z07',
   'feminia',
   'Kampung Herbal Harmony',
-  'Jl. Feminia',
+  null,
   'Zona Wanita Sehat Alami',
   array['F6-9', 'G1-3', 'G4-5'],
   'Edukasi kesehatan perempuan yang bersifat umum dan tidak menggantikan konsultasi tenaga kesehatan.',
@@ -250,7 +250,7 @@ insert into public.health_zones (
   'khb-z08',
   'vaskulia',
   'Kampung Herbal Harmony',
-  'Jl. Vaskulia',
+  null,
   'Zona Jantung dan Pembuluh Darah Sehat',
   array['J5-8', 'K1-6'],
   'Edukasi umum mengenai kesehatan jantung, pembuluh darah, dan pola hidup sehat.',
@@ -274,7 +274,7 @@ insert into public.health_zones (
   'khb-z09',
   'pediatria',
   'Kampung Herbal Harmony',
-  'Jl. Pediatria',
+  null,
   'Zona Anak Ceria',
   array['I1-4', 'I5-11'],
   'Edukasi umum mengenai tumbuh kembang dan kebiasaan sehat anak.',
@@ -316,6 +316,61 @@ on conflict (zone_code) do update set
   content_status = excluded.content_status,
   featured = excluded.featured,
   published_at = coalesce(public.health_zones.published_at, excluded.published_at);
+
+insert into public.streets (
+  slug,
+  street_name,
+  description,
+  source_notes,
+  validation_status,
+  content_status
+) values
+  ('digestia', 'Jl. Digestia', 'Jalan tematik untuk zona pencernaan.', array['Dipulihkan dari katalog zona awal Kampung Herbal Harmony.'], 'pending', 'published'),
+  ('respiria', 'Jl. Respiria', 'Jalan tematik untuk zona pernapasan.', array['Dipulihkan dari katalog zona awal Kampung Herbal Harmony.'], 'pending', 'published'),
+  ('glycemia', 'Jl. Glycemia', 'Jalan tematik untuk zona gula darah.', array['Dipulihkan dari katalog zona awal Kampung Herbal Harmony.'], 'pending', 'published'),
+  ('lipidia', 'Jl. Lipidia', 'Jalan tematik untuk zona lemak sehat.', array['Dipulihkan dari katalog zona awal Kampung Herbal Harmony.'], 'pending', 'published'),
+  ('imun', 'Jl. Imun', 'Jalan tematik untuk zona daya tahan tubuh.', array['Dipulihkan dari katalog zona awal Kampung Herbal Harmony.'], 'pending', 'published'),
+  ('hepatia', 'Jl. Hepatia', 'Jalan tematik untuk zona hati sehat.', array['Dipulihkan dari katalog zona awal Kampung Herbal Harmony.'], 'pending', 'published'),
+  ('feminia', 'Jl. Feminia', 'Jalan tematik untuk zona kesehatan perempuan.', array['Dipulihkan dari katalog zona awal Kampung Herbal Harmony.'], 'pending', 'published'),
+  ('vaskulia', 'Jl. Vaskulia', 'Jalan tematik untuk zona jantung dan pembuluh darah.', array['Dipulihkan dari katalog zona awal Kampung Herbal Harmony.'], 'pending', 'published'),
+  ('pediatria', 'Jl. Pediatria', 'Jalan tematik untuk zona anak.', array['Dipulihkan dari katalog zona awal Kampung Herbal Harmony.'], 'pending', 'published')
+on conflict (slug) do update set
+  street_name = excluded.street_name,
+  description = coalesce(public.streets.description, excluded.description),
+  source_notes = case
+    when public.streets.source_notes @> excluded.source_notes then public.streets.source_notes
+    else public.streets.source_notes || excluded.source_notes
+  end,
+  content_status = case
+    when public.streets.content_status = 'archived' then public.streets.content_status
+    else excluded.content_status
+  end,
+  updated_at = now();
+
+with restored_relations(zone_slug, street_slug, notes) as (
+  values
+    ('imunitas-kuat', 'imun', 'Relasi tema daya tahan tubuh.'),
+    ('pencernaan-sehat', 'digestia', 'Relasi tema pencernaan.'),
+    ('hati-sehat', 'hepatia', 'Relasi tema hati.'),
+    ('jantung-sehat', 'vaskulia', 'Relasi tema jantung dan pembuluh darah.'),
+    ('kesehatan-perempuan', 'feminia', 'Relasi tema kesehatan perempuan.')
+)
+insert into public.health_zone_streets (
+  health_zone_id,
+  street_id,
+  sort_order,
+  notes
+)
+select
+  hz.id,
+  s.id,
+  1,
+  restored_relations.notes
+from restored_relations
+join public.health_zones hz on hz.slug = restored_relations.zone_slug
+join public.streets s on s.slug = restored_relations.street_slug
+on conflict (health_zone_id, street_id) do update set
+  notes = coalesce(public.health_zone_streets.notes, excluded.notes);
 
 insert into public.plants (
   slug, local_name, scientific_name, other_names, category,

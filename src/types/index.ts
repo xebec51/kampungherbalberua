@@ -81,6 +81,11 @@ export type HerbaCodeZoneSummary = {
   slug: string;
   title: string;
   plantCount: number;
+  streetNames: string[];
+};
+
+export type HerbaCodeZoneDetail = HerbaCodeZoneSummary & {
+  entries: HerbaCodePlantZoneEntry[];
 };
 
 export type HerbaCodePlantZoneEntry = {
@@ -151,7 +156,7 @@ export type HealthZone = {
   zoneCode: string;
   slug: string;
   programName: string;
-  streetName: string;
+  streetName: string | null;
   zoneName: string;
   blockRanges: string[];
   healthTopic: string;

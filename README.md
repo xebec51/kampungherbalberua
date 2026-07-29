@@ -29,14 +29,14 @@ Kampung Herbal Berua membutuhkan portal digital yang dapat menjadi induk integra
 ## Fitur Tahap Pertama
 
 - Beranda publik dengan hero, akses cepat, profil singkat, HerbaCode, pratinjau peta, produk, kegiatan, dan disclaimer.
-- Katalog tanaman TOGA dengan pencarian, filter kategori, detail tanaman, status validasi, placeholder lokasi, dan placeholder QR Code.
-- Dashboard admin dengan login Supabase Auth, logout, proteksi `/admin`, dan CRUD tanaman berbasis role.
-- Modul zona kesehatan: `/zona-kesehatan`, `/zona-kesehatan/[slug]`, `/z/[code]`, admin zona, dan QR SVG/PNG.
+- Katalog tanaman gabungan poster dan HerbaCode dengan pencarian, filter zona/bagian, detail HerbaCode per tanaman, dan entri poster-only tanpa manfaat buatan.
+- Dashboard admin dengan login Supabase Auth, logout, proteksi `/admin`, CRUD tanaman, CRUD zona, dan dashboard `/admin/herbacode`.
+- Modul zona kesehatan: `/zona-kesehatan`, `/zona-kesehatan/[slug]`, `/z/[code]`, admin zona, QR SVG/PNG, serta pemisahan jalan melalui tabel `streets`.
 - Halaman ramuan sehat dengan bahan, takaran, langkah, saran penyajian, peringatan, dan disclaimer kesehatan.
 - Katalog produk warga dengan detail produk dan tombol WhatsApp nonaktif saat kontak belum tersedia.
 - Halaman tentang, peta, kunjungan edukasi, kegiatan, kinerja RT, kotak saran, dan tim KKN.
 - Metadata dasar, Open Graph, sitemap, robots, ikon lokal, loading UI, dan not-found UI.
-- Media Library global untuk metadata gambar, sumber, atribusi, fallback lokal, admin media dasar, dan halaman `/sumber-gambar`.
+- Media Library global untuk metadata gambar, sumber, atribusi, admin media dasar, dan halaman `/sumber-gambar`. Slot gambar publik disembunyikan bila media valid belum tersedia.
 
 ## Teknologi
 
@@ -150,7 +150,7 @@ src/
   types/               Tipe data konten
 public/
   icons/               Ikon lokal
-  images/placeholders/ Aset placeholder lokal
+  images/placeholders/ Aset sistem internal, tidak untuk placeholder konten publik
 supabase/
   migrations/          Migration SQL
   seed.sql             Seed data demonstrasi
@@ -164,9 +164,16 @@ docs/
   zona-photo-manifest.md Manifest foto zona yang diharapkan
 ```
 
-## Data Demonstrasi
+## Data Produksi dan HerbaCode
 
-Data tanaman, ramuan, produk, program RT, kegiatan, dan tim masih berupa data demonstrasi. Data final harus berasal dari pendataan lapangan dan proses verifikasi oleh pihak terkait sebelum dipublikasikan.
+Konten tanaman publik memakai union katalog poster dan HerbaCode:
+
+- 89 nama poster dan 206 kemunculan poster dipertahankan sebagai katalog Harmony.
+- 50 tanaman HerbaCode dan 95 relasi tanaman-zona menyimpan detail senyawa aktif, manfaat per zona, bagian digunakan, budidaya, perhatian, dan cara pemanfaatan bila tersedia.
+- Tanaman poster-only tetap tampil tanpa manfaat atau detail kesehatan buatan.
+- `data/herbacode/herbacode-data.json` menyimpan hasil ekstraksi dokumen.
+- `data/herbacode/import-report.json` menyimpan laporan import, koreksi judul, mapping, dan SHA-256 dokumen sumber.
+- `herba code.docx` tidak disimpan di working tree dan diabaikan oleh Git.
 
 Status yang digunakan:
 
@@ -226,12 +233,12 @@ Sprint ini menambahkan fondasi database Supabase untuk modul tanaman TOGA, auten
 - Migration SQL untuk tabel `profiles` dan `plants`, lengkap dengan enum, trigger `updated_at`, trigger pembuatan profile otomatis, index, dan Row Level Security (RLS).
 - Migration tambahan untuk workflow tanaman.
 - Migration SQL untuk tabel `health_zones`, constraint `zone_code`, trigger workflow, trigger permanensi QR, index, dan RLS.
-- Seed data demonstrasi untuk enam tanaman (Jahe, Kunyit, Serai, Daun Sirih, Bunga Telang, Temulawak).
-- Seed sembilan zona kesehatan Kampung Herbal Harmony.
-- Data-access layer publik untuk tanaman dan zona.
-- Data-access layer admin untuk dashboard, tanaman, dan zona.
+- Migration SQL untuk `streets` dan `health_zone_streets`; jalan tidak boleh berasal dari nama zona.
+- Migration SQL untuk `herbacode_plant_zone_entries` dan `herbacode_entry_history`.
+- Data-access layer publik untuk union tanaman, HerbaCode, poster, zona, media, dan QR.
+- Data-access layer admin untuk dashboard, tanaman, zona, media, dan HerbaCode.
 - **Local fallback**: halaman publik tanaman dan zona tetap memakai data lokal bila Supabase belum dikonfigurasi, client gagal dibuat, query gagal, atau tabel masih kosong.
-- Halaman yang sudah memakai data-access layer: `/`, `/tanaman`, `/tanaman/[slug]`, `/zona-kesehatan`, `/zona-kesehatan/[slug]`, `/z/[code]`, `/peta`, dan `sitemap.xml`.
+- Halaman yang sudah memakai data-access layer: `/`, `/tanaman`, `/tanaman/[slug]`, `/zona-kesehatan`, `/zona-kesehatan/[slug]`, `/z/[code]`, `/peta`, `/sumber-gambar`, dan `sitemap.xml`.
 
 Belum tersedia pada sprint ini (lihat juga [Fitur yang Sengaja Ditunda](#fitur-yang-sengaja-ditunda)):
 
@@ -250,6 +257,7 @@ Route admin:
 
 - Login: `/admin/login`
 - Dashboard: `/admin`
+- HerbaCode: `/admin/herbacode`
 - Tanaman: `/admin/tanaman`, `/admin/tanaman/baru`, `/admin/tanaman/[id]/edit`
 - Zona: `/admin/zona`, `/admin/zona/baru`, `/admin/zona/[id]/edit`
 - QR zona: `/admin/zona/[id]/qr?format=svg` atau `?format=png`
@@ -264,7 +272,7 @@ Route publik:
 - `/zona-kesehatan/[slug]`
 - `/z/[code]`
 
-QR selalu memakai `zone_code` seperti `khb-z01`. Slug boleh berubah tanpa mencetak ulang QR karena `/z/[code]` melakukan redirect sementara ke halaman canonical terbaru.
+QR selalu memakai `zone_code` secara internal. Slug boleh berubah tanpa mencetak ulang QR karena `/z/[code]` melakukan redirect sementara ke halaman canonical terbaru. Kode internal tidak ditampilkan pada halaman publik.
 
 Panduan operasional:
 
@@ -276,12 +284,14 @@ Panduan operasional:
 
 ## Migration Manual
 
-Migration baru harus diterapkan manual oleh pengelola project Supabase setelah review:
+Migration baru harus diterapkan manual oleh pengelola project Supabase setelah review SQL, backup remote, dan dry-run:
 
 - `supabase/migrations/20260717001000_enforce_plant_admin_workflow.sql`
 - `supabase/migrations/20260717002000_create_health_zones.sql`
+- `supabase/migrations/20260729100000_create_herbacode_zone_entries.sql`
+- `supabase/migrations/20260729130000_separate_streets_and_repair_herbacode.sql`
 
-Codex tidak menjalankan `npx supabase db push`, seed remote, reset database, atau koneksi ke project Supabase lain.
+Jangan menjalankan `npx supabase db push`, seed remote, reset database, atau koneksi ke project Supabase lain tanpa backup dan instruksi eksplisit.
 
 ## Roadmap
 

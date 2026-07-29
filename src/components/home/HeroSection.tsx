@@ -19,7 +19,7 @@ const heroStats = [
 
 export function HeroSection() {
   return (
-    <section className="relative isolate flex min-h-svh items-center overflow-hidden bg-herbal-deep text-white">
+    <section className="relative isolate flex min-h-[calc(100svh-4rem)] items-center overflow-hidden bg-herbal-deep text-white">
       <Image
         alt="Lorong Kampung Herbal Berua dengan pot tanaman obat keluarga di pagi hari"
         className="absolute inset-0 -z-30 h-full w-full object-cover"
@@ -34,7 +34,7 @@ export function HeroSection() {
       <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_center,rgba(198,115,60,0.16),transparent_34rem)]" />
       <div className="absolute inset-x-0 bottom-0 -z-10 h-48 bg-gradient-to-t from-herbal-ink to-transparent" />
 
-      <Container className="py-16 sm:py-24 lg:py-28">
+      <Container className="py-14 sm:py-20 lg:py-24">
         <div className="mx-auto flex max-w-5xl flex-col items-center text-center">
           <span className="inline-flex rounded-full border border-white/[0.35] bg-white/[0.18] px-5 py-2 text-sm font-bold text-white shadow-[0_10px_30px_rgba(0,0,0,0.24)] backdrop-blur">
             RT 009/RW 006 Kelurahan Berua
@@ -62,7 +62,7 @@ export function HeroSection() {
             </Link>
           </div>
 
-          <dl className="mt-12 grid w-full max-w-4xl gap-px overflow-hidden rounded-md border border-white/20 bg-white/[0.18] shadow-2xl backdrop-blur sm:grid-cols-3">
+          <dl className="mt-9 grid w-full max-w-4xl gap-px overflow-hidden rounded-md border border-white/20 bg-white/[0.18] shadow-2xl backdrop-blur sm:grid-cols-3">
             {heroStats.map((item) => (
               <div
                 className="bg-herbal-ink/45 px-5 py-4"

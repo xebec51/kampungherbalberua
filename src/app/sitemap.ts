@@ -5,6 +5,7 @@ import {
   getHerbaCodePlantSlugs,
   getHerbaCodeZoneSummaries,
 } from "@/lib/data/herbacode";
+import { getPosterPlantSlugs } from "@/lib/data/poster-plants";
 import { absoluteUrl } from "@/lib/metadata";
 
 const staticRoutes = [
@@ -20,8 +21,14 @@ const staticRoutes = [
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
-  const plantSlugs = await getHerbaCodePlantSlugs();
-  const zones = await getHerbaCodeZoneSummaries();
+  const [herbaCodePlantSlugs, posterPlantSlugs, zones] = await Promise.all([
+    getHerbaCodePlantSlugs(),
+    getPosterPlantSlugs(),
+    getHerbaCodeZoneSummaries(),
+  ]);
+  const plantSlugs = Array.from(
+    new Set([...herbaCodePlantSlugs, ...posterPlantSlugs]),
+  );
 
   const dynamicRoutes = [
     ...plantSlugs.map((slug) => `/tanaman/${slug}`),

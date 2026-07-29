@@ -19,11 +19,22 @@
       "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
     }
   ],
+  "documentSha256": "4aaeb20c948df5ac3890afdf817281d294a49ecb49616afc7b8b72915d9c9fb9",
+  "duplicateMappings": [],
   "documentEntryCount": 95,
-  "dryRun": false,
+  "dryRun": true,
   "failedMappings": [],
-  "matchedUniquePlants": 14,
-  "newPlants": 36,
+  "matchReport": {
+    "alias": 0,
+    "ambiguous": 0,
+    "duplicate": 0,
+    "exact": 50,
+    "new": 0,
+    "scientific": 0,
+    "unmapped": 0
+  },
+  "matchedUniquePlants": 50,
+  "newPlants": 0,
   "relationCount": 95,
   "sourceCode": "KHB-HERBACODE-2026",
   "sourceDocumentName": "HerbaCode Kampung Herbal Harmony",
