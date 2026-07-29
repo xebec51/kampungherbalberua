@@ -1,5 +1,6 @@
 import { expect, test, type Page } from "@playwright/test";
 import { expectDashboard, loginAs } from "./helpers/auth";
+import { hasSupabaseE2EEnv } from "./helpers/supabase";
 
 const viewports = [
   { height: 812, name: "mobile", width: 375 },
@@ -26,6 +27,11 @@ for (const viewport of viewports) {
       await page.getByRole("button", { name: "Buka menu navigasi" }).click();
       await expect(page.getByRole("navigation", { name: "Navigasi mobile" })).toBeVisible();
     }
+
+    test.skip(
+      !hasSupabaseE2EEnv(),
+      "Supabase lokal dibutuhkan untuk responsive admin E2E.",
+    );
 
     await loginAs(page, "admin");
     await expectDashboard(page);

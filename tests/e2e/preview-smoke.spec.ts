@@ -25,12 +25,15 @@ test("preview deployment public smoke @preview", async ({ page, request }) => {
   const nav = page.getByRole("navigation", { name: "Navigasi utama" });
   await expect(nav.getByRole("link", { exact: true, name: "Beranda" })).toBeVisible();
   await expect(nav.getByRole("button", { name: "Edukasi" })).toBeVisible();
+  await expect(nav.getByRole("link", { exact: true, name: "Peta Kampung" })).toBeVisible();
   await expect(nav.getByRole("button", { name: "Informasi Kampung" })).toBeVisible();
   await nav.getByRole("button", { name: "Edukasi" }).click();
   await expect(page.getByRole("menuitem", { name: "Tanaman TOGA" })).toBeVisible();
+  await expect(page.getByRole("menuitem", { name: "Zona Kesehatan" })).toBeVisible();
   await page.keyboard.press("Escape");
   await nav.getByRole("button", { name: "Informasi Kampung" }).click();
-  await expect(page.getByRole("menuitem", { name: "Peta Kampung" })).toBeVisible();
+  await expect(page.getByRole("menuitem", { name: "Jalan Tematik" })).toBeVisible();
+  await expect(page.getByRole("menuitem", { name: "Peta Kampung" })).toHaveCount(0);
   await expect(page.getByRole("menuitem", { name: "Tentang" })).toBeVisible();
   await page.keyboard.press("Escape");
 
@@ -48,6 +51,14 @@ test("preview deployment public smoke @preview", async ({ page, request }) => {
   await page.goto("/sumber-gambar");
   await expect(
     page.getByRole("heading", { exact: true, name: "Sumber Gambar" }),
+  ).toBeVisible();
+
+  await page.goto("/jalan");
+  await expect(
+    page.getByRole("heading", { exact: true, name: "Jalan Tematik Kampung Herbal" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("img", { name: "Papan tanaman di Jl. Imun" }),
   ).toBeVisible();
 
   const qr = await request.get("/z/khb-z01", { maxRedirects: 0 });

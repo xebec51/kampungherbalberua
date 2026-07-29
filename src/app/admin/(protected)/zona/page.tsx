@@ -112,8 +112,8 @@ export default async function AdminZonesPage({ searchParams }: AdminZonesPagePro
               Zona Kesehatan
             </h2>
             <p className="mt-3 max-w-2xl text-sm leading-6 text-herbal-muted">
-              Kelola sembilan zona Kampung Herbal Harmony dan kode permanen
-              untuk QR papan fisik.
+              Kelola sembilan zona Kampung Herbal Harmony dan URL QR permanen
+              publik untuk papan fisik.
             </p>
           </div>
           {canEditContent(profile.role) ? (
@@ -266,7 +266,7 @@ function ZoneAdminCard({ canDelete, canEdit, role, zone }: ZoneAdminCardProps) {
             {zone.short_description}
           </p>
           <p className="mt-3 text-xs font-semibold uppercase tracking-[0.12em] text-herbal-muted">
-            QR permanen /z/{zone.zone_code} | Diperbarui{" "}
+            QR publik /qr/zona/{zone.qr_key} | Diperbarui{" "}
             {new Date(zone.updated_at).toLocaleString("id-ID")}
           </p>
         </div>

@@ -295,6 +295,7 @@ export type Database = {
       health_zones: {
         Row: {
           id: string;
+          qr_key: string;
           zone_code: string;
           slug: string;
           program_name: string;
@@ -324,6 +325,7 @@ export type Database = {
         };
         Insert: {
           id?: string;
+          qr_key?: string;
           zone_code: string;
           slug: string;
           program_name?: string;
@@ -353,6 +355,7 @@ export type Database = {
         };
         Update: {
           id?: string;
+          qr_key?: string;
           zone_code?: string;
           slug?: string;
           program_name?: string;
@@ -407,6 +410,7 @@ export type Database = {
       streets: {
         Row: {
           id: string;
+          qr_key: string;
           slug: string;
           street_name: string;
           description: string | null;
@@ -420,6 +424,7 @@ export type Database = {
         };
         Insert: {
           id?: string;
+          qr_key?: string;
           slug: string;
           street_name: string;
           description?: string | null;
@@ -433,6 +438,7 @@ export type Database = {
         };
         Update: {
           id?: string;
+          qr_key?: string;
           slug?: string;
           street_name?: string;
           description?: string | null;
@@ -496,6 +502,136 @@ export type Database = {
             columns: ["street_id"];
             isOneToOne: false;
             referencedRelation: "streets";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      street_plant_entries: {
+        Row: {
+          id: string;
+          street_id: string;
+          plant_id: string | null;
+          raw_plant_name: string;
+          normalized_name: string;
+          sort_order: number;
+          match_status:
+            | "exact"
+            | "alias"
+            | "scientific"
+            | "manual"
+            | "ambiguous"
+            | "unresolved";
+          source_media_id: string | null;
+          source_photo_path: string | null;
+          notes: string | null;
+          content_status: ContentStatus;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          street_id: string;
+          plant_id?: string | null;
+          raw_plant_name: string;
+          normalized_name: string;
+          sort_order: number;
+          match_status?:
+            | "exact"
+            | "alias"
+            | "scientific"
+            | "manual"
+            | "ambiguous"
+            | "unresolved";
+          source_media_id?: string | null;
+          source_photo_path?: string | null;
+          notes?: string | null;
+          content_status?: ContentStatus;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          street_id?: string;
+          plant_id?: string | null;
+          raw_plant_name?: string;
+          normalized_name?: string;
+          sort_order?: number;
+          match_status?:
+            | "exact"
+            | "alias"
+            | "scientific"
+            | "manual"
+            | "ambiguous"
+            | "unresolved";
+          source_media_id?: string | null;
+          source_photo_path?: string | null;
+          notes?: string | null;
+          content_status?: ContentStatus;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "street_plant_entries_street_id_fkey";
+            columns: ["street_id"];
+            isOneToOne: false;
+            referencedRelation: "streets";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "street_plant_entries_plant_id_fkey";
+            columns: ["plant_id"];
+            isOneToOne: false;
+            referencedRelation: "plants";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "street_plant_entries_source_media_id_fkey";
+            columns: ["source_media_id"];
+            isOneToOne: false;
+            referencedRelation: "media_assets";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      street_media: {
+        Row: {
+          street_id: string;
+          media_id: string;
+          role: string;
+          sort_order: number;
+          is_primary: boolean;
+          created_at: string;
+        };
+        Insert: {
+          street_id: string;
+          media_id: string;
+          role: string;
+          sort_order?: number;
+          is_primary?: boolean;
+          created_at?: string;
+        };
+        Update: {
+          street_id?: string;
+          media_id?: string;
+          role?: string;
+          sort_order?: number;
+          is_primary?: boolean;
+          created_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "street_media_street_id_fkey";
+            columns: ["street_id"];
+            isOneToOne: false;
+            referencedRelation: "streets";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "street_media_media_id_fkey";
+            columns: ["media_id"];
+            isOneToOne: false;
+            referencedRelation: "media_assets";
             referencedColumns: ["id"];
           },
         ];

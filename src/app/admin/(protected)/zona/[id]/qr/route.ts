@@ -45,10 +45,10 @@ export async function GET(
   }
 
   const zone = result.data;
-  const filename = `qr-${safeFileName(zone.zone_code)}-${safeFileName(zone.slug)}.${format}`;
+  const filename = `qr-zona-${safeFileName(zone.qr_key)}.${format}`;
 
   if (format === "svg") {
-    const svg = await createHealthZoneQrSvg(zone.zone_code);
+    const svg = await createHealthZoneQrSvg(zone.qr_key);
 
     return new Response(svg, {
       headers: {
@@ -58,7 +58,7 @@ export async function GET(
     });
   }
 
-  const png = await createHealthZoneQrPng(zone.zone_code);
+  const png = await createHealthZoneQrPng(zone.qr_key);
 
   return new Response(new Uint8Array(png), {
     headers: {

@@ -1,6 +1,15 @@
 import { expect, test } from "@playwright/test";
 import { loginAs } from "./helpers/auth";
-import { cleanupE2EData, signInE2EClient } from "./helpers/supabase";
+import {
+  cleanupE2EData,
+  hasSupabaseE2EEnv,
+  signInE2EClient,
+} from "./helpers/supabase";
+
+test.skip(
+  !hasSupabaseE2EEnv(),
+  "Supabase lokal dibutuhkan untuk CRUD admin E2E.",
+);
 
 test.beforeAll(async () => {
   await cleanupE2EData();

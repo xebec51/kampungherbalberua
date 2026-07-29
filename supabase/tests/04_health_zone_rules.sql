@@ -1,6 +1,6 @@
 begin;
 
-select plan(11);
+select plan(15);
 
 create function pg_temp.throws(sql text)
 returns boolean
@@ -50,6 +50,12 @@ select ok(pg_temp.lives($$update public.health_zones set slug = 'pgtap-permanent
 
 select is((select zone_code from public.health_zones where slug = 'pgtap-permanent-zone-baru'), 'khb-z91', 'slug change does not change zone_code');
 
+select is((select qr_key from public.health_zones where zone_code = 'khb-z91'), 'pgtap-permanent-zone', 'slug change does not change public qr_key');
+
+select ok(pg_temp.throws($$update public.health_zones set qr_key = 'pgtap-permanent-zone-new' where zone_code = 'khb-z91'$$), 'public qr_key cannot change after creation');
+
+select ok(pg_temp.throws($$insert into public.health_zones (zone_code, qr_key, slug, street_name, zone_name, block_ranges, health_topic, short_description, overview, content_status) values ('khb-z89', 'khb-z89', 'pgtap-bad-qr-zone', 'Jl. Bad QR', 'Zona Bad QR', array['Q1'], 'Topic', 'Short', 'Overview', 'draft')$$), 'health zone public qr_key cannot use legacy zone_code pattern');
+
 select ok(pg_temp.throws($$insert into public.health_zones (zone_code, slug, street_name, zone_name, block_ranges, health_topic, short_description, overview, validation_status, content_status) values ('khb-z93', 'pgtap-verified-no-validator', 'Jl. Verified', 'Zona Verified', array['V1'], 'Topic', 'Short', 'Overview', 'verified', 'published')$$), 'verified without validator_name fails');
 
 select ok(pg_temp.throws($$insert into public.health_zones (zone_code, slug, street_name, zone_name, block_ranges, health_topic, short_description, overview, validation_status, validator_name, source_notes, content_status) values ('khb-z94', 'pgtap-verified-no-source', 'Jl. Verified', 'Zona Verified', array['V1'], 'Topic', 'Short', 'Overview', 'verified', 'Validator', array[]::text[], 'published')$$), 'verified without source_notes fails');
@@ -59,6 +65,8 @@ select ok(pg_temp.lives($$insert into public.health_zones (zone_code, slug, stre
 select ok(pg_temp.lives($$insert into public.health_zones (zone_code, slug, zone_name, block_ranges, health_topic, short_description, overview, content_status) values ('khb-z96', 'pgtap-no-street-zone', 'Zona Tanpa Jalan', array[]::text[], 'Topic', 'Short', 'Overview', 'draft')$$), 'health zone can exist without street_name');
 
 select ok(pg_temp.lives($$insert into public.streets (slug, street_name, content_status) values ('pgtap-real-street', 'Jl. PGTAP Riil', 'published')$$), 'real street entity can be created separately');
+
+select ok(pg_temp.throws($$insert into public.streets (qr_key, slug, street_name, content_status) values ('khb-z88', 'pgtap-bad-qr-street', 'Jl. Bad QR Street', 'published')$$), 'street public qr_key cannot use legacy zone_code pattern');
 
 select * from finish();
 

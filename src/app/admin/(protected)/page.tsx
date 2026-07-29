@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { CopyQrUrlButton } from "@/components/admin/CopyQrUrlButton";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { getAdminDashboardStats } from "@/lib/data/admin/dashboard";
+import { getAllHealthZonesForAdmin } from "@/lib/data/admin/health-zones";
+import { getAllStreetsForAdmin } from "@/lib/data/admin/streets";
 import { createPageMetadata } from "@/lib/metadata";
+import { getHealthZoneQrTarget, getStreetQrTarget } from "@/lib/qr/health-zone-qr";
 
 export const dynamic = "force-dynamic";
 
@@ -12,8 +17,16 @@ export const metadata: Metadata = createPageMetadata({
 });
 
 export default async function AdminDashboardPage() {
-  const result = await getAdminDashboardStats();
+  const [result, zonesResult, streetsResult] = await Promise.all([
+    getAdminDashboardStats(),
+    getAllHealthZonesForAdmin({ contentStatus: "published" }),
+    getAllStreetsForAdmin(),
+  ]);
   const stats = result.data;
+  const publishedZones = zonesResult.data ?? [];
+  const publishedStreets =
+    streetsResult.data?.filter((street) => street.content_status === "published") ??
+    [];
 
   return (
     <div className="grid gap-6">
@@ -59,7 +72,110 @@ export default async function AdminDashboardPage() {
           />
         </section>
       )}
+
+      <section className="grid gap-4 rounded-md border border-herbal-green/10 bg-white p-5 shadow-sm">
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+          <div>
+            <h3 className="text-xl font-bold text-herbal-ink">
+              QR Permanen Publik
+            </h3>
+            <p className="mt-2 max-w-3xl text-sm leading-6 text-herbal-muted">
+              QR baru memakai kunci publik permanen. Route lama zona tetap
+              tersedia hanya untuk kompatibilitas.
+            </p>
+          </div>
+          <StatusBadge tone="green">
+            {publishedZones.length + publishedStreets.length} target published
+          </StatusBadge>
+        </div>
+
+        <div className="grid gap-4 lg:grid-cols-2">
+          <QrList
+            emptyText={zonesResult.error ?? "Belum ada zona published."}
+            items={publishedZones.map((zone) => ({
+              adminQrPath: `/admin/zona/${zone.id}/qr`,
+              destinationPath: `/zona-kesehatan/${zone.slug}`,
+              label: zone.zone_name,
+              qrUrl: getHealthZoneQrTarget(zone.qr_key),
+              subtitle: `/qr/zona/${zone.qr_key}`,
+            }))}
+            title="Zona Kesehatan"
+          />
+          <QrList
+            emptyText={streetsResult.error ?? "Belum ada jalan published."}
+            items={publishedStreets.map((street) => ({
+              adminQrPath: `/admin/jalan/${street.id}/qr`,
+              destinationPath: `/jalan/${street.slug}`,
+              label: street.street_name,
+              qrUrl: getStreetQrTarget(street.qr_key),
+              subtitle: `/qr/jalan/${street.qr_key}`,
+            }))}
+            title="Jalan Tematik"
+          />
+        </div>
+      </section>
     </div>
+  );
+}
+
+type QrListProps = {
+  emptyText: string;
+  items: Array<{
+    adminQrPath: string;
+    destinationPath: string;
+    label: string;
+    qrUrl: string;
+    subtitle: string;
+  }>;
+  title: string;
+};
+
+function QrList({ emptyText, items, title }: QrListProps) {
+  return (
+    <section className="rounded-md border border-herbal-green/10 bg-herbal-soft p-4">
+      <h4 className="text-base font-bold text-herbal-ink">{title}</h4>
+      {items.length === 0 ? (
+        <p className="mt-3 text-sm leading-6 text-herbal-muted">{emptyText}</p>
+      ) : (
+        <div className="mt-4 grid gap-3">
+          {items.map((item) => (
+            <article
+              className="rounded-md border border-herbal-green/10 bg-white p-4"
+              key={item.qrUrl}
+            >
+              <p className="font-bold text-herbal-ink">{item.label}</p>
+              <p className="mt-1 break-words text-xs font-semibold uppercase tracking-[0.12em] text-herbal-muted">
+                {item.subtitle}
+              </p>
+              <p className="mt-2 break-words text-xs leading-5 text-herbal-muted">
+                {item.qrUrl}
+              </p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                <Link
+                  className="inline-flex min-h-10 items-center justify-center rounded-md bg-herbal-green px-4 py-2 text-sm font-semibold text-white transition hover:bg-herbal-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
+                  href={`${item.adminQrPath}?format=svg`}
+                >
+                  Unduh QR SVG
+                </Link>
+                <Link
+                  className="inline-flex min-h-10 items-center justify-center rounded-md border border-herbal-green bg-white px-4 py-2 text-sm font-semibold text-herbal-green transition hover:bg-herbal-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
+                  href={`${item.adminQrPath}?format=png`}
+                >
+                  Unduh QR PNG
+                </Link>
+                <Link
+                  className="inline-flex min-h-10 items-center justify-center rounded-md border border-herbal-green bg-white px-4 py-2 text-sm font-semibold text-herbal-green transition hover:bg-herbal-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
+                  href={item.destinationPath}
+                >
+                  Buka halaman tujuan
+                </Link>
+                <CopyQrUrlButton url={item.qrUrl} />
+              </div>
+            </article>
+          ))}
+        </div>
+      )}
+    </section>
   );
 }
 

@@ -65,6 +65,7 @@ test("desktop dan mobile navbar tetap accessible dengan struktur publik", async 
   const nav = page.getByRole("navigation", { name: "Navigasi utama" });
   await expect(nav.getByRole("link", { exact: true, name: "Beranda" })).toBeVisible();
   await expect(nav.getByRole("button", { name: "Edukasi" })).toBeVisible();
+  await expect(nav.getByRole("link", { exact: true, name: "Peta Kampung" })).toBeVisible();
   await expect(nav.getByRole("button", { name: "Informasi Kampung" })).toBeVisible();
   await expect(nav.getByRole("link", { exact: true, name: "Produk" })).toHaveCount(0);
   await expect(nav.getByRole("link", { exact: true, name: "Kotak Saran" })).toHaveCount(0);
@@ -82,6 +83,11 @@ test("desktop dan mobile navbar tetap accessible dengan struktur publik", async 
 
   await page.keyboard.press("Escape");
   await expect(edukasiButton).toHaveAttribute("aria-expanded", "false");
+  const infoButton = nav.getByRole("button", { name: "Informasi Kampung" });
+  await infoButton.click();
+  await expect(page.getByRole("menuitem", { name: "Jalan Tematik" })).toBeVisible();
+  await expect(page.getByRole("menuitem", { name: "Peta Kampung" })).toHaveCount(0);
+  await page.keyboard.press("Escape");
 
   await page.setViewportSize({ height: 812, width: 375 });
   await page.goto("/");
@@ -90,6 +96,8 @@ test("desktop dan mobile navbar tetap accessible dengan struktur publik", async 
   const mobileNav = page.getByRole("navigation", { name: "Navigasi mobile" });
   await expect(mobileNav.getByRole("link", { name: "Tanaman TOGA" })).toBeVisible();
   await expect(mobileNav.getByRole("link", { name: "Zona Kesehatan" })).toBeVisible();
+  await expect(mobileNav.getByRole("link", { name: "Peta Kampung" })).toBeVisible();
+  await expect(mobileNav.getByRole("link", { name: "Jalan Tematik" })).toBeVisible();
   await expect(mobileNav.getByRole("link", { name: "Ramuan Sehat" })).toHaveCount(0);
   await expectNoHorizontalOverflow(page);
 });
@@ -163,7 +171,10 @@ test("detail zona menampilkan relasi tanaman-zona HerbaCode", async ({ page }) =
   await expectNoPublicPlaceholderText(page);
 
   await page.getByRole("link", { name: "Meniran" }).click();
-  await expect(page.getByRole("heading", { name: "Meniran" })).toBeVisible();
+  await expect(page).toHaveURL(/\/tanaman\/meniran/);
+  await expect(page.getByRole("heading", { name: "Meniran" })).toBeVisible({
+    timeout: 30_000,
+  });
   await expect(page.getByText("Phyllanthin", { exact: true })).toBeVisible();
 });
 
@@ -188,13 +199,68 @@ test("peta menampilkan 9 jalan tematik yang dipulihkan", async ({ page }) => {
   await expectNoHorizontalOverflow(page);
 });
 
+test("jalan tematik menampilkan foto dan tidak memakai relasi zona sebagai tanaman", async ({
+  page,
+}) => {
+  test.setTimeout(120_000);
+
+  await page.goto("/jalan");
+
+  await expect(
+    page.getByRole("heading", { name: "Jalan Tematik Kampung Herbal" }),
+  ).toBeVisible();
+  await expect(page.getByRole("link", { name: /Buka detail Jl\./ })).toHaveCount(9);
+
+  for (const streetName of [
+    "Digestia",
+    "Respiria",
+    "Glycemia",
+    "Lipidia",
+    "Imun",
+    "Hepatia",
+    "Feminia",
+    "Vaskulia",
+    "Pediatria",
+  ]) {
+    await expect(
+      page.getByRole("img", { name: `Papan tanaman di Jl. ${streetName}` }),
+    ).toBeVisible();
+  }
+
+  await page.goto("/jalan/imun");
+  await expect(page.getByRole("heading", { name: "Jl. Imun" })).toBeVisible();
+  await expect(
+    page.getByRole("img", { name: "Papan tanaman di Jl. Imun" }),
+  ).toBeVisible();
+  await expect(page.getByText("Dokumentasi KKN Kampung Herbal Berua, 2026.")).toBeVisible();
+  await expect(
+    page.getByText("Data ini tidak diambil dari relasi tanaman-zona HerbaCode."),
+  ).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Tanaman pada jalan ini" })).toBeVisible();
+  await expect(page.locator('a[href="/tanaman/meniran"]').first()).toBeVisible();
+  await expect(page.locator('a[href="/tanaman/jahe"]').first()).toBeVisible();
+  await expect(page.locator('a[href="/tanaman/miana"]').first()).toBeVisible();
+  await expect(page.getByText("Urutan 11")).toBeVisible();
+  await expect(page.getByRole("link", { name: "Zona Imunitas Kuat" })).toBeVisible();
+
+  await page.goto("/zona-kesehatan/imunitas-kuat");
+  await expect(page.getByRole("img", { name: /Papan tanaman di Jl\./ })).toHaveCount(0);
+
+  await expectNoPublicPlaceholderText(page);
+  await expectNoHorizontalOverflow(page);
+});
+
 test("halaman publik utama bebas placeholder, undefined, dan null", async ({
   page,
 }) => {
+  test.setTimeout(120_000);
+
   const routes = [
     "/",
     "/tanaman",
     "/tanaman/jahe",
+    "/jalan",
+    "/jalan/imun",
     "/zona-kesehatan",
     "/zona-kesehatan/imunitas-kuat",
     "/peta",
@@ -221,6 +287,7 @@ test("sitemap dan robots memakai route HerbaCode tanpa route QR", async ({
   const sitemapText = await sitemap.text();
   expect(sitemapText).toContain("/tanaman/jahe");
   expect(sitemapText).toContain("/tanaman/willow-bark");
+  expect(sitemapText).toContain("/jalan/imun");
   expect(sitemapText).toContain("/zona-kesehatan/imunitas-kuat");
   expect(sitemapText).not.toContain("/z/khb-z01");
 

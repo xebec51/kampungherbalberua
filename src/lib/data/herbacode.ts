@@ -330,6 +330,22 @@ export async function getHerbaCodeZoneSummaries(): Promise<HerbaCodeZoneSummary[
   );
 }
 
+export function getLocalHerbaCodeZoneQrTargetBySlug(slug: string) {
+  if (/^khb-z[0-9]{2}$/i.test(slug)) {
+    return undefined;
+  }
+
+  const zone = localData.zones.find((item) => item.slug === slug);
+
+  return zone
+    ? {
+        qrKey: zone.slug,
+        slug: zone.slug,
+        zoneCode: zone.zoneCode,
+      }
+    : undefined;
+}
+
 export async function getHerbaCodeZoneBySlug(
   slug: string,
 ): Promise<HerbaCodeZoneDetail | undefined> {

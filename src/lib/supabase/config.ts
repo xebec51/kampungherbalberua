@@ -3,6 +3,8 @@ export type SupabaseRuntimeConfig = {
   publishableKey: string;
 };
 
+const defaultSupabaseFetchTimeoutMs = 3_000;
+
 function readEnv(name: string) {
   const value = process.env[name];
   return value && value.trim().length > 0 ? value.trim() : undefined;
@@ -41,4 +43,26 @@ export function getSupabaseConfig(): SupabaseRuntimeConfig | null {
 
 export function isSupabaseConfigured(): boolean {
   return getSupabaseConfig() !== null;
+}
+
+export async function supabaseFetchWithTimeout(
+  input: RequestInfo | URL,
+  init?: RequestInit,
+) {
+  const rawTimeout = Number(process.env.SUPABASE_FETCH_TIMEOUT_MS);
+  const timeoutMs =
+    Number.isFinite(rawTimeout) && rawTimeout > 0
+      ? rawTimeout
+      : defaultSupabaseFetchTimeoutMs;
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), timeoutMs);
+
+  try {
+    return await fetch(input, {
+      ...init,
+      signal: init?.signal ?? controller.signal,
+    });
+  } finally {
+    clearTimeout(timeout);
+  }
 }

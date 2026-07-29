@@ -1,7 +1,10 @@
 import { cookies } from "next/headers";
 import { createServerClient } from "@supabase/ssr";
 import type { Database } from "@/lib/supabase/database.types";
-import { getSupabaseConfig } from "@/lib/supabase/config";
+import {
+  getSupabaseConfig,
+  supabaseFetchWithTimeout,
+} from "@/lib/supabase/config";
 
 /**
  * Creates a Supabase client for use inside Server Components, Route
@@ -36,6 +39,9 @@ export async function createSupabaseServerClient() {
           // Called from a Server Component; session refresh happens elsewhere.
         }
       },
+    },
+    global: {
+      fetch: supabaseFetchWithTimeout,
     },
   });
 }

@@ -132,8 +132,9 @@ describe("plant media rendering", () => {
     );
 
     expect(detailPageSource).toContain('import { SafeImage }');
-    expect(detailPageSource).toContain("plant.image ? (");
-    expect(detailPageSource).toContain("src={plant.image}");
+    expect(detailPageSource).toContain("visibleDetailImageSrc");
+    expect(detailPageSource).toContain("PlantDetailImage");
+    expect(detailPageSource).toContain("src={visual.src}");
   });
 
   it("kartu beranda memakai HerbaCodePlantCard", () => {

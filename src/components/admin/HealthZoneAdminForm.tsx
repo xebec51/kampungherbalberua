@@ -76,7 +76,7 @@ export function HealthZoneAdminForm({
       {zoneCodeLocked ? (
         <div className="rounded-md border border-herbal-green/20 bg-herbal-soft p-4 text-sm leading-6 text-herbal-deep">
           Kode zona sudah permanen karena zona pernah dipublikasikan. Perubahan
-          slug tidak mengubah target QR.
+          slug tidak mengubah URL QR publik yang sudah dibuat.
         </div>
       ) : null}
 
@@ -86,7 +86,7 @@ export function HealthZoneAdminForm({
           <TextField
             defaultValue={text(zone?.zone_code)}
             disabled={disabled}
-            help="Format permanen untuk QR, misalnya khb-z01."
+            help="Identitas internal dan kompatibilitas QR lama."
             label="Kode zona"
             name="zone_code"
             readOnly={zoneCodeLocked}

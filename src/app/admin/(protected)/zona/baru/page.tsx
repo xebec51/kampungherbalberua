@@ -45,8 +45,9 @@ export default async function NewZonePage({ searchParams }: NewZonePageProps) {
           Tambah Zona Kesehatan
         </h2>
         <p className="mt-3 max-w-2xl text-sm leading-6 text-herbal-muted">
-          Gunakan kode permanen seperti khb-z01. QR akan memakai kode zona,
-          bukan slug.
+          Kode zona dipakai sebagai identitas internal dan kompatibilitas QR
+          lama. URL QR publik baru dibuat otomatis dari kunci QR permanen yang
+          terpisah dari slug halaman.
         </p>
       </header>
       <AdminNotice message={errorMessages[params.error ?? ""]} tone="error" />

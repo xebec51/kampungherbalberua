@@ -8,7 +8,8 @@ import { updateHealthZoneAction } from "@/app/admin/(protected)/zona/actions";
 import { canEditContent } from "@/lib/auth/permissions";
 import { requireStaff } from "@/lib/auth/require-staff";
 import { getHealthZoneByIdForAdmin } from "@/lib/data/admin/health-zones";
-import { absoluteUrl, createPageMetadata } from "@/lib/metadata";
+import { createPageMetadata } from "@/lib/metadata";
+import { getHealthZoneQrTarget } from "@/lib/qr/health-zone-qr";
 
 type EditZonePageProps = {
   params: Promise<{
@@ -67,7 +68,7 @@ export default async function EditZonePage({
     profile.role === "editor" &&
     !["draft", "pending_review"].includes(result.data.content_status);
   const readOnly = !canEditContent(profile.role) || editorLocked;
-  const targetUrl = absoluteUrl(`/z/${result.data.zone_code}`);
+  const targetUrl = getHealthZoneQrTarget(result.data.qr_key);
 
   return (
     <div className="grid gap-6">
@@ -82,7 +83,8 @@ export default async function EditZonePage({
           Edit Zona Kesehatan
         </h2>
         <p className="mt-3 max-w-2xl text-sm leading-6 text-herbal-muted">
-          {result.data.street_name ?? result.data.zone_name}. Target QR permanen saat ini: {targetUrl}
+          {result.data.street_name ?? result.data.zone_name}. URL QR permanen
+          baru: {targetUrl}
         </p>
       </header>
       <AdminNotice message={successMessages[query.success ?? ""]} />

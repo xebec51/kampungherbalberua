@@ -7,6 +7,7 @@ import {
   testPassword,
   testUsers,
 } from "./helpers/auth";
+import { hasSupabaseE2EEnv } from "./helpers/supabase";
 
 test("pengguna belum login diarahkan dari admin ke login", async ({ page }) => {
   await page.goto("/admin");
@@ -23,12 +24,16 @@ test("login gagal menampilkan pesan umum", async ({ page }) => {
 });
 
 test("viewer login ditolak", async ({ page }) => {
+  test.skip(!hasSupabaseE2EEnv(), "Supabase lokal dibutuhkan untuk login E2E.");
+
   await loginAs(page, "viewer");
   await expect(page.getByText("Akses ditolak. Hubungi pengelola website.")).toBeVisible();
   await expect(page).toHaveURL(/\/admin\/login/);
 });
 
 test("editor dapat membuka dashboard dan logout", async ({ page }) => {
+  test.skip(!hasSupabaseE2EEnv(), "Supabase lokal dibutuhkan untuk login E2E.");
+
   await loginAs(page, "editor");
   await expectDashboard(page);
   await expectRoleBadge(page, "editor");
@@ -36,6 +41,8 @@ test("editor dapat membuka dashboard dan logout", async ({ page }) => {
 });
 
 test("validator membuka dashboard read-only", async ({ page }) => {
+  test.skip(!hasSupabaseE2EEnv(), "Supabase lokal dibutuhkan untuk login E2E.");
+
   await loginAs(page, "validator");
   await expectDashboard(page);
   await expectRoleBadge(page, "validator");
@@ -44,6 +51,8 @@ test("validator membuka dashboard read-only", async ({ page }) => {
 });
 
 test("admin membuka dashboard penuh", async ({ page }) => {
+  test.skip(!hasSupabaseE2EEnv(), "Supabase lokal dibutuhkan untuk login E2E.");
+
   await loginAs(page, "admin");
   await expectDashboard(page);
   await expectRoleBadge(page, "admin");
@@ -54,6 +63,8 @@ test("admin membuka dashboard penuh", async ({ page }) => {
 test("redirect eksternal ditolak dan session tidak memakai localStorage", async ({
   page,
 }) => {
+  test.skip(!hasSupabaseE2EEnv(), "Supabase lokal dibutuhkan untuk login E2E.");
+
   await page.goto("/admin/login?next=https://example.com");
   await page.getByLabel("Email").fill(testUsers.editor);
   await page.getByLabel("Kata sandi").fill(testPassword);

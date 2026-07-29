@@ -125,6 +125,7 @@ export default async function PlantDetailPage({ params }: PlantDetailPageProps) 
     ? null
     : await getPosterVisualForHerbaCodePlant(plant);
   const fallbackPosterImage = visibleDetailImageSrc(fallbackPosterVisual?.image);
+  const fallbackLocalImage = visibleDetailImageSrc(localPlantDetailImages[plant.slug]);
   const visual = plant.image
     ? {
         alt: `Tanaman ${plant.localName}`,
@@ -139,6 +140,13 @@ export default async function PlantDetailPage({ params }: PlantDetailPageProps) 
           isIllustration: fallbackPosterVisual.imageIsIllustration,
           src: fallbackPosterImage,
         }
+      : fallbackLocalImage
+        ? {
+            alt: `Tanaman ${plant.localName}`,
+            fallbackLabel: `Tanaman ${plant.localName}`,
+            isIllustration: false,
+            src: fallbackLocalImage,
+          }
       : null;
 
   return (
@@ -388,6 +396,10 @@ type PlantDetailVisual = {
   fallbackLabel: string;
   isIllustration: boolean;
   src: string;
+};
+
+const localPlantDetailImages: Record<string, string> = {
+  jahe: "/images/plants/jahe.webp",
 };
 
 function visibleDetailImageSrc(value: string | null | undefined) {

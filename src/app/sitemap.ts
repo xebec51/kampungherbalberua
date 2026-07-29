@@ -6,12 +6,14 @@ import {
   getHerbaCodeZoneSummaries,
 } from "@/lib/data/herbacode";
 import { getPosterPlantSlugs } from "@/lib/data/poster-plants";
+import { getPublishedStreetSlugs } from "@/lib/data/streets";
 import { absoluteUrl } from "@/lib/metadata";
 
 const staticRoutes = [
   "/",
   "/tentang",
   "/tanaman",
+  "/jalan",
   "/peta",
   "/zona-kesehatan",
   "/kinerja-rt",
@@ -21,10 +23,12 @@ const staticRoutes = [
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
-  const [herbaCodePlantSlugs, posterPlantSlugs, zones] = await Promise.all([
+  const [herbaCodePlantSlugs, posterPlantSlugs, zones, streetSlugs] =
+    await Promise.all([
     getHerbaCodePlantSlugs(),
     getPosterPlantSlugs(),
     getHerbaCodeZoneSummaries(),
+    getPublishedStreetSlugs(),
   ]);
   const plantSlugs = Array.from(
     new Set([...herbaCodePlantSlugs, ...posterPlantSlugs]),
@@ -32,6 +36,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const dynamicRoutes = [
     ...plantSlugs.map((slug) => `/tanaman/${slug}`),
+    ...streetSlugs.map((slug) => `/jalan/${slug}`),
     ...zones.map((zone) => `/zona-kesehatan/${zone.slug}`),
     ...recipes
       .filter((recipe) => recipe.published)

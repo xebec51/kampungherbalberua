@@ -24,6 +24,16 @@ function requiredFirstEnv(names: string[]) {
   return value;
 }
 
+export function hasSupabaseE2EEnv() {
+  return Boolean(
+    readFirstEnv(["SUPABASE_URL", "NEXT_PUBLIC_SUPABASE_URL"]) &&
+      readFirstEnv([
+        "SUPABASE_ANON_KEY",
+        "NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY",
+      ]),
+  );
+}
+
 function assertLocalSupabaseUrl(rawUrl: string) {
   const url = new URL(rawUrl);
   const allowedHosts = new Set(["localhost", "127.0.0.1"]);
@@ -133,6 +143,22 @@ async function deleteE2EData(client: SupabaseClient<Database>) {
     .like("slug", "e2e-%");
   if (zoneSlugCleanup.error) {
     throw zoneSlugCleanup.error;
+  }
+
+  const streetQrCleanup = await client
+    .from("streets")
+    .delete()
+    .like("qr_key", "e2e-%");
+  if (streetQrCleanup.error) {
+    throw streetQrCleanup.error;
+  }
+
+  const streetSlugCleanup = await client
+    .from("streets")
+    .delete()
+    .like("slug", "e2e-%");
+  if (streetSlugCleanup.error) {
+    throw streetSlugCleanup.error;
   }
 }
 

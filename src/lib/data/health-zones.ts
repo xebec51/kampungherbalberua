@@ -1,11 +1,16 @@
 import { cache } from "react";
 import { healthZones as localHealthZones } from "@/data/health-zones";
+import {
+  getHerbaCodeZoneSummaries,
+  getLocalHerbaCodeZoneQrTargetBySlug,
+} from "@/lib/data/herbacode";
 import { mapHealthZoneRowToHealthZone } from "@/lib/data/health-zone-mapper";
 import { getPrimaryHealthZoneMediaMap } from "@/lib/data/media";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import type { HealthZone } from "@/types";
 
 export type PublishedHealthZoneQrTarget = {
+  qrKey: string;
   slug: string;
   zoneCode: string;
 };
@@ -109,7 +114,7 @@ export async function getPublishedHealthZoneQrTargetByCode(
 
   const { data, error } = await client
     .from("health_zones")
-    .select("slug, zone_code")
+    .select("qr_key, slug, zone_code")
     .eq("content_status", "published")
     .eq("zone_code", zoneCode)
     .maybeSingle();
@@ -119,9 +124,66 @@ export async function getPublishedHealthZoneQrTargetByCode(
   }
 
   return {
+    qrKey: data.qr_key,
     slug: data.slug,
     zoneCode: data.zone_code,
   };
+}
+
+export async function getPublishedHealthZoneQrTargetByKey(
+  qrKey: string,
+): Promise<PublishedHealthZoneQrTarget | undefined> {
+  const localHerbaCodeZone = getLocalHerbaCodeZoneQrTargetBySlug(qrKey);
+
+  if (localHerbaCodeZone) {
+    return localHerbaCodeZone;
+  }
+
+  const client = await createSupabaseServerClient();
+
+  if (client) {
+    const { data, error } = await client
+      .from("health_zones")
+      .select("qr_key, slug, zone_code")
+      .eq("content_status", "published")
+      .eq("qr_key", qrKey)
+      .maybeSingle();
+
+    if (!error && data) {
+      return {
+        qrKey: data.qr_key,
+        slug: data.slug,
+        zoneCode: data.zone_code,
+      };
+    }
+
+    const herbaCodeZone = (await getHerbaCodeZoneSummaries()).find(
+      (item) => item.slug === qrKey && !/^khb-z[0-9]{2}$/i.test(qrKey),
+    );
+
+    return herbaCodeZone
+      ? {
+          qrKey: herbaCodeZone.slug,
+          slug: herbaCodeZone.slug,
+          zoneCode: herbaCodeZone.zoneCode,
+        }
+      : undefined;
+  }
+
+  const zone = localHealthZones.find(
+    (item) =>
+      item.contentStatus === "published" &&
+      item.slug === qrKey &&
+      !/^khb-z[0-9]{2}$/i.test(qrKey),
+  );
+
+  return zone
+    ? {
+        qrKey: zone.slug,
+        slug: zone.slug,
+        zoneCode: zone.zoneCode,
+      }
+    : undefined;
 }
 
 export async function getHealthZoneByCode(

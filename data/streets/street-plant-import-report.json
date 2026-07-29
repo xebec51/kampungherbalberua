@@ -1,0 +1,118 @@
+{
+  "source": "Foto papan jalan tematik dan koleksi katalog tanaman Kampung Herbal Harmony",
+  "reviewedAt": "2026-07-29",
+  "summary": {
+    "streets": 9,
+    "streetPlantEntries": 96,
+    "themeExact": 45,
+    "themeManual": 51,
+    "canonicalExact": 0,
+    "canonicalAlias": 0,
+    "canonicalScientific": 0,
+    "canonicalManual": 0,
+    "canonicalAmbiguous": 0,
+    "canonicalUnresolved": 0
+  },
+  "note": "Sembilan foto sumber memuat nama jalan, blok, tema kesehatan, dan teks edukasi umum. Foto papan tidak memuat daftar nama tanaman tertulis. Daftar tanaman jalan pada website dipertahankan dari koleksi katalog tanaman berdasarkan tema papan, bukan dari relasi tanaman-zona HerbaCode, health_zone_streets, atau kode poster.",
+  "streets": [
+    {
+      "slug": "digestia",
+      "streetName": "Jl. Digestia",
+      "sourceImage": "public/images/streets/digestia.jpg",
+      "blockRanges": ["E1-10", "H1-5"],
+      "signTheme": "Zona Pencernaan Sehat",
+      "catalogCollection": "Zona Pencernaan Sehat",
+      "themeMatchStatus": "exact",
+      "plantCount": 15,
+      "plantNames": ["Adas", "Cincau", "Daun Ungu", "Jahe", "Kapulaga", "Kemangi", "Ketumbar", "Kunyit", "Kunyit Putih", "Lidah Buaya", "Mint", "Serai", "Tapak Liman", "Temu Mangga", "Temulawak"]
+    },
+    {
+      "slug": "respiria",
+      "streetName": "Jl. Respiria",
+      "sourceImage": "public/images/streets/respiria.jpg",
+      "blockRanges": ["A1-7", "D1-4", "D9-14"],
+      "signTheme": "Zona Pernapasan Sehat",
+      "catalogCollection": "Zona Pernapasan Lega",
+      "themeMatchStatus": "manual",
+      "plantCount": 10,
+      "plantNames": ["Adas", "Beluntas", "Eucalyptus", "Jahe", "Jeruk Nipis", "Kayu Putih", "Kencur", "Saga", "Serai", "Sirih"]
+    },
+    {
+      "slug": "glycemia",
+      "streetName": "Jl. Glycemia",
+      "sourceImage": "public/images/streets/glycemia.jpg",
+      "blockRanges": ["H6-10", "J2-4"],
+      "signTheme": "Zona Gula Darah Terkendali",
+      "catalogCollection": "Zona Gula Darah Terkendali",
+      "themeMatchStatus": "exact",
+      "plantCount": 10,
+      "plantNames": ["Brotowali", "Kayu Manis", "Kelor", "Mahkota Dewa", "Mengkudu", "Pare", "Pegagan", "Rosella", "Salam", "Sambiloto"]
+    },
+    {
+      "slug": "lipidia",
+      "streetName": "Jl. Lipidia",
+      "sourceImage": "public/images/streets/lipidia.jpg",
+      "blockRanges": ["D5-14", "E1-4", "E13-14"],
+      "signTheme": "Zona Lemak Sehat",
+      "catalogCollection": "Zona Obesitas & Metabolik",
+      "themeMatchStatus": "manual",
+      "plantCount": 10,
+      "plantNames": ["Garcinia", "Jahe", "Jinten Hitam", "Kayu Manis", "Kelor", "Kopi Hijau", "Kunyit", "Rosella", "Teh Hijau", "Temulawak"]
+    },
+    {
+      "slug": "imun",
+      "streetName": "Jl. Imun",
+      "sourceImage": "public/images/streets/imun.jpg",
+      "blockRanges": ["B1-9", "C1-7"],
+      "signTheme": "Zona Daya Tahan Tubuh",
+      "catalogCollection": "Zona Imunitas Kuat",
+      "themeMatchStatus": "manual",
+      "plantCount": 11,
+      "plantNames": ["Bawang Putih", "Jahe", "Jinten Hitam", "Kelor", "Kunyit", "Meniran", "Miana", "Pegagan", "Rosella", "Sambiloto", "Temulawak"]
+    },
+    {
+      "slug": "hepatia",
+      "streetName": "Jl. Hepatia",
+      "sourceImage": "public/images/streets/hepatia.jpg",
+      "blockRanges": ["C8-13", "F1-5"],
+      "signTheme": "Zona Hati Sehat",
+      "catalogCollection": "Zona Hati Sehat",
+      "themeMatchStatus": "exact",
+      "plantCount": 10,
+      "plantNames": ["Daun Dewa", "Kelor", "Kunyit", "Lidah Buaya", "Meniran", "Paliasa", "Pegagan", "Rosella", "Sambiloto", "Temulawak"]
+    },
+    {
+      "slug": "feminia",
+      "streetName": "Jl. Feminia",
+      "sourceImage": "public/images/streets/feminia.jpg",
+      "blockRanges": ["F6-9", "G1-3", "G4-5"],
+      "signTheme": "Zona Wanita Sehat Alami",
+      "catalogCollection": "Zona Kesehatan Perempuan",
+      "themeMatchStatus": "manual",
+      "plantCount": 10,
+      "plantNames": ["Adas", "Delima", "Dong Quai", "Katuk", "Kemangi", "Kunyit", "Pegagan", "Rosella", "Sirih", "Temu Putih"]
+    },
+    {
+      "slug": "vaskulia",
+      "streetName": "Jl. Vaskulia",
+      "sourceImage": "public/images/streets/vaskulia.jpg",
+      "blockRanges": ["J5-8", "K1-6"],
+      "signTheme": "Zona Jantung & Pembuluh Darah Sehat",
+      "catalogCollection": "Zona Jantung Sehat",
+      "themeMatchStatus": "manual",
+      "plantCount": 10,
+      "plantNames": ["Bawang Putih", "Belimbing Wuluh", "Kelor", "Kumis Kucing", "Pegagan", "Rosella", "Salam", "Seledri", "Teh Hijau", "Tempuyung"]
+    },
+    {
+      "slug": "pediatria",
+      "streetName": "Jl. Pediatria",
+      "sourceImage": "public/images/streets/pediatria.jpg",
+      "blockRanges": ["I1-4", "I5-11"],
+      "signTheme": "Zona Anak Ceria",
+      "catalogCollection": "Zona Anak Ceria",
+      "themeMatchStatus": "exact",
+      "plantCount": 10,
+      "plantNames": ["Adas", "Daun Jambu", "Jahe", "Jeruk Nipis", "Katuk", "Kelor", "Kencur", "Pegagan", "Rosella", "Temulawak"]
+    }
+  ]
+}
