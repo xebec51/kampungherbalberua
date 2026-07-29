@@ -25,7 +25,10 @@
     "media:audit:catalog-images": "node --experimental-strip-types scripts/media/cli.ts audit:catalog-images",
     "media:migrate:zones": "node --experimental-strip-types scripts/media/cli.ts migrate:zones",
     "media:import": "node --experimental-strip-types scripts/media/cli.ts import",
-    "media:report": "node --experimental-strip-types scripts/media/cli.ts report"
+    "media:report": "node --experimental-strip-types scripts/media/cli.ts report",
+    "herbacode:extract": "node --experimental-strip-types scripts/herbacode/cli.ts extract",
+    "herbacode:import": "node --experimental-strip-types scripts/herbacode/cli.ts import",
+    "herbacode:import:execute": "node --experimental-strip-types scripts/herbacode/cli.ts import --execute"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.3",

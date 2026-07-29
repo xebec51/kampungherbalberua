@@ -50,7 +50,7 @@ export function Footer() {
       </Container>
       <div className="border-t border-herbal-green/10">
         <Container className="flex flex-col gap-2 py-4 text-xs text-herbal-muted sm:flex-row sm:items-center sm:justify-between">
-          <p>Materi tahap pertama masih dilengkapi dan menunggu verifikasi.</p>
+          <p>Sumber tanaman dan zona: HerbaCode Kampung Herbal Harmony.</p>
           <p>Kampung Herbal Berua</p>
         </Container>
       </div>

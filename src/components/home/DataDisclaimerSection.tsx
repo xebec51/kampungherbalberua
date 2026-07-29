@@ -6,10 +6,11 @@ export function DataDisclaimerSection() {
     <section className="home-section bg-white py-10">
       <Container>
         <Disclaimer>
-          Sebagian informasi masih dalam tahap pendataan dan verifikasi lapangan.
           Informasi tanaman dan ramuan disediakan untuk edukasi mengenai
           pemanfaatan tradisional, bukan diagnosis, resep, atau pengganti
           konsultasi dengan dokter, apoteker, maupun tenaga kesehatan lainnya.
+          Ibu hamil, anak-anak, lansia, penderita penyakit tertentu, dan
+          pengguna obat rutin perlu berkonsultasi dengan tenaga kesehatan.
         </Disclaimer>
       </Container>
     </section>

@@ -6,12 +6,16 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { featuredActivities } from "@/data/activities";
 
 export function LatestActivitiesSection() {
+  if (featuredActivities.length === 0) {
+    return null;
+  }
+
   return (
     <section className="home-section bg-herbal-cream py-14 sm:py-16">
       <Container>
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <SectionHeading
-            description="Dokumentasi asli, foto, dan tanggal kegiatan akan diperbarui menggunakan arsip lapangan."
+            description="Dokumentasi kegiatan yang telah siap dipublikasikan ditampilkan pada bagian ini."
             eyebrow="Kegiatan Terbaru"
             title="Ruang dokumentasi KKN dan Kampung Herbal"
           />

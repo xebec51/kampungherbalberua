@@ -7,24 +7,6 @@ import type { ContentMediaType } from "@/lib/supabase/database.types";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import type { PublicMediaAsset } from "@/types";
 
-const posterFallbackAttribution: PublicMediaAsset = {
-  altText: "Visual sementara untuk tanaman katalog Kampung Herbal Harmony",
-  attributionText:
-    "Visual sementara untuk tanaman katalog Kampung Herbal Harmony yang belum mempunyai media berlisensi di lingkungan ini.",
-  caption: "Visual sementara untuk katalog tanaman Kampung Herbal Harmony.",
-  changesMade: "Tidak ada perubahan.",
-  creatorName: "Kampung Herbal Berua",
-  height: null,
-  id: "poster-plant-local-placeholder",
-  imageType: "illustration",
-  licenseCode: "Aset lokal",
-  licenseUrl: null,
-  publicUrl: "/images/placeholders/plant.svg",
-  sourcePageUrl: null,
-  title: "Visual sementara katalog tanaman Kampung Herbal Harmony",
-  width: null,
-};
-
 type PlantMediaJoinRow = {
   plant_id: string;
   media_assets: MediaAssetRow | null;
@@ -139,7 +121,7 @@ export const getPublishedMediaAttributions = cache(async () => {
   const client = await createSupabaseServerClient();
 
   if (!client) {
-    return [posterFallbackAttribution];
+    return [];
   }
 
   const { data, error } = await client
@@ -152,20 +134,15 @@ export const getPublishedMediaAttributions = cache(async () => {
     .order("title", { ascending: true });
 
   if (error) {
-    return [posterFallbackAttribution];
+    return [];
   }
 
-  const mediaItems = (data ?? [])
+  return (data ?? [])
     .map(mapMediaAssetRowToPublicMedia)
-    .filter((media): media is PublicMediaAsset => Boolean(media));
-
-  if (
-    !mediaItems.some(
-      (media) => media.title === posterFallbackAttribution.title,
-    )
-  ) {
-    mediaItems.push(posterFallbackAttribution);
-  }
-
-  return mediaItems;
+    .filter((media): media is PublicMediaAsset => Boolean(media))
+    .filter(
+      (media) =>
+        !media.publicUrl.startsWith("/images/placeholders/") &&
+        !/sementara|placeholder/i.test(`${media.title} ${media.caption ?? ""}`),
+    );
 });

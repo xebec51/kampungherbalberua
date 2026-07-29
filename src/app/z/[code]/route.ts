@@ -1,5 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { getHealthZoneByCode } from "@/lib/data/health-zones";
+import { getHerbaCodeZoneSummaries } from "@/lib/data/herbacode";
 
 type HealthZoneQrRouteContext = {
   params: Promise<{
@@ -18,7 +18,8 @@ async function handleHealthZoneQrRedirect(
     return new NextResponse(null, { status: 404 });
   }
 
-  const zone = await getHealthZoneByCode(normalizedCode);
+  const zones = await getHerbaCodeZoneSummaries();
+  const zone = zones.find((item) => item.zoneCode === normalizedCode);
 
   if (!zone) {
     return new NextResponse(null, { status: 404 });

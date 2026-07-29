@@ -1,7 +1,8 @@
+import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 type StatusBadgeProps = {
-  children: string;
+  children: ReactNode;
   tone?: "green" | "brown" | "neutral";
   className?: string;
 };

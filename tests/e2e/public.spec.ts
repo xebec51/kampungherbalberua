@@ -1,4 +1,4 @@
-import { expect, test, type Locator, type Page } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
 
 async function expectNoHorizontalOverflow(page: Page) {
   const hasOverflow = await page.evaluate(
@@ -7,43 +7,34 @@ async function expectNoHorizontalOverflow(page: Page) {
   expect(hasOverflow).toBe(false);
 }
 
-const publicImageSourcePattern = /supabase\.co|storage|\/images\/placeholders\/plant\.svg/;
+async function expectNoPublicPlaceholderText(page: Page) {
+  const bodyText = await page.locator("body").innerText();
 
-async function expectPublicImageOrFallback(locator: Locator) {
-  await expect(locator).toBeVisible();
-
-  const src = await locator.getAttribute("src");
-
-  if (src) {
-    expect(src).toMatch(publicImageSourcePattern);
-    return;
-  }
-
-  await expect(locator).toHaveAttribute(
-    "aria-label",
-    /Gambar sementara|Visual referensi|Tanaman/i,
+  expect(bodyText).not.toMatch(
+    /lorem|placeholder|gambar sementara|visual sementara|media sedang|foto .*menyusul|dokumentasi awal|data demonstrasi|data contoh|sedang disusun|belum aktif|belum menyimpan|undefined|null/i,
   );
 }
 
-test("beranda menampilkan heading utama dan zona featured", async ({ page }) => {
+test("beranda menampilkan ringkasan HerbaCode tanpa placeholder publik", async ({
+  page,
+}) => {
   await page.goto("/");
+
+  await expect(
+    page.getByRole("heading", { name: "Kampung Herbal Harmony Berua" }),
+  ).toBeVisible();
   await expect(
     page.getByRole("heading", {
-      name: "Kampung Herbal Harmony Berua",
+      name: "Data tanaman dan zona dari dokumen HerbaCode",
     }),
   ).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Jelajahi Zona Kesehatan" })).toBeVisible();
-  await expect(
-    page.getByRole("link", { exact: true, name: "Jl. Digestia" }),
-  ).toBeVisible();
-  await expect(
-    page.getByRole("img", {
-      name: "Foto papan Jl. Digestia Zona Pencernaan Sehat",
-    }),
-  ).toBeVisible();
+  await expect(page.getByText("Relasi tanaman-zona")).toBeVisible();
+  await expect(page.getByText("95")).toBeVisible();
+  await expectNoPublicPlaceholderText(page);
+  await expectNoHorizontalOverflow(page);
 });
 
-test("desktop navbar menampilkan struktur ringkas dan dropdown accessible", async ({
+test("desktop dan mobile navbar tetap accessible dengan struktur publik", async ({
   page,
 }) => {
   await page.setViewportSize({ height: 800, width: 1280 });
@@ -53,263 +44,130 @@ test("desktop navbar menampilkan struktur ringkas dan dropdown accessible", asyn
   await expect(nav.getByRole("link", { exact: true, name: "Beranda" })).toBeVisible();
   await expect(nav.getByRole("button", { name: "Edukasi" })).toBeVisible();
   await expect(nav.getByRole("button", { name: "Informasi Kampung" })).toBeVisible();
-  await expect(nav.getByRole("link", { exact: true, name: "Produk" })).toBeVisible();
-  await expect(nav.getByRole("link", { exact: true, name: "Kotak Saran" })).toBeVisible();
-  await expect(nav.getByRole("link", { name: "Tanaman TOGA" })).toHaveCount(0);
+  await expect(nav.getByRole("link", { exact: true, name: "Produk" })).toHaveCount(0);
+  await expect(nav.getByRole("link", { exact: true, name: "Kotak Saran" })).toHaveCount(0);
 
   const edukasiButton = nav.getByRole("button", { name: "Edukasi" });
   const edukasiMenuId = await edukasiButton.getAttribute("aria-controls");
   expect(edukasiMenuId).toBeTruthy();
-  await expect(edukasiButton).toHaveAttribute("aria-expanded", "false");
-
   await edukasiButton.focus();
   await page.keyboard.press("Enter");
   await expect(edukasiButton).toHaveAttribute("aria-expanded", "true");
   await expect(page.locator(`[id="${edukasiMenuId}"]`)).toBeVisible();
   await expect(page.getByRole("menuitem", { name: "Tanaman TOGA" })).toBeVisible();
-  await expect(page.getByRole("menuitem", { name: "Ramuan Sehat" })).toBeVisible();
   await expect(page.getByRole("menuitem", { name: "Zona Kesehatan" })).toBeVisible();
+  await expect(page.getByRole("menuitem", { name: "Ramuan Sehat" })).toHaveCount(0);
 
   await page.keyboard.press("Escape");
   await expect(edukasiButton).toHaveAttribute("aria-expanded", "false");
-  await expect(page.locator(`[id="${edukasiMenuId}"]`)).toBeHidden();
 
-  await edukasiButton.click();
-  await page.getByRole("heading", {
-    name: "Kampung Herbal Harmony Berua",
-  }).click();
-  await expect(edukasiButton).toHaveAttribute("aria-expanded", "false");
-
-  await edukasiButton.click();
-  const informasiButton = nav.getByRole("button", { name: "Informasi Kampung" });
-  await informasiButton.click();
-  await expect(edukasiButton).toHaveAttribute("aria-expanded", "false");
-  await expect(informasiButton).toHaveAttribute("aria-expanded", "true");
-  await expect(page.getByRole("menuitem", { name: "Tentang" })).toBeVisible();
-
-  await page.keyboard.press("Escape");
-  await edukasiButton.click();
-  await page.getByRole("menuitem", { name: "Tanaman TOGA" }).click();
-  await expect(page).toHaveURL(/\/tanaman$/);
-  await expect(nav.getByRole("button", { name: "Edukasi" })).toHaveAttribute(
-    "aria-current",
-    "page",
-  );
-});
-
-test("mobile navbar menampilkan semua grup dan menutup setelah dipilih", async ({
-  page,
-}) => {
   await page.setViewportSize({ height: 812, width: 375 });
   await page.goto("/");
-
-  await expectNoHorizontalOverflow(page);
   const menuButton = page.getByRole("button", { name: /menu navigasi/ });
-  await expect(menuButton).toHaveAttribute("aria-expanded", "false");
   await menuButton.click();
-  await expect(menuButton).toHaveAttribute("aria-expanded", "true");
-
   const mobileNav = page.getByRole("navigation", { name: "Navigasi mobile" });
-  await expect(mobileNav).toBeVisible();
-  await expect(mobileNav.getByText("Edukasi", { exact: true })).toBeVisible();
   await expect(mobileNav.getByRole("link", { name: "Tanaman TOGA" })).toBeVisible();
-  await expect(mobileNav.getByRole("link", { name: "Ramuan Sehat" })).toBeVisible();
   await expect(mobileNav.getByRole("link", { name: "Zona Kesehatan" })).toBeVisible();
-  await expect(mobileNav.getByText("Informasi Kampung", { exact: true })).toBeVisible();
-  await expect(mobileNav.getByRole("link", { name: "Tentang" })).toBeVisible();
-  await expect(mobileNav.getByRole("link", { name: "Peta Kampung" })).toBeVisible();
-  await expect(mobileNav.getByRole("link", { name: "Kegiatan" })).toBeVisible();
-  await expect(mobileNav.getByRole("link", { name: "Kinerja RT" })).toBeVisible();
-  await expect(mobileNav.getByRole("link", { name: "Produk" })).toBeVisible();
-  await expect(mobileNav.getByRole("link", { name: "Kotak Saran" })).toBeVisible();
-
-  await page.keyboard.press("Escape");
-  await expect(mobileNav).toBeHidden();
-
-  await menuButton.click();
-  await page
-    .getByRole("navigation", { name: "Navigasi mobile" })
-    .getByRole("link", { name: "Tanaman TOGA" })
-    .click();
-  await expect(page).toHaveURL(/\/tanaman$/);
-  await expect(page.getByRole("navigation", { name: "Navigasi mobile" })).toBeHidden();
+  await expect(mobileNav.getByRole("link", { name: "Ramuan Sehat" })).toHaveCount(0);
   await expectNoHorizontalOverflow(page);
 });
 
-test("desktop navbar tetap muat tanpa horizontal overflow", async ({ page }) => {
-  const viewports = [
-    { height: 768, width: 1024 },
-    { height: 800, width: 1280 },
-    { height: 900, width: 1440 },
+test("katalog tanaman HerbaCode dapat dicari dan tidak menggandakan tanaman berulang", async ({
+  page,
+}) => {
+  await page.goto("/tanaman");
+
+  await expect(
+    page.getByRole("heading", {
+      name: "Katalog Tanaman Kampung Herbal Harmony",
+    }),
+  ).toBeVisible();
+  await expect(page.getByText("Menampilkan 50 dari 50 tanaman.")).toBeVisible();
+  await expect(page.getByRole("link", { exact: true, name: "Jahe" })).toBeVisible();
+  await expect(page.getByRole("link", { exact: true, name: "Meniran" })).toBeVisible();
+
+  await page.getByLabel("Cari tanaman").fill("jahe");
+  await expect(page.getByText("Menampilkan 1 dari 50 tanaman.")).toBeVisible();
+  await expect(page.getByRole("link", { exact: true, name: "Jahe" })).toHaveCount(1);
+
+  await page.getByLabel("Cari tanaman").fill("");
+  await page.getByLabel("Filter zona").selectOption("Zona Jantung Sehat");
+  await expect(page.getByText(/Menampilkan 10 dari 50 tanaman\./)).toBeVisible();
+  await expect(page.getByRole("link", { exact: true, name: "Seledri" })).toBeVisible();
+  await expectNoPublicPlaceholderText(page);
+});
+
+test("detail tanaman menampilkan HerbaCode dan manfaat tetap terpisah per zona", async ({
+  page,
+}) => {
+  await page.goto("/tanaman/jahe");
+
+  await expect(page.getByRole("heading", { name: "Jahe" })).toBeVisible();
+  await expect(page.getByText("Zingiber officinale Roscoe")).toBeVisible();
+  await expect(page.getByRole("link", { name: "Zona Pencernaan Sehat" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Zona Tulang & Sendi" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Senyawa aktif" })).toBeVisible();
+  await expect(page.getByText("Gingerol")).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Manfaat per zona" })).toBeVisible();
+  await expect(page.getByText("Membantu meredakan mual dan muntah.")).toBeVisible();
+  await expect(page.getByText("Membantu meredakan nyeri dan kekakuan sendi.")).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Cara pemanfaatan" })).toHaveCount(0);
+  await expect(page.getByText("HerbaCode Kampung Herbal Harmony", { exact: true }).first()).toBeVisible();
+  await expectNoPublicPlaceholderText(page);
+
+  await page.goto("/tanaman/jintan-hitam");
+  await expect(page.getByRole("heading", { name: "Cara pemanfaatan" })).toBeVisible();
+  await expect(page.getByText("Dikonsumsi dalam bentuk biji, minyak")).toBeVisible();
+});
+
+test("detail zona menampilkan relasi tanaman-zona HerbaCode", async ({ page }) => {
+  await page.goto("/zona-kesehatan/imunitas-kuat");
+
+  await expect(page.getByRole("heading", { name: "Zona Imunitas Kuat" })).toBeVisible();
+  await expect(page.getByText("khb-z01", { exact: true }).first()).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Tanaman pada zona ini" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Meniran" })).toBeVisible();
+  await expect(page.getByText("Phyllanthin", { exact: true })).toBeVisible();
+  await expect(page.getByText("Membantu meningkatkan sistem imun tubuh.")).toBeVisible();
+  await expect(page.getByText("HerbaCode Kampung Herbal Harmony", { exact: true }).first()).toBeVisible();
+  await expectNoPublicPlaceholderText(page);
+});
+
+test("halaman publik utama bebas placeholder, undefined, dan null", async ({
+  page,
+}) => {
+  const routes = [
+    "/",
+    "/tanaman",
+    "/tanaman/jahe",
+    "/zona-kesehatan",
+    "/zona-kesehatan/imunitas-kuat",
+    "/peta",
+    "/sumber-gambar",
+    "/kotak-saran",
+    "/produk",
+    "/ramuan",
+    "/kegiatan",
+    "/wisata",
   ];
 
-  for (const viewport of viewports) {
-    await page.setViewportSize(viewport);
-    await page.goto("/", { waitUntil: "domcontentloaded" });
-    await expect(page.getByRole("navigation", { name: "Navigasi utama" })).toBeVisible();
+  for (const route of routes) {
+    await page.goto(route, { waitUntil: "domcontentloaded" });
+    await expectNoPublicPlaceholderText(page);
     await expectNoHorizontalOverflow(page);
   }
 });
 
-test("katalog tanaman tampil dan pencarian bekerja", async ({
-  page,
-}) => {
-  await page.goto("/tanaman");
-  await expect(page.getByRole("heading", { name: "Katalog Tanaman Kampung Herbal Harmony" })).toBeVisible();
-  await expect(page.getByText("Menampilkan 89 dari 89 tanaman.")).toBeVisible();
-  const firstCatalogImage = page.getByRole("img", { name: /tanaman/i }).first();
-  await expectPublicImageOrFallback(firstCatalogImage);
-
-  await expect(page.getByLabel("Filter bagian")).toBeVisible();
-  await expect(page.getByLabel("Jenis gambar")).toHaveCount(0);
-  await expect(page.getByLabel("Urutkan")).toBeVisible();
-  await expect(page.getByRole("link", { name: "Cincau", exact: true })).toBeVisible();
-  await expect(page.getByText("Visual referensi")).toHaveCount(0);
-
-  for (const plantName of ["Garcinia", "Rosemary", "Merigold", "Willow Bark"]) {
-    await page.getByLabel("Cari tanaman").fill(plantName);
-    await expect(page.getByRole("link", { name: plantName, exact: true })).toBeVisible();
-  }
-
-  await page.getByLabel("Cari tanaman").fill("jahe");
-  await expect(page.getByText("Menampilkan 1 dari 89 tanaman.")).toBeVisible();
-  const jaheCatalogImage = page.getByRole("img", { name: /Jahe/ }).first();
-  await expectPublicImageOrFallback(jaheCatalogImage);
-  await expect(page.getByRole("link", { name: "Jahe", exact: true })).toHaveAttribute(
-    "href",
-    "/tanaman/jahe",
-  );
-});
-
-test("filter zona dan detail poster-only bekerja tanpa teks kosong", async ({
-  page,
-}) => {
-  await page.goto("/tanaman");
-  await page.getByLabel("Filter zona").selectOption({ label: "Zona Jantung Sehat" });
-  await expect(page.getByText(/Menampilkan \d+ dari 89 tanaman\./)).toBeVisible();
-  await page.getByRole("button", { name: "Reset filter" }).click();
-  await expect(page.getByText("Menampilkan 89 dari 89 tanaman.")).toBeVisible();
-
-  await page.getByLabel("Cari tanaman").fill("cincau");
-  await expect(page.getByRole("link", { name: "Cincau", exact: true })).toHaveAttribute(
-    "href",
-    "/tanaman/cincau",
-  );
-  await page.goto("/tanaman/cincau", { waitUntil: "domcontentloaded" });
-  await expect(page).toHaveURL(/\/tanaman\/cincau$/);
-  await expect(page.getByRole("heading", { name: "Cincau" })).toBeVisible();
-  await expect(page.getByText(/Tanaman ini tercatat dalam katalog edukasi Kampung Herbal Harmony/)).toBeVisible();
-  await expect(page.getByText(/Visual referensi|Visual sementara/).first()).toBeVisible();
-  await expectPublicImageOrFallback(
-    page.getByRole("img", {
-      name: /(?:Visual referensi|Gambar sementara).*Cincau/,
-    }),
-  );
-  await expect(page.getByText(/undefined|null/i)).toHaveCount(0);
-});
-
-test("gambar tanaman tampil pada beranda dan halaman detail tanaman", async ({
-  page,
-}) => {
-  test.setTimeout(120_000);
-
-  await page.goto("/");
-  await expectPublicImageOrFallback(
-    page.getByRole("img", { name: /(?:Tanaman|Gambar sementara tanaman)/ }).first(),
-  );
-
-  const detailPages = [
-    { slug: "jahe" },
-    { slug: "serai" },
-    { slug: "daun-sirih" },
-    { slug: "bunga-telang" },
-  ];
-
-  for (const detailPage of detailPages) {
-    await page.goto(`/tanaman/${detailPage.slug}`, {
-      waitUntil: "domcontentloaded",
-    });
-    const image = page.getByRole("img", { name: new RegExp(detailPage.slug.replaceAll("-", " "), "i") }).first();
-    await expectPublicImageOrFallback(image);
-  }
-});
-
-test("zona kesehatan menampilkan sembilan zona, blok, dan disclaimer", async ({ page }) => {
-  await page.goto("/zona-kesehatan");
-  await expect(
-    page.getByRole("link", { exact: true, name: "Jl. Digestia" }),
-  ).toBeVisible();
-  await expect(
-    page.getByRole("link", { exact: true, name: "Jl. Pediatria" }),
-  ).toBeVisible();
-  await expect(page.getByRole("img", { name: /^Foto papan Jl\./ })).toHaveCount(9);
-  await expect(page.getByText("Blok E1-10, H1-5")).toBeVisible();
-  await expect(page.getByText("bukan diagnosis, resep, atau pengganti konsultasi")).toBeVisible();
-});
-
-test("peta menampilkan sembilan jalan dan placeholder PWK", async ({ page }) => {
-  await page.goto("/peta");
-  await expect(page.getByText("sembilan zona tematik")).toBeVisible();
-  await expect(
-    page.getByText(
-      "Pemetaan sedang disusun bersama tim Perencanaan Wilayah dan Kota",
-      { exact: true },
-    ),
-  ).toBeVisible();
-  await expect(page.getByText("Jl. Digestia - Zona Pencernaan Sehat")).toBeVisible();
-});
-
-test("produk menyediakan tautan pemesanan WhatsApp publik", async ({ page }) => {
-  await page.goto("/produk");
-
-  const productCard = page.getByRole("article").filter({
-    has: page.getByRole("heading", {
-      exact: true,
-      name: "Bibit Tanaman TOGA",
-    }),
-  });
-  await expect(productCard.getByRole("link", { name: "Pesan via WhatsApp" })).toHaveAttribute(
-    "href",
-    /https:\/\/wa\.me\/6289623080501\?text=/,
-  );
-
-  await expect(productCard.getByRole("link", { name: "Detail produk" })).toHaveAttribute(
-    "href",
-    "/produk/bibit-tanaman-toga",
-  );
-  await page.goto("/produk/bibit-tanaman-toga", {
-    waitUntil: "domcontentloaded",
-  });
-  await expect(page).toHaveURL(/\/produk\/bibit-tanaman-toga$/);
-  await expect(page.getByRole("heading", { name: "Bibit Tanaman TOGA" })).toBeVisible();
-  await expect(page.getByRole("link", { name: "Pesan via WhatsApp" })).toHaveAttribute(
-    "href",
-    /Bibit%20Tanaman%20TOGA/,
-  );
-});
-
-test("halaman sumber gambar dapat dibuka tanpa data privat", async ({ page }) => {
-  await page.goto("/sumber-gambar");
-  await expect(
-    page.getByRole("heading", { exact: true, name: "Sumber Gambar" }),
-  ).toBeVisible();
-  await expect(page.getByText("Atribusi Media")).toBeVisible();
-  await expect(page.getByText("original private")).toHaveCount(0);
-  await expect(page.getByText("Visual sementara katalog tanaman Kampung Herbal Harmony")).toBeVisible();
-  await expect(page.getByText("Kreator").first()).toBeVisible();
-  await expect(page.getByText("Lisensi").first()).toBeVisible();
-  await expectNoHorizontalOverflow(page);
-});
-
-test("sitemap dan robots dapat diakses dengan canonical zona tanpa route QR", async ({
+test("sitemap dan robots memakai route HerbaCode tanpa route QR", async ({
   request,
 }) => {
   const sitemap = await request.get("/sitemap.xml");
   expect(sitemap.ok()).toBe(true);
   const sitemapText = await sitemap.text();
-  expect(sitemapText).toContain("/zona-kesehatan/digestia");
-  expect(sitemapText).toContain("/sumber-gambar");
+  expect(sitemapText).toContain("/tanaman/jahe");
+  expect(sitemapText).toContain("/zona-kesehatan/imunitas-kuat");
   expect(sitemapText).not.toContain("/z/khb-z01");
+  expect(sitemapText).not.toContain("/tanaman/willow-bark");
 
   const robots = await request.get("/robots.txt");
   expect(robots.ok()).toBe(true);

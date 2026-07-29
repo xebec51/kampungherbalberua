@@ -27,19 +27,7 @@ export default async function ImageAttributionPage() {
         />
 
         <div className="mt-8 grid gap-4">
-          {mediaItems.length === 0 ? (
-            <article className="rounded-md border border-herbal-green/10 bg-white p-6 shadow-sm">
-              <h2 className="text-xl font-bold text-herbal-ink">
-                Belum ada atribusi publik
-              </h2>
-              <p className="mt-3 text-sm leading-6 text-herbal-muted">
-                Media Library masih dalam masa transisi. Gambar lokal lama tetap
-                memakai fallback sampai metadata dan atribusi selesai
-                dimigrasikan.
-              </p>
-            </article>
-          ) : (
-            mediaItems.map((media) => (
+          {mediaItems.map((media) => (
               <article
                 className="rounded-md border border-herbal-green/10 bg-white p-5 shadow-sm"
                 key={media.id}
@@ -100,8 +88,7 @@ export default async function ImageAttributionPage() {
                   ) : null}
                 </div>
               </article>
-            ))
-          )}
+          ))}
         </div>
       </Container>
     </section>

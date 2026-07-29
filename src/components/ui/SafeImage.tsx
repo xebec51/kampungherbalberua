@@ -20,7 +20,11 @@ type SafeImageProps = {
 };
 
 function shouldBypassOptimizer(src: string) {
-  return src.startsWith("data:") || src.endsWith(".svg");
+  return (
+    src.startsWith("data:") ||
+    src.endsWith(".svg") ||
+    /supabase\.co\/storage\/v1\/object\/public\//.test(src)
+  );
 }
 
 function isLocalPlaceholder(src: string) {

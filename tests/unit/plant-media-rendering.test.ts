@@ -2,7 +2,7 @@ import React from "react";
 import { readFileSync } from "node:fs";
 import { renderToString } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
-import type { Plant } from "../../src/types";
+import type { HerbaCodePlantProfile } from "../../src/types";
 
 vi.mock("next/image", () => ({
   default: ({
@@ -27,33 +27,45 @@ vi.mock("next/image", () => ({
 const STORAGE_IMAGE_URL =
   "https://xkvgpauprhggykaxffkh.supabase.co/storage/v1/object/public/media-public/plants/khb-plant-jahe/cover.webp";
 
-const plant: Plant = {
+const plant: HerbaCodePlantProfile = {
+  aliases: [],
   id: "plant-jahe",
-  slug: "jahe",
+  image: STORAGE_IMAGE_URL,
   localName: "Jahe",
   scientificName: "Zingiber officinale",
-  otherNames: [],
-  category: "Rimpang",
-  shortDescription: "Data demonstrasi tanaman.",
-  description: "Data demonstrasi tanaman.",
-  usedParts: [],
-  traditionalUses: [],
-  preparation: [],
-  careInstructions: [],
-  warnings: [],
-  image: STORAGE_IMAGE_URL,
-  locationStatus: "Kebun contoh",
-  source: "Data demonstrasi",
-  validator: "Menunggu verifikasi",
-  validationStatus: "data-demonstrasi",
-  featured: true,
-  published: true,
+  slug: "jahe",
+  sourceDocumentName: "HerbaCode Kampung Herbal Harmony",
+  zoneEntries: [
+    {
+      activeCompounds: ["Gingerol"],
+      benefits: ["Membantu meredakan mual dan muntah."],
+      cultivationTechniques: [],
+      entryOrder: 1,
+      id: "pencernaan-sehat:jahe",
+      localName: "Jahe",
+      plantId: "plant-jahe",
+      plantLocalName: "Jahe",
+      plantScientificName: "Zingiber officinale",
+      plantSlug: "jahe",
+      preparationMethods: [],
+      scientificName: "Zingiber officinale",
+      sourceDocumentName: "HerbaCode Kampung Herbal Harmony",
+      usedParts: ["Rimpang."],
+      warnings: [],
+      zoneCode: "khb-z02",
+      zoneId: "khb-z02",
+      zoneSlug: "pencernaan-sehat",
+      zoneTitle: "Zona Pencernaan Sehat",
+    },
+  ],
 };
 
 describe("plant media rendering", () => {
-  it("PlantCard menggunakan URL plant.image dan sizes responsif", async () => {
-    const { PlantCard } = await import("../../src/components/plants/PlantCard");
-    const html = renderToString(React.createElement(PlantCard, { plant }));
+  it("HerbaCodePlantCard menggunakan URL image dan sizes responsif", async () => {
+    const { HerbaCodePlantCard } = await import(
+      "../../src/components/plants/HerbaCodePlantCard"
+    );
+    const html = renderToString(React.createElement(HerbaCodePlantCard, { plant }));
 
     expect(html).toContain(STORAGE_IMAGE_URL);
     expect(html).toContain("Tanaman Jahe");
@@ -62,14 +74,18 @@ describe("plant media rendering", () => {
     );
   });
 
-  it("PlantCard menampilkan placeholder saat image kosong", async () => {
-    const { PlantCard } = await import("../../src/components/plants/PlantCard");
+  it("HerbaCodePlantCard tidak merender gambar ketika media tidak ada", async () => {
+    const { HerbaCodePlantCard } = await import(
+      "../../src/components/plants/HerbaCodePlantCard"
+    );
     const html = renderToString(
-      React.createElement(PlantCard, { plant: { ...plant, image: "" } }),
+      React.createElement(HerbaCodePlantCard, {
+        plant: { ...plant, image: null },
+      }),
     );
 
-    expect(html).toContain("Gambar sementara tanaman Jahe");
     expect(html).not.toContain("<img");
+    expect(html).not.toMatch(/gambar sementara|placeholder|menyusul/i);
   });
 
   it("SafeImage tetap server-rendered dan tidak menambah handler gambar per kartu", () => {
@@ -84,24 +100,23 @@ describe("plant media rendering", () => {
     expect(safeImageSource).toContain("!resolvedSrc || isLocalPlaceholder(resolvedSrc)");
   });
 
-  it("halaman detail tanaman menggunakan image tanaman", () => {
+  it("halaman detail tanaman menggunakan image tanaman hanya bila tersedia", () => {
     const detailPageSource = readFileSync(
       "src/app/tanaman/[slug]/page.tsx",
       "utf8",
     );
 
     expect(detailPageSource).toContain('import { SafeImage }');
+    expect(detailPageSource).toContain("plant.image ? (");
     expect(detailPageSource).toContain("src={plant.image}");
-    expect(detailPageSource).toContain("Tanaman ${plant.localName}");
   });
 
-  it("kartu beranda memakai PlantCard sehingga image ikut muncul", () => {
+  it("kartu beranda memakai HerbaCodePlantCard", () => {
     const homeSectionSource = readFileSync(
       "src/components/home/FeaturedPlantsSection.tsx",
       "utf8",
     );
 
-    expect(homeSectionSource).toContain("<PlantCard key={plant.id} plant={plant} />");
-    expect(homeSectionSource).not.toContain("priority={index === 0}");
+    expect(homeSectionSource).toContain("<HerbaCodePlantCard key={plant.id} plant={plant} />");
   });
 });

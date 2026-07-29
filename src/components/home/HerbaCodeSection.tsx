@@ -1,34 +1,53 @@
 import { Container } from "@/components/ui/Container";
+import { LinkButton } from "@/components/ui/LinkButton";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { StatusBadge } from "@/components/ui/StatusBadge";
+import {
+  getHerbaCodePlantCatalog,
+  getHerbaCodeZoneSummaries,
+} from "@/lib/data/herbacode";
 
-export function HerbaCodeSection() {
+export async function HerbaCodeSection() {
+  const [plants, zones] = await Promise.all([
+    getHerbaCodePlantCatalog(),
+    getHerbaCodeZoneSummaries(),
+  ]);
+  const relationCount = plants.reduce(
+    (total, plant) => total + plant.zoneEntries.length,
+    0,
+  );
+
   return (
     <section className="home-section bg-herbal-soft py-16">
-      <Container className="grid gap-8 lg:grid-cols-[1fr_0.8fr]">
-        <SectionHeading
-          description="HerbaCode menghubungkan setiap tanaman TOGA dengan halaman informasi digital melalui QR Code. Pemasangan QR Code akan dilakukan setelah data tanaman selesai diverifikasi dan website dipublikasikan."
-          eyebrow="HerbaCode"
-          title="QR Code tanaman disiapkan setelah data tervalidasi"
-        />
-        <div className="rounded-md border border-herbal-green/15 bg-white p-6 shadow-sm">
-          <div className="mx-auto grid aspect-square max-w-64 grid-cols-5 gap-2 rounded-md bg-herbal-cream p-4">
-            {Array.from({ length: 25 }).map((_, index) => (
-              <span
-                className={
-                  index % 3 === 0 || index === 6 || index === 18
-                    ? "rounded-sm bg-herbal-green"
-                    : "rounded-sm bg-white"
-                }
-                key={index}
-              />
-            ))}
-          </div>
-          <div className="mt-5 flex justify-center">
-            <StatusBadge tone="brown">QR Code segera tersedia</StatusBadge>
+      <Container className="grid gap-8 lg:grid-cols-[1fr_0.8fr] lg:items-start">
+        <div>
+          <SectionHeading
+            description="HerbaCode menghubungkan tanaman dengan zona kesehatan, senyawa aktif, bagian yang digunakan, manfaat, teknik budidaya, perhatian, dan cara pemanfaatan bila tersedia."
+            eyebrow="HerbaCode"
+            title="Data tanaman dan zona dari dokumen HerbaCode"
+          />
+          <div className="mt-6">
+            <LinkButton href="/tanaman" variant="secondary">
+              Buka Katalog HerbaCode
+            </LinkButton>
           </div>
         </div>
+        <dl className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
+          <Metric label="Zona" value={zones.length} />
+          <Metric label="Tanaman unik" value={plants.length} />
+          <Metric label="Relasi tanaman-zona" value={relationCount} />
+        </dl>
       </Container>
     </section>
+  );
+}
+
+function Metric({ label, value }: { label: string; value: number }) {
+  return (
+    <div className="rounded-md border border-herbal-green/10 bg-white p-5 shadow-sm">
+      <dt className="text-sm font-bold text-herbal-muted">{label}</dt>
+      <dd className="mt-2 text-3xl font-extrabold text-herbal-deep">
+        {value}
+      </dd>
+    </div>
   );
 }

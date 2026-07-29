@@ -6,12 +6,16 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { featuredProducts } from "@/data/products";
 
 export function FeaturedProductsSection() {
+  if (featuredProducts.length === 0) {
+    return null;
+  }
+
   return (
     <section className="home-section bg-gradient-to-b from-white via-herbal-cream to-white py-14 sm:py-16">
       <Container>
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <SectionHeading
-            description="Katalog ini akan diperbarui setelah produk warga, harga, ketersediaan, dan kontak pengelola diverifikasi."
+            description="Produk warga yang telah memiliki data publik ditampilkan pada katalog ini."
             eyebrow="Produk Warga"
             title="Produk pilihan warga"
           />

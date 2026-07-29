@@ -1059,6 +1059,106 @@ export type Database = {
           },
         ];
       };
+      herbacode_plant_zone_entries: {
+        Row: {
+          id: string;
+          source_id: string;
+          health_zone_id: string;
+          plant_id: string;
+          zone_code: string;
+          zone_slug: string;
+          zone_title: string;
+          entry_order: number;
+          raw_zone_title: string;
+          raw_entry_title: string;
+          local_name: string;
+          scientific_name: string | null;
+          active_compounds: string[];
+          benefits: string[];
+          used_parts: string[];
+          cultivation_techniques: string[];
+          warnings: string[];
+          preparation_methods: string[];
+          source_document_name: string;
+          title_correction_notes: string[];
+          content_status: ContentStatus;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          source_id: string;
+          health_zone_id: string;
+          plant_id: string;
+          zone_code: string;
+          zone_slug: string;
+          zone_title: string;
+          entry_order: number;
+          raw_zone_title: string;
+          raw_entry_title: string;
+          local_name: string;
+          scientific_name?: string | null;
+          active_compounds?: string[];
+          benefits?: string[];
+          used_parts?: string[];
+          cultivation_techniques?: string[];
+          warnings?: string[];
+          preparation_methods?: string[];
+          source_document_name: string;
+          title_correction_notes?: string[];
+          content_status?: ContentStatus;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          source_id?: string;
+          health_zone_id?: string;
+          plant_id?: string;
+          zone_code?: string;
+          zone_slug?: string;
+          zone_title?: string;
+          entry_order?: number;
+          raw_zone_title?: string;
+          raw_entry_title?: string;
+          local_name?: string;
+          scientific_name?: string | null;
+          active_compounds?: string[];
+          benefits?: string[];
+          used_parts?: string[];
+          cultivation_techniques?: string[];
+          warnings?: string[];
+          preparation_methods?: string[];
+          source_document_name?: string;
+          title_correction_notes?: string[];
+          content_status?: ContentStatus;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "herbacode_plant_zone_entries_source_id_fkey";
+            columns: ["source_id"];
+            isOneToOne: false;
+            referencedRelation: "plant_sources";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "herbacode_plant_zone_entries_health_zone_id_fkey";
+            columns: ["health_zone_id"];
+            isOneToOne: false;
+            referencedRelation: "health_zones";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "herbacode_plant_zone_entries_plant_id_fkey";
+            columns: ["plant_id"];
+            isOneToOne: false;
+            referencedRelation: "plants";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
     };
     Views: Record<string, never>;
     Functions: {

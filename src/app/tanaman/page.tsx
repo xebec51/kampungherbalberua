@@ -1,10 +1,13 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
-import { PosterPlantCatalog } from "@/components/plants/PosterPlantCatalog";
+import { HerbaCodePlantCatalog } from "@/components/plants/HerbaCodePlantCatalog";
 import { Container } from "@/components/ui/Container";
 import { Disclaimer } from "@/components/ui/Disclaimer";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { getPosterPlantCatalog } from "@/lib/data/poster-plants";
+import {
+  getHerbaCodePlantCatalog,
+  getHerbaCodeZoneSummaries,
+} from "@/lib/data/herbacode";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const revalidate = 300;
@@ -17,17 +20,20 @@ export const metadata: Metadata = createPageMetadata({
 });
 
 export default async function PlantsPage() {
-  const plants = await getPosterPlantCatalog();
-  const zoneCount = new Set(plants.flatMap((plant) => plant.collections)).size;
-  const visibleImageCount = plants.filter(
-    (plant) => plant.imageKind !== "generic" || Boolean(plant.sourcePageUrl),
-  ).length;
+  const [plants, zones] = await Promise.all([
+    getHerbaCodePlantCatalog(),
+    getHerbaCodeZoneSummaries(),
+  ]);
+  const entryCount = plants.reduce(
+    (total, plant) => total + plant.zoneEntries.length,
+    0,
+  );
 
   return (
     <section className="bg-herbal-cream py-12 sm:py-16">
       <Container>
         <SectionHeading
-          description="Kampung Herbal Harmony adalah program pengenalan tanaman dan zona kesehatan di RT 009/RW 006 Kelurahan Berua. Katalog ini membantu pengunjung mengenal nama tanaman, zona edukasi, dan gambar pendamping walaupun tidak sedang berada di lokasi."
+          description="Katalog ini memakai data HerbaCode Kampung Herbal Harmony sebagai sumber profil tanaman, zona kesehatan, senyawa aktif, bagian tanaman, budidaya, perhatian, dan pemanfaatan tradisional yang tersedia."
           eyebrow="Katalog Tanaman"
           title="Katalog Tanaman Kampung Herbal Harmony"
         />
@@ -35,21 +41,21 @@ export default async function PlantsPage() {
           <CatalogMetric
             label="Nama tanaman"
             value={String(plants.length)}
-            description="Daftar nama tanaman yang dapat dicari dan dibuka detailnya."
+            description="Tanaman unik yang terhubung dengan data HerbaCode."
           />
           <CatalogMetric
-            label="Zona edukasi"
-            value={String(zoneCount)}
-            description="Setiap tanaman terhubung dengan lokasi zona pengenalannya."
+            label="Zona HerbaCode"
+            value={String(zones.length)}
+            description="Zona kesehatan yang terbaca dari dokumen sumber."
           />
           <CatalogMetric
-            label="Visual tersedia"
-            value={String(visibleImageCount)}
-            description="Foto atau ilustrasi berlisensi; sisanya memakai visual sementara."
+            label="Relasi tanaman-zona"
+            value={String(entryCount)}
+            description="Setiap relasi menyimpan manfaat sesuai zona."
           />
         </dl>
-        <Suspense fallback={<p className="mt-8 text-sm text-herbal-muted">Memuat katalog tanaman...</p>}>
-          <PosterPlantCatalog plants={plants} />
+        <Suspense fallback={<p className="mt-8 text-sm text-herbal-muted">Memuat katalog tanaman.</p>}>
+          <HerbaCodePlantCatalog plants={plants} />
         </Suspense>
         <div className="mt-8">
           <Disclaimer>

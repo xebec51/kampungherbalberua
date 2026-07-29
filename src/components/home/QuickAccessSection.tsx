@@ -10,9 +10,9 @@ const quickLinks = [
   },
   {
     index: "02",
-    title: "Ramuan Sehat",
-    description: "Baca edukasi pemanfaatan tradisional dengan bahasa yang aman.",
-    href: "/ramuan",
+    title: "Zona Kesehatan",
+    description: "Lihat tanaman dan manfaat sesuai zona HerbaCode.",
+    href: "/zona-kesehatan",
   },
   {
     index: "03",
@@ -22,9 +22,9 @@ const quickLinks = [
   },
   {
     index: "04",
-    title: "Produk Warga",
-    description: "Lihat katalog awal produk yang dapat berkembang bersama warga.",
-    href: "/produk",
+    title: "Sumber Gambar",
+    description: "Baca atribusi media yang digunakan pada website.",
+    href: "/sumber-gambar",
   },
 ];
 

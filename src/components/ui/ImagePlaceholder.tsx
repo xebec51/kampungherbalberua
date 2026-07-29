@@ -14,32 +14,20 @@ const accents = {
   map: "from-[#e1eadf] via-white to-[#f3efe2]",
 };
 
-const visibleLabels = {
-  activity: "Dokumentasi menyusul",
-  map: "Peta sedang disiapkan",
-  plant: "Foto tanaman menyusul",
-  product: "Foto produk menyusul",
-  recipe: "Visual ramuan menyusul",
-};
-
-function visiblePlaceholderLabel(
-  label: string,
-  variant: NonNullable<ImagePlaceholderProps["variant"]>,
-) {
-  return (
-    visibleLabels[variant] ??
-    label.replace(/^Ilustrasi placeholder /, "").replace(/^Gambar sementara /, "")
-  );
-}
-
 export function ImagePlaceholder({
   label,
   variant = "plant",
   className,
 }: ImagePlaceholderProps) {
+  const accessibleLabel =
+    label
+      .replace(/gambar sementara|ilustrasi placeholder|placeholder|sementara/gi, "")
+      .replace(/\s+/g, " ")
+      .trim() || "Media pendamping";
+
   return (
     <div
-      aria-label={label}
+      aria-label={accessibleLabel}
       role="img"
       className={cn(
         "public-card-media image-placeholder relative isolate flex aspect-[4/3] w-full items-end overflow-hidden rounded-md border border-herbal-green/12 bg-gradient-to-br p-4 text-left shadow-sm",
@@ -47,7 +35,6 @@ export function ImagePlaceholder({
         className,
       )}
     >
-      <span className="sr-only">{label}</span>
       <span
         aria-hidden="true"
         className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-herbal-deep/18 to-transparent"
@@ -72,12 +59,6 @@ export function ImagePlaceholder({
         aria-hidden="true"
         className="absolute bottom-12 right-12 h-9 w-12 rounded-md bg-herbal-clay/88"
       />
-      <span className="relative z-10 block max-w-[15rem] rounded-md border border-white/70 bg-white/88 px-3 py-2 text-xs font-bold leading-5 text-herbal-deep shadow-sm backdrop-blur">
-        {visiblePlaceholderLabel(label, variant)}
-        <span className="mt-0.5 block text-[0.68rem] font-semibold uppercase text-herbal-muted">
-          Media sedang dilengkapi
-        </span>
-      </span>
     </div>
   );
 }

@@ -28,7 +28,6 @@ export const mainNavigation: NavigationItem[] = [
     label: "Edukasi",
     children: [
       { type: "link", label: "Tanaman TOGA", href: "/tanaman" },
-      { type: "link", label: "Ramuan Sehat", href: "/ramuan" },
       { type: "link", label: "Zona Kesehatan", href: "/zona-kesehatan" },
     ],
   },
@@ -38,26 +37,19 @@ export const mainNavigation: NavigationItem[] = [
     children: [
       { type: "link", label: "Tentang", href: "/tentang" },
       { type: "link", label: "Peta Kampung", href: "/peta" },
-      { type: "link", label: "Kegiatan", href: "/kegiatan" },
       { type: "link", label: "Kinerja RT", href: "/kinerja-rt" },
     ],
   },
-  { type: "link", label: "Produk", href: "/produk" },
-  { type: "cta", label: "Kotak Saran", href: "/kotak-saran" },
 ];
 
 export const footerMainNavigation: DirectNavigationItem[] = [
   { type: "link", label: "Tentang", href: "/tentang" },
   { type: "link", label: "Tanaman TOGA", href: "/tanaman" },
-  { type: "link", label: "Ramuan Sehat", href: "/ramuan" },
   { type: "link", label: "Peta Kampung", href: "/peta" },
-  { type: "link", label: "Produk", href: "/produk" },
 ];
 
 export const footerNavigation: DirectNavigationItem[] = [
   { type: "link", label: "Zona Kesehatan", href: "/zona-kesehatan" },
-  { type: "link", label: "Kunjungan Edukasi", href: "/wisata" },
   { type: "link", label: "Tim KKN", href: "/tim" },
   { type: "link", label: "Sumber Gambar", href: "/sumber-gambar" },
-  { type: "link", label: "Kotak Saran", href: "/kotak-saran" },
 ];

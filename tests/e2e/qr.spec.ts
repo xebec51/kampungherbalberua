@@ -13,7 +13,7 @@ test.afterAll(async () => {
 test("QR permanen redirect sementara dan kode invalid 404", async ({ request }) => {
   const redirect = await request.get("/z/khb-z01", { maxRedirects: 0 });
   expect(redirect.status()).toBe(307);
-  expect(redirect.headers().location).toContain("/zona-kesehatan/digestia");
+  expect(redirect.headers().location).toContain("/zona-kesehatan/imunitas-kuat");
 
   const invalid = await request.get("/z/not-a-code");
   expect(invalid.status()).toBe(404);
@@ -21,14 +21,14 @@ test("QR permanen redirect sementara dan kode invalid 404", async ({ request }) 
 
 test("perubahan slug tidak mengubah target permanen QR", async ({ request }) => {
   const admin = await signInE2EClient("admin");
-  await admin.from("health_zones").update({ slug: "digestia-sehat" }).eq("zone_code", "khb-z01");
+  await admin.from("health_zones").update({ slug: "imunitas-kuat-sehat" }).eq("zone_code", "khb-z01");
 
   const changed = await request.get("/z/khb-z01", { maxRedirects: 0 });
   expect(changed.status()).toBe(307);
-  expect(changed.headers().location).toContain("/zona-kesehatan/digestia-sehat");
-  expect(changed.headers().location).not.toContain("/z/digestia");
+  expect(changed.headers().location).toContain("/zona-kesehatan/imunitas-kuat-sehat");
+  expect(changed.headers().location).not.toContain("/z/imunitas-kuat");
 
-  await admin.from("health_zones").update({ slug: "digestia" }).eq("zone_code", "khb-z01");
+  await admin.from("health_zones").update({ slug: "imunitas-kuat" }).eq("zone_code", "khb-z01");
   await admin.auth.signOut();
 });
 
@@ -53,14 +53,14 @@ test("endpoint download QR menghasilkan SVG dan PNG dengan filename aman", async
   });
   expect(svg.status()).toBe(200);
   expect(svg.headers()["content-type"]).toContain("image/svg+xml");
-  expect(svg.headers()["content-disposition"]).toContain("qr-khb-z01-digestia.svg");
+  expect(svg.headers()["content-disposition"]).toContain("qr-khb-z01-imunitas-kuat.svg");
 
   const png = await page.request.get(`/admin/zona/${data.id}/qr?format=png`, {
     maxRedirects: 0,
   });
   expect(png.status()).toBe(200);
   expect(png.headers()["content-type"]).toContain("image/png");
-  expect(png.headers()["content-disposition"]).toContain("qr-khb-z01-digestia.png");
+  expect(png.headers()["content-disposition"]).toContain("qr-khb-z01-imunitas-kuat.png");
 
   await admin.auth.signOut();
 });

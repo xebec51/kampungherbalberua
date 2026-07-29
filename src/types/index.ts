@@ -75,6 +75,47 @@ export type Plant = {
   published: boolean;
 };
 
+export type HerbaCodeZoneSummary = {
+  id: string;
+  zoneCode: string;
+  slug: string;
+  title: string;
+  plantCount: number;
+};
+
+export type HerbaCodePlantZoneEntry = {
+  id: string;
+  plantId: string;
+  plantSlug: string;
+  plantLocalName: string;
+  plantScientificName: string | null;
+  zoneId: string;
+  zoneCode: string;
+  zoneSlug: string;
+  zoneTitle: string;
+  entryOrder: number;
+  localName: string;
+  scientificName: string | null;
+  activeCompounds: string[];
+  benefits: string[];
+  usedParts: string[];
+  cultivationTechniques: string[];
+  warnings: string[];
+  preparationMethods: string[];
+  sourceDocumentName: string;
+};
+
+export type HerbaCodePlantProfile = {
+  id: string;
+  slug: string;
+  localName: string;
+  scientificName: string | null;
+  aliases: string[];
+  image: string | null;
+  sourceDocumentName: string;
+  zoneEntries: HerbaCodePlantZoneEntry[];
+};
+
 export type PosterPlantCatalogItem = {
   id: string;
   rawName: string;

@@ -1,0 +1,33 @@
+{
+  "corrections": [
+    {
+      "correctedTitle": "Zona Kesehatan Mulut",
+      "occurrence": 7,
+      "rawTitle": "Zona Tulang & Sendi",
+      "reason": "Judul kedua tertulis sama dengan zona sebelumnya, tetapi isi tanaman membahas rongga mulut, gusi, plak, sariawan, dan bau mulut."
+    },
+    {
+      "correctedTitle": "Zona Anti Mikroba",
+      "occurrence": 8,
+      "rawTitle": "Zona 18 – Anti Mikroba",
+      "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
+    },
+    {
+      "correctedTitle": "Zona Kesehatan Perempuan",
+      "occurrence": 9,
+      "rawTitle": "Zona 19 Kesehatan Perempuan",
+      "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
+    }
+  ],
+  "documentEntryCount": 95,
+  "dryRun": false,
+  "failedMappings": [],
+  "matchedUniquePlants": 14,
+  "newPlants": 36,
+  "relationCount": 95,
+  "sourceCode": "KHB-HERBACODE-2026",
+  "sourceDocumentName": "HerbaCode Kampung Herbal Harmony",
+  "title": "HerbaCode Kampung Herbal Harmony",
+  "uniquePlantsInDocument": 50,
+  "zonesImported": 9
+}

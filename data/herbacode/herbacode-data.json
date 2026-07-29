@@ -1,0 +1,4319 @@
+{
+  "corrections": [
+    {
+      "correctedTitle": "Zona Kesehatan Mulut",
+      "occurrence": 7,
+      "rawTitle": "Zona Tulang & Sendi",
+      "reason": "Judul kedua tertulis sama dengan zona sebelumnya, tetapi isi tanaman membahas rongga mulut, gusi, plak, sariawan, dan bau mulut."
+    },
+    {
+      "correctedTitle": "Zona Anti Mikroba",
+      "occurrence": 8,
+      "rawTitle": "Zona 18 – Anti Mikroba",
+      "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
+    },
+    {
+      "correctedTitle": "Zona Kesehatan Perempuan",
+      "occurrence": 9,
+      "rawTitle": "Zona 19 Kesehatan Perempuan",
+      "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
+    }
+  ],
+  "documentPath": "herba code.docx",
+  "entries": [
+    {
+      "activeCompounds": [
+        "Phyllanthin",
+        "Hypophyllanthin",
+        "Flavonoid",
+        "Tannin",
+        "Lignan"
+      ],
+      "benefits": [
+        "Membantu meningkatkan sistem imun tubuh.",
+        "Memiliki aktivitas antivirus dan antiinflamasi.",
+        "Berpotensi membantu meningkatkan respons imun terhadap infeksi."
+      ],
+      "cultivationTechniques": [
+        "Meniran dapat diperbanyak melalui biji yang telah tua dan kering.",
+        "Tumbuh optimal pada tanah yang gembur dan memiliki drainase yang baik.",
+        "Memerlukan sinar matahari yang cukup dengan penyiraman secukupnya.",
+        "Tanaman dapat dipanen setelah berumur sekitar 2–3 bulan."
+      ],
+      "entryKey": "imunitas-kuat:meniran",
+      "entryOrder": 1,
+      "localName": "Meniran",
+      "plantKey": "meniran",
+      "plantSlug": "meniran",
+      "preparationMethods": [],
+      "rawEntryTitle": "Meniran",
+      "rawZoneTitle": "Zona Imunitas Kuat",
+      "scientificName": "Phyllanthus niruri L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Herba (seluruh bagian tanaman di atas tanah)."
+      ],
+      "warnings": [
+        "Konsumsi dalam jumlah yang sesuai.",
+        "Konsultasikan dengan tenaga kesehatan apabila sedang mengonsumsi obat imunosupresan."
+      ],
+      "zoneCode": "khb-z01",
+      "zoneSlug": "imunitas-kuat",
+      "zoneTitle": "Zona Imunitas Kuat"
+    },
+    {
+      "activeCompounds": [
+        "Andrographolide",
+        "Neoandrographolide",
+        "Flavonoid",
+        "Diterpen lakton"
+      ],
+      "benefits": [
+        "Membantu meningkatkan daya tahan tubuh.",
+        "Memiliki aktivitas antiinflamasi dan antimikroba.",
+        "Berpotensi membantu meredakan gejala infeksi saluran pernapasan ringan."
+      ],
+      "cultivationTechniques": [
+        "Dapat ditanam menggunakan biji atau stek batang.",
+        "Cocok ditanam pada tanah yang subur dan tidak tergenang air.",
+        "Penyiraman dilakukan secara rutin terutama pada musim kemarau.",
+        "Panen herba dapat dilakukan pada umur 3–4 bulan setelah tanam."
+      ],
+      "entryKey": "imunitas-kuat:sambiloto",
+      "entryOrder": 2,
+      "localName": "Sambiloto",
+      "plantKey": "sambiloto",
+      "plantSlug": "sambiloto",
+      "preparationMethods": [],
+      "rawEntryTitle": "Sambiloto",
+      "rawZoneTitle": "Zona Imunitas Kuat",
+      "scientificName": "Andrographis paniculata (Burm.f.) Nees.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Herba."
+      ],
+      "warnings": [
+        "Tidak dianjurkan dikonsumsi dalam jumlah berlebihan.",
+        "Ibu hamil dan menyusui sebaiknya berkonsultasi dengan tenaga kesehatan sebelum mengonsumsinya."
+      ],
+      "zoneCode": "khb-z01",
+      "zoneSlug": "imunitas-kuat",
+      "zoneTitle": "Zona Imunitas Kuat"
+    },
+    {
+      "activeCompounds": [
+        "Quercetin",
+        "Kaempferol",
+        "Vitamin A",
+        "Vitamin C",
+        "Kalsium",
+        "Zat besi",
+        "Polifenol"
+      ],
+      "benefits": [
+        "Membantu memenuhi kebutuhan antioksidan tubuh.",
+        "Mendukung fungsi sistem imun.",
+        "Membantu melindungi sel tubuh dari kerusakan akibat radikal bebas."
+      ],
+      "cultivationTechniques": [
+        "Dapat diperbanyak melalui biji maupun stek batang.",
+        "Tumbuh baik di daerah tropis dengan paparan sinar matahari penuh.",
+        "Tidak membutuhkan banyak air sehingga cukup tahan terhadap musim kemarau.",
+        "Daun dapat dipanen secara berkala setelah tanaman berumur sekitar 6–8 bulan."
+      ],
+      "entryKey": "imunitas-kuat:kelor",
+      "entryOrder": 3,
+      "localName": "Kelor",
+      "plantKey": "kelor",
+      "plantSlug": "kelor",
+      "preparationMethods": [],
+      "rawEntryTitle": "Kelor",
+      "rawZoneTitle": "Zona Imunitas Kuat",
+      "scientificName": "Moringa oleifera Lam.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun."
+      ],
+      "warnings": [
+        "Konsumsi secara seimbang sebagai bagian dari pola makan sehat."
+      ],
+      "zoneCode": "khb-z01",
+      "zoneSlug": "imunitas-kuat",
+      "zoneTitle": "Zona Imunitas Kuat"
+    },
+    {
+      "activeCompounds": [
+        "Gingerol",
+        "Shogaol",
+        "Zingerone",
+        "Minyak atsiri"
+      ],
+      "benefits": [
+        "Membantu meningkatkan daya tahan tubuh.",
+        "Memiliki aktivitas antiinflamasi dan antioksidan.",
+        "Membantu menghangatkan tubuh dan meredakan keluhan flu ringan."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan rimpang yang sehat dan telah bertunas.",
+        "Ditanam pada media tanam yang gembur dan kaya bahan organik.",
+        "Membutuhkan kelembapan tanah yang cukup tanpa genangan air.",
+        "Rimpang dapat dipanen pada umur 8–10 bulan."
+      ],
+      "entryKey": "imunitas-kuat:jahe",
+      "entryOrder": 4,
+      "localName": "Jahe",
+      "plantKey": "jahe",
+      "plantSlug": "jahe",
+      "preparationMethods": [],
+      "rawEntryTitle": "Jahe",
+      "rawZoneTitle": "Zona Imunitas Kuat",
+      "scientificName": "Zingiber officinale Roscoe.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Rimpang."
+      ],
+      "warnings": [
+        "Konsumsi dalam jumlah yang wajar terutama bagi penderita gangguan lambung sensitif."
+      ],
+      "zoneCode": "khb-z01",
+      "zoneSlug": "imunitas-kuat",
+      "zoneTitle": "Zona Imunitas Kuat"
+    },
+    {
+      "activeCompounds": [
+        "Kurkumin",
+        "Minyak atsiri",
+        "Demetoksikurkumin"
+      ],
+      "benefits": [
+        "Memiliki aktivitas antiinflamasi dan antioksidan.",
+        "Membantu menjaga fungsi sistem imun tubuh.",
+        "Berpotensi membantu mengurangi peradangan dalam tubuh."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan potongan rimpang yang memiliki mata tunas.",
+        "Cocok ditanam pada tanah yang subur dengan drainase yang baik.",
+        "Penyiraman dilakukan secara rutin, terutama pada awal pertumbuhan.",
+        "Rimpang siap dipanen pada umur 8–12 bulan."
+      ],
+      "entryKey": "imunitas-kuat:kunyit",
+      "entryOrder": 5,
+      "localName": "Kunyit",
+      "plantKey": "kunyit",
+      "plantSlug": "kunyit",
+      "preparationMethods": [],
+      "rawEntryTitle": "Kunyit",
+      "rawZoneTitle": "Zona Imunitas Kuat",
+      "scientificName": "Curcuma longa L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Rimpang."
+      ],
+      "warnings": [
+        "Konsumsi dalam jumlah yang wajar dan tidak menggantikan terapi medis."
+      ],
+      "zoneCode": "khb-z01",
+      "zoneSlug": "imunitas-kuat",
+      "zoneTitle": "Zona Imunitas Kuat"
+    },
+    {
+      "activeCompounds": [
+        "Xanthorrhizol",
+        "Kurkuminoid",
+        "Minyak atsiri"
+      ],
+      "benefits": [
+        "Membantu meningkatkan daya tahan tubuh.",
+        "Memiliki aktivitas antioksidan dan antiinflamasi.",
+        "Membantu menjaga kesehatan saluran pencernaan yang berperan penting dalam sistem imun."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan potongan rimpang yang memiliki mata tunas.",
+        "Cocok ditanam pada tanah yang subur dengan drainase yang baik.",
+        "Penyiraman dilakukan secara rutin, terutama pada awal pertumbuhan.",
+        "Rimpang siap dipanen pada umur 8–12 bulan."
+      ],
+      "entryKey": "imunitas-kuat:temulawak",
+      "entryOrder": 6,
+      "localName": "Temulawak",
+      "plantKey": "temulawak",
+      "plantSlug": "temulawak",
+      "preparationMethods": [],
+      "rawEntryTitle": "Temulawak",
+      "rawZoneTitle": "Zona Imunitas Kuat",
+      "scientificName": "Curcuma xanthorrhiza Roxb.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Rimpang."
+      ],
+      "warnings": [
+        "Gunakan sesuai kebutuhan dan konsumsi secara bijak."
+      ],
+      "zoneCode": "khb-z01",
+      "zoneSlug": "imunitas-kuat",
+      "zoneTitle": "Zona Imunitas Kuat"
+    },
+    {
+      "activeCompounds": [
+        "Antosianin",
+        "Vitamin C",
+        "Flavonoid",
+        "Polifenol"
+      ],
+      "benefits": [
+        "Membantu meningkatkan asupan antioksidan.",
+        "Membantu menjaga sistem imun tubuh.",
+        "Berpotensi membantu melawan stres oksidatif."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan biji.",
+        "Dapat ditanam dalam pot maupun lahan terbuka.",
+        "Memerlukan paparan sinar matahari yang cukup dan penyiraman secara teratur.",
+        "Kelopak bunga dapat dipanen ketika berwarna merah tua dan cukup matang, sekitar 4–5 bulan setelah tanam."
+      ],
+      "entryKey": "imunitas-kuat:rosella",
+      "entryOrder": 7,
+      "localName": "Rosella",
+      "plantKey": "rosella",
+      "plantSlug": "rosella",
+      "preparationMethods": [],
+      "rawEntryTitle": "Rosella",
+      "rawZoneTitle": "Zona Imunitas Kuat",
+      "scientificName": "Hibiscus sabdariffa L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Kelopak bunga."
+      ],
+      "warnings": [
+        "Penderita tekanan darah rendah perlu berhati-hati dalam mengonsumsinya karena rosella dapat membantu menurunkan tekanan darah."
+      ],
+      "zoneCode": "khb-z01",
+      "zoneSlug": "imunitas-kuat",
+      "zoneTitle": "Zona Imunitas Kuat"
+    },
+    {
+      "activeCompounds": [
+        "Asiaticoside",
+        "Madecassoside",
+        "Flavonoid",
+        "Triterpenoid"
+      ],
+      "benefits": [
+        "Membantu meningkatkan fungsi sistem imun.",
+        "Memiliki aktivitas antioksidan dan antiinflamasi.",
+        "Membantu mempercepat proses regenerasi jaringan tubuh."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak melalui anakan atau stolon (batang yang menjalar).",
+        "Tumbuh baik pada tempat yang lembap dan teduh.",
+        "Penyiraman dilakukan secara rutin untuk menjaga kelembapan tanah.",
+        "Daun dapat dipanen secara berkala setiap 1–2 bulan."
+      ],
+      "entryKey": "imunitas-kuat:pegagan",
+      "entryOrder": 8,
+      "localName": "Pegagan",
+      "plantKey": "pegagan",
+      "plantSlug": "pegagan",
+      "preparationMethods": [],
+      "rawEntryTitle": "Pegagan",
+      "rawZoneTitle": "Zona Imunitas Kuat",
+      "scientificName": "Centella asiatica (L.) Urb.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Herba."
+      ],
+      "warnings": [
+        "Konsumsi dalam jumlah yang wajar."
+      ],
+      "zoneCode": "khb-z01",
+      "zoneSlug": "imunitas-kuat",
+      "zoneTitle": "Zona Imunitas Kuat"
+    },
+    {
+      "activeCompounds": [
+        "Allicin",
+        "Alliin",
+        "Selenium",
+        "Senyawa organosulfur"
+      ],
+      "benefits": [
+        "Membantu meningkatkan daya tahan tubuh.",
+        "Memiliki aktivitas antimikroba dan antioksidan.",
+        "Berpotensi membantu mengurangi risiko infeksi ringan."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan siung bawang putih yang sehat.",
+        "Cocok ditanam pada tanah yang gembur dan memiliki drainase yang baik.",
+        "Membutuhkan paparan sinar matahari yang cukup selama pertumbuhan.",
+        "Umbi dapat dipanen setelah berumur sekitar 90–120 hari."
+      ],
+      "entryKey": "imunitas-kuat:bawang-putih",
+      "entryOrder": 9,
+      "localName": "Bawang putih",
+      "plantKey": "bawang putih",
+      "plantSlug": "bawang-putih",
+      "preparationMethods": [],
+      "rawEntryTitle": "Bawang Putih",
+      "rawZoneTitle": "Zona Imunitas Kuat",
+      "scientificName": "Allium sativum L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Umbi."
+      ],
+      "warnings": [
+        "Konsumsi berlebihan dapat menyebabkan gangguan pencernaan dan meningkatkan risiko perdarahan pada individu yang menggunakan obat pengencer darah."
+      ],
+      "zoneCode": "khb-z01",
+      "zoneSlug": "imunitas-kuat",
+      "zoneTitle": "Zona Imunitas Kuat"
+    },
+    {
+      "activeCompounds": [
+        "Thymoquinone",
+        "Nigellidine",
+        "Flavonoid",
+        "Alkaloid"
+      ],
+      "benefits": [
+        "Membantu meningkatkan respons imun tubuh.",
+        "Memiliki aktivitas antiinflamasi, antioksidan, dan antimikroba.",
+        "Berpotensi membantu menjaga kesehatan tubuh secara menyeluruh."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak melalui biji.",
+        "Tumbuh optimal pada tanah yang subur dan tidak terlalu lembap.",
+        "Penyiraman dilakukan secukupnya untuk menghindari pembusukan akar.",
+        "Biji dapat dipanen ketika buah telah mengering dan berwarna kecokelatan."
+      ],
+      "entryKey": "imunitas-kuat:jintan-hitam",
+      "entryOrder": 10,
+      "localName": "Jintan hitam (Habbatussauda)",
+      "plantKey": "jintan hitam",
+      "plantSlug": "jintan-hitam",
+      "preparationMethods": [
+        "Dikonsumsi dalam bentuk biji, minyak, maupun kapsul herbal terstandar."
+      ],
+      "rawEntryTitle": "Jintan Hitam",
+      "rawZoneTitle": "Zona Imunitas Kuat",
+      "scientificName": "Nigella sativa L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Biji."
+      ],
+      "warnings": [
+        "Gunakan sesuai dosis yang dianjurkan pada produk herbal."
+      ],
+      "zoneCode": "khb-z01",
+      "zoneSlug": "imunitas-kuat",
+      "zoneTitle": "Zona Imunitas Kuat"
+    },
+    {
+      "activeCompounds": [
+        "Flavonoid",
+        "Tanin",
+        "Saponin",
+        "Minyak atsiri",
+        "Polifenol"
+      ],
+      "benefits": [
+        "Secara tradisional digunakan untuk membantu meningkatkan daya tahan tubuh.",
+        "Memiliki aktivitas antiinflamasi dan antioksidan.",
+        "Berpotensi membantu meredakan peradangan dan menjaga kesehatan saluran pernapasan."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak dengan stek batang yang memiliki beberapa ruas daun.",
+        "Mudah tumbuh di pekarangan rumah maupun dalam pot.",
+        "Membutuhkan penyiraman secara rutin dan sinar matahari yang cukup.",
+        "Daun dapat dipanen secara berkala setelah tanaman tumbuh optimal."
+      ],
+      "entryKey": "imunitas-kuat:miana",
+      "entryOrder": 11,
+      "localName": "Miana (iler)",
+      "plantKey": "miana",
+      "plantSlug": "miana",
+      "preparationMethods": [
+        "Daunnya direbus dan diminum air rebusannya.",
+        "Dapat digunakan sesuai anjuran pengobatan tradisional yang tepat."
+      ],
+      "rawEntryTitle": "Miana",
+      "rawZoneTitle": "Zona Imunitas Kuat",
+      "scientificName": "Coleus scutellarioides (L.) Benth.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun."
+      ],
+      "warnings": [
+        "Bukti ilmiah mengenai manfaatnya sebagai imunomodulator masih terus diteliti sehingga penggunaannya sebaiknya sebagai terapi pendamping."
+      ],
+      "zoneCode": "khb-z01",
+      "zoneSlug": "imunitas-kuat",
+      "zoneTitle": "Zona Imunitas Kuat"
+    },
+    {
+      "activeCompounds": [
+        "Gingerol",
+        "Shogaol",
+        "Zingerone",
+        "Minyak atsiri"
+      ],
+      "benefits": [
+        "Membantu meredakan mual dan muntah.",
+        "Membantu mengurangi perut kembung.",
+        "Membantu meningkatkan fungsi pencernaan dan mengurangi rasa tidak nyaman pada lambung."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan rimpang yang sehat dan telah bertunas.",
+        "Ditanam pada tanah yang gembur, subur, dan memiliki drainase yang baik.",
+        "Dapat dipanen pada umur 8–10 bulan setelah tanam."
+      ],
+      "entryKey": "pencernaan-sehat:jahe",
+      "entryOrder": 1,
+      "localName": "Jahe",
+      "plantKey": "jahe",
+      "plantSlug": "jahe",
+      "preparationMethods": [],
+      "rawEntryTitle": "Jahe",
+      "rawZoneTitle": "Zona Pencernaan Sehat",
+      "scientificName": "Zingiber officinale Roscoe.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Rimpang."
+      ],
+      "warnings": [
+        "Konsumsi berlebihan dapat menyebabkan iritasi lambung pada sebagian orang."
+      ],
+      "zoneCode": "khb-z02",
+      "zoneSlug": "pencernaan-sehat",
+      "zoneTitle": "Zona Pencernaan Sehat"
+    },
+    {
+      "activeCompounds": [
+        "Xanthorrhizol",
+        "Kurkuminoid",
+        "Minyak atsiri"
+      ],
+      "benefits": [
+        "Membantu menjaga kesehatan saluran pencernaan.",
+        "Membantu meningkatkan nafsu makan.",
+        "Memiliki aktivitas antiinflamasi dan antioksidan."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan rimpang.",
+        "Tumbuh optimal pada tanah yang gembur dan cukup sinar matahari.",
+        "Dipanen pada umur 10–12 bulan."
+      ],
+      "entryKey": "pencernaan-sehat:temulawak",
+      "entryOrder": 2,
+      "localName": "Temulawak",
+      "plantKey": "temulawak",
+      "plantSlug": "temulawak",
+      "preparationMethods": [],
+      "rawEntryTitle": "Temulawak",
+      "rawZoneTitle": "Zona Pencernaan Sehat",
+      "scientificName": "Curcuma xanthorrhiza Roxb.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Rimpang."
+      ],
+      "warnings": [
+        "Konsumsi dalam jumlah wajar dan tidak digunakan sebagai pengganti terapi medis."
+      ],
+      "zoneCode": "khb-z02",
+      "zoneSlug": "pencernaan-sehat",
+      "zoneTitle": "Zona Pencernaan Sehat"
+    },
+    {
+      "activeCompounds": [
+        "Kurkumin",
+        "Demetoksikurkumin",
+        "Minyak atsiri"
+      ],
+      "benefits": [
+        "Membantu melindungi mukosa lambung.",
+        "Memiliki aktivitas antiinflamasi dan antioksidan.",
+        "Berpotensi membantu mengurangi gangguan lambung ringan."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan potongan rimpang yang memiliki mata tunas.",
+        "Cocok ditanam pada tanah yang subur dan lembap.",
+        "Dipanen pada umur 8–12 bulan."
+      ],
+      "entryKey": "pencernaan-sehat:kunyit",
+      "entryOrder": 3,
+      "localName": "Kunyit",
+      "plantKey": "kunyit",
+      "plantSlug": "kunyit",
+      "preparationMethods": [],
+      "rawEntryTitle": "Kunyit",
+      "rawZoneTitle": "Zona Pencernaan Sehat",
+      "scientificName": "Curcuma longa L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Rimpang."
+      ],
+      "warnings": [
+        "Penderita batu empedu sebaiknya berkonsultasi terlebih dahulu sebelum mengonsumsi kunyit secara rutin."
+      ],
+      "zoneCode": "khb-z02",
+      "zoneSlug": "pencernaan-sehat",
+      "zoneTitle": "Zona Pencernaan Sehat"
+    },
+    {
+      "activeCompounds": [
+        "Anethole",
+        "Fenchone",
+        "Estragole"
+      ],
+      "benefits": [
+        "Membantu mengurangi perut kembung.",
+        "Membantu meredakan gangguan pencernaan ringan.",
+        "Memiliki efek karminatif (mengurangi gas dalam saluran pencernaan)."
+      ],
+      "cultivationTechniques": [
+        "Ditanam menggunakan biji.",
+        "Membutuhkan sinar matahari yang cukup dan tanah yang subur.",
+        "Dipanen setelah menghasilkan buah yang matang."
+      ],
+      "entryKey": "pencernaan-sehat:adas",
+      "entryOrder": 4,
+      "localName": "Adas",
+      "plantKey": "adas",
+      "plantSlug": "adas",
+      "preparationMethods": [],
+      "rawEntryTitle": "Adas",
+      "rawZoneTitle": "Zona Pencernaan Sehat",
+      "scientificName": "Foeniculum vulgare Mill.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Buah (biji adas)."
+      ],
+      "warnings": [
+        "Sebaiknya digunakan dalam jumlah yang sesuai."
+      ],
+      "zoneCode": "khb-z02",
+      "zoneSlug": "pencernaan-sehat",
+      "zoneTitle": "Zona Pencernaan Sehat"
+    },
+    {
+      "activeCompounds": [
+        "Linalool",
+        "Flavonoid",
+        "Minyak atsiri"
+      ],
+      "benefits": [
+        "Membantu meningkatkan nafsu makan.",
+        "Membantu menjaga kesehatan saluran pencernaan.",
+        "Membantu mengurangi gangguan pencernaan ringan."
+      ],
+      "cultivationTechniques": [
+        "Ditanam menggunakan biji.",
+        "Mudah dibudidayakan di daerah tropis.",
+        "Dapat dipanen sekitar 3–4 bulan setelah tanam."
+      ],
+      "entryKey": "pencernaan-sehat:ketumbar",
+      "entryOrder": 5,
+      "localName": "Ketumbar",
+      "plantKey": "ketumbar",
+      "plantSlug": "ketumbar",
+      "preparationMethods": [],
+      "rawEntryTitle": "Ketumbar",
+      "rawZoneTitle": "Zona Pencernaan Sehat",
+      "scientificName": "Coriandrum sativum L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Biji."
+      ],
+      "warnings": [
+        "Konsumsi berlebihan dapat menyebabkan reaksi alergi pada individu tertentu."
+      ],
+      "zoneCode": "khb-z02",
+      "zoneSlug": "pencernaan-sehat",
+      "zoneTitle": "Zona Pencernaan Sehat"
+    },
+    {
+      "activeCompounds": [
+        "Cineole",
+        "Terpineol",
+        "Minyak atsiri"
+      ],
+      "benefits": [
+        "Membantu meredakan mual dan perut kembung.",
+        "Membantu menjaga kesehatan lambung.",
+        "Memiliki aktivitas antioksidan."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak melalui anakan.",
+        "Cocok ditanam di tempat yang lembap dan teduh.",
+        "Buah dipanen setelah matang."
+      ],
+      "entryKey": "pencernaan-sehat:kapulaga",
+      "entryOrder": 6,
+      "localName": "Kapulaga",
+      "plantKey": "kapulaga",
+      "plantSlug": "kapulaga",
+      "preparationMethods": [],
+      "rawEntryTitle": "Kapulaga",
+      "rawZoneTitle": "Zona Pencernaan Sehat",
+      "scientificName": "Amomum compactum Sol. ex Maton.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Buah."
+      ],
+      "warnings": [
+        "Gunakan secukupnya sebagai bahan herbal maupun bumbu masakan."
+      ],
+      "zoneCode": "khb-z02",
+      "zoneSlug": "pencernaan-sehat",
+      "zoneTitle": "Zona Pencernaan Sehat"
+    },
+    {
+      "activeCompounds": [
+        "Menthol",
+        "Menthone",
+        "Flavonoid"
+      ],
+      "benefits": [
+        "Membantu meredakan gangguan pencernaan.",
+        "Membantu mengurangi rasa mual dan kembung.",
+        "Memberikan sensasi segar pada saluran cerna."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak melalui stek batang.",
+        "Tumbuh baik pada media yang lembap dengan sinar matahari yang cukup."
+      ],
+      "entryKey": "pencernaan-sehat:mint",
+      "entryOrder": 7,
+      "localName": "Mint",
+      "plantKey": "mint",
+      "plantSlug": "mint",
+      "preparationMethods": [],
+      "rawEntryTitle": "Mint",
+      "rawZoneTitle": "Zona Pencernaan Sehat",
+      "scientificName": "Mentha × piperita L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun."
+      ],
+      "warnings": [
+        "Penderita GERD (gastroesophageal reflux disease) sebaiknya berhati-hati karena mint dapat memperburuk gejala refluks pada sebagian orang."
+      ],
+      "zoneCode": "khb-z02",
+      "zoneSlug": "pencernaan-sehat",
+      "zoneTitle": "Zona Pencernaan Sehat"
+    },
+    {
+      "activeCompounds": [
+        "Citral",
+        "Geraniol",
+        "Limonene"
+      ],
+      "benefits": [
+        "Membantu meredakan gangguan pencernaan ringan.",
+        "Memiliki aktivitas antioksidan dan antimikroba.",
+        "Membantu mengurangi rasa tidak nyaman pada perut."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan anakan.",
+        "Mudah ditanam di pekarangan rumah dan dapat dipanen secara berkala."
+      ],
+      "entryKey": "pencernaan-sehat:serai",
+      "entryOrder": 8,
+      "localName": "Serai",
+      "plantKey": "serai",
+      "plantSlug": "serai",
+      "preparationMethods": [],
+      "rawEntryTitle": "Serai",
+      "rawZoneTitle": "Zona Pencernaan Sehat",
+      "scientificName": "Cymbopogon citratus (DC.) Stapf.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Batang semu dan daun."
+      ],
+      "warnings": [
+        "Konsumsi dalam jumlah yang wajar."
+      ],
+      "zoneCode": "khb-z02",
+      "zoneSlug": "pencernaan-sehat",
+      "zoneTitle": "Zona Pencernaan Sehat"
+    },
+    {
+      "activeCompounds": [
+        "Eugenol",
+        "Flavonoid",
+        "Minyak atsiri"
+      ],
+      "benefits": [
+        "Membantu meningkatkan nafsu makan.",
+        "Membantu menjaga kesehatan saluran pencernaan.",
+        "Memiliki aktivitas antioksidan."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan biji.",
+        "Dapat dipanen sekitar 1–2 bulan setelah tanam."
+      ],
+      "entryKey": "pencernaan-sehat:kemangi",
+      "entryOrder": 9,
+      "localName": "Kemangi",
+      "plantKey": "kemangi",
+      "plantSlug": "kemangi",
+      "preparationMethods": [],
+      "rawEntryTitle": "Kemangi",
+      "rawZoneTitle": "Zona Pencernaan Sehat",
+      "scientificName": "Ocimum basilicum L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun."
+      ],
+      "warnings": [
+        "Sebaiknya dicuci bersih sebelum dikonsumsi sebagai lalapan."
+      ],
+      "zoneCode": "khb-z02",
+      "zoneSlug": "pencernaan-sehat",
+      "zoneTitle": "Zona Pencernaan Sehat"
+    },
+    {
+      "activeCompounds": [
+        "Acemannan",
+        "Polisakarida",
+        "Vitamin dan mineral"
+      ],
+      "benefits": [
+        "Membantu menjaga kesehatan saluran pencernaan.",
+        "Berpotensi membantu mengurangi iritasi lambung.",
+        "Memiliki aktivitas antiinflamasi."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak melalui anakan.",
+        "Mudah ditanam dalam pot maupun pekarangan rumah."
+      ],
+      "entryKey": "pencernaan-sehat:lidah-buaya",
+      "entryOrder": 10,
+      "localName": "Lidah buaya",
+      "plantKey": "lidah buaya",
+      "plantSlug": "lidah-buaya",
+      "preparationMethods": [],
+      "rawEntryTitle": "Lidah Buaya",
+      "rawZoneTitle": "Zona Pencernaan Sehat",
+      "scientificName": "Aloe vera (L.) Burm.f.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Gel daun."
+      ],
+      "warnings": [
+        "Getah kuning (lateks) perlu dibersihkan sebelum dikonsumsi karena dapat menyebabkan diare."
+      ],
+      "zoneCode": "khb-z02",
+      "zoneSlug": "pencernaan-sehat",
+      "zoneTitle": "Zona Pencernaan Sehat"
+    },
+    {
+      "activeCompounds": [
+        "Flavonoid",
+        "Alkaloid",
+        "Tanin"
+      ],
+      "benefits": [
+        "Secara tradisional digunakan untuk membantu mengatasi wasir dan menjaga kesehatan saluran pencernaan bagian bawah."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak melalui stek batang.",
+        "Mudah tumbuh di daerah tropis."
+      ],
+      "entryKey": "pencernaan-sehat:daun-ungu",
+      "entryOrder": 11,
+      "localName": "Daun ungu",
+      "plantKey": "daun ungu",
+      "plantSlug": "daun-ungu",
+      "preparationMethods": [],
+      "rawEntryTitle": "Daun Ungu",
+      "rawZoneTitle": "Zona Pencernaan Sehat",
+      "scientificName": "Graptophyllum pictum (L.) Griff.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun."
+      ],
+      "warnings": [
+        "Penggunaan jangka panjang sebaiknya dikonsultasikan dengan tenaga kesehatan."
+      ],
+      "zoneCode": "khb-z02",
+      "zoneSlug": "pencernaan-sehat",
+      "zoneTitle": "Zona Pencernaan Sehat"
+    },
+    {
+      "activeCompounds": [
+        "Flavonoid",
+        "Alkaloid",
+        "Polifenol"
+      ],
+      "benefits": [
+        "Membantu memberikan efek menyejukkan pada saluran pencernaan.",
+        "Membantu mengurangi rasa tidak nyaman pada lambung."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak melalui stek batang.",
+        "Cocok ditanam pada media yang lembap."
+      ],
+      "entryKey": "pencernaan-sehat:cincau-hijau",
+      "entryOrder": 12,
+      "localName": "Cincau hijau",
+      "plantKey": "cincau hijau",
+      "plantSlug": "cincau-hijau",
+      "preparationMethods": [],
+      "rawEntryTitle": "Cincau Hijau",
+      "rawZoneTitle": "Zona Pencernaan Sehat",
+      "scientificName": "Cyclea barbata Miers.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun."
+      ],
+      "warnings": [
+        "Pastikan pengolahan dilakukan secara higienis."
+      ],
+      "zoneCode": "khb-z02",
+      "zoneSlug": "pencernaan-sehat",
+      "zoneTitle": "Zona Pencernaan Sehat"
+    },
+    {
+      "activeCompounds": [
+        "Zedoarin",
+        "Kurkuminoid",
+        "Minyak atsiri"
+      ],
+      "benefits": [
+        "Membantu menjaga kesehatan pencernaan.",
+        "Memiliki aktivitas antiinflamasi dan antioksidan."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan rimpang.",
+        "Dipanen pada umur 8–12 bulan."
+      ],
+      "entryKey": "pencernaan-sehat:kunyit-putih",
+      "entryOrder": 13,
+      "localName": "Kunyit putih",
+      "plantKey": "kunyit putih",
+      "plantSlug": "kunyit-putih",
+      "preparationMethods": [],
+      "rawEntryTitle": "Kunyit Putih",
+      "rawZoneTitle": "Zona Pencernaan Sehat",
+      "scientificName": "Curcuma zedoaria (Christm.) Roscoe.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Rimpang."
+      ],
+      "warnings": [
+        "Tidak dianjurkan dikonsumsi secara berlebihan."
+      ],
+      "zoneCode": "khb-z02",
+      "zoneSlug": "pencernaan-sehat",
+      "zoneTitle": "Zona Pencernaan Sehat"
+    },
+    {
+      "activeCompounds": [
+        "Kurkuminoid",
+        "Minyak atsiri",
+        "Senyawa fenolik"
+      ],
+      "benefits": [
+        "Membantu meningkatkan nafsu makan.",
+        "Membantu menjaga kesehatan sistem pencernaan."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan rimpang dan ditanam pada tanah yang gembur."
+      ],
+      "entryKey": "pencernaan-sehat:temu-mangga",
+      "entryOrder": 14,
+      "localName": "Temu mangga",
+      "plantKey": "temu mangga",
+      "plantSlug": "temu-mangga",
+      "preparationMethods": [],
+      "rawEntryTitle": "Temu Mangga",
+      "rawZoneTitle": "Zona Pencernaan Sehat",
+      "scientificName": "Curcuma mangga Valeton & Zijp.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Rimpang."
+      ],
+      "warnings": [
+        "Gunakan dalam jumlah yang sesuai sebagai bahan herbal."
+      ],
+      "zoneCode": "khb-z02",
+      "zoneSlug": "pencernaan-sehat",
+      "zoneTitle": "Zona Pencernaan Sehat"
+    },
+    {
+      "activeCompounds": [
+        "Flavonoid",
+        "Seskuiterpen lakton",
+        "Tanin"
+      ],
+      "benefits": [
+        "Secara tradisional digunakan untuk membantu mengatasi gangguan pencernaan ringan.",
+        "Memiliki aktivitas antiinflamasi."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak melalui biji dan tumbuh baik pada tanah yang cukup lembap."
+      ],
+      "entryKey": "pencernaan-sehat:tapak-liman",
+      "entryOrder": 15,
+      "localName": "Tapak liman",
+      "plantKey": "tapak liman",
+      "plantSlug": "tapak-liman",
+      "preparationMethods": [],
+      "rawEntryTitle": "Tapak Liman",
+      "rawZoneTitle": "Zona Pencernaan Sehat",
+      "scientificName": "Elephantopus scaber L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Herba."
+      ],
+      "warnings": [
+        "Penggunaan sebagai obat tradisional sebaiknya dilakukan secara bijak dan tidak berlebihan."
+      ],
+      "zoneCode": "khb-z02",
+      "zoneSlug": "pencernaan-sehat",
+      "zoneTitle": "Zona Pencernaan Sehat"
+    },
+    {
+      "activeCompounds": [
+        "Sinensetin",
+        "Orthosiphol",
+        "Flavonoid",
+        "Kalium",
+        "Minyak atsiri"
+      ],
+      "benefits": [
+        "Membantu melancarkan pengeluaran urin (diuretik).",
+        "Membantu menjaga kesehatan saluran kemih.",
+        "Berpotensi membantu mencegah pembentukan batu ginjal."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak melalui stek batang.",
+        "Tumbuh baik pada tanah yang subur dan memiliki drainase yang baik.",
+        "Dapat dipanen setelah berumur 3–4 bulan."
+      ],
+      "entryKey": "ginjal-sehat:kumis-kucing",
+      "entryOrder": 1,
+      "localName": "Kumis kucing",
+      "plantKey": "kumis kucing",
+      "plantSlug": "kumis-kucing",
+      "preparationMethods": [],
+      "rawEntryTitle": "Kumis Kucing",
+      "rawZoneTitle": "Zona Ginjal Sehat",
+      "scientificName": "Orthosiphon aristatus (Blume) Miq.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun dan pucuk tanaman."
+      ],
+      "warnings": [
+        "Tidak dianjurkan digunakan sebagai pengganti pengobatan pada penyakit ginjal kronis."
+      ],
+      "zoneCode": "khb-z03",
+      "zoneSlug": "ginjal-sehat",
+      "zoneTitle": "Zona Ginjal Sehat"
+    },
+    {
+      "activeCompounds": [
+        "Flavonoid",
+        "Kalium",
+        "Taraksasterol",
+        "Inositol"
+      ],
+      "benefits": [
+        "Membantu melancarkan pengeluaran urin.",
+        "Berpotensi membantu meluruhkan batu ginjal.",
+        "Membantu menjaga fungsi saluran kemih."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan biji.",
+        "Cocok ditanam di tempat yang cukup mendapat sinar matahari.",
+        "Daun dapat dipanen secara berkala."
+      ],
+      "entryKey": "ginjal-sehat:tempuyung",
+      "entryOrder": 2,
+      "localName": "Tempuyung",
+      "plantKey": "tempuyung",
+      "plantSlug": "tempuyung",
+      "preparationMethods": [],
+      "rawEntryTitle": "Tempuyung",
+      "rawZoneTitle": "Zona Ginjal Sehat",
+      "scientificName": "Sonchus arvensis L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun."
+      ],
+      "warnings": [
+        "Tetap perlu berkonsultasi dengan tenaga kesehatan apabila memiliki riwayat batu ginjal."
+      ],
+      "zoneCode": "khb-z03",
+      "zoneSlug": "ginjal-sehat",
+      "zoneTitle": "Zona Ginjal Sehat"
+    },
+    {
+      "activeCompounds": [
+        "Flavonoid",
+        "Tanin",
+        "Polifenol",
+        "Kalium"
+      ],
+      "benefits": [
+        "Membantu melancarkan buang air kecil.",
+        "Berpotensi membantu mengurangi risiko pembentukan batu saluran kemih.",
+        "Memiliki aktivitas antioksidan."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak melalui stek batang.",
+        "Tumbuh baik pada tanah yang gembur dan lembap."
+      ],
+      "entryKey": "ginjal-sehat:keji-beling",
+      "entryOrder": 3,
+      "localName": "Keji beling (pecah beling)",
+      "plantKey": "keji beling",
+      "plantSlug": "keji-beling",
+      "preparationMethods": [],
+      "rawEntryTitle": "Keji Beling",
+      "rawZoneTitle": "Zona Ginjal Sehat",
+      "scientificName": "Strobilanthes crispa (L.) Blume.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun."
+      ],
+      "warnings": [
+        "Penggunaan dalam jangka panjang sebaiknya tidak berlebihan."
+      ],
+      "zoneCode": "khb-z03",
+      "zoneSlug": "ginjal-sehat",
+      "zoneTitle": "Zona Ginjal Sehat"
+    },
+    {
+      "activeCompounds": [
+        "Phyllanthin",
+        "Hypophyllanthin",
+        "Flavonoid",
+        "Lignan"
+      ],
+      "benefits": [
+        "Memiliki aktivitas antioksidan dan antiinflamasi.",
+        "Membantu menjaga kesehatan ginjal dan saluran kemih.",
+        "Berpotensi membantu menghambat pembentukan batu ginjal."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak melalui biji.",
+        "Mudah tumbuh pada daerah tropis dengan penyiraman yang cukup."
+      ],
+      "entryKey": "ginjal-sehat:meniran",
+      "entryOrder": 4,
+      "localName": "Meniran",
+      "plantKey": "meniran",
+      "plantSlug": "meniran",
+      "preparationMethods": [],
+      "rawEntryTitle": "Meniran",
+      "rawZoneTitle": "Zona Ginjal Sehat",
+      "scientificName": "Phyllanthus niruri L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Seluruh bagian tanaman (herba)."
+      ],
+      "warnings": [
+        "Gunakan dalam jumlah yang sesuai dan tidak berlebihan."
+      ],
+      "zoneCode": "khb-z03",
+      "zoneSlug": "ginjal-sehat",
+      "zoneTitle": "Zona Ginjal Sehat"
+    },
+    {
+      "activeCompounds": [
+        "Mannitol",
+        "Flavonoid",
+        "Saponin",
+        "Kalium"
+      ],
+      "benefits": [
+        "Membantu meningkatkan produksi urin.",
+        "Secara tradisional digunakan untuk membantu mengatasi gangguan saluran kemih.",
+        "Membantu menjaga keseimbangan cairan tubuh."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak melalui rimpang.",
+        "Mudah tumbuh pada berbagai jenis tanah."
+      ],
+      "entryKey": "ginjal-sehat:alang-alang",
+      "entryOrder": 5,
+      "localName": "Alang-alang",
+      "plantKey": "alang-alang",
+      "plantSlug": "alang-alang",
+      "preparationMethods": [],
+      "rawEntryTitle": "Alang-alang",
+      "rawZoneTitle": "Zona Ginjal Sehat",
+      "scientificName": "Imperata cylindrica (L.) Raeusch.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Akar/rimpang."
+      ],
+      "warnings": [
+        "Konsumsi herbal sebaiknya tetap memperhatikan kecukupan cairan tubuh."
+      ],
+      "zoneCode": "khb-z03",
+      "zoneSlug": "ginjal-sehat",
+      "zoneTitle": "Zona Ginjal Sehat"
+    },
+    {
+      "activeCompounds": [
+        "Flavonoid",
+        "Kalium",
+        "Saponin",
+        "Polisakarida"
+      ],
+      "benefits": [
+        "Membantu melancarkan buang air kecil.",
+        "Berpotensi membantu menjaga kesehatan ginjal dan saluran kemih.",
+        "Memiliki aktivitas antioksidan."
+      ],
+      "cultivationTechniques": [
+        "Jagung ditanam menggunakan biji pada tanah yang subur dan cukup sinar matahari.",
+        "Rambut jagung dapat dipanen bersamaan dengan pemanenan tongkol jagung."
+      ],
+      "entryKey": "ginjal-sehat:rambut-jagung",
+      "entryOrder": 6,
+      "localName": "Rambut jagung",
+      "plantKey": "rambut jagung",
+      "plantSlug": "rambut-jagung",
+      "preparationMethods": [],
+      "rawEntryTitle": "Rambut Jagung",
+      "rawZoneTitle": "Zona Ginjal Sehat",
+      "scientificName": "Zea mays L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Rambut jagung (stilus dan stigma)."
+      ],
+      "warnings": [
+        "Konsumsi secara wajar sebagai minuman herbal pendamping."
+      ],
+      "zoneCode": "khb-z03",
+      "zoneSlug": "ginjal-sehat",
+      "zoneTitle": "Zona Ginjal Sehat"
+    },
+    {
+      "activeCompounds": [
+        "Alkaloid",
+        "Flavonoid",
+        "Saponin",
+        "Tanin"
+      ],
+      "benefits": [
+        "Membantu meningkatkan pengeluaran urin.",
+        "Secara tradisional digunakan untuk membantu mengatasi batu ginjal dan asam urat.",
+        "Memiliki aktivitas antiinflamasi."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak melalui biji.",
+        "Tumbuh baik pada lahan terbuka dengan paparan sinar matahari yang cukup."
+      ],
+      "entryKey": "ginjal-sehat:sidaguri",
+      "entryOrder": 7,
+      "localName": "Sidaguri",
+      "plantKey": "sidaguri",
+      "plantSlug": "sidaguri",
+      "preparationMethods": [],
+      "rawEntryTitle": "Sidaguri",
+      "rawZoneTitle": "Zona Ginjal Sehat",
+      "scientificName": "Sida rhombifolia L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Akar dan daun."
+      ],
+      "warnings": [
+        "Penggunaan dalam jangka panjang perlu memperhatikan dosis yang digunakan."
+      ],
+      "zoneCode": "khb-z03",
+      "zoneSlug": "ginjal-sehat",
+      "zoneTitle": "Zona Ginjal Sehat"
+    },
+    {
+      "activeCompounds": [
+        "Apigenin",
+        "Flavonoid",
+        "Vitamin K",
+        "Kalium"
+      ],
+      "benefits": [
+        "Membantu meningkatkan produksi urin.",
+        "Membantu menjaga keseimbangan cairan tubuh.",
+        "Memiliki aktivitas antioksidan."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan biji.",
+        "Membutuhkan tanah yang subur dan lembap.",
+        "Dapat dipanen pada umur 2–3 bulan."
+      ],
+      "entryKey": "ginjal-sehat:seledri",
+      "entryOrder": 8,
+      "localName": "Seledri",
+      "plantKey": "seledri",
+      "plantSlug": "seledri",
+      "preparationMethods": [],
+      "rawEntryTitle": "Seledri",
+      "rawZoneTitle": "Zona Ginjal Sehat",
+      "scientificName": "Apium graveolens L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun dan batang."
+      ],
+      "warnings": [
+        "Konsumsi dalam jumlah yang wajar, terutama bagi individu yang memiliki alergi terhadap seledri."
+      ],
+      "zoneCode": "khb-z03",
+      "zoneSlug": "ginjal-sehat",
+      "zoneTitle": "Zona Ginjal Sehat"
+    },
+    {
+      "activeCompounds": [
+        "Asiaticoside",
+        "Madecassoside",
+        "Flavonoid",
+        "Triterpenoid"
+      ],
+      "benefits": [
+        "Memiliki aktivitas antioksidan dan antiinflamasi.",
+        "Membantu melindungi sel-sel tubuh dari kerusakan oksidatif, termasuk pada ginjal.",
+        "Berpotensi membantu menjaga fungsi ginjal secara umum."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak melalui stolon atau anakan.",
+        "Tumbuh baik pada tanah yang lembap dan teduh."
+      ],
+      "entryKey": "ginjal-sehat:pegagan",
+      "entryOrder": 9,
+      "localName": "Pegagan",
+      "plantKey": "pegagan",
+      "plantSlug": "pegagan",
+      "preparationMethods": [],
+      "rawEntryTitle": "Pegagan",
+      "rawZoneTitle": "Zona Ginjal Sehat",
+      "scientificName": "Centella asiatica (L.) Urb.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Seluruh bagian herba."
+      ],
+      "warnings": [
+        "Konsumsi berlebihan tidak dianjurkan dalam jangka panjang."
+      ],
+      "zoneCode": "khb-z03",
+      "zoneSlug": "ginjal-sehat",
+      "zoneTitle": "Zona Ginjal Sehat"
+    },
+    {
+      "activeCompounds": [
+        "Vitamin C",
+        "Flavonoid",
+        "Tanin",
+        "Saponin",
+        "Asam sitrat"
+      ],
+      "benefits": [
+        "Memiliki aktivitas antioksidan.",
+        "Secara tradisional digunakan untuk membantu menjaga kesehatan saluran kemih.",
+        "Berpotensi membantu meningkatkan pengeluaran urin."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak melalui biji maupun cangkok.",
+        "Tumbuh baik di daerah tropis dengan paparan sinar matahari yang cukup."
+      ],
+      "entryKey": "ginjal-sehat:belimbing-wuluh",
+      "entryOrder": 10,
+      "localName": "Belimbing wuluh",
+      "plantKey": "belimbing wuluh",
+      "plantSlug": "belimbing-wuluh",
+      "preparationMethods": [],
+      "rawEntryTitle": "Belimbing Wuluh",
+      "rawZoneTitle": "Zona Ginjal Sehat",
+      "scientificName": "Averrhoa bilimbi L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Buah."
+      ],
+      "warnings": [
+        "Mengandung asam oksalat yang cukup tinggi. Konsumsi berlebihan, terutama pada penderita gangguan ginjal, tidak dianjurkan karena dapat meningkatkan risiko gangguan ginjal akibat akumulasi oksalat."
+      ],
+      "zoneCode": "khb-z03",
+      "zoneSlug": "ginjal-sehat",
+      "zoneTitle": "Zona Ginjal Sehat"
+    },
+    {
+      "activeCompounds": [
+        "Xanthorrhizol",
+        "Kurkuminoid",
+        "Minyak atsiri",
+        "Flavonoid"
+      ],
+      "benefits": [
+        "Membantu menjaga fungsi hati (hepatoprotektor).",
+        "Memiliki aktivitas antiinflamasi dan antioksidan.",
+        "Membantu meningkatkan produksi empedu dan mendukung proses detoksifikasi tubuh."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan rimpang.",
+        "Tumbuh optimal pada tanah yang gembur dan kaya bahan organik.",
+        "Dapat dipanen pada umur 10–12 bulan."
+      ],
+      "entryKey": "hati-sehat:temulawak",
+      "entryOrder": 1,
+      "localName": "Temulawak",
+      "plantKey": "temulawak",
+      "plantSlug": "temulawak",
+      "preparationMethods": [],
+      "rawEntryTitle": "Temulawak",
+      "rawZoneTitle": "Zona Hati Sehat",
+      "scientificName": "Curcuma xanthorrhiza Roxb.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Rimpang."
+      ],
+      "warnings": [
+        "Konsumsi dalam jumlah yang wajar dan tidak digunakan sebagai pengganti pengobatan penyakit hati."
+      ],
+      "zoneCode": "khb-z04",
+      "zoneSlug": "hati-sehat",
+      "zoneTitle": "Zona Hati Sehat"
+    },
+    {
+      "activeCompounds": [
+        "Kurkumin",
+        "Demetoksikurkumin",
+        "Bisdemetoksikurkumin",
+        "Minyak atsiri"
+      ],
+      "benefits": [
+        "Memiliki aktivitas hepatoprotektif (melindungi sel hati).",
+        "Membantu mengurangi stres oksidatif dan peradangan pada hati.",
+        "Berpotensi membantu menjaga kesehatan fungsi hati."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan rimpang bertunas.",
+        "Cocok ditanam di daerah tropis dengan tanah yang subur dan lembap.",
+        "Dipanen pada umur 8–12 bulan."
+      ],
+      "entryKey": "hati-sehat:kunyit",
+      "entryOrder": 2,
+      "localName": "Kunyit",
+      "plantKey": "kunyit",
+      "plantSlug": "kunyit",
+      "preparationMethods": [],
+      "rawEntryTitle": "Kunyit",
+      "rawZoneTitle": "Zona Hati Sehat",
+      "scientificName": "Curcuma longa L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Rimpang."
+      ],
+      "warnings": [
+        "Penderita gangguan empedu sebaiknya berkonsultasi terlebih dahulu sebelum mengonsumsi secara rutin."
+      ],
+      "zoneCode": "khb-z04",
+      "zoneSlug": "hati-sehat",
+      "zoneTitle": "Zona Hati Sehat"
+    },
+    {
+      "activeCompounds": [
+        "Phyllanthin",
+        "Hypophyllanthin",
+        "Flavonoid",
+        "Lignan"
+      ],
+      "benefits": [
+        "Membantu menjaga kesehatan hati.",
+        "Memiliki aktivitas antioksidan dan antiinflamasi.",
+        "Secara tradisional digunakan untuk membantu menjaga fungsi hati dan meningkatkan daya tahan tubuh."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak melalui biji.",
+        "Tumbuh baik di daerah tropis dengan penyiraman yang cukup.",
+        "Dapat dipanen setelah berumur sekitar 2–3 bulan."
+      ],
+      "entryKey": "hati-sehat:meniran",
+      "entryOrder": 3,
+      "localName": "Meniran",
+      "plantKey": "meniran",
+      "plantSlug": "meniran",
+      "preparationMethods": [],
+      "rawEntryTitle": "Meniran",
+      "rawZoneTitle": "Zona Hati Sehat",
+      "scientificName": "Phyllanthus niruri L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Seluruh bagian tanaman (herba)."
+      ],
+      "warnings": [
+        "Gunakan sesuai dosis yang dianjurkan dan tidak berlebihan."
+      ],
+      "zoneCode": "khb-z04",
+      "zoneSlug": "hati-sehat",
+      "zoneTitle": "Zona Hati Sehat"
+    },
+    {
+      "activeCompounds": [
+        "Flavonoid",
+        "Alkaloid",
+        "Saponin",
+        "Tanin"
+      ],
+      "benefits": [
+        "Secara tradisional digunakan oleh masyarakat Sulawesi untuk membantu menjaga kesehatan hati.",
+        "Memiliki aktivitas antioksidan dan antiinflamasi.",
+        "Berpotensi membantu melindungi sel hati dari kerusakan."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak melalui biji maupun stek batang.",
+        "Tumbuh baik di daerah tropis dengan paparan sinar matahari yang cukup."
+      ],
+      "entryKey": "hati-sehat:paliasa",
+      "entryOrder": 4,
+      "localName": "Paliasa",
+      "plantKey": "paliasa",
+      "plantSlug": "paliasa",
+      "preparationMethods": [],
+      "rawEntryTitle": "Paliasa",
+      "rawZoneTitle": "Zona Hati Sehat",
+      "scientificName": "Kleinhovia hospita L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun."
+      ],
+      "warnings": [
+        "Bukti ilmiah mengenai manfaatnya sebagai hepatoprotektor masih terus diteliti sehingga penggunaannya sebaiknya sebagai terapi pendamping."
+      ],
+      "zoneCode": "khb-z04",
+      "zoneSlug": "hati-sehat",
+      "zoneTitle": "Zona Hati Sehat"
+    },
+    {
+      "activeCompounds": [
+        "Andrographolide",
+        "Neoandrographolide",
+        "Flavonoid",
+        "Diterpen lakton"
+      ],
+      "benefits": [
+        "Membantu menjaga kesehatan hati melalui aktivitas antioksidan dan antiinflamasi.",
+        "Berpotensi membantu melindungi sel hati dari kerusakan akibat radikal bebas."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan biji atau stek batang.",
+        "Dapat dipanen setelah berumur sekitar 3–4 bulan."
+      ],
+      "entryKey": "hati-sehat:sambiloto",
+      "entryOrder": 5,
+      "localName": "Sambiloto",
+      "plantKey": "sambiloto",
+      "plantSlug": "sambiloto",
+      "preparationMethods": [],
+      "rawEntryTitle": "Sambiloto",
+      "rawZoneTitle": "Zona Hati Sehat",
+      "scientificName": "Andrographis paniculata (Burm.f.) Nees.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Herba."
+      ],
+      "warnings": [
+        "Tidak dianjurkan dikonsumsi dalam jumlah berlebihan karena dapat menimbulkan gangguan pencernaan pada sebagian orang."
+      ],
+      "zoneCode": "khb-z04",
+      "zoneSlug": "hati-sehat",
+      "zoneTitle": "Zona Hati Sehat"
+    },
+    {
+      "activeCompounds": [
+        "Flavonoid",
+        "Saponin",
+        "Minyak atsiri",
+        "Sterol"
+      ],
+      "benefits": [
+        "Memiliki aktivitas antioksidan dan antiinflamasi.",
+        "Secara tradisional digunakan untuk membantu menjaga kesehatan organ tubuh, termasuk hati."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan stek batang atau pemisahan anakan.",
+        "Tumbuh baik pada tanah yang gembur dan cukup sinar matahari."
+      ],
+      "entryKey": "hati-sehat:daun-dewa",
+      "entryOrder": 6,
+      "localName": "Daun dewa",
+      "plantKey": "daun dewa",
+      "plantSlug": "daun-dewa",
+      "preparationMethods": [],
+      "rawEntryTitle": "Daun Dewa",
+      "rawZoneTitle": "Zona Hati Sehat",
+      "scientificName": "Gynura pseudochina (L.) DC.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun dan umbi."
+      ],
+      "warnings": [
+        "Penggunaannya sebagai hepatoprotektor masih memerlukan penelitian lebih lanjut."
+      ],
+      "zoneCode": "khb-z04",
+      "zoneSlug": "hati-sehat",
+      "zoneTitle": "Zona Hati Sehat"
+    },
+    {
+      "activeCompounds": [
+        "Quercetin",
+        "Kaempferol",
+        "Vitamin C",
+        "Beta-karoten",
+        "Polifenol"
+      ],
+      "benefits": [
+        "Membantu melindungi sel hati dari kerusakan oksidatif.",
+        "Memiliki aktivitas antioksidan yang tinggi.",
+        "Berpotensi mendukung fungsi detoksifikasi alami tubuh."
+      ],
+      "cultivationTechniques": [
+        "Dapat diperbanyak melalui biji maupun stek batang.",
+        "Mudah tumbuh di daerah tropis dan tahan terhadap musim kemarau."
+      ],
+      "entryKey": "hati-sehat:kelor",
+      "entryOrder": 7,
+      "localName": "Kelor",
+      "plantKey": "kelor",
+      "plantSlug": "kelor",
+      "preparationMethods": [],
+      "rawEntryTitle": "Kelor",
+      "rawZoneTitle": "Zona Hati Sehat",
+      "scientificName": "Moringa oleifera Lam.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun."
+      ],
+      "warnings": [
+        "Konsumsi secara seimbang sebagai bagian dari pola makan sehat."
+      ],
+      "zoneCode": "khb-z04",
+      "zoneSlug": "hati-sehat",
+      "zoneTitle": "Zona Hati Sehat"
+    },
+    {
+      "activeCompounds": [
+        "Antosianin",
+        "Vitamin C",
+        "Flavonoid",
+        "Polifenol"
+      ],
+      "benefits": [
+        "Memiliki aktivitas antioksidan yang membantu melindungi sel hati.",
+        "Berpotensi membantu mengurangi stres oksidatif yang dapat memengaruhi fungsi hati."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan biji.",
+        "Membutuhkan paparan sinar matahari yang cukup.",
+        "Kelopak bunga dapat dipanen sekitar 4–5 bulan setelah tanam."
+      ],
+      "entryKey": "hati-sehat:rosella",
+      "entryOrder": 8,
+      "localName": "Rosella",
+      "plantKey": "rosella",
+      "plantSlug": "rosella",
+      "preparationMethods": [],
+      "rawEntryTitle": "Rosella",
+      "rawZoneTitle": "Zona Hati Sehat",
+      "scientificName": "Hibiscus sabdariffa L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Kelopak bunga."
+      ],
+      "warnings": [
+        "Penderita tekanan darah rendah perlu berhati-hati karena rosella dapat membantu menurunkan tekanan darah."
+      ],
+      "zoneCode": "khb-z04",
+      "zoneSlug": "hati-sehat",
+      "zoneTitle": "Zona Hati Sehat"
+    },
+    {
+      "activeCompounds": [
+        "Asiaticoside",
+        "Madecassoside",
+        "Triterpenoid",
+        "Flavonoid"
+      ],
+      "benefits": [
+        "Membantu melindungi jaringan tubuh melalui aktivitas antioksidan.",
+        "Berpotensi membantu menjaga fungsi hati dan mengurangi peradangan."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak melalui stolon atau anakan.",
+        "Tumbuh baik pada tanah yang lembap dan teduh."
+      ],
+      "entryKey": "hati-sehat:pegagan",
+      "entryOrder": 9,
+      "localName": "Pegagan",
+      "plantKey": "pegagan",
+      "plantSlug": "pegagan",
+      "preparationMethods": [],
+      "rawEntryTitle": "Pegagan",
+      "rawZoneTitle": "Zona Hati Sehat",
+      "scientificName": "Centella asiatica (L.) Urb.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Seluruh bagian herba."
+      ],
+      "warnings": [
+        "Konsumsi jangka panjang sebaiknya dalam jumlah yang wajar."
+      ],
+      "zoneCode": "khb-z04",
+      "zoneSlug": "hati-sehat",
+      "zoneTitle": "Zona Hati Sehat"
+    },
+    {
+      "activeCompounds": [
+        "Acemannan",
+        "Polisakarida",
+        "Vitamin dan mineral",
+        "Senyawa fenolik"
+      ],
+      "benefits": [
+        "Memiliki aktivitas antioksidan yang dapat membantu melindungi sel hati.",
+        "Berpotensi membantu mendukung proses detoksifikasi tubuh."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak melalui anakan.",
+        "Mudah ditanam dalam pot maupun pekarangan rumah.",
+        "Membutuhkan penyiraman secukupnya dan drainase yang baik."
+      ],
+      "entryKey": "hati-sehat:lidah-buaya",
+      "entryOrder": 10,
+      "localName": "Lidah buaya",
+      "plantKey": "lidah buaya",
+      "plantSlug": "lidah-buaya",
+      "preparationMethods": [],
+      "rawEntryTitle": "Lidah Buaya",
+      "rawZoneTitle": "Zona Hati Sehat",
+      "scientificName": "Aloe vera (L.) Burm.f.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Gel daun."
+      ],
+      "warnings": [
+        "Getah kuning (lateks) lidah buaya perlu dibersihkan sebelum dikonsumsi karena dapat menyebabkan efek laksatif.",
+        "Konsumsi produk herbal lidah buaya secara berlebihan tidak dianjurkan."
+      ],
+      "zoneCode": "khb-z04",
+      "zoneSlug": "hati-sehat",
+      "zoneTitle": "Zona Hati Sehat"
+    },
+    {
+      "activeCompounds": [
+        "Apigenin",
+        "Flavonoid",
+        "Vitamin K",
+        "Kalium",
+        "Luteolin"
+      ],
+      "benefits": [
+        "Membantu menjaga tekanan darah tetap normal.",
+        "Memiliki aktivitas antioksidan yang mendukung kesehatan jantung.",
+        "Membantu menjaga kesehatan pembuluh darah."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan biji.",
+        "Tumbuh baik pada tanah yang subur dan lembap.",
+        "Dapat dipanen pada umur 2–3 bulan setelah tanam."
+      ],
+      "entryKey": "jantung-sehat:seledri",
+      "entryOrder": 1,
+      "localName": "Seledri",
+      "plantKey": "seledri",
+      "plantSlug": "seledri",
+      "preparationMethods": [],
+      "rawEntryTitle": "Seledri",
+      "rawZoneTitle": "Zona Jantung Sehat",
+      "scientificName": "Apium graveolens L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun dan batang."
+      ],
+      "warnings": [
+        "Konsumsi dalam jumlah wajar, terutama bagi individu yang memiliki alergi terhadap seledri."
+      ],
+      "zoneCode": "khb-z05",
+      "zoneSlug": "jantung-sehat",
+      "zoneTitle": "Zona Jantung Sehat"
+    },
+    {
+      "activeCompounds": [
+        "Antosianin",
+        "Flavonoid",
+        "Vitamin C",
+        "Polifenol"
+      ],
+      "benefits": [
+        "Membantu menjaga tekanan darah dalam batas normal.",
+        "Memiliki aktivitas antioksidan yang dapat melindungi kesehatan jantung.",
+        "Berpotensi membantu menjaga kadar kolesterol dalam darah."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan biji.",
+        "Membutuhkan sinar matahari yang cukup.",
+        "Kelopak bunga dapat dipanen pada umur sekitar 4–5 bulan."
+      ],
+      "entryKey": "jantung-sehat:rosella",
+      "entryOrder": 2,
+      "localName": "Rosella",
+      "plantKey": "rosella",
+      "plantSlug": "rosella",
+      "preparationMethods": [],
+      "rawEntryTitle": "Rosella",
+      "rawZoneTitle": "Zona Jantung Sehat",
+      "scientificName": "Hibiscus sabdariffa L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Kelopak bunga."
+      ],
+      "warnings": [
+        "Penderita tekanan darah rendah perlu berhati-hati dalam mengonsumsinya."
+      ],
+      "zoneCode": "khb-z05",
+      "zoneSlug": "jantung-sehat",
+      "zoneTitle": "Zona Jantung Sehat"
+    },
+    {
+      "activeCompounds": [
+        "Allicin",
+        "Alliin",
+        "Senyawa organosulfur",
+        "Selenium"
+      ],
+      "benefits": [
+        "Membantu menjaga kadar kolesterol dalam batas normal.",
+        "Membantu menjaga tekanan darah.",
+        "Memiliki aktivitas antioksidan dan kardioprotektif yang baik untuk kesehatan jantung."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan siung bawang putih yang sehat.",
+        "Tumbuh optimal pada tanah yang gembur dan memiliki drainase yang baik.",
+        "Dipanen pada umur 90–120 hari setelah tanam."
+      ],
+      "entryKey": "jantung-sehat:bawang-putih",
+      "entryOrder": 3,
+      "localName": "Bawang putih",
+      "plantKey": "bawang putih",
+      "plantSlug": "bawang-putih",
+      "preparationMethods": [],
+      "rawEntryTitle": "Bawang Putih",
+      "rawZoneTitle": "Zona Jantung Sehat",
+      "scientificName": "Allium sativum L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Umbi."
+      ],
+      "warnings": [
+        "Konsumsi berlebihan dapat meningkatkan risiko perdarahan, terutama pada pengguna obat pengencer darah."
+      ],
+      "zoneCode": "khb-z05",
+      "zoneSlug": "jantung-sehat",
+      "zoneTitle": "Zona Jantung Sehat"
+    },
+    {
+      "activeCompounds": [
+        "Flavonoid",
+        "Eugenol",
+        "Tanin",
+        "Minyak atsiri",
+        "Polifenol"
+      ],
+      "benefits": [
+        "Membantu menjaga kadar kolesterol dalam darah.",
+        "Memiliki aktivitas antioksidan yang mendukung kesehatan jantung dan pembuluh darah.",
+        "Berpotensi membantu menjaga kadar gula darah dan metabolisme tubuh."
+      ],
+      "cultivationTechniques": [
+        "Dapat diperbanyak melalui biji maupun cangkok.",
+        "Tumbuh baik di daerah tropis dengan paparan sinar matahari yang cukup."
+      ],
+      "entryKey": "jantung-sehat:daun-salam",
+      "entryOrder": 4,
+      "localName": "Daun salam",
+      "plantKey": "daun salam",
+      "plantSlug": "daun-salam",
+      "preparationMethods": [],
+      "rawEntryTitle": "Daun Salam",
+      "rawZoneTitle": "Zona Jantung Sehat",
+      "scientificName": "Syzygium polyanthum (Wight) Walp.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun."
+      ],
+      "warnings": [
+        "Penggunaannya tidak dianjurkan sebagai pengganti obat penurun kolesterol atau antihipertensi."
+      ],
+      "zoneCode": "khb-z05",
+      "zoneSlug": "jantung-sehat",
+      "zoneTitle": "Zona Jantung Sehat"
+    },
+    {
+      "activeCompounds": [
+        "Quercetin",
+        "Kaempferol",
+        "Vitamin C",
+        "Beta-karoten",
+        "Polifenol"
+      ],
+      "benefits": [
+        "Membantu melindungi jantung dari kerusakan akibat radikal bebas.",
+        "Membantu menjaga kadar kolesterol dalam batas normal.",
+        "Memiliki aktivitas antioksidan dan antiinflamasi."
+      ],
+      "cultivationTechniques": [
+        "Dapat diperbanyak melalui biji maupun stek batang.",
+        "Tahan terhadap kondisi kering dan mudah dibudidayakan di daerah tropis."
+      ],
+      "entryKey": "jantung-sehat:kelor",
+      "entryOrder": 5,
+      "localName": "Kelor",
+      "plantKey": "kelor",
+      "plantSlug": "kelor",
+      "preparationMethods": [],
+      "rawEntryTitle": "Kelor",
+      "rawZoneTitle": "Zona Jantung Sehat",
+      "scientificName": "Moringa oleifera Lam.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun."
+      ],
+      "warnings": [
+        "Konsumsi secara seimbang sebagai bagian dari pola makan sehat."
+      ],
+      "zoneCode": "khb-z05",
+      "zoneSlug": "jantung-sehat",
+      "zoneTitle": "Zona Jantung Sehat"
+    },
+    {
+      "activeCompounds": [
+        "Vitamin C",
+        "Flavonoid",
+        "Saponin",
+        "Tanin",
+        "Asam sitrat"
+      ],
+      "benefits": [
+        "Berpotensi membantu menjaga kadar kolesterol dalam darah.",
+        "Memiliki aktivitas antioksidan yang mendukung kesehatan jantung.",
+        "Secara tradisional digunakan untuk membantu menjaga tekanan darah."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak melalui biji maupun cangkok.",
+        "Mudah tumbuh di daerah tropis dengan sinar matahari yang cukup."
+      ],
+      "entryKey": "jantung-sehat:belimbing-wuluh",
+      "entryOrder": 6,
+      "localName": "Belimbing wuluh",
+      "plantKey": "belimbing wuluh",
+      "plantSlug": "belimbing-wuluh",
+      "preparationMethods": [],
+      "rawEntryTitle": "Belimbing Wuluh",
+      "rawZoneTitle": "Zona Jantung Sehat",
+      "scientificName": "Averrhoa bilimbi L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Buah."
+      ],
+      "warnings": [
+        "Konsumsi berlebihan tidak dianjurkan karena kandungan asam oksalatnya cukup tinggi."
+      ],
+      "zoneCode": "khb-z05",
+      "zoneSlug": "jantung-sehat",
+      "zoneTitle": "Zona Jantung Sehat"
+    },
+    {
+      "activeCompounds": [
+        "Flavonoid",
+        "Kalium",
+        "Taraksasterol",
+        "Inositol"
+      ],
+      "benefits": [
+        "Membantu menjaga keseimbangan cairan tubuh.",
+        "Memiliki aktivitas antioksidan yang mendukung kesehatan jantung.",
+        "Berpotensi membantu menjaga tekanan darah melalui efek diuretik ringan."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan biji.",
+        "Tumbuh baik pada tanah yang subur dan cukup sinar matahari."
+      ],
+      "entryKey": "jantung-sehat:tempuyung",
+      "entryOrder": 7,
+      "localName": "Tempuyung",
+      "plantKey": "tempuyung",
+      "plantSlug": "tempuyung",
+      "preparationMethods": [],
+      "rawEntryTitle": "Tempuyung",
+      "rawZoneTitle": "Zona Jantung Sehat",
+      "scientificName": "Sonchus arvensis L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun."
+      ],
+      "warnings": [
+        "Konsumsi berlebihan dapat meningkatkan frekuensi buang air kecil."
+      ],
+      "zoneCode": "khb-z05",
+      "zoneSlug": "jantung-sehat",
+      "zoneTitle": "Zona Jantung Sehat"
+    },
+    {
+      "activeCompounds": [
+        "Sinensetin",
+        "Orthosiphol",
+        "Flavonoid",
+        "Kalium"
+      ],
+      "benefits": [
+        "Membantu menjaga keseimbangan cairan tubuh.",
+        "Berpotensi membantu menjaga tekanan darah dalam batas normal melalui efek diuretiknya.",
+        "Memiliki aktivitas antioksidan."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak melalui stek batang.",
+        "Dapat dipanen setelah berumur sekitar 3–4 bulan."
+      ],
+      "entryKey": "jantung-sehat:kumis-kucing",
+      "entryOrder": 8,
+      "localName": "Kumis kucing",
+      "plantKey": "kumis kucing",
+      "plantSlug": "kumis-kucing",
+      "preparationMethods": [],
+      "rawEntryTitle": "Kumis Kucing",
+      "rawZoneTitle": "Zona Jantung Sehat",
+      "scientificName": "Orthosiphon aristatus (Blume) Miq.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun dan pucuk tanaman."
+      ],
+      "warnings": [
+        "Tidak dianjurkan untuk menggantikan obat antihipertensi yang diresepkan oleh dokter."
+      ],
+      "zoneCode": "khb-z05",
+      "zoneSlug": "jantung-sehat",
+      "zoneTitle": "Zona Jantung Sehat"
+    },
+    {
+      "activeCompounds": [
+        "Asiaticoside",
+        "Madecassoside",
+        "Triterpenoid",
+        "Flavonoid"
+      ],
+      "benefits": [
+        "Membantu menjaga kesehatan pembuluh darah.",
+        "Memiliki aktivitas antioksidan yang membantu melindungi sel-sel tubuh dari kerusakan oksidatif.",
+        "Berpotensi mendukung kesehatan sistem kardiovaskular."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak melalui stolon atau anakan.",
+        "Tumbuh baik pada tanah yang lembap dan teduh."
+      ],
+      "entryKey": "jantung-sehat:pegagan",
+      "entryOrder": 9,
+      "localName": "Pegagan",
+      "plantKey": "pegagan",
+      "plantSlug": "pegagan",
+      "preparationMethods": [],
+      "rawEntryTitle": "Pegagan",
+      "rawZoneTitle": "Zona Jantung Sehat",
+      "scientificName": "Centella asiatica (L.) Urb.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Seluruh bagian herba."
+      ],
+      "warnings": [
+        "Konsumsi jangka panjang sebaiknya dilakukan dalam jumlah yang wajar."
+      ],
+      "zoneCode": "khb-z05",
+      "zoneSlug": "jantung-sehat",
+      "zoneTitle": "Zona Jantung Sehat"
+    },
+    {
+      "activeCompounds": [
+        "Epigallocatechin gallate (EGCG)",
+        "Katekin",
+        "Flavonoid",
+        "Kafein",
+        "Polifenol"
+      ],
+      "benefits": [
+        "Membantu menjaga kesehatan jantung melalui aktivitas antioksidan yang tinggi.",
+        "Berpotensi membantu menjaga kadar kolesterol total dan LDL.",
+        "Membantu menjaga fungsi pembuluh darah."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak melalui biji atau stek.",
+        "Tumbuh optimal di daerah dataran tinggi dengan kelembapan yang baik.",
+        "Daun muda dipanen secara berkala untuk diolah menjadi teh hijau."
+      ],
+      "entryKey": "jantung-sehat:teh-hijau",
+      "entryOrder": 10,
+      "localName": "Teh hijau",
+      "plantKey": "teh hijau",
+      "plantSlug": "teh-hijau",
+      "preparationMethods": [],
+      "rawEntryTitle": "Teh Hijau",
+      "rawZoneTitle": "Zona Jantung Sehat",
+      "scientificName": "Camellia sinensis (L.) Kuntze.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun."
+      ],
+      "warnings": [
+        "Mengandung kafein sehingga sebaiknya tidak dikonsumsi secara berlebihan, terutama oleh individu yang sensitif terhadap kafein."
+      ],
+      "zoneCode": "khb-z05",
+      "zoneSlug": "jantung-sehat",
+      "zoneTitle": "Zona Jantung Sehat"
+    },
+    {
+      "activeCompounds": [
+        "Gingerol",
+        "Shogaol",
+        "Zingerone",
+        "Flavonoid"
+      ],
+      "benefits": [
+        "Membantu meredakan nyeri dan kekakuan sendi.",
+        "Memiliki aktivitas antiinflamasi yang dapat membantu mengurangi peradangan.",
+        "Berpotensi membantu meningkatkan mobilitas pada penderita osteoartritis.",
+        "Memiliki aktivitas antioksidan yang membantu melindungi jaringan tubuh dari stres oksidatif."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan potongan rimpang yang memiliki mata tunas.",
+        "Tumbuh baik pada tanah gembur dengan drainase yang baik.",
+        "Dapat dipanen setelah berumur sekitar 8–10 bulan."
+      ],
+      "entryKey": "tulang-dan-sendi:jahe",
+      "entryOrder": 1,
+      "localName": "Jahe",
+      "plantKey": "jahe",
+      "plantSlug": "jahe",
+      "preparationMethods": [],
+      "rawEntryTitle": "Jahe",
+      "rawZoneTitle": "Zona Tulang & Sendi",
+      "scientificName": "Zingiber officinale Roscoe",
+      "titleCorrection": null,
+      "usedParts": [
+        "Rimpang."
+      ],
+      "warnings": [
+        "Konsumsi berlebihan dapat menyebabkan gangguan lambung.",
+        "Gunakan dengan hati-hati pada pengguna obat pengencer darah."
+      ],
+      "zoneCode": "khb-z06",
+      "zoneSlug": "tulang-dan-sendi",
+      "zoneTitle": "Zona Tulang & Sendi"
+    },
+    {
+      "activeCompounds": [
+        "Kurkumin",
+        "Demetoksikurkumin",
+        "Bisdemetoksikurkumin",
+        "Minyak atsiri"
+      ],
+      "benefits": [
+        "Membantu mengurangi peradangan pada sendi.",
+        "Berpotensi membantu mengurangi nyeri akibat osteoartritis.",
+        "Memiliki aktivitas antioksidan yang membantu melindungi tulang dan sendi.",
+        "Mendukung pemeliharaan kesehatan sistem muskuloskeletal."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan rimpang.",
+        "Tumbuh optimal pada tanah yang subur dan lembap.",
+        "Dipanen setelah berumur sekitar 8–12 bulan."
+      ],
+      "entryKey": "tulang-dan-sendi:kunyit",
+      "entryOrder": 2,
+      "localName": "Kunyit",
+      "plantKey": "kunyit",
+      "plantSlug": "kunyit",
+      "preparationMethods": [],
+      "rawEntryTitle": "Kunyit",
+      "rawZoneTitle": "Zona Tulang & Sendi",
+      "scientificName": "Curcuma longa L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Rimpang."
+      ],
+      "warnings": [
+        "Hindari penggunaan berlebihan pada penderita gangguan saluran empedu.",
+        "Konsultasikan dengan tenaga kesehatan apabila sedang menggunakan obat antikoagulan."
+      ],
+      "zoneCode": "khb-z06",
+      "zoneSlug": "tulang-dan-sendi",
+      "zoneTitle": "Zona Tulang & Sendi"
+    },
+    {
+      "activeCompounds": [
+        "Xanthorrhizol",
+        "Kurkuminoid",
+        "Minyak atsiri"
+      ],
+      "benefits": [
+        "Membantu mengurangi proses inflamasi pada sendi.",
+        "Memiliki aktivitas antioksidan.",
+        "Berpotensi membantu menjaga kesehatan tulang dan jaringan ikat.",
+        "Mendukung pemulihan jaringan setelah peradangan."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan potongan rimpang.",
+        "Memerlukan tanah yang subur dan cukup sinar matahari.",
+        "Dipanen pada umur sekitar 9–12 bulan."
+      ],
+      "entryKey": "tulang-dan-sendi:temulawak",
+      "entryOrder": 3,
+      "localName": "Temulawak",
+      "plantKey": "temulawak",
+      "plantSlug": "temulawak",
+      "preparationMethods": [],
+      "rawEntryTitle": "Temulawak",
+      "rawZoneTitle": "Zona Tulang & Sendi",
+      "scientificName": "Curcuma xanthorrhiza Roxb.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Rimpang."
+      ],
+      "warnings": [
+        "Penggunaan dalam jumlah besar dapat menyebabkan gangguan lambung.",
+        "Tidak dianjurkan sebagai pengganti terapi medis."
+      ],
+      "zoneCode": "khb-z06",
+      "zoneSlug": "tulang-dan-sendi",
+      "zoneTitle": "Zona Tulang & Sendi"
+    },
+    {
+      "activeCompounds": [
+        "Asam askorbat",
+        "Karotenoid",
+        "Flavonoid",
+        "Triterpenoid",
+        "Kalsium"
+      ],
+      "benefits": [
+        "Berpotensi membantu mempercepat penyembuhan patah tulang.",
+        "Membantu menjaga kepadatan tulang.",
+        "Memiliki aktivitas antiinflamasi.",
+        "Mendukung kesehatan sendi dan ligamen."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak melalui stek batang.",
+        "Tumbuh baik pada daerah yang mendapat sinar matahari penuh.",
+        "Dapat dipanen sekitar 6–8 bulan."
+      ],
+      "entryKey": "tulang-dan-sendi:cissus",
+      "entryOrder": 4,
+      "localName": "Cissus",
+      "plantKey": "cissus",
+      "plantSlug": "cissus",
+      "preparationMethods": [],
+      "rawEntryTitle": "Cissus",
+      "rawZoneTitle": "Zona Tulang & Sendi",
+      "scientificName": "Cissus quadrangularis L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Batang muda."
+      ],
+      "warnings": [
+        "Sebaiknya digunakan sesuai anjuran tenaga kesehatan.",
+        "Belum cukup data keamanan pada ibu hamil."
+      ],
+      "zoneCode": "khb-z06",
+      "zoneSlug": "tulang-dan-sendi",
+      "zoneTitle": "Zona Tulang & Sendi"
+    },
+    {
+      "activeCompounds": [
+        "Quercetin",
+        "Kaempferol",
+        "Vitamin C",
+        "Kalsium",
+        "Kalium"
+      ],
+      "benefits": [
+        "Membantu memenuhi kebutuhan kalsium untuk kesehatan tulang.",
+        "Memiliki aktivitas antioksidan.",
+        "Membantu mengurangi stres oksidatif pada jaringan sendi.",
+        "Mendukung kesehatan tulang dan otot."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan biji atau stek batang.",
+        "Mudah tumbuh pada berbagai jenis tanah.",
+        "Daun dapat dipanen mulai umur sekitar 3–6 bulan."
+      ],
+      "entryKey": "tulang-dan-sendi:kelor",
+      "entryOrder": 5,
+      "localName": "Kelor",
+      "plantKey": "kelor",
+      "plantSlug": "kelor",
+      "preparationMethods": [],
+      "rawEntryTitle": "Kelor",
+      "rawZoneTitle": "Zona Tulang & Sendi",
+      "scientificName": "Moringa oleifera Lam.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun."
+      ],
+      "warnings": [
+        "Hindari konsumsi akar karena mengandung senyawa yang berpotensi toksik.",
+        "Konsumsi secukupnya."
+      ],
+      "zoneCode": "khb-z06",
+      "zoneSlug": "tulang-dan-sendi",
+      "zoneTitle": "Zona Tulang & Sendi"
+    },
+    {
+      "activeCompounds": [
+        "Asiaticoside",
+        "Madecassoside",
+        "Asiatic acid",
+        "Flavonoid"
+      ],
+      "benefits": [
+        "Membantu mempercepat regenerasi jaringan.",
+        "Berpotensi membantu pemulihan cedera pada jaringan ikat.",
+        "Memiliki aktivitas antiinflamasi.",
+        "Membantu menjaga kesehatan sendi."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan stolon atau anakan.",
+        "Memerlukan tanah yang lembap.",
+        "Dapat dipanen sekitar 2–3 bulan setelah tanam."
+      ],
+      "entryKey": "tulang-dan-sendi:pegagan",
+      "entryOrder": 6,
+      "localName": "Pegagan",
+      "plantKey": "pegagan",
+      "plantSlug": "pegagan",
+      "preparationMethods": [],
+      "rawEntryTitle": "Pegagan",
+      "rawZoneTitle": "Zona Tulang & Sendi",
+      "scientificName": "Centella asiatica (L.) Urb.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun dan batang."
+      ],
+      "warnings": [
+        "Hindari penggunaan jangka panjang tanpa pengawasan tenaga kesehatan.",
+        "Hentikan penggunaan apabila muncul reaksi alergi."
+      ],
+      "zoneCode": "khb-z06",
+      "zoneSlug": "tulang-dan-sendi",
+      "zoneTitle": "Zona Tulang & Sendi"
+    },
+    {
+      "activeCompounds": [
+        "Asam boswelat",
+        "AKBA (Acetyl-11-keto-β-boswellic acid)",
+        "Minyak atsiri"
+      ],
+      "benefits": [
+        "Membantu mengurangi peradangan pada sendi.",
+        "Berpotensi membantu mengurangi nyeri osteoartritis.",
+        "Membantu meningkatkan fungsi persendian.",
+        "Memiliki aktivitas antiinflamasi."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan biji.",
+        "Tumbuh baik di daerah kering dengan sinar matahari penuh.",
+        "Getah dipanen dari pohon yang telah cukup umur."
+      ],
+      "entryKey": "tulang-dan-sendi:boswellia",
+      "entryOrder": 7,
+      "localName": "Boswellia (Kemenyan India)",
+      "plantKey": "boswellia",
+      "plantSlug": "boswellia",
+      "preparationMethods": [],
+      "rawEntryTitle": "Boswellia",
+      "rawZoneTitle": "Zona Tulang & Sendi",
+      "scientificName": "Boswellia serrata Roxb. ex Colebr.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Getah (resin)."
+      ],
+      "warnings": [
+        "Dapat menyebabkan gangguan saluran cerna pada sebagian orang.",
+        "Gunakan sesuai dosis yang dianjurkan."
+      ],
+      "zoneCode": "khb-z06",
+      "zoneSlug": "tulang-dan-sendi",
+      "zoneTitle": "Zona Tulang & Sendi"
+    },
+    {
+      "activeCompounds": [
+        "Flavonoid",
+        "Saponin",
+        "Alkaloid",
+        "Tanin"
+      ],
+      "benefits": [
+        "Membantu mengurangi proses peradangan.",
+        "Berpotensi membantu meredakan nyeri sendi.",
+        "Memiliki aktivitas antioksidan.",
+        "Mendukung pemeliharaan kesehatan jaringan tubuh."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan stek batang.",
+        "Tumbuh baik pada tanah yang subur.",
+        "Dapat dipanen sekitar 3–4 bulan."
+      ],
+      "entryKey": "tulang-dan-sendi:daun-dewa",
+      "entryOrder": 8,
+      "localName": "Daun Dewa",
+      "plantKey": "daun dewa",
+      "plantSlug": "daun-dewa",
+      "preparationMethods": [],
+      "rawEntryTitle": "Daun Dewa",
+      "rawZoneTitle": "Zona Tulang & Sendi",
+      "scientificName": "Gynura pseudochina (L.) DC.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun dan umbi."
+      ],
+      "warnings": [
+        "Penggunaan sebaiknya tidak berlebihan.",
+        "Konsultasikan dengan tenaga kesehatan apabila sedang menjalani pengobatan."
+      ],
+      "zoneCode": "khb-z06",
+      "zoneSlug": "tulang-dan-sendi",
+      "zoneTitle": "Zona Tulang & Sendi"
+    },
+    {
+      "activeCompounds": [
+        "Asam rosmarinat",
+        "Carnosic acid",
+        "Carnosol",
+        "Minyak atsiri"
+      ],
+      "benefits": [
+        "Memiliki aktivitas antiinflamasi.",
+        "Membantu mengurangi stres oksidatif pada jaringan.",
+        "Berpotensi membantu mengurangi nyeri otot dan sendi.",
+        "Mendukung kesehatan sistem muskuloskeletal."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak melalui stek batang.",
+        "Memerlukan sinar matahari penuh.",
+        "Dipanen sekitar 4–6 bulan."
+      ],
+      "entryKey": "tulang-dan-sendi:rosemary",
+      "entryOrder": 9,
+      "localName": "Rosemary",
+      "plantKey": "rosemary",
+      "plantSlug": "rosemary",
+      "preparationMethods": [],
+      "rawEntryTitle": "Rosemary",
+      "rawZoneTitle": "Zona Tulang & Sendi",
+      "scientificName": "Salvia rosmarinus Spenn.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun."
+      ],
+      "warnings": [
+        "Hindari penggunaan minyak atsiri secara langsung pada kulit tanpa pengenceran.",
+        "Konsumsi berlebihan tidak dianjurkan pada ibu hamil."
+      ],
+      "zoneCode": "khb-z06",
+      "zoneSlug": "tulang-dan-sendi",
+      "zoneTitle": "Zona Tulang & Sendi"
+    },
+    {
+      "activeCompounds": [
+        "Eugenol",
+        "Eugenyl asetat",
+        "β-Caryophyllene",
+        "Tanin"
+      ],
+      "benefits": [
+        "Membantu mengurangi nyeri akibat peradangan.",
+        "Memiliki aktivitas antiinflamasi.",
+        "Berpotensi membantu meredakan nyeri otot dan sendi.",
+        "Memiliki aktivitas antioksidan."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan biji.",
+        "Tumbuh baik pada daerah tropis dengan curah hujan cukup.",
+        "Mulai menghasilkan bunga pada umur sekitar 5–7 tahun."
+      ],
+      "entryKey": "tulang-dan-sendi:cengkeh",
+      "entryOrder": 10,
+      "localName": "Cengkeh",
+      "plantKey": "cengkeh",
+      "plantSlug": "cengkeh",
+      "preparationMethods": [],
+      "rawEntryTitle": "Cengkeh",
+      "rawZoneTitle": "Zona Tulang & Sendi",
+      "scientificName": "Syzygium aromaticum (L.) Merr. & L.M.Perry",
+      "titleCorrection": null,
+      "usedParts": [
+        "Kuncup bunga."
+      ],
+      "warnings": [
+        "Minyak cengkeh pekat dapat menyebabkan iritasi bila digunakan langsung pada kulit.",
+        "Gunakan sesuai anjuran, terutama pada anak-anak dan ibu hamil."
+      ],
+      "zoneCode": "khb-z06",
+      "zoneSlug": "tulang-dan-sendi",
+      "zoneTitle": "Zona Tulang & Sendi"
+    },
+    {
+      "activeCompounds": [
+        "Hidroksikavikol",
+        "Eugenol",
+        "Chavicol",
+        "Tanin",
+        "Flavonoid"
+      ],
+      "benefits": [
+        "Membantu menjaga kebersihan rongga mulut.",
+        "Memiliki aktivitas antibakteri terhadap bakteri penyebab plak dan bau mulut.",
+        "Membantu mengurangi peradangan pada gusi.",
+        "Berpotensi membantu mempercepat penyembuhan sariawan."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak melalui stek batang.",
+        "Tumbuh baik pada tanah yang subur dan lembap.",
+        "Dapat dipanen setelah berumur sekitar 6–8 bulan."
+      ],
+      "entryKey": "kesehatan-mulut:sirih",
+      "entryOrder": 1,
+      "localName": "Sirih",
+      "plantKey": "sirih",
+      "plantSlug": "sirih",
+      "preparationMethods": [],
+      "rawEntryTitle": "Sirih",
+      "rawZoneTitle": "Zona Tulang & Sendi",
+      "scientificName": "Piper betle L.",
+      "titleCorrection": {
+        "correctedTitle": "Zona Kesehatan Mulut",
+        "occurrence": 7,
+        "rawTitle": "Zona Tulang & Sendi",
+        "reason": "Judul kedua tertulis sama dengan zona sebelumnya, tetapi isi tanaman membahas rongga mulut, gusi, plak, sariawan, dan bau mulut."
+      },
+      "usedParts": [
+        "Daun."
+      ],
+      "warnings": [
+        "Penggunaan berlebihan tidak dianjurkan.",
+        "Hindari mengunyah sirih yang dicampur tembakau atau kapur karena dapat meningkatkan risiko gangguan kesehatan mulut."
+      ],
+      "zoneCode": "khb-z07",
+      "zoneSlug": "kesehatan-mulut",
+      "zoneTitle": "Zona Kesehatan Mulut"
+    },
+    {
+      "activeCompounds": [
+        "Eugenol",
+        "Eugenyl asetat",
+        "β-Caryophyllene",
+        "Tanin"
+      ],
+      "benefits": [
+        "Membantu meredakan nyeri gigi sementara.",
+        "Memiliki aktivitas antibakteri terhadap bakteri penyebab karies.",
+        "Membantu menjaga kesehatan gusi.",
+        "Berpotensi membantu mengurangi bau mulut."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan biji.",
+        "Tumbuh baik pada daerah tropis dengan curah hujan cukup.",
+        "Mulai menghasilkan bunga pada umur sekitar 5–7 tahun."
+      ],
+      "entryKey": "kesehatan-mulut:cengkeh",
+      "entryOrder": 2,
+      "localName": "Cengkeh",
+      "plantKey": "cengkeh",
+      "plantSlug": "cengkeh",
+      "preparationMethods": [],
+      "rawEntryTitle": "Cengkeh",
+      "rawZoneTitle": "Zona Tulang & Sendi",
+      "scientificName": "Syzygium aromaticum (L.) Merr. & L.M.Perry",
+      "titleCorrection": {
+        "correctedTitle": "Zona Kesehatan Mulut",
+        "occurrence": 7,
+        "rawTitle": "Zona Tulang & Sendi",
+        "reason": "Judul kedua tertulis sama dengan zona sebelumnya, tetapi isi tanaman membahas rongga mulut, gusi, plak, sariawan, dan bau mulut."
+      },
+      "usedParts": [
+        "Kuncup bunga."
+      ],
+      "warnings": [
+        "Minyak cengkeh pekat tidak dianjurkan digunakan langsung tanpa pengenceran.",
+        "Penggunaan berlebihan dapat menyebabkan iritasi pada mukosa mulut."
+      ],
+      "zoneCode": "khb-z07",
+      "zoneSlug": "kesehatan-mulut",
+      "zoneTitle": "Zona Kesehatan Mulut"
+    },
+    {
+      "activeCompounds": [
+        "Sinamaldehida",
+        "Eugenol",
+        "Proantosianidin",
+        "Polifenol"
+      ],
+      "benefits": [
+        "Membantu menghambat pertumbuhan bakteri penyebab bau mulut.",
+        "Memiliki aktivitas antioksidan.",
+        "Membantu menjaga kesehatan gusi.",
+        "Berpotensi membantu mengurangi pembentukan plak gigi."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan biji atau cangkok.",
+        "Tumbuh baik pada daerah dataran tinggi hingga sedang.",
+        "Dipanen setelah tanaman berumur sekitar 8–10 tahun."
+      ],
+      "entryKey": "kesehatan-mulut:kayu-manis",
+      "entryOrder": 3,
+      "localName": "Kayu Manis",
+      "plantKey": "kayu manis",
+      "plantSlug": "kayu-manis",
+      "preparationMethods": [],
+      "rawEntryTitle": "Kayu Manis",
+      "rawZoneTitle": "Zona Tulang & Sendi",
+      "scientificName": "Cinnamomum burmannii (Nees & T.Nees) Blume",
+      "titleCorrection": {
+        "correctedTitle": "Zona Kesehatan Mulut",
+        "occurrence": 7,
+        "rawTitle": "Zona Tulang & Sendi",
+        "reason": "Judul kedua tertulis sama dengan zona sebelumnya, tetapi isi tanaman membahas rongga mulut, gusi, plak, sariawan, dan bau mulut."
+      },
+      "usedParts": [
+        "Kulit batang."
+      ],
+      "warnings": [
+        "Konsumsi berlebihan dapat meningkatkan paparan kumarin.",
+        "Gunakan sesuai kebutuhan."
+      ],
+      "zoneCode": "khb-z07",
+      "zoneSlug": "kesehatan-mulut",
+      "zoneTitle": "Zona Kesehatan Mulut"
+    },
+    {
+      "activeCompounds": [
+        "Quercetin",
+        "Tanin",
+        "Flavonoid",
+        "Asam galat"
+      ],
+      "benefits": [
+        "Membantu mengurangi peradangan pada gusi.",
+        "Memiliki aktivitas antibakteri terhadap bakteri penyebab penyakit periodontal.",
+        "Membantu menjaga kesehatan rongga mulut.",
+        "Berpotensi membantu mempercepat penyembuhan luka ringan di mulut."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan biji, okulasi, atau cangkok.",
+        "Tumbuh baik pada berbagai jenis tanah.",
+        "Daun dapat dipanen sepanjang tahun."
+      ],
+      "entryKey": "kesehatan-mulut:daun-jambu",
+      "entryOrder": 4,
+      "localName": "Daun Jambu Biji",
+      "plantKey": "daun jambu",
+      "plantSlug": "daun-jambu",
+      "preparationMethods": [],
+      "rawEntryTitle": "Daun Jambu",
+      "rawZoneTitle": "Zona Tulang & Sendi",
+      "scientificName": "Psidium guajava L.",
+      "titleCorrection": {
+        "correctedTitle": "Zona Kesehatan Mulut",
+        "occurrence": 7,
+        "rawTitle": "Zona Tulang & Sendi",
+        "reason": "Judul kedua tertulis sama dengan zona sebelumnya, tetapi isi tanaman membahas rongga mulut, gusi, plak, sariawan, dan bau mulut."
+      },
+      "usedParts": [
+        "Daun."
+      ],
+      "warnings": [
+        "Gunakan daun yang bersih sebelum diolah.",
+        "Tidak dianjurkan sebagai pengganti perawatan gigi profesional."
+      ],
+      "zoneCode": "khb-z07",
+      "zoneSlug": "kesehatan-mulut",
+      "zoneTitle": "Zona Kesehatan Mulut"
+    },
+    {
+      "activeCompounds": [
+        "Salvadorine",
+        "Silika",
+        "Fluorida alami",
+        "Tanin",
+        "Sulfur"
+      ],
+      "benefits": [
+        "Membantu membersihkan permukaan gigi secara alami.",
+        "Membantu mengurangi pembentukan plak.",
+        "Memiliki aktivitas antibakteri.",
+        "Membantu menjaga kesehatan gusi dan kesegaran napas."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan biji atau stek.",
+        "Tumbuh baik di daerah kering hingga semi-kering.",
+        "Batang dapat dipanen setelah tanaman cukup besar."
+      ],
+      "entryKey": "kesehatan-mulut:miswak",
+      "entryOrder": 5,
+      "localName": "Miswak",
+      "plantKey": "miswak",
+      "plantSlug": "miswak",
+      "preparationMethods": [],
+      "rawEntryTitle": "Miswak",
+      "rawZoneTitle": "Zona Tulang & Sendi",
+      "scientificName": "Salvadora persica L.",
+      "titleCorrection": {
+        "correctedTitle": "Zona Kesehatan Mulut",
+        "occurrence": 7,
+        "rawTitle": "Zona Tulang & Sendi",
+        "reason": "Judul kedua tertulis sama dengan zona sebelumnya, tetapi isi tanaman membahas rongga mulut, gusi, plak, sariawan, dan bau mulut."
+      },
+      "usedParts": [
+        "Batang dan akar muda."
+      ],
+      "warnings": [
+        "Gunakan batang miswak yang bersih dan segar.",
+        "Tetap dianjurkan melakukan pemeriksaan gigi secara berkala."
+      ],
+      "zoneCode": "khb-z07",
+      "zoneSlug": "kesehatan-mulut",
+      "zoneTitle": "Zona Kesehatan Mulut"
+    },
+    {
+      "activeCompounds": [
+        "Mentol",
+        "Menton",
+        "Limonena",
+        "Flavonoid"
+      ],
+      "benefits": [
+        "Membantu menyegarkan napas.",
+        "Memiliki aktivitas antibakteri ringan.",
+        "Membantu mengurangi bau mulut.",
+        "Memberikan sensasi sejuk pada rongga mulut."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan stek batang atau stolon.",
+        "Memerlukan tanah yang lembap dan subur.",
+        "Dapat dipanen sekitar 2–3 bulan setelah tanam."
+      ],
+      "entryKey": "kesehatan-mulut:mint",
+      "entryOrder": 6,
+      "localName": "Mint",
+      "plantKey": "mint",
+      "plantSlug": "mint",
+      "preparationMethods": [],
+      "rawEntryTitle": "Mint",
+      "rawZoneTitle": "Zona Tulang & Sendi",
+      "scientificName": "Mentha × piperita L.",
+      "titleCorrection": {
+        "correctedTitle": "Zona Kesehatan Mulut",
+        "occurrence": 7,
+        "rawTitle": "Zona Tulang & Sendi",
+        "reason": "Judul kedua tertulis sama dengan zona sebelumnya, tetapi isi tanaman membahas rongga mulut, gusi, plak, sariawan, dan bau mulut."
+      },
+      "usedParts": [
+        "Daun."
+      ],
+      "warnings": [
+        "Konsumsi minyak peppermint dalam jumlah berlebihan dapat menyebabkan iritasi lambung.",
+        "Gunakan secukupnya."
+      ],
+      "zoneCode": "khb-z07",
+      "zoneSlug": "kesehatan-mulut",
+      "zoneTitle": "Zona Kesehatan Mulut"
+    },
+    {
+      "activeCompounds": [
+        "Asam rosmarinat",
+        "Thujone",
+        "Carnosol",
+        "Flavonoid"
+      ],
+      "benefits": [
+        "Membantu mengurangi peradangan pada rongga mulut.",
+        "Memiliki aktivitas antibakteri.",
+        "Berpotensi membantu meredakan radang tenggorokan ringan.",
+        "Membantu menjaga kesehatan gusi."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak melalui stek batang atau biji.",
+        "Memerlukan sinar matahari penuh.",
+        "Dapat dipanen sekitar 4–6 bulan setelah tanam."
+      ],
+      "entryKey": "kesehatan-mulut:sage",
+      "entryOrder": 7,
+      "localName": "Sage",
+      "plantKey": "sage",
+      "plantSlug": "sage",
+      "preparationMethods": [],
+      "rawEntryTitle": "Sage",
+      "rawZoneTitle": "Zona Tulang & Sendi",
+      "scientificName": "Salvia officinalis L.",
+      "titleCorrection": {
+        "correctedTitle": "Zona Kesehatan Mulut",
+        "occurrence": 7,
+        "rawTitle": "Zona Tulang & Sendi",
+        "reason": "Judul kedua tertulis sama dengan zona sebelumnya, tetapi isi tanaman membahas rongga mulut, gusi, plak, sariawan, dan bau mulut."
+      },
+      "usedParts": [
+        "Daun."
+      ],
+      "warnings": [
+        "Hindari penggunaan minyak sage secara berlebihan.",
+        "Tidak dianjurkan dikonsumsi dalam jumlah besar oleh ibu hamil."
+      ],
+      "zoneCode": "khb-z07",
+      "zoneSlug": "kesehatan-mulut",
+      "zoneTitle": "Zona Kesehatan Mulut"
+    },
+    {
+      "activeCompounds": [
+        "Epigallocatechin gallate (EGCG)",
+        "Katekin",
+        "Kafein",
+        "Flavonoid"
+      ],
+      "benefits": [
+        "Membantu menghambat pertumbuhan bakteri penyebab plak.",
+        "Memiliki aktivitas antioksidan.",
+        "Membantu menjaga kesehatan gusi.",
+        "Berpotensi membantu mengurangi bau mulut."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan biji atau stek.",
+        "Tumbuh baik pada daerah dataran tinggi.",
+        "Daun muda dipanen secara berkala."
+      ],
+      "entryKey": "kesehatan-mulut:teh-hijau",
+      "entryOrder": 8,
+      "localName": "Teh Hijau",
+      "plantKey": "teh hijau",
+      "plantSlug": "teh-hijau",
+      "preparationMethods": [],
+      "rawEntryTitle": "Teh Hijau",
+      "rawZoneTitle": "Zona Tulang & Sendi",
+      "scientificName": "Camellia sinensis (L.) Kuntze",
+      "titleCorrection": {
+        "correctedTitle": "Zona Kesehatan Mulut",
+        "occurrence": 7,
+        "rawTitle": "Zona Tulang & Sendi",
+        "reason": "Judul kedua tertulis sama dengan zona sebelumnya, tetapi isi tanaman membahas rongga mulut, gusi, plak, sariawan, dan bau mulut."
+      },
+      "usedParts": [
+        "Daun muda."
+      ],
+      "warnings": [
+        "Konsumsi berlebihan dapat meningkatkan asupan kafein.",
+        "Gunakan sebagai bagian dari pola hidup sehat."
+      ],
+      "zoneCode": "khb-z07",
+      "zoneSlug": "kesehatan-mulut",
+      "zoneTitle": "Zona Kesehatan Mulut"
+    },
+    {
+      "activeCompounds": [
+        "Linalool",
+        "Eugenol",
+        "Flavonoid",
+        "Minyak atsiri"
+      ],
+      "benefits": [
+        "Membantu menyegarkan napas.",
+        "Memiliki aktivitas antibakteri.",
+        "Membantu menjaga kesehatan rongga mulut.",
+        "Berpotensi membantu mengurangi pertumbuhan bakteri penyebab bau mulut."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan biji.",
+        "Tumbuh baik pada tanah yang subur dengan sinar matahari cukup.",
+        "Dapat dipanen sekitar 2–3 bulan setelah tanam."
+      ],
+      "entryKey": "kesehatan-mulut:kemangi",
+      "entryOrder": 9,
+      "localName": "Kemangi",
+      "plantKey": "kemangi",
+      "plantSlug": "kemangi",
+      "preparationMethods": [],
+      "rawEntryTitle": "Kemangi",
+      "rawZoneTitle": "Zona Tulang & Sendi",
+      "scientificName": "Ocimum basilicum L.",
+      "titleCorrection": {
+        "correctedTitle": "Zona Kesehatan Mulut",
+        "occurrence": 7,
+        "rawTitle": "Zona Tulang & Sendi",
+        "reason": "Judul kedua tertulis sama dengan zona sebelumnya, tetapi isi tanaman membahas rongga mulut, gusi, plak, sariawan, dan bau mulut."
+      },
+      "usedParts": [
+        "Daun."
+      ],
+      "warnings": [
+        "Cuci daun sebelum dikonsumsi.",
+        "Konsumsi dalam jumlah wajar sebagai bagian dari makanan."
+      ],
+      "zoneCode": "khb-z07",
+      "zoneSlug": "kesehatan-mulut",
+      "zoneTitle": "Zona Kesehatan Mulut"
+    },
+    {
+      "activeCompounds": [
+        "Vitamin C",
+        "Asam sitrat",
+        "Hesperidin",
+        "Limonena",
+        "Flavonoid"
+      ],
+      "benefits": [
+        "Membantu menjaga kesehatan gusi melalui kandungan vitamin C.",
+        "Memiliki aktivitas antibakteri ringan.",
+        "Membantu mengurangi bau mulut.",
+        "Berpotensi membantu menjaga kebersihan rongga mulut."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak melalui okulasi, cangkok, atau sambung pucuk.",
+        "Tumbuh baik pada daerah tropis dengan sinar matahari penuh.",
+        "Mulai berbuah pada umur sekitar 2–3 tahun."
+      ],
+      "entryKey": "kesehatan-mulut:jeruk-nipis",
+      "entryOrder": 10,
+      "localName": "Jeruk Nipis",
+      "plantKey": "jeruk nipis",
+      "plantSlug": "jeruk-nipis",
+      "preparationMethods": [],
+      "rawEntryTitle": "Jeruk nipis",
+      "rawZoneTitle": "Zona Tulang & Sendi",
+      "scientificName": "Citrus × aurantiifolia (Christm.) Swingle",
+      "titleCorrection": {
+        "correctedTitle": "Zona Kesehatan Mulut",
+        "occurrence": 7,
+        "rawTitle": "Zona Tulang & Sendi",
+        "reason": "Judul kedua tertulis sama dengan zona sebelumnya, tetapi isi tanaman membahas rongga mulut, gusi, plak, sariawan, dan bau mulut."
+      },
+      "usedParts": [
+        "Buah."
+      ],
+      "warnings": [
+        "Hindari penggunaan air jeruk nipis murni secara langsung dan terlalu sering pada gigi karena sifatnya yang asam dapat mengikis email gigi.",
+        "Tidak dianjurkan sebagai pengganti menyikat gigi dan pemeriksaan gigi rutin."
+      ],
+      "zoneCode": "khb-z07",
+      "zoneSlug": "kesehatan-mulut",
+      "zoneTitle": "Zona Kesehatan Mulut"
+    },
+    {
+      "activeCompounds": [
+        "Allicin",
+        "Ajoene",
+        "Diallyl sulfide",
+        "S-Allyl cysteine"
+      ],
+      "benefits": [
+        "Memiliki aktivitas antibakteri terhadap berbagai bakteri patogen.",
+        "Berpotensi membantu menghambat pertumbuhan jamur dan beberapa virus.",
+        "Membantu meningkatkan daya tahan tubuh.",
+        "Memiliki aktivitas antioksidan yang mendukung sistem imun."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan siung bawang.",
+        "Tumbuh baik pada tanah gembur dengan drainase yang baik.",
+        "Dapat dipanen setelah berumur sekitar 3–4 bulan."
+      ],
+      "entryKey": "anti-mikroba:bawang-putih",
+      "entryOrder": 1,
+      "localName": "Bawang Putih",
+      "plantKey": "bawang putih",
+      "plantSlug": "bawang-putih",
+      "preparationMethods": [],
+      "rawEntryTitle": "Bawang putih",
+      "rawZoneTitle": "Zona 18 – Anti Mikroba",
+      "scientificName": "Allium sativum L.",
+      "titleCorrection": {
+        "correctedTitle": "Zona Anti Mikroba",
+        "occurrence": 8,
+        "rawTitle": "Zona 18 – Anti Mikroba",
+        "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
+      },
+      "usedParts": [
+        "Umbi."
+      ],
+      "warnings": [
+        "Konsumsi berlebihan dapat menyebabkan gangguan lambung.",
+        "Gunakan dengan hati-hati pada pengguna obat pengencer darah."
+      ],
+      "zoneCode": "khb-z08",
+      "zoneSlug": "anti-mikroba",
+      "zoneTitle": "Zona Anti Mikroba"
+    },
+    {
+      "activeCompounds": [
+        "Hidroksikavikol",
+        "Chavicol",
+        "Eugenol",
+        "Tanin",
+        "Flavonoid"
+      ],
+      "benefits": [
+        "Memiliki aktivitas antibakteri terhadap berbagai bakteri patogen.",
+        "Berpotensi membantu menghambat pertumbuhan jamur.",
+        "Membantu menjaga kebersihan kulit dan mukosa.",
+        "Memiliki aktivitas antioksidan yang mendukung perlindungan sel."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak melalui stek batang.",
+        "Tumbuh baik pada tanah yang subur dan lembap.",
+        "Dapat dipanen setelah berumur sekitar 6–8 bulan."
+      ],
+      "entryKey": "anti-mikroba:sirih",
+      "entryOrder": 2,
+      "localName": "Sirih",
+      "plantKey": "sirih",
+      "plantSlug": "sirih",
+      "preparationMethods": [],
+      "rawEntryTitle": "Sirih",
+      "rawZoneTitle": "Zona 18 – Anti Mikroba",
+      "scientificName": "Piper betle L.",
+      "titleCorrection": {
+        "correctedTitle": "Zona Anti Mikroba",
+        "occurrence": 8,
+        "rawTitle": "Zona 18 – Anti Mikroba",
+        "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
+      },
+      "usedParts": [
+        "Daun."
+      ],
+      "warnings": [
+        "Hindari penggunaan berlebihan.",
+        "Tidak dianjurkan sebagai pengganti terapi antimikroba yang diresepkan oleh tenaga kesehatan."
+      ],
+      "zoneCode": "khb-z08",
+      "zoneSlug": "anti-mikroba",
+      "zoneTitle": "Zona Anti Mikroba"
+    },
+    {
+      "activeCompounds": [
+        "Kurkumin",
+        "Demetoksikurkumin",
+        "Bisdemetoksikurkumin",
+        "Minyak atsiri"
+      ],
+      "benefits": [
+        "Memiliki aktivitas antibakteri terhadap berbagai bakteri.",
+        "Berpotensi membantu menghambat pertumbuhan jamur.",
+        "Membantu mengurangi peradangan akibat infeksi.",
+        "Memiliki aktivitas antioksidan yang mendukung sistem imun."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan rimpang.",
+        "Tumbuh optimal pada tanah yang subur dan lembap.",
+        "Dipanen setelah berumur sekitar 8–12 bulan."
+      ],
+      "entryKey": "anti-mikroba:kunyit",
+      "entryOrder": 3,
+      "localName": "Kunyit",
+      "plantKey": "kunyit",
+      "plantSlug": "kunyit",
+      "preparationMethods": [],
+      "rawEntryTitle": "Kunyit",
+      "rawZoneTitle": "Zona 18 – Anti Mikroba",
+      "scientificName": "Curcuma longa L.",
+      "titleCorrection": {
+        "correctedTitle": "Zona Anti Mikroba",
+        "occurrence": 8,
+        "rawTitle": "Zona 18 – Anti Mikroba",
+        "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
+      },
+      "usedParts": [
+        "Rimpang."
+      ],
+      "warnings": [
+        "Hindari penggunaan berlebihan pada penderita gangguan saluran empedu.",
+        "Tidak dianjurkan menggantikan antibiotik yang diresepkan dokter."
+      ],
+      "zoneCode": "khb-z08",
+      "zoneSlug": "anti-mikroba",
+      "zoneTitle": "Zona Anti Mikroba"
+    },
+    {
+      "activeCompounds": [
+        "Gingerol",
+        "Shogaol",
+        "Zingerone",
+        "Flavonoid"
+      ],
+      "benefits": [
+        "Memiliki aktivitas antibakteri terhadap beberapa bakteri patogen.",
+        "Membantu meningkatkan daya tahan tubuh.",
+        "Membantu mengurangi peradangan akibat infeksi.",
+        "Memiliki aktivitas antioksidan."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan potongan rimpang.",
+        "Tumbuh baik pada tanah gembur dengan drainase baik.",
+        "Dapat dipanen setelah berumur sekitar 8–10 bulan."
+      ],
+      "entryKey": "anti-mikroba:jahe",
+      "entryOrder": 4,
+      "localName": "Jahe",
+      "plantKey": "jahe",
+      "plantSlug": "jahe",
+      "preparationMethods": [],
+      "rawEntryTitle": "Jahe",
+      "rawZoneTitle": "Zona 18 – Anti Mikroba",
+      "scientificName": "Zingiber officinale Roscoe",
+      "titleCorrection": {
+        "correctedTitle": "Zona Anti Mikroba",
+        "occurrence": 8,
+        "rawTitle": "Zona 18 – Anti Mikroba",
+        "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
+      },
+      "usedParts": [
+        "Rimpang."
+      ],
+      "warnings": [
+        "Konsumsi berlebihan dapat menyebabkan gangguan lambung.",
+        "Gunakan dengan hati-hati pada pengguna obat antikoagulan."
+      ],
+      "zoneCode": "khb-z08",
+      "zoneSlug": "anti-mikroba",
+      "zoneTitle": "Zona Anti Mikroba"
+    },
+    {
+      "activeCompounds": [
+        "Eugenol",
+        "Eugenyl asetat",
+        "β-Caryophyllene",
+        "Tanin"
+      ],
+      "benefits": [
+        "Memiliki aktivitas antibakteri dan antijamur.",
+        "Berpotensi membantu menghambat pertumbuhan mikroorganisme penyebab infeksi.",
+        "Membantu mengurangi peradangan.",
+        "Memiliki aktivitas antioksidan."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan biji.",
+        "Tumbuh baik di daerah tropis dengan curah hujan cukup.",
+        "Mulai menghasilkan bunga pada umur sekitar 5–7 tahun."
+      ],
+      "entryKey": "anti-mikroba:cengkeh",
+      "entryOrder": 5,
+      "localName": "Cengkeh",
+      "plantKey": "cengkeh",
+      "plantSlug": "cengkeh",
+      "preparationMethods": [],
+      "rawEntryTitle": "Cengkeh",
+      "rawZoneTitle": "Zona 18 – Anti Mikroba",
+      "scientificName": "Syzygium aromaticum (L.) Merr. & L.M.Perry",
+      "titleCorrection": {
+        "correctedTitle": "Zona Anti Mikroba",
+        "occurrence": 8,
+        "rawTitle": "Zona 18 – Anti Mikroba",
+        "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
+      },
+      "usedParts": [
+        "Kuncup bunga."
+      ],
+      "warnings": [
+        "Minyak cengkeh pekat dapat menyebabkan iritasi bila digunakan langsung.",
+        "Gunakan sesuai anjuran."
+      ],
+      "zoneCode": "khb-z08",
+      "zoneSlug": "anti-mikroba",
+      "zoneTitle": "Zona Anti Mikroba"
+    },
+    {
+      "activeCompounds": [
+        "Sinamaldehida",
+        "Eugenol",
+        "Polifenol",
+        "Proantosianidin"
+      ],
+      "benefits": [
+        "Memiliki aktivitas antibakteri terhadap berbagai bakteri.",
+        "Berpotensi membantu menghambat pertumbuhan jamur.",
+        "Memiliki aktivitas antioksidan.",
+        "Membantu mendukung sistem pertahanan tubuh."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan biji atau cangkok.",
+        "Tumbuh baik pada daerah dataran tinggi hingga sedang.",
+        "Dipanen setelah tanaman berumur sekitar 8–10 tahun."
+      ],
+      "entryKey": "anti-mikroba:kayu-manis",
+      "entryOrder": 6,
+      "localName": "Kayu Manis",
+      "plantKey": "kayu manis",
+      "plantSlug": "kayu-manis",
+      "preparationMethods": [],
+      "rawEntryTitle": "Kayu manis",
+      "rawZoneTitle": "Zona 18 – Anti Mikroba",
+      "scientificName": "Cinnamomum burmannii (Nees & T.Nees) Blume",
+      "titleCorrection": {
+        "correctedTitle": "Zona Anti Mikroba",
+        "occurrence": 8,
+        "rawTitle": "Zona 18 – Anti Mikroba",
+        "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
+      },
+      "usedParts": [
+        "Kulit batang."
+      ],
+      "warnings": [
+        "Konsumsi berlebihan tidak dianjurkan karena kandungan kumarin.",
+        "Gunakan sebagai pelengkap pola hidup sehat."
+      ],
+      "zoneCode": "khb-z08",
+      "zoneSlug": "anti-mikroba",
+      "zoneTitle": "Zona Anti Mikroba"
+    },
+    {
+      "activeCompounds": [
+        "Andrografolida",
+        "Neoandrografolida",
+        "Flavonoid",
+        "Diterpenoid"
+      ],
+      "benefits": [
+        "Memiliki aktivitas antibakteri terhadap beberapa bakteri patogen.",
+        "Berpotensi membantu meningkatkan respons sistem imun.",
+        "Membantu mengurangi peradangan.",
+        "Memiliki aktivitas antioksidan."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan biji.",
+        "Tumbuh baik pada tanah yang gembur dan cukup sinar matahari.",
+        "Dapat dipanen sekitar 3–4 bulan setelah tanam."
+      ],
+      "entryKey": "anti-mikroba:sambiloto",
+      "entryOrder": 7,
+      "localName": "Sambiloto",
+      "plantKey": "sambiloto",
+      "plantSlug": "sambiloto",
+      "preparationMethods": [],
+      "rawEntryTitle": "Sambiloto",
+      "rawZoneTitle": "Zona 18 – Anti Mikroba",
+      "scientificName": "Andrographis paniculata (Burm.f.) Nees",
+      "titleCorrection": {
+        "correctedTitle": "Zona Anti Mikroba",
+        "occurrence": 8,
+        "rawTitle": "Zona 18 – Anti Mikroba",
+        "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
+      },
+      "usedParts": [
+        "Daun dan batang."
+      ],
+      "warnings": [
+        "Tidak dianjurkan dikonsumsi oleh ibu hamil.",
+        "Konsumsi berlebihan dapat menyebabkan gangguan saluran cerna."
+      ],
+      "zoneCode": "khb-z08",
+      "zoneSlug": "anti-mikroba",
+      "zoneTitle": "Zona Anti Mikroba"
+    },
+    {
+      "activeCompounds": [
+        "Phyllanthin",
+        "Hypophyllanthin",
+        "Flavonoid",
+        "Tanin"
+      ],
+      "benefits": [
+        "Membantu meningkatkan daya tahan tubuh.",
+        "Memiliki aktivitas antibakteri terhadap beberapa mikroorganisme.",
+        "Berpotensi membantu menghambat perkembangan beberapa virus.",
+        "Memiliki aktivitas antioksidan."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan biji.",
+        "Mudah tumbuh pada tanah yang lembap dan subur.",
+        "Dapat dipanen sekitar 2–3 bulan setelah tanam."
+      ],
+      "entryKey": "anti-mikroba:meniran",
+      "entryOrder": 8,
+      "localName": "Meniran",
+      "plantKey": "meniran",
+      "plantSlug": "meniran",
+      "preparationMethods": [],
+      "rawEntryTitle": "Meniran",
+      "rawZoneTitle": "Zona 18 – Anti Mikroba",
+      "scientificName": "Phyllanthus niruri L.",
+      "titleCorrection": {
+        "correctedTitle": "Zona Anti Mikroba",
+        "occurrence": 8,
+        "rawTitle": "Zona 18 – Anti Mikroba",
+        "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
+      },
+      "usedParts": [
+        "Seluruh bagian tanaman."
+      ],
+      "warnings": [
+        "Gunakan sesuai anjuran.",
+        "Konsultasikan dengan tenaga kesehatan apabila sedang menjalani terapi penyakit kronis."
+      ],
+      "zoneCode": "khb-z08",
+      "zoneSlug": "anti-mikroba",
+      "zoneTitle": "Zona Anti Mikroba"
+    },
+    {
+      "activeCompounds": [
+        "Azadirachtin",
+        "Nimbin",
+        "Nimbidin",
+        "Quercetin"
+      ],
+      "benefits": [
+        "Memiliki aktivitas antibakteri terhadap berbagai bakteri patogen.",
+        "Berpotensi membantu menghambat pertumbuhan jamur.",
+        "Membantu menjaga kesehatan kulit dari infeksi ringan.",
+        "Memiliki aktivitas antioksidan."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan biji.",
+        "Tumbuh baik pada daerah tropis yang kering.",
+        "Daun dapat dipanen sepanjang tahun."
+      ],
+      "entryKey": "anti-mikroba:mimba",
+      "entryOrder": 9,
+      "localName": "Mimba (Neem)",
+      "plantKey": "mimba",
+      "plantSlug": "mimba",
+      "preparationMethods": [],
+      "rawEntryTitle": "Mimba",
+      "rawZoneTitle": "Zona 18 – Anti Mikroba",
+      "scientificName": "Azadirachta indica A.Juss.",
+      "titleCorrection": {
+        "correctedTitle": "Zona Anti Mikroba",
+        "occurrence": 8,
+        "rawTitle": "Zona 18 – Anti Mikroba",
+        "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
+      },
+      "usedParts": [
+        "Daun, kulit batang, dan biji."
+      ],
+      "warnings": [
+        "Tidak dianjurkan dikonsumsi oleh ibu hamil.",
+        "Minyak biji mimba tidak boleh dikonsumsi tanpa pengawasan tenaga kesehatan."
+      ],
+      "zoneCode": "khb-z08",
+      "zoneSlug": "anti-mikroba",
+      "zoneTitle": "Zona Anti Mikroba"
+    },
+    {
+      "activeCompounds": [
+        "Carvacrol",
+        "Thymol",
+        "Rosmarinic acid",
+        "Flavonoid"
+      ],
+      "benefits": [
+        "Memiliki aktivitas antibakteri terhadap berbagai bakteri patogen.",
+        "Berpotensi membantu menghambat pertumbuhan jamur.",
+        "Membantu mengurangi peradangan akibat infeksi.",
+        "Memiliki aktivitas antioksidan yang mendukung sistem imun."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan stek batang atau biji.",
+        "Tumbuh baik pada tanah berdrainase baik dengan sinar matahari penuh.",
+        "Dapat dipanen sekitar 3–4 bulan setelah tanam."
+      ],
+      "entryKey": "anti-mikroba:oregano",
+      "entryOrder": 10,
+      "localName": "Oregano",
+      "plantKey": "oregano",
+      "plantSlug": "oregano",
+      "preparationMethods": [],
+      "rawEntryTitle": "Oregano",
+      "rawZoneTitle": "Zona 18 – Anti Mikroba",
+      "scientificName": "Origanum vulgare L.",
+      "titleCorrection": {
+        "correctedTitle": "Zona Anti Mikroba",
+        "occurrence": 8,
+        "rawTitle": "Zona 18 – Anti Mikroba",
+        "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
+      },
+      "usedParts": [
+        "Daun."
+      ],
+      "warnings": [
+        "Minyak oregano memiliki konsentrasi tinggi dan perlu diencerkan sebelum penggunaan luar.",
+        "Tidak dianjurkan menggantikan pengobatan antimikroba yang diresepkan oleh dokter."
+      ],
+      "zoneCode": "khb-z08",
+      "zoneSlug": "anti-mikroba",
+      "zoneTitle": "Zona Anti Mikroba"
+    },
+    {
+      "activeCompounds": [
+        "Kurkumin",
+        "Demetoksikurkumin",
+        "Bisdemetoksikurkumin",
+        "Minyak atsiri"
+      ],
+      "benefits": [
+        "Membantu mengurangi keluhan nyeri haid (dismenore).",
+        "Membantu mengurangi peradangan pada sistem reproduksi.",
+        "Memiliki aktivitas antioksidan yang membantu melindungi sel-sel tubuh.",
+        "Berpotensi membantu menjaga kesehatan reproduksi perempuan."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan rimpang.",
+        "Tumbuh optimal pada tanah yang subur dan lembap.",
+        "Dipanen setelah berumur sekitar 8–12 bulan."
+      ],
+      "entryKey": "kesehatan-perempuan:kunyit",
+      "entryOrder": 1,
+      "localName": "Kunyit",
+      "plantKey": "kunyit",
+      "plantSlug": "kunyit",
+      "preparationMethods": [],
+      "rawEntryTitle": "Kunyit",
+      "rawZoneTitle": "Zona 19 Kesehatan Perempuan",
+      "scientificName": "Curcuma longa L.",
+      "titleCorrection": {
+        "correctedTitle": "Zona Kesehatan Perempuan",
+        "occurrence": 9,
+        "rawTitle": "Zona 19 Kesehatan Perempuan",
+        "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
+      },
+      "usedParts": [
+        "Rimpang."
+      ],
+      "warnings": [
+        "Konsumsi berlebihan dapat menyebabkan gangguan lambung.",
+        "Tidak dianjurkan sebagai pengganti terapi medis untuk gangguan reproduksi."
+      ],
+      "zoneCode": "khb-z09",
+      "zoneSlug": "kesehatan-perempuan",
+      "zoneTitle": "Zona Kesehatan Perempuan"
+    },
+    {
+      "activeCompounds": [
+        "Papaverine",
+        "Flavonoid",
+        "Sterol",
+        "Vitamin A",
+        "Vitamin C"
+      ],
+      "benefits": [
+        "Membantu mendukung produksi ASI pada ibu menyusui.",
+        "Mengandung antioksidan yang membantu melindungi sel tubuh.",
+        "Membantu memenuhi kebutuhan vitamin dan mineral.",
+        "Mendukung pemeliharaan kesehatan perempuan selama masa menyusui."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak melalui stek batang.",
+        "Tumbuh baik pada tanah yang subur dan cukup lembap.",
+        "Daun dapat dipanen sekitar 2–3 bulan setelah tanam."
+      ],
+      "entryKey": "kesehatan-perempuan:katuk",
+      "entryOrder": 2,
+      "localName": "Katuk",
+      "plantKey": "katuk",
+      "plantSlug": "katuk",
+      "preparationMethods": [],
+      "rawEntryTitle": "Katuk",
+      "rawZoneTitle": "Zona 19 Kesehatan Perempuan",
+      "scientificName": "Sauropus androgynus (L.) Merr.",
+      "titleCorrection": {
+        "correctedTitle": "Zona Kesehatan Perempuan",
+        "occurrence": 9,
+        "rawTitle": "Zona 19 Kesehatan Perempuan",
+        "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
+      },
+      "usedParts": [
+        "Daun."
+      ],
+      "warnings": [
+        "Konsumsi dalam jumlah sangat berlebihan, terutama dalam bentuk jus mentah secara terus-menerus, tidak dianjurkan karena berisiko menimbulkan gangguan paru.",
+        "Konsumsi sebagai sayuran dalam jumlah wajar relatif aman."
+      ],
+      "zoneCode": "khb-z09",
+      "zoneSlug": "kesehatan-perempuan",
+      "zoneTitle": "Zona Kesehatan Perempuan"
+    },
+    {
+      "activeCompounds": [
+        "Kurzerenone",
+        "Curzerenone",
+        "Zedoarone",
+        "Minyak atsiri"
+      ],
+      "benefits": [
+        "Membantu mengurangi peradangan.",
+        "Berpotensi membantu meredakan keluhan saat menstruasi.",
+        "Memiliki aktivitas antioksidan.",
+        "Membantu menjaga kesehatan sistem reproduksi perempuan."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan rimpang.",
+        "Tumbuh baik pada tanah yang gembur dan subur.",
+        "Dipanen setelah berumur sekitar 9–12 bulan."
+      ],
+      "entryKey": "kesehatan-perempuan:temu-putih",
+      "entryOrder": 3,
+      "localName": "Temu Putih",
+      "plantKey": "temu putih",
+      "plantSlug": "temu-putih",
+      "preparationMethods": [],
+      "rawEntryTitle": "Temu Putih",
+      "rawZoneTitle": "Zona 19 Kesehatan Perempuan",
+      "scientificName": "Curcuma zedoaria (Christm.) Roscoe",
+      "titleCorrection": {
+        "correctedTitle": "Zona Kesehatan Perempuan",
+        "occurrence": 9,
+        "rawTitle": "Zona 19 Kesehatan Perempuan",
+        "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
+      },
+      "usedParts": [
+        "Rimpang."
+      ],
+      "warnings": [
+        "Tidak dianjurkan dikonsumsi oleh ibu hamil tanpa anjuran tenaga kesehatan.",
+        "Gunakan sesuai dosis yang dianjurkan."
+      ],
+      "zoneCode": "khb-z09",
+      "zoneSlug": "kesehatan-perempuan",
+      "zoneTitle": "Zona Kesehatan Perempuan"
+    },
+    {
+      "activeCompounds": [
+        "Hidroksikavikol",
+        "Chavicol",
+        "Eugenol",
+        "Tanin",
+        "Flavonoid"
+      ],
+      "benefits": [
+        "Membantu menjaga kebersihan area kewanitaan.",
+        "Memiliki aktivitas antibakteri dan antijamur.",
+        "Membantu mengurangi bau yang disebabkan oleh pertumbuhan mikroorganisme.",
+        "Membantu menjaga kesehatan organ reproduksi luar."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak melalui stek batang.",
+        "Tumbuh baik pada tanah yang subur dan lembap.",
+        "Dapat dipanen setelah berumur sekitar 6–8 bulan."
+      ],
+      "entryKey": "kesehatan-perempuan:sirih",
+      "entryOrder": 4,
+      "localName": "Sirih",
+      "plantKey": "sirih",
+      "plantSlug": "sirih",
+      "preparationMethods": [],
+      "rawEntryTitle": "Sirih",
+      "rawZoneTitle": "Zona 19 Kesehatan Perempuan",
+      "scientificName": "Piper betle L.",
+      "titleCorrection": {
+        "correctedTitle": "Zona Kesehatan Perempuan",
+        "occurrence": 9,
+        "rawTitle": "Zona 19 Kesehatan Perempuan",
+        "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
+      },
+      "usedParts": [
+        "Daun."
+      ],
+      "warnings": [
+        "Hindari penggunaan terlalu sering atau penggunaan cairan yang terlalu pekat pada area kewanitaan karena dapat mengganggu keseimbangan flora normal.",
+        "Tidak dianjurkan sebagai pengobatan infeksi tanpa pemeriksaan tenaga kesehatan."
+      ],
+      "zoneCode": "khb-z09",
+      "zoneSlug": "kesehatan-perempuan",
+      "zoneTitle": "Zona Kesehatan Perempuan"
+    },
+    {
+      "activeCompounds": [
+        "Ligustilide",
+        "Ferulic acid",
+        "Polisakarida",
+        "Coumarin"
+      ],
+      "benefits": [
+        "Berpotensi membantu meredakan nyeri haid.",
+        "Membantu menjaga kesehatan sistem reproduksi perempuan.",
+        "Memiliki aktivitas antioksidan.",
+        "Secara tradisional digunakan untuk membantu menjaga keseimbangan kesehatan reproduksi wanita."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan biji.",
+        "Tumbuh baik pada daerah beriklim sejuk dengan tanah subur.",
+        "Dipanen setelah tanaman berumur sekitar 2–3 tahun."
+      ],
+      "entryKey": "kesehatan-perempuan:dong-quai",
+      "entryOrder": 5,
+      "localName": "Dong Quai (Angelika Tiongkok)",
+      "plantKey": "dong quai",
+      "plantSlug": "dong-quai",
+      "preparationMethods": [],
+      "rawEntryTitle": "Dong Quai",
+      "rawZoneTitle": "Zona 19 Kesehatan Perempuan",
+      "scientificName": "Angelica sinensis (Oliv.) Diels",
+      "titleCorrection": {
+        "correctedTitle": "Zona Kesehatan Perempuan",
+        "occurrence": 9,
+        "rawTitle": "Zona 19 Kesehatan Perempuan",
+        "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
+      },
+      "usedParts": [
+        "Akar."
+      ],
+      "warnings": [
+        "Tidak dianjurkan digunakan oleh ibu hamil.",
+        "Gunakan dengan hati-hati pada pengguna obat antikoagulan karena dapat meningkatkan risiko perdarahan."
+      ],
+      "zoneCode": "khb-z09",
+      "zoneSlug": "kesehatan-perempuan",
+      "zoneTitle": "Zona Kesehatan Perempuan"
+    },
+    {
+      "activeCompounds": [
+        "Anethole",
+        "Fenchone",
+        "Estragole",
+        "Flavonoid"
+      ],
+      "benefits": [
+        "Berpotensi membantu mengurangi keluhan kram saat menstruasi.",
+        "Membantu mendukung produksi ASI pada ibu menyusui.",
+        "Memiliki aktivitas antioksidan.",
+        "Membantu menjaga kesehatan sistem pencernaan selama menstruasi."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan biji.",
+        "Tumbuh baik pada tanah yang gembur dan memperoleh sinar matahari cukup.",
+        "Dipanen sekitar 3–4 bulan setelah tanam."
+      ],
+      "entryKey": "kesehatan-perempuan:adas",
+      "entryOrder": 6,
+      "localName": "Adas",
+      "plantKey": "adas",
+      "plantSlug": "adas",
+      "preparationMethods": [],
+      "rawEntryTitle": "Adas",
+      "rawZoneTitle": "Zona 19 Kesehatan Perempuan",
+      "scientificName": "Foeniculum vulgare Mill.",
+      "titleCorrection": {
+        "correctedTitle": "Zona Kesehatan Perempuan",
+        "occurrence": 9,
+        "rawTitle": "Zona 19 Kesehatan Perempuan",
+        "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
+      },
+      "usedParts": [
+        "Biji dan daun."
+      ],
+      "warnings": [
+        "Gunakan dalam jumlah wajar.",
+        "Konsultasikan dengan tenaga kesehatan apabila memiliki gangguan yang sensitif terhadap hormon."
+      ],
+      "zoneCode": "khb-z09",
+      "zoneSlug": "kesehatan-perempuan",
+      "zoneTitle": "Zona Kesehatan Perempuan"
+    },
+    {
+      "activeCompounds": [
+        "Linalool",
+        "Eugenol",
+        "Flavonoid",
+        "Minyak atsiri"
+      ],
+      "benefits": [
+        "Memiliki aktivitas antioksidan.",
+        "Membantu mengurangi peradangan ringan.",
+        "Membantu memenuhi kebutuhan vitamin dan mineral.",
+        "Mendukung pemeliharaan kesehatan reproduksi perempuan sebagai bagian dari pola makan sehat."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan biji.",
+        "Tumbuh baik pada tanah yang subur dengan sinar matahari cukup.",
+        "Dapat dipanen sekitar 2–3 bulan setelah tanam."
+      ],
+      "entryKey": "kesehatan-perempuan:kemangi",
+      "entryOrder": 7,
+      "localName": "Kemangi",
+      "plantKey": "kemangi",
+      "plantSlug": "kemangi",
+      "preparationMethods": [],
+      "rawEntryTitle": "Kemangi",
+      "rawZoneTitle": "Zona 19 Kesehatan Perempuan",
+      "scientificName": "Ocimum basilicum L.",
+      "titleCorrection": {
+        "correctedTitle": "Zona Kesehatan Perempuan",
+        "occurrence": 9,
+        "rawTitle": "Zona 19 Kesehatan Perempuan",
+        "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
+      },
+      "usedParts": [
+        "Daun."
+      ],
+      "warnings": [
+        "Konsumsi dalam jumlah wajar.",
+        "Cuci daun hingga bersih sebelum dikonsumsi."
+      ],
+      "zoneCode": "khb-z09",
+      "zoneSlug": "kesehatan-perempuan",
+      "zoneTitle": "Zona Kesehatan Perempuan"
+    },
+    {
+      "activeCompounds": [
+        "Antosianin",
+        "Hibiscus acid",
+        "Vitamin C",
+        "Flavonoid",
+        "Polifenol"
+      ],
+      "benefits": [
+        "Memiliki aktivitas antioksidan yang membantu melindungi sel tubuh.",
+        "Membantu menjaga kesehatan selama siklus menstruasi.",
+        "Berpotensi membantu mengurangi stres oksidatif.",
+        "Membantu menjaga daya tahan tubuh."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan biji.",
+        "Tumbuh baik pada daerah tropis dengan sinar matahari penuh.",
+        "Kelopak dipanen sekitar 4–5 bulan setelah tanam."
+      ],
+      "entryKey": "kesehatan-perempuan:rosella",
+      "entryOrder": 8,
+      "localName": "Rosella",
+      "plantKey": "rosella",
+      "plantSlug": "rosella",
+      "preparationMethods": [],
+      "rawEntryTitle": "Rosella",
+      "rawZoneTitle": "Zona 19 Kesehatan Perempuan",
+      "scientificName": "Hibiscus sabdariffa L.",
+      "titleCorrection": {
+        "correctedTitle": "Zona Kesehatan Perempuan",
+        "occurrence": 9,
+        "rawTitle": "Zona 19 Kesehatan Perempuan",
+        "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
+      },
+      "usedParts": [
+        "Kelopak bunga."
+      ],
+      "warnings": [
+        "Konsumsi berlebihan dapat menurunkan tekanan darah pada sebagian orang.",
+        "Gunakan dengan hati-hati pada pengguna obat antihipertensi."
+      ],
+      "zoneCode": "khb-z09",
+      "zoneSlug": "kesehatan-perempuan",
+      "zoneTitle": "Zona Kesehatan Perempuan"
+    },
+    {
+      "activeCompounds": [
+        "Asiaticoside",
+        "Madecassoside",
+        "Asiatic acid",
+        "Flavonoid"
+      ],
+      "benefits": [
+        "Membantu mempercepat regenerasi jaringan.",
+        "Memiliki aktivitas antioksidan.",
+        "Membantu menjaga kesehatan kulit, termasuk kulit pada masa setelah persalinan.",
+        "Mendukung pemulihan jaringan sebagai bagian dari proses penyembuhan alami tubuh."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan stolon atau anakan.",
+        "Memerlukan tanah yang lembap dan subur.",
+        "Dapat dipanen sekitar 2–3 bulan setelah tanam."
+      ],
+      "entryKey": "kesehatan-perempuan:pegagan",
+      "entryOrder": 9,
+      "localName": "Pegagan",
+      "plantKey": "pegagan",
+      "plantSlug": "pegagan",
+      "preparationMethods": [],
+      "rawEntryTitle": "Pegagan",
+      "rawZoneTitle": "Zona 19 Kesehatan Perempuan",
+      "scientificName": "Centella asiatica (L.) Urb.",
+      "titleCorrection": {
+        "correctedTitle": "Zona Kesehatan Perempuan",
+        "occurrence": 9,
+        "rawTitle": "Zona 19 Kesehatan Perempuan",
+        "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
+      },
+      "usedParts": [
+        "Daun dan batang."
+      ],
+      "warnings": [
+        "Hindari penggunaan jangka panjang tanpa pengawasan tenaga kesehatan.",
+        "Hentikan penggunaan apabila muncul reaksi alergi."
+      ],
+      "zoneCode": "khb-z09",
+      "zoneSlug": "kesehatan-perempuan",
+      "zoneTitle": "Zona Kesehatan Perempuan"
+    }
+  ],
+  "sourceCode": "KHB-HERBACODE-2026",
+  "sourceTitle": "HerbaCode Kampung Herbal Harmony",
+  "uniquePlants": [
+    {
+      "aliases": [
+        "Adas"
+      ],
+      "localName": "Adas",
+      "plantKey": "adas",
+      "scientificName": "Foeniculum vulgare Mill.",
+      "slug": "adas"
+    },
+    {
+      "aliases": [
+        "Alang-alang"
+      ],
+      "localName": "Alang-alang",
+      "plantKey": "alang-alang",
+      "scientificName": "Imperata cylindrica (L.) Raeusch.",
+      "slug": "alang-alang"
+    },
+    {
+      "aliases": [
+        "Bawang putih",
+        "Bawang Putih"
+      ],
+      "localName": "Bawang Putih",
+      "plantKey": "bawang putih",
+      "scientificName": "Allium sativum L.",
+      "slug": "bawang-putih"
+    },
+    {
+      "aliases": [
+        "Belimbing wuluh",
+        "Belimbing Wuluh"
+      ],
+      "localName": "Belimbing Wuluh",
+      "plantKey": "belimbing wuluh",
+      "scientificName": "Averrhoa bilimbi L.",
+      "slug": "belimbing-wuluh"
+    },
+    {
+      "aliases": [
+        "Boswellia (Kemenyan India)",
+        "Boswellia",
+        "Kemenyan India"
+      ],
+      "localName": "Boswellia",
+      "plantKey": "boswellia",
+      "scientificName": "Boswellia serrata Roxb. ex Colebr.",
+      "slug": "boswellia"
+    },
+    {
+      "aliases": [
+        "Cengkeh"
+      ],
+      "localName": "Cengkeh",
+      "plantKey": "cengkeh",
+      "scientificName": "Syzygium aromaticum (L.) Merr. & L.M.Perry",
+      "slug": "cengkeh"
+    },
+    {
+      "aliases": [
+        "Cincau hijau",
+        "Cincau Hijau"
+      ],
+      "localName": "Cincau Hijau",
+      "plantKey": "cincau hijau",
+      "scientificName": "Cyclea barbata Miers.",
+      "slug": "cincau-hijau"
+    },
+    {
+      "aliases": [
+        "Cissus"
+      ],
+      "localName": "Cissus",
+      "plantKey": "cissus",
+      "scientificName": "Cissus quadrangularis L.",
+      "slug": "cissus"
+    },
+    {
+      "aliases": [
+        "Daun dewa",
+        "Daun Dewa"
+      ],
+      "localName": "Daun Dewa",
+      "plantKey": "daun dewa",
+      "scientificName": "Gynura pseudochina (L.) DC.",
+      "slug": "daun-dewa"
+    },
+    {
+      "aliases": [
+        "Daun Jambu Biji",
+        "Daun Jambu"
+      ],
+      "localName": "Daun Jambu",
+      "plantKey": "daun jambu",
+      "scientificName": "Psidium guajava L.",
+      "slug": "daun-jambu"
+    },
+    {
+      "aliases": [
+        "Daun salam",
+        "Daun Salam"
+      ],
+      "localName": "Daun Salam",
+      "plantKey": "daun salam",
+      "scientificName": "Syzygium polyanthum (Wight) Walp.",
+      "slug": "daun-salam"
+    },
+    {
+      "aliases": [
+        "Daun ungu",
+        "Daun Ungu"
+      ],
+      "localName": "Daun Ungu",
+      "plantKey": "daun ungu",
+      "scientificName": "Graptophyllum pictum (L.) Griff.",
+      "slug": "daun-ungu"
+    },
+    {
+      "aliases": [
+        "Dong Quai (Angelika Tiongkok)",
+        "Dong Quai",
+        "Angelika Tiongkok"
+      ],
+      "localName": "Dong Quai",
+      "plantKey": "dong quai",
+      "scientificName": "Angelica sinensis (Oliv.) Diels",
+      "slug": "dong-quai"
+    },
+    {
+      "aliases": [
+        "Jahe"
+      ],
+      "localName": "Jahe",
+      "plantKey": "jahe",
+      "scientificName": "Zingiber officinale Roscoe.",
+      "slug": "jahe"
+    },
+    {
+      "aliases": [
+        "Jeruk Nipis",
+        "Jeruk nipis"
+      ],
+      "localName": "Jeruk Nipis",
+      "plantKey": "jeruk nipis",
+      "scientificName": "Citrus × aurantiifolia (Christm.) Swingle",
+      "slug": "jeruk-nipis"
+    },
+    {
+      "aliases": [
+        "Jintan hitam (Habbatussauda)",
+        "Jintan hitam",
+        "Jintan Hitam",
+        "Habbatussauda"
+      ],
+      "localName": "Jintan Hitam",
+      "plantKey": "jintan hitam",
+      "scientificName": "Nigella sativa L.",
+      "slug": "jintan-hitam"
+    },
+    {
+      "aliases": [
+        "Kapulaga"
+      ],
+      "localName": "Kapulaga",
+      "plantKey": "kapulaga",
+      "scientificName": "Amomum compactum Sol. ex Maton.",
+      "slug": "kapulaga"
+    },
+    {
+      "aliases": [
+        "Katuk"
+      ],
+      "localName": "Katuk",
+      "plantKey": "katuk",
+      "scientificName": "Sauropus androgynus (L.) Merr.",
+      "slug": "katuk"
+    },
+    {
+      "aliases": [
+        "Kayu Manis",
+        "Kayu manis"
+      ],
+      "localName": "Kayu Manis",
+      "plantKey": "kayu manis",
+      "scientificName": "Cinnamomum burmannii (Nees & T.Nees) Blume",
+      "slug": "kayu-manis"
+    },
+    {
+      "aliases": [
+        "Keji beling (pecah beling)",
+        "Keji beling",
+        "Keji Beling",
+        "pecah beling"
+      ],
+      "localName": "Keji Beling",
+      "plantKey": "keji beling",
+      "scientificName": "Strobilanthes crispa (L.) Blume.",
+      "slug": "keji-beling"
+    },
+    {
+      "aliases": [
+        "Kelor"
+      ],
+      "localName": "Kelor",
+      "plantKey": "kelor",
+      "scientificName": "Moringa oleifera Lam.",
+      "slug": "kelor"
+    },
+    {
+      "aliases": [
+        "Kemangi"
+      ],
+      "localName": "Kemangi",
+      "plantKey": "kemangi",
+      "scientificName": "Ocimum basilicum L.",
+      "slug": "kemangi"
+    },
+    {
+      "aliases": [
+        "Ketumbar"
+      ],
+      "localName": "Ketumbar",
+      "plantKey": "ketumbar",
+      "scientificName": "Coriandrum sativum L.",
+      "slug": "ketumbar"
+    },
+    {
+      "aliases": [
+        "Kumis kucing",
+        "Kumis Kucing"
+      ],
+      "localName": "Kumis Kucing",
+      "plantKey": "kumis kucing",
+      "scientificName": "Orthosiphon aristatus (Blume) Miq.",
+      "slug": "kumis-kucing"
+    },
+    {
+      "aliases": [
+        "Kunyit"
+      ],
+      "localName": "Kunyit",
+      "plantKey": "kunyit",
+      "scientificName": "Curcuma longa L.",
+      "slug": "kunyit"
+    },
+    {
+      "aliases": [
+        "Kunyit putih",
+        "Kunyit Putih"
+      ],
+      "localName": "Kunyit Putih",
+      "plantKey": "kunyit putih",
+      "scientificName": "Curcuma zedoaria (Christm.) Roscoe.",
+      "slug": "kunyit-putih"
+    },
+    {
+      "aliases": [
+        "Lidah buaya",
+        "Lidah Buaya"
+      ],
+      "localName": "Lidah Buaya",
+      "plantKey": "lidah buaya",
+      "scientificName": "Aloe vera (L.) Burm.f.",
+      "slug": "lidah-buaya"
+    },
+    {
+      "aliases": [
+        "Meniran"
+      ],
+      "localName": "Meniran",
+      "plantKey": "meniran",
+      "scientificName": "Phyllanthus niruri L.",
+      "slug": "meniran"
+    },
+    {
+      "aliases": [
+        "Miana (iler)",
+        "Miana",
+        "iler"
+      ],
+      "localName": "Miana",
+      "plantKey": "miana",
+      "scientificName": "Coleus scutellarioides (L.) Benth.",
+      "slug": "miana"
+    },
+    {
+      "aliases": [
+        "Mimba (Neem)",
+        "Mimba",
+        "Neem"
+      ],
+      "localName": "Mimba",
+      "plantKey": "mimba",
+      "scientificName": "Azadirachta indica A.Juss.",
+      "slug": "mimba"
+    },
+    {
+      "aliases": [
+        "Mint"
+      ],
+      "localName": "Mint",
+      "plantKey": "mint",
+      "scientificName": "Mentha × piperita L.",
+      "slug": "mint"
+    },
+    {
+      "aliases": [
+        "Miswak"
+      ],
+      "localName": "Miswak",
+      "plantKey": "miswak",
+      "scientificName": "Salvadora persica L.",
+      "slug": "miswak"
+    },
+    {
+      "aliases": [
+        "Oregano"
+      ],
+      "localName": "Oregano",
+      "plantKey": "oregano",
+      "scientificName": "Origanum vulgare L.",
+      "slug": "oregano"
+    },
+    {
+      "aliases": [
+        "Paliasa"
+      ],
+      "localName": "Paliasa",
+      "plantKey": "paliasa",
+      "scientificName": "Kleinhovia hospita L.",
+      "slug": "paliasa"
+    },
+    {
+      "aliases": [
+        "Pegagan"
+      ],
+      "localName": "Pegagan",
+      "plantKey": "pegagan",
+      "scientificName": "Centella asiatica (L.) Urb.",
+      "slug": "pegagan"
+    },
+    {
+      "aliases": [
+        "Rambut jagung",
+        "Rambut Jagung"
+      ],
+      "localName": "Rambut Jagung",
+      "plantKey": "rambut jagung",
+      "scientificName": "Zea mays L.",
+      "slug": "rambut-jagung"
+    },
+    {
+      "aliases": [
+        "Rosella"
+      ],
+      "localName": "Rosella",
+      "plantKey": "rosella",
+      "scientificName": "Hibiscus sabdariffa L.",
+      "slug": "rosella"
+    },
+    {
+      "aliases": [
+        "Rosemary"
+      ],
+      "localName": "Rosemary",
+      "plantKey": "rosemary",
+      "scientificName": "Salvia rosmarinus Spenn.",
+      "slug": "rosemary"
+    },
+    {
+      "aliases": [
+        "Sage"
+      ],
+      "localName": "Sage",
+      "plantKey": "sage",
+      "scientificName": "Salvia officinalis L.",
+      "slug": "sage"
+    },
+    {
+      "aliases": [
+        "Sambiloto"
+      ],
+      "localName": "Sambiloto",
+      "plantKey": "sambiloto",
+      "scientificName": "Andrographis paniculata (Burm.f.) Nees.",
+      "slug": "sambiloto"
+    },
+    {
+      "aliases": [
+        "Seledri"
+      ],
+      "localName": "Seledri",
+      "plantKey": "seledri",
+      "scientificName": "Apium graveolens L.",
+      "slug": "seledri"
+    },
+    {
+      "aliases": [
+        "Serai"
+      ],
+      "localName": "Serai",
+      "plantKey": "serai",
+      "scientificName": "Cymbopogon citratus (DC.) Stapf.",
+      "slug": "serai"
+    },
+    {
+      "aliases": [
+        "Sidaguri"
+      ],
+      "localName": "Sidaguri",
+      "plantKey": "sidaguri",
+      "scientificName": "Sida rhombifolia L.",
+      "slug": "sidaguri"
+    },
+    {
+      "aliases": [
+        "Sirih"
+      ],
+      "localName": "Sirih",
+      "plantKey": "sirih",
+      "scientificName": "Piper betle L.",
+      "slug": "sirih"
+    },
+    {
+      "aliases": [
+        "Tapak liman",
+        "Tapak Liman"
+      ],
+      "localName": "Tapak Liman",
+      "plantKey": "tapak liman",
+      "scientificName": "Elephantopus scaber L.",
+      "slug": "tapak-liman"
+    },
+    {
+      "aliases": [
+        "Teh hijau",
+        "Teh Hijau"
+      ],
+      "localName": "Teh Hijau",
+      "plantKey": "teh hijau",
+      "scientificName": "Camellia sinensis (L.) Kuntze.",
+      "slug": "teh-hijau"
+    },
+    {
+      "aliases": [
+        "Tempuyung"
+      ],
+      "localName": "Tempuyung",
+      "plantKey": "tempuyung",
+      "scientificName": "Sonchus arvensis L.",
+      "slug": "tempuyung"
+    },
+    {
+      "aliases": [
+        "Temu mangga",
+        "Temu Mangga"
+      ],
+      "localName": "Temu Mangga",
+      "plantKey": "temu mangga",
+      "scientificName": "Curcuma mangga Valeton & Zijp.",
+      "slug": "temu-mangga"
+    },
+    {
+      "aliases": [
+        "Temu Putih"
+      ],
+      "localName": "Temu Putih",
+      "plantKey": "temu putih",
+      "scientificName": "Curcuma zedoaria (Christm.) Roscoe",
+      "slug": "temu-putih"
+    },
+    {
+      "aliases": [
+        "Temulawak"
+      ],
+      "localName": "Temulawak",
+      "plantKey": "temulawak",
+      "scientificName": "Curcuma xanthorrhiza Roxb.",
+      "slug": "temulawak"
+    }
+  ],
+  "zones": [
+    {
+      "displayOrder": 1,
+      "rawTitle": "Zona Imunitas Kuat",
+      "slug": "imunitas-kuat",
+      "title": "Zona Imunitas Kuat",
+      "titleCorrection": null,
+      "zoneCode": "khb-z01"
+    },
+    {
+      "displayOrder": 2,
+      "rawTitle": "Zona Pencernaan Sehat",
+      "slug": "pencernaan-sehat",
+      "title": "Zona Pencernaan Sehat",
+      "titleCorrection": null,
+      "zoneCode": "khb-z02"
+    },
+    {
+      "displayOrder": 3,
+      "rawTitle": "Zona Ginjal Sehat",
+      "slug": "ginjal-sehat",
+      "title": "Zona Ginjal Sehat",
+      "titleCorrection": null,
+      "zoneCode": "khb-z03"
+    },
+    {
+      "displayOrder": 4,
+      "rawTitle": "Zona Hati Sehat",
+      "slug": "hati-sehat",
+      "title": "Zona Hati Sehat",
+      "titleCorrection": null,
+      "zoneCode": "khb-z04"
+    },
+    {
+      "displayOrder": 5,
+      "rawTitle": "Zona Jantung Sehat",
+      "slug": "jantung-sehat",
+      "title": "Zona Jantung Sehat",
+      "titleCorrection": null,
+      "zoneCode": "khb-z05"
+    },
+    {
+      "displayOrder": 6,
+      "rawTitle": "Zona Tulang & Sendi",
+      "slug": "tulang-dan-sendi",
+      "title": "Zona Tulang & Sendi",
+      "titleCorrection": null,
+      "zoneCode": "khb-z06"
+    },
+    {
+      "displayOrder": 7,
+      "rawTitle": "Zona Tulang & Sendi",
+      "slug": "kesehatan-mulut",
+      "title": "Zona Kesehatan Mulut",
+      "titleCorrection": {
+        "correctedTitle": "Zona Kesehatan Mulut",
+        "occurrence": 7,
+        "rawTitle": "Zona Tulang & Sendi",
+        "reason": "Judul kedua tertulis sama dengan zona sebelumnya, tetapi isi tanaman membahas rongga mulut, gusi, plak, sariawan, dan bau mulut."
+      },
+      "zoneCode": "khb-z07"
+    },
+    {
+      "displayOrder": 8,
+      "rawTitle": "Zona 18 – Anti Mikroba",
+      "slug": "anti-mikroba",
+      "title": "Zona Anti Mikroba",
+      "titleCorrection": {
+        "correctedTitle": "Zona Anti Mikroba",
+        "occurrence": 8,
+        "rawTitle": "Zona 18 – Anti Mikroba",
+        "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
+      },
+      "zoneCode": "khb-z08"
+    },
+    {
+      "displayOrder": 9,
+      "rawTitle": "Zona 19 Kesehatan Perempuan",
+      "slug": "kesehatan-perempuan",
+      "title": "Zona Kesehatan Perempuan",
+      "titleCorrection": {
+        "correctedTitle": "Zona Kesehatan Perempuan",
+        "occurrence": 9,
+        "rawTitle": "Zona 19 Kesehatan Perempuan",
+        "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
+      },
+      "zoneCode": "khb-z09"
+    }
+  ]
+}
