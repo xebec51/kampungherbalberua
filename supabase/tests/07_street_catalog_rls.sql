@@ -112,7 +112,8 @@ set local request.jwt.claim.role = 'authenticated';
 
 select is((select count(*) from public.street_media sm join public.streets s on s.id = sm.street_id where s.slug like 'pgtap-%'), 1::bigint, 'viewer can read published street media');
 select is((select count(*) from public.street_plant_entries spe join public.streets s on s.id = spe.street_id where s.slug like 'pgtap-%'), 1::bigint, 'viewer can read published street plant entry');
-select ok(pg_temp.throws($$delete from public.street_media$$), 'viewer cannot delete street media');
+delete from public.street_media;
+select is((select count(*) from public.street_media sm join public.streets s on s.id = sm.street_id where s.slug like 'pgtap-%'), 1::bigint, 'viewer cannot delete street media');
 
 select * from finish();
 
