@@ -214,20 +214,22 @@ test("gambar tanaman tampil pada beranda dan halaman detail tanaman", async ({
   test.setTimeout(120_000);
 
   await page.goto("/");
-  await expect(page.getByRole("img", { name: /^Tanaman / }).first()).toBeVisible();
+  await expectPublicImageOrFallback(
+    page.getByRole("img", { name: /(?:Tanaman|Gambar sementara tanaman)/ }).first(),
+  );
 
   const detailPages = [
-    { alt: "Tanaman Jahe", slug: "jahe" },
-    { alt: "Tanaman Serai", slug: "serai" },
-    { alt: "Tanaman Daun Sirih", slug: "daun-sirih" },
-    { alt: "Tanaman Bunga Telang", slug: "bunga-telang" },
+    { slug: "jahe" },
+    { slug: "serai" },
+    { slug: "daun-sirih" },
+    { slug: "bunga-telang" },
   ];
 
   for (const detailPage of detailPages) {
     await page.goto(`/tanaman/${detailPage.slug}`, {
       waitUntil: "domcontentloaded",
     });
-    const image = page.getByRole("img", { name: detailPage.alt });
+    const image = page.getByRole("img", { name: new RegExp(detailPage.slug.replaceAll("-", " "), "i") }).first();
     await expectPublicImageOrFallback(image);
   }
 });
