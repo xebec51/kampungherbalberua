@@ -1,7 +1,4 @@
-"use client";
-
 import Image from "next/image";
-import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 import type { PublicMediaAsset } from "@/types";
@@ -45,12 +42,11 @@ export function SafeImage({
   sizes = "100vw",
   showAttribution = false,
 }: SafeImageProps) {
-  const [hasError, setHasError] = useState(false);
   const resolvedSrc = media?.publicUrl ?? src;
   const resolvedAlt = media?.altText ?? alt;
   const attribution = media?.attributionText ?? media?.creatorName ?? null;
 
-  if (!resolvedSrc || hasError || isLocalPlaceholder(resolvedSrc)) {
+  if (!resolvedSrc || isLocalPlaceholder(resolvedSrc)) {
     return (
       <ImagePlaceholder
         className={className}
@@ -77,7 +73,6 @@ export function SafeImage({
         fill
         fetchPriority={priority ? "high" : "auto"}
         loading={priority ? "eager" : "lazy"}
-        onError={() => setHasError(true)}
         preload={priority}
         quality={quality}
         unoptimized={shouldBypassOptimizer(resolvedSrc)}

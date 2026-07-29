@@ -8,20 +8,17 @@ vi.mock("next/image", () => ({
   default: ({
     alt,
     className,
-    onError,
     sizes,
     src,
   }: {
     alt: string;
     className?: string;
-    onError?: () => void;
     sizes?: string;
     src: string;
   }) =>
     React.createElement("img", {
       alt,
       className,
-      "data-has-error-handler": onError ? "true" : "false",
       sizes,
       src,
     }),
@@ -75,14 +72,16 @@ describe("plant media rendering", () => {
     expect(html).not.toContain("<img");
   });
 
-  it("SafeImage memiliki fallback saat gambar gagal dimuat", () => {
+  it("SafeImage tetap server-rendered dan tidak menambah handler gambar per kartu", () => {
     const safeImageSource = readFileSync(
       "src/components/ui/SafeImage.tsx",
       "utf8",
     );
 
-    expect(safeImageSource).toContain("onError={() => setHasError(true)}");
-    expect(safeImageSource).toContain("!resolvedSrc || hasError");
+    expect(safeImageSource).not.toContain('"use client"');
+    expect(safeImageSource).not.toContain("useState");
+    expect(safeImageSource).not.toContain("onError");
+    expect(safeImageSource).toContain("!resolvedSrc || isLocalPlaceholder(resolvedSrc)");
   });
 
   it("halaman detail tanaman menggunakan image tanaman", () => {
