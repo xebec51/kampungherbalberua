@@ -103,23 +103,17 @@ export default async function PlantDetailPage({ params }: PlantDetailPageProps) 
         />
 
         <div
-          className={
-            plant.image
-              ? "mt-8 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]"
-              : "mt-8"
-          }
+          className="mt-8 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]"
         >
-          {plant.image ? (
-            <SafeImage
-              alt={`Tanaman ${plant.localName}`}
-              fallbackLabel={`Tanaman ${plant.localName}`}
-              fallbackVariant="plant"
-              imageClassName="object-cover"
-              priority
-              sizes="(max-width: 1024px) 100vw, 45vw"
-              src={plant.image}
-            />
-          ) : null}
+          <SafeImage
+            alt={`Tanaman ${plant.localName}`}
+            fallbackLabel={`Tanaman ${plant.localName}`}
+            fallbackVariant="plant"
+            imageClassName="object-cover"
+            priority
+            sizes="(max-width: 1024px) 100vw, 45vw"
+            src={plant.image}
+          />
 
           <div>
             <div className="flex flex-wrap gap-2">
@@ -202,23 +196,17 @@ function CatalogPlantDetail({ plant }: { plant: PublishedPlantDetail }) {
         />
 
         <div
-          className={
-            plant.image
-              ? "mt-8 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]"
-              : "mt-8"
-          }
+          className="mt-8 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]"
         >
-          {plant.image ? (
-            <SafeImage
-              alt={`Tanaman ${plant.localName}`}
-              fallbackLabel={`Tanaman ${plant.localName}`}
-              fallbackVariant="plant"
-              imageClassName="object-cover"
-              priority
-              sizes="(max-width: 1024px) 100vw, 45vw"
-              src={plant.image}
-            />
-          ) : null}
+          <SafeImage
+            alt={`Tanaman ${plant.localName}`}
+            fallbackLabel={`Tanaman ${plant.localName}`}
+            fallbackVariant="plant"
+            imageClassName="object-cover"
+            priority
+            sizes="(max-width: 1024px) 100vw, 45vw"
+            src={plant.image}
+          />
 
           <div>
             <div className="flex flex-wrap gap-2">

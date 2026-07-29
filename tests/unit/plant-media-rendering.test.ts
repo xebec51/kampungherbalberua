@@ -2,7 +2,7 @@ import React from "react";
 import { readFileSync } from "node:fs";
 import { renderToString } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
-import type { HerbaCodePlantProfile } from "../../src/types";
+import type { HerbaCodePlantProfile, HerbaCodeZoneSummary } from "../../src/types";
 
 vi.mock("next/image", () => ({
   default: ({
@@ -74,7 +74,7 @@ describe("plant media rendering", () => {
     );
   });
 
-  it("HerbaCodePlantCard tidak merender gambar ketika media tidak ada", async () => {
+  it("HerbaCodePlantCard merender placeholder visual ketika media tidak ada", async () => {
     const { HerbaCodePlantCard } = await import(
       "../../src/components/plants/HerbaCodePlantCard"
     );
@@ -85,7 +85,30 @@ describe("plant media rendering", () => {
     );
 
     expect(html).not.toContain("<img");
-    expect(html).not.toMatch(/gambar sementara|placeholder|menyusul/i);
+    expect(html).toContain("image-placeholder");
+    expect(html).toContain('aria-label="Tanaman Jahe"');
+    expect(html).not.toMatch(/gambar sementara|menyusul/i);
+  });
+
+  it("HerbaCodeZoneCard merender placeholder visual untuk zona tanpa foto", async () => {
+    const { HerbaCodeZoneCard } = await import(
+      "../../src/components/zones/HerbaCodeZoneCard"
+    );
+    const zone: HerbaCodeZoneSummary = {
+      id: "khb-z01",
+      plantCount: 11,
+      slug: "imunitas-kuat",
+      title: "Zona Imunitas Kuat",
+      zoneCode: "khb-z01",
+    };
+    const html = renderToString(
+      React.createElement(HerbaCodeZoneCard, { zone }),
+    );
+
+    expect(html).not.toContain("<img");
+    expect(html).toContain("image-placeholder");
+    expect(html).toContain('aria-label="Zona Imunitas Kuat"');
+    expect(html).not.toMatch(/gambar sementara|menyusul/i);
   });
 
   it("SafeImage tetap server-rendered dan tidak menambah handler gambar per kartu", () => {
@@ -100,14 +123,13 @@ describe("plant media rendering", () => {
     expect(safeImageSource).toContain("!resolvedSrc || isLocalPlaceholder(resolvedSrc)");
   });
 
-  it("halaman detail tanaman menggunakan image tanaman hanya bila tersedia", () => {
+  it("halaman detail tanaman memakai SafeImage agar media kosong mendapat placeholder", () => {
     const detailPageSource = readFileSync(
       "src/app/tanaman/[slug]/page.tsx",
       "utf8",
     );
 
     expect(detailPageSource).toContain('import { SafeImage }');
-    expect(detailPageSource).toContain("plant.image ? (");
     expect(detailPageSource).toContain("src={plant.image}");
   });
 

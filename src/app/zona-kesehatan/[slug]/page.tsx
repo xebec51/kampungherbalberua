@@ -88,21 +88,33 @@ export default async function HealthZoneDetailPage({
           ]}
         />
 
-        <div className="mt-8">
-          <div className="flex flex-wrap gap-2">
-            <StatusBadge tone="green">{zone.zoneCode}</StatusBadge>
-            <StatusBadge tone="brown">{zone.entries.length} tanaman</StatusBadge>
+        <div className="mt-8 grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+          <SafeImage
+            alt={zone.title}
+            fallbackLabel={zone.title}
+            fallbackVariant="map"
+            imageClassName="object-cover"
+            priority
+            sizes="(max-width: 1024px) 100vw, 45vw"
+            src={null}
+          />
+
+          <div>
+            <div className="flex flex-wrap gap-2">
+              <StatusBadge tone="green">{zone.zoneCode}</StatusBadge>
+              <StatusBadge tone="brown">{zone.entries.length} tanaman</StatusBadge>
+            </div>
+            <p className="mt-5 text-sm font-semibold uppercase tracking-[0.16em] text-herbal-brown">
+              Kampung Herbal Harmony
+            </p>
+            <h1 className="mt-3 text-4xl font-bold tracking-normal text-herbal-ink sm:text-5xl">
+              {zone.title}
+            </h1>
+            <p className="mt-6 max-w-3xl text-base leading-8 text-herbal-muted">
+              Data pada halaman ini bersumber dari HerbaCode Kampung Herbal
+              Harmony dan disusun sebagai relasi tanaman-zona.
+            </p>
           </div>
-          <p className="mt-5 text-sm font-semibold uppercase tracking-[0.16em] text-herbal-brown">
-            Kampung Herbal Harmony
-          </p>
-          <h1 className="mt-3 text-4xl font-bold tracking-normal text-herbal-ink sm:text-5xl">
-            {zone.title}
-          </h1>
-          <p className="mt-6 max-w-3xl text-base leading-8 text-herbal-muted">
-            Data pada halaman ini bersumber dari HerbaCode Kampung Herbal
-            Harmony dan disusun sebagai relasi tanaman-zona.
-          </p>
         </div>
 
         <section className="mt-8 rounded-md border border-herbal-green/10 bg-white p-5 text-sm leading-6 text-herbal-muted shadow-sm">
@@ -168,22 +180,16 @@ function CatalogZoneDetail({ zone }: { zone: HealthZone }) {
           ]}
         />
 
-        <div
-          className={
-            image ? "mt-8 grid gap-8 lg:grid-cols-[0.95fr_1.05fr]" : "mt-8"
-          }
-        >
-          {image ? (
-            <SafeImage
-              alt={zone.zoneName}
-              fallbackLabel={zone.zoneName}
-              fallbackVariant="map"
-              imageClassName="object-cover"
-              priority
-              sizes="(max-width: 1024px) 100vw, 45vw"
-              src={image}
-            />
-          ) : null}
+        <div className="mt-8 grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+          <SafeImage
+            alt={zone.zoneName}
+            fallbackLabel={zone.zoneName}
+            fallbackVariant="map"
+            imageClassName="object-cover"
+            priority
+            sizes="(max-width: 1024px) 100vw, 45vw"
+            src={image}
+          />
 
           <div>
             <div className="flex flex-wrap gap-2">
