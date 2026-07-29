@@ -1,11 +1,13 @@
 import { cache } from "react";
 import localHerbaCodeData from "../../../data/herbacode/herbacode-data.json";
 import { getPrimaryPlantMediaMap } from "@/lib/data/media";
+import { getRestoredStreetNamesByHerbaCodeZoneSlug } from "@/lib/data/streets";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import type { Database } from "@/lib/supabase/database.types";
 import type {
   HerbaCodePlantProfile,
   HerbaCodePlantZoneEntry,
+  HerbaCodeZoneDetail,
   HerbaCodeZoneSummary,
 } from "@/types";
 
@@ -310,17 +312,27 @@ export async function getHerbaCodeZoneSummaries(): Promise<HerbaCodeZoneSummary[
       id: entry.zoneId,
       plantCount: 1,
       slug: entry.zoneSlug,
+      streetNames: [],
       title: entry.zoneTitle,
       zoneCode: entry.zoneCode,
     });
   }
 
-  return Array.from(zones.values()).sort((left, right) =>
+  const summaries = await Promise.all(
+    Array.from(zones.values()).map(async (zone) => ({
+      ...zone,
+      streetNames: await getRestoredStreetNamesByHerbaCodeZoneSlug(zone.slug),
+    })),
+  );
+
+  return summaries.sort((left, right) =>
     left.zoneCode.localeCompare(right.zoneCode, "id"),
   );
 }
 
-export async function getHerbaCodeZoneBySlug(slug: string) {
+export async function getHerbaCodeZoneBySlug(
+  slug: string,
+): Promise<HerbaCodeZoneDetail | undefined> {
   const profiles = await getHerbaCodeProfilesSource();
   const entries = profiles
     .flatMap((plant) => plant.zoneEntries)
@@ -334,7 +346,11 @@ export async function getHerbaCodeZoneBySlug(slug: string) {
   return {
     entries: sortEntries(entries),
     id: firstEntry.zoneId,
+    plantCount: entries.length,
     slug: firstEntry.zoneSlug,
+    streetNames: await getRestoredStreetNamesByHerbaCodeZoneSlug(
+      firstEntry.zoneSlug,
+    ),
     title: firstEntry.zoneTitle,
     zoneCode: firstEntry.zoneCode,
   };

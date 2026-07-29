@@ -98,6 +98,11 @@ export default async function HealthZoneDetailPage({
             <h1 className="mt-3 text-4xl font-bold tracking-normal text-herbal-ink sm:text-5xl">
               {zone.title}
             </h1>
+            {zone.streetNames.length > 0 ? (
+              <p className="mt-3 text-lg font-semibold text-herbal-green">
+                {zone.streetNames.join(", ")}
+              </p>
+            ) : null}
             <p className="mt-6 max-w-3xl text-base leading-8 text-herbal-muted">
               Data pada halaman ini bersumber dari HerbaCode Kampung Herbal
               Harmony dan disusun sebagai relasi tanaman-zona.
@@ -145,6 +150,7 @@ function visibleZoneImagePath(value: string | null | undefined) {
 
 function CatalogZoneDetail({ zone }: { zone: HealthZone }) {
   const image = visibleZoneImagePath(zone.imagePath);
+  const title = zone.streetName ?? zone.zoneName;
 
   return (
     <article className="bg-herbal-cream py-12 sm:py-16">
@@ -152,7 +158,7 @@ function CatalogZoneDetail({ zone }: { zone: HealthZone }) {
         <Breadcrumb
           items={[
             { label: "Zona Kesehatan", href: "/zona-kesehatan" },
-            { label: zone.streetName ?? zone.zoneName },
+            { label: title },
           ]}
         />
 
@@ -181,11 +187,11 @@ function CatalogZoneDetail({ zone }: { zone: HealthZone }) {
               {zone.programName}
             </p>
             <h1 className="mt-3 text-4xl font-bold tracking-normal text-herbal-ink sm:text-5xl">
-              {zone.zoneName}
+              {title}
             </h1>
             {zone.streetName ? (
               <p className="mt-3 text-lg font-semibold text-herbal-green">
-                {zone.streetName}
+                {zone.zoneName}
               </p>
             ) : null}
             <p className="mt-6 max-w-3xl text-base leading-8 text-herbal-muted">

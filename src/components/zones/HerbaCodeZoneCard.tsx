@@ -27,6 +27,11 @@ export function HerbaCodeZoneCard({ zone }: HerbaCodeZoneCardProps) {
             {zone.title}
           </Link>
         </h3>
+        {zone.streetNames.length > 0 ? (
+          <p className="mt-2 text-sm font-semibold text-herbal-green">
+            {zone.streetNames.join(", ")}
+          </p>
+        ) : null}
         <p className="mt-3 line-clamp-3 flex-1 text-sm leading-6 text-herbal-muted">
           Data tanaman dan pemanfaatan tradisional pada zona ini bersumber dari HerbaCode.
         </p>

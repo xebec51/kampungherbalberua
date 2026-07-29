@@ -81,6 +81,11 @@ export type HerbaCodeZoneSummary = {
   slug: string;
   title: string;
   plantCount: number;
+  streetNames: string[];
+};
+
+export type HerbaCodeZoneDetail = HerbaCodeZoneSummary & {
+  entries: HerbaCodePlantZoneEntry[];
 };
 
 export type HerbaCodePlantZoneEntry = {

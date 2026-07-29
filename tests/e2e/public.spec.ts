@@ -15,7 +15,6 @@ async function expectNoPublicPlaceholderText(page: Page) {
   );
   expect(bodyText).not.toMatch(/\bkhb-z\d{2}\b/i);
   await expect(page.locator(".image-placeholder")).toHaveCount(0);
-  await expect(page.getByText(/Jl\. (Digestia|Respiria|Glycemia|Lipidia|Imun|Hepatia|Feminia|Vaskulia|Pediatria)/i)).toHaveCount(0);
 }
 
 test("beranda menampilkan ringkasan HerbaCode tanpa placeholder publik", async ({
@@ -103,6 +102,13 @@ test("katalog tanaman gabungan dapat dicari dan tidak menggandakan tanaman berul
   await page.getByLabel("Filter zona").selectOption("Zona Jantung Sehat");
   await expect(page.getByText(/Menampilkan \d+ dari \d+ tanaman\./)).toBeVisible();
   await expect(page.getByRole("link", { exact: true, name: "Seledri" })).toBeVisible();
+  await expect(
+    page.getByText("Nomor poster lama", { exact: true }),
+  ).toBeVisible();
+  await expect(
+    page.getByText("Menampilkan 206 dari 216 nomor poster sumber."),
+  ).toBeVisible();
+  await expect(page.getByRole("link", { name: /No\. 216\s+Daun Salam/ })).toBeVisible();
   await expectNoPublicPlaceholderText(page);
 });
 
@@ -133,6 +139,7 @@ test("detail zona menampilkan relasi tanaman-zona HerbaCode", async ({ page }) =
   await page.goto("/zona-kesehatan/imunitas-kuat");
 
   await expect(page.getByRole("heading", { name: "Zona Imunitas Kuat" })).toBeVisible();
+  await expect(page.getByText("Jl. Imun")).toBeVisible();
   await expect(page.getByText("Zona HerbaCode", { exact: true }).first()).toBeVisible();
   await expect(page.getByRole("heading", { name: "Tanaman pada zona ini" })).toBeVisible();
   await expect(page.getByRole("link", { name: "Meniran" })).toBeVisible();
@@ -144,6 +151,27 @@ test("detail zona menampilkan relasi tanaman-zona HerbaCode", async ({ page }) =
   await page.getByRole("link", { name: "Meniran" }).click();
   await expect(page.getByRole("heading", { name: "Meniran" })).toBeVisible();
   await expect(page.getByText("Phyllanthin", { exact: true })).toBeVisible();
+});
+
+test("peta menampilkan 9 jalan tematik yang dipulihkan", async ({ page }) => {
+  await page.goto("/peta");
+
+  for (const streetName of [
+    "Jl. Digestia",
+    "Jl. Respiria",
+    "Jl. Glycemia",
+    "Jl. Lipidia",
+    "Jl. Imun",
+    "Jl. Hepatia",
+    "Jl. Feminia",
+    "Jl. Vaskulia",
+    "Jl. Pediatria",
+  ]) {
+    await expect(page.getByText(streetName, { exact: true }).first()).toBeVisible();
+  }
+
+  await expectNoPublicPlaceholderText(page);
+  await expectNoHorizontalOverflow(page);
 });
 
 test("halaman publik utama bebas placeholder, undefined, dan null", async ({

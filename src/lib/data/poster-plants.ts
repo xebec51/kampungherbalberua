@@ -15,6 +15,7 @@ import type {
 } from "@/types";
 
 export const POSTER_SOURCE_CODE = "KHB-POSTER-216-2026";
+export const POSTER_CLAIMED_ENTRY_COUNT = 216;
 
 type EntryRow = {
   collection_id: string;

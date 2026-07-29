@@ -5,6 +5,7 @@ import { Container } from "@/components/ui/Container";
 import { Disclaimer } from "@/components/ui/Disclaimer";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import {
+  POSTER_CLAIMED_ENTRY_COUNT,
   getPosterPlantCatalog,
   normalizePosterName,
 } from "@/lib/data/poster-plants";
@@ -35,6 +36,10 @@ export default async function PlantsPage() {
     (total, plant) => total + plant.zoneEntries.length,
     0,
   );
+  const posterOccurrenceCount = posterPlants.reduce(
+    (total, plant) => total + plant.posterOccurrenceCount,
+    0,
+  );
 
   return (
     <section className="bg-herbal-cream py-12 sm:py-16">
@@ -56,6 +61,11 @@ export default async function PlantsPage() {
             description="Nama tanaman dari katalog poster."
           />
           <CatalogMetric
+            label="Nomor poster lama"
+            value={`${posterOccurrenceCount}/${POSTER_CLAIMED_ENTRY_COUNT}`}
+            description="Entri terbaca dari sumber poster 216 tanaman."
+          />
+          <CatalogMetric
             label="Tanaman HerbaCode"
             value={String(herbaCodePlants.length)}
             description="Tanaman unik yang memiliki detail HerbaCode."
@@ -72,7 +82,10 @@ export default async function PlantsPage() {
           />
         </dl>
         <Suspense fallback={<p className="mt-8 text-sm text-herbal-muted">Memuat katalog tanaman.</p>}>
-          <PosterPlantCatalog plants={plants} />
+          <PosterPlantCatalog
+            claimedPosterEntryCount={POSTER_CLAIMED_ENTRY_COUNT}
+            plants={plants}
+          />
         </Suspense>
         <div className="mt-8">
           <Disclaimer>

@@ -98,6 +98,7 @@ describe("plant media rendering", () => {
       id: "khb-z01",
       plantCount: 11,
       slug: "imunitas-kuat",
+      streetNames: ["Jl. Imun"],
       title: "Zona Imunitas Kuat",
       zoneCode: "khb-z01",
     };
@@ -108,6 +109,7 @@ describe("plant media rendering", () => {
     expect(html).not.toContain("<img");
     expect(html).not.toContain("image-placeholder");
     expect(html).not.toContain("khb-z01");
+    expect(html).toContain("Jl. Imun");
     expect(html).not.toMatch(/gambar sementara|menyusul/i);
   });
 

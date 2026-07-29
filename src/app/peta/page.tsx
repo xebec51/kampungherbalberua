@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import { StreetCard } from "@/components/streets/StreetCard";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { getHerbaCodeZoneSummaries } from "@/lib/data/herbacode";
+import { getPublishedStreets } from "@/lib/data/streets";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = createPageMetadata({
@@ -12,7 +14,10 @@ export const metadata: Metadata = createPageMetadata({
 });
 
 export default async function MapPage() {
-  const zones = await getHerbaCodeZoneSummaries();
+  const [zones, streets] = await Promise.all([
+    getHerbaCodeZoneSummaries(),
+    getPublishedStreets(),
+  ]);
 
   return (
     <section className="bg-herbal-cream py-12 sm:py-16">
@@ -25,14 +30,32 @@ export default async function MapPage() {
         <div className="mt-8 grid gap-5 lg:grid-cols-[1fr_0.8fr]">
           <InfoPanel
             title="Zona HerbaCode"
-            values={zones.map((zone) => zone.title)}
+            values={zones.map((zone) =>
+              zone.streetNames.length > 0
+                ? `${zone.title} - ${zone.streetNames.join(", ")}`
+                : zone.title,
+            )}
           />
-          <div className="rounded-md border border-herbal-green/10 bg-white p-5 text-sm leading-7 text-herbal-muted shadow-sm">
-            Zona pada halaman ini bukan diagnosis wilayah dan bukan data
-            penyakit warga. Website tidak menampilkan peta rumah pasien, alamat
-            warga, koordinat pasien, atau kondisi kesehatan per rumah.
+          <div className="grid gap-5">
+            <div className="rounded-md border border-herbal-green/10 bg-white p-5 text-sm leading-7 text-herbal-muted shadow-sm">
+              Zona pada halaman ini bukan diagnosis wilayah dan bukan data
+              penyakit warga. Website tidak menampilkan peta rumah pasien,
+              alamat warga, koordinat pasien, atau kondisi kesehatan per rumah.
+            </div>
           </div>
         </div>
+        {streets.length > 0 ? (
+          <section className="mt-10">
+            <h2 className="text-xl font-bold text-herbal-ink">
+              Jalan tematik
+            </h2>
+            <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {streets.map((street) => (
+                <StreetCard key={street.slug} street={street} />
+              ))}
+            </div>
+          </section>
+        ) : null}
       </Container>
     </section>
   );
