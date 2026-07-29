@@ -131,6 +131,7 @@ test("detail tanaman menampilkan HerbaCode dan manfaat tetap terpisah per zona",
   await page.goto("/tanaman/jahe");
 
   await expect(page.getByRole("heading", { name: "Jahe" })).toBeVisible();
+  await expect(page.getByRole("img", { name: "Tanaman Jahe" })).toBeVisible();
   await expect(page.getByText("Zingiber officinale Roscoe")).toBeVisible();
   await expect(page.getByRole("link", { name: "Zona Pencernaan Sehat" })).toBeVisible();
   await expect(page.getByRole("link", { name: "Zona Tulang & Sendi" })).toBeVisible();

@@ -16,10 +16,16 @@ import {
 } from "@/lib/data/plants";
 import {
   getPosterPlantBySlug,
+  getPosterPlantCatalog,
   getPosterPlantSlugs,
+  normalizePosterName,
 } from "@/lib/data/poster-plants";
 import { createPageMetadata } from "@/lib/metadata";
-import type { HerbaCodePlantZoneEntry, PosterPlantCatalogItem } from "@/types";
+import type {
+  HerbaCodePlantProfile,
+  HerbaCodePlantZoneEntry,
+  PosterPlantCatalogItem,
+} from "@/types";
 
 type PlantDetailPageProps = {
   params: Promise<{
@@ -115,6 +121,25 @@ export default async function PlantDetailPage({ params }: PlantDetailPageProps) 
     plant.zoneEntries,
     (entry) => entry.preparationMethods,
   );
+  const fallbackPosterVisual = plant.image
+    ? null
+    : await getPosterVisualForHerbaCodePlant(plant);
+  const fallbackPosterImage = visibleDetailImageSrc(fallbackPosterVisual?.image);
+  const visual = plant.image
+    ? {
+        alt: `Tanaman ${plant.localName}`,
+        fallbackLabel: `Tanaman ${plant.localName}`,
+        isIllustration: false,
+        src: plant.image,
+      }
+    : fallbackPosterVisual && fallbackPosterImage
+      ? {
+          alt: `Tanaman ${plant.localName}`,
+          fallbackLabel: `Tanaman ${plant.localName}`,
+          isIllustration: fallbackPosterVisual.imageIsIllustration,
+          src: fallbackPosterImage,
+        }
+      : null;
 
   return (
     <article className="bg-herbal-cream py-12 sm:py-16">
@@ -128,24 +153,12 @@ export default async function PlantDetailPage({ params }: PlantDetailPageProps) 
 
         <div
           className={
-            plant.image
-              ? "mt-8 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]"
-              : "mt-8"
+            visual
+              ? "mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.82fr)] lg:items-start"
+              : "mt-8 max-w-3xl"
           }
         >
-          {plant.image ? (
-            <SafeImage
-              alt={`Tanaman ${plant.localName}`}
-              fallbackLabel={`Tanaman ${plant.localName}`}
-              fallbackVariant="plant"
-              imageClassName="object-cover"
-              priority
-              sizes="(max-width: 1024px) 100vw, 45vw"
-              src={plant.image}
-            />
-          ) : null}
-
-          <div>
+          <div className="min-w-0">
             <div className="flex flex-wrap gap-2">
               <StatusBadge tone="green">HerbaCode</StatusBadge>
               <StatusBadge tone="brown">
@@ -177,6 +190,8 @@ export default async function PlantDetailPage({ params }: PlantDetailPageProps) 
               ))}
             </div>
           </div>
+
+          {visual ? <PlantDetailImage priority visual={visual} /> : null}
         </div>
 
         <div className="mt-8 grid gap-6 lg:grid-cols-2">
@@ -214,6 +229,14 @@ function CatalogPlantDetail({ plant }: { plant: PublishedPlantDetail }) {
   const sourceNotes = plant.sourceNotes?.trim();
   const hasSeparateDescription =
     plant.description.trim() !== plant.shortDescription.trim();
+  const visual = plant.image
+    ? {
+        alt: `Tanaman ${plant.localName}`,
+        fallbackLabel: `Tanaman ${plant.localName}`,
+        isIllustration: false,
+        src: plant.image,
+      }
+    : null;
 
   return (
     <article className="bg-herbal-cream py-12 sm:py-16">
@@ -227,24 +250,12 @@ function CatalogPlantDetail({ plant }: { plant: PublishedPlantDetail }) {
 
         <div
           className={
-            plant.image
-              ? "mt-8 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]"
-              : "mt-8"
+            visual
+              ? "mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.82fr)] lg:items-start"
+              : "mt-8 max-w-3xl"
           }
         >
-          {plant.image ? (
-            <SafeImage
-              alt={`Tanaman ${plant.localName}`}
-              fallbackLabel={`Tanaman ${plant.localName}`}
-              fallbackVariant="plant"
-              imageClassName="object-cover"
-              priority
-              sizes="(max-width: 1024px) 100vw, 45vw"
-              src={plant.image}
-            />
-          ) : null}
-
-          <div>
+          <div className="min-w-0">
             <div className="flex flex-wrap gap-2">
               <StatusBadge tone="green">Katalog tanaman</StatusBadge>
             </div>
@@ -260,6 +271,8 @@ function CatalogPlantDetail({ plant }: { plant: PublishedPlantDetail }) {
               {plant.shortDescription}
             </p>
           </div>
+
+          {visual ? <PlantDetailImage priority visual={visual} /> : null}
         </div>
 
         {hasSeparateDescription ? (
@@ -290,10 +303,17 @@ function CatalogPlantDetail({ plant }: { plant: PublishedPlantDetail }) {
 }
 
 function PosterPlantDetail({ plant }: { plant: PosterPlantCatalogItem }) {
-  const image =
-    plant.image && !plant.image.startsWith("/images/placeholders/")
-      ? plant.image
-      : null;
+  const image = visibleDetailImageSrc(plant.image);
+  const visual = image
+    ? {
+        alt: plant.imageIsIllustration
+          ? `Visual referensi untuk tanaman ${plant.rawName}`
+          : `Tanaman ${plant.rawName}`,
+        fallbackLabel: `Tanaman ${plant.rawName}`,
+        isIllustration: plant.imageIsIllustration,
+        src: image,
+      }
+    : null;
   const sourceDetails = [
     plant.sourceLabel,
     plant.attributionText,
@@ -312,26 +332,12 @@ function PosterPlantDetail({ plant }: { plant: PosterPlantCatalogItem }) {
 
         <div
           className={
-            image ? "mt-8 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]" : "mt-8"
+            visual
+              ? "mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.82fr)] lg:items-start"
+              : "mt-8 max-w-3xl"
           }
         >
-          {image ? (
-            <SafeImage
-              alt={
-                plant.imageIsIllustration
-                  ? `Visual referensi untuk tanaman ${plant.rawName}`
-                  : `Foto tanaman ${plant.rawName}`
-              }
-              fallbackLabel={`Tanaman ${plant.rawName}`}
-              fallbackVariant="plant"
-              imageClassName="object-cover"
-              priority
-              sizes="(max-width: 1024px) 100vw, 45vw"
-              src={image}
-            />
-          ) : null}
-
-          <div>
+          <div className="min-w-0">
             <div className="flex flex-wrap gap-2">
               <StatusBadge tone="green">Katalog Harmony</StatusBadge>
               {plant.posterOccurrenceCount > 0 ? (
@@ -352,6 +358,8 @@ function PosterPlantDetail({ plant }: { plant: PosterPlantCatalogItem }) {
               {plant.description}
             </p>
           </div>
+
+          {visual ? <PlantDetailImage priority visual={visual} /> : null}
         </div>
 
         <div className="mt-8 grid gap-6 lg:grid-cols-2">
@@ -372,6 +380,66 @@ function PosterPlantDetail({ plant }: { plant: PosterPlantCatalogItem }) {
         </div>
       </Container>
     </article>
+  );
+}
+
+type PlantDetailVisual = {
+  alt: string;
+  fallbackLabel: string;
+  isIllustration: boolean;
+  src: string;
+};
+
+function visibleDetailImageSrc(value: string | null | undefined) {
+  if (!value || value.startsWith("/images/placeholders/")) {
+    return null;
+  }
+
+  return value;
+}
+
+async function getPosterVisualForHerbaCodePlant(plant: HerbaCodePlantProfile) {
+  const normalizedCandidates = new Set(
+    [plant.localName, ...plant.aliases].map(normalizePosterName).filter(Boolean),
+  );
+  const catalog = await getPosterPlantCatalog();
+
+  return (
+    catalog.find((item) => {
+      if (!visibleDetailImageSrc(item.image)) {
+        return false;
+      }
+
+      return (
+        item.linkedPlantSlug === plant.slug ||
+        normalizedCandidates.has(item.normalizedName)
+      );
+    }) ?? null
+  );
+}
+
+function PlantDetailImage({
+  priority = false,
+  visual,
+}: {
+  priority?: boolean;
+  visual: PlantDetailVisual;
+}) {
+  return (
+    <div className="lg:sticky lg:top-24">
+      <SafeImage
+        alt={visual.alt}
+        className="aspect-[4/3] w-full lg:aspect-[5/4]"
+        fallbackLabel={visual.fallbackLabel}
+        fallbackVariant="plant"
+        imageClassName="object-cover"
+        illustrationLabel="Visual referensi"
+        labelIllustration={visual.isIllustration}
+        priority={priority}
+        sizes="(max-width: 1024px) 100vw, 38vw"
+        src={visual.src}
+      />
+    </div>
   );
 }
 
