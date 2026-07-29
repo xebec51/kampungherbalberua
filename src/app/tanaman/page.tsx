@@ -19,7 +19,9 @@ export const metadata: Metadata = createPageMetadata({
 export default async function PlantsPage() {
   const plants = await getPosterPlantCatalog();
   const zoneCount = new Set(plants.flatMap((plant) => plant.collections)).size;
-  const imageCount = plants.filter((plant) => Boolean(plant.image)).length;
+  const visibleImageCount = plants.filter(
+    (plant) => plant.imageKind !== "generic" || Boolean(plant.sourcePageUrl),
+  ).length;
 
   return (
     <section className="bg-herbal-cream py-12 sm:py-16">
@@ -33,17 +35,17 @@ export default async function PlantsPage() {
           <CatalogMetric
             label="Nama tanaman"
             value={String(plants.length)}
-            description="Nama yang tercatat dalam katalog edukasi Harmony."
+            description="Daftar nama tanaman yang dapat dicari dan dibuka detailnya."
           />
           <CatalogMetric
             label="Zona edukasi"
             value={String(zoneCount)}
-            description="Wilayah tematik tempat tanaman dikenalkan."
+            description="Setiap tanaman terhubung dengan lokasi zona pengenalannya."
           />
           <CatalogMetric
-            label="Gambar pendamping"
-            value={String(imageCount)}
-            description="Foto atau ilustrasi beratribusi untuk membantu pengenalan."
+            label="Visual tersedia"
+            value={String(visibleImageCount)}
+            description="Foto atau ilustrasi berlisensi; sisanya memakai visual sementara."
           />
         </dl>
         <Suspense fallback={<p className="mt-8 text-sm text-herbal-muted">Memuat katalog tanaman...</p>}>

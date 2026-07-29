@@ -21,7 +21,7 @@ async function expectPublicImageOrFallback(locator: Locator) {
 
   await expect(locator).toHaveAttribute(
     "aria-label",
-    /Gambar sementara|Gambar pendamping|Tanaman/i,
+    /Gambar sementara|Visual referensi|Tanaman/i,
   );
 }
 
@@ -156,15 +156,15 @@ test("katalog tanaman tampil dan pencarian bekerja", async ({
 }) => {
   await page.goto("/tanaman");
   await expect(page.getByRole("heading", { name: "Katalog Tanaman Kampung Herbal Harmony" })).toBeVisible();
-  await expect(page.getByText("Menampilkan 89 dari 89 tanaman dalam katalog Harmony.")).toBeVisible();
+  await expect(page.getByText("Menampilkan 89 dari 89 tanaman.")).toBeVisible();
   const firstCatalogImage = page.getByRole("img", { name: /tanaman/i }).first();
   await expectPublicImageOrFallback(firstCatalogImage);
 
   await expect(page.getByLabel("Filter bagian")).toBeVisible();
-  await expect(page.getByLabel("Jenis gambar")).toBeVisible();
+  await expect(page.getByLabel("Jenis gambar")).toHaveCount(0);
   await expect(page.getByLabel("Urutkan")).toBeVisible();
   await expect(page.getByRole("link", { name: "Cincau", exact: true })).toBeVisible();
-  await expect(page.getByText(/^(Gambar pendamping|Ilustrasi sementara)$/).first()).toBeVisible();
+  await expect(page.getByText("Visual referensi")).toHaveCount(0);
 
   for (const plantName of ["Garcinia", "Rosemary", "Merigold", "Willow Bark"]) {
     await page.getByLabel("Cari tanaman").fill(plantName);
@@ -172,7 +172,7 @@ test("katalog tanaman tampil dan pencarian bekerja", async ({
   }
 
   await page.getByLabel("Cari tanaman").fill("jahe");
-  await expect(page.getByText("Menampilkan 1 dari 89 tanaman dalam katalog Harmony.")).toBeVisible();
+  await expect(page.getByText("Menampilkan 1 dari 89 tanaman.")).toBeVisible();
   const jaheCatalogImage = page.getByRole("img", { name: /Jahe/ }).first();
   await expectPublicImageOrFallback(jaheCatalogImage);
   await expect(page.getByRole("link", { name: "Jahe", exact: true })).toHaveAttribute(
@@ -186,9 +186,9 @@ test("filter zona dan detail poster-only bekerja tanpa teks kosong", async ({
 }) => {
   await page.goto("/tanaman");
   await page.getByLabel("Filter zona").selectOption({ label: "Zona Jantung Sehat" });
-  await expect(page.getByText(/Menampilkan \d+ dari 89 tanaman dalam katalog Harmony\./)).toBeVisible();
+  await expect(page.getByText(/Menampilkan \d+ dari 89 tanaman\./)).toBeVisible();
   await page.getByRole("button", { name: "Reset filter" }).click();
-  await expect(page.getByText("Menampilkan 89 dari 89 tanaman dalam katalog Harmony.")).toBeVisible();
+  await expect(page.getByText("Menampilkan 89 dari 89 tanaman.")).toBeVisible();
 
   await page.getByLabel("Cari tanaman").fill("cincau");
   await expect(page.getByRole("link", { name: "Cincau", exact: true })).toHaveAttribute(
@@ -199,10 +199,10 @@ test("filter zona dan detail poster-only bekerja tanpa teks kosong", async ({
   await expect(page).toHaveURL(/\/tanaman\/cincau$/);
   await expect(page.getByRole("heading", { name: "Cincau" })).toBeVisible();
   await expect(page.getByText(/Tanaman ini tercatat dalam katalog edukasi Kampung Herbal Harmony/)).toBeVisible();
-  await expect(page.getByText(/Gambar pendamping|Ilustrasi sementara/).first()).toBeVisible();
+  await expect(page.getByText(/Visual referensi|Visual sementara/).first()).toBeVisible();
   await expectPublicImageOrFallback(
     page.getByRole("img", {
-      name: /(?:Gambar pendamping|Gambar sementara).*Cincau/,
+      name: /(?:Visual referensi|Gambar sementara).*Cincau/,
     }),
   );
   await expect(page.getByText(/undefined|null/i)).toHaveCount(0);
@@ -295,7 +295,7 @@ test("halaman sumber gambar dapat dibuka tanpa data privat", async ({ page }) =>
   ).toBeVisible();
   await expect(page.getByText("Atribusi Media")).toBeVisible();
   await expect(page.getByText("original private")).toHaveCount(0);
-  await expect(page.getByText("Ilustrasi sementara katalog tanaman Kampung Herbal Harmony")).toBeVisible();
+  await expect(page.getByText("Visual sementara katalog tanaman Kampung Herbal Harmony")).toBeVisible();
   await expect(page.getByText("Kreator").first()).toBeVisible();
   await expect(page.getByText("Lisensi").first()).toBeVisible();
   await expectNoHorizontalOverflow(page);

@@ -14,10 +14,22 @@ const accents = {
   map: "from-[#e1eadf] via-white to-[#f3efe2]",
 };
 
-function visiblePlaceholderLabel(label: string) {
-  return label
-    .replace(/^Ilustrasi placeholder /, "")
-    .replace(/^Gambar sementara /, "");
+const visibleLabels = {
+  activity: "Dokumentasi menyusul",
+  map: "Peta sedang disiapkan",
+  plant: "Foto tanaman menyusul",
+  product: "Foto produk menyusul",
+  recipe: "Visual ramuan menyusul",
+};
+
+function visiblePlaceholderLabel(
+  label: string,
+  variant: NonNullable<ImagePlaceholderProps["variant"]>,
+) {
+  return (
+    visibleLabels[variant] ??
+    label.replace(/^Ilustrasi placeholder /, "").replace(/^Gambar sementara /, "")
+  );
 }
 
 export function ImagePlaceholder({
@@ -61,9 +73,9 @@ export function ImagePlaceholder({
         className="absolute bottom-12 right-12 h-9 w-12 rounded-md bg-herbal-clay/88"
       />
       <span className="relative z-10 block max-w-[15rem] rounded-md border border-white/70 bg-white/88 px-3 py-2 text-xs font-bold leading-5 text-herbal-deep shadow-sm backdrop-blur">
-        {visiblePlaceholderLabel(label)}
+        {visiblePlaceholderLabel(label, variant)}
         <span className="mt-0.5 block text-[0.68rem] font-semibold uppercase text-herbal-muted">
-          Gambar sedang disiapkan
+          Media sedang dilengkapi
         </span>
       </span>
     </div>

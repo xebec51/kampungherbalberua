@@ -8,10 +8,10 @@ import { createSupabaseServerClient } from "@/lib/supabase/server";
 import type { PublicMediaAsset } from "@/types";
 
 const posterFallbackAttribution: PublicMediaAsset = {
-  altText: "Ilustrasi sementara untuk tanaman katalog Kampung Herbal Harmony",
+  altText: "Visual sementara untuk tanaman katalog Kampung Herbal Harmony",
   attributionText:
-    "Ilustrasi sementara untuk tanaman katalog Kampung Herbal Harmony yang belum mempunyai media berlisensi di lingkungan ini.",
-  caption: "Ilustrasi sementara untuk katalog tanaman Kampung Herbal Harmony.",
+    "Visual sementara untuk tanaman katalog Kampung Herbal Harmony yang belum mempunyai media berlisensi di lingkungan ini.",
+  caption: "Visual sementara untuk katalog tanaman Kampung Herbal Harmony.",
   changesMade: "Tidak ada perubahan.",
   creatorName: "Kampung Herbal Berua",
   height: null,
@@ -21,7 +21,7 @@ const posterFallbackAttribution: PublicMediaAsset = {
   licenseUrl: null,
   publicUrl: "/images/placeholders/plant.svg",
   sourcePageUrl: null,
-  title: "Ilustrasi sementara katalog tanaman Kampung Herbal Harmony",
+  title: "Visual sementara katalog tanaman Kampung Herbal Harmony",
   width: null,
 };
 

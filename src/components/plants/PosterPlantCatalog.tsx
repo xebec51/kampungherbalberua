@@ -18,15 +18,7 @@ type PosterPlantCatalogProps = {
 
 const allCollectionsLabel = "Semua zona";
 const allPartsLabel = "Semua bagian";
-const allImagesLabel = "Semua gambar";
 const pageSize = 24;
-
-const imageKindOptions = [
-  { label: allImagesLabel, value: "" },
-  { label: "Foto tanaman", value: "specific" },
-  { label: "Gambar pendamping", value: "reference" },
-  { label: "Ilustrasi sementara", value: "generic" },
-];
 
 const sortOptions = [
   { label: "A-Z", value: "az" },
@@ -179,20 +171,12 @@ export function PosterPlantCatalog({ plants }: PosterPlantCatalogProps) {
       : null,
     collection ? { key: "zona", label: `Zona: ${collection}` } : null,
     part ? { key: "bagian", label: `Bagian: ${part}` } : null,
-    imageKind
-      ? {
-          key: "gambar",
-          label:
-            imageKindOptions.find((option) => option.value === imageKind)?.label ??
-            imageKind,
-        }
-      : null,
   ].filter((item): item is { key: string; label: string } => Boolean(item));
 
   return (
     <div className="mt-8">
       <div className="rounded-md border border-herbal-green/10 bg-white p-5 shadow-sm">
-        <div className="grid gap-4 lg:grid-cols-[1fr_220px_190px_190px_180px_auto] lg:items-end">
+        <div className="grid gap-4 lg:grid-cols-[minmax(16rem,1fr)_220px_190px_180px_auto] lg:items-end">
           <div>
             <label
               className="block text-sm font-semibold text-herbal-ink"
@@ -242,18 +226,6 @@ export function PosterPlantCatalog({ plants }: PosterPlantCatalogProps) {
             </select>
           </label>
           <label className="grid gap-2 text-sm font-semibold text-herbal-ink">
-            Jenis gambar
-            <select
-              className="h-11 w-full rounded-md border border-herbal-green/20 bg-white px-3 text-sm text-herbal-ink outline-none transition focus:border-herbal-green focus:ring-2 focus:ring-herbal-green/20"
-              onChange={(event) => updateParam("gambar", event.target.value)}
-              value={imageKind}
-            >
-              {imageKindOptions.map((option) => (
-                <option key={option.value} value={option.value}>{option.label}</option>
-              ))}
-            </select>
-          </label>
-          <label className="grid gap-2 text-sm font-semibold text-herbal-ink">
             Urutkan
             <select
               className="h-11 w-full rounded-md border border-herbal-green/20 bg-white px-3 text-sm text-herbal-ink outline-none transition focus:border-herbal-green focus:ring-2 focus:ring-herbal-green/20"
@@ -274,7 +246,7 @@ export function PosterPlantCatalog({ plants }: PosterPlantCatalogProps) {
           </button>
         </div>
         <p className="mt-4 text-sm text-herbal-muted" aria-live="polite">
-          Menampilkan {filteredPlants.length} dari {plants.length} tanaman dalam katalog Harmony.
+          Menampilkan {filteredPlants.length} dari {plants.length} tanaman.
         </p>
         {activeFilters.length > 0 ? (
           <div className="mt-3 flex flex-wrap gap-2">

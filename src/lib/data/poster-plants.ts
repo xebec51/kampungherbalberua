@@ -68,7 +68,7 @@ const POSTER_DESCRIPTION =
   "Nama tanaman ini tercatat dalam katalog edukasi Kampung Herbal Harmony, program pengenalan tanaman dan zona kesehatan di RT 009/RW 006 Kelurahan Berua. Informasi identitas dan materi edukasi dapat dilengkapi setelah proses verifikasi.";
 const FALLBACK_POSTER_IMAGE = "/images/placeholders/plant.svg";
 const FALLBACK_ATTRIBUTION =
-  "Ilustrasi sementara untuk tanaman katalog Kampung Herbal Harmony yang belum mempunyai media berlisensi di lingkungan ini.";
+  "Visual sementara untuk tanaman katalog Kampung Herbal Harmony yang belum mempunyai media berlisensi di lingkungan ini.";
 const HARMONY_SOURCE_LABEL = "Katalog Edukasi Kampung Herbal Harmony";
 
 type ManifestPosterPlant = {

@@ -25,8 +25,8 @@ export const revalidate = 300;
 export const dynamicParams = true;
 
 const imageKindLabels = {
-  generic: "Ilustrasi sementara",
-  reference: "Gambar pendamping",
+  generic: "Visual sementara",
+  reference: "Visual referensi",
   specific: "Foto tanaman",
 };
 
@@ -221,7 +221,7 @@ function PosterOnlyPlantDetail({ plant }: { plant: PosterPlantCatalogItem }) {
             <SafeImage
               alt={
                 plant.imageIsIllustration
-                  ? `Gambar pendamping untuk tanaman ${plant.rawName}`
+                  ? `Visual referensi untuk tanaman ${plant.rawName}`
                   : `Foto tanaman ${plant.rawName}`
               }
               fallbackLabel={`Gambar sementara tanaman ${plant.rawName}`}
@@ -253,7 +253,7 @@ function PosterOnlyPlantDetail({ plant }: { plant: PosterPlantCatalogItem }) {
 
           <div>
             <div className="flex flex-wrap gap-2">
-              <StatusBadge tone="brown">Katalog Harmony</StatusBadge>
+              <StatusBadge tone="brown">Tercatat di Harmony</StatusBadge>
               <StatusBadge tone={plant.imageKind === "specific" ? "green" : "brown"}>
                 {imageKindLabels[plant.imageKind]}
               </StatusBadge>
@@ -304,7 +304,7 @@ function PosterOccurrencePanel({ plant }: { plant: PosterPlantCatalogItem }) {
       <p className="mt-2">Sumber: {plant.sourceLabel}.</p>
       <div className="mt-5 grid gap-3 border-t border-herbal-green/10 pt-4">
         <h3 className="font-bold text-herbal-ink">Sumber gambar</h3>
-        <MetadataLine label="Jenis gambar" value={imageKindLabels[plant.imageKind]} />
+        <MetadataLine label="Status visual" value={imageKindLabels[plant.imageKind]} />
         <MetadataLine label="Kreator" value={plant.creatorName} />
         <MetadataLine label="Lisensi" value={plant.licenseCode} />
         <MetadataLine label="Perubahan" value={plant.changesMade} />

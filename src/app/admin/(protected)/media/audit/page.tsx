@@ -47,7 +47,7 @@ export default async function AdminMediaAuditPage() {
             <MetricCard label="Total media" value={audit.totalMedia} />
             <MetricCard label="Attachment katalog" value={audit.posterAttachments} />
             <MetricCard label="Foto spesifik" value={audit.specificPosterImages} />
-            <MetricCard label="Ilustrasi sementara" value={audit.genericPosterImages} />
+            <MetricCard label="Visual sementara" value={audit.genericPosterImages} />
             <MetricCard label="Reuse berlebihan" value={audit.excessiveReuse.length} />
             <MetricCard label="Resolusi rendah" value={audit.lowResolution} />
             <MetricCard label="Atribusi belum lengkap" value={audit.incompleteAttribution} />

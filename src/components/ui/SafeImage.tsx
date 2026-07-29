@@ -35,7 +35,7 @@ export function SafeImage({
   fallbackVariant = "plant",
   className,
   imageClassName,
-  illustrationLabel = "Gambar pendamping",
+  illustrationLabel = "Visual referensi",
   labelIllustration = false,
   priority = false,
   quality = 72,
