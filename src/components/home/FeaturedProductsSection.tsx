@@ -7,7 +7,7 @@ import { featuredProducts } from "@/data/products";
 
 export function FeaturedProductsSection() {
   return (
-    <section className="bg-white py-16">
+    <section className="home-section bg-gradient-to-b from-white via-herbal-cream to-white py-14 sm:py-16">
       <Container>
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <SectionHeading
@@ -22,8 +22,8 @@ export function FeaturedProductsSection() {
         <AutoCarousel
           ariaLabel="Carousel produk pilihan warga"
           className="mt-8"
-          edgeTone="white"
-          itemClassName="basis-[82%] sm:basis-[46%] lg:basis-[31%] xl:max-w-[19.5rem]"
+          edgeTone="cream"
+          itemClassName="basis-[82%] sm:basis-[46%] lg:basis-[30%] xl:basis-[23%] xl:max-w-[18rem]"
         >
           {featuredProducts.map((product) => (
             <ProductCard key={product.id} product={product} />

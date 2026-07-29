@@ -11,9 +11,10 @@ import { getValidationStatusLabel } from "@/lib/formatters";
 
 type HealthZoneCardProps = {
   zone: HealthZone;
+  priority?: boolean;
 };
 
-export function HealthZoneCard({ zone }: HealthZoneCardProps) {
+export function HealthZoneCard({ priority = false, zone }: HealthZoneCardProps) {
   return (
     <PublicCard>
       <SafeImage
@@ -21,7 +22,8 @@ export function HealthZoneCard({ zone }: HealthZoneCardProps) {
         className="aspect-[16/10] !rounded-none !border-0 !shadow-none"
         fallbackLabel={`Placeholder foto papan ${zone.streetName}`}
         fallbackVariant="map"
-        imageClassName="transition duration-500 group-hover:scale-[1.03]"
+        imageClassName="object-cover"
+        priority={priority}
         sizes="(min-width: 1280px) 20rem, (min-width: 768px) 32vw, 86vw"
         src={zone.imagePath}
       />
@@ -32,9 +34,9 @@ export function HealthZoneCard({ zone }: HealthZoneCardProps) {
             {getValidationStatusLabel(zone.validationStatus)}
           </StatusBadge>
         </div>
-        <h3 className="mt-4 text-lg font-bold leading-tight text-herbal-ink">
+        <h3 className="mt-4 line-clamp-2 text-lg font-extrabold leading-tight text-herbal-ink">
           <Link
-            className="hover:text-herbal-green"
+            className="transition hover:text-herbal-green"
             href={`/zona-kesehatan/${zone.slug}`}
           >
             {zone.streetName}

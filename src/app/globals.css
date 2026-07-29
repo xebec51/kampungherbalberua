@@ -61,12 +61,13 @@ textarea {
 }
 
 .public-card {
+  contain: layout paint;
   isolation: isolate;
   position: relative;
   transition:
-    border-color 420ms ease,
-    box-shadow 420ms ease,
-    transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+    border-color 320ms ease,
+    box-shadow 320ms ease,
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .public-card::before {
@@ -76,15 +77,15 @@ textarea {
   inset: 0 0 auto;
   opacity: 0;
   position: absolute;
-  transition: opacity 420ms ease;
+  transition: opacity 320ms ease;
   z-index: 1;
 }
 
 .public-card:hover,
 .public-card:focus-within {
   border-color: rgba(39, 100, 58, 0.28);
-  box-shadow: 0 20px 42px rgba(17, 27, 21, 0.14);
-  transform: translateY(-0.25rem);
+  box-shadow: 0 18px 38px rgba(17, 27, 21, 0.13);
+  transform: translateY(-0.18rem);
 }
 
 .public-card:hover::before,
@@ -92,28 +93,31 @@ textarea {
   opacity: 1;
 }
 
+.public-card-media::after {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.14), transparent 44%),
+    linear-gradient(135deg, transparent 0 38%, rgba(255, 255, 255, 0.16) 45%, transparent 54%);
+  content: "";
+  inset: 0;
+  opacity: 0.56;
+  pointer-events: none;
+  position: absolute;
+  transition: opacity 320ms ease;
+  z-index: 1;
+}
+
+.public-card:hover .public-card-media::after,
+.public-card:focus-within .public-card-media::after {
+  opacity: 0.86;
+}
+
 .carousel-card {
-  animation: carousel-card-in 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
-  animation-delay: calc(var(--carousel-index, 0) * 70ms);
-}
-
-.carousel-card > * {
-  transition:
-    border-color 420ms ease,
-    box-shadow 420ms ease,
-    transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: transform;
-}
-
-.carousel-card:hover > *,
-.carousel-card:focus-within > * {
-  border-color: rgba(39, 100, 58, 0.28);
-  box-shadow: 0 20px 42px rgba(17, 27, 21, 0.14);
-  transform: translateY(-0.25rem);
+  animation: carousel-card-in 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--carousel-index, 0) * 52ms);
 }
 
 .carousel-track[data-gliding="true"] .carousel-card > * {
-  transform: translateY(-0.125rem);
+  transform: translateY(-0.08rem);
 }
 
 .carousel-track[data-glide-direction="next"] .carousel-card > * {
@@ -130,10 +134,36 @@ textarea {
   animation: navigation-dropdown-in 160ms ease-out both;
 }
 
+.home-section {
+  content-visibility: auto;
+  contain-intrinsic-size: 42rem;
+}
+
+.catalog-card {
+  content-visibility: auto;
+  contain-intrinsic-size: 27rem;
+}
+
+.image-placeholder::before {
+  background: linear-gradient(
+    118deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.55) 42%,
+    transparent 66%
+  );
+  content: "";
+  inset: -35% 18% auto auto;
+  height: 120%;
+  position: absolute;
+  transform: rotate(12deg);
+  width: 34%;
+  z-index: 0;
+}
+
 @keyframes carousel-card-in {
   from {
     opacity: 0;
-    transform: translate3d(0.8rem, 0.55rem, 0) scale(0.985);
+    transform: translate3d(0.55rem, 0.45rem, 0) scale(0.99);
   }
 
   to {
@@ -144,35 +174,29 @@ textarea {
 
 @keyframes carousel-shift-next {
   0% {
-    filter: saturate(0.96);
-    transform: translate3d(0.5rem, 0.2rem, 0) scale(0.992);
+    transform: translate3d(0.4rem, 0.14rem, 0) scale(0.994);
   }
 
   58% {
-    filter: saturate(1.04);
-    transform: translate3d(-0.08rem, -0.22rem, 0) scale(1.006);
+    transform: translate3d(-0.05rem, -0.12rem, 0) scale(1.003);
   }
 
   100% {
-    filter: saturate(1);
-    transform: translate3d(0, -0.125rem, 0) scale(1);
+    transform: translate3d(0, -0.08rem, 0) scale(1);
   }
 }
 
 @keyframes carousel-shift-previous {
   0% {
-    filter: saturate(0.96);
-    transform: translate3d(-0.5rem, 0.2rem, 0) scale(0.992);
+    transform: translate3d(-0.4rem, 0.14rem, 0) scale(0.994);
   }
 
   58% {
-    filter: saturate(1.04);
-    transform: translate3d(0.08rem, -0.22rem, 0) scale(1.006);
+    transform: translate3d(0.05rem, -0.12rem, 0) scale(1.003);
   }
 
   100% {
-    filter: saturate(1);
-    transform: translate3d(0, -0.125rem, 0) scale(1);
+    transform: translate3d(0, -0.08rem, 0) scale(1);
   }
 }
 
@@ -209,9 +233,6 @@ textarea {
   .public-card,
   .public-card:hover,
   .public-card:focus-within,
-  .carousel-card > *,
-  .carousel-card:hover > *,
-  .carousel-card:focus-within > *,
   .carousel-track[data-gliding="true"] .carousel-card > *,
   .carousel-track[data-glide-direction="next"] .carousel-card > *,
   .carousel-track[data-glide-direction="previous"] .carousel-card > * {

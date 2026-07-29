@@ -11,6 +11,7 @@ import { StatusBadge } from "@/components/ui/StatusBadge";
 type PosterPlantCardProps = {
   plant: PosterPlantCatalogItem;
   priority?: boolean;
+  className?: string;
 };
 
 const imageBadge = {
@@ -31,11 +32,15 @@ const imageBadge = {
   },
 };
 
-export function PosterPlantCard({ plant, priority = false }: PosterPlantCardProps) {
+export function PosterPlantCard({
+  className,
+  plant,
+  priority = false,
+}: PosterPlantCardProps) {
   const badge = imageBadge[plant.imageKind];
 
   return (
-    <PublicCard>
+    <PublicCard className={className}>
       <SafeImage
         alt={
           plant.imageIsIllustration
@@ -49,22 +54,22 @@ export function PosterPlantCard({ plant, priority = false }: PosterPlantCardProp
         illustrationLabel={badge.label}
         labelIllustration={plant.imageIsIllustration}
         priority={priority}
-        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, (max-width: 1279px) 30vw, 18rem"
         src={plant.image}
       />
       <PublicCardBody>
         <div className="flex flex-wrap items-center gap-2">
           <StatusBadge tone={plant.linkedPlantId ? "green" : "brown"}>
-            {plant.linkedPlantId ? "Profil tanaman tersedia" : "Katalog Harmony"}
+            {plant.linkedPlantId ? "Profil tersedia" : "Nama katalog"}
           </StatusBadge>
           <span title={badge.title}>
             <StatusBadge tone={badge.tone}>{badge.label}</StatusBadge>
           </span>
           <StatusBadge tone="neutral">{plant.partCategory}</StatusBadge>
         </div>
-        <h3 className="mt-4 text-lg font-bold leading-tight text-herbal-ink">
+        <h3 className="mt-4 line-clamp-2 text-lg font-extrabold leading-tight text-herbal-ink">
           <Link
-            className="hover:text-herbal-green"
+            className="transition hover:text-herbal-green"
             href={`/tanaman/${plant.slug}`}
           >
             {plant.rawName}
@@ -75,7 +80,7 @@ export function PosterPlantCard({ plant, priority = false }: PosterPlantCardProp
             {plant.scientificName}
           </p>
         ) : null}
-        <p className="mt-3 text-sm leading-6 text-herbal-muted">
+        <p className="mt-3 text-sm font-semibold leading-6 text-herbal-deep">
           Tercatat {plant.posterOccurrenceCount} kali di {plant.collections.length} zona edukasi.
         </p>
         <p className="mt-2 line-clamp-2 text-sm leading-6 text-herbal-muted">

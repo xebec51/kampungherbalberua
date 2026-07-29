@@ -32,7 +32,7 @@ const profilePoints = [
 
 export function ProfileSection() {
   return (
-    <section className="bg-herbal-cream py-20">
+    <section className="home-section bg-herbal-cream py-20">
       <Container className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
         <div>
           <SectionHeading

@@ -26,7 +26,7 @@ export function ProgramCard({ program }: ProgramCardProps) {
             {getProgramStatusLabel(program.status)}
           </StatusBadge>
         </div>
-        <h3 className="mt-4 text-lg font-bold leading-tight text-herbal-ink">
+        <h3 className="mt-4 line-clamp-2 text-lg font-extrabold leading-tight text-herbal-ink">
           {program.title}
         </h3>
         <p className="mt-3 line-clamp-3 flex-1 text-sm leading-6 text-herbal-muted">
@@ -37,10 +37,10 @@ export function ProgramCard({ program }: ProgramCardProps) {
             <span>Progres</span>
             <span>{hasProgress ? `${program.progress}%` : "Pendataan"}</span>
           </div>
-          <div className="mt-2 h-2 overflow-hidden rounded-full bg-herbal-soft">
+          <div className="mt-2 h-2 overflow-hidden rounded-full bg-herbal-soft shadow-inner">
             <span
               aria-hidden="true"
-              className="block h-full rounded-full bg-herbal-green"
+              className="block h-full rounded-full bg-gradient-to-r from-herbal-green to-herbal-clay"
               style={{ width: `${progress}%` }}
             />
           </div>

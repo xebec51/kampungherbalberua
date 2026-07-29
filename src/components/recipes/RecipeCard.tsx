@@ -27,9 +27,9 @@ export function RecipeCard({ recipe }: RecipeCardProps) {
             {getValidationStatusLabel(recipe.validationStatus)}
           </StatusBadge>
         </div>
-        <h3 className="mt-4 text-lg font-bold leading-tight text-herbal-ink">
+        <h3 className="mt-4 line-clamp-2 text-lg font-extrabold leading-tight text-herbal-ink">
           <Link
-            className="hover:text-herbal-green"
+            className="transition hover:text-herbal-green"
             href={`/ramuan/${recipe.slug}`}
           >
             {recipe.name}

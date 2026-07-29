@@ -11,29 +11,36 @@ import { StatusBadge } from "@/components/ui/StatusBadge";
 type PlantCardProps = {
   plant: Plant;
   priority?: boolean;
+  className?: string;
 };
 
-export function PlantCard({ plant, priority = false }: PlantCardProps) {
+export function PlantCard({
+  className,
+  plant,
+  priority = false,
+}: PlantCardProps) {
   return (
-    <PublicCard>
-      <SafeImage
-        alt={`Tanaman ${plant.localName}`}
-        className="aspect-[16/10] !rounded-none !border-0 !shadow-none"
-        fallbackLabel={`Gambar sementara tanaman ${plant.localName}`}
-        fallbackVariant="plant"
-        imageClassName="object-cover"
-        priority={priority}
-        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-        src={plant.image}
-      />
+    <PublicCard className={className}>
+      <div className="relative">
+        <SafeImage
+          alt={`Tanaman ${plant.localName}`}
+          className="aspect-[16/10] !rounded-none !border-0 !shadow-none"
+          fallbackLabel={`Gambar sementara tanaman ${plant.localName}`}
+          fallbackVariant="plant"
+          imageClassName="object-cover"
+          priority={priority}
+          sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, (max-width: 1279px) 30vw, 18rem"
+          src={plant.image}
+        />
+      </div>
       <PublicCardBody>
         <div className="flex flex-wrap items-center gap-2">
           <StatusBadge tone="green">{plant.category}</StatusBadge>
-          <StatusBadge tone="brown">Menunggu verifikasi</StatusBadge>
+          <StatusBadge tone="brown">Edukasi umum</StatusBadge>
         </div>
-        <h3 className="mt-4 text-lg font-bold leading-tight text-herbal-ink">
+        <h3 className="mt-4 line-clamp-2 text-lg font-extrabold leading-tight text-herbal-ink">
           <Link
-            className="hover:text-herbal-green"
+            className="transition hover:text-herbal-green"
             href={`/tanaman/${plant.slug}`}
           >
             {plant.localName}

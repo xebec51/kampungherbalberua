@@ -31,9 +31,9 @@ export function ProductCard({ product }: ProductCardProps) {
             {getAvailabilityLabel(product.availability)}
           </StatusBadge>
         </div>
-        <h3 className="mt-4 text-lg font-bold leading-tight text-herbal-ink">
+        <h3 className="mt-4 line-clamp-2 text-lg font-extrabold leading-tight text-herbal-ink">
           <Link
-            className="hover:text-herbal-green"
+            className="transition hover:text-herbal-green"
             href={`/produk/${product.slug}`}
           >
             {product.name}
@@ -42,16 +42,20 @@ export function ProductCard({ product }: ProductCardProps) {
         <p className="mt-3 line-clamp-3 flex-1 text-sm leading-6 text-herbal-muted">
           {product.description}
         </p>
-        <p className="mt-3 text-sm font-semibold text-herbal-brown">
+        <p className="mt-3 text-sm font-bold text-herbal-brown">
           {formatPrice(product.price, product.unit)}
         </p>
         <div className="mt-4 grid gap-2">
-          <PublicCardAction className="mt-0" href={`/produk/${product.slug}`}>
+          <PublicCardAction
+            className="mt-0"
+            href={`/produk/${product.slug}`}
+            variant="secondary"
+          >
             Detail produk
           </PublicCardAction>
           {whatsappUrl ? (
             <a
-              className="inline-flex min-h-10 items-center justify-center rounded-md bg-herbal-green px-4 py-2 text-sm font-bold text-white shadow-sm transition hover:bg-herbal-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
+              className="inline-flex min-h-10 items-center justify-center rounded-md bg-herbal-deep px-4 py-2.5 text-sm font-bold !text-white shadow-[0_10px_24px_rgba(17,27,21,0.16)] transition hover:bg-herbal-green focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
               href={whatsappUrl}
               rel="noreferrer"
               target="_blank"

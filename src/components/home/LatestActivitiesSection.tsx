@@ -7,7 +7,7 @@ import { featuredActivities } from "@/data/activities";
 
 export function LatestActivitiesSection() {
   return (
-    <section className="bg-herbal-cream py-16">
+    <section className="home-section bg-herbal-cream py-14 sm:py-16">
       <Container>
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <SectionHeading
@@ -22,7 +22,7 @@ export function LatestActivitiesSection() {
         <AutoCarousel
           ariaLabel="Carousel kegiatan terbaru"
           className="mt-8"
-          itemClassName="basis-[82%] sm:basis-[46%] lg:basis-[30%] xl:basis-[23%] xl:max-w-[18.5rem]"
+          itemClassName="basis-[82%] sm:basis-[46%] lg:basis-[30%] xl:basis-[23%] xl:max-w-[18rem]"
         >
           {featuredActivities.map((activity) => (
             <ActivityCard activity={activity} key={activity.id} />

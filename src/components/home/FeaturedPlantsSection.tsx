@@ -9,7 +9,7 @@ export async function FeaturedPlantsSection() {
   const featuredPlants = await getFeaturedPlants(3);
 
   return (
-    <section className="bg-white py-16">
+    <section className="home-section bg-gradient-to-b from-white via-herbal-cream to-white py-14 sm:py-16">
       <Container>
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <SectionHeading
@@ -26,11 +26,11 @@ export async function FeaturedPlantsSection() {
         <AutoCarousel
           ariaLabel="Carousel tanaman pilihan"
           className="mt-8"
-          edgeTone="white"
-          itemClassName="basis-[82%] sm:basis-[46%] lg:basis-[31%] xl:max-w-[19.5rem]"
+          edgeTone="cream"
+          itemClassName="basis-[82%] sm:basis-[46%] lg:basis-[30%] xl:basis-[23%] xl:max-w-[18rem]"
         >
-          {featuredPlants.map((plant, index) => (
-            <PlantCard key={plant.id} plant={plant} priority={index === 0} />
+          {featuredPlants.map((plant) => (
+            <PlantCard key={plant.id} plant={plant} />
           ))}
         </AutoCarousel>
       </Container>

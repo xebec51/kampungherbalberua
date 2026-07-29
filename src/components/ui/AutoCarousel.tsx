@@ -49,6 +49,8 @@ export function AutoCarousel({
   >(null);
   const [isGliding, setIsGliding] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
+  const [isPageVisible, setIsPageVisible] = useState(true);
+  const [isInViewport, setIsInViewport] = useState(true);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   const scrollByItem = useCallback(
@@ -113,6 +115,37 @@ export function AutoCarousel({
   }, []);
 
   useEffect(() => {
+    const updateVisibility = () => setIsPageVisible(!document.hidden);
+
+    updateVisibility();
+    document.addEventListener("visibilitychange", updateVisibility);
+
+    return () =>
+      document.removeEventListener("visibilitychange", updateVisibility);
+  }, []);
+
+  useEffect(() => {
+    const track = trackRef.current;
+
+    if (!track) {
+      return;
+    }
+
+    if (!("IntersectionObserver" in window)) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsInViewport(Boolean(entry?.isIntersecting)),
+      { rootMargin: "160px 0px" },
+    );
+
+    observer.observe(track);
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
     const track = trackRef.current;
 
     if (!track) {
@@ -120,7 +153,11 @@ export function AutoCarousel({
     }
 
     const updateCanScroll = () => {
-      setCanScroll(track.scrollWidth > track.clientWidth + 1);
+      const nextCanScroll = track.scrollWidth > track.clientWidth + 1;
+
+      setCanScroll((current) =>
+        current === nextCanScroll ? current : nextCanScroll,
+      );
     };
 
     updateCanScroll();
@@ -137,7 +174,14 @@ export function AutoCarousel({
   }, [items.length]);
 
   useEffect(() => {
-    if (isPaused || prefersReducedMotion || items.length <= 1) {
+    if (
+      !canScroll ||
+      !isInViewport ||
+      !isPageVisible ||
+      isPaused ||
+      prefersReducedMotion ||
+      items.length <= 1
+    ) {
       return;
     }
 
@@ -146,7 +190,16 @@ export function AutoCarousel({
     }, intervalMs);
 
     return () => window.clearInterval(intervalId);
-  }, [intervalMs, isPaused, items.length, prefersReducedMotion, scrollByItem]);
+  }, [
+    canScroll,
+    intervalMs,
+    isInViewport,
+    isPageVisible,
+    isPaused,
+    items.length,
+    prefersReducedMotion,
+    scrollByItem,
+  ]);
 
   useEffect(() => {
     return () => {
@@ -168,7 +221,7 @@ export function AutoCarousel({
     >
       <div
         aria-label={ariaLabel}
-        className="carousel-track flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth px-1 py-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="carousel-track flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth px-1 py-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         data-glide-direction={glideDirection ?? undefined}
         data-gliding={isGliding}
         ref={trackRef}
@@ -212,13 +265,13 @@ export function AutoCarousel({
       <div
         aria-hidden={!canScroll}
         className={cn(
-          "pointer-events-none absolute inset-x-0 top-1/2 z-20 flex -translate-y-1/2 justify-between px-1 sm:px-2",
+          "pointer-events-none absolute inset-x-0 top-[42%] z-20 flex -translate-y-1/2 justify-between px-0 sm:px-1",
           !canScroll && "hidden",
         )}
       >
         <button
           aria-label="Geser kartu ke kiri"
-          className="pointer-events-auto inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/70 bg-white/90 text-herbal-deep shadow-[0_14px_34px_rgba(17,27,21,0.18)] backdrop-blur transition hover:-translate-x-0.5 hover:bg-herbal-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown sm:h-11 sm:w-11"
+          className="pointer-events-auto inline-flex h-10 w-10 -translate-x-1/2 items-center justify-center rounded-full border border-white/70 bg-white/92 text-herbal-deep shadow-[0_14px_34px_rgba(17,27,21,0.16)] backdrop-blur transition hover:-translate-x-[55%] hover:bg-herbal-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown sm:h-11 sm:w-11"
           onClick={() => scrollByItem(-1)}
           type="button"
         >
@@ -240,7 +293,7 @@ export function AutoCarousel({
         </button>
         <button
           aria-label="Geser kartu ke kanan"
-          className="pointer-events-auto inline-flex h-10 w-10 items-center justify-center rounded-full border border-herbal-green/20 bg-herbal-green/95 text-white shadow-[0_14px_34px_rgba(17,27,21,0.22)] backdrop-blur transition hover:translate-x-0.5 hover:bg-herbal-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown sm:h-11 sm:w-11"
+          className="pointer-events-auto inline-flex h-10 w-10 translate-x-1/2 items-center justify-center rounded-full border border-white/20 bg-herbal-green/96 text-white shadow-[0_14px_34px_rgba(17,27,21,0.2)] backdrop-blur transition hover:translate-x-[55%] hover:bg-herbal-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown sm:h-11 sm:w-11"
           onClick={() => scrollByItem(1)}
           type="button"
         >

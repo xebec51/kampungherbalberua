@@ -4,7 +4,7 @@ import { StatusBadge } from "@/components/ui/StatusBadge";
 
 export function HerbaCodeSection() {
   return (
-    <section className="bg-herbal-soft py-16">
+    <section className="home-section bg-herbal-soft py-16">
       <Container className="grid gap-8 lg:grid-cols-[1fr_0.8fr]">
         <SectionHeading
           description="HerbaCode menghubungkan setiap tanaman TOGA dengan halaman informasi digital melalui QR Code. Pemasangan QR Code akan dilakukan setelah data tanaman selesai diverifikasi dan website dipublikasikan."

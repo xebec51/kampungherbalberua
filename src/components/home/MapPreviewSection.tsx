@@ -6,7 +6,7 @@ import { StatusBadge } from "@/components/ui/StatusBadge";
 
 export function MapPreviewSection() {
   return (
-    <section className="bg-herbal-cream py-16">
+    <section className="home-section bg-herbal-cream py-16">
       <Container className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
         <ImagePlaceholder
           className="aspect-[16/10]"

@@ -3,7 +3,7 @@ import { LinkButton } from "@/components/ui/LinkButton";
 
 export function SuggestionCtaSection() {
   return (
-    <section className="bg-herbal-deep py-16 text-white">
+    <section className="home-section bg-herbal-deep py-16 text-white">
       <Container className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
         <div className="max-w-3xl">
           <p className="text-sm font-bold uppercase tracking-[0.16em] text-[#f7d774]">

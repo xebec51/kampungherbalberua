@@ -20,7 +20,7 @@ export function ActivityCard({ activity }: ActivityCardProps) {
           <StatusBadge tone="green">{activity.category}</StatusBadge>
           <StatusBadge tone="brown">{activity.dateLabel}</StatusBadge>
         </div>
-        <h3 className="mt-4 text-lg font-bold leading-tight text-herbal-ink">
+        <h3 className="mt-4 line-clamp-2 text-lg font-extrabold leading-tight text-herbal-ink">
           {activity.title}
         </h3>
         <p className="mt-3 line-clamp-4 flex-1 text-sm leading-6 text-herbal-muted">

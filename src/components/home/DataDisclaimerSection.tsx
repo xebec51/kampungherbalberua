@@ -3,7 +3,7 @@ import { Disclaimer } from "@/components/ui/Disclaimer";
 
 export function DataDisclaimerSection() {
   return (
-    <section className="bg-white py-10">
+    <section className="home-section bg-white py-10">
       <Container>
         <Disclaimer>
           Sebagian informasi masih dalam tahap pendataan dan verifikasi lapangan.

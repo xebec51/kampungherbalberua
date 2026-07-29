@@ -7,11 +7,11 @@ type ImagePlaceholderProps = {
 };
 
 const accents = {
-  plant: "bg-gradient-to-br from-herbal-soft via-white to-[#dfe8dd]",
-  recipe: "bg-gradient-to-br from-[#f2dfd2] via-white to-herbal-soft",
-  product: "bg-gradient-to-br from-white via-herbal-soft to-[#e8efe6]",
-  activity: "bg-gradient-to-br from-herbal-mist via-white to-herbal-soft",
-  map: "bg-gradient-to-br from-[#dfe8dd] via-white to-herbal-soft",
+  plant: "from-[#f0f6ee] via-white to-[#d9e7d8]",
+  recipe: "from-[#fbefe6] via-white to-[#e8f1e5]",
+  product: "from-white via-[#edf5ec] to-[#dce8d8]",
+  activity: "from-[#eef5ef] via-white to-[#e8efe6]",
+  map: "from-[#e1eadf] via-white to-[#f3efe2]",
 };
 
 function visiblePlaceholderLabel(label: string) {
@@ -30,7 +30,7 @@ export function ImagePlaceholder({
       aria-label={label}
       role="img"
       className={cn(
-        "relative isolate flex aspect-[4/3] w-full items-end overflow-hidden rounded-md border border-herbal-green/15 p-5 text-left shadow-sm",
+        "public-card-media image-placeholder relative isolate flex aspect-[4/3] w-full items-end overflow-hidden rounded-md border border-herbal-green/12 bg-gradient-to-br p-4 text-left shadow-sm",
         accents[variant],
         className,
       )}
@@ -38,27 +38,31 @@ export function ImagePlaceholder({
       <span className="sr-only">{label}</span>
       <span
         aria-hidden="true"
-        className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-herbal-deep/25 to-transparent"
+        className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-herbal-deep/18 to-transparent"
       />
       <span
         aria-hidden="true"
-        className="absolute left-6 top-6 h-16 w-10 rotate-[-24deg] rounded-[100%_0_100%_0] bg-herbal-green/75"
+        className="absolute left-[16%] top-[17%] h-20 w-12 rotate-[-28deg] rounded-[100%_0_100%_0] bg-herbal-green/80 shadow-[0_18px_34px_rgba(39,100,58,0.18)]"
       />
       <span
         aria-hidden="true"
-        className="absolute left-12 top-12 h-20 w-12 rotate-[24deg] rounded-[0_100%_0_100%] bg-herbal-sage"
+        className="absolute left-[25%] top-[30%] h-24 w-14 rotate-[24deg] rounded-[0_100%_0_100%] bg-herbal-sage/90"
       />
       <span
         aria-hidden="true"
-        className="absolute right-6 top-1/2 h-20 w-20 -translate-y-1/2 rounded-md border border-herbal-green/20 bg-white/70 shadow-sm"
+        className="absolute left-[26%] top-[43%] h-[31%] w-2 -translate-x-1/2 rounded-full bg-herbal-green shadow-[0_8px_18px_rgba(39,100,58,0.18)]"
       />
       <span
         aria-hidden="true"
-        className="absolute right-12 top-1/2 h-12 w-12 -translate-y-1/2 rounded-md bg-herbal-clay/85"
+        className="absolute bottom-7 right-7 h-16 w-20 rounded-md border border-herbal-green/12 bg-white/68 shadow-[0_12px_30px_rgba(17,27,21,0.12)] backdrop-blur"
       />
-      <span className="relative z-10 block max-w-[16rem] rounded-md border border-white/70 bg-white/90 px-4 py-3 text-sm font-bold leading-5 text-herbal-deep shadow-sm">
+      <span
+        aria-hidden="true"
+        className="absolute bottom-12 right-12 h-9 w-12 rounded-md bg-herbal-clay/88"
+      />
+      <span className="relative z-10 block max-w-[15rem] rounded-md border border-white/70 bg-white/88 px-3 py-2 text-xs font-bold leading-5 text-herbal-deep shadow-sm backdrop-blur">
         {visiblePlaceholderLabel(label)}
-        <span className="mt-1 block text-xs font-semibold text-herbal-muted">
+        <span className="mt-0.5 block text-[0.68rem] font-semibold uppercase text-herbal-muted">
           Gambar sedang disiapkan
         </span>
       </span>
