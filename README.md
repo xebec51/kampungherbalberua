@@ -204,6 +204,13 @@ Website disiapkan untuk mengintegrasikan hasil program kerja lintas bidang secar
 
 Contoh variabel tersedia di `.env.example`.
 
+Untuk deployment Vercel, isi minimal `NEXT_PUBLIC_SUPABASE_URL`,
+`NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`, dan `NEXT_PUBLIC_SITE_URL` pada
+environment Production dan Preview. Aplikasi juga menerima alias
+`SUPABASE_URL`, `SUPABASE_ANON_KEY`, atau `NEXT_PUBLIC_SUPABASE_ANON_KEY` untuk
+render server publik, tetapi client admin tetap membutuhkan key publik yang
+tersedia di browser.
+
 ```env
 NEXT_PUBLIC_SUPABASE_URL=
 NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=

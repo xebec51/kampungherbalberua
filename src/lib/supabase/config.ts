@@ -3,9 +3,21 @@ export type SupabaseRuntimeConfig = {
   publishableKey: string;
 };
 
-function readEnv(name: "NEXT_PUBLIC_SUPABASE_URL" | "NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY") {
+function readEnv(name: string) {
   const value = process.env[name];
   return value && value.trim().length > 0 ? value.trim() : undefined;
+}
+
+function readFirstEnv(names: string[]) {
+  for (const name of names) {
+    const value = readEnv(name);
+
+    if (value) {
+      return value;
+    }
+  }
+
+  return undefined;
 }
 
 /**
@@ -13,8 +25,12 @@ function readEnv(name: "NEXT_PUBLIC_SUPABASE_URL" | "NEXT_PUBLIC_SUPABASE_PUBLIS
  * pages keep working before a Supabase project is connected.
  */
 export function getSupabaseConfig(): SupabaseRuntimeConfig | null {
-  const url = readEnv("NEXT_PUBLIC_SUPABASE_URL");
-  const publishableKey = readEnv("NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY");
+  const url = readFirstEnv(["NEXT_PUBLIC_SUPABASE_URL", "SUPABASE_URL"]);
+  const publishableKey = readFirstEnv([
+    "NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY",
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY",
+    "SUPABASE_ANON_KEY",
+  ]);
 
   if (!url || !publishableKey) {
     return null;
