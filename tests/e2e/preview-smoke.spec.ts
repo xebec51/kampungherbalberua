@@ -25,10 +25,13 @@ test("preview deployment public smoke @preview", async ({ page, request }) => {
   const nav = page.getByRole("navigation", { name: "Navigasi utama" });
   await expect(nav.getByRole("link", { exact: true, name: "Beranda" })).toBeVisible();
   await expect(nav.getByRole("button", { name: "Edukasi" })).toBeVisible();
-  await expect(nav.getByRole("link", { exact: true, name: "Produk" })).toBeVisible();
-  await expect(nav.getByRole("link", { exact: true, name: "Kotak Saran" })).toBeVisible();
+  await expect(nav.getByRole("button", { name: "Informasi Kampung" })).toBeVisible();
   await nav.getByRole("button", { name: "Edukasi" }).click();
   await expect(page.getByRole("menuitem", { name: "Tanaman TOGA" })).toBeVisible();
+  await page.keyboard.press("Escape");
+  await nav.getByRole("button", { name: "Informasi Kampung" }).click();
+  await expect(page.getByRole("menuitem", { name: "Peta Kampung" })).toBeVisible();
+  await expect(page.getByRole("menuitem", { name: "Tentang" })).toBeVisible();
   await page.keyboard.press("Escape");
 
   await page.goto("/tanaman");
@@ -36,10 +39,10 @@ test("preview deployment public smoke @preview", async ({ page, request }) => {
 
   await page.goto("/zona-kesehatan");
   await expect(
-    page.getByRole("link", { exact: true, name: "Jl. Digestia" }),
+    page.getByRole("link", { exact: true, name: "Zona Imunitas Kuat" }),
   ).toBeVisible();
 
-  await page.goto("/zona-kesehatan/digestia");
+  await page.goto("/zona-kesehatan/imunitas-kuat");
   await expect(page.getByText("khb-z01", { exact: true })).toBeVisible();
 
   await page.goto("/sumber-gambar");
@@ -54,7 +57,10 @@ test("preview deployment public smoke @preview", async ({ page, request }) => {
   await expect(
     page.getByRole("heading", { exact: true, name: "Peta Kampung Herbal" }),
   ).toBeVisible();
-  await expect(page.getByText("sembilan zona tematik")).toBeVisible();
+  await expect(
+    page.getByRole("heading", { exact: true, name: "Zona HerbaCode" }),
+  ).toBeVisible();
+  await expect(page.getByText("khb-z09 - Zona Kesehatan Perempuan")).toBeVisible();
 
   expect((await request.get("/sitemap.xml")).ok()).toBe(true);
   expect((await request.get("/robots.txt")).ok()).toBe(true);

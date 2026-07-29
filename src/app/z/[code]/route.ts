@@ -19,11 +19,11 @@ async function handleHealthZoneQrRedirect(
     return new NextResponse(null, { status: 404 });
   }
 
+  const herbaCodeZone = (await getHerbaCodeZoneSummaries()).find(
+    (item) => item.zoneCode === normalizedCode,
+  );
   const zone =
-    (await getPublishedHealthZoneQrTargetByCode(normalizedCode)) ??
-    (await getHerbaCodeZoneSummaries()).find(
-      (item) => item.zoneCode === normalizedCode,
-    );
+    herbaCodeZone ?? (await getPublishedHealthZoneQrTargetByCode(normalizedCode));
 
   if (!zone) {
     return new NextResponse(null, { status: 404 });
