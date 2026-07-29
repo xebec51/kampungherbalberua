@@ -5,6 +5,11 @@ import { getPrimaryHealthZoneMediaMap } from "@/lib/data/media";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import type { HealthZone } from "@/types";
 
+export type PublishedHealthZoneQrTarget = {
+  slug: string;
+  zoneCode: string;
+};
+
 async function fetchPublishedHealthZonesFromDatabase(): Promise<HealthZone[] | null> {
   const client = await createSupabaseServerClient();
 
@@ -61,6 +66,62 @@ export async function getHealthZoneBySlug(
 ): Promise<HealthZone | undefined> {
   const zones = await getPublishedHealthZoneSource();
   return zones.find((zone) => zone.slug === slug && zone.contentStatus === "published");
+}
+
+export async function getPublishedHealthZoneDetailBySlug(
+  slug: string,
+): Promise<HealthZone | undefined> {
+  const client = await createSupabaseServerClient();
+
+  if (!client) {
+    return undefined;
+  }
+
+  const { data, error } = await client
+    .from("health_zones")
+    .select("*")
+    .eq("content_status", "published")
+    .eq("slug", slug)
+    .maybeSingle();
+
+  if (error || !data) {
+    return undefined;
+  }
+
+  const zone = mapHealthZoneRowToHealthZone(data);
+  const mediaByZoneId = await getPrimaryHealthZoneMediaMap([zone.id]);
+  const media = mediaByZoneId.get(zone.id);
+
+  return {
+    ...zone,
+    imagePath: media?.publicUrl ?? zone.imagePath,
+  };
+}
+
+export async function getPublishedHealthZoneQrTargetByCode(
+  zoneCode: string,
+): Promise<PublishedHealthZoneQrTarget | undefined> {
+  const client = await createSupabaseServerClient();
+
+  if (!client) {
+    return undefined;
+  }
+
+  const { data, error } = await client
+    .from("health_zones")
+    .select("slug, zone_code")
+    .eq("content_status", "published")
+    .eq("zone_code", zoneCode)
+    .maybeSingle();
+
+  if (error || !data) {
+    return undefined;
+  }
+
+  return {
+    slug: data.slug,
+    zoneCode: data.zone_code,
+  };
 }
 
 export async function getHealthZoneByCode(

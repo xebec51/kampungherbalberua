@@ -7,6 +7,17 @@ import type { Plant } from "@/types";
 
 const publicPlantQueryTimeoutMs = 5_000;
 
+export type PublishedPlantDetail = {
+  description: string;
+  id: string;
+  image: string | null;
+  localName: string;
+  scientificName: string | null;
+  shortDescription: string;
+  slug: string;
+  sourceNotes: string | null;
+};
+
 async function withPublicPlantTimeout<T>(promise: Promise<T | null>) {
   let timeoutId: ReturnType<typeof setTimeout> | undefined;
 
@@ -21,6 +32,14 @@ async function withPublicPlantTimeout<T>(promise: Promise<T | null>) {
       clearTimeout(timeoutId);
     }
   }
+}
+
+function visiblePlantImagePath(value: string | null | undefined) {
+  if (!value || value.startsWith("/images/placeholders/")) {
+    return null;
+  }
+
+  return value;
 }
 
 /**
@@ -90,6 +109,41 @@ export async function getFeaturedPlants(limit = 3): Promise<Plant[]> {
 export async function getPlantBySlug(slug: string): Promise<Plant | undefined> {
   const plants = await getPublishedPlantSource();
   return plants.find((plant) => plant.slug === slug);
+}
+
+export async function getPublishedPlantDetailBySlug(
+  slug: string,
+): Promise<PublishedPlantDetail | undefined> {
+  const client = await createSupabaseServerClient();
+
+  if (!client) {
+    return undefined;
+  }
+
+  const { data, error } = await client
+    .from("plants")
+    .select("*")
+    .eq("content_status", "published")
+    .eq("slug", slug)
+    .maybeSingle();
+
+  if (error || !data) {
+    return undefined;
+  }
+
+  const mediaByPlantId = await getPrimaryPlantMediaMap([data.id]);
+  const media = mediaByPlantId.get(data.id);
+
+  return {
+    description: data.description,
+    id: data.id,
+    image: media?.publicUrl ?? visiblePlantImagePath(data.image_path),
+    localName: data.local_name,
+    scientificName: data.scientific_name,
+    shortDescription: data.short_description,
+    slug: data.slug,
+    sourceNotes: data.source_notes,
+  };
 }
 
 export async function getPlantSlugs(): Promise<string[]> {

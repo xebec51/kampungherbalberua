@@ -10,6 +10,10 @@ import {
   getHerbaCodePlantBySlug,
   getHerbaCodePlantSlugs,
 } from "@/lib/data/herbacode";
+import {
+  getPublishedPlantDetailBySlug,
+  type PublishedPlantDetail,
+} from "@/lib/data/plants";
 import { createPageMetadata } from "@/lib/metadata";
 import type { HerbaCodePlantZoneEntry } from "@/types";
 
@@ -35,6 +39,16 @@ export async function generateMetadata({
   const plant = await getHerbaCodePlantBySlug(slug);
 
   if (!plant) {
+    const catalogPlant = await getPublishedPlantDetailBySlug(slug);
+
+    if (catalogPlant) {
+      return createPageMetadata({
+        title: catalogPlant.localName,
+        description: catalogPlant.shortDescription,
+        path: `/tanaman/${catalogPlant.slug}`,
+      });
+    }
+
     return createPageMetadata({
       title: "Tanaman tidak ditemukan",
       description: "Data tanaman yang diminta belum tersedia.",
@@ -54,7 +68,13 @@ export default async function PlantDetailPage({ params }: PlantDetailPageProps) 
   const plant = await getHerbaCodePlantBySlug(slug);
 
   if (!plant) {
-    notFound();
+    const catalogPlant = await getPublishedPlantDetailBySlug(slug);
+
+    if (!catalogPlant) {
+      notFound();
+    }
+
+    return <CatalogPlantDetail plant={catalogPlant} />;
   }
 
   const activeCompounds = uniqueEntryValues(
@@ -152,6 +172,85 @@ export default async function PlantDetailPage({ params }: PlantDetailPageProps) 
           <h2 className="text-base font-bold text-herbal-ink">Sumber</h2>
           <p className="mt-3">{plant.sourceDocumentName}</p>
         </section>
+
+        <div className="mt-8">
+          <Disclaimer>
+            Informasi tanaman dan ramuan pada website ini disediakan untuk
+            edukasi mengenai pemanfaatan tradisional. Informasi ini bukan
+            diagnosis, resep, atau pengganti konsultasi dengan dokter, apoteker,
+            maupun tenaga kesehatan lainnya.
+          </Disclaimer>
+        </div>
+      </Container>
+    </article>
+  );
+}
+
+function CatalogPlantDetail({ plant }: { plant: PublishedPlantDetail }) {
+  const sourceNotes = plant.sourceNotes?.trim();
+  const hasSeparateDescription =
+    plant.description.trim() !== plant.shortDescription.trim();
+
+  return (
+    <article className="bg-herbal-cream py-12 sm:py-16">
+      <Container>
+        <Breadcrumb
+          items={[
+            { label: "Tanaman", href: "/tanaman" },
+            { label: plant.localName },
+          ]}
+        />
+
+        <div
+          className={
+            plant.image
+              ? "mt-8 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]"
+              : "mt-8"
+          }
+        >
+          {plant.image ? (
+            <SafeImage
+              alt={`Tanaman ${plant.localName}`}
+              fallbackLabel={`Tanaman ${plant.localName}`}
+              fallbackVariant="plant"
+              imageClassName="object-cover"
+              priority
+              sizes="(max-width: 1024px) 100vw, 45vw"
+              src={plant.image}
+            />
+          ) : null}
+
+          <div>
+            <div className="flex flex-wrap gap-2">
+              <StatusBadge tone="green">Katalog tanaman</StatusBadge>
+            </div>
+            <h1 className="mt-5 text-4xl font-bold text-herbal-ink sm:text-5xl">
+              {plant.localName}
+            </h1>
+            {plant.scientificName ? (
+              <p className="mt-2 text-lg italic text-herbal-muted">
+                {plant.scientificName}
+              </p>
+            ) : null}
+            <p className="mt-6 max-w-3xl text-base leading-8 text-herbal-muted">
+              {plant.shortDescription}
+            </p>
+          </div>
+        </div>
+
+        {hasSeparateDescription ? (
+          <section className="mt-8 rounded-md border border-herbal-green/10 bg-white p-5 text-sm leading-6 text-herbal-muted shadow-sm">
+            <h2 className="text-base font-bold text-herbal-ink">Deskripsi</h2>
+            <p className="mt-3">{plant.description}</p>
+          </section>
+        ) : null}
+
+        {sourceNotes ? (
+          <section className="mt-8 rounded-md border border-herbal-green/10 bg-white p-5 text-sm leading-6 text-herbal-muted shadow-sm">
+            <h2 className="text-base font-bold text-herbal-ink">Sumber</h2>
+            <p className="mt-3">{sourceNotes}</p>
+          </section>
+        ) : null}
 
         <div className="mt-8">
           <Disclaimer>
