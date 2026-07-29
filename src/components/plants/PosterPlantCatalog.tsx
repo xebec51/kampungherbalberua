@@ -176,9 +176,6 @@ export function PosterPlantCatalog({
         return a.rawName.localeCompare(b.rawName, "id");
       });
   }, [collection, deferredQueryInput, imageKind, part, plants, sort]);
-  const visiblePlants = filteredPlants.slice(0, visibleCount);
-  const hasMore = visibleCount < filteredPlants.length;
-
   function resetFilters() {
     setQueryInput("");
     router.replace(pathname, { scroll: false });
@@ -191,6 +188,10 @@ export function PosterPlantCatalog({
     collection ? { key: "zona", label: `Zona: ${collection}` } : null,
     part ? { key: "bagian", label: `Bagian: ${part}` } : null,
   ].filter((item): item is { key: string; label: string } => Boolean(item));
+  const hasActiveFilters = activeFilters.length > 0 || Boolean(imageKind);
+  const visibleLimit = hasActiveFilters ? filteredPlants.length : visibleCount;
+  const visiblePlants = filteredPlants.slice(0, visibleLimit);
+  const hasMore = !hasActiveFilters && visibleCount < filteredPlants.length;
 
   return (
     <div className="mt-8">

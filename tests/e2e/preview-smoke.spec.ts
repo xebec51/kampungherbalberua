@@ -60,7 +60,11 @@ test("preview deployment public smoke @preview", async ({ page, request }) => {
   await expect(
     page.getByRole("heading", { exact: true, name: "Zona HerbaCode" }),
   ).toBeVisible();
-  await expect(page.getByText("Zona Kesehatan Perempuan")).toBeVisible();
+  await expect(
+    page.getByText("Zona Kesehatan Perempuan - Jl. Feminia", {
+      exact: true,
+    }),
+  ).toBeVisible();
 
   expect((await request.get("/sitemap.xml")).ok()).toBe(true);
   expect((await request.get("/robots.txt")).ok()).toBe(true);

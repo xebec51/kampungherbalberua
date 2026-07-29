@@ -39,6 +39,19 @@ test("beranda menampilkan ringkasan HerbaCode tanpa placeholder publik", async (
   ).toHaveCount(50);
   await expect(page.getByRole("link", { exact: true, name: "Jahe" })).toBeVisible();
   await expect(page.getByRole("link", { exact: true, name: "Meniran" })).toBeVisible();
+  for (const streetName of [
+    "Jl. Digestia",
+    "Jl. Respiria",
+    "Jl. Glycemia",
+    "Jl. Lipidia",
+    "Jl. Imun",
+    "Jl. Hepatia",
+    "Jl. Feminia",
+    "Jl. Vaskulia",
+    "Jl. Pediatria",
+  ]) {
+    await expect(page.getByText(streetName, { exact: true }).first()).toBeVisible();
+  }
   await expectNoPublicPlaceholderText(page);
   await expectNoHorizontalOverflow(page);
 });
@@ -101,7 +114,7 @@ test("katalog tanaman gabungan dapat dicari dan tidak menggandakan tanaman berul
   await page.getByLabel("Cari tanaman").fill("");
   await page.getByLabel("Filter zona").selectOption("Zona Jantung Sehat");
   await expect(page.getByText(/Menampilkan \d+ dari \d+ tanaman\./)).toBeVisible();
-  await expect(page.getByRole("link", { exact: true, name: "Seledri" })).toBeVisible();
+  await expect(page.locator('a[href="/tanaman/seledri"]').first()).toBeVisible();
   await expect(
     page.getByText("Nomor poster lama", { exact: true }),
   ).toBeVisible();

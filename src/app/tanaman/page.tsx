@@ -49,7 +49,7 @@ export default async function PlantsPage() {
           eyebrow="Katalog Tanaman"
           title="Katalog Tanaman Kampung Herbal Harmony"
         />
-        <dl className="mt-8 grid gap-3 sm:grid-cols-3">
+        <dl className="mt-6 grid grid-cols-2 gap-3 lg:grid-cols-6">
           <CatalogMetric
             label="Katalog final"
             value={String(plants.length)}
@@ -249,12 +249,14 @@ function CatalogMetric({
   value: string;
 }) {
   return (
-    <div className="rounded-md border border-herbal-green/10 bg-white p-5 shadow-sm">
-      <dt className="text-sm font-bold text-herbal-muted">{label}</dt>
-      <dd className="mt-2 text-3xl font-extrabold text-herbal-deep">
+    <div className="rounded-md border border-herbal-green/10 bg-white p-3 shadow-sm sm:p-4">
+      <dt className="text-xs font-bold uppercase tracking-[0.12em] text-herbal-muted">
+        {label}
+      </dt>
+      <dd className="mt-2 text-xl font-extrabold text-herbal-deep sm:text-2xl">
         {value}
       </dd>
-      <p className="mt-2 text-sm leading-6 text-herbal-muted">
+      <p className="mt-2 text-[0.72rem] leading-5 text-herbal-muted sm:text-xs">
         {description}
       </p>
     </div>
