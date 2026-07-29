@@ -1,6 +1,12 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import {
+  useCallback,
+  useDeferredValue,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import type { PosterPlantCatalogItem } from "@/types";
 import { PosterPlantCard } from "@/components/plants/PosterPlantCard";
@@ -41,6 +47,7 @@ export function PosterPlantCatalog({ plants }: PosterPlantCatalogProps) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const searchParamsString = searchParams.toString();
   const query = searchParams.get("q") ?? "";
   const collection = searchParams.get("zona") ?? "";
   const part = searchParams.get("bagian") ?? "";
@@ -48,7 +55,11 @@ export function PosterPlantCatalog({ plants }: PosterPlantCatalogProps) {
   const sort = allowedSorts.has(searchParams.get("urut") ?? "")
     ? searchParams.get("urut") ?? "az"
     : "az";
-  const filterKey = [collection, imageKind, part, query, sort].join("\u0000");
+  const [queryInput, setQueryInput] = useState(query);
+  const deferredQueryInput = useDeferredValue(queryInput);
+  const filterKey = [collection, imageKind, part, deferredQueryInput, sort].join(
+    "\u0000",
+  );
   const [visibleState, setVisibleState] = useState({
     count: pageSize,
     key: filterKey,
@@ -70,8 +81,48 @@ export function PosterPlantCatalog({ plants }: PosterPlantCatalogProps) {
     [plants],
   );
 
+  const updateParam = useCallback(
+    (key: string, value: string) => {
+      const params = new URLSearchParams(searchParamsString);
+
+      if (value) {
+        params.set(key, value);
+      } else {
+        params.delete(key);
+      }
+
+      router.replace(
+        params.size > 0 ? `${pathname}?${params.toString()}` : pathname,
+        {
+          scroll: false,
+        },
+      );
+    },
+    [pathname, router, searchParamsString],
+  );
+
+  useEffect(() => {
+    const syncId = window.setTimeout(() => setQueryInput(query), 0);
+
+    return () => window.clearTimeout(syncId);
+  }, [query]);
+
+  useEffect(() => {
+    const nextQuery = queryInput.trim();
+
+    if (nextQuery === query) {
+      return;
+    }
+
+    const debounceId = window.setTimeout(() => {
+      updateParam("q", nextQuery);
+    }, 240);
+
+    return () => window.clearTimeout(debounceId);
+  }, [query, queryInput, updateParam]);
+
   const filteredPlants = useMemo(() => {
-    const normalizedQuery = normalize(query);
+    const normalizedQuery = normalize(deferredQueryInput);
 
     return plants
       .filter((plant) => {
@@ -113,30 +164,19 @@ export function PosterPlantCatalog({ plants }: PosterPlantCatalogProps) {
         }
         return a.rawName.localeCompare(b.rawName, "id");
       });
-  }, [collection, imageKind, part, plants, query, sort]);
+  }, [collection, deferredQueryInput, imageKind, part, plants, sort]);
   const visiblePlants = filteredPlants.slice(0, visibleCount);
   const hasMore = visibleCount < filteredPlants.length;
 
-  function updateParam(key: string, value: string) {
-    const params = new URLSearchParams(searchParams.toString());
-
-    if (value) {
-      params.set(key, value);
-    } else {
-      params.delete(key);
-    }
-
-    router.replace(params.size > 0 ? `${pathname}?${params.toString()}` : pathname, {
-      scroll: false,
-    });
-  }
-
   function resetFilters() {
+    setQueryInput("");
     router.replace(pathname, { scroll: false });
   }
 
   const activeFilters = [
-    query ? { key: "q", label: `Cari: ${query}` } : null,
+    deferredQueryInput
+      ? { key: "q", label: `Cari: ${deferredQueryInput}` }
+      : null,
     collection ? { key: "zona", label: `Zona: ${collection}` } : null,
     part ? { key: "bagian", label: `Bagian: ${part}` } : null,
     imageKind
@@ -163,10 +203,10 @@ export function PosterPlantCatalog({ plants }: PosterPlantCatalogProps) {
             <input
               className="mt-2 h-11 w-full rounded-md border border-herbal-green/20 bg-white px-3 text-sm text-herbal-ink outline-none transition placeholder:text-herbal-muted/70 focus:border-herbal-green focus:ring-2 focus:ring-herbal-green/20"
               id="plant-search"
-              onChange={(event) => updateParam("q", event.target.value)}
+              onChange={(event) => setQueryInput(event.target.value)}
               placeholder="Contoh: jahe, cincau, willow"
               type="search"
-              value={query}
+              value={queryInput}
             />
           </div>
           <div>
@@ -242,7 +282,12 @@ export function PosterPlantCatalog({ plants }: PosterPlantCatalogProps) {
               <button
                 className="rounded-full border border-herbal-green/20 bg-herbal-soft px-3 py-1 text-xs font-semibold text-herbal-deep hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
                 key={filter.key}
-                onClick={() => updateParam(filter.key, "")}
+                onClick={() => {
+                  if (filter.key === "q") {
+                    setQueryInput("");
+                  }
+                  updateParam(filter.key, "");
+                }}
                 type="button"
               >
                 {filter.label} - hapus
@@ -254,12 +299,13 @@ export function PosterPlantCatalog({ plants }: PosterPlantCatalogProps) {
 
       {filteredPlants.length > 0 ? (
         <>
-          <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {visiblePlants.map((plant, index) => (
               <PosterPlantCard
+                className="catalog-card"
                 key={plant.normalizedName}
                 plant={plant}
-                priority={index < 3}
+                priority={index === 0}
               />
             ))}
           </div>

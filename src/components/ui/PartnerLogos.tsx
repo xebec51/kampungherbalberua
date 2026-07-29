@@ -4,21 +4,23 @@ import { cn } from "@/lib/utils";
 const partnerLogos = [
   {
     alt: "Logo Kuliah Kerja Nyata Universitas Hasanuddin",
-    height: 359,
+    height: 99,
     imageClassName: "max-h-12 max-w-[12rem]",
     imageClassNameCompact: "max-h-8 max-w-[8.5rem]",
     name: "KKN Universitas Hasanuddin",
-    src: "/images/partners/logo-kkn-unhas.png",
-    width: 694,
+    sizes: "(max-width: 640px) 8.5rem, 12rem",
+    src: "/images/partners/logo-kkn-unhas.webp",
+    width: 192,
   },
   {
     alt: "Logo Pemerintah Kota Makassar",
-    height: 1354,
+    height: 80,
     imageClassName: "max-h-16 max-w-[5rem]",
     imageClassNameCompact: "max-h-11 max-w-[3.5rem]",
     name: "Pemerintah Kota Makassar",
-    src: "/images/partners/logo-pemkot-makassar.png",
-    width: 1080,
+    sizes: "(max-width: 640px) 3.5rem, 5rem",
+    src: "/images/partners/logo-pemkot-makassar.webp",
+    width: 64,
   },
 ];
 
@@ -53,6 +55,9 @@ export function PartnerLogos({
                 : partner.imageClassName,
             )}
             height={partner.height}
+            loading="lazy"
+            quality={76}
+            sizes={partner.sizes}
             src={partner.src}
             width={partner.width}
           />

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Logo } from "@/components/layout/Logo";
 import { MobileNavigation } from "@/components/layout/MobileNavigation";
@@ -15,6 +15,8 @@ export function Header() {
   const isHome = pathname === "/";
   const [scrolled, setScrolled] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const frameRef = useRef<number | null>(null);
+  const scrolledRef = useRef(false);
   const solid = !isHome || scrolled;
   const navigationTone = solid ? "solid" : "hero";
 
@@ -24,15 +26,36 @@ export function Header() {
     }
 
     function updateScrolledState() {
-      setScrolled(window.scrollY > 24);
+      frameRef.current = null;
+
+      const nextScrolled = window.scrollY > 24;
+
+      if (scrolledRef.current !== nextScrolled) {
+        scrolledRef.current = nextScrolled;
+        setScrolled(nextScrolled);
+      }
     }
 
-    const animationFrame = window.requestAnimationFrame(updateScrolledState);
-    window.addEventListener("scroll", updateScrolledState, { passive: true });
+    function scheduleScrolledStateUpdate() {
+      if (frameRef.current !== null) {
+        return;
+      }
+
+      frameRef.current = window.requestAnimationFrame(updateScrolledState);
+    }
+
+    scheduleScrolledStateUpdate();
+    window.addEventListener("scroll", scheduleScrolledStateUpdate, {
+      passive: true,
+    });
 
     return () => {
-      window.cancelAnimationFrame(animationFrame);
-      window.removeEventListener("scroll", updateScrolledState);
+      if (frameRef.current !== null) {
+        window.cancelAnimationFrame(frameRef.current);
+        frameRef.current = null;
+      }
+
+      window.removeEventListener("scroll", scheduleScrolledStateUpdate);
     };
   }, [isHome]);
 

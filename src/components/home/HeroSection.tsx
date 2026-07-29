@@ -23,10 +23,12 @@ export function HeroSection() {
       <Image
         alt="Lorong Kampung Herbal Berua dengan pot tanaman obat keluarga di pagi hari"
         className="absolute inset-0 -z-30 h-full w-full object-cover"
+        fetchPriority="high"
         fill
-        priority
+        preload
+        quality={72}
         sizes="100vw"
-        src="/images/home/kampung-herbal-hero.png"
+        src="/images/home/kampung-herbal-hero.webp"
       />
       <div className="absolute inset-0 -z-20 bg-[linear-gradient(180deg,rgba(8,20,13,0.5)_0%,rgba(8,20,13,0.72)_48%,rgba(8,20,13,0.94)_100%)]" />
       <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_center,rgba(198,115,60,0.16),transparent_34rem)]" />

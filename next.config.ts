@@ -39,6 +39,11 @@ const remotePatterns = configuredSupabaseStoragePattern &&
 
 const nextConfig: NextConfig = {
   images: {
+    deviceSizes: [360, 414, 640, 768, 1024, 1280, 1536],
+    formats: ["image/avif", "image/webp"],
+    imageSizes: [32, 48, 64, 96, 128, 192, 256, 384],
+    minimumCacheTTL: 60 * 60 * 24 * 30,
+    qualities: [72, 75, 76],
     remotePatterns,
   },
 };

@@ -61,7 +61,7 @@ describe("plant media rendering", () => {
     expect(html).toContain(STORAGE_IMAGE_URL);
     expect(html).toContain("Tanaman Jahe");
     expect(html).toContain(
-      "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+      "(max-width: 640px) 92vw, (max-width: 1024px) 46vw, (max-width: 1279px) 30vw, 18rem",
     );
   });
 
@@ -102,6 +102,7 @@ describe("plant media rendering", () => {
       "utf8",
     );
 
-    expect(homeSectionSource).toContain("<PlantCard key={plant.id} plant={plant} priority={index === 0} />");
+    expect(homeSectionSource).toContain("<PlantCard key={plant.id} plant={plant} />");
+    expect(homeSectionSource).not.toContain("priority={index === 0}");
   });
 });

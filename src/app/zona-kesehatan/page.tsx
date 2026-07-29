@@ -27,8 +27,12 @@ export default async function HealthZonesPage() {
           title="Zona Kesehatan"
         />
         <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {zones.map((zone) => (
-            <HealthZoneCard key={zone.zoneCode} zone={zone} />
+          {zones.map((zone, index) => (
+            <HealthZoneCard
+              key={zone.zoneCode}
+              priority={index === 0}
+              zone={zone}
+            />
           ))}
         </div>
         <div className="mt-8">
