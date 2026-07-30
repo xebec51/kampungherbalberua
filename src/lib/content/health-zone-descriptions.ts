@@ -31,7 +31,11 @@ export function getHealthZoneShortDescription(
   if (
     existing &&
     existing.toLocaleLowerCase("id") !==
-      genericHerbaCodeZoneDescription.toLocaleLowerCase("id")
+      genericHerbaCodeZoneDescription.toLocaleLowerCase("id") &&
+    existing.toLocaleLowerCase("id") !==
+      slug.replaceAll("-", " ").toLocaleLowerCase("id") &&
+    existing.toLocaleLowerCase("id") !==
+      `zona ${slug.replaceAll("-", " ")}`.toLocaleLowerCase("id")
   ) {
     return existing;
   }

@@ -1,8 +1,14 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { CommunityMapPlaceholder } from "@/components/maps/CommunityMapPlaceholder";
+import { MapLegend } from "@/components/maps/MapLegend";
+import { MapLocationCard } from "@/components/maps/MapLocationCard";
 import { StreetCard } from "@/components/streets/StreetCard";
 import { BrandCard } from "@/components/ui/BrandCard";
 import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/ui/PageHero";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { communityMapConfig } from "@/data/map-config";
 import { getHerbaCodeZoneSummaries } from "@/lib/data/herbacode";
 import { getPublishedStreets } from "@/lib/data/streets";
 import { createPageMetadata } from "@/lib/metadata";
@@ -10,7 +16,7 @@ import { createPageMetadata } from "@/lib/metadata";
 export const metadata: Metadata = createPageMetadata({
   title: "Peta Kampung",
   description:
-    "Daftar zona HerbaCode Kampung Herbal Berua tanpa data pribadi warga.",
+    "Fondasi integrasi peta Kampung Herbal Harmony Berua tanpa data pribadi warga.",
   path: "/peta",
 });
 
@@ -23,68 +29,75 @@ export default async function MapPage() {
   return (
     <>
       <PageHero
-        description="Daftar zona HerbaCode dan jalan tematik Kampung Herbal tanpa titik rumah, koordinat warga, atau data kesehatan perorangan."
+        description="Fondasi peta publik Kampung Herbal Harmony Berua disiapkan untuk menampilkan jalan tematik, zona kesehatan, fasilitas, pintu masuk, dan titik informasi setelah aset final tersedia."
         eyebrow="Pemetaan"
         title="Peta Kampung Herbal"
       />
       <section className="bg-herbal-cream py-10 sm:py-12">
         <Container>
-        <div className="mt-8 grid gap-5 lg:grid-cols-[1fr_0.8fr]">
-          <InfoPanel
-            title="Zona HerbaCode"
-            values={zones.map((zone) =>
-              zone.streetNames.length > 0
-                ? `${zone.title} - ${zone.streetNames.join(", ")}`
-                : zone.title,
-            )}
-          />
-          <div className="grid gap-5">
-            <BrandCard className="text-sm leading-7 text-herbal-muted">
-              Zona pada halaman ini bukan diagnosis wilayah dan bukan data
-              penyakit warga. Website tidak menampilkan peta rumah pasien,
-              alamat warga, koordinat pasien, atau kondisi kesehatan per rumah.
-            </BrandCard>
+          <div className="grid gap-6 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1fr)] lg:items-stretch">
+            <MapLocationCard />
+            <CommunityMapPlaceholder />
           </div>
-        </div>
-        {streets.length > 0 ? (
+
+          <div className="mt-6">
+            <MapLegend />
+          </div>
+
           <section className="mt-10">
-            <h2 className="text-xl font-bold text-herbal-ink">
-              Jalan tematik
-            </h2>
-            <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {streets.map((street) => (
-                <StreetCard key={street.slug} street={street} />
+            <SectionHeading
+              description="Daftar ini menjadi navigasi sementara menuju detail zona kesehatan sampai aset peta final dipasang."
+              eyebrow="Zona kesehatan"
+              title="Daftar Zona Kesehatan"
+            />
+            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {zones.map((zone) => (
+                <Link
+                  className="public-card rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-5 shadow-[var(--shadow-soft)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
+                  href={`/zona-kesehatan/${zone.slug}`}
+                  key={zone.slug}
+                >
+                  <p className="text-xs font-bold uppercase tracking-[0.14em] text-herbal-brown">
+                    Zona kesehatan
+                  </p>
+                  <h3 className="mt-3 text-lg font-bold leading-tight text-herbal-ink">
+                    {zone.title}
+                  </h3>
+                  <p className="mt-3 line-clamp-3 text-sm leading-6 text-herbal-muted">
+                    {zone.shortDescription}
+                  </p>
+                  <p className="mt-4 text-sm font-bold text-herbal-green">
+                    {zone.plantCount} tanaman
+                  </p>
+                </Link>
               ))}
             </div>
           </section>
-        ) : null}
-      </Container>
+
+          {streets.length > 0 ? (
+            <section className="mt-12">
+              <SectionHeading
+                description="Daftar jalan tematik tetap tersedia sebagai navigasi aksesibel tanpa menunggu peta visual selesai."
+                eyebrow="Jalan tematik"
+                title="Daftar Jalan Tematik"
+              />
+              <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {streets.map((street) => (
+                  <StreetCard key={street.slug} street={street} />
+                ))}
+              </div>
+            </section>
+          ) : null}
+
+          <BrandCard className="mt-10 text-sm leading-7 text-herbal-muted">
+            <h2 className="text-lg font-bold text-herbal-ink">
+              Catatan privasi dan atribusi
+            </h2>
+            <p className="mt-3">{communityMapConfig.privacyNote}</p>
+            <p className="mt-3">{communityMapConfig.attributionNote}</p>
+          </BrandCard>
+        </Container>
       </section>
     </>
-  );
-}
-
-type InfoPanelProps = {
-  title: string;
-  values: string[];
-};
-
-function InfoPanel({ title, values }: InfoPanelProps) {
-  if (values.length === 0) {
-    return null;
-  }
-
-  return (
-    <BrandCard as="section">
-      <h2 className="text-lg font-bold text-herbal-ink">{title}</h2>
-      <ul className="mt-4 grid gap-2 text-sm text-herbal-muted">
-        {values.map((value) => (
-          <li className="flex gap-2" key={value}>
-            <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 rounded-full bg-herbal-green" />
-            <span>{value}</span>
-          </li>
-        ))}
-      </ul>
-    </BrandCard>
   );
 }

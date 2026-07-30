@@ -107,7 +107,7 @@ function cleanPlantText(value: string | null | undefined) {
   }
 
   if (
-    /data demonstrasi|bersifat demonstrasi|informasi ini masih berupa materi awal|sedang dipetakan|menunggu verifikasi/i.test(
+    /data demonstrasi|bersifat demonstrasi|informasi ini masih berupa materi awal|sedang dipetakan|menunggu verifikasi|^HerbaCode Kampung Herbal Harmony:/i.test(
       text,
     )
   ) {

@@ -64,13 +64,20 @@ test("preview deployment public smoke @preview", async ({ page, request }) => {
     page.getByRole("heading", { exact: true, name: "Peta Kampung Herbal" }),
   ).toBeVisible();
   await expect(
-    page.getByRole("heading", { exact: true, name: "Zona HerbaCode" }),
-  ).toBeVisible();
-  await expect(
-    page.getByText("Zona Kesehatan Perempuan - Jl. Feminia", {
+    page.getByRole("heading", {
       exact: true,
+      name: "Lokasi Kampung Herbal Harmony Berua",
     }),
   ).toBeVisible();
+  await expect(
+    page.getByRole("heading", {
+      exact: true,
+      name: "Peta Kompleks Kampung Herbal",
+    }),
+  ).toBeVisible();
+  await expect(page.getByText("Dalam penyusunan")).toBeVisible();
+  await expect(page.getByText("Jalan tematik", { exact: true }).first()).toBeVisible();
+  await expect(page.getByText("Zona kesehatan", { exact: true }).first()).toBeVisible();
 
   expect((await request.get("/sitemap.xml")).ok()).toBe(true);
   expect((await request.get("/robots.txt")).ok()).toBe(true);

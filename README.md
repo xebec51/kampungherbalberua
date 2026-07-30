@@ -28,13 +28,13 @@ Kampung Herbal Berua membutuhkan portal digital yang dapat menjadi induk integra
 
 ## Fitur Tahap Pertama
 
-- Beranda publik dengan hero, akses cepat, profil singkat, HerbaCode, pratinjau peta, produk, kegiatan, dan disclaimer.
+- Beranda publik dengan hero, akses cepat, profil singkat, HerbaCode, pratinjau peta kompleks, produk, kegiatan, dan disclaimer.
 - Katalog tanaman gabungan poster dan HerbaCode dengan pencarian, filter zona/bagian, detail HerbaCode per tanaman, dan entri poster-only tanpa manfaat buatan.
 - Dashboard admin dengan login Supabase Auth, logout, proteksi `/admin`, CRUD tanaman, CRUD zona, dan dashboard `/admin/herbacode`.
 - Modul zona kesehatan: `/zona-kesehatan`, `/zona-kesehatan/[slug]`, `/z/[code]`, admin zona, QR SVG/PNG, serta pemisahan jalan melalui tabel `streets`.
 - Halaman ramuan sehat dengan bahan, takaran, langkah, saran penyajian, peringatan, dan disclaimer kesehatan.
 - Katalog produk warga dengan detail produk dan tombol WhatsApp nonaktif saat kontak belum tersedia.
-- Halaman tentang, peta, kunjungan edukasi, kegiatan, kinerja RT, kotak saran, dan tim KKN.
+- Halaman tentang, peta Kampung Herbal, kunjungan edukasi, kegiatan, kinerja RT, kotak saran, dan tim KKN.
 - Metadata dasar, Open Graph, sitemap, robots, favicon lama, loading UI, dan not-found UI.
 - Media Library global untuk metadata gambar, sumber, atribusi, admin media dasar, dan attachment gambar publik. Atribusi ditampilkan pada konteks pemakaian gambar, bukan melalui halaman indeks `/sumber-gambar`.
 
@@ -151,20 +151,35 @@ src/
     supabase/          Konfigurasi dan client Supabase
   types/               Tipe data konten
 public/
+  brand/               Logo resmi dan aset brand produksi
   icons/               Ikon lokal
   images/placeholders/ Aset sistem internal, tidak untuk placeholder konten publik
+  maps/                Lokasi aset peta final dari tim Perencanaan Wilayah dan Kota
 supabase/
   migrations/          Migration SQL
   seed.sql             Seed data demonstrasi
   tests/               pgTAP, RLS test, dan fixture lokal automated test
 docs/
   admin-dashboard.md   Panduan dashboard admin
+  map-integration.md   Fondasi integrasi peta Kampung Herbal
   qr-deployment.md     Panduan unduh dan uji QR zona
   supabase-setup.md    Panduan setup Supabase
   testing.md           Strategi automated testing dan CI
   zona-kesehatan.md    Dokumentasi modul zona
   zona-photo-manifest.md Manifest foto zona yang diharapkan
 ```
+
+## Peta Kampung Herbal
+
+Halaman `/peta` menyiapkan fondasi integrasi peta Kampung Herbal Harmony Berua tanpa membuat peta palsu atau menebak koordinat. Struktur halaman memuat kartu lokasi kompleks, area peta dalam penyusunan, legenda kategori, daftar zona kesehatan, daftar jalan tematik, serta catatan privasi dan atribusi.
+
+Konfigurasi peta lokal berada di `src/data/map-config.ts`. Aset final dari tim Perencanaan Wilayah dan Kota disiapkan untuk masuk ke `public/maps/`, dengan SVG sebagai format utama dan WebP/PNG sebagai fallback. Website tidak memakai Google Maps API key, iframe kosong, Leaflet, MapLibre, marker rumah, atau data pribadi warga.
+
+Tombol lokasi kompleks memakai tautan eksternal Google Maps:
+
+<https://maps.app.goo.gl/LZi2bArDspCxwpgn6>
+
+Panduan aset final, aturan ID objek, privasi, dan atribusi tersedia di [docs/map-integration.md](docs/map-integration.md).
 
 ## Data Produksi dan HerbaCode
 
@@ -310,7 +325,7 @@ Jangan menjalankan `npx supabase db push`, seed remote, reset database, atau kon
 - Migrasi data ramuan, produk, kegiatan, dan program RT ke Supabase.
 - Metadata pemeriksaan konten: nama pemeriksa, sumber, tanggal pemeriksaan, dan catatan opsional.
 - Supabase Storage untuk foto dokumentasi dan aset lapangan.
-- Integrasi pemetaan PWK menggunakan data denah, koordinat, GeoJSON, atau KML.
+- Integrasi peta final PWK menggunakan aset SVG, WebP/PNG, PDF cetak, atau GeoJSON yang sudah diaudit privasi.
 - HerbaCode dan QR Code tanaman setelah data tanaman diverifikasi.
 - Penyimpanan kotak saran ke database.
 

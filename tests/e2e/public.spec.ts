@@ -69,6 +69,10 @@ test("beranda menampilkan ringkasan HerbaCode tanpa placeholder publik", async (
   await expect(page.getByRole("link", { exact: true, name: "Jahe" })).toBeVisible();
   await expect(page.getByRole("link", { exact: true, name: "Meniran" })).toBeVisible();
   await expect(page.getByText("Rimpang aromatik")).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Peta Kompleks Kampung Herbal" })).toBeVisible();
+  await expect(page.getByText("Dalam penyusunan").first()).toBeVisible();
+  await expect(page.getByText("9", { exact: true }).first()).toBeVisible();
+  await expect(page.getByRole("link", { name: "Lihat Peta Kampung" })).toBeVisible();
   await expect(
     page.getByText("Zona Imunitas Kuat, Zona Pencernaan Sehat", {
       exact: false,
@@ -265,6 +269,38 @@ test("daftar zona memakai deskripsi topik kesehatan yang berbeda", async ({
 test("peta menampilkan 9 jalan tematik yang dipulihkan", async ({ page }) => {
   await page.goto("/peta");
 
+  await expect(
+    page.getByRole("heading", { name: "Lokasi Kampung Herbal Harmony Berua" }),
+  ).toBeVisible();
+  const locationCard = page.getByRole("region", {
+    name: "Lokasi Kampung Herbal Harmony Berua",
+  });
+  await expect(locationCard.getByText("RT 009/RW 006", { exact: true })).toBeVisible();
+  await expect(locationCard.getByText("Kelurahan Berua", { exact: true })).toBeVisible();
+  await expect(locationCard.getByText("Kecamatan Biringkanaya", { exact: true })).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: "Buka di Google Maps" }),
+  ).toHaveAttribute("href", "https://maps.app.goo.gl/LZi2bArDspCxwpgn6");
+  await expect(
+    page.getByRole("link", { name: "Petunjuk Arah" }),
+  ).toHaveAttribute("href", "https://maps.app.goo.gl/LZi2bArDspCxwpgn6");
+  await expect(
+    page.getByRole("heading", { name: "Peta Kompleks Kampung Herbal" }),
+  ).toBeVisible();
+  await expect(page.getByText("Dalam penyusunan")).toBeVisible();
+  for (const legend of [
+    "Jalan tematik",
+    "Zona kesehatan",
+    "Fasilitas",
+    "Pintu masuk",
+    "Titik informasi",
+  ]) {
+    await expect(page.getByText(legend, { exact: true }).first()).toBeVisible();
+  }
+  await expect(page.getByRole("heading", { name: "Daftar Zona Kesehatan" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Daftar Jalan Tematik" })).toBeVisible();
+  await expect(page.getByText("Peta publik tidak menampilkan koordinat rumah")).toBeVisible();
+
   for (const streetName of [
     "Jl. Digestia",
     "Jl. Respiria",
@@ -330,6 +366,17 @@ test("jalan tematik menampilkan foto dan tidak memakai relasi zona sebagai tanam
   await page.goto("/zona-kesehatan/imunitas-kuat");
   await expect(page.getByRole("img", { name: /Papan tanaman di Jl\./ })).toHaveCount(0);
 
+  await expectNoPublicPlaceholderText(page);
+  await expectNoHorizontalOverflow(page);
+
+  await page.setViewportSize({ height: 900, width: 320 });
+  await page.goto("/peta");
+  await expect(
+    page.getByRole("heading", { name: "Peta Kompleks Kampung Herbal" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Daftar Jalan Tematik" }),
+  ).toBeVisible();
   await expectNoPublicPlaceholderText(page);
   await expectNoHorizontalOverflow(page);
 });
