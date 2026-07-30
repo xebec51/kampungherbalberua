@@ -32,13 +32,14 @@ Aturan hierarki:
 
 ## Logo
 
-Aset produksi berada di `public/brand/logo/`.
+Aset produksi berada di `public/brand/logo/`. Varian Kampung Herbal diekspor ulang dari sumber brand 4501px dengan crop transparan agar tampil lebih tajam tanpa mengubah proporsi.
 
 - Header dan footer memakai logo wide resmi.
 - Hero memakai logo resmi putih pada overlay hijau tua.
 - Logo putih dipakai pada latar hijau tua atau foto gelap.
 - Logo utama dipakai pada latar cream/putih.
 - Favicon lama dari `public/icons/leaf.svg` dipertahankan.
+- Logo kolaborator berada di `public/images/partners/`: Kelompok KKN, Universitas Hasanuddin, dan Pemerintah Kota Makassar.
 
 Logo tidak boleh diregangkan, dipotong, diberi efek berlebihan, atau ditempatkan terlalu rapat dengan elemen lain.
 
@@ -89,4 +90,7 @@ Semua animasi penting dimatikan melalui `prefers-reduced-motion: reduce`.
 - Logo website: `public/brand/logo/`
 - Font Poppins lokal: `src/assets/fonts/poppins/`
 - Favicon yang dipertahankan: `public/icons/leaf.svg`
+- Logo Kelompok KKN: `public/images/partners/logo-kelompok-kkn.webp`
+- Logo Universitas Hasanuddin: `public/images/partners/logo-unhas.webp`
+- Logo Pemerintah Kota Makassar: `public/images/partners/logo-pemkot-makassar.webp`
 - Arsip guideline mentah lokal diabaikan Git melalui `design/`.

@@ -7,6 +7,23 @@ async function expectNoHorizontalOverflow(page: Page) {
   expect(hasOverflow).toBe(false);
 }
 
+async function expectNoBrokenImages(page: Page) {
+  const brokenImages = await page
+    .locator("img")
+    .evaluateAll((images) =>
+      images
+        .filter(
+          (image) =>
+            image instanceof HTMLImageElement &&
+            image.complete &&
+            image.naturalWidth === 0,
+        )
+        .map((image) => image.getAttribute("alt") ?? image.getAttribute("src")),
+    );
+
+  expect(brokenImages).toEqual([]);
+}
+
 async function expectNoPublicPlaceholderText(page: Page) {
   const bodyText = await page.locator("body").innerText();
 
@@ -37,12 +54,24 @@ test("beranda menampilkan ringkasan HerbaCode tanpa placeholder publik", async (
   await expect(page.getByText("Relasi tanaman-zona")).toBeVisible();
   await expect(page.getByText("95")).toBeVisible();
   await expect(
+    page.getByRole("img", { name: "Logo Kelompok KKN Kampung Herbal Berua" }).first(),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("img", { name: "Logo Universitas Hasanuddin" }).first(),
+  ).toBeVisible();
+  await expect(
     page.getByLabel("Carousel tanaman pilihan").getByRole("link", {
       name: "Buka profil tanaman",
     }),
   ).toHaveCount(50);
   await expect(page.getByRole("link", { exact: true, name: "Jahe" })).toBeVisible();
   await expect(page.getByRole("link", { exact: true, name: "Meniran" })).toBeVisible();
+  await expect(page.getByText("Rimpang aromatik")).toBeVisible();
+  await expect(
+    page.getByText("Zona Imunitas Kuat, Zona Pencernaan Sehat", {
+      exact: false,
+    }),
+  ).toHaveCount(0);
   await expect(
     page.locator('[data-placeholder-variant="plant"]').first(),
   ).toBeVisible();
@@ -61,6 +90,7 @@ test("beranda menampilkan ringkasan HerbaCode tanpa placeholder publik", async (
   }
   await expectNoPublicPlaceholderText(page);
   await expectNoHorizontalOverflow(page);
+  await expectNoBrokenImages(page);
 });
 
 test("desktop dan mobile navbar tetap accessible dengan struktur publik", async ({
@@ -174,12 +204,30 @@ test("detail zona menampilkan relasi tanaman-zona HerbaCode", async ({ page }) =
 
   await expect(page.getByRole("heading", { name: "Zona Imunitas Kuat" })).toBeVisible();
   await expect(page.getByText("Jl. Imun")).toBeVisible();
+  await expect(page.getByText("Sistem imun membantu tubuh")).toBeVisible();
+  await expect(
+    page.getByText(
+      "Data tanaman dan pemanfaatan tradisional pada zona ini bersumber dari HerbaCode.",
+    ),
+  ).toHaveCount(0);
   await expect(page.getByText("Zona HerbaCode", { exact: true }).first()).toBeVisible();
   await expect(page.getByRole("heading", { name: "Tanaman pada zona ini" })).toBeVisible();
-  await expect(page.getByRole("link", { name: "Meniran" })).toBeVisible();
+  await expect(
+    page.getByText(
+      "Informasi tanaman dan pemanfaatan tradisional pada bagian ini bersumber dari HerbaCode.",
+    ),
+  ).toBeVisible();
+  await expect(page.locator("[data-zone-plant-card]")).toHaveCount(11);
+  await expect(page.getByRole("img", { name: "Tanaman Meniran" })).toBeVisible();
+  await expect(page.locator('[data-zone-plant-card][href="/tanaman/meniran"]')).toBeVisible();
   await expect(page.getByText("Phyllanthin", { exact: true })).toHaveCount(0);
   await expect(page.getByText("Membantu meningkatkan sistem imun tubuh.")).toHaveCount(0);
   await expect(page.getByText("HerbaCode Kampung Herbal Harmony", { exact: true }).first()).toBeVisible();
+  const plantHrefs = await page
+    .locator("[data-zone-plant-card]")
+    .evaluateAll((links) => links.map((link) => link.getAttribute("href")));
+  expect(new Set(plantHrefs).size).toBe(plantHrefs.length);
+  await expectNoBrokenImages(page);
   await expectNoPublicPlaceholderText(page);
 
   await page.getByRole("link", { name: "Meniran" }).click();
@@ -188,6 +236,28 @@ test("detail zona menampilkan relasi tanaman-zona HerbaCode", async ({ page }) =
     timeout: 30_000,
   });
   await expect(page.getByText("Phyllanthin", { exact: true })).toBeVisible();
+});
+
+test("daftar zona memakai deskripsi topik kesehatan yang berbeda", async ({
+  page,
+}) => {
+  await page.goto("/zona-kesehatan");
+
+  const descriptions = await page
+    .locator("[data-zone-description]")
+    .allTextContents();
+
+  expect(descriptions).toHaveLength(9);
+  expect(new Set(descriptions).size).toBe(9);
+  for (const description of descriptions) {
+    expect(description.trim().length).toBeGreaterThan(0);
+    expect(description).not.toBe(
+      "Data tanaman dan pemanfaatan tradisional pada zona ini bersumber dari HerbaCode.",
+    );
+  }
+  await expect(page.getByText("Sistem pencernaan mengolah makanan")).toBeVisible();
+  await expectNoPublicPlaceholderText(page);
+  await expectNoHorizontalOverflow(page);
 });
 
 test("peta menampilkan 9 jalan tematik yang dipulihkan", async ({ page }) => {

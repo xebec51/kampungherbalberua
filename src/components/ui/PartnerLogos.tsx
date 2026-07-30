@@ -3,14 +3,24 @@ import { cn } from "@/lib/utils";
 
 const partnerLogos = [
   {
-    alt: "Logo Kuliah Kerja Nyata Universitas Hasanuddin",
-    height: 99,
-    imageClassName: "max-h-12 max-w-[12rem]",
-    imageClassNameCompact: "max-h-8 max-w-[8.5rem]",
-    name: "KKN Universitas Hasanuddin",
-    sizes: "(max-width: 640px) 8.5rem, 12rem",
-    src: "/images/partners/logo-kkn-unhas.webp",
-    width: 192,
+    alt: "Logo Kelompok KKN Kampung Herbal Berua",
+    height: 1207,
+    imageClassName: "max-h-16 max-w-[4.75rem]",
+    imageClassNameCompact: "max-h-10 max-w-[3.25rem]",
+    name: "Kelompok KKN Kampung Herbal Berua",
+    sizes: "(max-width: 640px) 3.25rem, 4.75rem",
+    src: "/images/partners/logo-kelompok-kkn.webp",
+    width: 900,
+  },
+  {
+    alt: "Logo Universitas Hasanuddin",
+    height: 836,
+    imageClassName: "max-h-16 max-w-[4.75rem]",
+    imageClassNameCompact: "max-h-10 max-w-[3.25rem]",
+    name: "Universitas Hasanuddin",
+    sizes: "(max-width: 640px) 3.25rem, 4.75rem",
+    src: "/images/partners/logo-unhas.webp",
+    width: 700,
   },
   {
     alt: "Logo Pemerintah Kota Makassar",

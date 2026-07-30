@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { BrandCard } from "@/components/ui/BrandCard";
@@ -7,7 +6,9 @@ import { Container } from "@/components/ui/Container";
 import { Disclaimer } from "@/components/ui/Disclaimer";
 import { SafeImage } from "@/components/ui/SafeImage";
 import { StatusBadge } from "@/components/ui/StatusBadge";
+import { ZonePlantMiniCard } from "@/components/zones/ZonePlantMiniCard";
 import {
+  getHerbaCodePlantCatalog,
   getHerbaCodeZoneBySlug,
   getHerbaCodeZoneSummaries,
 } from "@/lib/data/herbacode";
@@ -56,7 +57,7 @@ export async function generateMetadata({
 
   return createPageMetadata({
     title: zone.title,
-    description: `Data HerbaCode untuk ${zone.title}.`,
+    description: zone.shortDescription,
     path: `/zona-kesehatan/${zone.slug}`,
   });
 }
@@ -76,6 +77,10 @@ export default async function HealthZoneDetailPage({
 
     return <CatalogZoneDetail zone={catalogZone} />;
   }
+
+  const plantCatalog = await getHerbaCodePlantCatalog();
+  const plantBySlug = new Map(plantCatalog.map((plant) => [plant.slug, plant]));
+  const uniqueEntries = dedupeZonePlantEntries(zone.entries);
 
   return (
     <article className="bg-herbal-cream py-10 sm:py-14">
@@ -105,8 +110,7 @@ export default async function HealthZoneDetailPage({
               </p>
             ) : null}
             <p className="mt-6 max-w-3xl text-base leading-8 text-herbal-muted">
-              Data pada halaman ini bersumber dari HerbaCode Kampung Herbal
-              Harmony dan disusun sebagai relasi tanaman-zona.
+              {zone.shortDescription}
             </p>
           </div>
         </div>
@@ -115,9 +119,18 @@ export default async function HealthZoneDetailPage({
           <h2 className="text-xl font-bold text-herbal-ink">
             Tanaman pada zona ini
           </h2>
+          <p className="mt-2 max-w-3xl text-sm leading-6 text-herbal-muted">
+            Informasi tanaman dan pemanfaatan tradisional pada bagian ini
+            bersumber dari HerbaCode.
+          </p>
           <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {zone.entries.map((entry) => (
-              <ZonePlantLink entry={entry} key={entry.id} />
+            {uniqueEntries.map((entry, index) => (
+              <ZonePlantMiniCard
+                entry={entry}
+                key={entry.plantSlug}
+                plant={plantBySlug.get(entry.plantSlug)}
+                priority={index < 3}
+              />
             ))}
           </div>
         </section>
@@ -147,6 +160,22 @@ function visibleZoneImagePath(value: string | null | undefined) {
   }
 
   return value;
+}
+
+function dedupeZonePlantEntries(entries: HerbaCodePlantZoneEntry[]) {
+  const seen = new Set<string>();
+  const uniqueEntries: HerbaCodePlantZoneEntry[] = [];
+
+  for (const entry of entries) {
+    if (seen.has(entry.plantSlug)) {
+      continue;
+    }
+
+    seen.add(entry.plantSlug);
+    uniqueEntries.push(entry);
+  }
+
+  return uniqueEntries;
 }
 
 function CatalogZoneDetail({ zone }: { zone: HealthZone }) {
@@ -222,27 +251,6 @@ function CatalogZoneDetail({ zone }: { zone: HealthZone }) {
         </div>
       </Container>
     </article>
-  );
-}
-
-function ZonePlantLink({ entry }: { entry: HerbaCodePlantZoneEntry }) {
-  return (
-    <Link
-            className="group block rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-5 shadow-[var(--shadow-soft)] transition hover:border-herbal-green/35 hover:shadow-[var(--shadow-lift)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
-      href={`/tanaman/${entry.plantSlug}`}
-    >
-      <span className="text-xs font-bold uppercase tracking-[0.14em] text-herbal-brown">
-        Tanaman zona
-      </span>
-      <span className="mt-2 block text-lg font-bold text-herbal-ink transition group-hover:text-herbal-green">
-        {entry.plantLocalName}
-      </span>
-      {entry.plantScientificName ? (
-        <span className="mt-1 block text-sm italic text-herbal-muted">
-          {entry.plantScientificName}
-        </span>
-      ) : null}
-    </Link>
   );
 }
 

@@ -40,12 +40,12 @@ export function Logo({
           "h-auto w-auto object-contain",
           compact ? "max-h-12 max-w-[4.75rem]" : "max-h-12 max-w-[13.5rem]",
         )}
-        height={compact ? 104 : 191}
+        height={compact ? 837 : 390}
         loading={priority ? "eager" : "lazy"}
         preload={priority}
         sizes={compact ? "5rem" : "14rem"}
         src={src}
-        width={compact ? 160 : 900}
+        width={compact ? 1280 : 1800}
       />
     </Link>
   );

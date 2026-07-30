@@ -80,6 +80,7 @@ export type HerbaCodeZoneSummary = {
   zoneCode: string;
   slug: string;
   title: string;
+  shortDescription: string;
   plantCount: number;
   streetNames: string[];
 };
@@ -98,6 +99,7 @@ export type HerbaCodePlantZoneEntry = {
   zoneCode: string;
   zoneSlug: string;
   zoneTitle: string;
+  zoneShortDescription: string | null;
   entryOrder: number;
   localName: string;
   scientificName: string | null;
@@ -117,6 +119,7 @@ export type HerbaCodePlantProfile = {
   scientificName: string | null;
   aliases: string[];
   image: string | null;
+  shortDescription: string | null;
   sourceDocumentName: string;
   zoneEntries: HerbaCodePlantZoneEntry[];
 };

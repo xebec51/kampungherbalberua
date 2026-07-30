@@ -1,5 +1,7 @@
 import { cache } from "react";
 import localHerbaCodeData from "../../../data/herbacode/herbacode-data.json";
+import { plants as localPlants } from "@/data/plants";
+import { getHealthZoneShortDescription } from "@/lib/content/health-zone-descriptions";
 import { getPrimaryPlantMediaMap } from "@/lib/data/media";
 import { getRestoredStreetNamesByHerbaCodeZoneSlug } from "@/lib/data/streets";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
@@ -16,15 +18,18 @@ type HerbaCodeRow =
     health_zones: {
       id: string;
       slug: string;
+      short_description: string;
       zone_code: string;
       zone_name: string;
     } | null;
     plants: {
       id: string;
+      description: string;
       image_path: string | null;
       local_name: string;
       other_names: string[];
       scientific_name: string | null;
+      short_description: string;
       slug: string;
     } | null;
   };
@@ -64,6 +69,11 @@ type LocalHerbaCodeData = {
 
 const herbaCodeQueryTimeoutMs = 5_000;
 const localData = localHerbaCodeData as LocalHerbaCodeData;
+const localPlantBySlug = new Map(
+  localPlants
+    .filter((plant) => plant.published)
+    .map((plant) => [plant.slug, plant]),
+);
 
 async function withHerbaCodeTimeout<T>(promise: Promise<T | null>) {
   let timeoutId: ReturnType<typeof setTimeout> | undefined;
@@ -86,6 +96,50 @@ function visibleImagePath(value: string | null | undefined) {
   }
 
   return value;
+}
+
+function cleanPlantText(value: string | null | undefined) {
+  const text = value?.trim();
+
+  if (!text) {
+    return null;
+  }
+
+  if (
+    /data demonstrasi|bersifat demonstrasi|informasi ini masih berupa materi awal|sedang dipetakan|menunggu verifikasi/i.test(
+      text,
+    )
+  ) {
+    return null;
+  }
+
+  return text;
+}
+
+function firstSentence(value: string | null | undefined) {
+  const text = cleanPlantText(value);
+
+  if (!text) {
+    return null;
+  }
+
+  const match = text.match(/^.+?[.!?](?:\s|$)/);
+
+  return (match?.[0] ?? text).trim();
+}
+
+function resolvePlantShortDescription(input: {
+  description?: string | null;
+  localDescription?: string | null;
+  localShortDescription?: string | null;
+  shortDescription?: string | null;
+}) {
+  return (
+    cleanPlantText(input.shortDescription) ??
+    cleanPlantText(input.localShortDescription) ??
+    firstSentence(input.description) ??
+    firstSentence(input.localDescription)
+  );
 }
 
 function mapRowToEntry(row: HerbaCodeRow): HerbaCodePlantZoneEntry | null {
@@ -112,6 +166,10 @@ function mapRowToEntry(row: HerbaCodeRow): HerbaCodePlantZoneEntry | null {
     zoneCode: row.health_zones.zone_code,
     zoneId: row.health_zone_id,
     zoneSlug: row.health_zones.slug,
+    zoneShortDescription: getHealthZoneShortDescription(
+      row.health_zones.slug,
+      row.health_zones.short_description,
+    ),
     zoneTitle: row.health_zones.zone_name,
   };
 }
@@ -144,6 +202,9 @@ function localEntries(): HerbaCodePlantZoneEntry[] {
       zoneCode: entry.zoneCode,
       zoneId: entry.zoneCode,
       zoneSlug: zone?.slug ?? entry.zoneSlug,
+      zoneShortDescription: getHealthZoneShortDescription(
+        zone?.slug ?? entry.zoneSlug,
+      ),
       zoneTitle: zone?.title ?? entry.zoneTitle,
     } satisfies HerbaCodePlantZoneEntry;
   });
@@ -167,10 +228,12 @@ function buildProfiles(input: {
   rowByPlantId?: Map<
     string,
     {
+      description: string | null;
       image_path: string | null;
       local_name: string;
       other_names: string[];
       scientific_name: string | null;
+      short_description: string | null;
       slug: string;
     }
   >;
@@ -179,6 +242,7 @@ function buildProfiles(input: {
 
   for (const entry of sortEntries(input.entries)) {
     const row = input.rowByPlantId?.get(entry.plantId);
+    const localPlant = localPlantBySlug.get(row?.slug ?? entry.plantSlug);
     const image =
       input.imageByPlantId?.get(entry.plantId) ??
       visibleImagePath(row?.image_path) ??
@@ -196,6 +260,12 @@ function buildProfiles(input: {
       image,
       localName: row?.local_name ?? entry.plantLocalName,
       scientificName: row?.scientific_name ?? entry.plantScientificName,
+      shortDescription: resolvePlantShortDescription({
+        description: row?.description,
+        localDescription: localPlant?.description,
+        localShortDescription: localPlant?.shortDescription,
+        shortDescription: row?.short_description,
+      }),
       slug: row?.slug ?? entry.plantSlug,
       sourceDocumentName: entry.sourceDocumentName,
       zoneEntries: [entry],
@@ -217,9 +287,10 @@ async function fetchHerbaCodeProfilesFromDatabase() {
   const { data, error } = await client
     .from("herbacode_plant_zone_entries")
     .select(
-      "*, plants(id, slug, local_name, scientific_name, other_names, image_path), health_zones(id, zone_code, slug, zone_name)",
+      "*, plants!inner(id, slug, local_name, scientific_name, other_names, image_path, short_description, description, content_status), health_zones(id, zone_code, slug, zone_name, short_description)",
     )
     .eq("content_status", "published")
+    .eq("plants.content_status", "published")
     .order("zone_code", { ascending: true })
     .order("entry_order", { ascending: true });
 
@@ -237,10 +308,12 @@ async function fetchHerbaCodeProfilesFromDatabase() {
       .map((row) => [
         row.plant_id,
         {
+          description: row.plants?.description ?? null,
           image_path: row.plants?.image_path ?? null,
           local_name: row.plants?.local_name ?? "",
           other_names: row.plants?.other_names ?? [],
           scientific_name: row.plants?.scientific_name ?? null,
+          short_description: row.plants?.short_description ?? null,
           slug: row.plants?.slug ?? "",
         },
       ]),
@@ -312,6 +385,10 @@ export async function getHerbaCodeZoneSummaries(): Promise<HerbaCodeZoneSummary[
       id: entry.zoneId,
       plantCount: 1,
       slug: entry.zoneSlug,
+      shortDescription: getHealthZoneShortDescription(
+        entry.zoneSlug,
+        entry.zoneShortDescription,
+      ),
       streetNames: [],
       title: entry.zoneTitle,
       zoneCode: entry.zoneCode,
@@ -364,6 +441,10 @@ export async function getHerbaCodeZoneBySlug(
     id: firstEntry.zoneId,
     plantCount: entries.length,
     slug: firstEntry.zoneSlug,
+    shortDescription: getHealthZoneShortDescription(
+      firstEntry.zoneSlug,
+      firstEntry.zoneShortDescription,
+    ),
     streetNames: await getRestoredStreetNamesByHerbaCodeZoneSlug(
       firstEntry.zoneSlug,
     ),

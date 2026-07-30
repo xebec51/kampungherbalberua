@@ -50,8 +50,8 @@ export function ProfileSection() {
               Kolaborasi Program
             </h3>
             <p className="mt-3 text-sm leading-6 text-herbal-muted">
-              Identitas KKN Universitas Hasanuddin dan Pemerintah Kota Makassar
-              ditampilkan sebagai bagian dari dokumentasi program.
+              Logo Kelompok KKN, Universitas Hasanuddin, dan Pemerintah Kota
+              Makassar ditampilkan sebagai bagian dari dokumentasi program.
             </p>
             <PartnerLogos className="mt-4" />
           </div>

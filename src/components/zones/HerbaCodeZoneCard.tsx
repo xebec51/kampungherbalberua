@@ -40,8 +40,11 @@ export function HerbaCodeZoneCard({ zone }: HerbaCodeZoneCardProps) {
             {zone.streetNames.join(", ")}
           </p>
         ) : null}
-        <p className="mt-3 line-clamp-3 flex-1 text-sm leading-6 text-herbal-muted">
-          Data tanaman dan pemanfaatan tradisional pada zona ini bersumber dari HerbaCode.
+        <p
+          className="mt-3 line-clamp-3 flex-1 text-sm leading-6 text-herbal-muted"
+          data-zone-description
+        >
+          {zone.shortDescription}
         </p>
         <PublicCardAction href={`/zona-kesehatan/${zone.slug}`}>
           Lihat detail zona

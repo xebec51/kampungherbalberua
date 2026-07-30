@@ -19,8 +19,6 @@ export function HerbaCodePlantCard({
   plant,
   priority = false,
 }: HerbaCodePlantCardProps) {
-  const zoneNames = plant.zoneEntries.map((entry) => entry.zoneTitle);
-
   return (
     <PublicCard className={className}>
       <SafeImage
@@ -53,9 +51,13 @@ export function HerbaCodePlantCard({
             {plant.scientificName}
           </p>
         ) : null}
-        <p className="mt-3 line-clamp-3 flex-1 text-sm leading-6 text-herbal-muted">
-          {zoneNames.join(", ")}
-        </p>
+        {plant.shortDescription ? (
+          <p className="mt-3 line-clamp-3 flex-1 text-sm leading-6 text-herbal-muted">
+            {plant.shortDescription}
+          </p>
+        ) : (
+          <span className="flex-1" aria-hidden="true" />
+        )}
         <PublicCardAction href={`/tanaman/${plant.slug}`}>
           Buka profil tanaman
         </PublicCardAction>

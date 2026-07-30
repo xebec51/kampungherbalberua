@@ -3,6 +3,7 @@ import { expectDashboard, loginAs } from "./helpers/auth";
 import { hasSupabaseE2EEnv } from "./helpers/supabase";
 
 const viewports = [
+  { height: 720, name: "mobile 320", width: 320 },
   { height: 812, name: "mobile", width: 375 },
   { height: 1024, name: "tablet", width: 768 },
   { height: 900, name: "desktop", width: 1440 },

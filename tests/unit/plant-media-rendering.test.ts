@@ -33,6 +33,8 @@ const plant: HerbaCodePlantProfile = {
   image: STORAGE_IMAGE_URL,
   localName: "Jahe",
   scientificName: "Zingiber officinale",
+  shortDescription:
+    "Rimpang aromatik yang secara tradisional digunakan untuk membantu menghangatkan tubuh.",
   slug: "jahe",
   sourceDocumentName: "HerbaCode Kampung Herbal Harmony",
   zoneEntries: [
@@ -55,6 +57,8 @@ const plant: HerbaCodePlantProfile = {
       zoneCode: "khb-z02",
       zoneId: "khb-z02",
       zoneSlug: "pencernaan-sehat",
+      zoneShortDescription:
+        "Sistem pencernaan mengolah makanan, menyerap zat gizi, dan membuang sisa yang tidak diperlukan tubuh.",
       zoneTitle: "Zona Pencernaan Sehat",
     },
   ],
@@ -69,6 +73,8 @@ describe("plant media rendering", () => {
 
     expect(html).toContain(STORAGE_IMAGE_URL);
     expect(html).toContain("Tanaman Jahe");
+    expect(html).toContain("Rimpang aromatik");
+    expect(html).not.toContain("Zona Pencernaan Sehat");
     expect(html).toContain(
       "(max-width: 640px) 92vw, (max-width: 1024px) 46vw, (max-width: 1279px) 30vw, 18rem",
     );
@@ -100,6 +106,8 @@ describe("plant media rendering", () => {
       id: "khb-z01",
       plantCount: 11,
       slug: "imunitas-kuat",
+      shortDescription:
+        "Sistem imun membantu tubuh mengenali dan merespons kuman, zat asing, serta perubahan sel yang berpotensi mengganggu kesehatan.",
       streetNames: ["Jl. Imun"],
       title: "Zona Imunitas Kuat",
       zoneCode: "khb-z01",
@@ -112,7 +120,30 @@ describe("plant media rendering", () => {
     expect(html).not.toContain("image-placeholder");
     expect(html).not.toContain("khb-z01");
     expect(html).toContain("Jl. Imun");
+    expect(html).toContain("Sistem imun membantu tubuh");
+    expect(html).not.toContain(
+      "Data tanaman dan pemanfaatan tradisional pada zona ini bersumber dari HerbaCode.",
+    );
     expect(html).not.toMatch(/gambar sementara|menyusul/i);
+  });
+
+  it("ZonePlantMiniCard menampilkan visual, ringkasan, dan link tanaman", async () => {
+    const { ZonePlantMiniCard } = await import(
+      "../../src/components/zones/ZonePlantMiniCard"
+    );
+    const html = renderToString(
+      React.createElement(ZonePlantMiniCard, {
+        entry: plant.zoneEntries[0],
+        plant,
+      }),
+    );
+
+    expect(html).toContain('href="/tanaman/jahe"');
+    expect(html).toContain(STORAGE_IMAGE_URL);
+    expect(html).toContain("Tanaman Jahe");
+    expect(html).toContain("Zingiber officinale");
+    expect(html).toContain("Rimpang aromatik");
+    expect(html).toContain("Lihat tanaman");
   });
 
   it("SafeImage tetap server-rendered dan tidak menambah handler gambar per kartu", () => {
