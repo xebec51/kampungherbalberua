@@ -27,6 +27,7 @@ import type {
   HerbaCodePlantProfile,
   HerbaCodePlantZoneEntry,
   PosterPlantCatalogItem,
+  PublicMediaAsset,
 } from "@/types";
 
 type PlantDetailPageProps = {
@@ -129,17 +130,19 @@ export default async function PlantDetailPage({ params }: PlantDetailPageProps) 
   const fallbackPosterImage = visibleDetailImageSrc(fallbackPosterVisual?.image);
   const fallbackLocalImage = visibleDetailImageSrc(localPlantDetailImages[plant.slug]);
   const visual = plant.image
-    ? {
-        alt: `Tanaman ${plant.localName}`,
-        fallbackLabel: `Tanaman ${plant.localName}`,
-        isIllustration: false,
-        src: plant.image,
-      }
+      ? {
+          alt: `Tanaman ${plant.localName}`,
+          fallbackLabel: `Tanaman ${plant.localName}`,
+          isIllustration: false,
+          media: plant.imageMedia,
+          src: plant.image,
+        }
     : fallbackPosterVisual && fallbackPosterImage
       ? {
           alt: `Tanaman ${plant.localName}`,
           fallbackLabel: `Tanaman ${plant.localName}`,
           isIllustration: fallbackPosterVisual.imageIsIllustration,
+          media: null,
           src: fallbackPosterImage,
         }
       : fallbackLocalImage
@@ -147,12 +150,14 @@ export default async function PlantDetailPage({ params }: PlantDetailPageProps) 
             alt: `Tanaman ${plant.localName}`,
             fallbackLabel: `Tanaman ${plant.localName}`,
             isIllustration: false,
+            media: null,
             src: fallbackLocalImage,
           }
         : {
             alt: `Tanaman ${plant.localName}`,
             fallbackLabel: `Tanaman ${plant.localName}`,
             isIllustration: false,
+            media: null,
             src: null,
           };
 
@@ -245,12 +250,14 @@ function CatalogPlantDetail({ plant }: { plant: PublishedPlantDetail }) {
         alt: `Tanaman ${plant.localName}`,
         fallbackLabel: `Tanaman ${plant.localName}`,
         isIllustration: false,
+        media: null,
         src: plant.image,
       }
     : {
         alt: `Tanaman ${plant.localName}`,
         fallbackLabel: `Tanaman ${plant.localName}`,
         isIllustration: false,
+        media: null,
         src: null,
       };
 
@@ -321,12 +328,14 @@ function PosterPlantDetail({ plant }: { plant: PosterPlantCatalogItem }) {
           : `Tanaman ${plant.rawName}`,
         fallbackLabel: `Tanaman ${plant.rawName}`,
         isIllustration: plant.imageIsIllustration,
+        media: null,
         src: image,
       }
     : {
         alt: `Tanaman ${plant.rawName}`,
         fallbackLabel: `Tanaman ${plant.rawName}`,
         isIllustration: false,
+        media: null,
         src: null,
       };
   const sourceDetails = [
@@ -396,6 +405,7 @@ type PlantDetailVisual = {
   alt: string;
   fallbackLabel: string;
   isIllustration: boolean;
+  media: PublicMediaAsset | null;
   src: string | null;
 };
 
@@ -448,8 +458,10 @@ function PlantDetailImage({
           imageClassName="object-cover"
           illustrationLabel="Visual referensi"
           labelIllustration={visual.isIllustration}
+          media={visual.media}
           priority={priority}
           sizes="(max-width: 1024px) 100vw, 38vw"
+          showAttribution
           src={visual.src}
         />
     </ImageFrame>

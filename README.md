@@ -6,9 +6,9 @@ Website ini merupakan fondasi tahap pertama untuk ruang informasi publik Kampung
 
 ## Production
 
-Website sudah terdeploy di Vercel:
+Website production:
 
-<https://kampungherbalberua.vercel.app/>
+<https://kampungherbalberua.web.id/>
 
 Deployment dilakukan melalui Vercel dan tidak dikelola secara manual dari repository ini. Perubahan pada `main` tidak otomatis berarti deployment production berubah tanpa proses deploy Vercel yang sesuai.
 
@@ -35,8 +35,8 @@ Kampung Herbal Berua membutuhkan portal digital yang dapat menjadi induk integra
 - Halaman ramuan sehat dengan bahan, takaran, langkah, saran penyajian, peringatan, dan disclaimer kesehatan.
 - Katalog produk warga dengan detail produk dan tombol WhatsApp nonaktif saat kontak belum tersedia.
 - Halaman tentang, peta, kunjungan edukasi, kegiatan, kinerja RT, kotak saran, dan tim KKN.
-- Metadata dasar, Open Graph, sitemap, robots, ikon lokal, loading UI, dan not-found UI.
-- Media Library global untuk metadata gambar, sumber, atribusi, admin media dasar, dan halaman `/sumber-gambar`. Slot gambar publik disembunyikan bila media valid belum tersedia.
+- Metadata dasar, Open Graph, sitemap, robots, favicon lama, loading UI, dan not-found UI.
+- Media Library global untuk metadata gambar, sumber, atribusi, admin media dasar, dan attachment gambar publik. Atribusi ditampilkan pada konteks pemakaian gambar, bukan melalui halaman indeks `/sumber-gambar`.
 
 ## Teknologi
 
@@ -112,6 +112,8 @@ Detail strategi dan troubleshooting tersedia di [docs/testing.md](docs/testing.m
 ## Media Library dan Atribusi
 
 Media konten dikelola melalui schema `media_assets` dan tabel attachment untuk tanaman, zona kesehatan, serta slot konten transisi. Gambar public disajikan dari bucket `media-public`, sedangkan original yang sudah dibersihkan metadata privasi disimpan private di `media-originals`.
+
+Website tidak lagi menampilkan halaman publik `/sumber-gambar` karena halaman indeks tersebut tidak membantu alur pengunjung umum. Atribusi yang relevan tetap dijaga di konteks gambar, seperti detail tanaman, detail jalan, katalog poster, dan metadata admin Media Library. Link sumber/lisensi tidak dimasukkan ke `alt` text; `alt` tetap dipakai untuk menjelaskan isi gambar.
 
 Command media:
 
@@ -238,7 +240,7 @@ Sprint ini menambahkan fondasi database Supabase untuk modul tanaman TOGA, auten
 - Data-access layer publik untuk union tanaman, HerbaCode, poster, zona, media, dan QR.
 - Data-access layer admin untuk dashboard, tanaman, zona, media, dan HerbaCode.
 - **Local fallback**: halaman publik tanaman dan zona tetap memakai data lokal bila Supabase belum dikonfigurasi, client gagal dibuat, query gagal, atau tabel masih kosong.
-- Halaman yang sudah memakai data-access layer: `/`, `/tanaman`, `/tanaman/[slug]`, `/zona-kesehatan`, `/zona-kesehatan/[slug]`, `/z/[code]`, `/peta`, `/sumber-gambar`, dan `sitemap.xml`.
+- Halaman yang sudah memakai data-access layer: `/`, `/tanaman`, `/tanaman/[slug]`, `/jalan`, `/jalan/[slug]`, `/zona-kesehatan`, `/zona-kesehatan/[slug]`, `/qr/jalan/[qrKey]`, `/qr/zona/[qrKey]`, `/z/[code]`, `/peta`, dan `sitemap.xml`.
 
 Belum tersedia pada sprint ini (lihat juga [Fitur yang Sengaja Ditunda](#fitur-yang-sengaja-ditunda)):
 
@@ -261,6 +263,7 @@ Route admin:
 - Tanaman: `/admin/tanaman`, `/admin/tanaman/baru`, `/admin/tanaman/[id]/edit`
 - Zona: `/admin/zona`, `/admin/zona/baru`, `/admin/zona/[id]/edit`
 - QR zona: `/admin/zona/[id]/qr?format=svg` atau `?format=png`
+- Jalan: `/admin/jalan/[id]/qr?format=svg` atau `?format=png`
 
 Role dibaca dari `public.profiles` di server. Hanya `admin` yang dapat membuka dashboard dan mengelola publikasi, arsip, validasi, serta delete.
 
@@ -268,11 +271,15 @@ Role dibaca dari `public.profiles` di server. Hanya `admin` yang dapat membuka d
 
 Route publik:
 
+- `/jalan`
+- `/jalan/[slug]`
 - `/zona-kesehatan`
 - `/zona-kesehatan/[slug]`
-- `/z/[code]`
+- `/qr/jalan/[qrKey]`
+- `/qr/zona/[qrKey]`
+- `/z/[code]` untuk kompatibilitas QR lama
 
-QR selalu memakai `zone_code` secara internal. Slug boleh berubah tanpa mencetak ulang QR karena `/z/[code]` melakukan redirect sementara ke halaman canonical terbaru. Kode internal tidak ditampilkan pada halaman publik.
+QR publik baru memakai `qr_key` permanen yang terpisah dari slug halaman. QR jalan selalu menuju halaman jalan, QR zona selalu menuju halaman zona kesehatan, dan perubahan slug tidak merusak QR yang sudah dicetak. `zone_code` lama tetap disimpan sebagai identitas internal dan kompatibilitas `/z/[code]`, tetapi kode internal tidak ditampilkan pada UI publik atau URL QR baru.
 
 Panduan operasional:
 
@@ -290,6 +297,11 @@ Migration baru harus diterapkan manual oleh pengelola project Supabase setelah r
 - `supabase/migrations/20260717002000_create_health_zones.sql`
 - `supabase/migrations/20260729100000_create_herbacode_zone_entries.sql`
 - `supabase/migrations/20260729130000_separate_streets_and_repair_herbacode.sql`
+- `supabase/migrations/20260729143000_restore_thematic_streets.sql`
+- `supabase/migrations/20260729170000_create_thematic_street_catalogs.sql`
+- `supabase/migrations/20260729183000_add_public_qr_keys.sql`
+- `supabase/migrations/20260730090000_admin_only_workflow.sql`
+- `supabase/migrations/20260730100000_admin_only_label_media_policies.sql`
 
 Jangan menjalankan `npx supabase db push`, seed remote, reset database, atau koneksi ke project Supabase lain tanpa backup dan instruksi eksplisit.
 

@@ -30,6 +30,7 @@ export function ZonePlantMiniCard({
         fallbackLabel={`Tanaman ${localName}`}
         fallbackVariant="plant"
         imageClassName="object-cover"
+        media={plant?.imageMedia}
         priority={priority}
         sizes="(max-width: 640px) 7rem, (max-width: 1024px) 42vw, 28vw"
         src={plant?.image}

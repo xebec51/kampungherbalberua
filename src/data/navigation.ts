@@ -53,5 +53,4 @@ export const footerMainNavigation: DirectNavigationItem[] = [
 export const footerNavigation: DirectNavigationItem[] = [
   { type: "link", label: "Jalan Tematik", href: "/jalan" },
   { type: "link", label: "Tim KKN", href: "/tim" },
-  { type: "link", label: "Sumber Gambar", href: "/sumber-gambar" },
 ];

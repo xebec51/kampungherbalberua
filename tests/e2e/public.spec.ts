@@ -59,6 +59,8 @@ test("beranda menampilkan ringkasan HerbaCode tanpa placeholder publik", async (
   await expect(
     page.getByRole("img", { name: "Logo Universitas Hasanuddin" }).first(),
   ).toBeVisible();
+  await expect(page.getByRole("link", { name: /Sumber Gambar/ })).toHaveCount(0);
+  await expect(page.getByRole("link", { name: /Jalan Tematik/ }).first()).toBeVisible();
   await expect(
     page.getByLabel("Carousel tanaman pilihan").getByRole("link", {
       name: "Buka profil tanaman",
@@ -346,7 +348,6 @@ test("halaman publik utama bebas placeholder, undefined, dan null", async ({
     "/zona-kesehatan",
     "/zona-kesehatan/imunitas-kuat",
     "/peta",
-    "/sumber-gambar",
     "/kotak-saran",
     "/produk",
     "/ramuan",
@@ -364,6 +365,8 @@ test("halaman publik utama bebas placeholder, undefined, dan null", async ({
 test("sitemap dan robots memakai route HerbaCode tanpa route QR", async ({
   request,
 }) => {
+  expect((await request.get("/sumber-gambar")).status()).toBe(404);
+
   const sitemap = await request.get("/sitemap.xml");
   expect(sitemap.ok()).toBe(true);
   const sitemapText = await sitemap.text();
@@ -371,6 +374,7 @@ test("sitemap dan robots memakai route HerbaCode tanpa route QR", async ({
   expect(sitemapText).toContain("/tanaman/willow-bark");
   expect(sitemapText).toContain("/jalan/imun");
   expect(sitemapText).toContain("/zona-kesehatan/imunitas-kuat");
+  expect(sitemapText).not.toContain("/sumber-gambar");
   expect(sitemapText).not.toContain("/z/khb-z01");
 
   const robots = await request.get("/robots.txt");

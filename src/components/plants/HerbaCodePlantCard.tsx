@@ -27,6 +27,7 @@ export function HerbaCodePlantCard({
         fallbackLabel={`Tanaman ${plant.localName}`}
         fallbackVariant="plant"
         imageClassName="object-cover"
+        media={plant.imageMedia}
         priority={priority}
         sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, (max-width: 1279px) 30vw, 18rem"
         src={plant.image}

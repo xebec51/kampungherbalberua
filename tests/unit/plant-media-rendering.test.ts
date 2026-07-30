@@ -31,6 +31,7 @@ const plant: HerbaCodePlantProfile = {
   aliases: [],
   id: "plant-jahe",
   image: STORAGE_IMAGE_URL,
+  imageMedia: null,
   localName: "Jahe",
   scientificName: "Zingiber officinale",
   shortDescription:

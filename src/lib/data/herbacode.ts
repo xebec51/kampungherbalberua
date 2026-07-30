@@ -11,6 +11,7 @@ import type {
   HerbaCodePlantZoneEntry,
   HerbaCodeZoneDetail,
   HerbaCodeZoneSummary,
+  PublicMediaAsset,
 } from "@/types";
 
 type HerbaCodeRow =
@@ -225,6 +226,7 @@ function sortEntries(entries: HerbaCodePlantZoneEntry[]) {
 function buildProfiles(input: {
   entries: HerbaCodePlantZoneEntry[];
   imageByPlantId?: Map<string, string | null>;
+  mediaByPlantId?: Map<string, PublicMediaAsset>;
   rowByPlantId?: Map<
     string,
     {
@@ -243,7 +245,9 @@ function buildProfiles(input: {
   for (const entry of sortEntries(input.entries)) {
     const row = input.rowByPlantId?.get(entry.plantId);
     const localPlant = localPlantBySlug.get(row?.slug ?? entry.plantSlug);
+    const media = input.mediaByPlantId?.get(entry.plantId) ?? null;
     const image =
+      media?.publicUrl ??
       input.imageByPlantId?.get(entry.plantId) ??
       visibleImagePath(row?.image_path) ??
       null;
@@ -258,6 +262,7 @@ function buildProfiles(input: {
       aliases: row?.other_names ?? [],
       id: entry.plantId,
       image,
+      imageMedia: media,
       localName: row?.local_name ?? entry.plantLocalName,
       scientificName: row?.scientific_name ?? entry.plantScientificName,
       shortDescription: resolvePlantShortDescription({
@@ -321,16 +326,10 @@ async function fetchHerbaCodeProfilesFromDatabase() {
   const mediaByPlantId = await getPrimaryPlantMediaMap(
     Array.from(new Set(entries.map((entry) => entry.plantId))),
   );
-  const imageByPlantId = new Map(
-    Array.from(mediaByPlantId.entries()).map(([plantId, media]) => [
-      plantId,
-      media.publicUrl,
-    ]),
-  );
 
   return buildProfiles({
     entries,
-    imageByPlantId,
+    mediaByPlantId,
     rowByPlantId: plantRows,
   });
 }

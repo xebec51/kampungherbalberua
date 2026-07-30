@@ -109,7 +109,7 @@ Tambahkan tiga environment variable berikut di **Vercel Project Settings → Env
 
 - `NEXT_PUBLIC_SUPABASE_URL`
 - `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`
-- `NEXT_PUBLIC_SITE_URL` (isi dengan `https://kampungherbalberua.vercel.app` untuk Production)
+- `NEXT_PUBLIC_SITE_URL` (isi dengan `https://kampungherbalberua.web.id` untuk Production)
 
 Tambahkan variable ini pada scope **Development**, **Preview**, dan **Production** sesuai kebutuhan masing-masing (misalnya Preview dapat menunjuk ke project Supabase yang berbeda dari Production bila Anda ingin memisahkan data).
 

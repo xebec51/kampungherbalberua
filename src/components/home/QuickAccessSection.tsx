@@ -22,9 +22,9 @@ const quickLinks = [
   },
   {
     index: "04",
-    title: "Sumber Gambar",
-    description: "Baca atribusi media yang digunakan pada website.",
-    href: "/sumber-gambar",
+    title: "Jalan Tematik",
+    description: "Jelajahi sembilan jalan tematik beserta tanaman yang tercatat.",
+    href: "/jalan",
   },
 ];
 

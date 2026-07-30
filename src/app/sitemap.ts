@@ -18,7 +18,6 @@ const staticRoutes = [
   "/zona-kesehatan",
   "/kinerja-rt",
   "/tim",
-  "/sumber-gambar",
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

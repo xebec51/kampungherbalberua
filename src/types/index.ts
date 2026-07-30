@@ -119,6 +119,7 @@ export type HerbaCodePlantProfile = {
   scientificName: string | null;
   aliases: string[];
   image: string | null;
+  imageMedia: PublicMediaAsset | null;
   shortDescription: string | null;
   sourceDocumentName: string;
   zoneEntries: HerbaCodePlantZoneEntry[];

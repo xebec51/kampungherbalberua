@@ -48,11 +48,6 @@ test("preview deployment public smoke @preview", async ({ page, request }) => {
   await page.goto("/zona-kesehatan/imunitas-kuat");
   await expect(page.getByText("Zona HerbaCode", { exact: true }).first()).toBeVisible();
 
-  await page.goto("/sumber-gambar");
-  await expect(
-    page.getByRole("heading", { exact: true, name: "Sumber Gambar" }),
-  ).toBeVisible();
-
   await page.goto("/jalan");
   await expect(
     page.getByRole("heading", { exact: true, name: "Jalan Tematik Kampung Herbal" }),
