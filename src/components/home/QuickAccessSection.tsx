@@ -30,21 +30,29 @@ const quickLinks = [
 
 export function QuickAccessSection() {
   return (
-    <section className="relative z-10 -mt-16 bg-transparent pb-16">
+    <section className="home-section bg-herbal-cream py-14 sm:py-16">
       <Container>
-        <div className="grid gap-3 rounded-md border border-white/[0.45] bg-white/72 p-3 shadow-[0_20px_54px_rgba(17,27,21,0.16)] backdrop-blur sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mb-7 max-w-3xl">
+          <p className="text-sm font-bold uppercase tracking-[0.16em] text-herbal-brown">
+            Akses Utama
+          </p>
+          <h2 className="mt-3 text-2xl font-bold text-herbal-ink sm:text-3xl">
+            Mulai dari kebutuhan paling sering dicari
+          </h2>
+        </div>
+        <div className="grid gap-3 rounded-[var(--radius-card)] border border-herbal-green/10 bg-white/76 p-3 shadow-[var(--shadow-soft)] backdrop-blur sm:grid-cols-2 lg:grid-cols-4">
           {quickLinks.map((item) => (
             <Link
-              className="group grid min-h-40 rounded-md border border-herbal-green/10 bg-white/94 p-5 transition duration-300 hover:-translate-y-0.5 hover:border-herbal-green/25 hover:bg-herbal-mist hover:shadow-[0_14px_32px_rgba(17,27,21,0.11)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
+              className="group grid min-h-40 rounded-md border border-herbal-green/10 bg-white p-5 transition duration-300 hover:-translate-y-0.5 hover:border-herbal-green/25 hover:bg-herbal-mist hover:shadow-[0_14px_32px_rgba(17,27,21,0.11)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
               href={item.href}
               key={item.href}
             >
-              <span className="flex h-10 w-10 items-center justify-center rounded-md bg-[#f7d774] text-sm font-extrabold text-[#111b15]">
+              <span className="flex h-10 w-10 items-center justify-center rounded-md bg-herbal-gold text-sm font-bold text-herbal-ink">
                 {item.index}
               </span>
-              <h2 className="mt-4 text-lg font-extrabold text-herbal-ink group-hover:text-herbal-green">
+              <h3 className="mt-4 text-lg font-bold text-herbal-ink group-hover:text-herbal-green">
                 {item.title}
-              </h2>
+              </h3>
               <p className="mt-3 text-sm leading-6 text-herbal-muted">
                 {item.description}
               </p>

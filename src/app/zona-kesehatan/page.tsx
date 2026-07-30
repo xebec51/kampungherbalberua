@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { HerbaCodeZoneCard } from "@/components/zones/HerbaCodeZoneCard";
 import { Container } from "@/components/ui/Container";
 import { Disclaimer } from "@/components/ui/Disclaimer";
-import { SectionHeading } from "@/components/ui/SectionHeading";
+import { PageHero } from "@/components/ui/PageHero";
 import { getHerbaCodeZoneSummaries } from "@/lib/data/herbacode";
 import { createPageMetadata } from "@/lib/metadata";
 
@@ -19,13 +19,14 @@ export default async function HealthZonesPage() {
   const zones = await getHerbaCodeZoneSummaries();
 
   return (
-    <section className="bg-herbal-cream py-12 sm:py-16">
-      <Container>
-        <SectionHeading
-          description="Setiap zona HerbaCode mengelompokkan tanaman, senyawa aktif, bagian yang digunakan, manfaat, budidaya, perhatian, dan cara pemanfaatan bila tersedia."
-          eyebrow="Kampung Herbal Harmony"
-          title="Zona Kesehatan"
-        />
+    <>
+      <PageHero
+        description="Setiap zona HerbaCode mengelompokkan tanaman, senyawa aktif, bagian yang digunakan, manfaat, budidaya, perhatian, dan cara pemanfaatan bila tersedia."
+        eyebrow="Kampung Herbal Harmony"
+        title="Zona Kesehatan"
+      />
+      <section className="bg-herbal-cream py-10 sm:py-12">
+        <Container>
         <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {zones.map((zone) => (
             <HerbaCodeZoneCard key={zone.zoneCode} zone={zone} />
@@ -41,6 +42,7 @@ export default async function HealthZonesPage() {
           </Disclaimer>
         </div>
       </Container>
-    </section>
+      </section>
+    </>
   );
 }

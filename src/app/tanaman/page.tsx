@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { PosterPlantCatalog } from "@/components/plants/PosterPlantCatalog";
 import { Container } from "@/components/ui/Container";
 import { Disclaimer } from "@/components/ui/Disclaimer";
-import { SectionHeading } from "@/components/ui/SectionHeading";
+import { PageHero } from "@/components/ui/PageHero";
 import {
   POSTER_CLAIMED_ENTRY_COUNT,
   getPosterPlantCatalog,
@@ -42,13 +42,14 @@ export default async function PlantsPage() {
   );
 
   return (
-    <section className="bg-herbal-cream py-12 sm:py-16">
-      <Container>
-        <SectionHeading
-          description="Katalog ini memakai data HerbaCode Kampung Herbal Harmony sebagai sumber profil tanaman, zona kesehatan, senyawa aktif, bagian tanaman, budidaya, perhatian, dan pemanfaatan tradisional yang tersedia."
-          eyebrow="Katalog Tanaman"
-          title="Katalog Tanaman Kampung Herbal Harmony"
-        />
+    <>
+      <PageHero
+        description="Katalog gabungan dari poster Kampung Herbal dan HerbaCode. Tanaman yang sudah memiliki profil edukasi menampilkan zona, senyawa aktif, bagian tanaman, budidaya, perhatian, dan pemanfaatan tradisional sesuai sumber."
+        eyebrow="Katalog Tanaman"
+        title="Katalog Tanaman Kampung Herbal Harmony"
+      />
+      <section className="bg-herbal-cream py-10 sm:py-12">
+        <Container>
         <dl className="mt-6 grid grid-cols-2 gap-3 lg:grid-cols-6">
           <CatalogMetric
             label="Katalog final"
@@ -96,7 +97,8 @@ export default async function PlantsPage() {
           </Disclaimer>
         </div>
       </Container>
-    </section>
+      </section>
+    </>
   );
 }
 
@@ -249,7 +251,7 @@ function CatalogMetric({
   value: string;
 }) {
   return (
-    <div className="rounded-md border border-herbal-green/10 bg-white p-3 shadow-sm sm:p-4">
+    <div className="rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-3 shadow-[var(--shadow-soft)] sm:p-4">
       <dt className="text-xs font-bold uppercase tracking-[0.12em] text-herbal-muted">
         {label}
       </dt>

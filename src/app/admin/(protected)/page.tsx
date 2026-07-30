@@ -30,7 +30,7 @@ export default async function AdminDashboardPage() {
 
   return (
     <div className="grid gap-6">
-      <header className="rounded-md border border-herbal-green/10 bg-white p-6 shadow-sm">
+      <header className="brand-pattern rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-6 shadow-[var(--shadow-soft)]">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.16em] text-herbal-brown">
@@ -73,7 +73,7 @@ export default async function AdminDashboardPage() {
         </section>
       )}
 
-      <section className="grid gap-4 rounded-md border border-herbal-green/10 bg-white p-5 shadow-sm">
+      <section className="grid gap-4 rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-5 shadow-[var(--shadow-soft)]">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <h3 className="text-xl font-bold text-herbal-ink">
@@ -186,7 +186,7 @@ type StatCardProps = {
 
 function StatCard({ label, value }: StatCardProps) {
   return (
-    <article className="rounded-md border border-herbal-green/10 bg-white p-5 shadow-sm">
+    <article className="rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-5 shadow-[var(--shadow-soft)]">
       <p className="text-sm font-semibold text-herbal-muted">{label}</p>
       <p className="mt-3 text-3xl font-bold text-herbal-ink">
         {value === null ? "Belum tersedia" : value}

@@ -36,7 +36,7 @@ export function PlantCard({
           <StatusBadge tone="green">{plant.category}</StatusBadge>
           <StatusBadge tone="brown">Edukasi umum</StatusBadge>
         </div>
-        <h3 className="mt-4 line-clamp-2 text-lg font-extrabold leading-tight text-herbal-ink">
+        <h3 className="mt-4 line-clamp-2 text-lg font-bold leading-tight text-herbal-ink">
           <Link
             className="transition hover:text-herbal-green"
             href={`/tanaman/${plant.slug}`}

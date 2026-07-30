@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
+import { BrandCard } from "@/components/ui/BrandCard";
 import { Container } from "@/components/ui/Container";
 import { Disclaimer } from "@/components/ui/Disclaimer";
 import { SafeImage } from "@/components/ui/SafeImage";
@@ -77,7 +78,7 @@ export default async function HealthZoneDetailPage({
   }
 
   return (
-    <article className="bg-herbal-cream py-12 sm:py-16">
+    <article className="bg-herbal-cream py-10 sm:py-14">
       <Container>
         <Breadcrumb
           items={[
@@ -86,7 +87,7 @@ export default async function HealthZoneDetailPage({
           ]}
         />
 
-        <div className="mt-8">
+        <div className="mt-8 rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-5 shadow-[var(--shadow-soft)] sm:p-7">
           <div>
             <div className="flex flex-wrap gap-2">
               <StatusBadge tone="green">Zona HerbaCode</StatusBadge>
@@ -121,10 +122,10 @@ export default async function HealthZoneDetailPage({
           </div>
         </section>
 
-        <section className="mt-8 rounded-md border border-herbal-green/10 bg-white p-5 text-sm leading-6 text-herbal-muted shadow-sm">
+        <BrandCard as="section" className="mt-8 text-sm leading-6 text-herbal-muted">
           <h2 className="text-base font-bold text-herbal-ink">Sumber</h2>
           <p className="mt-3">HerbaCode Kampung Herbal Harmony</p>
-        </section>
+        </BrandCard>
 
         <div className="mt-8">
           <Disclaimer>
@@ -153,7 +154,7 @@ function CatalogZoneDetail({ zone }: { zone: HealthZone }) {
   const title = zone.streetName ?? zone.zoneName;
 
   return (
-    <article className="bg-herbal-cream py-12 sm:py-16">
+    <article className="bg-herbal-cream py-10 sm:py-14">
       <Container>
         <Breadcrumb
           items={[
@@ -227,7 +228,7 @@ function CatalogZoneDetail({ zone }: { zone: HealthZone }) {
 function ZonePlantLink({ entry }: { entry: HerbaCodePlantZoneEntry }) {
   return (
     <Link
-      className="group block rounded-md border border-herbal-green/10 bg-white p-5 shadow-sm transition hover:border-herbal-green/35 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
+            className="group block rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-5 shadow-[var(--shadow-soft)] transition hover:border-herbal-green/35 hover:shadow-[var(--shadow-lift)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
       href={`/tanaman/${entry.plantSlug}`}
     >
       <span className="text-xs font-bold uppercase tracking-[0.14em] text-herbal-brown">
@@ -251,10 +252,10 @@ function TextSection({ title, value }: { title: string; value: string | null }) 
   }
 
   return (
-    <section className="rounded-md border border-herbal-green/10 bg-white p-5 shadow-sm">
+    <BrandCard as="section">
       <h2 className="text-base font-bold text-herbal-ink">{title}</h2>
       <p className="mt-3 text-sm leading-6 text-herbal-muted">{value}</p>
-    </section>
+    </BrandCard>
   );
 }
 
@@ -264,7 +265,7 @@ function ListSection({ title, values }: { title: string; values: string[] }) {
   }
 
   return (
-    <section className="rounded-md border border-herbal-green/10 bg-white p-5 shadow-sm">
+    <BrandCard as="section">
       <h2 className="text-base font-bold text-herbal-ink">{title}</h2>
       <ul className="mt-3 grid gap-2 text-sm leading-6 text-herbal-muted">
         {values.map((value) => (
@@ -277,6 +278,6 @@ function ListSection({ title, values }: { title: string; values: string[] }) {
           </li>
         ))}
       </ul>
-    </section>
+    </BrandCard>
   );
 }

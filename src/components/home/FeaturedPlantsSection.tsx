@@ -9,7 +9,7 @@ export async function FeaturedPlantsSection() {
   const featuredPlants = await getHerbaCodePlantCatalog();
 
   return (
-    <section className="home-section bg-gradient-to-b from-white via-herbal-cream to-white py-14 sm:py-16">
+    <section className="home-section bg-white py-14 sm:py-16">
       <Container>
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <SectionHeading

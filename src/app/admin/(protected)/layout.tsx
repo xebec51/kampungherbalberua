@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { logoutAction } from "@/app/admin/login/actions";
+import { Logo } from "@/components/layout/Logo";
 import { Container } from "@/components/ui/Container";
 import { requireStaff } from "@/lib/auth/require-staff";
 
@@ -28,11 +29,12 @@ export default async function AdminProtectedLayout({
   const displayName = profile.display_name?.trim() || user.email || "Staf";
 
   return (
-    <section className="bg-herbal-cream py-8 sm:py-10">
+    <section className="min-h-screen bg-herbal-cream py-6 sm:py-8">
       <Container>
         <div className="grid gap-6 lg:grid-cols-[17rem_1fr]">
-          <aside className="rounded-md border border-herbal-green/10 bg-white p-5 shadow-sm">
+          <aside className="h-fit rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-5 shadow-[var(--shadow-soft)] lg:sticky lg:top-24">
             <div>
+              <Logo className="mb-5" />
               <p className="text-sm font-semibold uppercase tracking-[0.16em] text-herbal-brown">
                 Dashboard
               </p>
@@ -69,7 +71,7 @@ export default async function AdminProtectedLayout({
               </button>
             </form>
           </aside>
-          <div>{children}</div>
+          <div className="min-w-0">{children}</div>
         </div>
       </Container>
     </section>

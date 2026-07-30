@@ -40,7 +40,7 @@ export function HerbaCodePlantCard({
             {plant.zoneEntries.length} zona
           </StatusBadge>
         </div>
-        <h3 className="mt-4 line-clamp-2 text-lg font-extrabold leading-tight text-herbal-ink">
+        <h3 className="mt-4 line-clamp-2 text-lg font-bold leading-tight text-herbal-ink">
           <Link
             className="transition hover:text-herbal-green"
             href={`/tanaman/${plant.slug}`}

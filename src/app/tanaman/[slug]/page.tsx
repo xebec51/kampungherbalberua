@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
+import { BrandCard } from "@/components/ui/BrandCard";
 import { Container } from "@/components/ui/Container";
 import { Disclaimer } from "@/components/ui/Disclaimer";
+import { ImageFrame } from "@/components/ui/ImageFrame";
 import { SafeImage } from "@/components/ui/SafeImage";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import {
@@ -155,7 +157,7 @@ export default async function PlantDetailPage({ params }: PlantDetailPageProps) 
           };
 
   return (
-    <article className="bg-herbal-cream py-12 sm:py-16">
+    <article className="bg-herbal-cream py-10 sm:py-14">
       <Container>
         <Breadcrumb
           items={[
@@ -164,10 +166,9 @@ export default async function PlantDetailPage({ params }: PlantDetailPageProps) 
           ]}
         />
 
-        <div
-          className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.82fr)] lg:items-start"
-        >
-          <div className="min-w-0">
+        <div className="mt-8 rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-5 shadow-[var(--shadow-soft)] sm:p-7">
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(19rem,0.78fr)] lg:items-start">
+            <div className="min-w-0">
             <div className="flex flex-wrap gap-2">
               <StatusBadge tone="green">HerbaCode</StatusBadge>
               <StatusBadge tone="brown">
@@ -198,9 +199,10 @@ export default async function PlantDetailPage({ params }: PlantDetailPageProps) 
                 </Link>
               ))}
             </div>
-          </div>
+            </div>
 
-          <PlantDetailImage priority visual={visual} />
+            <PlantDetailImage priority visual={visual} />
+          </div>
         </div>
 
         <div className="mt-8 grid gap-6 lg:grid-cols-2">
@@ -216,10 +218,10 @@ export default async function PlantDetailPage({ params }: PlantDetailPageProps) 
 
         <BenefitsByZone entries={plant.zoneEntries} />
 
-        <section className="mt-8 rounded-md border border-herbal-green/10 bg-white p-5 text-sm leading-6 text-herbal-muted shadow-sm">
+        <BrandCard as="section" className="mt-8 text-sm leading-6 text-herbal-muted">
           <h2 className="text-base font-bold text-herbal-ink">Sumber</h2>
           <p className="mt-3">{plant.sourceDocumentName}</p>
-        </section>
+        </BrandCard>
 
         <div className="mt-8">
           <Disclaimer>
@@ -253,7 +255,7 @@ function CatalogPlantDetail({ plant }: { plant: PublishedPlantDetail }) {
       };
 
   return (
-    <article className="bg-herbal-cream py-12 sm:py-16">
+    <article className="bg-herbal-cream py-10 sm:py-14">
       <Container>
         <Breadcrumb
           items={[
@@ -262,9 +264,7 @@ function CatalogPlantDetail({ plant }: { plant: PublishedPlantDetail }) {
           ]}
         />
 
-        <div
-          className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.82fr)] lg:items-start"
-        >
+        <div className="mt-8 grid gap-8 rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-5 shadow-[var(--shadow-soft)] sm:p-7 lg:grid-cols-[minmax(0,1fr)_minmax(19rem,0.78fr)] lg:items-start">
           <div className="min-w-0">
             <div className="flex flex-wrap gap-2">
               <StatusBadge tone="green">Katalog tanaman</StatusBadge>
@@ -286,17 +286,17 @@ function CatalogPlantDetail({ plant }: { plant: PublishedPlantDetail }) {
         </div>
 
         {hasSeparateDescription ? (
-          <section className="mt-8 rounded-md border border-herbal-green/10 bg-white p-5 text-sm leading-6 text-herbal-muted shadow-sm">
+          <BrandCard as="section" className="mt-8 text-sm leading-6 text-herbal-muted">
             <h2 className="text-base font-bold text-herbal-ink">Deskripsi</h2>
             <p className="mt-3">{plant.description}</p>
-          </section>
+          </BrandCard>
         ) : null}
 
         {sourceNotes ? (
-          <section className="mt-8 rounded-md border border-herbal-green/10 bg-white p-5 text-sm leading-6 text-herbal-muted shadow-sm">
+          <BrandCard as="section" className="mt-8 text-sm leading-6 text-herbal-muted">
             <h2 className="text-base font-bold text-herbal-ink">Sumber</h2>
             <p className="mt-3">{sourceNotes}</p>
-          </section>
+          </BrandCard>
         ) : null}
 
         <div className="mt-8">
@@ -336,7 +336,7 @@ function PosterPlantDetail({ plant }: { plant: PosterPlantCatalogItem }) {
   ].filter((value): value is string => Boolean(value?.trim()));
 
   return (
-    <article className="bg-herbal-cream py-12 sm:py-16">
+    <article className="bg-herbal-cream py-10 sm:py-14">
       <Container>
         <Breadcrumb
           items={[
@@ -345,9 +345,7 @@ function PosterPlantDetail({ plant }: { plant: PosterPlantCatalogItem }) {
           ]}
         />
 
-        <div
-          className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.82fr)] lg:items-start"
-        >
+        <div className="mt-8 grid gap-8 rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-5 shadow-[var(--shadow-soft)] sm:p-7 lg:grid-cols-[minmax(0,1fr)_minmax(19rem,0.78fr)] lg:items-start">
           <div className="min-w-0">
             <div className="flex flex-wrap gap-2">
               <StatusBadge tone="green">Katalog Harmony</StatusBadge>
@@ -441,20 +439,20 @@ function PlantDetailImage({
   visual: PlantDetailVisual;
 }) {
   return (
-    <div className="lg:sticky lg:top-24">
+    <ImageFrame className="lg:sticky lg:top-24">
       <SafeImage
-        alt={visual.alt}
-        className="aspect-[4/3] w-full lg:aspect-[5/4]"
-        fallbackLabel={visual.fallbackLabel}
-        fallbackVariant="plant"
-        imageClassName="object-cover"
-        illustrationLabel="Visual referensi"
-        labelIllustration={visual.isIllustration}
-        priority={priority}
-        sizes="(max-width: 1024px) 100vw, 38vw"
-        src={visual.src}
-      />
-    </div>
+          alt={visual.alt}
+          className="aspect-[4/3] w-full !rounded-md !border-0 !shadow-none lg:aspect-[5/4]"
+          fallbackLabel={visual.fallbackLabel}
+          fallbackVariant="plant"
+          imageClassName="object-cover"
+          illustrationLabel="Visual referensi"
+          labelIllustration={visual.isIllustration}
+          priority={priority}
+          sizes="(max-width: 1024px) 100vw, 38vw"
+          src={visual.src}
+        />
+    </ImageFrame>
   );
 }
 
@@ -478,7 +476,7 @@ function BenefitsByZone({ entries }: { entries: HerbaCodePlantZoneEntry[] }) {
       <div className="mt-4 grid gap-5">
         {entriesWithBenefits.map((entry) => (
           <section
-            className="rounded-md border border-herbal-green/10 bg-white p-5 shadow-sm"
+            className="rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-5 shadow-[var(--shadow-soft)]"
             key={entry.id}
           >
             <h3 className="text-base font-bold text-herbal-ink">
@@ -514,7 +512,7 @@ function DetailSection({
   }
 
   return (
-    <section className="rounded-md border border-herbal-green/10 bg-white p-5 shadow-sm">
+    <BrandCard as="section">
       <h2 className="text-base font-bold text-herbal-ink">{title}</h2>
       <ul className="mt-3 grid gap-2 text-sm leading-6 text-herbal-muted">
         {values.map((value) => (
@@ -527,6 +525,6 @@ function DetailSection({
           </li>
         ))}
       </ul>
-    </section>
+    </BrandCard>
   );
 }

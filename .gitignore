@@ -84,6 +84,8 @@ data/media-cache/
 data/media-downloads/
 data/media-output/
 data/db-backups/
+design/
+tmp/
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache

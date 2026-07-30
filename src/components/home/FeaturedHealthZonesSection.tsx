@@ -9,7 +9,7 @@ export async function FeaturedHealthZonesSection() {
   const zones = await getHerbaCodeZoneSummaries();
 
   return (
-    <section className="home-section bg-herbal-cream py-14 sm:py-16">
+    <section className="home-section bg-herbal-soft py-14 sm:py-16">
       <Container>
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <SectionHeading

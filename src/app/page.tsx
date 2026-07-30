@@ -1,4 +1,5 @@
 import { DataDisclaimerSection } from "@/components/home/DataDisclaimerSection";
+import { FeaturedStreetsSection } from "@/components/home/FeaturedStreetsSection";
 import { FeaturedPlantsSection } from "@/components/home/FeaturedPlantsSection";
 import { FeaturedHealthZonesSection } from "@/components/home/FeaturedHealthZonesSection";
 import { FeaturedProductsSection } from "@/components/home/FeaturedProductsSection";
@@ -15,8 +16,9 @@ export default function Home() {
   return (
     <>
       <HeroSection />
-      <QuickAccessSection />
       <ProfileSection />
+      <QuickAccessSection />
+      <FeaturedStreetsSection />
       <FeaturedHealthZonesSection />
       <FeaturedPlantsSection />
       <HerbaCodeSection />

@@ -14,12 +14,20 @@ type HerbaCodeZoneCardProps = {
 export function HerbaCodeZoneCard({ zone }: HerbaCodeZoneCardProps) {
   return (
     <PublicCard>
+      <div className="brand-pattern relative min-h-28 bg-herbal-green px-5 py-5 text-white">
+        <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/12 text-lg font-bold text-herbal-gold ring-1 ring-white/18">
+          {zone.title.replace(/^Zona\s+/i, "").slice(0, 1)}
+        </span>
+        <p className="mt-4 text-xs font-bold uppercase tracking-[0.14em] text-white/72">
+          Zona kesehatan
+        </p>
+      </div>
       <PublicCardBody>
         <div className="flex flex-wrap gap-2">
           <StatusBadge tone="green">Zona HerbaCode</StatusBadge>
           <StatusBadge tone="brown">{zone.plantCount} tanaman</StatusBadge>
         </div>
-        <h3 className="mt-4 line-clamp-2 text-lg font-extrabold leading-tight text-herbal-ink">
+        <h3 className="mt-4 line-clamp-2 text-lg font-bold leading-tight text-herbal-ink">
           <Link
             className="transition hover:text-herbal-green"
             href={`/zona-kesehatan/${zone.slug}`}

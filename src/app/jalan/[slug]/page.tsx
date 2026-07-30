@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
+import { BrandCard } from "@/components/ui/BrandCard";
 import { Container } from "@/components/ui/Container";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import {
@@ -59,13 +60,13 @@ export default async function StreetDetailPage({
   }
 
   return (
-    <article className="bg-herbal-cream py-12 sm:py-16">
+    <article className="bg-herbal-cream py-10 sm:py-14">
       <Container>
         <Breadcrumb
           items={[{ label: "Jalan Tematik", href: "/jalan" }, { label: street.streetName }]}
         />
 
-        <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(20rem,1.1fr)] lg:items-start">
+        <div className="mt-8 grid gap-8 rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-5 shadow-[var(--shadow-soft)] sm:p-7 lg:grid-cols-[minmax(0,0.9fr)_minmax(20rem,1.1fr)] lg:items-start">
           <div className="min-w-0">
             <div className="flex flex-wrap gap-2">
               <StatusBadge tone="brown">Jalan tematik</StatusBadge>
@@ -82,7 +83,7 @@ export default async function StreetDetailPage({
               </p>
             ) : null}
             {street.blockRanges.length > 0 ? (
-              <dl className="mt-6 rounded-md border border-herbal-green/10 bg-white p-5 shadow-sm">
+              <dl className="mt-6 rounded-md border border-herbal-green/10 bg-herbal-cream/55 p-5">
                 <dt className="text-sm font-bold text-herbal-ink">
                   Blok pada papan
                 </dt>
@@ -136,7 +137,7 @@ export default async function StreetDetailPage({
             </div>
           </section>
         ) : (
-          <section className="mt-8 rounded-md border border-herbal-green/10 bg-white p-5 text-sm leading-7 text-herbal-muted shadow-sm">
+          <BrandCard as="section" className="mt-8 text-sm leading-7 text-herbal-muted">
             <h2 className="text-base font-bold text-herbal-ink">
               Catatan sumber foto
             </h2>
@@ -144,11 +145,11 @@ export default async function StreetDetailPage({
               Foto papan {street.streetName} belum terhubung dengan daftar
               tanaman yang dapat diverifikasi.
             </p>
-          </section>
+          </BrandCard>
         )}
 
         {street.relatedZones.length > 0 ? (
-          <section className="mt-8 rounded-md border border-herbal-green/10 bg-white p-5 shadow-sm">
+          <BrandCard as="section" className="mt-8">
             <h2 className="text-base font-bold text-herbal-ink">
               Zona terkait
             </h2>
@@ -163,7 +164,7 @@ export default async function StreetDetailPage({
                 </Link>
               ))}
             </div>
-          </section>
+          </BrandCard>
         ) : null}
       </Container>
     </article>
@@ -180,7 +181,7 @@ function StreetPlantEntryCard({
       <span className="text-xs font-bold uppercase tracking-[0.12em] text-herbal-brown">
         Urutan {entry.sortOrder}
       </span>
-      <span className="mt-1 block text-lg font-extrabold text-herbal-ink">
+      <span className="mt-1 block text-lg font-bold text-herbal-ink">
         {entry.rawPlantName}
       </span>
       {entry.scientificName ? (
@@ -193,15 +194,15 @@ function StreetPlantEntryCard({
 
   if (!entry.plantSlug) {
     return (
-      <article className="rounded-md border border-herbal-green/10 bg-white p-4 shadow-sm">
+      <BrandCard className="p-4">
         {content}
-      </article>
+      </BrandCard>
     );
   }
 
   return (
     <Link
-      className="rounded-md border border-herbal-green/10 bg-white p-4 shadow-sm transition hover:border-herbal-green/35 hover:bg-herbal-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
+      className="rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-4 shadow-[var(--shadow-soft)] transition hover:border-herbal-green/35 hover:bg-herbal-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
       href={`/tanaman/${entry.plantSlug}`}
     >
       {content}

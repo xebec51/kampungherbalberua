@@ -12,6 +12,8 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import type { PosterPlantCatalogItem } from "@/types";
 import { PosterPlantCard } from "@/components/plants/PosterPlantCard";
 import { EmptyState } from "@/components/ui/EmptyState";
+import { FilterChip } from "@/components/ui/FilterChip";
+import { SearchInput } from "@/components/ui/SearchInput";
 
 type PosterPlantCatalogProps = {
   claimedPosterEntryCount: number;
@@ -195,27 +197,18 @@ export function PosterPlantCatalog({
 
   return (
     <div className="mt-8">
-      <div className="rounded-md border border-herbal-green/10 bg-white p-5 shadow-sm">
+      <div className="rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-4 shadow-[var(--shadow-soft)] sm:p-5">
         <div className="grid gap-4 lg:grid-cols-[minmax(16rem,1fr)_220px_190px_180px_auto] lg:items-end">
+          <SearchInput
+            id="plant-search"
+            label="Cari tanaman"
+            onChange={(event) => setQueryInput(event.target.value)}
+            placeholder="Contoh: jahe, cincau, willow"
+            value={queryInput}
+          />
           <div>
             <label
-              className="block text-sm font-semibold text-herbal-ink"
-              htmlFor="plant-search"
-            >
-              Cari tanaman
-            </label>
-            <input
-              className="mt-2 h-11 w-full rounded-md border border-herbal-green/20 bg-white px-3 text-sm text-herbal-ink outline-none transition placeholder:text-herbal-muted/70 focus:border-herbal-green focus:ring-2 focus:ring-herbal-green/20"
-              id="plant-search"
-              onChange={(event) => setQueryInput(event.target.value)}
-              placeholder="Contoh: jahe, cincau, willow"
-              type="search"
-              value={queryInput}
-            />
-          </div>
-          <div>
-            <label
-              className="block text-sm font-semibold text-herbal-ink"
+              className="block text-sm font-medium text-herbal-ink"
               htmlFor="plant-collection"
             >
               Filter zona
@@ -232,7 +225,7 @@ export function PosterPlantCatalog({
               ))}
             </select>
           </div>
-          <label className="grid gap-2 text-sm font-semibold text-herbal-ink">
+          <label className="grid gap-2 text-sm font-medium text-herbal-ink">
             Filter bagian
             <select
               className="h-11 w-full rounded-md border border-herbal-green/20 bg-white px-3 text-sm text-herbal-ink outline-none transition focus:border-herbal-green focus:ring-2 focus:ring-herbal-green/20"
@@ -245,7 +238,7 @@ export function PosterPlantCatalog({
               ))}
             </select>
           </label>
-          <label className="grid gap-2 text-sm font-semibold text-herbal-ink">
+          <label className="grid gap-2 text-sm font-medium text-herbal-ink">
             Urutkan
             <select
               className="h-11 w-full rounded-md border border-herbal-green/20 bg-white px-3 text-sm text-herbal-ink outline-none transition focus:border-herbal-green focus:ring-2 focus:ring-herbal-green/20"
@@ -258,7 +251,7 @@ export function PosterPlantCatalog({
             </select>
           </label>
           <button
-            className="h-11 rounded-md border border-herbal-green/20 px-4 text-sm font-semibold text-herbal-green transition hover:bg-herbal-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
+            className="h-11 rounded-md border border-herbal-green/20 px-4 text-sm font-bold text-herbal-green transition hover:bg-herbal-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
             onClick={resetFilters}
             type="button"
           >
@@ -271,8 +264,7 @@ export function PosterPlantCatalog({
         {activeFilters.length > 0 ? (
           <div className="mt-3 flex flex-wrap gap-2">
             {activeFilters.map((filter) => (
-              <button
-                className="rounded-full border border-herbal-green/20 bg-herbal-soft px-3 py-1 text-xs font-semibold text-herbal-deep hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
+              <FilterChip
                 key={filter.key}
                 onClick={() => {
                   if (filter.key === "q") {
@@ -280,10 +272,9 @@ export function PosterPlantCatalog({
                   }
                   updateParam(filter.key, "");
                 }}
-                type="button"
               >
                 {filter.label} - hapus
-              </button>
+              </FilterChip>
             ))}
           </div>
         ) : null}
@@ -329,7 +320,7 @@ export function PosterPlantCatalog({
       )}
 
       {posterEntries.length > 0 ? (
-        <section className="mt-10 rounded-md border border-herbal-green/10 bg-white p-5 shadow-sm">
+        <section className="mt-10 rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-5 shadow-[var(--shadow-soft)]">
           <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <h2 className="text-lg font-bold text-herbal-ink">

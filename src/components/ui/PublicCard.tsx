@@ -23,7 +23,7 @@ export function PublicCard({ children, className }: PublicCardProps) {
   return (
     <article
       className={cn(
-        "public-card group/card flex h-full flex-col overflow-hidden rounded-md border border-herbal-green/10 bg-white/95 shadow-[0_1px_2px_rgba(17,27,21,0.05),0_14px_36px_rgba(17,27,21,0.08)] ring-1 ring-white/70",
+        "public-card group/card flex h-full flex-col overflow-hidden rounded-[var(--radius-card)] border border-herbal-green/10 bg-white/96 shadow-[var(--shadow-soft)] ring-1 ring-white/70",
         className,
       )}
     >
@@ -40,7 +40,7 @@ export function PublicCardBody({ children, className }: PublicCardBodyProps) {
 
 const actionVariants = {
   primary:
-    "border-herbal-deep bg-herbal-deep text-white shadow-[0_10px_24px_rgba(17,27,21,0.16)] hover:border-herbal-green hover:bg-herbal-green",
+    "border-herbal-deep bg-herbal-deep text-white shadow-[0_10px_24px_rgba(7,25,15,0.16)] hover:border-herbal-green hover:bg-herbal-green",
   secondary:
     "border-herbal-green/22 bg-herbal-soft text-herbal-deep hover:border-herbal-green/45 hover:bg-white",
   ghost:
@@ -56,7 +56,7 @@ export function PublicCardAction({
   return (
     <Link
       className={cn(
-        "mt-5 inline-flex min-h-10 items-center justify-between gap-3 rounded-md border px-4 py-2.5 text-sm font-bold transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown",
+        "mt-5 inline-flex min-h-11 items-center justify-between gap-3 rounded-md border px-4 py-2.5 text-sm font-bold transition duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown",
         actionVariants[variant],
         className,
       )}

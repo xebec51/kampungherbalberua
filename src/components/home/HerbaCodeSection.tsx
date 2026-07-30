@@ -17,13 +17,14 @@ export async function HerbaCodeSection() {
   );
 
   return (
-    <section className="home-section bg-herbal-soft py-16">
+    <section className="home-section brand-pattern bg-herbal-green py-16 text-white">
       <Container className="grid gap-8 lg:grid-cols-[1fr_0.8fr] lg:items-start">
         <div>
           <SectionHeading
             description="HerbaCode menghubungkan tanaman dengan zona kesehatan, senyawa aktif, bagian yang digunakan, manfaat, teknik budidaya, perhatian, dan cara pemanfaatan bila tersedia."
             eyebrow="HerbaCode"
             title="Data tanaman dan zona dari dokumen HerbaCode"
+            tone="dark"
           />
           <div className="mt-6">
             <LinkButton href="/tanaman" variant="secondary">
@@ -43,9 +44,9 @@ export async function HerbaCodeSection() {
 
 function Metric({ label, value }: { label: string; value: number }) {
   return (
-    <div className="rounded-md border border-herbal-green/10 bg-white p-5 shadow-sm">
-      <dt className="text-sm font-bold text-herbal-muted">{label}</dt>
-      <dd className="mt-2 text-3xl font-extrabold text-herbal-deep">
+    <div className="rounded-md border border-white/12 bg-white/10 p-5 shadow-sm backdrop-blur">
+      <dt className="text-sm font-bold text-white/72">{label}</dt>
+      <dd className="mt-2 text-3xl font-bold text-herbal-gold">
         {value}
       </dd>
     </div>

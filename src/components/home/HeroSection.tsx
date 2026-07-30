@@ -1,25 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Logo } from "@/components/layout/Logo";
 import { Container } from "@/components/ui/Container";
-
-const heroStats = [
-  {
-    label: "Wilayah Program",
-    value: "RT 009/RW 006",
-  },
-  {
-    label: "Fokus Edukasi",
-    value: "Katalog Tanaman",
-  },
-  {
-    label: "Identitas QR",
-    value: "Zona Permanen",
-  },
-];
 
 export function HeroSection() {
   return (
-    <section className="relative isolate flex min-h-[calc(100svh-4rem)] items-center overflow-hidden bg-herbal-deep text-white">
+    <section className="relative isolate flex min-h-[82svh] items-center overflow-hidden bg-herbal-deep text-white sm:min-h-[88svh]">
       <Image
         alt="Lorong Kampung Herbal Berua dengan pot tanaman obat keluarga di pagi hari"
         className="absolute inset-0 -z-30 h-full w-full object-cover"
@@ -30,51 +16,39 @@ export function HeroSection() {
         sizes="100vw"
         src="/images/home/kampung-herbal-hero.webp"
       />
-      <div className="absolute inset-0 -z-20 bg-[linear-gradient(180deg,rgba(8,20,13,0.5)_0%,rgba(8,20,13,0.72)_48%,rgba(8,20,13,0.94)_100%)]" />
-      <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_center,rgba(198,115,60,0.16),transparent_34rem)]" />
+      <div className="absolute inset-0 -z-20 bg-[linear-gradient(90deg,rgba(8,39,25,0.88)_0%,rgba(8,39,25,0.72)_46%,rgba(8,39,25,0.42)_100%)]" />
+      <div className="absolute inset-0 -z-20 bg-[linear-gradient(180deg,rgba(8,39,25,0.48)_0%,rgba(8,39,25,0.12)_45%,rgba(8,39,25,0.94)_100%)]" />
+      <div className="absolute right-8 top-28 -z-10 hidden h-56 w-56 rounded-full border border-white/10 sm:block" />
+      <div className="absolute right-24 top-44 -z-10 hidden h-28 w-28 rounded-full border border-herbal-gold/25 sm:block motion-safe:animate-[leaf-drift_7s_ease-in-out_infinite]" />
       <div className="absolute inset-x-0 bottom-0 -z-10 h-48 bg-gradient-to-t from-herbal-ink to-transparent" />
 
-      <Container className="py-14 sm:py-20 lg:py-24">
-        <div className="mx-auto flex max-w-5xl flex-col items-center text-center">
-          <span className="inline-flex rounded-full border border-white/[0.35] bg-white/[0.18] px-5 py-2 text-sm font-bold text-white shadow-[0_10px_30px_rgba(0,0,0,0.24)] backdrop-blur">
+      <Container className="py-24 sm:py-28 lg:py-32">
+        <div className="max-w-3xl">
+          <Logo className="h-16 w-auto sm:h-20" compact priority tone="solid" />
+          <p className="mt-8 text-sm font-bold uppercase tracking-[0.18em] text-herbal-gold">
             RT 009/RW 006 Kelurahan Berua
-          </span>
-          <h1 className="mt-6 max-w-4xl break-words text-3xl font-extrabold leading-tight tracking-normal text-white drop-shadow-[0_5px_24px_rgba(0,0,0,0.82)] sm:text-4xl lg:text-5xl">
+          </p>
+          <h1 className="mt-4 max-w-4xl break-words text-3xl font-bold leading-tight tracking-normal text-white drop-shadow-[0_5px_24px_rgba(0,0,0,0.72)] sm:text-5xl lg:text-6xl">
             Kampung Herbal Harmony Berua
           </h1>
-          <p className="mt-6 max-w-3xl break-words text-base leading-8 text-white drop-shadow-[0_3px_16px_rgba(0,0,0,0.58)] sm:text-xl">
-            Portal digital untuk mengenal tanaman, zona edukasi kesehatan,
-            peta wilayah, kegiatan, produk warga, dan aspirasi masyarakat RT
-            009/RW 006 Kelurahan Berua dari mana saja.
+          <p className="mt-6 max-w-2xl break-words text-base leading-8 text-white/88 drop-shadow-[0_3px_16px_rgba(0,0,0,0.5)] sm:text-lg">
+            Portal digital untuk mengenal tanaman herbal, jalan tematik, zona
+            edukasi kesehatan, peta wilayah, kegiatan, dan produk warga Berua.
           </p>
-          <div className="mt-8 flex w-full max-w-xl flex-col gap-3 sm:flex-row sm:justify-center">
+          <div className="mt-8 flex w-full max-w-xl flex-col gap-3 sm:flex-row">
             <Link
-              className="inline-flex min-h-14 items-center justify-center rounded-md bg-[#f7d774] px-7 py-3 text-base font-extrabold !text-[#111b15] shadow-[0_18px_45px_rgba(0,0,0,0.28)] transition hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#f7d774]"
+              className="inline-flex min-h-14 items-center justify-center rounded-md bg-herbal-gold px-7 py-3 text-base font-bold !text-herbal-ink shadow-[0_18px_45px_rgba(0,0,0,0.28)] transition hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-herbal-gold"
               href="/tanaman"
             >
-              Jelajahi Katalog Tanaman
+              Jelajahi Tanaman
             </Link>
             <Link
               className="inline-flex min-h-14 items-center justify-center rounded-md border border-white/[0.55] bg-white/[0.14] px-7 py-3 text-base font-bold text-white shadow-[0_18px_45px_rgba(0,0,0,0.18)] backdrop-blur transition hover:bg-white hover:!text-[#111b15] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
-              href="/peta"
+              href="/jalan"
             >
-              Lihat Peta Kampung
+              Lihat Jalan Tematik
             </Link>
           </div>
-
-          <dl className="mt-9 grid w-full max-w-4xl gap-px overflow-hidden rounded-md border border-white/20 bg-white/[0.18] shadow-2xl backdrop-blur sm:grid-cols-3">
-            {heroStats.map((item) => (
-              <div
-                className="bg-herbal-ink/45 px-5 py-4"
-                key={item.label}
-              >
-                <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-white/80">
-                  {item.label}
-                </dt>
-                <dd className="mt-2 text-lg font-bold text-white">{item.value}</dd>
-              </div>
-            ))}
-          </dl>
         </div>
       </Container>
     </section>

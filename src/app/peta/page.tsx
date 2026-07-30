@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { StreetCard } from "@/components/streets/StreetCard";
+import { BrandCard } from "@/components/ui/BrandCard";
 import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
+import { PageHero } from "@/components/ui/PageHero";
 import { getHerbaCodeZoneSummaries } from "@/lib/data/herbacode";
 import { getPublishedStreets } from "@/lib/data/streets";
 import { createPageMetadata } from "@/lib/metadata";
@@ -20,13 +21,14 @@ export default async function MapPage() {
   ]);
 
   return (
-    <section className="bg-herbal-cream py-12 sm:py-16">
-      <Container>
-        <SectionHeading
-          description="Halaman ini menampilkan daftar zona HerbaCode tanpa titik rumah, koordinat warga, atau data kesehatan perorangan."
-          eyebrow="Pemetaan"
-          title="Peta Kampung Herbal"
-        />
+    <>
+      <PageHero
+        description="Daftar zona HerbaCode dan jalan tematik Kampung Herbal tanpa titik rumah, koordinat warga, atau data kesehatan perorangan."
+        eyebrow="Pemetaan"
+        title="Peta Kampung Herbal"
+      />
+      <section className="bg-herbal-cream py-10 sm:py-12">
+        <Container>
         <div className="mt-8 grid gap-5 lg:grid-cols-[1fr_0.8fr]">
           <InfoPanel
             title="Zona HerbaCode"
@@ -37,11 +39,11 @@ export default async function MapPage() {
             )}
           />
           <div className="grid gap-5">
-            <div className="rounded-md border border-herbal-green/10 bg-white p-5 text-sm leading-7 text-herbal-muted shadow-sm">
+            <BrandCard className="text-sm leading-7 text-herbal-muted">
               Zona pada halaman ini bukan diagnosis wilayah dan bukan data
               penyakit warga. Website tidak menampilkan peta rumah pasien,
               alamat warga, koordinat pasien, atau kondisi kesehatan per rumah.
-            </div>
+            </BrandCard>
           </div>
         </div>
         {streets.length > 0 ? (
@@ -57,7 +59,8 @@ export default async function MapPage() {
           </section>
         ) : null}
       </Container>
-    </section>
+      </section>
+    </>
   );
 }
 
@@ -72,7 +75,7 @@ function InfoPanel({ title, values }: InfoPanelProps) {
   }
 
   return (
-    <section className="rounded-md border border-herbal-green/10 bg-white p-5 shadow-sm">
+    <BrandCard as="section">
       <h2 className="text-lg font-bold text-herbal-ink">{title}</h2>
       <ul className="mt-4 grid gap-2 text-sm text-herbal-muted">
         {values.map((value) => (
@@ -82,6 +85,6 @@ function InfoPanel({ title, values }: InfoPanelProps) {
           </li>
         ))}
       </ul>
-    </section>
+    </BrandCard>
   );
 }

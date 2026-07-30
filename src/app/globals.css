@@ -1,23 +1,32 @@
 @import "tailwindcss";
 
 @theme {
-  --color-herbal-green: #27643a;
-  --color-herbal-deep: #163522;
-  --color-herbal-soft: #e3efe4;
-  --color-herbal-brown: #7a3717;
-  --color-herbal-cream: #f5f4ec;
+  --color-herbal-green: #0c3e22;
+  --color-herbal-deep: #082719;
+  --color-herbal-soft: #e8f2df;
+  --color-herbal-brown: #7c592d;
+  --color-herbal-cream: #f5f1dd;
   --color-herbal-white: #ffffff;
-  --color-herbal-ink: #111b15;
-  --color-herbal-muted: #46544c;
-  --color-herbal-sage: #b9cdbb;
-  --color-herbal-clay: #c6733c;
-  --color-herbal-mist: #eef3ef;
+  --color-herbal-ink: #07190f;
+  --color-herbal-muted: #536154;
+  --color-herbal-sage: #89bb5e;
+  --color-herbal-clay: #7c592d;
+  --color-herbal-mist: #f9f7ed;
+  --color-herbal-gold: #e5ba21;
 }
 
 :root {
-  --background: #f5f4ec;
-  --foreground: #111b15;
-  --font-sans: Arial, Helvetica, sans-serif;
+  --background: #f5f1dd;
+  --foreground: #07190f;
+  --font-sans: var(--font-poppins), Arial, Helvetica, sans-serif;
+  --brand-green: #0c3e22;
+  --brand-leaf: #89bb5e;
+  --brand-cream: #f5f1dd;
+  --brand-gold: #e5ba21;
+  --brand-earth: #7c592d;
+  --radius-card: 0.75rem;
+  --shadow-soft: 0 18px 50px rgba(7, 25, 15, 0.1);
+  --shadow-lift: 0 24px 70px rgba(7, 25, 15, 0.16);
 }
 
 * {
@@ -34,10 +43,13 @@ body {
   margin: 0;
   overflow-x: clip;
   background:
-    radial-gradient(circle at top left, rgba(39, 100, 58, 0.08), transparent 34rem),
+    radial-gradient(circle at top left, rgba(137, 187, 94, 0.18), transparent 30rem),
+    linear-gradient(180deg, #f9f7ed 0%, var(--background) 42rem),
     var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+  font-weight: 400;
+  text-rendering: geometricPrecision;
 }
 
 a {
@@ -56,8 +68,40 @@ textarea {
 }
 
 ::selection {
-  background: #2f6b3c;
+  background: var(--brand-green);
   color: #ffffff;
+}
+
+.brand-surface {
+  background:
+    radial-gradient(circle at top right, rgba(137, 187, 94, 0.18), transparent 26rem),
+    linear-gradient(180deg, #ffffff 0%, #f9f7ed 100%);
+}
+
+.brand-pattern {
+  position: relative;
+}
+
+.brand-pattern::before {
+  background-image:
+    radial-gradient(circle at 16px 16px, rgba(137, 187, 94, 0.18) 0 2px, transparent 3px),
+    radial-gradient(circle at 44px 36px, rgba(12, 62, 34, 0.1) 0 2px, transparent 3px);
+  background-size: 64px 64px;
+  content: "";
+  inset: 0;
+  opacity: 0.45;
+  pointer-events: none;
+  position: absolute;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translate3d(0, 0.75rem, 0);
+}
+
+.reveal.is-visible {
+  animation: reveal-up 560ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--reveal-delay, 0ms);
 }
 
 .public-card {
@@ -71,7 +115,7 @@ textarea {
 }
 
 .public-card::before {
-  background: linear-gradient(90deg, #27643a, #b9cdbb, #c6733c);
+  background: linear-gradient(90deg, #0c3e22, #89bb5e, #e5ba21);
   content: "";
   height: 3px;
   inset: 0 0 auto;
@@ -83,8 +127,8 @@ textarea {
 
 .public-card:hover,
 .public-card:focus-within {
-  border-color: rgba(39, 100, 58, 0.28);
-  box-shadow: 0 18px 38px rgba(17, 27, 21, 0.13);
+  border-color: rgba(12, 62, 34, 0.28);
+  box-shadow: var(--shadow-lift);
   transform: translateY(-0.18rem);
 }
 
@@ -132,16 +176,6 @@ textarea {
 
 .navigation-dropdown-menu {
   animation: navigation-dropdown-in 160ms ease-out both;
-}
-
-.home-section {
-  content-visibility: auto;
-  contain-intrinsic-size: 42rem;
-}
-
-.catalog-card {
-  content-visibility: auto;
-  contain-intrinsic-size: 27rem;
 }
 
 .image-placeholder::before {
@@ -212,6 +246,29 @@ textarea {
   }
 }
 
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 0.75rem, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes leaf-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+
+  50% {
+    transform: translate3d(-0.35rem, 0.55rem, 0) rotate(4deg);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -224,6 +281,12 @@ textarea {
 
   .carousel-card {
     animation: none;
+  }
+
+  .reveal {
+    animation: none;
+    opacity: 1;
+    transform: none;
   }
 
   .navigation-dropdown-menu {

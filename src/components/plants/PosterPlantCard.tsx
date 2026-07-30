@@ -51,7 +51,7 @@ export function PosterPlantCard({
             <StatusBadge tone="neutral">Profil edukasi tersedia</StatusBadge>
           ) : null}
         </div>
-        <h3 className={partCategory || plant.linkedPlantId ? "mt-4 line-clamp-2 text-lg font-extrabold leading-tight text-herbal-ink" : "line-clamp-2 text-lg font-extrabold leading-tight text-herbal-ink"}>
+        <h3 className={partCategory || plant.linkedPlantId ? "mt-4 line-clamp-2 text-lg font-bold leading-tight text-herbal-ink" : "line-clamp-2 text-lg font-bold leading-tight text-herbal-ink"}>
           <Link
             className="transition hover:text-herbal-green"
             href={href}

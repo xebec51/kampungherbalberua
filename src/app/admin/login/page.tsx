@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { LoginForm } from "@/components/admin/LoginForm";
+import { Logo } from "@/components/layout/Logo";
 import { Container } from "@/components/ui/Container";
 import { createPageMetadata } from "@/lib/metadata";
 import { getSafeAdminRedirect } from "@/lib/auth/safe-redirect";
@@ -29,9 +30,10 @@ export default async function AdminLoginPage({
   const nextPath = getSafeAdminRedirect(params.next, "/admin");
 
   return (
-    <section className="bg-herbal-cream py-12 sm:py-16">
+    <section className="brand-pattern min-h-screen bg-herbal-cream py-12 sm:py-16">
       <Container className="max-w-xl">
-        <div className="rounded-md border border-herbal-green/10 bg-white p-6 shadow-sm sm:p-8">
+        <div className="rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-6 shadow-[var(--shadow-soft)] sm:p-8">
+          <Logo className="mb-7" />
           <p className="text-sm font-semibold uppercase tracking-[0.16em] text-herbal-brown">
             Admin
           </p>

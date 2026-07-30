@@ -65,12 +65,12 @@ export function Header() {
         "inset-x-0 top-0 z-50 transition-colors duration-300",
         isHome ? "fixed" : "sticky",
         solid
-          ? "border-b border-herbal-green/40 bg-herbal-green/95 text-white shadow-[0_16px_42px_rgba(17,27,21,0.18)] backdrop-blur"
+          ? "border-b border-white/10 bg-herbal-green/96 text-white shadow-[0_16px_42px_rgba(7,25,15,0.2)] backdrop-blur"
           : "border-b border-transparent bg-transparent text-white",
       )}
     >
-      <Container className="relative flex min-h-20 items-center justify-between gap-4">
-        <Logo tone={solid ? "solid" : "hero"} />
+      <Container className="relative flex min-h-[4.75rem] items-center justify-between gap-4">
+        <Logo priority tone={solid ? "solid" : "hero"} />
         <nav
           aria-label="Navigasi utama"
           className="hidden items-center gap-1 lg:flex"

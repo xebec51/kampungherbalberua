@@ -18,14 +18,14 @@ export function StreetCard({
       aria-label={`Buka detail ${street.streetName}`}
       className={
         compact
-          ? "group relative flex min-h-32 flex-col overflow-hidden rounded-md border border-herbal-brown/20 bg-white shadow-sm transition hover:border-herbal-brown/40 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
-          : "group relative flex h-full flex-col overflow-hidden rounded-md border border-herbal-brown/20 bg-white shadow-sm transition hover:border-herbal-brown/40 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
+          ? "group public-card relative flex min-h-32 flex-col overflow-hidden rounded-[var(--radius-card)] border border-herbal-brown/20 bg-white shadow-[var(--shadow-soft)] transition hover:border-herbal-brown/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
+          : "group public-card relative flex h-full flex-col overflow-hidden rounded-[var(--radius-card)] border border-herbal-brown/20 bg-white shadow-[var(--shadow-soft)] transition hover:border-herbal-brown/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
       }
       href={`/jalan/${street.slug}`}
     >
       <div
         aria-hidden="true"
-        className="absolute inset-x-0 top-0 h-1 bg-[repeating-linear-gradient(90deg,#8a5a2d_0_2rem,transparent_2rem_3rem)]"
+        className="absolute inset-x-0 top-0 z-10 h-1 bg-[repeating-linear-gradient(90deg,#7C592D_0_2rem,#E5BA21_2rem_2.55rem,transparent_2.55rem_3rem)]"
       />
       {street.imagePath ? (
         <div className={compact ? "relative aspect-[16/9]" : "relative aspect-[4/3]"}>
@@ -50,8 +50,8 @@ export function StreetCard({
         <h3
           className={
             compact
-              ? "mt-2 text-base font-extrabold leading-tight text-herbal-ink"
-              : "mt-3 text-lg font-extrabold leading-tight text-herbal-ink"
+              ? "mt-2 text-base font-bold leading-tight text-herbal-ink"
+              : "mt-3 text-lg font-bold leading-tight text-herbal-ink"
           }
         >
           {street.streetName}
@@ -61,7 +61,7 @@ export function StreetCard({
             {street.description}
           </p>
         ) : null}
-        <p className="mt-3 text-sm font-semibold text-herbal-green">
+        <p className="mt-auto pt-3 text-sm font-bold text-herbal-green">
           {street.plantCount} entri tanaman
         </p>
       </div>

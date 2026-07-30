@@ -32,7 +32,7 @@ const profilePoints = [
 
 export function ProfileSection() {
   return (
-    <section className="home-section bg-herbal-cream py-20">
+    <section className="home-section bg-white py-16 sm:py-20">
       <Container className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
         <div>
           <SectionHeading
@@ -40,12 +40,12 @@ export function ProfileSection() {
             eyebrow="Profil Singkat"
             title="Kampung Herbal Berua"
           />
-          <p className="mt-6 border-l-4 border-herbal-clay bg-white/70 px-5 py-4 text-base leading-7 text-herbal-muted shadow-sm">
+          <p className="mt-6 border-l-4 border-herbal-gold bg-herbal-cream/70 px-5 py-4 text-base leading-7 text-herbal-muted shadow-sm">
             Website ini bukan hanya papan informasi digital. Isinya disusun
             agar warga, pengunjung, dan mitra program dapat memahami konteks
             Kampung Herbal Harmony meskipun tidak sedang berada di Berua.
           </p>
-          <div className="mt-6 rounded-md border border-herbal-green/15 bg-herbal-green/[0.08] p-5">
+          <div className="mt-6 rounded-[var(--radius-card)] border border-herbal-green/15 bg-herbal-soft p-5">
             <h3 className="text-sm font-bold uppercase tracking-[0.14em] text-herbal-brown">
               Kolaborasi Program
             </h3>
@@ -56,7 +56,7 @@ export function ProfileSection() {
             <PartnerLogos className="mt-4" />
           </div>
         </div>
-        <dl className="overflow-hidden rounded-md border border-herbal-green/15 bg-white shadow-[0_18px_50px_rgba(17,27,21,0.1)]">
+        <dl className="overflow-hidden rounded-[var(--radius-card)] border border-herbal-green/15 bg-white shadow-[var(--shadow-soft)]">
           {profilePoints.map((item) => (
             <div
               className="grid gap-2 border-b border-herbal-green/10 p-5 last:border-b-0 sm:grid-cols-[9rem_1fr] sm:p-6"
