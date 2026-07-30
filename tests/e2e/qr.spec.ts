@@ -61,6 +61,7 @@ async function ensureQrFixtureZone(
   contentStatus: Database["public"]["Tables"]["health_zones"]["Insert"]["content_status"] =
     "published",
 ) {
+  const published = contentStatus === "published";
   const { error } = await admin.from("health_zones").upsert(
     {
       block_ranges: ["E2E-QR"],
@@ -70,8 +71,11 @@ async function ensureQrFixtureZone(
       qr_key: "e2e-qr-zone",
       short_description: "Zona QR E2E.",
       slug,
+      source_notes: ["Fixture E2E QR zona."],
       street_name: "Jl. QR E2E",
-      validation_status: "pending",
+      validation_checked_at: published ? "2026-07-30T00:00:00.000Z" : null,
+      validation_status: published ? "verified" : "pending",
+      validator_name: published ? "Admin E2E" : null,
       zone_code: "khb-z92",
       zone_name: "Zona QR E2E",
     },

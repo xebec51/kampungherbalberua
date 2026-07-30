@@ -34,11 +34,23 @@ test("editor tidak dapat membuka dashboard atau mengubah tanaman lewat RLS", asy
     slug: "e2e-editor-plant",
   });
   expect(insertError).not.toBeNull();
-  const { error: updateError } = await editor
+  const { data: updatedRows, error: updateError } = await editor
     .from("plants")
     .update({ short_description: "Forged editor update" })
-    .eq("slug", "jahe");
-  expect(updateError).not.toBeNull();
+    .eq("slug", "jahe")
+    .select("slug");
+  expect(updateError).toBeNull();
+  expect(updatedRows).toHaveLength(0);
+
+  const admin = await signInE2EClient("admin");
+  const persisted = await admin
+    .from("plants")
+    .select("short_description")
+    .eq("slug", "jahe")
+    .single();
+  expect(persisted.error).toBeNull();
+  expect(persisted.data?.short_description).not.toBe("Forged editor update");
+  await admin.auth.signOut();
   await editor.auth.signOut();
 });
 
@@ -54,11 +66,23 @@ test("validator tidak dapat membuka dashboard atau membaca draft admin", async (
   expect(selectError).toBeNull();
   expect(data).toHaveLength(0);
 
-  const { error: updateError } = await validator
+  const { data: updatedRows, error: updateError } = await validator
     .from("plants")
     .update({ short_description: "Forged validator update" })
-    .eq("slug", "jahe");
-  expect(updateError).not.toBeNull();
+    .eq("slug", "jahe")
+    .select("slug");
+  expect(updateError).toBeNull();
+  expect(updatedRows).toHaveLength(0);
+
+  const admin = await signInE2EClient("admin");
+  const persisted = await admin
+    .from("plants")
+    .select("short_description")
+    .eq("slug", "jahe")
+    .single();
+  expect(persisted.error).toBeNull();
+  expect(persisted.data?.short_description).not.toBe("Forged validator update");
+  await admin.auth.signOut();
   await validator.auth.signOut();
 });
 
@@ -127,7 +151,8 @@ test("admin zona dapat publish, mengunduh QR, mengubah slug, archive, dan delete
   expect(zoneId).toBeTruthy();
 
   await page.goto("/zona-kesehatan/e2e-admin-zone");
-  await expect(page.getByRole("heading", { name: "Zona E2E Admin" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Jl. E2E Admin" })).toBeVisible();
+  await expect(page.getByText("Zona E2E Admin", { exact: true })).toBeVisible();
 
   const svg = await page.request.get(`/admin/zona/${zoneId}/qr?format=svg`, {
     maxRedirects: 0,
