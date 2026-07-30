@@ -16,12 +16,11 @@ Nomor kontak sementara produk disimpan di `src/config/contacts.ts`.
 Pesan dibuat oleh `createProductOrderMessage` dan memuat:
 
 - nama produk;
-- kategori;
 - harga atau `Belum dikonfirmasi`;
-- satuan atau `Belum dikonfirmasi`;
-- status ketersediaan;
 - jumlah awal `1`;
-- permintaan informasi ketersediaan, harga final, dan cara pengambilan atau pengiriman.
+- permintaan singkat untuk informasi ketersediaan dan cara pemesanan.
+
+Format sengaja dibuat ringkas agar pengguna mudah mengirim dan mengedit pesan sebelum membuka WhatsApp.
 
 ## Batasan Tahap Ini
 

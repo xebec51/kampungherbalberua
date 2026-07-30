@@ -1,6 +1,6 @@
 import type { Product } from "@/types";
 import { productOrderContact } from "@/config/contacts";
-import { formatPrice, getAvailabilityLabel } from "@/lib/formatters";
+import { formatPrice } from "@/lib/formatters";
 
 type ProductOrderDetails = Pick<
   Product,
@@ -45,19 +45,16 @@ export function createWhatsAppUrl(phoneNumber: string | null, message: string) {
 }
 
 export function createProductOrderMessage(
-  product: Pick<Product, "availability" | "category" | "name" | "price" | "unit">,
+  product: Pick<Product, "name" | "price">,
 ) {
   return [
-    "Halo, saya ingin bertanya mengenai produk Kampung Herbal Harmony Berua.",
+    "Halo, saya ingin bertanya tentang produk Kampung Herbal Harmony Berua.",
     "",
     `Produk: ${product.name}`,
-    `Kategori: ${product.category}`,
     `Harga: ${formatPrice(product.price, null)}`,
-    `Satuan: ${product.unit ?? "Belum dikonfirmasi"}`,
-    `Status: ${getAvailabilityLabel(product.availability)}`,
-    "Jumlah yang diinginkan: 1",
+    "Jumlah: 1",
     "",
-    "Mohon informasi mengenai ketersediaan, harga final, serta cara pengambilan atau pengiriman. Terima kasih.",
+    "Mohon info ketersediaan dan cara pemesanan. Terima kasih.",
   ].join("\n");
 }
 

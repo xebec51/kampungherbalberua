@@ -37,11 +37,12 @@ describe("order produk via WhatsApp", () => {
     const message = createProductOrderMessage(product!);
 
     expect(message).toContain("Produk: Bibit Tanaman TOGA");
-    expect(message).toContain("Kategori: Bibit tanaman");
     expect(message).toContain("Harga: Belum dikonfirmasi");
-    expect(message).toContain("Satuan: Belum dikonfirmasi");
-    expect(message).toContain("Status: Segera tersedia");
-    expect(message).toContain("Jumlah yang diinginkan: 1");
+    expect(message).toContain("Jumlah: 1");
+    expect(message).toContain("Mohon info ketersediaan dan cara pemesanan.");
+    expect(message).not.toContain("Kategori:");
+    expect(message).not.toContain("Satuan:");
+    expect(message).not.toContain("Status:");
     expect(message).not.toMatch(/undefined|null/i);
   });
 
