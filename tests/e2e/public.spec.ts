@@ -46,6 +46,19 @@ test("beranda menampilkan ringkasan HerbaCode tanpa placeholder publik", async (
   await expect(
     page.getByRole("heading", { name: "Kampung Herbal Harmony Berua" }),
   ).toBeVisible();
+  await expect(page).toHaveTitle("Kampung Herbal Harmony Berua");
+  await expect(
+    page.locator('main img[alt="Logo Kampung Herbal Harmony Berua"]'),
+  ).toHaveCount(0);
+  await expect(
+    page.locator('meta[name="description"]'),
+  ).toHaveAttribute(
+    "content",
+    /Portal resmi Kampung Herbal Harmony Berua RT 009\/RW 006/,
+  );
+  await expect
+    .poll(() => page.locator('script[type="application/ld+json"]').textContent())
+    .toContain("Kampung Herbal Harmony Berua");
   await expect(
     page.getByRole("heading", {
       name: "Data tanaman dan zona dari dokumen HerbaCode",

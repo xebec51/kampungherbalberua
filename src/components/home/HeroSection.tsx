@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Logo } from "@/components/layout/Logo";
 import { Container } from "@/components/ui/Container";
 
 export function HeroSection() {
@@ -24,8 +23,7 @@ export function HeroSection() {
 
       <Container className="py-24 sm:py-28 lg:py-32">
         <div className="max-w-3xl">
-          <Logo className="h-16 w-auto sm:h-20" compact priority tone="solid" />
-          <p className="mt-8 text-sm font-bold uppercase tracking-[0.18em] text-herbal-gold">
+          <p className="text-sm font-bold uppercase tracking-[0.18em] text-herbal-gold">
             RT 009/RW 006 Kelurahan Berua
           </p>
           <h1 className="mt-4 max-w-4xl break-words text-3xl font-bold leading-tight tracking-normal text-white drop-shadow-[0_5px_24px_rgba(0,0,0,0.72)] sm:text-5xl lg:text-6xl">

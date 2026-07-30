@@ -9,8 +9,15 @@ import { LatestActivitiesSection } from "@/components/home/LatestActivitiesSecti
 import { MapPreviewSection } from "@/components/home/MapPreviewSection";
 import { ProfileSection } from "@/components/home/ProfileSection";
 import { QuickAccessSection } from "@/components/home/QuickAccessSection";
+import { createPageMetadata, siteDescription, siteName } from "@/lib/metadata";
 
 export const revalidate = 300;
+
+export const metadata = createPageMetadata({
+  description: siteDescription,
+  path: "/",
+  title: siteName,
+});
 
 export default function Home() {
   return (

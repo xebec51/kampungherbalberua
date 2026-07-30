@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { SkipLink } from "@/components/layout/SkipLink";
+import { StructuredData } from "@/components/seo/StructuredData";
 import { createRootMetadata } from "@/lib/metadata";
 import "./globals.css";
 
@@ -52,6 +53,7 @@ export default function RootLayout({
         <Header />
         <main id="konten-utama">{children}</main>
         <Footer />
+        <StructuredData />
       </body>
     </html>
   );
