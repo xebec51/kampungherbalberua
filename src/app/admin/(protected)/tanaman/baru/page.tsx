@@ -4,7 +4,6 @@ import { AdminNotice } from "@/components/admin/AdminNotice";
 import { PlantAdminForm } from "@/components/admin/PlantAdminForm";
 import { createPlantAction } from "@/app/admin/(protected)/tanaman/actions";
 import { requireStaff } from "@/lib/auth/require-staff";
-import { canEditContent } from "@/lib/auth/permissions";
 import { createPageMetadata } from "@/lib/metadata";
 
 type NewPlantPageProps = {
@@ -15,8 +14,7 @@ type NewPlantPageProps = {
 
 const errorMessages: Record<string, string> = {
   duplikat: "Slug atau kode tanaman sudah digunakan.",
-  otorisasi: "Role Anda tidak memiliki izin untuk membuat tanaman.",
-  readonly: "Validator bersifat read-only pada sprint ini.",
+  otorisasi: "Hanya admin yang dapat membuat tanaman.",
   validasi: "Periksa kembali isian wajib, status, dan path gambar.",
 };
 
@@ -30,7 +28,7 @@ export const metadata: Metadata = createPageMetadata({
 
 export default async function NewPlantPage({ searchParams }: NewPlantPageProps) {
   const params = await searchParams;
-  const { profile } = await requireStaff("/admin/tanaman/baru");
+  await requireStaff("/admin/tanaman/baru");
 
   return (
     <div className="grid gap-6">
@@ -45,16 +43,12 @@ export default async function NewPlantPage({ searchParams }: NewPlantPageProps) 
           Tambah Tanaman
         </h2>
         <p className="mt-3 max-w-2xl text-sm leading-6 text-herbal-muted">
-          Editor dapat menyimpan draft atau pending review. Publikasi dan status
-          terverifikasi hanya tersedia untuk admin.
+          Admin mengelola data tanaman, metadata pemeriksaan, validasi, dan
+          status publikasi.
         </p>
       </header>
       <AdminNotice message={errorMessages[params.error ?? ""]} tone="error" />
-      {canEditContent(profile.role) ? (
-        <PlantAdminForm action={createPlantAction} mode="create" role={profile.role} />
-      ) : (
-        <AdminNotice message={errorMessages.readonly} tone="error" />
-      )}
+      <PlantAdminForm action={createPlantAction} mode="create" />
     </div>
   );
 }

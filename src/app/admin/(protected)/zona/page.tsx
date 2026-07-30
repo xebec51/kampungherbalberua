@@ -45,8 +45,7 @@ const errorMessages: Record<string, string> = {
   gagal: "Aksi zona belum dapat diproses.",
   hapus: "Penghapusan hanya tersedia untuk admin dan wajib dikonfirmasi.",
   "tidak-ditemukan": "Zona kesehatan tidak ditemukan.",
-  otorisasi: "Role Anda tidak memiliki izin untuk aksi tersebut.",
-  readonly: "Validator bersifat read-only pada sprint ini.",
+  otorisasi: "Hanya admin yang dapat menjalankan aksi tersebut.",
   validasi: "Periksa kembali isian zona.",
 };
 
@@ -190,7 +189,6 @@ export default async function AdminZonesPage({ searchParams }: AdminZonesPagePro
               canDelete={canDeleteContent(profile.role)}
               canEdit={canEditContent(profile.role)}
               key={zone.id}
-              role={profile.role}
               zone={zone}
             />
           ))}
@@ -232,11 +230,10 @@ function FilterSelect({ defaultValue, label, name, options }: FilterSelectProps)
 type ZoneAdminCardProps = {
   canDelete: boolean;
   canEdit: boolean;
-  role: string;
   zone: HealthZoneAdminRecord;
 };
 
-function ZoneAdminCard({ canDelete, canEdit, role, zone }: ZoneAdminCardProps) {
+function ZoneAdminCard({ canDelete, canEdit, zone }: ZoneAdminCardProps) {
   return (
     <article className="rounded-md border border-herbal-green/10 bg-white p-5 shadow-sm">
       <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
@@ -277,7 +274,7 @@ function ZoneAdminCard({ canDelete, canEdit, role, zone }: ZoneAdminCardProps) {
           >
             {canEdit ? "Edit" : "Lihat"}
           </Link>
-          {role === "admin" && zone.content_status !== "archived" ? (
+          {canEdit && zone.content_status !== "archived" ? (
             <form action={archiveHealthZoneAction}>
               <input name="id" type="hidden" value={zone.id} />
               <button

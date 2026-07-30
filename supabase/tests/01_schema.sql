@@ -95,7 +95,7 @@ select ok(
   exists (
     select 1 from pg_trigger
     where tgrelid = 'public.plants'::regclass
-      and tgname = 'enforce_plants_staff_workflow'
+      and tgname = 'enforce_plants_admin_workflow'
       and not tgisinternal
   ),
   'plants workflow trigger exists'
@@ -105,7 +105,7 @@ select ok(
   exists (
     select 1 from pg_trigger
     where tgrelid = 'public.health_zones'::regclass
-      and tgname = 'enforce_health_zones_staff_workflow'
+      and tgname = 'enforce_health_zones_admin_workflow'
       and not tgisinternal
   ),
   'health_zones workflow trigger exists'

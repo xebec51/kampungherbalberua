@@ -190,6 +190,8 @@ export type Database = {
           validator_id: string | null;
           validator_name: string | null;
           validation_status: ValidationStatus;
+          validation_checked_at: string | null;
+          validation_notes: string | null;
           content_status: ContentStatus;
           featured: boolean;
           published_at: string | null;
@@ -225,6 +227,8 @@ export type Database = {
           validator_id?: string | null;
           validator_name?: string | null;
           validation_status?: ValidationStatus;
+          validation_checked_at?: string | null;
+          validation_notes?: string | null;
           content_status?: ContentStatus;
           featured?: boolean;
           published_at?: string | null;
@@ -260,6 +264,8 @@ export type Database = {
           validator_id?: string | null;
           validator_name?: string | null;
           validation_status?: ValidationStatus;
+          validation_checked_at?: string | null;
+          validation_notes?: string | null;
           content_status?: ContentStatus;
           featured?: boolean;
           published_at?: string | null;
@@ -315,6 +321,8 @@ export type Database = {
           validator_name: string | null;
           validator_id: string | null;
           validation_status: ValidationStatus;
+          validation_checked_at: string | null;
+          validation_notes: string | null;
           content_status: ContentStatus;
           featured: boolean;
           published_at: string | null;
@@ -345,6 +353,8 @@ export type Database = {
           validator_name?: string | null;
           validator_id?: string | null;
           validation_status?: ValidationStatus;
+          validation_checked_at?: string | null;
+          validation_notes?: string | null;
           content_status?: ContentStatus;
           featured?: boolean;
           published_at?: string | null;
@@ -375,6 +385,8 @@ export type Database = {
           validator_name?: string | null;
           validator_id?: string | null;
           validation_status?: ValidationStatus;
+          validation_checked_at?: string | null;
+          validation_notes?: string | null;
           content_status?: ContentStatus;
           featured?: boolean;
           published_at?: string | null;

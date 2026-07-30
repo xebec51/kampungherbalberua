@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  canPublishWithValidation,
   canRoleUseContentStatus,
   canRoleUseValidationStatus,
   hasVerifiedRequirements,
@@ -64,9 +65,9 @@ describe("image path", () => {
 });
 
 describe("workflow status", () => {
-  it("membatasi editor hanya draft atau pending_review", () => {
-    expect(canRoleUseContentStatus("editor", "draft")).toBe(true);
-    expect(canRoleUseContentStatus("editor", "pending_review")).toBe(true);
+  it("menolak editor untuk semua status konten admin", () => {
+    expect(canRoleUseContentStatus("editor", "draft")).toBe(false);
+    expect(canRoleUseContentStatus("editor", "pending_review")).toBe(false);
     expect(canRoleUseContentStatus("editor", "published")).toBe(false);
     expect(canRoleUseContentStatus("editor", "archived")).toBe(false);
   });
@@ -78,17 +79,39 @@ describe("workflow status", () => {
     expect(canRoleUseContentStatus("admin", "archived")).toBe(true);
   });
 
-  it("mewajibkan validator dan sumber untuk verified", () => {
-    expect(hasVerifiedRequirements("verified", null, ["Sumber"])).toBe(false);
-    expect(hasVerifiedRequirements("verified", "Validator", [])).toBe(false);
-    expect(hasVerifiedRequirements("verified", "Validator", ["Sumber"])).toBe(true);
+  it("mewajibkan pemeriksa, sumber, dan tanggal untuk verified", () => {
+    expect(hasVerifiedRequirements("verified", null, ["Sumber"], "2026-07-30")).toBe(false);
+    expect(hasVerifiedRequirements("verified", "Pemeriksa", [], "2026-07-30")).toBe(false);
+    expect(hasVerifiedRequirements("verified", "Pemeriksa", ["Sumber"], null)).toBe(false);
+    expect(hasVerifiedRequirements("verified", "Pemeriksa", ["Sumber"], "2026-07-30")).toBe(true);
     expect(hasVerifiedRequirements("pending", null, [])).toBe(true);
   });
 
-  it("membatasi editor dari status validasi final", () => {
-    expect(canRoleUseValidationStatus("editor", "data_demonstrasi")).toBe(true);
-    expect(canRoleUseValidationStatus("editor", "pending")).toBe(true);
+  it("menolak editor untuk semua status validasi admin", () => {
+    expect(canRoleUseValidationStatus("editor", "data_demonstrasi")).toBe(false);
+    expect(canRoleUseValidationStatus("editor", "pending")).toBe(false);
     expect(canRoleUseValidationStatus("editor", "verified")).toBe(false);
     expect(canRoleUseValidationStatus("editor", "rejected")).toBe(false);
+  });
+
+  it("mencegah published tanpa metadata verified lengkap", () => {
+    expect(
+      canPublishWithValidation({
+        checkedAt: "2026-07-30",
+        checkerName: "Pemeriksa",
+        contentStatus: "published",
+        sourceNotes: ["Sumber"],
+        validationStatus: "verified",
+      }),
+    ).toBe(true);
+    expect(
+      canPublishWithValidation({
+        checkedAt: "2026-07-30",
+        checkerName: "Pemeriksa",
+        contentStatus: "published",
+        sourceNotes: ["Sumber"],
+        validationStatus: "pending",
+      }),
+    ).toBe(false);
   });
 });

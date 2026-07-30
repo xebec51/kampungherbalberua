@@ -4,7 +4,6 @@ import { notFound } from "next/navigation";
 import { AdminNotice } from "@/components/admin/AdminNotice";
 import { PlantAdminForm } from "@/components/admin/PlantAdminForm";
 import { updatePlantAction } from "@/app/admin/(protected)/tanaman/actions";
-import { canEditContent } from "@/lib/auth/permissions";
 import { requireStaff } from "@/lib/auth/require-staff";
 import { getPlantByIdForAdmin } from "@/lib/data/admin/plants";
 import { createPageMetadata } from "@/lib/metadata";
@@ -21,8 +20,7 @@ type EditPlantPageProps = {
 
 const errorMessages: Record<string, string> = {
   duplikat: "Slug atau kode tanaman sudah digunakan.",
-  otorisasi: "Role Anda tidak memiliki izin untuk mengubah tanaman ini.",
-  readonly: "Validator bersifat read-only pada sprint ini.",
+  otorisasi: "Hanya admin yang dapat mengubah tanaman ini.",
   validasi: "Periksa kembali isian wajib, status, dan path gambar.",
 };
 
@@ -52,17 +50,12 @@ export default async function EditPlantPage({
 }: EditPlantPageProps) {
   const { id } = await params;
   const query = await searchParams;
-  const { profile } = await requireStaff(`/admin/tanaman/${id}/edit`);
+  await requireStaff(`/admin/tanaman/${id}/edit`);
   const result = await getPlantByIdForAdmin(id);
 
   if (!result.data) {
     notFound();
   }
-
-  const editorLocked =
-    profile.role === "editor" &&
-    !["draft", "pending_review"].includes(result.data.content_status);
-  const readOnly = !canEditContent(profile.role) || editorLocked;
 
   return (
     <div className="grid gap-6">
@@ -77,24 +70,16 @@ export default async function EditPlantPage({
           Edit Tanaman
         </h2>
         <p className="mt-3 max-w-2xl text-sm leading-6 text-herbal-muted">
-          {result.data.local_name}. Metadata pembuat, pengubah, validator id,
-          dan waktu publikasi ditetapkan oleh server.
+          {result.data.local_name}. Metadata pembuat, pengubah, pemeriksa, dan
+          waktu publikasi ditetapkan oleh server.
         </p>
       </header>
       <AdminNotice message={successMessages[query.success ?? ""]} />
       <AdminNotice message={errorMessages[query.error ?? ""]} tone="error" />
-      {editorLocked ? (
-        <AdminNotice
-          message="Editor hanya dapat mengubah tanaman dengan status draft atau pending review."
-          tone="error"
-        />
-      ) : null}
       <PlantAdminForm
         action={updatePlantAction.bind(null, result.data.id)}
         mode="edit"
         plant={result.data}
-        readOnly={readOnly}
-        role={profile.role}
       />
     </div>
   );

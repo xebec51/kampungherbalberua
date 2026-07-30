@@ -28,6 +28,8 @@ export type PlantAdminInput = {
   traditional_uses: string[];
   used_parts: string[];
   validation_status: ValidationStatus;
+  validation_checked_at: string | null;
+  validation_notes: string | null;
   validator_name: string | null;
   warnings: string[];
 };

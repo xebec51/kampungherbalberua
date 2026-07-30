@@ -19,8 +19,6 @@ const adminNavigation = [
 
 const roleLabels = {
   admin: "Admin",
-  editor: "Editor",
-  validator: "Validator",
 };
 
 export default async function AdminProtectedLayout({

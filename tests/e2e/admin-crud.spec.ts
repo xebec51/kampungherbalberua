@@ -19,65 +19,46 @@ test.afterAll(async () => {
   await cleanupE2EData({ failOnError: false });
 });
 
-test("editor dapat membuat dan mengubah draft tanaman tetapi tidak dapat publish/delete", async ({
+test("editor tidak dapat membuka dashboard atau mengubah tanaman lewat RLS", async ({
   page,
 }) => {
-  const slug = "e2e-editor-plant";
-
   await loginAs(page, "editor");
-  await page.goto("/admin/tanaman/baru");
-  await page.getByLabel("Slug").fill(slug);
-  await page.getByLabel("Nama lokal").fill("E2E-Editor Plant");
-  await page.getByLabel("Ringkasan").fill("Tanaman uji editor.");
-  await page.getByLabel("Deskripsi").fill("Deskripsi tanaman uji editor.");
-  await expect(page.getByLabel("Status konten").locator("option", { hasText: "Published" })).toHaveCount(0);
-  await page.getByRole("button", { name: "Simpan tanaman" }).click();
-  await expect(page).toHaveURL(/\/admin\/tanaman\/[^/]+\/edit/);
-  await page.getByLabel("Ringkasan").fill("Tanaman uji editor yang diperbarui.");
-  await page.getByRole("button", { name: "Simpan perubahan" }).click();
-  await expect(page.getByText("Perubahan tanaman berhasil disimpan.")).toBeVisible();
-  await expect(page.getByText("Hapus permanen")).toHaveCount(0);
+  await expect(page).toHaveURL(/\/admin\/login/);
 
   const editor = await signInE2EClient("editor");
-  const { error } = await editor
+  const { error: insertError } = await editor.from("plants").insert({
+    category: "rimpang",
+    description: "Desc",
+    local_name: "E2E Editor Plant",
+    short_description: "Short",
+    slug: "e2e-editor-plant",
+  });
+  expect(insertError).not.toBeNull();
+  const { error: updateError } = await editor
     .from("plants")
-    .update({ content_status: "published" })
-    .eq("slug", slug);
-  expect(error).not.toBeNull();
+    .update({ short_description: "Forged editor update" })
+    .eq("slug", "jahe");
+  expect(updateError).not.toBeNull();
   await editor.auth.signOut();
 });
 
-test("validator dapat membaca daftar tetapi forged update ditolak", async ({ page }) => {
+test("validator tidak dapat membuka dashboard atau membaca draft admin", async ({ page }) => {
   await loginAs(page, "validator");
-  await page.goto("/admin/tanaman");
-  await expect(page.getByRole("heading", { name: "Daftar Tanaman" })).toBeVisible();
-  await expect(page.getByRole("link", { name: "Tambah Tanaman" })).toHaveCount(0);
+  await expect(page).toHaveURL(/\/admin\/login/);
 
   const validator = await signInE2EClient("validator");
-  const forgedDescription = "Forged validator update";
-  const { data: beforeUpdate, error: beforeUpdateError } = await validator
+  const { data, error: selectError } = await validator
     .from("plants")
     .select("short_description")
-    .eq("slug", "jahe")
-    .single();
-  expect(beforeUpdateError).toBeNull();
+    .eq("content_status", "draft");
+  expect(selectError).toBeNull();
+  expect(data).toHaveLength(0);
 
-  const { data: updatedRows, error: updateError } = await validator
+  const { error: updateError } = await validator
     .from("plants")
-    .update({ short_description: forgedDescription })
-    .eq("slug", "jahe")
-    .select("short_description");
-  expect(updateError).toBeNull();
-  expect(updatedRows).toHaveLength(0);
-
-  const { data: afterUpdate, error: afterUpdateError } = await validator
-    .from("plants")
-    .select("short_description")
-    .eq("slug", "jahe")
-    .single();
-  expect(afterUpdateError).toBeNull();
-  expect(afterUpdate?.short_description).toBe(beforeUpdate?.short_description);
-  expect(afterUpdate?.short_description).not.toBe(forgedDescription);
+    .update({ short_description: "Forged validator update" })
+    .eq("slug", "jahe");
+  expect(updateError).not.toBeNull();
   await validator.auth.signOut();
 });
 
@@ -92,6 +73,10 @@ test("admin dapat membuat, publish, archive, dan delete tanaman", async ({
   await page.getByLabel("Nama lokal").fill("E2E-Admin Plant");
   await page.getByLabel("Ringkasan").fill("Tanaman uji admin.");
   await page.getByLabel("Deskripsi").fill("Deskripsi tanaman uji admin.");
+  await page.getByLabel("Catatan sumber").fill("E2E metadata pemeriksaan.");
+  await page.getByLabel("Nama pemeriksa").fill("Admin E2E");
+  await page.getByLabel("Tanggal pemeriksaan").fill("2026-07-30");
+  await page.getByLabel("Status validasi").selectOption("verified");
   await page.getByLabel("Status konten").selectOption("published");
   await page.getByRole("button", { name: "Simpan tanaman" }).click();
   await expect(page).toHaveURL(/\/admin\/tanaman\/[^/]+\/edit/);
@@ -116,33 +101,6 @@ test("admin dapat membuat, publish, archive, dan delete tanaman", async ({
   await expect(page.getByText("Tanaman berhasil dihapus.")).toBeVisible();
 });
 
-test("editor zona dapat membuat draft tetapi tidak dapat publish/verified/delete", async ({
-  page,
-}) => {
-  await loginAs(page, "editor");
-  await page.goto("/admin/zona/baru");
-  await page.getByLabel("Kode zona").fill("khb-z90");
-  await page.getByLabel("Slug").fill("e2e-editor-zone");
-  await page.getByLabel("Nama jalan").fill("Jl. E2E Editor");
-  await page.getByLabel("Nama zona").fill("Zona E2E Editor");
-  await page.getByLabel("Blok").fill("E2E-1");
-  await page.getByLabel("Fokus materi").fill("Materi edukasi umum.");
-  await page.getByLabel("Ringkasan").fill("Zona uji editor.");
-  await page.getByLabel("Gambaran umum").fill("Gambaran umum zona uji editor.");
-  await expect(page.getByLabel("Status konten").locator("option", { hasText: "Published" })).toHaveCount(0);
-  await expect(page.getByLabel("Status validasi").locator("option", { hasText: "Terverifikasi" })).toHaveCount(0);
-  await page.getByRole("button", { name: "Simpan zona" }).click();
-  await expect(page).toHaveURL(/\/admin\/zona\/[^/]+\/edit/);
-  await expect(page.getByText("Hapus permanen")).toHaveCount(0);
-});
-
-test("validator zona read-only", async ({ page }) => {
-  await loginAs(page, "validator");
-  await page.goto("/admin/zona");
-  await expect(page.getByRole("heading", { name: "Zona Kesehatan" })).toBeVisible();
-  await expect(page.getByRole("link", { name: "Tambah Zona" })).toHaveCount(0);
-});
-
 test("admin zona dapat publish, mengunduh QR, mengubah slug, archive, dan delete", async ({
   page,
   request,
@@ -157,6 +115,10 @@ test("admin zona dapat publish, mengunduh QR, mengubah slug, archive, dan delete
   await page.getByLabel("Fokus materi").fill("Materi edukasi umum.");
   await page.getByLabel("Ringkasan").fill("Zona uji admin.");
   await page.getByLabel("Gambaran umum").fill("Gambaran umum zona uji admin.");
+  await page.getByLabel("Catatan sumber").fill("E2E metadata pemeriksaan.");
+  await page.getByLabel("Nama pemeriksa").fill("Admin E2E");
+  await page.getByLabel("Tanggal pemeriksaan").fill("2026-07-30");
+  await page.getByLabel("Status validasi").selectOption("verified");
   await page.getByLabel("Status konten").selectOption("published");
   await page.getByRole("button", { name: "Simpan zona" }).click();
   await expect(page).toHaveURL(/\/admin\/zona\/[^/]+\/edit/);
@@ -165,7 +127,7 @@ test("admin zona dapat publish, mengunduh QR, mengubah slug, archive, dan delete
   expect(zoneId).toBeTruthy();
 
   await page.goto("/zona-kesehatan/e2e-admin-zone");
-  await expect(page.getByRole("heading", { name: "Jl. E2E Admin" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Zona E2E Admin" })).toBeVisible();
 
   const svg = await page.request.get(`/admin/zona/${zoneId}/qr?format=svg`, {
     maxRedirects: 0,

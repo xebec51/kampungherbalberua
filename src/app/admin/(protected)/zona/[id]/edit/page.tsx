@@ -5,7 +5,6 @@ import { AdminNotice } from "@/components/admin/AdminNotice";
 import { HealthZoneQrPanel } from "@/components/admin/HealthZoneQrPanel";
 import { HealthZoneAdminForm } from "@/components/admin/HealthZoneAdminForm";
 import { updateHealthZoneAction } from "@/app/admin/(protected)/zona/actions";
-import { canEditContent } from "@/lib/auth/permissions";
 import { requireStaff } from "@/lib/auth/require-staff";
 import { getHealthZoneByIdForAdmin } from "@/lib/data/admin/health-zones";
 import { createPageMetadata } from "@/lib/metadata";
@@ -24,8 +23,7 @@ type EditZonePageProps = {
 const errorMessages: Record<string, string> = {
   duplikat: "Slug atau kode zona sudah digunakan.",
   "kode-permanen": "Kode zona tidak dapat diubah setelah zona pernah dipublikasikan.",
-  otorisasi: "Role Anda tidak memiliki izin untuk mengubah zona ini.",
-  readonly: "Validator bersifat read-only pada sprint ini.",
+  otorisasi: "Hanya admin yang dapat mengubah zona ini.",
   validasi: "Periksa kembali kode zona, isian wajib, status, dan path gambar.",
 };
 
@@ -57,17 +55,13 @@ export default async function EditZonePage({
 }: EditZonePageProps) {
   const { id } = await params;
   const query = await searchParams;
-  const { profile } = await requireStaff(`/admin/zona/${id}/edit`);
+  await requireStaff(`/admin/zona/${id}/edit`);
   const result = await getHealthZoneByIdForAdmin(id);
 
   if (!result.data) {
     notFound();
   }
 
-  const editorLocked =
-    profile.role === "editor" &&
-    !["draft", "pending_review"].includes(result.data.content_status);
-  const readOnly = !canEditContent(profile.role) || editorLocked;
   const targetUrl = getHealthZoneQrTarget(result.data.qr_key);
 
   return (
@@ -89,18 +83,10 @@ export default async function EditZonePage({
       </header>
       <AdminNotice message={successMessages[query.success ?? ""]} />
       <AdminNotice message={errorMessages[query.error ?? ""]} tone="error" />
-      {editorLocked ? (
-        <AdminNotice
-          message="Editor hanya dapat mengubah zona dengan status draft atau pending review."
-          tone="error"
-        />
-      ) : null}
       <HealthZoneQrPanel zone={result.data} />
       <HealthZoneAdminForm
         action={updateHealthZoneAction.bind(null, result.data.id)}
         mode="edit"
-        readOnly={readOnly}
-        role={profile.role}
         zone={result.data}
       />
     </div>

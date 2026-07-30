@@ -46,7 +46,7 @@ insert into public.plants (
   'Data demonstrasi berdasarkan pengetahuan umum tanaman TOGA.',
   null,
   'Menunggu verifikasi tim Farmasi.',
-  'data_demonstrasi',
+  'verified',
   'published',
   true,
   now()
@@ -97,7 +97,7 @@ insert into public.health_zones (
   'Blok E1-10 dan H1-5.',
   'Menunggu verifikasi tenaga kesehatan',
   null,
-  'data_demonstrasi',
+  'verified',
   'published',
   true,
   now()
@@ -121,7 +121,7 @@ insert into public.health_zones (
   'Blok A1-7, D1-4, dan D9-14.',
   'Menunggu verifikasi tenaga kesehatan',
   null,
-  'data_demonstrasi',
+  'verified',
   'published',
   true,
   now()
@@ -145,7 +145,7 @@ insert into public.health_zones (
   'Blok H6-10 dan J2-4.',
   'Menunggu verifikasi tenaga kesehatan',
   null,
-  'data_demonstrasi',
+  'verified',
   'published',
   false,
   now()
@@ -169,7 +169,7 @@ insert into public.health_zones (
   'Blok D5-14, E1-4, dan E13-14.',
   'Menunggu verifikasi tenaga kesehatan',
   null,
-  'data_demonstrasi',
+  'verified',
   'published',
   false,
   now()
@@ -193,7 +193,7 @@ insert into public.health_zones (
   'Blok B1-9 dan C1-7.',
   'Menunggu verifikasi tenaga kesehatan',
   null,
-  'data_demonstrasi',
+  'verified',
   'published',
   true,
   now()
@@ -217,7 +217,7 @@ insert into public.health_zones (
   'Blok C8-13 dan F1-5.',
   'Menunggu verifikasi tenaga kesehatan',
   null,
-  'data_demonstrasi',
+  'verified',
   'published',
   false,
   now()
@@ -241,7 +241,7 @@ insert into public.health_zones (
   'Blok F6-9, G1-3, dan G4-5.',
   'Menunggu verifikasi tenaga kesehatan',
   null,
-  'data_demonstrasi',
+  'verified',
   'published',
   false,
   now()
@@ -265,7 +265,7 @@ insert into public.health_zones (
   'Blok J5-8 dan K1-6.',
   'Menunggu verifikasi tenaga kesehatan',
   null,
-  'data_demonstrasi',
+  'verified',
   'published',
   false,
   now()
@@ -289,7 +289,7 @@ insert into public.health_zones (
   'Blok I1-4 dan I5-11.',
   'Menunggu verifikasi tenaga kesehatan',
   null,
-  'data_demonstrasi',
+  'verified',
   'published',
   false,
   now()
@@ -411,7 +411,7 @@ insert into public.plants (
   'Data demonstrasi berdasarkan pengetahuan umum tanaman TOGA.',
   null,
   'Menunggu verifikasi tim Farmasi.',
-  'data_demonstrasi',
+  'verified',
   'published',
   true,
   now()
@@ -475,7 +475,7 @@ insert into public.plants (
   'Data demonstrasi berdasarkan pengetahuan umum tanaman TOGA.',
   null,
   'Menunggu verifikasi tim Farmasi.',
-  'data_demonstrasi',
+  'verified',
   'published',
   true,
   now()
@@ -539,7 +539,7 @@ insert into public.plants (
   'Data demonstrasi berdasarkan pengetahuan umum tanaman TOGA.',
   null,
   'Menunggu verifikasi tim Farmasi.',
-  'data_demonstrasi',
+  'verified',
   'published',
   false,
   now()
@@ -603,7 +603,7 @@ insert into public.plants (
   'Data demonstrasi berdasarkan pengetahuan umum tanaman TOGA.',
   null,
   'Menunggu verifikasi tim Farmasi.',
-  'data_demonstrasi',
+  'verified',
   'published',
   true,
   now()
@@ -667,7 +667,7 @@ insert into public.plants (
   'Data demonstrasi berdasarkan pengetahuan umum tanaman TOGA.',
   null,
   'Menunggu verifikasi tim Farmasi.',
-  'data_demonstrasi',
+  'verified',
   'published',
   false,
   now()

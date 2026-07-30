@@ -1,6 +1,6 @@
 begin;
 
-select plan(45);
+select plan(47);
 
 select has_table('public', 'media_assets', 'media_assets table exists');
 select has_table('public', 'plant_media', 'plant_media table exists');
@@ -83,9 +83,9 @@ select ok(
   exists (
     select 1 from pg_policy
     where polrelid = 'public.media_assets'::regclass
-      and polname = 'media_assets_update_editor_admin'
+      and polname = 'media_assets_update_admin'
   ),
-  'media editor/admin update policy exists'
+  'media admin update policy exists'
 );
 
 select ok(
@@ -150,6 +150,24 @@ select ok(
       and polname = 'plant_source_label_media_select_public'
   ),
   'poster label media public select policy exists'
+);
+
+select ok(
+  exists (
+    select 1 from pg_policy
+    where polrelid = 'public.plant_source_label_media'::regclass
+      and polname = 'plant_source_label_media_select_admin'
+  ),
+  'poster label media admin select policy exists'
+);
+
+select ok(
+  exists (
+    select 1 from pg_policy
+    where polrelid = 'public.plant_source_label_media'::regclass
+      and polname = 'plant_source_label_media_mutate_admin'
+  ),
+  'poster label media admin mutate policy exists'
 );
 
 select ok(
@@ -246,45 +264,45 @@ select ok(
   exists (
     select 1 from pg_policy
     where polrelid = 'public.media_quality_reviews'::regclass
-      and polname = 'media_quality_reviews_select_staff'
+      and polname = 'media_quality_reviews_select_admin'
   ),
-  'media quality review staff select policy exists'
+  'media quality review admin select policy exists'
 );
 
 select ok(
   exists (
     select 1 from pg_policy
     where polrelid = 'public.media_quality_reviews'::regclass
-      and polname = 'media_quality_reviews_insert_editor_admin'
+      and polname = 'media_quality_reviews_insert_admin'
   ),
-  'media quality review editor/admin insert policy exists'
+  'media quality review admin insert policy exists'
 );
 
 select ok(
   exists (
     select 1 from pg_policy
     where polrelid = 'public.media_quality_reviews'::regclass
-      and polname = 'media_quality_reviews_update_validator_admin'
+      and polname = 'media_quality_reviews_update_admin'
   ),
-  'media quality review validator/admin update policy exists'
+  'media quality review admin update policy exists'
 );
 
 select ok(
   exists (
     select 1 from pg_policy
     where polrelid = 'public.media_attachment_history'::regclass
-      and polname = 'media_attachment_history_select_staff'
+      and polname = 'media_attachment_history_select_admin'
   ),
-  'media attachment history staff select policy exists'
+  'media attachment history admin select policy exists'
 );
 
 select ok(
   exists (
     select 1 from pg_policy
     where polrelid = 'public.media_attachment_history'::regclass
-      and polname = 'media_attachment_history_insert_editor_admin'
+      and polname = 'media_attachment_history_insert_admin'
   ),
-  'media attachment history editor/admin insert policy exists'
+  'media attachment history admin insert policy exists'
 );
 
 select * from finish();

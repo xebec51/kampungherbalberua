@@ -42,7 +42,7 @@ Test ini menggunakan Supabase CLI lokal, pgTAP, dan role JWT lokal untuk membukt
 
 - Struktur tabel `profiles`, `plants`, dan `health_zones`.
 - Primary key, unique constraint `slug`, unique constraint `zone_code`, enum, trigger `updated_at`, dan RLS aktif.
-- Akses anon, viewer, editor, validator, dan admin.
+- Akses anon, viewer, role enum lama yang tidak aktif untuk dashboard, dan admin.
 - Workflow draft, pending review, publish, archive, delete, dan verified.
 - Aturan `zone_code` permanen setelah publish.
 
@@ -73,8 +73,7 @@ Fixture role lokal berada di `supabase/tests/fixtures/e2e-fixtures.sql`. Fixture
 User test:
 
 - `viewer@test.invalid`
-- `editor@test.invalid`
-- `validator@test.invalid`
+- `editor@test.invalid` dan `validator@test.invalid` tetap dibuat untuk regression test bahwa role lama ditolak dari dashboard.
 - `admin@test.invalid`
 
 Domain `.invalid` dipakai agar tidak menyerupai email nyata. Password fixture hanya untuk automated local/CI environment.

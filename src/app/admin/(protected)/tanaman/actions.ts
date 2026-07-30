@@ -17,8 +17,7 @@ import {
   type PlantAdminRecord,
 } from "@/lib/data/admin/plants";
 import {
-  canRoleUseContentStatus,
-  canRoleUseValidationStatus,
+  canPublishWithValidation,
   contentStatuses,
   hasVerifiedRequirements,
   isAllowed,
@@ -53,7 +52,7 @@ function readLines(formData: FormData, name: string) {
   return parseTextareaLines(readText(formData, name));
 }
 
-function parsePlantFormData(formData: FormData, role: string): ParsedPlantInput {
+function parsePlantFormData(formData: FormData): ParsedPlantInput {
   const slug = readText(formData, "slug").toLowerCase();
   const localName = readText(formData, "local_name");
   const shortDescription = readText(formData, "short_description");
@@ -63,6 +62,8 @@ function parsePlantFormData(formData: FormData, role: string): ParsedPlantInput 
   const validationStatus = readText(formData, "validation_status");
   const imagePathResult = normalizeImagePath(readText(formData, "image_path"));
   const validatorName = readOptionalText(formData, "validator_name");
+  const validationCheckedAt = readOptionalText(formData, "validation_checked_at");
+  const validationNotes = readOptionalText(formData, "validation_notes");
   const sourceNotes = readOptionalText(formData, "source_notes");
 
   if (!isValidSlug(slug)) {
@@ -90,20 +91,31 @@ function parsePlantFormData(formData: FormData, role: string): ParsedPlantInput 
   }
 
   if (
-    role === "editor" &&
-    (!canRoleUseContentStatus(role, contentStatus) ||
-      !canRoleUseValidationStatus(role, validationStatus))
+    !hasVerifiedRequirements(
+      validationStatus,
+      validatorName,
+      sourceNotes,
+      validationCheckedAt,
+    )
   ) {
     return {
       data: null,
-      error: "Editor hanya dapat menyimpan draft atau pending review.",
+      error: "Status terverifikasi wajib memiliki pemeriksa, sumber, dan tanggal pemeriksaan.",
     };
   }
 
-  if (!hasVerifiedRequirements(validationStatus, validatorName, sourceNotes)) {
+  if (
+    !canPublishWithValidation({
+      checkedAt: validationCheckedAt,
+      checkerName: validatorName,
+      contentStatus,
+      sourceNotes,
+      validationStatus,
+    })
+  ) {
     return {
       data: null,
-      error: "Status terverifikasi wajib memiliki validator dan sumber.",
+      error: "Konten hanya dapat dipublikasikan setelah validasi terverifikasi lengkap.",
     };
   }
 
@@ -131,6 +143,8 @@ function parsePlantFormData(formData: FormData, role: string): ParsedPlantInput 
       traditional_uses: readLines(formData, "traditional_uses"),
       used_parts: readLines(formData, "used_parts"),
       validation_status: validationStatus,
+      validation_checked_at: validationCheckedAt,
+      validation_notes: validationNotes,
       validator_name: validatorName,
       warnings: readLines(formData, "warnings"),
     },
@@ -158,6 +172,8 @@ function plantRecordToInput(plant: PlantAdminRecord): PlantAdminInput {
     traditional_uses: plant.traditional_uses,
     used_parts: plant.used_parts,
     validation_status: plant.validation_status,
+    validation_checked_at: plant.validation_checked_at,
+    validation_notes: plant.validation_notes,
     validator_name: plant.validator_name,
     warnings: plant.warnings,
   };
@@ -168,7 +184,7 @@ function errorCode(message: string) {
     return "duplikat";
   }
 
-  if (message.includes("Editor") || message.includes("admin")) {
+  if (message.includes("admin")) {
     return "otorisasi";
   }
 
@@ -198,7 +214,7 @@ export async function createPlantAction(formData: FormData) {
     redirect("/admin/tanaman?error=readonly");
   }
 
-  const parsed = parsePlantFormData(formData, profile.role);
+  const parsed = parsePlantFormData(formData);
 
   if (parsed.error || !parsed.data) {
     redirect(`/admin/tanaman/baru?error=${errorCode(parsed.error ?? "validasi")}`);
@@ -231,14 +247,7 @@ export async function updatePlantAction(id: string, formData: FormData) {
 
   const currentPlant = existing.data;
 
-  if (
-    profile.role === "editor" &&
-    !["draft", "pending_review"].includes(currentPlant.content_status)
-  ) {
-    redirect(`/admin/tanaman/${id}/edit?error=otorisasi`);
-  }
-
-  const parsed = parsePlantFormData(formData, profile.role);
+  const parsed = parsePlantFormData(formData);
 
   if (parsed.error || !parsed.data) {
     redirect(

@@ -42,7 +42,7 @@ select ok(pg_temp.lives($$insert into public.health_zones (zone_code, slug, stre
 
 select ok(pg_temp.lives($$update public.health_zones set zone_code = 'khb-z91' where zone_code = 'khb-z90'$$), 'zone_code can change before publication');
 
-select ok(pg_temp.lives($$update public.health_zones set content_status = 'published' where zone_code = 'khb-z91'$$), 'admin can publish zone');
+select ok(pg_temp.lives($$update public.health_zones set source_notes = array['Source'], validator_name = 'Admin Test', validation_status = 'verified', validation_checked_at = now(), content_status = 'published' where zone_code = 'khb-z91'$$), 'admin can publish zone');
 
 select ok(pg_temp.throws($$update public.health_zones set zone_code = 'khb-z92' where zone_code = 'khb-z91'$$), 'zone_code cannot change after publication');
 

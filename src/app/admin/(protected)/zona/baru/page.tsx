@@ -3,7 +3,6 @@ import Link from "next/link";
 import { AdminNotice } from "@/components/admin/AdminNotice";
 import { HealthZoneAdminForm } from "@/components/admin/HealthZoneAdminForm";
 import { createHealthZoneAction } from "@/app/admin/(protected)/zona/actions";
-import { canEditContent } from "@/lib/auth/permissions";
 import { requireStaff } from "@/lib/auth/require-staff";
 import { createPageMetadata } from "@/lib/metadata";
 
@@ -15,8 +14,7 @@ type NewZonePageProps = {
 
 const errorMessages: Record<string, string> = {
   duplikat: "Slug atau kode zona sudah digunakan.",
-  otorisasi: "Role Anda tidak memiliki izin untuk membuat zona.",
-  readonly: "Validator bersifat read-only pada sprint ini.",
+  otorisasi: "Hanya admin yang dapat membuat zona.",
   validasi: "Periksa kembali kode zona, isian wajib, status, dan path gambar.",
 };
 
@@ -30,7 +28,7 @@ export const metadata: Metadata = createPageMetadata({
 
 export default async function NewZonePage({ searchParams }: NewZonePageProps) {
   const params = await searchParams;
-  const { profile } = await requireStaff("/admin/zona/baru");
+  await requireStaff("/admin/zona/baru");
 
   return (
     <div className="grid gap-6">
@@ -51,15 +49,7 @@ export default async function NewZonePage({ searchParams }: NewZonePageProps) {
         </p>
       </header>
       <AdminNotice message={errorMessages[params.error ?? ""]} tone="error" />
-      {canEditContent(profile.role) ? (
-        <HealthZoneAdminForm
-          action={createHealthZoneAction}
-          mode="create"
-          role={profile.role}
-        />
-      ) : (
-        <AdminNotice message={errorMessages.readonly} tone="error" />
-      )}
+      <HealthZoneAdminForm action={createHealthZoneAction} mode="create" />
     </div>
   );
 }

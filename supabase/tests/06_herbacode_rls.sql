@@ -1,6 +1,6 @@
 begin;
 
-select plan(22);
+select plan(25);
 
 create function pg_temp.throws(sql text)
 returns boolean
@@ -56,32 +56,43 @@ on conflict (source_code) do update set
 
 insert into public.plants (
   slug, local_name, category, short_description, description,
-  validation_status, content_status, featured
+  source_notes, validator_name, validation_status, validation_checked_at,
+  content_status, featured
 ) values
-  ('pgtap-herbacode-public-plant', 'PGTAP HerbaCode Public Plant', 'daun', 'Public', 'Public description', 'pending', 'published', false),
-  ('pgtap-herbacode-draft-plant', 'PGTAP HerbaCode Draft Plant', 'daun', 'Draft', 'Draft description', 'pending', 'draft', false),
-  ('pgtap-herbacode-admin-plant', 'PGTAP HerbaCode Admin Plant', 'daun', 'Admin', 'Admin description', 'pending', 'published', false)
+  ('pgtap-herbacode-public-plant', 'PGTAP HerbaCode Public Plant', 'daun', 'Public', 'Public description', 'Source', 'Admin Test', 'verified', now(), 'published', false),
+  ('pgtap-herbacode-draft-plant', 'PGTAP HerbaCode Draft Plant', 'daun', 'Draft', 'Draft description', 'Source', 'Admin Test', 'verified', now(), 'draft', false),
+  ('pgtap-herbacode-admin-plant', 'PGTAP HerbaCode Admin Plant', 'daun', 'Admin', 'Admin description', 'Source', 'Admin Test', 'verified', now(), 'published', false)
 on conflict (slug) do update set
   local_name = excluded.local_name,
+  source_notes = excluded.source_notes,
+  validator_name = excluded.validator_name,
+  validation_status = excluded.validation_status,
+  validation_checked_at = excluded.validation_checked_at,
   content_status = excluded.content_status;
 
 insert into public.health_zones (
   zone_code, slug, street_name, zone_name, block_ranges, health_topic,
-  short_description, overview, validation_status, content_status
+  short_description, overview, source_notes, validator_name,
+  validation_status, validation_checked_at, content_status
 ) values
-  ('khb-z96', 'pgtap-herbacode-public-zone', 'Jl. HerbaCode Public', 'Zona HerbaCode Public', array['H1'], 'Public', 'Public zone', 'Public overview', 'pending', 'published'),
-  ('khb-z97', 'pgtap-herbacode-draft-zone', 'Jl. HerbaCode Draft', 'Zona HerbaCode Draft', array['H2'], 'Draft', 'Draft zone', 'Draft overview', 'pending', 'draft'),
-  ('khb-z98', 'pgtap-herbacode-admin-zone', 'Jl. HerbaCode Admin', 'Zona HerbaCode Admin', array['H3'], 'Admin', 'Admin zone', 'Admin overview', 'pending', 'published')
+  ('khb-z96', 'pgtap-herbacode-public-zone', null, 'Zona HerbaCode Public', array['H1'], 'Public', 'Public zone', 'Public overview', array['Source'], 'Admin Test', 'verified', now(), 'published'),
+  ('khb-z97', 'pgtap-herbacode-draft-zone', null, 'Zona HerbaCode Draft', array['H2'], 'Draft', 'Draft zone', 'Draft overview', array['Source'], 'Admin Test', 'verified', now(), 'draft'),
+  ('khb-z98', 'pgtap-herbacode-admin-zone', null, 'Zona HerbaCode Admin', array['H3'], 'Admin', 'Admin zone', 'Admin overview', array['Source'], 'Admin Test', 'verified', now(), 'published')
 on conflict (zone_code) do update set
   slug = excluded.slug,
   zone_name = excluded.zone_name,
+  source_notes = excluded.source_notes,
+  validator_name = excluded.validator_name,
+  validation_status = excluded.validation_status,
+  validation_checked_at = excluded.validation_checked_at,
   content_status = excluded.content_status;
 
 insert into public.herbacode_plant_zone_entries (
   source_id, health_zone_id, plant_id, zone_code, zone_slug, zone_title,
   entry_order, raw_zone_title, raw_entry_title, local_name, scientific_name,
   active_compounds, benefits, used_parts, cultivation_techniques, warnings,
-  preparation_methods, source_document_name, content_status
+  preparation_methods, source_document_name, content_status, validation_status,
+  validator_name, validated_at
 ) values
   (
     (select id from public.plant_sources where source_code = 'PGTAP-HERBACODE'),
@@ -91,7 +102,8 @@ insert into public.herbacode_plant_zone_entries (
     1, 'Zona HerbaCode Public', 'PGTAP Public Entry', 'PGTAP HerbaCode Public Plant',
     'Publica herbacodensis', array['Senyawa publik'], array['Manfaat publik'],
     array['Daun'], array['Tanam publik'], array['Perhatian publik'], array[]::text[],
-    'HerbaCode Kampung Herbal Harmony', 'published'
+    'HerbaCode Kampung Herbal Harmony', 'published', 'verified',
+    'Admin Test', now()
   ),
   (
     (select id from public.plant_sources where source_code = 'PGTAP-HERBACODE'),
@@ -101,11 +113,15 @@ insert into public.herbacode_plant_zone_entries (
     1, 'Zona HerbaCode Draft', 'PGTAP Draft Entry', 'PGTAP HerbaCode Draft Plant',
     'Drafta herbacodensis', array['Senyawa draft'], array['Manfaat draft'],
     array['Daun'], array['Tanam draft'], array['Perhatian draft'], array[]::text[],
-    'HerbaCode Kampung Herbal Harmony', 'draft'
+    'HerbaCode Kampung Herbal Harmony', 'draft', 'pending',
+    null, null
   )
 on conflict (source_id, health_zone_id, plant_id) do update set
   local_name = excluded.local_name,
-  content_status = excluded.content_status;
+  content_status = excluded.content_status,
+  validation_status = excluded.validation_status,
+  validator_name = excluded.validator_name,
+  validated_at = excluded.validated_at;
 
 select has_table('public', 'herbacode_plant_zone_entries', 'herbacode plant-zone entries table exists');
 select ok(
@@ -140,9 +156,9 @@ select ok(
   exists (
     select 1 from pg_policy
     where polrelid = 'public.herbacode_plant_zone_entries'::regclass
-      and polname = 'herbacode_entries_select_staff'
+      and polname = 'herbacode_entries_select_admin'
   ),
-  'herbacode staff select policy exists'
+  'herbacode admin select policy exists'
 );
 select ok(
   exists (
@@ -176,10 +192,12 @@ set local role authenticated;
 set local request.jwt.claim.role = 'authenticated';
 set local request.jwt.claim.sub = '60000000-0000-0000-0000-000000000002';
 
-select is((select count(*) from public.herbacode_plant_zone_entries where zone_code in ('khb-z96', 'khb-z97')), 2::bigint, 'editor can read published and draft HerbaCode entries');
-update public.herbacode_plant_zone_entries
-set local_name = 'Editor Update'
-where zone_code = 'khb-z97';
+select is((select count(*) from public.herbacode_plant_zone_entries where zone_code in ('khb-z96', 'khb-z97')), 1::bigint, 'editor can only read published HerbaCode entries');
+select ok(pg_temp.lives($$update public.herbacode_plant_zone_entries set local_name = 'Editor Update' where zone_code = 'khb-z97'$$), 'editor update statement is filtered by RLS');
+reset role;
+set local role authenticated;
+set local request.jwt.claim.role = 'authenticated';
+set local request.jwt.claim.sub = '60000000-0000-0000-0000-000000000004';
 select is((select local_name from public.herbacode_plant_zone_entries where zone_code = 'khb-z97'), 'PGTAP HerbaCode Draft Plant', 'editor cannot update HerbaCode entry');
 
 reset role;
@@ -187,8 +205,12 @@ set local role authenticated;
 set local request.jwt.claim.role = 'authenticated';
 set local request.jwt.claim.sub = '60000000-0000-0000-0000-000000000003';
 
-select is((select count(*) from public.herbacode_plant_zone_entries where zone_code in ('khb-z96', 'khb-z97')), 2::bigint, 'validator can read published and draft HerbaCode entries');
-delete from public.herbacode_plant_zone_entries where zone_code = 'khb-z97';
+select is((select count(*) from public.herbacode_plant_zone_entries where zone_code in ('khb-z96', 'khb-z97')), 1::bigint, 'validator can only read published HerbaCode entries');
+select ok(pg_temp.lives($$delete from public.herbacode_plant_zone_entries where zone_code = 'khb-z97'$$), 'validator delete statement is filtered by RLS');
+reset role;
+set local role authenticated;
+set local request.jwt.claim.role = 'authenticated';
+set local request.jwt.claim.sub = '60000000-0000-0000-0000-000000000004';
 select is((select count(*) from public.herbacode_plant_zone_entries where zone_code = 'khb-z97'), 1::bigint, 'validator cannot delete HerbaCode entry');
 
 reset role;
@@ -197,7 +219,8 @@ set local request.jwt.claim.role = 'authenticated';
 set local request.jwt.claim.sub = '60000000-0000-0000-0000-000000000004';
 
 select ok(pg_temp.lives($$insert into public.herbacode_plant_zone_entries (source_id, health_zone_id, plant_id, zone_code, zone_slug, zone_title, entry_order, raw_zone_title, raw_entry_title, local_name, source_document_name, content_status) values ((select id from public.plant_sources where source_code = 'PGTAP-HERBACODE'), (select id from public.health_zones where zone_code = 'khb-z98'), (select id from public.plants where slug = 'pgtap-herbacode-admin-plant'), 'khb-z98', 'pgtap-herbacode-admin-zone', 'Zona HerbaCode Admin', 1, 'Zona HerbaCode Admin', 'Admin Entry', 'Admin Plant', 'HerbaCode Kampung Herbal Harmony', 'draft')$$), 'admin can insert HerbaCode entry');
-select ok(pg_temp.lives($$update public.herbacode_plant_zone_entries set content_status = 'published' where zone_code = 'khb-z98'$$), 'admin can publish HerbaCode entry');
+select ok(pg_temp.throws($$update public.herbacode_plant_zone_entries set content_status = 'published', validation_status = 'pending' where zone_code = 'khb-z98'$$), 'admin cannot publish HerbaCode entry without verified metadata');
+select ok(pg_temp.lives($$update public.herbacode_plant_zone_entries set validation_status = 'verified', validator_name = 'Admin Test', validated_at = now(), content_status = 'published' where zone_code = 'khb-z98'$$), 'admin can publish verified HerbaCode entry');
 select ok(pg_temp.lives($$delete from public.herbacode_plant_zone_entries where zone_code = 'khb-z98'$$), 'admin can delete HerbaCode entry');
 
 select * from finish();

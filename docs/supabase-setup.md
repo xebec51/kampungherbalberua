@@ -122,8 +122,8 @@ Setelah migration diterapkan, verifikasi checklist berikut (misalnya melalui SQL
 - [ ] `anon` hanya dapat membaca tanaman dengan `content_status = 'published'`.
 - [ ] `anon` tidak dapat melakukan `insert`, `update`, atau `delete` pada tabel `plants` maupun `profiles`.
 - [ ] User dengan role `viewer` tidak dapat mengubah `role` miliknya sendiri (tidak ada policy update untuk non-admin).
-- [ ] User dengan role `editor` dapat membuat tanaman baru dengan `content_status = 'draft'` dan memperbarui tanaman yang ada.
-- [ ] User dengan role `validator` dapat membaca seluruh tanaman (termasuk draft) tetapi **belum** memiliki akses `update`.
+- [ ] User dengan role `admin` dapat membuka dashboard dan mengelola draft, validasi, publish, archive, dan delete.
+- [ ] User dengan role `viewer`, `editor`, atau `validator` tidak dapat membuka dashboard dan tidak dapat membaca draft admin.
 - [ ] User dengan role `admin` dapat mengelola (`insert`/`update`/`delete`) seluruh tanaman dan membaca/memperbarui seluruh profile.
 - [ ] User anonim tidak dapat membaca tabel `profiles` sama sekali.
 

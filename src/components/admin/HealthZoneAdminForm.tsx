@@ -2,14 +2,12 @@ import type {
   ContentStatus,
   ValidationStatus,
 } from "@/lib/supabase/database.types";
-import type { StaffRole } from "@/lib/auth/permissions";
 import type { HealthZoneAdminRecord } from "@/lib/data/admin/health-zones";
 
 type HealthZoneAdminFormProps = {
   action: (formData: FormData) => void | Promise<void>;
   mode: "create" | "edit";
   readOnly?: boolean;
-  role: StaffRole;
   zone?: HealthZoneAdminRecord;
 };
 
@@ -35,44 +33,17 @@ function text(value: string | null | undefined) {
   return value ?? "";
 }
 
-function contentOptions(role: StaffRole) {
-  if (role === "admin") {
-    return contentStatusOptions;
-  }
-
-  return contentStatusOptions.filter((option) =>
-    ["draft", "pending_review"].includes(option.value),
-  );
-}
-
-function validationOptions(role: StaffRole) {
-  if (role === "admin") {
-    return validationStatusOptions;
-  }
-
-  return validationStatusOptions.filter((option) =>
-    ["data_demonstrasi", "pending"].includes(option.value),
-  );
-}
-
 export function HealthZoneAdminForm({
   action,
   mode,
   readOnly = false,
-  role,
   zone,
 }: HealthZoneAdminFormProps) {
-  const disabled = readOnly || role === "validator";
+  const disabled = readOnly;
   const zoneCodeLocked = Boolean(zone?.published_at);
 
   return (
     <form action={action} className="grid gap-6">
-      {disabled ? (
-        <div className="rounded-md border border-herbal-brown/20 bg-[#F5E9DF] p-4 text-sm leading-6 text-herbal-brown">
-          Mode baca saja. Validator dapat meninjau data, tetapi mutation belum
-          tersedia pada sprint ini.
-        </div>
-      ) : null}
       {zoneCodeLocked ? (
         <div className="rounded-md border border-herbal-green/20 bg-herbal-soft p-4 text-sm leading-6 text-herbal-deep">
           Kode zona sudah permanen karena zona pernah dipublikasikan. Perubahan
@@ -211,23 +182,37 @@ export function HealthZoneAdminForm({
           <TextField
             defaultValue={text(zone?.validator_name)}
             disabled={disabled}
-            help="Wajib bila status validasi terverifikasi."
-            label="Nama validator"
+            help="Wajib sebelum konten dipublikasikan."
+            label="Nama pemeriksa"
             name="validator_name"
+          />
+          <TextField
+            defaultValue={text(zone?.validation_checked_at?.slice(0, 10))}
+            disabled={disabled}
+            help="Wajib sebelum konten dipublikasikan."
+            label="Tanggal pemeriksaan"
+            name="validation_checked_at"
+            type="date"
           />
           <SelectField
             defaultValue={zone?.validation_status ?? "data_demonstrasi"}
             disabled={disabled}
             label="Status validasi"
             name="validation_status"
-            options={validationOptions(role)}
+            options={validationStatusOptions}
           />
           <SelectField
             defaultValue={zone?.content_status ?? "draft"}
             disabled={disabled}
             label="Status konten"
             name="content_status"
-            options={contentOptions(role)}
+            options={contentStatusOptions}
+          />
+          <TextAreaField
+            defaultValue={text(zone?.validation_notes)}
+            disabled={disabled}
+            label="Catatan pemeriksaan"
+            name="validation_notes"
           />
         </div>
         <label className="flex items-start gap-3 text-sm font-semibold text-herbal-ink">
@@ -262,6 +247,7 @@ type BaseFieldProps = {
   name: string;
   readOnly?: boolean;
   required?: boolean;
+  type?: "text" | "date";
 };
 
 function fieldClasses() {
@@ -276,6 +262,7 @@ function TextField({
   name,
   readOnly,
   required,
+  type = "text",
 }: BaseFieldProps) {
   const helpId = help ? `${name}-help` : undefined;
 
@@ -293,7 +280,7 @@ function TextField({
         name={name}
         readOnly={readOnly}
         required={required}
-        type="text"
+        type={type}
       />
       {help ? (
         <p className="text-xs leading-5 text-herbal-muted" id={helpId}>

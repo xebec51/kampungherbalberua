@@ -27,6 +27,8 @@ export type HealthZoneAdminInput = {
   source_notes: string[];
   street_name: string | null;
   validation_status: ValidationStatus;
+  validation_checked_at: string | null;
+  validation_notes: string | null;
   validator_name: string | null;
   zone_code: string;
   zone_name: string;

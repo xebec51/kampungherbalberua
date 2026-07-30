@@ -74,7 +74,7 @@ Kedua perintah tersebut wajib dijalankan setelah perubahan utama.
 
 ## Automated Testing
 
-Automated test menjadi gate utama untuk validasi fitur publik, Supabase, RLS, admin, CRUD tanaman, CRUD zona kesehatan, QR permanen, dan role `viewer`, `editor`, `validator`, serta `admin`.
+Automated test menjadi gate utama untuk validasi fitur publik, Supabase, RLS, admin, CRUD tanaman, CRUD zona kesehatan, QR permanen, dan model dashboard admin-only.
 
 Perintah utama:
 
@@ -247,7 +247,7 @@ Belum tersedia pada sprint ini (lihat juga [Fitur yang Sengaja Ditunda](#fitur-y
 
 **Service-role key tidak digunakan** di aplikasi ini. Seluruh akses database publik menggunakan publishable key yang tunduk pada RLS. Otorisasi data sepenuhnya ditegakkan oleh RLS di database, bukan oleh kode aplikasi.
 
-RLS mengatur: pengunjung publik hanya dapat membaca tanaman berstatus `published`; staf aktif (`editor`, `validator`, `admin`) dapat membaca seluruh data termasuk draft; hanya `editor` dan `admin` yang dapat menambah/mengubah data; hanya `admin` yang dapat menghapus data; pengguna tidak dapat menaikkan role miliknya sendiri.
+RLS mengatur: pengunjung publik hanya dapat membaca konten berstatus `published`; hanya akun `admin` aktif yang dapat membuka dashboard, membaca draft, serta menambah/mengubah/menghapus data admin. Role `viewer` tetap default tanpa akses admin. Nilai enum lama `editor` dan `validator` dipertahankan untuk kompatibilitas database, tetapi tidak dipakai oleh UI, permission, atau RLS dashboard.
 
 Panduan lengkap menghubungkan project Supabase, menjalankan migration, seed, dan menetapkan admin pertama ada di [docs/supabase-setup.md](docs/supabase-setup.md).
 
@@ -262,7 +262,7 @@ Route admin:
 - Zona: `/admin/zona`, `/admin/zona/baru`, `/admin/zona/[id]/edit`
 - QR zona: `/admin/zona/[id]/qr?format=svg` atau `?format=png`
 
-Role dibaca dari `public.profiles` di server. `viewer` tidak dapat membuka dashboard, `editor` tidak dapat publish/delete, `validator` read-only, dan `admin` mengelola publikasi serta delete.
+Role dibaca dari `public.profiles` di server. Hanya `admin` yang dapat membuka dashboard dan mengelola publikasi, arsip, validasi, serta delete.
 
 ## Zona Kesehatan dan QR Permanen
 
@@ -296,7 +296,7 @@ Jangan menjalankan `npx supabase db push`, seed remote, reset database, atau kon
 ## Roadmap
 
 - Migrasi data ramuan, produk, kegiatan, dan program RT ke Supabase.
-- Alur validasi khusus untuk validator.
+- Metadata pemeriksaan konten: nama pemeriksa, sumber, tanggal pemeriksaan, dan catatan opsional.
 - Supabase Storage untuk foto dokumentasi dan aset lapangan.
 - Integrasi pemetaan PWK menggunakan data denah, koordinat, GeoJSON, atau KML.
 - HerbaCode dan QR Code tanaman setelah data tanaman diverifikasi.

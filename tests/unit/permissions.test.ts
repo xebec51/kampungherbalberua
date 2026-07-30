@@ -11,15 +11,15 @@ describe("permission role admin", () => {
     expect(isStaffRole("viewer")).toBe(false);
   });
 
-  it("editor dapat membuat draft tetapi tidak dapat publish atau delete", () => {
-    expect(isStaffRole("editor")).toBe(true);
-    expect(canEditContent("editor")).toBe(true);
+  it("editor tidak lagi memiliki akses dashboard", () => {
+    expect(isStaffRole("editor")).toBe(false);
+    expect(canEditContent("editor")).toBe(false);
     expect(canPublishContent("editor")).toBe(false);
     expect(canDeleteContent("editor")).toBe(false);
   });
 
-  it("validator read-only", () => {
-    expect(isStaffRole("validator")).toBe(true);
+  it("validator tidak lagi menjadi role akun dashboard", () => {
+    expect(isStaffRole("validator")).toBe(false);
     expect(canEditContent("validator")).toBe(false);
     expect(canPublishContent("validator")).toBe(false);
     expect(canDeleteContent("validator")).toBe(false);

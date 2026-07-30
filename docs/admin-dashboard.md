@@ -11,10 +11,9 @@ Dashboard admin tersedia di `/admin` dan dilindungi Supabase Auth email/password
 
 Role yang didukung:
 
-- `viewer`: tidak dapat membuka dashboard.
-- `editor`: dapat membuat dan mengubah draft atau pending review.
-- `validator`: read-only pada sprint ini.
-- `admin`: dapat publish, archive, verified, rejected, dan delete.
+- `viewer`: role default dan tidak dapat membuka dashboard.
+- `admin`: satu-satunya role akun yang dapat membuka dashboard, membuat, mengubah, publish, archive, verified, rejected, dan delete.
+- Nilai enum PostgreSQL `editor` dan `validator` tetap ada untuk kompatibilitas, tetapi tidak dipakai UI, permission, RLS, atau test sebagai role dashboard aktif.
 
 ## Login dan Logout
 
@@ -31,7 +30,9 @@ Route:
 - `/admin/tanaman/baru`
 - `/admin/tanaman/[id]/edit`
 
-Editor dapat menyimpan `draft` atau `pending_review`. Admin dapat publish, archive, verified, rejected, dan delete. Delete bersifat permanen dan hanya tersedia untuk admin.
+Admin dapat menyimpan `draft` atau `pending_review`, menetapkan validasi, publish, archive, rejected, dan delete. Delete bersifat permanen dan hanya tersedia untuk admin.
+
+Konten hanya dapat `published` bila `validation_status = verified`, nama pemeriksa terisi, sumber terisi, dan tanggal pemeriksaan tersedia. Validator disimpan sebagai metadata pemeriksa konten, bukan role akun.
 
 ## Zona Kesehatan
 
@@ -47,5 +48,5 @@ Route:
 
 - Tidak ada pengelolaan user melalui dashboard.
 - Tidak ada upload gambar atau Supabase Storage.
-- Validator masih read-only.
+- Dashboard memakai model admin-only.
 - Migration remote harus diterapkan manual oleh pengelola project.

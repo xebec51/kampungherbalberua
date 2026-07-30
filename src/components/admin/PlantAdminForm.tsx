@@ -3,7 +3,6 @@ import type {
   PlantCategory,
   ValidationStatus,
 } from "@/lib/supabase/database.types";
-import type { StaffRole } from "@/lib/auth/permissions";
 import type { PlantAdminRecord } from "@/lib/data/admin/plants";
 
 type PlantAdminFormProps = {
@@ -11,7 +10,6 @@ type PlantAdminFormProps = {
   mode: "create" | "edit";
   plant?: PlantAdminRecord;
   readOnly?: boolean;
-  role: StaffRole;
 };
 
 const categoryOptions: Array<{ label: string; value: PlantCategory }> = [
@@ -44,48 +42,18 @@ function text(value: string | null | undefined) {
   return value ?? "";
 }
 
-function filterContentOptions(role: StaffRole) {
-  if (role === "admin") {
-    return contentStatusOptions;
-  }
-
-  return contentStatusOptions.filter((option) =>
-    ["draft", "pending_review"].includes(option.value),
-  );
-}
-
-function filterValidationOptions(role: StaffRole) {
-  if (role === "admin") {
-    return validationStatusOptions;
-  }
-
-  return validationStatusOptions.filter((option) =>
-    ["data_demonstrasi", "pending"].includes(option.value),
-  );
-}
-
 export function PlantAdminForm({
   action,
   mode,
   plant,
   readOnly = false,
-  role,
 }: PlantAdminFormProps) {
-  const disabled = readOnly || role === "validator";
-  const contentOptions = filterContentOptions(role);
-  const validationOptions = filterValidationOptions(role);
+  const disabled = readOnly;
   const defaultContentStatus = plant?.content_status ?? "draft";
   const defaultValidationStatus = plant?.validation_status ?? "data_demonstrasi";
 
   return (
     <form action={action} className="grid gap-6">
-      {disabled ? (
-        <div className="rounded-md border border-herbal-brown/20 bg-[#F5E9DF] p-4 text-sm leading-6 text-herbal-brown">
-          Mode baca saja. Validator dapat meninjau data, tetapi mutation belum
-          tersedia pada sprint ini.
-        </div>
-      ) : null}
-
       <section className="grid gap-4 rounded-md border border-herbal-green/10 bg-white p-5 shadow-sm">
         <h2 className="text-lg font-bold text-herbal-ink">Identitas tanaman</h2>
         <div className="grid gap-4 md:grid-cols-2">
@@ -212,23 +180,37 @@ export function PlantAdminForm({
           <TextField
             defaultValue={text(plant?.validator_name)}
             disabled={disabled}
-            help="Wajib bila status validasi terverifikasi."
-            label="Nama validator"
+            help="Wajib sebelum konten dipublikasikan."
+            label="Nama pemeriksa"
             name="validator_name"
+          />
+          <TextField
+            defaultValue={text(plant?.validation_checked_at?.slice(0, 10))}
+            disabled={disabled}
+            help="Wajib sebelum konten dipublikasikan."
+            label="Tanggal pemeriksaan"
+            name="validation_checked_at"
+            type="date"
           />
           <SelectField
             defaultValue={defaultValidationStatus}
             disabled={disabled}
             label="Status validasi"
             name="validation_status"
-            options={validationOptions}
+            options={validationStatusOptions}
           />
           <SelectField
             defaultValue={defaultContentStatus}
             disabled={disabled}
             label="Status konten"
             name="content_status"
-            options={contentOptions}
+            options={contentStatusOptions}
+          />
+          <TextAreaField
+            defaultValue={text(plant?.validation_notes)}
+            disabled={disabled}
+            label="Catatan pemeriksaan"
+            name="validation_notes"
           />
         </div>
         <label className="flex items-start gap-3 text-sm font-semibold text-herbal-ink">
@@ -264,6 +246,7 @@ type BaseFieldProps = {
   label: string;
   name: string;
   required?: boolean;
+  type?: "text" | "date";
 };
 
 function fieldClasses() {
@@ -277,6 +260,7 @@ function TextField({
   label,
   name,
   required,
+  type = "text",
 }: BaseFieldProps) {
   const helpId = help ? `${name}-help` : undefined;
 
@@ -293,7 +277,7 @@ function TextField({
         id={name}
         name={name}
         required={required}
-        type="text"
+        type={type}
       />
       {help ? (
         <p className="text-xs leading-5 text-herbal-muted" id={helpId}>

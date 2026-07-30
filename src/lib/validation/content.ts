@@ -27,9 +27,6 @@ export const plantCategories = [
   "lainnya",
 ] as const satisfies readonly PlantCategory[];
 
-const editorContentStatuses = ["draft", "pending_review"] as const;
-const editorValidationStatuses = ["data_demonstrasi", "pending"] as const;
-
 export function isAllowed<T extends string>(
   value: string,
   options: readonly T[],
@@ -82,45 +79,56 @@ export function canRoleUseContentStatus(
   role: AppRole | string,
   status: ContentStatus,
 ) {
-  if (role === "admin") {
-    return true;
-  }
-
-  if (role === "editor") {
-    return isAllowed(status, editorContentStatuses);
-  }
-
-  return false;
+  void status;
+  return role === "admin";
 }
 
 export function canRoleUseValidationStatus(
   role: AppRole | string,
   status: ValidationStatus,
 ) {
-  if (role === "admin") {
-    return true;
-  }
-
-  if (role === "editor") {
-    return isAllowed(status, editorValidationStatuses);
-  }
-
-  return false;
+  void status;
+  return role === "admin";
 }
 
 export function hasVerifiedRequirements(
   validationStatus: ValidationStatus,
-  validatorName: string | null,
+  checkerName: string | null,
   sourceNotes: string | string[] | null,
+  checkedAt: string | null = null,
 ) {
   if (validationStatus !== "verified") {
     return true;
   }
 
-  const hasValidator = Boolean(validatorName?.trim());
+  const hasChecker = Boolean(checkerName?.trim());
   const hasSource = Array.isArray(sourceNotes)
     ? sourceNotes.some((source) => source.trim().length > 0)
     : Boolean(sourceNotes?.trim());
+  const hasCheckedAt = Boolean(checkedAt?.trim());
 
-  return hasValidator && hasSource;
+  return hasChecker && hasSource && hasCheckedAt;
+}
+
+export function canPublishWithValidation(input: {
+  checkedAt: string | null;
+  checkerName: string | null;
+  contentStatus: ContentStatus;
+  sourceNotes: string | string[] | null;
+  validationStatus: ValidationStatus;
+}) {
+  if (input.contentStatus !== "published") {
+    return true;
+  }
+
+  if (input.validationStatus !== "verified") {
+    return false;
+  }
+
+  return hasVerifiedRequirements(
+    input.validationStatus,
+    input.checkerName,
+    input.sourceNotes,
+    input.checkedAt,
+  );
 }

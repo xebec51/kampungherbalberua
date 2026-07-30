@@ -41,7 +41,7 @@ export function mapPlantRowToPlant(row: PlantRow): Plant {
     image: row.image_path ?? "/images/placeholders/plant.svg",
     locationStatus: row.location_status ?? "Lokasi tanaman sedang dipetakan.",
     source: row.source_notes ?? "Sumber data belum dicantumkan.",
-    validator: row.validator_name ?? "Belum ada catatan validator.",
+    validator: row.validator_name ?? "Belum ada catatan pemeriksa.",
     validationStatus: validationStatusLabels[row.validation_status],
     featured: row.featured,
     published: row.content_status === "published",

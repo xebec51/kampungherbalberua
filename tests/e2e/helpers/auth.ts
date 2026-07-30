@@ -10,13 +10,7 @@ export const testUsers = {
 } as const;
 
 export type TestRole = keyof typeof testUsers;
-type StaffTestRole = Exclude<TestRole, "viewer">;
-
-const roleLabels: Record<StaffTestRole, string> = {
-  admin: "Admin",
-  editor: "Editor",
-  validator: "Validator",
-};
+type StaffTestRole = "admin";
 
 export async function loginAs(page: Page, role: TestRole) {
   await page.goto("/admin/login");
@@ -24,7 +18,7 @@ export async function loginAs(page: Page, role: TestRole) {
   await page.getByLabel("Kata sandi").fill(testPassword);
   await page.getByRole("button", { name: "Masuk" }).click();
 
-  if (role === "viewer") {
+  if (role !== "admin") {
     await expect(
       page.getByText("Akses ditolak. Hubungi pengelola website.", {
         exact: true,
@@ -43,6 +37,10 @@ export async function expectDashboard(page: Page) {
 }
 
 export async function expectRoleBadge(page: Page, role: StaffTestRole) {
+  const roleLabels: Record<StaffTestRole, string> = {
+    admin: "Admin",
+  };
+
   await expect(
     page
       .getByRole("complementary")

@@ -45,8 +45,7 @@ const errorMessages: Record<string, string> = {
   gagal: "Aksi tanaman belum dapat diproses.",
   hapus: "Penghapusan hanya tersedia untuk admin dan wajib dikonfirmasi.",
   "tidak-ditemukan": "Tanaman tidak ditemukan.",
-  otorisasi: "Role Anda tidak memiliki izin untuk aksi tersebut.",
-  readonly: "Validator bersifat read-only pada sprint ini.",
+  otorisasi: "Hanya admin yang dapat menjalankan aksi tersebut.",
   validasi: "Periksa kembali isian tanaman.",
 };
 

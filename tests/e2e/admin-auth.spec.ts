@@ -3,7 +3,6 @@ import {
   expectDashboard,
   expectRoleBadge,
   loginAs,
-  logout,
   testPassword,
   testUsers,
 } from "./helpers/auth";
@@ -31,23 +30,20 @@ test("viewer login ditolak", async ({ page }) => {
   await expect(page).toHaveURL(/\/admin\/login/);
 });
 
-test("editor dapat membuka dashboard dan logout", async ({ page }) => {
+test("editor login ditolak dari dashboard admin-only", async ({ page }) => {
   test.skip(!hasSupabaseE2EEnv(), "Supabase lokal dibutuhkan untuk login E2E.");
 
   await loginAs(page, "editor");
-  await expectDashboard(page);
-  await expectRoleBadge(page, "editor");
-  await logout(page);
+  await expect(page.getByText("Akses ditolak. Hubungi pengelola website.")).toBeVisible();
+  await expect(page).toHaveURL(/\/admin\/login/);
 });
 
-test("validator membuka dashboard read-only", async ({ page }) => {
+test("validator login ditolak dari dashboard admin-only", async ({ page }) => {
   test.skip(!hasSupabaseE2EEnv(), "Supabase lokal dibutuhkan untuk login E2E.");
 
   await loginAs(page, "validator");
-  await expectDashboard(page);
-  await expectRoleBadge(page, "validator");
-  await page.goto("/admin/tanaman");
-  await expect(page.getByRole("link", { name: "Tambah Tanaman" })).toHaveCount(0);
+  await expect(page.getByText("Akses ditolak. Hubungi pengelola website.")).toBeVisible();
+  await expect(page).toHaveURL(/\/admin\/login/);
 });
 
 test("admin membuka dashboard penuh", async ({ page }) => {
@@ -66,7 +62,7 @@ test("redirect eksternal ditolak dan session tidak memakai localStorage", async 
   test.skip(!hasSupabaseE2EEnv(), "Supabase lokal dibutuhkan untuk login E2E.");
 
   await page.goto("/admin/login?next=https://example.com");
-  await page.getByLabel("Email").fill(testUsers.editor);
+  await page.getByLabel("Email").fill(testUsers.admin);
   await page.getByLabel("Kata sandi").fill(testPassword);
   await page.getByRole("button", { name: "Masuk" }).click();
   await expect(page).toHaveURL(/\/admin$/);

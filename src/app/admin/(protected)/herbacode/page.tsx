@@ -62,7 +62,7 @@ export default async function HerbaCodeAdminPage({
   searchParams,
 }: HerbaCodeAdminPageProps) {
   const query = await searchParams;
-  const { profile } = await requireStaff("/admin/herbacode");
+  await requireStaff("/admin/herbacode");
   const [entriesResult, historyResult] = await Promise.all([
     getHerbaCodeEntriesForAdmin({
       contentStatus: query.content ?? "all",
@@ -72,7 +72,7 @@ export default async function HerbaCodeAdminPage({
     getHerbaCodeHistoryForAdmin(),
   ]);
   const entries = entriesResult.data ?? [];
-  const canMutate = profile.role === "admin";
+  const canMutate = true;
 
   return (
     <div className="grid gap-6">
@@ -283,11 +283,7 @@ function HerbaCodeEntryCard({
               Simpan HerbaCode
             </button>
           </form>
-        ) : (
-          <p className="mt-3 text-sm text-herbal-muted">
-            Role saat ini hanya dapat membaca data HerbaCode.
-          </p>
-        )}
+        ) : null}
       </details>
     </article>
   );
