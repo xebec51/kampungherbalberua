@@ -33,6 +33,7 @@ test("preview deployment public smoke @preview", async ({ page, request }) => {
   await page.keyboard.press("Escape");
   await nav.getByRole("button", { name: "Informasi Kampung" }).click();
   await expect(page.getByRole("menuitem", { name: "Jalan Tematik" })).toBeVisible();
+  await expect(page.getByRole("menuitem", { name: "Produk Warga" })).toBeVisible();
   await expect(page.getByRole("menuitem", { name: "Peta Kampung" })).toHaveCount(0);
   await expect(page.getByRole("menuitem", { name: "Tentang" })).toBeVisible();
   await page.keyboard.press("Escape");

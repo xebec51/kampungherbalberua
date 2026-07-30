@@ -5,6 +5,7 @@ import {
   createWhatsAppUrl,
   normalizeWhatsAppNumber,
 } from "@/lib/whatsapp";
+import { products } from "@/data/products";
 
 describe("nomor WhatsApp", () => {
   it("menormalkan nomor lokal Indonesia ke format wa.me", () => {
@@ -29,21 +30,43 @@ describe("nomor WhatsApp", () => {
 });
 
 describe("order produk via WhatsApp", () => {
-  it("menggunakan pesan order produk yang konsisten", () => {
-    expect(createProductOrderMessage({ name: "Bibit Tanaman TOGA" })).toBe(
-      "Halo, saya ingin bertanya atau memesan Bibit Tanaman TOGA dari Kampung Herbal Berua.",
-    );
+  it("menggunakan pesan produk terpilih dan tidak memuat nilai kosong", () => {
+    const product = products.find((item) => item.slug === "bibit-tanaman-toga");
+
+    expect(product).toBeTruthy();
+    const message = createProductOrderMessage(product!);
+
+    expect(message).toContain("Produk: Bibit Tanaman TOGA");
+    expect(message).toContain("Kategori: Bibit tanaman");
+    expect(message).toContain("Harga: Belum dikonfirmasi");
+    expect(message).toContain("Satuan: Belum dikonfirmasi");
+    expect(message).toContain("Status: Segera tersedia");
+    expect(message).toContain("Jumlah yang diinginkan: 1");
+    expect(message).not.toMatch(/undefined|null/i);
   });
 
   it("memakai nomor fallback pusat ketika produk belum punya nomor khusus", () => {
-    const url = createProductOrderWhatsAppUrl({
-      name: "Bibit Tanaman TOGA",
-      whatsappNumber: null,
-    });
+    const product = products.find((item) => item.slug === "bibit-tanaman-toga");
+    const url = createProductOrderWhatsAppUrl(product!);
 
     expect(url).toContain("https://wa.me/6289623080501");
-    expect(new URL(url ?? "").searchParams.get("text")).toBe(
-      "Halo, saya ingin bertanya atau memesan Bibit Tanaman TOGA dari Kampung Herbal Berua.",
+    expect(new URL(url ?? "").searchParams.get("text")).toContain(
+      "Produk: Bibit Tanaman TOGA",
+    );
+    expect(url).toContain("Produk%3A%20Bibit%20Tanaman%20TOGA");
+    expect(url).toContain("%0A");
+  });
+
+  it("membedakan pesan antara dua produk", () => {
+    const tea = products.find((item) => item.slug === "teh-herbal-berua");
+    const ginger = products.find((item) => item.slug === "minuman-jahe-rempah");
+
+    expect(createProductOrderMessage(tea!)).toContain("Produk: Teh Herbal Berua");
+    expect(createProductOrderMessage(ginger!)).toContain(
+      "Produk: Minuman Jahe Rempah",
+    );
+    expect(createProductOrderMessage(tea!)).not.toBe(
+      createProductOrderMessage(ginger!),
     );
   });
 });

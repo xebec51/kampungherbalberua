@@ -38,6 +38,7 @@ export const mainNavigation: NavigationItem[] = [
     children: [
       { type: "link", label: "Tentang", href: "/tentang" },
       { type: "link", label: "Jalan Tematik", href: "/jalan" },
+      { type: "link", label: "Produk Warga", href: "/produk" },
       { type: "link", label: "Kinerja RT", href: "/kinerja-rt" },
     ],
   },
@@ -52,5 +53,6 @@ export const footerMainNavigation: DirectNavigationItem[] = [
 
 export const footerNavigation: DirectNavigationItem[] = [
   { type: "link", label: "Jalan Tematik", href: "/jalan" },
+  { type: "link", label: "Produk Warga", href: "/produk" },
   { type: "link", label: "Tim KKN", href: "/tim" },
 ];

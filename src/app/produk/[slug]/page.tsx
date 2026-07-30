@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { ProductImage } from "@/components/products/ProductImage";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
-import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 import { StatusBadge } from "@/components/ui/StatusBadge";
-import { getProductBySlug, products } from "@/data/products";
+import { getProductBySlug, products, sampleProductNotice } from "@/data/products";
 import { formatPrice, getAvailabilityLabel } from "@/lib/formatters";
 import { createPageMetadata } from "@/lib/metadata";
-import { createProductOrderWhatsAppUrl } from "@/lib/whatsapp";
+import { getProductWhatsAppAction, isSampleProduct } from "@/lib/product-actions";
 
 type ProductDetailPageProps = {
   params: Promise<{
@@ -52,7 +52,7 @@ export default async function ProductDetailPage({
     notFound();
   }
 
-  const whatsappUrl = createProductOrderWhatsAppUrl(product);
+  const whatsappAction = getProductWhatsAppAction(product);
 
   return (
     <article className="bg-herbal-cream py-12 sm:py-16">
@@ -64,18 +64,17 @@ export default async function ProductDetailPage({
           ]}
         />
         <div className="mt-8 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-          <ImagePlaceholder
-            label={`Gambar sementara produk ${product.name}`}
-            variant="product"
-          />
+          <ProductImage priority product={product} size="detail" />
 
           <div>
             <div className="flex flex-wrap gap-2">
+              {isSampleProduct(product) ? (
+                <StatusBadge tone="brown">Produk contoh</StatusBadge>
+              ) : null}
               <StatusBadge tone="green">{product.category}</StatusBadge>
               <StatusBadge tone="neutral">
                 {getAvailabilityLabel(product.availability)}
               </StatusBadge>
-              <StatusBadge tone="brown">Data awal</StatusBadge>
             </div>
             <h1 className="mt-5 text-4xl font-bold text-herbal-ink sm:text-5xl">
               {product.name}
@@ -86,7 +85,7 @@ export default async function ProductDetailPage({
 
             <dl className="mt-8 grid gap-4 sm:grid-cols-2">
               <ProductInfo label="Harga" value={formatPrice(product.price, product.unit)} />
-              <ProductInfo label="Satuan" value={product.unit ?? "Segera tersedia"} />
+              <ProductInfo label="Satuan" value={product.unit ?? "Belum dikonfirmasi"} />
               <ProductInfo label="Produsen" value={product.producerName} />
               <ProductInfo
                 label="Status"
@@ -94,28 +93,36 @@ export default async function ProductDetailPage({
               />
             </dl>
 
+            {isSampleProduct(product) ? (
+              <div className="mt-6 rounded-[var(--radius-card)] border border-herbal-brown/20 bg-white p-5 text-sm leading-7 text-herbal-muted shadow-sm">
+                <strong className="block text-herbal-ink">Produk contoh</strong>
+                <span>{sampleProductNotice}</span>
+              </div>
+            ) : null}
+
             <div className="mt-8">
-              {whatsappUrl ? (
-                <a
-                  className="inline-flex min-h-11 items-center justify-center rounded-md bg-herbal-green px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-herbal-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
-                  href={whatsappUrl}
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  Pesan via WhatsApp
-                </a>
-              ) : (
+              {whatsappAction.disabled ? (
                 <button
                   className="inline-flex min-h-11 cursor-not-allowed items-center justify-center rounded-md border border-herbal-green/20 bg-white px-5 py-2.5 text-sm font-semibold text-herbal-muted"
                   disabled
                   type="button"
                 >
-                  Kontak segera tersedia
+                  {whatsappAction.label}
                 </button>
+              ) : (
+                <a
+                  className="inline-flex min-h-11 items-center justify-center rounded-md bg-herbal-green px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-herbal-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
+                  href={whatsappAction.href}
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  {whatsappAction.label}
+                </a>
               )}
               <p className="mt-3 text-sm leading-6 text-herbal-muted">
-                Fitur pemesanan lengkap akan disiapkan setelah data produk,
-                stok, kontak, dan persetujuan pengelola tersedia.
+                Transaksi diselesaikan langsung melalui WhatsApp. Website ini
+                tidak memproses checkout, pembayaran, pengiriman, atau
+                penyimpanan pesanan.
               </p>
             </div>
           </div>

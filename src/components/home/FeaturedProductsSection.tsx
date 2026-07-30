@@ -3,7 +3,7 @@ import { AutoCarousel } from "@/components/ui/AutoCarousel";
 import { Container } from "@/components/ui/Container";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { featuredProducts } from "@/data/products";
+import { featuredProducts, sampleProductNotice } from "@/data/products";
 
 export function FeaturedProductsSection() {
   if (featuredProducts.length === 0) {
@@ -15,9 +15,14 @@ export function FeaturedProductsSection() {
       <Container>
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <SectionHeading
-            description="Produk warga yang telah memiliki data publik ditampilkan pada katalog ini."
+            description={
+              <>
+                Cuplikan produk contoh untuk menguji katalog dan tautan WhatsApp.{" "}
+                {sampleProductNotice}
+              </>
+            }
             eyebrow="Produk Warga"
-            title="Produk pilihan warga"
+            title="Contoh Produk Kampung Herbal"
           />
           <LinkButton href="/produk" variant="secondary">
             Lihat Katalog Produk

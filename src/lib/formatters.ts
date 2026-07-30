@@ -43,7 +43,7 @@ export function getCategoryLabel(category: PlantCategory) {
 
 export function formatPrice(price: number | null, unit: string | null) {
   if (price === null) {
-    return "Harga segera tersedia";
+    return "Belum dikonfirmasi";
   }
 
   const formatted = new Intl.NumberFormat("id-ID", {

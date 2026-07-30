@@ -38,6 +38,12 @@ async function expectNoPublicPlaceholderText(page: Page) {
   ).toHaveCount(0);
 }
 
+async function expectNoUndefinedOrNull(page: Page) {
+  const bodyText = await page.locator("body").innerText();
+
+  expect(bodyText).not.toMatch(/undefined|null/i);
+}
+
 test("beranda menampilkan ringkasan HerbaCode tanpa placeholder publik", async ({
   page,
 }) => {
@@ -123,7 +129,6 @@ test("desktop dan mobile navbar tetap accessible dengan struktur publik", async 
   await expect(nav.getByRole("button", { name: "Edukasi" })).toBeVisible();
   await expect(nav.getByRole("link", { exact: true, name: "Peta Kampung" })).toBeVisible();
   await expect(nav.getByRole("button", { name: "Informasi Kampung" })).toBeVisible();
-  await expect(nav.getByRole("link", { exact: true, name: "Produk" })).toHaveCount(0);
   await expect(nav.getByRole("link", { exact: true, name: "Kotak Saran" })).toHaveCount(0);
 
   const edukasiButton = nav.getByRole("button", { name: "Edukasi" });
@@ -142,6 +147,7 @@ test("desktop dan mobile navbar tetap accessible dengan struktur publik", async 
   const infoButton = nav.getByRole("button", { name: "Informasi Kampung" });
   await infoButton.click();
   await expect(page.getByRole("menuitem", { name: "Jalan Tematik" })).toBeVisible();
+  await expect(page.getByRole("menuitem", { name: "Produk Warga" })).toBeVisible();
   await expect(page.getByRole("menuitem", { name: "Peta Kampung" })).toHaveCount(0);
   await page.keyboard.press("Escape");
 
@@ -154,8 +160,88 @@ test("desktop dan mobile navbar tetap accessible dengan struktur publik", async 
   await expect(mobileNav.getByRole("link", { name: "Zona Kesehatan" })).toBeVisible();
   await expect(mobileNav.getByRole("link", { name: "Peta Kampung" })).toBeVisible();
   await expect(mobileNav.getByRole("link", { name: "Jalan Tematik" })).toBeVisible();
+  await expect(mobileNav.getByRole("link", { name: "Produk Warga" })).toBeVisible();
   await expect(mobileNav.getByRole("link", { name: "Ramuan Sehat" })).toHaveCount(0);
   await expectNoHorizontalOverflow(page);
+});
+
+test("produk contoh tampil dan WhatsApp memuat produk yang dipilih", async ({
+  page,
+  request,
+}) => {
+  await page.goto("/");
+  await expect(
+    page.getByRole("heading", { name: "Contoh Produk Kampung Herbal" }),
+  ).toBeVisible();
+  await expect(page.getByText("Produk contoh").first()).toBeVisible();
+
+  await page.goto("/produk");
+  await expect(
+    page.getByRole("heading", { name: "Katalog Produk Kampung Herbal" }),
+  ).toBeVisible();
+  await expect(page.locator("[data-product-grid] article")).toHaveCount(6);
+
+  const products = [
+    ["teh-herbal-berua", "Teh Herbal Berua"],
+    ["minuman-jahe-rempah", "Minuman Jahe Rempah"],
+    ["kunyit-asam", "Kunyit Asam"],
+    ["simplisia-herbal-kering", "Simplisia Herbal Kering"],
+    ["bibit-tanaman-toga", "Bibit Tanaman TOGA"],
+    ["paket-tanaman-herbal-rumah", "Paket Tanaman Herbal Rumah"],
+  ] as const;
+
+  for (const [slug, name] of products) {
+    await expect(page.getByRole("link", { exact: true, name })).toBeVisible();
+    await expect(
+      page.getByRole("img", { name: `Ilustrasi produk contoh: ${name}` }).first(),
+    ).toBeVisible();
+    await expect(page.locator(`a[href="/produk/${slug}"]`).first()).toBeVisible();
+  }
+
+  const firstHref = await page
+    .locator('a[href^="https://wa.me/6289623080501"]')
+    .nth(0)
+    .getAttribute("href");
+  const secondHref = await page
+    .locator('a[href^="https://wa.me/6289623080501"]')
+    .nth(1)
+    .getAttribute("href");
+  const firstMessage = new URL(firstHref ?? "").searchParams.get("text") ?? "";
+  const secondMessage = new URL(secondHref ?? "").searchParams.get("text") ?? "";
+
+  expect(firstMessage).toContain("Produk: Teh Herbal Berua");
+  expect(secondMessage).toContain("Produk: Minuman Jahe Rempah");
+  expect(firstMessage).not.toBe(secondMessage);
+  expect(firstMessage).toContain("Harga: Belum dikonfirmasi");
+  expect(firstMessage).not.toMatch(/undefined|null/i);
+
+  for (const [slug, name] of products) {
+    await page.goto(`/produk/${slug}`);
+    await expect(page.getByRole("heading", { name })).toBeVisible();
+    await expect(
+      page.getByRole("img", { name: `Ilustrasi produk contoh: ${name}` }),
+    ).toBeVisible();
+    await expect(page.getByText("Produk contoh").first()).toBeVisible();
+    await expect(page.getByText("Belum dikonfirmasi").first()).toBeVisible();
+    await expect(page.getByText("Segera tersedia").first()).toBeVisible();
+    await expect(
+      page.getByRole("link", { name: "Tanyakan via WhatsApp" }),
+    ).toHaveAttribute("href", /https:\/\/wa\.me\/6289623080501/);
+    await expectNoBrokenImages(page);
+    await expectNoUndefinedOrNull(page);
+  }
+
+  await page.setViewportSize({ height: 900, width: 320 });
+  await page.goto("/produk");
+  await expectNoHorizontalOverflow(page);
+  await expectNoBrokenImages(page);
+
+  expect(
+    (await request.get("/qr/jalan/digestia", { maxRedirects: 0 })).status(),
+  ).toBe(307);
+  expect(
+    (await request.get("/qr/zona/pencernaan-sehat", { maxRedirects: 0 })).status(),
+  ).toBe(307);
 });
 
 test("katalog tanaman gabungan dapat dicari dan tidak menggandakan tanaman berulang", async ({

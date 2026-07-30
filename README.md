@@ -33,7 +33,7 @@ Kampung Herbal Berua membutuhkan portal digital yang dapat menjadi induk integra
 - Dashboard admin dengan login Supabase Auth, logout, proteksi `/admin`, CRUD tanaman, CRUD zona, dan dashboard `/admin/herbacode`.
 - Modul zona kesehatan: `/zona-kesehatan`, `/zona-kesehatan/[slug]`, `/z/[code]`, admin zona, QR SVG/PNG, serta pemisahan jalan melalui tabel `streets`.
 - Halaman ramuan sehat dengan bahan, takaran, langkah, saran penyajian, peringatan, dan disclaimer kesehatan.
-- Katalog produk warga dengan detail produk dan tombol WhatsApp nonaktif saat kontak belum tersedia.
+- Katalog produk contoh dengan detail produk dan tombol WhatsApp untuk menguji alur tanya produk sebelum data resmi diterima.
 - Halaman tentang, peta Kampung Herbal, kunjungan edukasi, kegiatan, kinerja RT, kotak saran, dan tim KKN.
 - Metadata dasar, Open Graph, sitemap, robots, favicon lama, loading UI, dan not-found UI.
 - Media Library global untuk metadata gambar, sumber, atribusi, admin media dasar, dan attachment gambar publik. Atribusi ditampilkan pada konteks pemakaian gambar, bukan melalui halaman indeks `/sumber-gambar`.
@@ -162,6 +162,7 @@ supabase/
 docs/
   admin-dashboard.md   Panduan dashboard admin
   map-integration.md   Fondasi integrasi peta Kampung Herbal
+  product-catalog.md   Panduan data produk contoh dan katalog resmi
   qr-deployment.md     Panduan unduh dan uji QR zona
   supabase-setup.md    Panduan setup Supabase
   testing.md           Strategi automated testing dan CI

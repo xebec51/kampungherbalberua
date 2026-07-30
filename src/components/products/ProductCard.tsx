@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Product } from "@/types";
-import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
+import { ProductImage } from "@/components/products/ProductImage";
 import {
   PublicCard,
   PublicCardAction,
@@ -8,24 +8,23 @@ import {
 } from "@/components/ui/PublicCard";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { formatPrice, getAvailabilityLabel } from "@/lib/formatters";
-import { createProductOrderWhatsAppUrl } from "@/lib/whatsapp";
+import { getProductWhatsAppAction, isSampleProduct } from "@/lib/product-actions";
 
 type ProductCardProps = {
   product: Product;
 };
 
 export function ProductCard({ product }: ProductCardProps) {
-  const whatsappUrl = createProductOrderWhatsAppUrl(product);
+  const whatsappAction = getProductWhatsAppAction(product);
 
   return (
     <PublicCard>
-      <ImagePlaceholder
-        className="aspect-[16/10] !rounded-none !border-0 !shadow-none"
-        label={`Gambar sementara produk ${product.name}`}
-        variant="product"
-      />
+      <ProductImage className="!rounded-none !border-0 !shadow-none" product={product} />
       <PublicCardBody>
         <div className="flex flex-wrap items-center gap-2">
+          {isSampleProduct(product) ? (
+            <StatusBadge tone="brown">Produk contoh</StatusBadge>
+          ) : null}
           <StatusBadge tone="green">{product.category}</StatusBadge>
           <StatusBadge tone="neutral">
             {getAvailabilityLabel(product.availability)}
@@ -53,16 +52,24 @@ export function ProductCard({ product }: ProductCardProps) {
           >
             Detail produk
           </PublicCardAction>
-          {whatsappUrl ? (
+          {whatsappAction.disabled ? (
+            <button
+              className="inline-flex min-h-10 cursor-not-allowed items-center justify-center rounded-md border border-herbal-green/20 bg-white px-4 py-2.5 text-sm font-bold text-herbal-muted"
+              disabled
+              type="button"
+            >
+              {whatsappAction.label}
+            </button>
+          ) : (
             <a
               className="inline-flex min-h-10 items-center justify-center rounded-md bg-herbal-deep px-4 py-2.5 text-sm font-bold !text-white shadow-[0_10px_24px_rgba(17,27,21,0.16)] transition hover:bg-herbal-green focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
-              href={whatsappUrl}
+              href={whatsappAction.href}
               rel="noreferrer"
               target="_blank"
             >
-              Pesan via WhatsApp
+              {whatsappAction.label}
             </a>
-          ) : null}
+          )}
         </div>
       </PublicCardBody>
     </PublicCard>
