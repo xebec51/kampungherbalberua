@@ -14,7 +14,11 @@ async function expectNoPublicPlaceholderText(page: Page) {
     /lorem|placeholder|gambar sementara|visual sementara|media sedang|foto .*menyusul|dokumentasi awal|data demonstrasi|data contoh|sedang disusun|belum aktif|belum menyimpan|undefined|null/i,
   );
   expect(bodyText).not.toMatch(/\bkhb-z\d{2}\b/i);
-  await expect(page.locator(".image-placeholder")).toHaveCount(0);
+  await expect(
+    page.locator(
+      '.image-placeholder:not([data-placeholder-variant="plant"])',
+    ),
+  ).toHaveCount(0);
 }
 
 test("beranda menampilkan ringkasan HerbaCode tanpa placeholder publik", async ({
@@ -39,6 +43,9 @@ test("beranda menampilkan ringkasan HerbaCode tanpa placeholder publik", async (
   ).toHaveCount(50);
   await expect(page.getByRole("link", { exact: true, name: "Jahe" })).toBeVisible();
   await expect(page.getByRole("link", { exact: true, name: "Meniran" })).toBeVisible();
+  await expect(
+    page.locator('[data-placeholder-variant="plant"]').first(),
+  ).toBeVisible();
   for (const streetName of [
     "Jl. Digestia",
     "Jl. Respiria",
@@ -113,7 +120,12 @@ test("katalog tanaman gabungan dapat dicari dan tidak menggandakan tanaman berul
     }),
   ).toBeVisible();
   await expect(page.getByText(/Menampilkan \d+ dari \d+ tanaman\./)).toBeVisible();
-  await expect(page.getByRole("link", { exact: true, name: "Cincau" })).toBeVisible();
+  await expect(
+    page.getByRole("link", { exact: true, name: "Cincau Hijau" }),
+  ).toBeVisible();
+  await expect(
+    page.locator('[data-placeholder-variant="plant"]').first(),
+  ).toBeVisible();
 
   await page.getByLabel("Cari tanaman").fill("jahe");
   await expect(page.getByText(/Menampilkan 1 dari \d+ tanaman\./)).toBeVisible();

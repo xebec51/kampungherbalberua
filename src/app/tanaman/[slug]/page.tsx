@@ -147,7 +147,12 @@ export default async function PlantDetailPage({ params }: PlantDetailPageProps) 
             isIllustration: false,
             src: fallbackLocalImage,
           }
-      : null;
+        : {
+            alt: `Tanaman ${plant.localName}`,
+            fallbackLabel: `Tanaman ${plant.localName}`,
+            isIllustration: false,
+            src: null,
+          };
 
   return (
     <article className="bg-herbal-cream py-12 sm:py-16">
@@ -160,11 +165,7 @@ export default async function PlantDetailPage({ params }: PlantDetailPageProps) 
         />
 
         <div
-          className={
-            visual
-              ? "mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.82fr)] lg:items-start"
-              : "mt-8 max-w-3xl"
-          }
+          className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.82fr)] lg:items-start"
         >
           <div className="min-w-0">
             <div className="flex flex-wrap gap-2">
@@ -199,7 +200,7 @@ export default async function PlantDetailPage({ params }: PlantDetailPageProps) 
             </div>
           </div>
 
-          {visual ? <PlantDetailImage priority visual={visual} /> : null}
+          <PlantDetailImage priority visual={visual} />
         </div>
 
         <div className="mt-8 grid gap-6 lg:grid-cols-2">
@@ -244,7 +245,12 @@ function CatalogPlantDetail({ plant }: { plant: PublishedPlantDetail }) {
         isIllustration: false,
         src: plant.image,
       }
-    : null;
+    : {
+        alt: `Tanaman ${plant.localName}`,
+        fallbackLabel: `Tanaman ${plant.localName}`,
+        isIllustration: false,
+        src: null,
+      };
 
   return (
     <article className="bg-herbal-cream py-12 sm:py-16">
@@ -257,11 +263,7 @@ function CatalogPlantDetail({ plant }: { plant: PublishedPlantDetail }) {
         />
 
         <div
-          className={
-            visual
-              ? "mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.82fr)] lg:items-start"
-              : "mt-8 max-w-3xl"
-          }
+          className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.82fr)] lg:items-start"
         >
           <div className="min-w-0">
             <div className="flex flex-wrap gap-2">
@@ -280,7 +282,7 @@ function CatalogPlantDetail({ plant }: { plant: PublishedPlantDetail }) {
             </p>
           </div>
 
-          {visual ? <PlantDetailImage priority visual={visual} /> : null}
+          <PlantDetailImage priority visual={visual} />
         </div>
 
         {hasSeparateDescription ? (
@@ -321,7 +323,12 @@ function PosterPlantDetail({ plant }: { plant: PosterPlantCatalogItem }) {
         isIllustration: plant.imageIsIllustration,
         src: image,
       }
-    : null;
+    : {
+        alt: `Tanaman ${plant.rawName}`,
+        fallbackLabel: `Tanaman ${plant.rawName}`,
+        isIllustration: false,
+        src: null,
+      };
   const sourceDetails = [
     plant.sourceLabel,
     plant.attributionText,
@@ -339,11 +346,7 @@ function PosterPlantDetail({ plant }: { plant: PosterPlantCatalogItem }) {
         />
 
         <div
-          className={
-            visual
-              ? "mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.82fr)] lg:items-start"
-              : "mt-8 max-w-3xl"
-          }
+          className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.82fr)] lg:items-start"
         >
           <div className="min-w-0">
             <div className="flex flex-wrap gap-2">
@@ -367,7 +370,7 @@ function PosterPlantDetail({ plant }: { plant: PosterPlantCatalogItem }) {
             </p>
           </div>
 
-          {visual ? <PlantDetailImage priority visual={visual} /> : null}
+          <PlantDetailImage priority visual={visual} />
         </div>
 
         <div className="mt-8 grid gap-6 lg:grid-cols-2">
@@ -395,7 +398,7 @@ type PlantDetailVisual = {
   alt: string;
   fallbackLabel: string;
   isIllustration: boolean;
-  src: string;
+  src: string | null;
 };
 
 const localPlantDetailImages: Record<string, string> = {

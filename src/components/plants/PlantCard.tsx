@@ -19,25 +19,18 @@ export function PlantCard({
   plant,
   priority = false,
 }: PlantCardProps) {
-  const image =
-    plant.image && !plant.image.startsWith("/images/placeholders/")
-      ? plant.image
-      : null;
-
   return (
     <PublicCard className={className}>
-      {image ? (
-        <SafeImage
-          alt={`Tanaman ${plant.localName}`}
-          className="aspect-[16/10] !rounded-none !border-0 !shadow-none"
-          fallbackLabel={`Tanaman ${plant.localName}`}
-          fallbackVariant="plant"
-          imageClassName="object-cover"
-          priority={priority}
-          sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, (max-width: 1279px) 30vw, 18rem"
-          src={image}
-        />
-      ) : null}
+      <SafeImage
+        alt={`Tanaman ${plant.localName}`}
+        className="aspect-[16/10] !rounded-none !border-0 !shadow-none"
+        fallbackLabel={`Tanaman ${plant.localName}`}
+        fallbackVariant="plant"
+        imageClassName="object-cover"
+        priority={priority}
+        sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, (max-width: 1279px) 30vw, 18rem"
+        src={plant.image}
+      />
       <PublicCardBody>
         <div className="flex flex-wrap items-center gap-2">
           <StatusBadge tone="green">{plant.category}</StatusBadge>

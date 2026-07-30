@@ -74,7 +74,7 @@ describe("plant media rendering", () => {
     );
   });
 
-  it("HerbaCodePlantCard menyembunyikan slot gambar ketika media tidak ada", async () => {
+  it("HerbaCodePlantCard menampilkan placeholder tanaman ketika media tidak ada", async () => {
     const { HerbaCodePlantCard } = await import(
       "../../src/components/plants/HerbaCodePlantCard"
     );
@@ -85,8 +85,10 @@ describe("plant media rendering", () => {
     );
 
     expect(html).not.toContain("<img");
-    expect(html).not.toContain("image-placeholder");
-    expect(html).not.toContain('role="img"');
+    expect(html).toContain("image-placeholder");
+    expect(html).toContain('data-placeholder-variant="plant"');
+    expect(html).toContain('role="img"');
+    expect(html).toContain('aria-label="Tanaman Jahe"');
     expect(html).not.toMatch(/gambar sementara|menyusul/i);
   });
 
@@ -125,7 +127,7 @@ describe("plant media rendering", () => {
     expect(safeImageSource).toContain("!resolvedSrc || isLocalPlaceholder(resolvedSrc)");
   });
 
-  it("halaman detail tanaman hanya memakai SafeImage saat media tersedia", () => {
+  it("halaman detail tanaman memakai SafeImage untuk media atau placeholder tanaman", () => {
     const detailPageSource = readFileSync(
       "src/app/tanaman/[slug]/page.tsx",
       "utf8",
@@ -135,6 +137,7 @@ describe("plant media rendering", () => {
     expect(detailPageSource).toContain("visibleDetailImageSrc");
     expect(detailPageSource).toContain("PlantDetailImage");
     expect(detailPageSource).toContain("src={visual.src}");
+    expect(detailPageSource).toContain("src: null");
   });
 
   it("kartu beranda memakai HerbaCodePlantCard", () => {

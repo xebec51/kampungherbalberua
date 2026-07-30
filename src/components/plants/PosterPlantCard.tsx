@@ -24,30 +24,24 @@ export function PosterPlantCard({
   priority = false,
 }: PosterPlantCardProps) {
   const partCategory = visiblePartCategory(plant.partCategory);
-  const image =
-    plant.image && !plant.image.startsWith("/images/placeholders/")
-      ? plant.image
-      : null;
   const href = `/tanaman/${plant.linkedPlantSlug ?? plant.slug}`;
 
   return (
     <PublicCard className={className}>
-      {image ? (
-        <SafeImage
-          alt={
-            plant.imageIsIllustration
-              ? `Visual referensi untuk tanaman ${plant.rawName}`
-              : `Foto tanaman ${plant.rawName}`
-          }
-          className="aspect-[16/10] !rounded-none !border-0 !shadow-none"
-          fallbackLabel={`Tanaman ${plant.rawName}`}
-          fallbackVariant="plant"
-          imageClassName="object-cover"
-          priority={priority}
-          sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, (max-width: 1279px) 30vw, 18rem"
-          src={image}
-        />
-      ) : null}
+      <SafeImage
+        alt={
+          plant.imageIsIllustration
+            ? `Visual referensi untuk tanaman ${plant.rawName}`
+            : `Foto tanaman ${plant.rawName}`
+        }
+        className="aspect-[16/10] !rounded-none !border-0 !shadow-none"
+        fallbackLabel={`Tanaman ${plant.rawName}`}
+        fallbackVariant="plant"
+        imageClassName="object-cover"
+        priority={priority}
+        sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, (max-width: 1279px) 30vw, 18rem"
+        src={plant.image}
+      />
       <PublicCardBody>
         <div className="flex flex-wrap items-center gap-2">
           {partCategory ? (

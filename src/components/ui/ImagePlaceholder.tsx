@@ -28,6 +28,7 @@ export function ImagePlaceholder({
   return (
     <div
       aria-label={accessibleLabel}
+      data-placeholder-variant={variant}
       role="img"
       className={cn(
         "public-card-media image-placeholder relative isolate flex aspect-[4/3] w-full items-end overflow-hidden rounded-md border border-herbal-green/12 bg-gradient-to-br p-4 text-left shadow-sm",
