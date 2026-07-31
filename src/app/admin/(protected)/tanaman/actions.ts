@@ -12,9 +12,9 @@ import {
   createPlant,
   deletePlant,
   getPlantByIdForAdmin,
+  setPlantWorkflowForAdmin,
   updatePlant,
   type PlantAdminInput,
-  type PlantAdminRecord,
 } from "@/lib/data/admin/plants";
 import {
   canPublishWithValidation,
@@ -28,6 +28,7 @@ import {
   plantCategories,
   validationStatuses,
 } from "@/lib/validation/content";
+import { parseWorkflowActionFormData } from "@/lib/workflow/parse-workflow-action";
 
 type ParsedPlantInput =
   | {
@@ -152,33 +153,6 @@ function parsePlantFormData(formData: FormData): ParsedPlantInput {
   };
 }
 
-function plantRecordToInput(plant: PlantAdminRecord): PlantAdminInput {
-  return {
-    care_instructions: plant.care_instructions,
-    category: plant.category,
-    content_status: plant.content_status,
-    description: plant.description,
-    featured: plant.featured,
-    image_path: plant.image_path,
-    local_name: plant.local_name,
-    location_status: plant.location_status,
-    other_names: plant.other_names,
-    plant_code: plant.plant_code,
-    preparation: plant.preparation,
-    scientific_name: plant.scientific_name,
-    short_description: plant.short_description,
-    slug: plant.slug,
-    source_notes: plant.source_notes,
-    traditional_uses: plant.traditional_uses,
-    used_parts: plant.used_parts,
-    validation_status: plant.validation_status,
-    validation_checked_at: plant.validation_checked_at,
-    validation_notes: plant.validation_notes,
-    validator_name: plant.validator_name,
-    warnings: plant.warnings,
-  };
-}
-
 function errorCode(message: string) {
   if (message.includes("Slug") || message.includes("kode")) {
     return "duplikat";
@@ -186,6 +160,10 @@ function errorCode(message: string) {
 
   if (message.includes("admin")) {
     return "otorisasi";
+  }
+
+  if (message.includes("belum lengkap")) {
+    return "tidak-lengkap";
   }
 
   return "validasi";
@@ -267,9 +245,10 @@ export async function updatePlantAction(id: string, formData: FormData) {
   redirect(`/admin/tanaman/${id}/edit?success=diperbarui`);
 }
 
-export async function archivePlantAction(formData: FormData) {
+export async function setPlantWorkflowAction(formData: FormData) {
   const { profile, user } = await requireStaff("/admin/tanaman");
   const id = readText(formData, "id");
+  const actorName = profile.display_name?.trim() || user.email || null;
 
   if (!id || !canPublishContent(profile.role)) {
     redirect("/admin/tanaman?error=otorisasi");
@@ -281,18 +260,33 @@ export async function archivePlantAction(formData: FormData) {
     redirect("/admin/tanaman?error=tidak-ditemukan");
   }
 
-  const input = {
-    ...plantRecordToInput(existing.data),
-    content_status: "archived" as const,
-  };
-  const result = await updatePlant(id, input, user.id);
+  const parsed = parseWorkflowActionFormData(formData);
+
+  if (!parsed.ok) {
+    redirect(`/admin/tanaman?error=${parsed.error}`);
+  }
+
+  const result = await setPlantWorkflowForAdmin({
+    action: parsed.action,
+    actorId: user.id,
+    actorName,
+    id,
+  });
 
   if (result.error || !result.data) {
     redirect(`/admin/tanaman?error=${errorCode(result.error ?? "gagal")}`);
   }
 
   revalidatePlantPages(existing.data.slug, result.data.slug);
-  redirect("/admin/tanaman?success=diarsipkan");
+
+  const successCode =
+    parsed.action.type === "publish"
+      ? "dipublikasikan"
+      : parsed.action.type === "reject"
+        ? "perlu-perbaikan"
+        : "diarsipkan";
+
+  redirect(`/admin/tanaman?success=${successCode}`);
 }
 
 export async function deletePlantAction(formData: FormData) {

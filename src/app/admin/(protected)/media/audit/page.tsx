@@ -1,5 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { AdminEmptyState } from "@/components/admin/AdminEmptyState";
+import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { getAdminMediaAuditSummary } from "@/lib/data/admin/media-audit";
 import { createPageMetadata } from "@/lib/metadata";
@@ -18,29 +20,19 @@ export default async function AdminMediaAuditPage() {
 
   return (
     <div className="grid gap-6">
-      <header className="rounded-md border border-herbal-green/10 bg-white p-6 shadow-sm">
-        <Link
-          className="text-sm font-semibold text-herbal-green hover:underline"
-          href="/admin/media"
-        >
-          Kembali ke Media
-        </Link>
-        <p className="mt-4 text-sm font-semibold uppercase tracking-[0.16em] text-herbal-brown">
-          Audit Media
-        </p>
-        <h2 className="mt-2 text-3xl font-bold tracking-normal text-herbal-ink">
-          Kualitas Gambar Katalog
-        </h2>
-        <p className="mt-3 max-w-2xl text-sm leading-6 text-herbal-muted">
-          Pantau gambar katalog Harmony yang masih generik, penggunaan ulang
-          berlebihan, metadata lisensi, dan item yang perlu ditinjau.
-        </p>
-      </header>
+      <AdminPageHeader
+        backHref="/admin/media"
+        backLabel="Kembali ke Media"
+        description="Pantau gambar katalog Harmony yang masih generik, penggunaan ulang berlebihan, metadata lisensi, dan item yang perlu ditinjau."
+        eyebrow="Audit Media"
+        title="Kualitas Gambar Katalog"
+      />
 
       {result.error || !audit ? (
-        <section className="rounded-md border border-herbal-brown/20 bg-[#F5E9DF] p-5 text-sm leading-6 text-herbal-brown shadow-sm">
-          {result.error ?? "Audit belum tersedia."}
-        </section>
+        <AdminEmptyState
+          description={result.error ?? "Audit belum tersedia."}
+          title="Audit media belum dapat dimuat"
+        />
       ) : (
         <>
           <section className="grid gap-4 md:grid-cols-4">

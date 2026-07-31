@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { AdminNotice } from "@/components/admin/AdminNotice";
+import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { PlantAdminForm } from "@/components/admin/PlantAdminForm";
 import { createPlantAction } from "@/app/admin/(protected)/tanaman/actions";
 import { requireStaff } from "@/lib/auth/require-staff";
@@ -32,21 +32,13 @@ export default async function NewPlantPage({ searchParams }: NewPlantPageProps) 
 
   return (
     <div className="grid gap-6">
-      <header className="rounded-md border border-herbal-green/10 bg-white p-6 shadow-sm">
-        <Link
-          className="text-sm font-semibold text-herbal-green hover:underline"
-          href="/admin/tanaman"
-        >
-          Kembali ke daftar tanaman
-        </Link>
-        <h2 className="mt-3 text-3xl font-bold tracking-normal text-herbal-ink">
-          Tambah Tanaman
-        </h2>
-        <p className="mt-3 max-w-2xl text-sm leading-6 text-herbal-muted">
-          Admin mengelola data tanaman, metadata pemeriksaan, validasi, dan
-          status publikasi.
-        </p>
-      </header>
+      <AdminPageHeader
+        backHref="/admin/tanaman"
+        backLabel="Kembali ke daftar tanaman"
+        description="Admin mengelola data tanaman, metadata pemeriksaan, validasi, dan status publikasi."
+        eyebrow="Admin Tanaman"
+        title="Tambah Tanaman"
+      />
       <AdminNotice message={errorMessages[params.error ?? ""]} tone="error" />
       <PlantAdminForm action={createPlantAction} mode="create" />
     </div>

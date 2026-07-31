@@ -1,6 +1,6 @@
 begin;
 
-select plan(25);
+select plan(27);
 
 create function pg_temp.throws(sql text)
 returns boolean
@@ -222,6 +222,9 @@ select ok(pg_temp.lives($$insert into public.herbacode_plant_zone_entries (sourc
 select ok(pg_temp.throws($$update public.herbacode_plant_zone_entries set content_status = 'published', validation_status = 'pending' where zone_code = 'khb-z98'$$), 'admin cannot publish HerbaCode entry without verified metadata');
 select ok(pg_temp.lives($$update public.herbacode_plant_zone_entries set validation_status = 'verified', validator_name = 'Admin Test', validated_at = now(), content_status = 'published' where zone_code = 'khb-z98'$$), 'admin can publish verified HerbaCode entry');
 select ok(pg_temp.lives($$delete from public.herbacode_plant_zone_entries where zone_code = 'khb-z98'$$), 'admin can delete HerbaCode entry');
+
+select has_column('public', 'herbacode_plant_zone_entries', 'validation_notes', 'herbacode entries have a validation_notes column for rejection reasons');
+select ok(pg_temp.lives($$update public.herbacode_plant_zone_entries set validation_status = 'rejected', content_status = 'draft', validation_notes = 'Perlu foto ulang' where zone_code = 'khb-z97'$$), 'admin can atomically reject with a reason note (Tandai Perlu Perbaikan)');
 
 select * from finish();
 

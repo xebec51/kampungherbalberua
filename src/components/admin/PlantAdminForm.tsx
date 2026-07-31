@@ -1,3 +1,5 @@
+import { AdminFormSection } from "@/components/admin/AdminFormSection";
+import { SelectField, TextAreaField, TextField } from "@/components/admin/fields";
 import type {
   ContentStatus,
   PlantCategory,
@@ -21,17 +23,17 @@ const categoryOptions: Array<{ label: string; value: PlantCategory }> = [
 ];
 
 const contentStatusOptions: Array<{ label: string; value: ContentStatus }> = [
-  { label: "Draft", value: "draft" },
-  { label: "Pending review", value: "pending_review" },
-  { label: "Published", value: "published" },
-  { label: "Archived", value: "archived" },
+  { label: "Draf", value: "draft" },
+  { label: "Menunggu pemeriksaan", value: "pending_review" },
+  { label: "Dipublikasikan", value: "published" },
+  { label: "Diarsipkan", value: "archived" },
 ];
 
 const validationStatusOptions: Array<{ label: string; value: ValidationStatus }> = [
   { label: "Data demonstrasi", value: "data_demonstrasi" },
-  { label: "Menunggu verifikasi", value: "pending" },
+  { label: "Menunggu pemeriksaan", value: "pending" },
   { label: "Terverifikasi", value: "verified" },
-  { label: "Ditolak", value: "rejected" },
+  { label: "Perlu perbaikan", value: "rejected" },
 ];
 
 function lines(values?: string[]) {
@@ -54,8 +56,7 @@ export function PlantAdminForm({
 
   return (
     <form action={action} className="grid gap-6">
-      <section className="grid gap-4 rounded-md border border-herbal-green/10 bg-white p-5 shadow-sm">
-        <h2 className="text-lg font-bold text-herbal-ink">Identitas tanaman</h2>
+      <AdminFormSection title="Identitas tanaman">
         <div className="grid gap-4 md:grid-cols-2">
           <TextField
             defaultValue={text(plant?.plant_code)}
@@ -100,10 +101,9 @@ export function PlantAdminForm({
           name="category"
           options={categoryOptions}
         />
-      </section>
+      </AdminFormSection>
 
-      <section className="grid gap-4 rounded-md border border-herbal-green/10 bg-white p-5 shadow-sm">
-        <h2 className="text-lg font-bold text-herbal-ink">Materi edukasi</h2>
+      <AdminFormSection title="Materi edukasi">
         <TextAreaField
           defaultValue={text(plant?.short_description)}
           disabled={disabled}
@@ -159,10 +159,12 @@ export function PlantAdminForm({
             name="source_notes"
           />
         </div>
-      </section>
+      </AdminFormSection>
 
-      <section className="grid gap-4 rounded-md border border-herbal-green/10 bg-white p-5 shadow-sm">
-        <h2 className="text-lg font-bold text-herbal-ink">Publikasi</h2>
+      <AdminFormSection
+        description="Metadata pemeriksaan ini melengkapi -- bukan menggantikan -- aksi Validasi & Publikasikan di daftar tanaman."
+        title="Publikasi dan validasi"
+      >
         <div className="grid gap-4 md:grid-cols-2">
           <TextField
             defaultValue={text(plant?.image_path)}
@@ -223,7 +225,7 @@ export function PlantAdminForm({
           />
           Tampilkan sebagai tanaman pilihan
         </label>
-      </section>
+      </AdminFormSection>
 
       {!disabled ? (
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -236,126 +238,5 @@ export function PlantAdminForm({
         </div>
       ) : null}
     </form>
-  );
-}
-
-type BaseFieldProps = {
-  defaultValue?: string;
-  disabled?: boolean;
-  help?: string;
-  label: string;
-  name: string;
-  required?: boolean;
-  type?: "text" | "date";
-};
-
-function fieldClasses() {
-  return "min-h-11 rounded-md border border-herbal-green/20 bg-white px-3 py-2 text-sm text-herbal-ink outline-none transition focus:border-herbal-green focus:ring-2 focus:ring-herbal-green/20 disabled:bg-herbal-soft disabled:text-herbal-muted";
-}
-
-function TextField({
-  defaultValue,
-  disabled,
-  help,
-  label,
-  name,
-  required,
-  type = "text",
-}: BaseFieldProps) {
-  const helpId = help ? `${name}-help` : undefined;
-
-  return (
-    <div className="grid gap-2">
-      <label className="text-sm font-semibold text-herbal-ink" htmlFor={name}>
-        {label}
-      </label>
-      <input
-        aria-describedby={helpId}
-        className={fieldClasses()}
-        defaultValue={defaultValue}
-        disabled={disabled}
-        id={name}
-        name={name}
-        required={required}
-        type={type}
-      />
-      {help ? (
-        <p className="text-xs leading-5 text-herbal-muted" id={helpId}>
-          {help}
-        </p>
-      ) : null}
-    </div>
-  );
-}
-
-function TextAreaField({
-  defaultValue,
-  disabled,
-  help,
-  label,
-  name,
-  required,
-  rows = 4,
-}: BaseFieldProps & { rows?: number }) {
-  const helpId = help ? `${name}-help` : undefined;
-
-  return (
-    <div className="grid gap-2">
-      <label className="text-sm font-semibold text-herbal-ink" htmlFor={name}>
-        {label}
-      </label>
-      <textarea
-        aria-describedby={helpId}
-        className={`${fieldClasses()} min-h-28 resize-y leading-6`}
-        defaultValue={defaultValue}
-        disabled={disabled}
-        id={name}
-        name={name}
-        required={required}
-        rows={rows}
-      />
-      {help ? (
-        <p className="text-xs leading-5 text-herbal-muted" id={helpId}>
-          {help}
-        </p>
-      ) : null}
-    </div>
-  );
-}
-
-type SelectFieldProps<T extends string> = {
-  defaultValue: T;
-  disabled?: boolean;
-  label: string;
-  name: string;
-  options: Array<{ label: string; value: T }>;
-};
-
-function SelectField<T extends string>({
-  defaultValue,
-  disabled,
-  label,
-  name,
-  options,
-}: SelectFieldProps<T>) {
-  return (
-    <div className="grid gap-2">
-      <label className="text-sm font-semibold text-herbal-ink" htmlFor={name}>
-        {label}
-      </label>
-      <select
-        className={fieldClasses()}
-        defaultValue={defaultValue}
-        disabled={disabled}
-        id={name}
-        name={name}
-      >
-        {options.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.label}
-          </option>
-        ))}
-      </select>
-    </div>
   );
 }

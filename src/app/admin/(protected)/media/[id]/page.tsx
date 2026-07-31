@@ -1,7 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { getAdminMediaAssetById } from "@/lib/data/admin/media";
 import { createPageMetadata } from "@/lib/metadata";
@@ -32,22 +32,19 @@ export default async function AdminMediaDetailPage({
 
   return (
     <div className="grid gap-6">
-      <header className="rounded-md border border-herbal-green/10 bg-white p-6 shadow-sm">
-        <Link
-          className="text-sm font-semibold text-herbal-green hover:underline"
-          href="/admin/media"
-        >
-          Kembali ke Media
-        </Link>
-        <h2 className="mt-3 text-3xl font-bold tracking-normal text-herbal-ink">
-          {media.title}
-        </h2>
-        <div className="mt-4 flex flex-wrap gap-2">
-          <StatusBadge tone="green">{media.contentStatus}</StatusBadge>
-          <StatusBadge tone="brown">{media.rightsStatus}</StatusBadge>
-          <StatusBadge tone="neutral">{media.privacyStatus}</StatusBadge>
-        </div>
-      </header>
+      <AdminPageHeader
+        actions={
+          <div className="flex flex-wrap gap-2">
+            <StatusBadge tone="green">{media.contentStatus}</StatusBadge>
+            <StatusBadge tone="brown">{media.rightsStatus}</StatusBadge>
+            <StatusBadge tone="neutral">{media.privacyStatus}</StatusBadge>
+          </div>
+        }
+        backHref="/admin/media"
+        backLabel="Kembali ke Media"
+        eyebrow="Media Library"
+        title={media.title}
+      />
 
       <section className="grid gap-6 xl:grid-cols-[1fr_0.9fr]">
         <div className="rounded-md border border-herbal-green/10 bg-white p-5 shadow-sm">

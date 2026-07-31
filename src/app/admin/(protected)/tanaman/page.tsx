@@ -1,10 +1,16 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { AdminActionBar, AdminActionLink } from "@/components/admin/AdminActionBar";
+import { AdminEmptyState } from "@/components/admin/AdminEmptyState";
+import { AdminFilterBar } from "@/components/admin/AdminFilterBar";
 import { AdminNotice } from "@/components/admin/AdminNotice";
-import { StatusBadge } from "@/components/ui/StatusBadge";
+import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
+import { AdminStatusBadge, AdminToneBadge } from "@/components/admin/AdminStatusBadge";
+import { DeleteConfirmForm } from "@/components/admin/DeleteConfirmForm";
+import { SelectField, TextField } from "@/components/admin/fields";
+import { WorkflowActionMenu } from "@/components/admin/WorkflowActionMenu";
 import {
-  archivePlantAction,
   deletePlantAction,
+  setPlantWorkflowAction,
 } from "@/app/admin/(protected)/tanaman/actions";
 import { canDeleteContent, canEditContent, canPublishContent } from "@/lib/auth/permissions";
 import { requireStaff } from "@/lib/auth/require-staff";
@@ -27,24 +33,27 @@ type AdminPlantsPageProps = {
 };
 
 const contentLabels: Record<ContentStatus, string> = {
-  archived: "Archived",
-  draft: "Draft",
-  pending_review: "Pending review",
-  published: "Published",
+  archived: "Diarsipkan",
+  draft: "Draf",
+  pending_review: "Menunggu pemeriksaan",
+  published: "Dipublikasikan",
 };
 
 const validationLabels: Record<ValidationStatus, string> = {
   data_demonstrasi: "Data demonstrasi",
-  pending: "Menunggu verifikasi",
-  rejected: "Ditolak",
+  pending: "Menunggu pemeriksaan",
+  rejected: "Perlu perbaikan",
   verified: "Terverifikasi",
 };
 
 const errorMessages: Record<string, string> = {
+  alasan: "Alasan wajib diisi saat menandai perlu perbaikan.",
   duplikat: "Slug atau kode tanaman sudah digunakan.",
   gagal: "Aksi tanaman belum dapat diproses.",
   hapus: "Penghapusan hanya tersedia untuk admin dan wajib dikonfirmasi.",
   "tidak-ditemukan": "Tanaman tidak ditemukan.",
+  "tidak-lengkap":
+    "Tanaman belum lengkap untuk dipublikasikan. Lengkapi catatan sumber dan isian wajib lain di halaman edit.",
   otorisasi: "Hanya admin yang dapat menjalankan aksi tersebut.",
   validasi: "Periksa kembali isian tanaman.",
 };
@@ -52,6 +61,8 @@ const errorMessages: Record<string, string> = {
 const successMessages: Record<string, string> = {
   diarsipkan: "Tanaman berhasil diarsipkan.",
   dihapus: "Tanaman berhasil dihapus.",
+  dipublikasikan: "Tanaman berhasil divalidasi dan dipublikasikan.",
+  "perlu-perbaikan": "Tanaman ditandai perlu perbaikan.",
 };
 
 export const dynamic = "force-dynamic";
@@ -103,48 +114,32 @@ export default async function AdminPlantsPage({
 
   return (
     <div className="grid gap-6">
-      <header className="rounded-md border border-herbal-green/10 bg-white p-6 shadow-sm">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-herbal-brown">
-              Admin Tanaman
-            </p>
-            <h2 className="mt-2 text-3xl font-bold tracking-normal text-herbal-ink">
-              Daftar Tanaman
-            </h2>
-            <p className="mt-3 max-w-2xl text-sm leading-6 text-herbal-muted">
-              Kelola katalog tanaman melalui Supabase. Halaman admin tidak
-              memakai fallback data lokal.
-            </p>
-          </div>
-          {canEditContent(profile.role) ? (
-            <Link
-              className="inline-flex min-h-11 items-center justify-center rounded-md bg-herbal-green px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-herbal-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
-              href="/admin/tanaman/baru"
-            >
+      <AdminPageHeader
+        actions={
+          canEditContent(profile.role) ? (
+            <AdminActionLink href="/admin/tanaman/baru" variant="primary">
               Tambah Tanaman
-            </Link>
-          ) : null}
-        </div>
-      </header>
+            </AdminActionLink>
+          ) : null
+        }
+        description="Kelola katalog tanaman melalui Supabase. Halaman admin tidak memakai fallback data lokal."
+        eyebrow="Admin Tanaman"
+        title="Daftar Tanaman"
+      />
 
       <AdminNotice message={successMessages[params.success ?? ""]} />
       <AdminNotice message={errorMessages[params.error ?? ""]} tone="error" />
 
-      <form className="grid gap-4 rounded-md border border-herbal-green/10 bg-white p-5 shadow-sm md:grid-cols-[1fr_12rem_12rem_auto] md:items-end">
-        <div className="grid gap-2">
-          <label className="text-sm font-semibold text-herbal-ink" htmlFor="q">
-            Cari tanaman
-          </label>
-          <input
-            className="min-h-11 rounded-md border border-herbal-green/20 bg-white px-3 py-2 text-sm text-herbal-ink outline-none transition focus:border-herbal-green focus:ring-2 focus:ring-herbal-green/20"
-            defaultValue={params.q ?? ""}
-            id="q"
-            name="q"
-            type="search"
-          />
-        </div>
-        <FilterSelect
+      <AdminFilterBar>
+        <TextField
+          className="lg:w-72"
+          defaultValue={params.q ?? ""}
+          label="Cari tanaman"
+          name="q"
+          type="search"
+        />
+        <SelectField
+          className="lg:w-48"
           defaultValue={filters.contentStatus ?? "all"}
           label="Status konten"
           name="content_status"
@@ -156,7 +151,8 @@ export default async function AdminPlantsPage({
             })),
           ]}
         />
-        <FilterSelect
+        <SelectField
+          className="lg:w-48"
           defaultValue={filters.validationStatus ?? "all"}
           label="Status validasi"
           name="validation_status"
@@ -168,24 +164,28 @@ export default async function AdminPlantsPage({
             })),
           ]}
         />
-        <button
-          className="inline-flex min-h-11 items-center justify-center rounded-md border border-herbal-green bg-white px-4 py-2 text-sm font-semibold text-herbal-green transition hover:bg-herbal-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
-          type="submit"
-        >
-          Terapkan
-        </button>
-      </form>
+        <AdminActionBar>
+          <button
+            className="inline-flex min-h-11 items-center justify-center rounded-md border border-herbal-green bg-white px-4 py-2 text-sm font-semibold text-herbal-green transition hover:bg-herbal-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
+            type="submit"
+          >
+            Terapkan
+          </button>
+        </AdminActionBar>
+      </AdminFilterBar>
 
       {result.error || !plants ? (
-        <section className="rounded-md border border-herbal-brown/20 bg-[#F5E9DF] p-5 text-sm leading-6 text-herbal-brown shadow-sm">
-          {result.error ?? "Daftar tanaman belum dapat dimuat."}
-        </section>
+        <AdminEmptyState
+          description={result.error ?? "Daftar tanaman belum dapat dimuat."}
+          title="Daftar tanaman belum dapat dimuat"
+        />
       ) : plants.length === 0 ? (
-        <section className="rounded-md border border-herbal-green/10 bg-white p-6 text-sm leading-6 text-herbal-muted shadow-sm">
-          Belum ada tanaman yang cocok dengan filter saat ini.
-        </section>
+        <AdminEmptyState
+          description="Coba ubah kata kunci atau filter status."
+          title="Belum ada tanaman yang cocok"
+        />
       ) : (
-        <section aria-label="Daftar tanaman admin" className="grid gap-4">
+        <section aria-label="Daftar tanaman admin" className="grid gap-3">
           {plants.map((plant) => (
             <PlantAdminCard
               canArchive={canPublishContent(profile.role)}
@@ -197,35 +197,6 @@ export default async function AdminPlantsPage({
           ))}
         </section>
       )}
-    </div>
-  );
-}
-
-type FilterSelectProps = {
-  defaultValue: string;
-  label: string;
-  name: string;
-  options: Array<{ label: string; value: string }>;
-};
-
-function FilterSelect({ defaultValue, label, name, options }: FilterSelectProps) {
-  return (
-    <div className="grid gap-2">
-      <label className="text-sm font-semibold text-herbal-ink" htmlFor={name}>
-        {label}
-      </label>
-      <select
-        className="min-h-11 rounded-md border border-herbal-green/20 bg-white px-3 py-2 text-sm text-herbal-ink outline-none transition focus:border-herbal-green focus:ring-2 focus:ring-herbal-green/20"
-        defaultValue={defaultValue}
-        id={name}
-        name={name}
-      >
-        {options.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.label}
-          </option>
-        ))}
-      </select>
     </div>
   );
 }
@@ -244,74 +215,50 @@ function PlantAdminCard({
   plant,
 }: PlantAdminCardProps) {
   return (
-    <article className="rounded-md border border-herbal-green/10 bg-white p-5 shadow-sm">
-      <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-        <div>
-          <div className="flex flex-wrap gap-2">
-            <StatusBadge tone="green">{contentLabels[plant.content_status]}</StatusBadge>
-            <StatusBadge tone="brown">
-              {validationLabels[plant.validation_status]}
-            </StatusBadge>
-            {plant.featured ? <StatusBadge>Featured</StatusBadge> : null}
+    <article className="rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-4 shadow-[var(--shadow-soft)] sm:p-5">
+      <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
+        <div className="min-w-0">
+          <div className="flex flex-wrap items-center gap-2">
+            <AdminStatusBadge
+              contentStatus={plant.content_status}
+              validationStatus={plant.validation_status}
+            />
+            {plant.featured ? (
+              <AdminToneBadge tone="neutral">Pilihan</AdminToneBadge>
+            ) : null}
           </div>
-          <h3 className="mt-3 text-xl font-bold text-herbal-ink">
+          <h3 className="mt-2 truncate text-lg font-bold text-herbal-ink">
             {plant.local_name}
           </h3>
-          <p className="mt-1 text-sm text-herbal-muted">
-            /tanaman/{plant.slug}
-          </p>
-          <p className="mt-3 max-w-3xl text-sm leading-6 text-herbal-muted">
+          <p className="text-xs text-herbal-muted">/tanaman/{plant.slug}</p>
+          <p className="mt-2 line-clamp-2 max-w-2xl text-sm leading-6 text-herbal-muted">
             {plant.short_description}
           </p>
-          <p className="mt-3 text-xs font-semibold uppercase tracking-[0.12em] text-herbal-muted">
+          <p className="mt-2 text-xs font-semibold uppercase tracking-[0.1em] text-herbal-muted">
             Diperbarui {new Date(plant.updated_at).toLocaleString("id-ID")}
           </p>
         </div>
-        <div className="flex flex-col gap-2 sm:flex-row lg:flex-col">
-          <Link
-            className="inline-flex min-h-10 items-center justify-center rounded-md border border-herbal-green bg-white px-4 py-2 text-sm font-semibold text-herbal-green transition hover:bg-herbal-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
-            href={`/admin/tanaman/${plant.id}/edit`}
-          >
+        <AdminActionBar align="end" className="shrink-0">
+          <AdminActionLink href={`/admin/tanaman/${plant.id}/edit`} variant="secondary">
             {canEdit ? "Edit" : "Lihat"}
-          </Link>
-          {canArchive && plant.content_status !== "archived" ? (
-            <form action={archivePlantAction}>
-              <input name="id" type="hidden" value={plant.id} />
-              <button
-                className="inline-flex min-h-10 w-full items-center justify-center rounded-md bg-herbal-brown px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#713511] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-green"
-                type="submit"
-              >
-                Arsipkan
-              </button>
-            </form>
+          </AdminActionLink>
+          {canDelete ? (
+            <DeleteConfirmForm
+              action={deletePlantAction}
+              entityId={plant.id}
+              entityLabel={`Tanaman "${plant.local_name}"`}
+            />
           ) : null}
-        </div>
+        </AdminActionBar>
       </div>
-      {canDelete ? (
-        <details className="mt-4 rounded-md border border-herbal-brown/20 bg-[#F5E9DF] p-4">
-          <summary className="cursor-pointer text-sm font-bold text-herbal-brown">
-            Hapus permanen
-          </summary>
-          <form action={deletePlantAction} className="mt-4 grid gap-3 text-sm text-herbal-brown">
-            <input name="id" type="hidden" value={plant.id} />
-            <label className="flex items-start gap-3">
-              <input
-                className="mt-1 h-4 w-4 accent-herbal-brown"
-                name="confirm_delete"
-                type="checkbox"
-                value="permanen"
-              />
-              Saya memahami penghapusan ini permanen. Arsipkan tanaman bila data
-              masih mungkin diperlukan.
-            </label>
-            <button
-              className="inline-flex min-h-10 w-fit items-center justify-center rounded-md bg-herbal-brown px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#713511] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-green"
-              type="submit"
-            >
-              Hapus Tanaman
-            </button>
-          </form>
-        </details>
+      {canArchive ? (
+        <div className="mt-4 border-t border-herbal-green/10 pt-4">
+          <WorkflowActionMenu
+            action={setPlantWorkflowAction}
+            entityId={plant.id}
+            entityLabel={`tanaman "${plant.local_name}"`}
+          />
+        </div>
       ) : null}
     </article>
   );

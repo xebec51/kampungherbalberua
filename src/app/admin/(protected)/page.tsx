@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { AdminActionLink } from "@/components/admin/AdminActionBar";
+import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { CopyQrUrlButton } from "@/components/admin/CopyQrUrlButton";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { getAdminDashboardStats } from "@/lib/data/admin/dashboard";
@@ -30,23 +31,13 @@ export default async function AdminDashboardPage() {
 
   return (
     <div className="grid gap-6">
-      <header className="brand-pattern rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-6 shadow-[var(--shadow-soft)]">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-herbal-brown">
-              Admin
-            </p>
-            <h2 className="mt-2 text-3xl font-bold tracking-normal text-herbal-ink">
-              Dashboard Konten
-            </h2>
-            <p className="mt-3 max-w-2xl text-sm leading-6 text-herbal-muted">
-              Kelola data tanaman dan zona kesehatan. Data admin selalu dibaca
-              dari Supabase dan tidak memakai fallback lokal.
-            </p>
-          </div>
-          <StatusBadge tone="green">Akses staf aktif</StatusBadge>
-        </div>
-      </header>
+      <AdminPageHeader
+        actions={<StatusBadge tone="green">Akses staf aktif</StatusBadge>}
+        className="brand-pattern"
+        description="Kelola data tanaman dan zona kesehatan. Data admin selalu dibaca dari Supabase dan tidak memakai fallback lokal."
+        eyebrow="Admin"
+        title="Dashboard Konten"
+      />
 
       {result.error || !stats ? (
         <section className="rounded-md border border-herbal-brown/20 bg-[#F5E9DF] p-5 text-sm leading-6 text-herbal-brown shadow-sm">
@@ -151,24 +142,15 @@ function QrList({ emptyText, items, title }: QrListProps) {
                 {item.qrUrl}
               </p>
               <div className="mt-3 flex flex-wrap gap-2">
-                <Link
-                  className="inline-flex min-h-10 items-center justify-center rounded-md bg-herbal-green px-4 py-2 text-sm font-semibold text-white transition hover:bg-herbal-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
-                  href={`${item.adminQrPath}?format=svg`}
-                >
+                <AdminActionLink href={`${item.adminQrPath}?format=svg`} variant="primary">
                   Unduh QR SVG
-                </Link>
-                <Link
-                  className="inline-flex min-h-10 items-center justify-center rounded-md border border-herbal-green bg-white px-4 py-2 text-sm font-semibold text-herbal-green transition hover:bg-herbal-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
-                  href={`${item.adminQrPath}?format=png`}
-                >
+                </AdminActionLink>
+                <AdminActionLink href={`${item.adminQrPath}?format=png`} variant="secondary">
                   Unduh QR PNG
-                </Link>
-                <Link
-                  className="inline-flex min-h-10 items-center justify-center rounded-md border border-herbal-green bg-white px-4 py-2 text-sm font-semibold text-herbal-green transition hover:bg-herbal-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
-                  href={item.destinationPath}
-                >
+                </AdminActionLink>
+                <AdminActionLink href={item.destinationPath} variant="secondary">
                   Buka halaman tujuan
-                </Link>
+                </AdminActionLink>
                 <CopyQrUrlButton url={item.qrUrl} />
               </div>
             </article>

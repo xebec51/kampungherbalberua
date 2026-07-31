@@ -8,13 +8,8 @@ import {
   updateHerbaCodeEntryForAdmin,
   type HerbaCodeEntryAdminInput,
 } from "@/lib/data/admin/herbacode";
-import {
-  contentStatuses,
-  isAllowed,
-  parseTextareaLines,
-  validationStatuses,
-} from "@/lib/validation/content";
-import type { ContentStatus, ValidationStatus } from "@/lib/supabase/database.types";
+import { parseTextareaLines } from "@/lib/validation/content";
+import { parseWorkflowActionFormData } from "@/lib/workflow/parse-workflow-action";
 
 function readText(formData: FormData, name: string) {
   const value = formData.get(name);
@@ -63,17 +58,17 @@ export async function updateHerbaCodeEntryAction(formData: FormData) {
   };
 
   if (!id || !input.local_name) {
-    redirect("/admin/herbacode?error=validasi");
+    redirect(`/admin/herbacode/${id}/edit?error=validasi`);
   }
 
   const result = await updateHerbaCodeEntryForAdmin(id, input, user.id);
 
   if (result.error) {
-    redirect("/admin/herbacode?error=gagal");
+    redirect(`/admin/herbacode/${id}/edit?error=gagal`);
   }
 
   revalidateHerbaCodePages();
-  redirect("/admin/herbacode?success=diperbarui");
+  redirect(`/admin/herbacode/${id}/edit?success=diperbarui`);
 }
 
 export async function setHerbaCodeWorkflowAction(formData: FormData) {
@@ -81,39 +76,23 @@ export async function setHerbaCodeWorkflowAction(formData: FormData) {
   requireAdmin(profile.role);
 
   const id = readText(formData, "id");
-  const contentStatus = readText(formData, "content_status");
-  const validationStatus = readText(formData, "validation_status");
   const actorName = profile.display_name?.trim() || user.email || null;
-  const input: {
-    contentStatus?: ContentStatus;
-    validationStatus?: ValidationStatus;
-  } = {};
 
   if (!id) {
     redirect("/admin/herbacode?error=validasi");
   }
 
-  if (contentStatus) {
-    if (!isAllowed(contentStatus, contentStatuses)) {
-      redirect("/admin/herbacode?error=validasi");
-    }
+  const parsed = parseWorkflowActionFormData(formData);
 
-    input.contentStatus = contentStatus;
-  }
-
-  if (validationStatus) {
-    if (!isAllowed(validationStatus, validationStatuses)) {
-      redirect("/admin/herbacode?error=validasi");
-    }
-
-    input.validationStatus = validationStatus;
+  if (!parsed.ok) {
+    redirect(`/admin/herbacode?error=${parsed.error}`);
   }
 
   const result = await setHerbaCodeEntryWorkflowForAdmin({
+    action: parsed.action,
     actorId: user.id,
     actorName,
     id,
-    ...input,
   });
 
   if (result.error) {

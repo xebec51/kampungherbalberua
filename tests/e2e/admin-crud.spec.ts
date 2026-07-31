@@ -109,7 +109,9 @@ test("admin dapat membuat, publish, archive, dan delete tanaman", async ({
   await expect(page.getByRole("heading", { name: "E2E-Admin Plant" })).toBeVisible();
 
   await page.goto(`/admin/tanaman?q=${slug}`);
-  await page.getByRole("button", { name: "Arsipkan" }).click();
+  await page.getByRole("button", { name: "Arsipkan", exact: true }).click();
+  const archiveDialog = page.getByRole("dialog", { name: "Arsipkan konten ini?" });
+  await archiveDialog.getByRole("button", { name: "Ya, arsipkan" }).click();
   await expect(page.getByText("Tanaman berhasil diarsipkan.")).toBeVisible();
 
   await page.goto(`/tanaman/${slug}`);
@@ -119,9 +121,64 @@ test("admin dapat membuat, publish, archive, dan delete tanaman", async ({
   ).toHaveCount(0);
 
   await page.goto(`/admin/tanaman?q=${slug}`);
-  await page.getByText("Hapus permanen").click();
-  await page.getByLabel(/Saya memahami penghapusan ini permanen/).check();
-  await page.getByRole("button", { name: "Hapus Tanaman" }).click();
+  await page.getByRole("button", { name: "Hapus Permanen" }).click();
+  const deleteDialog = page.getByRole("dialog", { name: "Hapus permanen?" });
+  await deleteDialog.getByLabel(/Saya memahami penghapusan ini permanen/).check();
+  await deleteDialog.getByRole("button", { name: "Ya, hapus permanen" }).click();
+  await expect(page.getByText("Tanaman berhasil dihapus.")).toBeVisible();
+});
+
+test("admin dapat menjalankan Validasi & Publikasikan dan Tandai Perlu Perbaikan pada tanaman draft", async ({
+  page,
+}) => {
+  const slug = "e2e-admin-workflow-plant";
+
+  await loginAs(page, "admin");
+  await page.goto("/admin/tanaman/baru");
+  await page.getByLabel("Slug").fill(slug);
+  await page.getByLabel("Nama lokal").fill("E2E Workflow Plant");
+  await page.getByLabel("Ringkasan").fill("Tanaman uji workflow.");
+  await page.getByLabel("Deskripsi").fill("Deskripsi tanaman uji workflow.");
+  await page.getByLabel("Catatan sumber").fill("Sumber rujukan awal untuk uji workflow.");
+  await page.getByRole("button", { name: "Simpan tanaman" }).click();
+  await expect(page).toHaveURL(/\/admin\/tanaman\/[^/]+\/edit/);
+
+  await page.goto(`/admin/tanaman?q=${slug}`);
+  const card = page.locator("article", { hasText: "E2E Workflow Plant" });
+  await expect(card.getByText("Draf", { exact: true })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Publish", exact: true })).toHaveCount(0);
+  await expect(page.getByRole("button", { name: "Validasi", exact: true })).toHaveCount(0);
+  await expect(page.getByRole("button", { name: "Tolak", exact: true })).toHaveCount(0);
+
+  await card.getByRole("button", { name: "Validasi & Publikasikan" }).click();
+  await expect(
+    page.getByText("Tanaman berhasil divalidasi dan dipublikasikan."),
+  ).toBeVisible();
+
+  await page.goto(`/tanaman/${slug}`);
+  await expect(page.getByRole("heading", { name: "E2E Workflow Plant" })).toBeVisible();
+
+  await page.goto(`/admin/tanaman?q=${slug}`);
+  await expect(card.getByText("Dipublikasikan", { exact: true })).toBeVisible();
+  await card.getByRole("button", { name: "Tandai Perlu Perbaikan" }).click();
+  const rejectDialog = page.getByRole("dialog", { name: "Tandai perlu perbaikan" });
+  await rejectDialog
+    .getByLabel("Alasan perlu perbaikan")
+    .fill("Sumber rujukan perlu diperbarui.");
+  await rejectDialog.getByRole("button", { name: "Kirim & Tandai" }).click();
+  await expect(page.getByText("Tanaman ditandai perlu perbaikan.")).toBeVisible();
+
+  await page.goto(`/admin/tanaman?q=${slug}`);
+  await expect(card.getByText("Perlu perbaikan", { exact: true })).toBeVisible();
+
+  await page.goto(`/tanaman/${slug}`);
+  await expect(page).toHaveTitle(/Tanaman tidak ditemukan/);
+
+  await page.goto(`/admin/tanaman?q=${slug}`);
+  await page.getByRole("button", { name: "Hapus Permanen" }).click();
+  const deleteDialog = page.getByRole("dialog", { name: "Hapus permanen?" });
+  await deleteDialog.getByLabel(/Saya memahami penghapusan ini permanen/).check();
+  await deleteDialog.getByRole("button", { name: "Ya, hapus permanen" }).click();
   await expect(page.getByText("Tanaman berhasil dihapus.")).toBeVisible();
 });
 
@@ -170,12 +227,15 @@ test("admin zona dapat publish, mengunduh QR, mengubah slug, archive, dan delete
   expect(redirect.headers().location).toContain("/zona-kesehatan/e2e-admin-zone-sehat");
 
   await page.goto(`/admin/zona?q=khb-z91`);
-  await page.getByRole("button", { name: "Arsipkan" }).click();
+  await page.getByRole("button", { name: "Arsipkan", exact: true }).click();
+  const archiveDialog = page.getByRole("dialog", { name: "Arsipkan konten ini?" });
+  await archiveDialog.getByRole("button", { name: "Ya, arsipkan" }).click();
   await expect(page.getByText("Zona berhasil diarsipkan.")).toBeVisible();
 
   await page.goto(`/admin/zona?q=khb-z91`);
-  await page.getByText("Hapus permanen").click();
-  await page.getByLabel(/Saya memahami penghapusan ini permanen/).check();
-  await page.getByRole("button", { name: "Hapus Zona" }).click();
+  await page.getByRole("button", { name: "Hapus Permanen" }).click();
+  const deleteDialog = page.getByRole("dialog", { name: "Hapus permanen?" });
+  await deleteDialog.getByLabel(/Saya memahami penghapusan ini permanen/).check();
+  await deleteDialog.getByRole("button", { name: "Ya, hapus permanen" }).click();
   await expect(page.getByText("Zona berhasil dihapus.")).toBeVisible();
 });

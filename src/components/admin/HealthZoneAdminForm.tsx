@@ -1,3 +1,5 @@
+import { AdminFormSection } from "@/components/admin/AdminFormSection";
+import { SelectField, TextAreaField, TextField } from "@/components/admin/fields";
 import type {
   ContentStatus,
   ValidationStatus,
@@ -12,17 +14,17 @@ type HealthZoneAdminFormProps = {
 };
 
 const contentStatusOptions: Array<{ label: string; value: ContentStatus }> = [
-  { label: "Draft", value: "draft" },
-  { label: "Pending review", value: "pending_review" },
-  { label: "Published", value: "published" },
-  { label: "Archived", value: "archived" },
+  { label: "Draf", value: "draft" },
+  { label: "Menunggu pemeriksaan", value: "pending_review" },
+  { label: "Dipublikasikan", value: "published" },
+  { label: "Diarsipkan", value: "archived" },
 ];
 
 const validationStatusOptions: Array<{ label: string; value: ValidationStatus }> = [
   { label: "Data demonstrasi", value: "data_demonstrasi" },
-  { label: "Menunggu verifikasi", value: "pending" },
+  { label: "Menunggu pemeriksaan", value: "pending" },
   { label: "Terverifikasi", value: "verified" },
-  { label: "Ditolak", value: "rejected" },
+  { label: "Perlu perbaikan", value: "rejected" },
 ];
 
 function lines(values?: string[]) {
@@ -51,8 +53,7 @@ export function HealthZoneAdminForm({
         </div>
       ) : null}
 
-      <section className="grid gap-4 rounded-md border border-herbal-green/10 bg-white p-5 shadow-sm">
-        <h2 className="text-lg font-bold text-herbal-ink">Identitas zona</h2>
+      <AdminFormSection title="Identitas zona">
         <div className="grid gap-4 md:grid-cols-2">
           <TextField
             defaultValue={text(zone?.zone_code)}
@@ -81,9 +82,9 @@ export function HealthZoneAdminForm({
           <TextField
             defaultValue={text(zone?.street_name)}
             disabled={disabled}
+            help="Kosongkan bila data jalan riil belum tersedia."
             label="Nama jalan"
             name="street_name"
-            help="Kosongkan bila data jalan riil belum tersedia."
           />
           <TextField
             defaultValue={text(zone?.zone_name)}
@@ -107,10 +108,9 @@ export function HealthZoneAdminForm({
           name="block_ranges"
           required
         />
-      </section>
+      </AdminFormSection>
 
-      <section className="grid gap-4 rounded-md border border-herbal-green/10 bg-white p-5 shadow-sm">
-        <h2 className="text-lg font-bold text-herbal-ink">Materi zona</h2>
+      <AdminFormSection title="Materi zona">
         <TextAreaField
           defaultValue={text(zone?.health_topic)}
           disabled={disabled}
@@ -161,10 +161,12 @@ export function HealthZoneAdminForm({
             name="source_notes"
           />
         </div>
-      </section>
+      </AdminFormSection>
 
-      <section className="grid gap-4 rounded-md border border-herbal-green/10 bg-white p-5 shadow-sm">
-        <h2 className="text-lg font-bold text-herbal-ink">Publikasi</h2>
+      <AdminFormSection
+        description="Metadata pemeriksaan ini melengkapi -- bukan menggantikan -- aksi Validasi & Publikasikan di daftar zona."
+        title="Publikasi dan validasi"
+      >
         <div className="grid gap-4 md:grid-cols-2">
           <TextField
             defaultValue={text(zone?.image_path)}
@@ -225,7 +227,7 @@ export function HealthZoneAdminForm({
           />
           Tampilkan sebagai zona pilihan
         </label>
-      </section>
+      </AdminFormSection>
 
       {!disabled ? (
         <button
@@ -236,129 +238,5 @@ export function HealthZoneAdminForm({
         </button>
       ) : null}
     </form>
-  );
-}
-
-type BaseFieldProps = {
-  defaultValue?: string;
-  disabled?: boolean;
-  help?: string;
-  label: string;
-  name: string;
-  readOnly?: boolean;
-  required?: boolean;
-  type?: "text" | "date";
-};
-
-function fieldClasses() {
-  return "min-h-11 rounded-md border border-herbal-green/20 bg-white px-3 py-2 text-sm text-herbal-ink outline-none transition focus:border-herbal-green focus:ring-2 focus:ring-herbal-green/20 disabled:bg-herbal-soft disabled:text-herbal-muted read-only:bg-herbal-soft";
-}
-
-function TextField({
-  defaultValue,
-  disabled,
-  help,
-  label,
-  name,
-  readOnly,
-  required,
-  type = "text",
-}: BaseFieldProps) {
-  const helpId = help ? `${name}-help` : undefined;
-
-  return (
-    <div className="grid gap-2">
-      <label className="text-sm font-semibold text-herbal-ink" htmlFor={name}>
-        {label}
-      </label>
-      <input
-        aria-describedby={helpId}
-        className={fieldClasses()}
-        defaultValue={defaultValue}
-        disabled={disabled}
-        id={name}
-        name={name}
-        readOnly={readOnly}
-        required={required}
-        type={type}
-      />
-      {help ? (
-        <p className="text-xs leading-5 text-herbal-muted" id={helpId}>
-          {help}
-        </p>
-      ) : null}
-    </div>
-  );
-}
-
-function TextAreaField({
-  defaultValue,
-  disabled,
-  help,
-  label,
-  name,
-  required,
-  rows = 4,
-}: BaseFieldProps & { rows?: number }) {
-  const helpId = help ? `${name}-help` : undefined;
-
-  return (
-    <div className="grid gap-2">
-      <label className="text-sm font-semibold text-herbal-ink" htmlFor={name}>
-        {label}
-      </label>
-      <textarea
-        aria-describedby={helpId}
-        className={`${fieldClasses()} min-h-28 resize-y leading-6`}
-        defaultValue={defaultValue}
-        disabled={disabled}
-        id={name}
-        name={name}
-        required={required}
-        rows={rows}
-      />
-      {help ? (
-        <p className="text-xs leading-5 text-herbal-muted" id={helpId}>
-          {help}
-        </p>
-      ) : null}
-    </div>
-  );
-}
-
-type SelectFieldProps<T extends string> = {
-  defaultValue: T;
-  disabled?: boolean;
-  label: string;
-  name: string;
-  options: Array<{ label: string; value: T }>;
-};
-
-function SelectField<T extends string>({
-  defaultValue,
-  disabled,
-  label,
-  name,
-  options,
-}: SelectFieldProps<T>) {
-  return (
-    <div className="grid gap-2">
-      <label className="text-sm font-semibold text-herbal-ink" htmlFor={name}>
-        {label}
-      </label>
-      <select
-        className={fieldClasses()}
-        defaultValue={defaultValue}
-        disabled={disabled}
-        id={name}
-        name={name}
-      >
-        {options.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.label}
-          </option>
-        ))}
-      </select>
-    </div>
   );
 }

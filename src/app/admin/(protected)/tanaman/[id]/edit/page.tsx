@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AdminNotice } from "@/components/admin/AdminNotice";
+import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
+import { AdminStatusBadge } from "@/components/admin/AdminStatusBadge";
 import { PlantAdminForm } from "@/components/admin/PlantAdminForm";
 import { updatePlantAction } from "@/app/admin/(protected)/tanaman/actions";
 import { requireStaff } from "@/lib/auth/require-staff";
@@ -59,21 +60,19 @@ export default async function EditPlantPage({
 
   return (
     <div className="grid gap-6">
-      <header className="rounded-md border border-herbal-green/10 bg-white p-6 shadow-sm">
-        <Link
-          className="text-sm font-semibold text-herbal-green hover:underline"
-          href="/admin/tanaman"
-        >
-          Kembali ke daftar tanaman
-        </Link>
-        <h2 className="mt-3 text-3xl font-bold tracking-normal text-herbal-ink">
-          Edit Tanaman
-        </h2>
-        <p className="mt-3 max-w-2xl text-sm leading-6 text-herbal-muted">
-          {result.data.local_name}. Metadata pembuat, pengubah, pemeriksa, dan
-          waktu publikasi ditetapkan oleh server.
-        </p>
-      </header>
+      <AdminPageHeader
+        actions={
+          <AdminStatusBadge
+            contentStatus={result.data.content_status}
+            validationStatus={result.data.validation_status}
+          />
+        }
+        backHref="/admin/tanaman"
+        backLabel="Kembali ke daftar tanaman"
+        description={`${result.data.local_name}. Metadata pembuat, pengubah, pemeriksa, dan waktu publikasi ditetapkan oleh server.`}
+        eyebrow="Admin Tanaman"
+        title="Edit Tanaman"
+      />
       <AdminNotice message={successMessages[query.success ?? ""]} />
       <AdminNotice message={errorMessages[query.error ?? ""]} tone="error" />
       <PlantAdminForm

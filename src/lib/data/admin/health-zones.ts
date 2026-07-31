@@ -5,6 +5,11 @@ import type {
 } from "@/lib/supabase/database.types";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import type { StaffRole } from "@/lib/auth/permissions";
+import {
+  buildWorkflowPatch,
+  type WorkflowActionInput,
+  type WorkflowActor,
+} from "@/lib/workflow/content-workflow";
 
 export type HealthZoneAdminRecord =
   Database["public"]["Tables"]["health_zones"]["Row"];
@@ -225,6 +230,47 @@ export async function updateHealthZone(
         error.code === "23505"
           ? "Slug atau kode zona sudah digunakan."
           : "Zona kesehatan belum dapat diperbarui.",
+    };
+  }
+
+  return { data, error: null };
+}
+
+export async function setHealthZoneWorkflowForAdmin(input: {
+  action: WorkflowActionInput;
+  actorId: string;
+  actorName: string | null;
+  id: string;
+}): Promise<AdminHealthZoneResult<HealthZoneAdminRecord>> {
+  const { client, error: clientError } = await getAdminClient();
+
+  if (!client) {
+    return { data: null, error: clientError };
+  }
+
+  const actor: WorkflowActor = { id: input.actorId, name: input.actorName };
+  const { validated_at, ...patch } = buildWorkflowPatch(input.action, actor);
+
+  const payload: Database["public"]["Tables"]["health_zones"]["Update"] = {
+    ...patch,
+    validation_checked_at: validated_at,
+  };
+
+  const { data, error } = await client
+    .from("health_zones")
+    .update(payload)
+    .eq("id", input.id)
+    .select("*")
+    .single();
+
+  if (error) {
+    console.error("Gagal memperbarui status zona", { code: error.code });
+    return {
+      data: null,
+      error:
+        error.code === "23514"
+          ? "Zona belum lengkap untuk dipublikasikan. Lengkapi catatan sumber dan isian wajib lain terlebih dahulu."
+          : "Status zona kesehatan belum dapat diperbarui.",
     };
   }
 

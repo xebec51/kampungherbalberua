@@ -6,6 +6,11 @@ import type {
 } from "@/lib/supabase/database.types";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import type { StaffRole } from "@/lib/auth/permissions";
+import {
+  buildWorkflowPatch,
+  type WorkflowActionInput,
+  type WorkflowActor,
+} from "@/lib/workflow/content-workflow";
 
 export type PlantAdminRecord = Database["public"]["Tables"]["plants"]["Row"];
 
@@ -203,6 +208,47 @@ export async function updatePlant(
         error.code === "23505"
           ? "Slug atau kode tanaman sudah digunakan."
           : "Tanaman belum dapat diperbarui.",
+    };
+  }
+
+  return { data, error: null };
+}
+
+export async function setPlantWorkflowForAdmin(input: {
+  action: WorkflowActionInput;
+  actorId: string;
+  actorName: string | null;
+  id: string;
+}): Promise<AdminMutationResult<PlantAdminRecord>> {
+  const { client, error: clientError } = await getAdminClient();
+
+  if (!client) {
+    return { data: null, error: clientError };
+  }
+
+  const actor: WorkflowActor = { id: input.actorId, name: input.actorName };
+  const { validated_at, ...patch } = buildWorkflowPatch(input.action, actor);
+
+  const payload: Database["public"]["Tables"]["plants"]["Update"] = {
+    ...patch,
+    validation_checked_at: validated_at,
+  };
+
+  const { data, error } = await client
+    .from("plants")
+    .update(payload)
+    .eq("id", input.id)
+    .select("*")
+    .single();
+
+  if (error) {
+    console.error("Gagal memperbarui status tanaman", { code: error.code });
+    return {
+      data: null,
+      error:
+        error.code === "23514"
+          ? "Tanaman belum lengkap untuk dipublikasikan. Lengkapi catatan sumber dan isian wajib lain terlebih dahulu."
+          : "Status tanaman belum dapat diperbarui.",
     };
   }
 

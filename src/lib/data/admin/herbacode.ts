@@ -5,6 +5,11 @@ import type {
   ValidationStatus,
 } from "@/lib/supabase/database.types";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import {
+  buildWorkflowPatch,
+  type WorkflowActionInput,
+  type WorkflowActor,
+} from "@/lib/workflow/content-workflow";
 
 export type HerbaCodeAdminEntry =
   Database["public"]["Tables"]["herbacode_plant_zone_entries"]["Row"] & {
@@ -226,11 +231,10 @@ export async function updateHerbaCodeEntryForAdmin(
 }
 
 export async function setHerbaCodeEntryWorkflowForAdmin(input: {
+  action: WorkflowActionInput;
   actorId: string;
   actorName: string | null;
-  contentStatus?: ContentStatus;
   id: string;
-  validationStatus?: ValidationStatus;
 }): Promise<AdminHerbaCodeResult<HerbaCodeAdminEntry>> {
   const { client, error: clientError } = await getAdminClient();
 
@@ -238,21 +242,11 @@ export async function setHerbaCodeEntryWorkflowForAdmin(input: {
     return { data: null, error: clientError };
   }
 
-  const patch: Database["public"]["Tables"]["herbacode_plant_zone_entries"]["Update"] = {};
-
-  if (input.contentStatus) {
-    patch.content_status = input.contentStatus;
-  }
-
-  if (input.validationStatus) {
-    patch.validation_status = input.validationStatus;
-    patch.validator_id =
-      input.validationStatus === "verified" ? input.actorId : null;
-    patch.validator_name =
-      input.validationStatus === "verified" ? input.actorName : null;
-    patch.validated_at =
-      input.validationStatus === "verified" ? new Date().toISOString() : null;
-  }
+  const actor: WorkflowActor = { id: input.actorId, name: input.actorName };
+  const patch = buildWorkflowPatch(
+    input.action,
+    actor,
+  ) as Database["public"]["Tables"]["herbacode_plant_zone_entries"]["Update"];
 
   const { data, error } = await client
     .from("herbacode_plant_zone_entries")
@@ -265,13 +259,17 @@ export async function setHerbaCodeEntryWorkflowForAdmin(input: {
 
   if (error) {
     console.error("Gagal mengubah workflow HerbaCode", { code: error.code });
-    return { data: null, error: "Status HerbaCode belum dapat diperbarui." };
+    return {
+      data: null,
+      error:
+        error.code === "23514"
+          ? "Entri belum lengkap untuk dipublikasikan. Lengkapi isi HerbaCode terlebih dahulu."
+          : "Status HerbaCode belum dapat diperbarui.",
+    };
   }
 
   await writeHistory({
-    action: input.validationStatus
-      ? `validasi:${input.validationStatus}`
-      : `status:${input.contentStatus ?? "update"}`,
+    action: input.action.type,
     actorId: input.actorId,
     changeSummary: patch as Json,
     entryId: input.id,

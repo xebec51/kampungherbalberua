@@ -1333,6 +1333,7 @@ export type Database = {
           validator_id: string | null;
           validator_name: string | null;
           validated_at: string | null;
+          validation_notes: string | null;
           created_at: string;
           updated_at: string;
         };
@@ -1362,6 +1363,7 @@ export type Database = {
           validator_id?: string | null;
           validator_name?: string | null;
           validated_at?: string | null;
+          validation_notes?: string | null;
           created_at?: string;
           updated_at?: string;
         };
@@ -1391,6 +1393,7 @@ export type Database = {
           validator_id?: string | null;
           validator_name?: string | null;
           validated_at?: string | null;
+          validation_notes?: string | null;
           created_at?: string;
           updated_at?: string;
         };

@@ -5,15 +5,16 @@ import { redirect } from "next/navigation";
 import {
   canDeleteContent,
   canEditContent,
+  canPublishContent,
 } from "@/lib/auth/permissions";
 import { requireStaff } from "@/lib/auth/require-staff";
 import {
   createHealthZone,
   deleteHealthZone,
   getHealthZoneByIdForAdmin,
+  setHealthZoneWorkflowForAdmin,
   updateHealthZone,
   type HealthZoneAdminInput,
-  type HealthZoneAdminRecord,
 } from "@/lib/data/admin/health-zones";
 import {
   canPublishWithValidation,
@@ -27,6 +28,7 @@ import {
   parseTextareaLines,
   validationStatuses,
 } from "@/lib/validation/content";
+import { parseWorkflowActionFormData } from "@/lib/workflow/parse-workflow-action";
 
 type ParsedZoneInput =
   | {
@@ -172,33 +174,6 @@ function parseZoneFormData(formData: FormData): ParsedZoneInput {
   };
 }
 
-function zoneRecordToInput(zone: HealthZoneAdminRecord): HealthZoneAdminInput {
-  return {
-    block_ranges: zone.block_ranges,
-    content_status: zone.content_status,
-    educational_points: zone.educational_points,
-    featured: zone.featured,
-    health_topic: zone.health_topic,
-    healthy_habits: zone.healthy_habits,
-    image_path: zone.image_path,
-    important_notes: zone.important_notes,
-    location_notes: zone.location_notes,
-    overview: zone.overview,
-    program_name: zone.program_name,
-    short_description: zone.short_description,
-    sign_text: zone.sign_text,
-    slug: zone.slug,
-    source_notes: zone.source_notes,
-    street_name: zone.street_name,
-    validation_status: zone.validation_status,
-    validation_checked_at: zone.validation_checked_at,
-    validation_notes: zone.validation_notes,
-    validator_name: zone.validator_name,
-    zone_code: zone.zone_code,
-    zone_name: zone.zone_name,
-  };
-}
-
 function errorCode(message: string) {
   if (message.includes("Slug") || message.includes("kode")) {
     return "duplikat";
@@ -206,6 +181,10 @@ function errorCode(message: string) {
 
   if (message.includes("admin")) {
     return "otorisasi";
+  }
+
+  if (message.includes("belum lengkap")) {
+    return "tidak-lengkap";
   }
 
   return "validasi";
@@ -311,11 +290,12 @@ export async function updateHealthZoneAction(id: string, formData: FormData) {
   redirect(`/admin/zona/${id}/edit?success=diperbarui`);
 }
 
-export async function archiveHealthZoneAction(formData: FormData) {
+export async function setHealthZoneWorkflowAction(formData: FormData) {
   const { profile, user } = await requireStaff("/admin/zona");
   const id = readText(formData, "id");
+  const actorName = profile.display_name?.trim() || user.email || null;
 
-  if (!id || profile.role !== "admin") {
+  if (!id || !canPublishContent(profile.role)) {
     redirect("/admin/zona?error=otorisasi");
   }
 
@@ -325,16 +305,18 @@ export async function archiveHealthZoneAction(formData: FormData) {
     redirect("/admin/zona?error=tidak-ditemukan");
   }
 
-  const input = {
-    ...zoneRecordToInput(existing.data),
-    content_status: "archived" as const,
-  };
-  const result = await updateHealthZone(
+  const parsed = parseWorkflowActionFormData(formData);
+
+  if (!parsed.ok) {
+    redirect(`/admin/zona?error=${parsed.error}`);
+  }
+
+  const result = await setHealthZoneWorkflowForAdmin({
+    action: parsed.action,
+    actorId: user.id,
+    actorName,
     id,
-    input,
-    user.id,
-    existing.data.published_at,
-  );
+  });
 
   if (result.error || !result.data) {
     redirect(`/admin/zona?error=${errorCode(result.error ?? "gagal")}`);
@@ -346,7 +328,15 @@ export async function archiveHealthZoneAction(formData: FormData) {
     existing.data.zone_code,
     result.data.zone_code,
   );
-  redirect("/admin/zona?success=diarsipkan");
+
+  const successCode =
+    parsed.action.type === "publish"
+      ? "dipublikasikan"
+      : parsed.action.type === "reject"
+        ? "perlu-perbaikan"
+        : "diarsipkan";
+
+  redirect(`/admin/zona?success=${successCode}`);
 }
 
 export async function deleteHealthZoneAction(formData: FormData) {

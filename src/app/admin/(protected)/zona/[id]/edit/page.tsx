@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AdminNotice } from "@/components/admin/AdminNotice";
+import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
+import { AdminStatusBadge } from "@/components/admin/AdminStatusBadge";
 import { HealthZoneQrPanel } from "@/components/admin/HealthZoneQrPanel";
 import { HealthZoneAdminForm } from "@/components/admin/HealthZoneAdminForm";
 import { updateHealthZoneAction } from "@/app/admin/(protected)/zona/actions";
@@ -66,21 +67,19 @@ export default async function EditZonePage({
 
   return (
     <div className="grid gap-6">
-      <header className="rounded-md border border-herbal-green/10 bg-white p-6 shadow-sm">
-        <Link
-          className="text-sm font-semibold text-herbal-green hover:underline"
-          href="/admin/zona"
-        >
-          Kembali ke daftar zona
-        </Link>
-        <h2 className="mt-3 text-3xl font-bold tracking-normal text-herbal-ink">
-          Edit Zona Kesehatan
-        </h2>
-        <p className="mt-3 max-w-2xl text-sm leading-6 text-herbal-muted">
-          {result.data.street_name ?? result.data.zone_name}. URL QR permanen
-          baru: {targetUrl}
-        </p>
-      </header>
+      <AdminPageHeader
+        actions={
+          <AdminStatusBadge
+            contentStatus={result.data.content_status}
+            validationStatus={result.data.validation_status}
+          />
+        }
+        backHref="/admin/zona"
+        backLabel="Kembali ke daftar zona"
+        description={`${result.data.street_name ?? result.data.zone_name}. URL QR permanen baru: ${targetUrl}`}
+        eyebrow="Admin Zona"
+        title="Edit Zona Kesehatan"
+      />
       <AdminNotice message={successMessages[query.success ?? ""]} />
       <AdminNotice message={errorMessages[query.error ?? ""]} tone="error" />
       <HealthZoneQrPanel zone={result.data} />
