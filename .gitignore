@@ -83,6 +83,7 @@ data/media-work/
 data/media-cache/
 data/media-downloads/
 data/media-output/
+data/media/docx-extract/
 data/db-backups/
 design/
 tmp/

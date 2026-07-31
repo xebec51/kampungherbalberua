@@ -16,6 +16,7 @@ import {
   updateHealthZone,
   type HealthZoneAdminInput,
 } from "@/lib/data/admin/health-zones";
+import { uploadContentCoverPhoto } from "@/lib/data/admin/media-upload";
 import {
   canPublishWithValidation,
   contentStatuses,
@@ -337,6 +338,57 @@ export async function setHealthZoneWorkflowAction(formData: FormData) {
         : "diarsipkan";
 
   redirect(`/admin/zona?success=${successCode}`);
+}
+
+function photoErrorCode(message: string) {
+  if (message.includes("Format file")) {
+    return "foto-format";
+  }
+
+  if (message.includes("Ukuran") || message.includes("kompresi")) {
+    return "foto-ukuran";
+  }
+
+  return "foto-gagal";
+}
+
+export async function uploadHealthZonePhotoAction(formData: FormData) {
+  const { profile, user } = await requireStaff("/admin/zona");
+  const id = readText(formData, "id");
+  const actorName = profile.display_name?.trim() || user.email || null;
+
+  if (!id || !canEditContent(profile.role)) {
+    redirect("/admin/zona?error=otorisasi");
+  }
+
+  const existing = await getHealthZoneByIdForAdmin(id);
+
+  if (existing.error || !existing.data) {
+    redirect("/admin/zona?error=tidak-ditemukan");
+  }
+
+  const file = formData.get("photo");
+
+  if (!(file instanceof File) || file.size === 0) {
+    redirect(`/admin/zona/${id}/edit?error=foto-kosong`);
+  }
+
+  const result = await uploadContentCoverPhoto({
+    actorId: user.id,
+    actorName,
+    entityId: id,
+    entityLabel: existing.data.zone_name,
+    entitySlug: existing.data.slug,
+    file,
+    target: "health_zone",
+  });
+
+  if (result.error) {
+    redirect(`/admin/zona/${id}/edit?error=${photoErrorCode(result.error)}`);
+  }
+
+  revalidateZonePages(existing.data.slug, existing.data.slug);
+  redirect(`/admin/zona/${id}/edit?success=foto-diperbarui`);
 }
 
 export async function deleteHealthZoneAction(formData: FormData) {

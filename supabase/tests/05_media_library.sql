@@ -1,6 +1,6 @@
 begin;
 
-select plan(47);
+select plan(48);
 
 select has_table('public', 'media_assets', 'media_assets table exists');
 select has_table('public', 'plant_media', 'plant_media table exists');
@@ -304,6 +304,40 @@ select ok(
   ),
   'media attachment history admin insert policy exists'
 );
+
+-- Regression test for enforce_media_assets_admin_workflow(): it used to
+-- reference new.published_at / old.published_at, a column media_assets
+-- never had, so any admin-authenticated insert with content_status =
+-- 'published' failed with "record "new" has no field "published_at"".
+-- This only surfaced once the admin photo-upload feature exercised an
+-- authenticated (non service-role) insert for the first time.
+insert into auth.users (id, aud, role, email, encrypted_password, email_confirmed_at, created_at, updated_at)
+values
+  ('70000000-0000-0000-0000-000000000001', 'authenticated', 'authenticated', 'media-admin@test.invalid', 'test', now(), now(), now())
+on conflict (id) do nothing;
+
+insert into public.profiles (id, display_name, role, is_active)
+values
+  ('70000000-0000-0000-0000-000000000001', 'Media Admin', 'admin', true)
+on conflict (id) do update set role = excluded.role, is_active = excluded.is_active;
+
+set local role authenticated;
+set local request.jwt.claim.role = 'authenticated';
+set local request.jwt.claim.sub = '70000000-0000-0000-0000-000000000001';
+
+select lives_ok(
+  $$insert into public.media_assets (
+    asset_code, title, alt_text, mime_type, checksum_sha256, source_type,
+    content_status, rights_status, privacy_status, public_bucket, public_path
+  ) values (
+    'pgtap-media-published', 'PGTAP Published Media', 'Alt text uji',
+    'image/webp', repeat('a', 64), 'kkn_documentation',
+    'published', 'approved', 'not_required', 'media-public', 'plants/pgtap/cover-test.webp'
+  )$$,
+  'admin can insert media_assets with content_status published (no published_at column error)'
+);
+
+reset role;
 
 select * from finish();
 

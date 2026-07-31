@@ -3,10 +3,15 @@ import { notFound } from "next/navigation";
 import { AdminNotice } from "@/components/admin/AdminNotice";
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { AdminStatusBadge } from "@/components/admin/AdminStatusBadge";
+import { PhotoUploadForm } from "@/components/admin/PhotoUploadForm";
 import { PlantAdminForm } from "@/components/admin/PlantAdminForm";
-import { updatePlantAction } from "@/app/admin/(protected)/tanaman/actions";
+import {
+  updatePlantAction,
+  uploadPlantPhotoAction,
+} from "@/app/admin/(protected)/tanaman/actions";
 import { requireStaff } from "@/lib/auth/require-staff";
 import { getPlantByIdForAdmin } from "@/lib/data/admin/plants";
+import { getPrimaryPlantMediaMap } from "@/lib/data/media";
 import { createPageMetadata } from "@/lib/metadata";
 
 type EditPlantPageProps = {
@@ -21,6 +26,10 @@ type EditPlantPageProps = {
 
 const errorMessages: Record<string, string> = {
   duplikat: "Slug atau kode tanaman sudah digunakan.",
+  "foto-format": "Format foto tidak dikenali. Gunakan JPEG, PNG, atau WebP.",
+  "foto-gagal": "Foto belum dapat diunggah. Coba lagi.",
+  "foto-kosong": "Pilih file foto terlebih dahulu.",
+  "foto-ukuran": "Ukuran foto terlalu besar setelah dikompres.",
   otorisasi: "Hanya admin yang dapat mengubah tanaman ini.",
   validasi: "Periksa kembali isian wajib, status, dan path gambar.",
 };
@@ -28,6 +37,7 @@ const errorMessages: Record<string, string> = {
 const successMessages: Record<string, string> = {
   dibuat: "Tanaman berhasil dibuat.",
   diperbarui: "Perubahan tanaman berhasil disimpan.",
+  "foto-diperbarui": "Foto tanaman berhasil diunggah.",
 };
 
 export const dynamic = "force-dynamic";
@@ -58,6 +68,9 @@ export default async function EditPlantPage({
     notFound();
   }
 
+  const mediaByPlantId = await getPrimaryPlantMediaMap([result.data.id]);
+  const currentMedia = mediaByPlantId.get(result.data.id) ?? null;
+
   return (
     <div className="grid gap-6">
       <AdminPageHeader
@@ -75,6 +88,12 @@ export default async function EditPlantPage({
       />
       <AdminNotice message={successMessages[query.success ?? ""]} />
       <AdminNotice message={errorMessages[query.error ?? ""]} tone="error" />
+      <PhotoUploadForm
+        action={uploadPlantPhotoAction}
+        currentMedia={currentMedia}
+        entityId={result.data.id}
+        entityLabel={result.data.local_name}
+      />
       <PlantAdminForm
         action={updatePlantAction.bind(null, result.data.id)}
         mode="edit"

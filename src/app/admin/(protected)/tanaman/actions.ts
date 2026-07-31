@@ -16,6 +16,7 @@ import {
   updatePlant,
   type PlantAdminInput,
 } from "@/lib/data/admin/plants";
+import { uploadContentCoverPhoto } from "@/lib/data/admin/media-upload";
 import {
   canPublishWithValidation,
   contentStatuses,
@@ -287,6 +288,58 @@ export async function setPlantWorkflowAction(formData: FormData) {
         : "diarsipkan";
 
   redirect(`/admin/tanaman?success=${successCode}`);
+}
+
+function photoErrorCode(message: string) {
+  if (message.includes("Format file")) {
+    return "foto-format";
+  }
+
+  if (message.includes("Ukuran") || message.includes("kompresi")) {
+    return "foto-ukuran";
+  }
+
+  return "foto-gagal";
+}
+
+export async function uploadPlantPhotoAction(formData: FormData) {
+  const { profile, user } = await requireStaff("/admin/tanaman");
+  const id = readText(formData, "id");
+  const actorName = profile.display_name?.trim() || user.email || null;
+
+  if (!id || !canEditContent(profile.role)) {
+    redirect("/admin/tanaman?error=otorisasi");
+  }
+
+  const existing = await getPlantByIdForAdmin(id);
+
+  if (existing.error || !existing.data) {
+    redirect("/admin/tanaman?error=tidak-ditemukan");
+  }
+
+  const file = formData.get("photo");
+
+  if (!(file instanceof File) || file.size === 0) {
+    redirect(`/admin/tanaman/${id}/edit?error=foto-kosong`);
+  }
+
+  const result = await uploadContentCoverPhoto({
+    actorId: user.id,
+    actorName,
+    entityId: id,
+    entityLabel: existing.data.local_name,
+    entitySlug: existing.data.slug,
+    file,
+    target: "plant",
+  });
+
+  if (result.error) {
+    console.error("Gagal mengunggah foto tanaman", { plantId: id });
+    redirect(`/admin/tanaman/${id}/edit?error=${photoErrorCode(result.error)}`);
+  }
+
+  revalidatePlantPages(existing.data.slug, existing.data.slug);
+  redirect(`/admin/tanaman/${id}/edit?success=foto-diperbarui`);
 }
 
 export async function deletePlantAction(formData: FormData) {
