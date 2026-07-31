@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-07-31T17:08:09.998Z",
-  "totalItems": 82,
+  "generatedAt": "2026-07-31T22:38:41.338Z",
+  "totalItems": 87,
   "installCount": 0,
-  "skipCount": 82,
+  "skipCount": 87,
   "items": [
     {
       "source_file": "data/media/docx-extract/001.png",
@@ -46,7 +46,7 @@
     {
       "source_file": "data/media/docx-extract/004.png",
       "source_hash": "",
-      "plant_id": "16bcd1d5-060e-40f9-8230-8a733db2f16c",
+      "plant_id": "dfab3552-dd88-486f-8482-7454dfbaf868",
       "plant_slug": "jahe",
       "plant_local_name": "Jahe",
       "target_storage_path": "",
@@ -59,7 +59,7 @@
     {
       "source_file": "data/media/docx-extract/005.png",
       "source_hash": "",
-      "plant_id": "39a88927-5b53-4def-bbd7-dcd75a0d9ad4",
+      "plant_id": "625146e3-26e2-4d26-83ad-856c9ef63cb8",
       "plant_slug": "kunyit",
       "plant_local_name": "Kunyit",
       "target_storage_path": "",
@@ -72,7 +72,7 @@
     {
       "source_file": "data/media/docx-extract/006.png",
       "source_hash": "",
-      "plant_id": "7d962ebd-4cd9-4c96-a366-c582ec21e0f1",
+      "plant_id": "6b0ee9fe-5605-4189-aa41-29430fce6af3",
       "plant_slug": "temulawak",
       "plant_local_name": "Temulawak",
       "target_storage_path": "",
@@ -202,7 +202,7 @@
     {
       "source_file": "data/media/docx-extract/016.png",
       "source_hash": "",
-      "plant_id": "2ff71a0c-6bb5-48a5-bfd5-0f039f73f6d6",
+      "plant_id": "8ad981ef-d98f-48ba-8e1c-e8f65c50c30c",
       "plant_slug": "serai",
       "plant_local_name": "Serai",
       "target_storage_path": "",
@@ -408,6 +408,32 @@
       "status": "confirmed"
     },
     {
+      "source_file": "data/media/docx-extract/032.png",
+      "source_hash": "",
+      "plant_id": "",
+      "plant_slug": "paliasa",
+      "plant_local_name": "Paliasa",
+      "target_storage_path": "",
+      "action": "skip",
+      "reason": "Tanaman tidak ditemukan di database lokal untuk slug ini.",
+      "replace_existing": false,
+      "confidence": "high",
+      "status": "confirmed"
+    },
+    {
+      "source_file": "data/media/docx-extract/033.png",
+      "source_hash": "",
+      "plant_id": "",
+      "plant_slug": "daun-dewa",
+      "plant_local_name": "Daun dewa",
+      "target_storage_path": "",
+      "action": "skip",
+      "reason": "Tanaman tidak ditemukan di database lokal untuk slug ini.",
+      "replace_existing": false,
+      "confidence": "high",
+      "status": "confirmed"
+    },
+    {
       "source_file": "data/media/docx-extract/034.png",
       "source_hash": "",
       "plant_id": "",
@@ -436,7 +462,7 @@
     {
       "source_file": "data/media/docx-extract/036.jpg",
       "source_hash": "",
-      "plant_id": "a6fa2b7f-6de7-4e1c-a45a-75dcf9820784",
+      "plant_id": "f2447603-12a1-4cd5-9f13-1a4cec598540",
       "plant_slug": "pare",
       "plant_local_name": "Pare",
       "target_storage_path": "",
@@ -449,7 +475,7 @@
     {
       "source_file": "data/media/docx-extract/037.jpg",
       "source_hash": "",
-      "plant_id": "15073d8c-f0f0-410b-9bfa-32fbc0686bc4",
+      "plant_id": "c6191ded-1a2e-4b7e-9613-119ec526c52a",
       "plant_slug": "brotowali",
       "plant_local_name": "Brotowali",
       "target_storage_path": "",
@@ -488,7 +514,7 @@
     {
       "source_file": "data/media/docx-extract/042.jpg",
       "source_hash": "",
-      "plant_id": "1bf5d3c5-aa45-4f7c-be34-4e48e3870ed1",
+      "plant_id": "3bc74dbc-9955-49fd-b5c3-728b1ee65c17",
       "plant_slug": "mahkota-dewa",
       "plant_local_name": "Mahkota Dewa",
       "target_storage_path": "",
@@ -501,7 +527,7 @@
     {
       "source_file": "data/media/docx-extract/043.jpg",
       "source_hash": "",
-      "plant_id": "48dab301-bd6e-40b2-af3a-1b0c2a1ed762",
+      "plant_id": "b345d137-c928-4e16-9526-35422133f40f",
       "plant_slug": "mengkudu",
       "plant_local_name": "Mengkudu",
       "target_storage_path": "",
@@ -540,7 +566,7 @@
     {
       "source_file": "data/media/docx-extract/049.jpg",
       "source_hash": "",
-      "plant_id": "5363a0a6-f59d-4505-8b5c-1aa6ddc6bd54",
+      "plant_id": "5f38cc2c-b5da-4a60-b322-b7b79bc9c785",
       "plant_slug": "kayu-putih",
       "plant_local_name": "Kayu Putih",
       "target_storage_path": "",
@@ -551,9 +577,22 @@
       "status": "confirmed"
     },
     {
+      "source_file": "data/media/docx-extract/050.jpg",
+      "source_hash": "",
+      "plant_id": "ab18014c-92bd-46a4-a884-9106373f6be2",
+      "plant_slug": "saga",
+      "plant_local_name": "Saga",
+      "target_storage_path": "",
+      "action": "skip",
+      "reason": "Tanaman sudah memiliki foto yang valid; foto existing dipertahankan.",
+      "replace_existing": false,
+      "confidence": "medium-high",
+      "status": "confirmed"
+    },
+    {
       "source_file": "data/media/docx-extract/051.jpg",
       "source_hash": "",
-      "plant_id": "31ab0919-00f7-40d9-ab74-840d7540a176",
+      "plant_id": "0f42f3a2-4e51-4905-b52a-20ca703a3790",
       "plant_slug": "beluntas",
       "plant_local_name": "Beluntas",
       "target_storage_path": "",
@@ -566,7 +605,7 @@
     {
       "source_file": "data/media/docx-extract/053.jpg",
       "source_hash": "",
-      "plant_id": "0bfa90fa-36c0-4821-92cf-a51fa49278f0",
+      "plant_id": "6f27af68-03f1-40df-a083-1788ec8b8c56",
       "plant_slug": "eucalyptus",
       "plant_local_name": "Eucalyptus",
       "target_storage_path": "",
@@ -746,6 +785,19 @@
       "status": "confirmed"
     },
     {
+      "source_file": "data/media/docx-extract/087.png",
+      "source_hash": "",
+      "plant_id": "",
+      "plant_slug": "boswellia",
+      "plant_local_name": "Boswellia (Kemenyan India)",
+      "target_storage_path": "",
+      "action": "skip",
+      "reason": "Tanaman tidak ditemukan di database lokal untuk slug ini.",
+      "replace_existing": false,
+      "confidence": "medium",
+      "status": "confirmed"
+    },
+    {
       "source_file": "data/media/docx-extract/090.png",
       "source_hash": "",
       "plant_id": "",
@@ -795,6 +847,19 @@
       "reason": "Tanaman tidak ditemukan di database lokal untuk slug ini.",
       "replace_existing": false,
       "confidence": "high",
+      "status": "confirmed"
+    },
+    {
+      "source_file": "data/media/docx-extract/107.png",
+      "source_hash": "",
+      "plant_id": "",
+      "plant_slug": "dong-quai",
+      "plant_local_name": "Dong Quai (Angelika Tiongkok)",
+      "target_storage_path": "",
+      "action": "skip",
+      "reason": "Tanaman tidak ditemukan di database lokal untuk slug ini.",
+      "replace_existing": false,
+      "confidence": "medium-high",
       "status": "confirmed"
     },
     {
@@ -850,19 +915,6 @@
       "status": "confirmed"
     },
     {
-      "source_file": "data/media/docx-extract/121.jpeg",
-      "source_hash": "",
-      "plant_id": "",
-      "plant_slug": "boswellia",
-      "plant_local_name": "Kemenyan India / Boswellia",
-      "target_storage_path": "",
-      "action": "skip",
-      "reason": "Tanaman tidak ditemukan di database lokal untuk slug ini.",
-      "replace_existing": false,
-      "confidence": "medium",
-      "status": "confirmed"
-    },
-    {
       "source_file": "data/media/docx-extract/122.jpeg",
       "source_hash": "",
       "plant_id": "",
@@ -889,6 +941,19 @@
       "status": "confirmed"
     },
     {
+      "source_file": "data/media/docx-extract/124.jpeg",
+      "source_hash": "",
+      "plant_id": "",
+      "plant_slug": "keladi-tikus",
+      "plant_local_name": "Keladi tikus",
+      "target_storage_path": "",
+      "action": "skip",
+      "reason": "Tanaman tidak ditemukan di database lokal untuk slug ini.",
+      "replace_existing": false,
+      "confidence": "medium-high",
+      "status": "confirmed"
+    },
+    {
       "source_file": "data/media/docx-extract/125.jpeg",
       "source_hash": "",
       "plant_id": "",
@@ -904,7 +969,7 @@
     {
       "source_file": "data/media/docx-extract/127.jpeg",
       "source_hash": "",
-      "plant_id": "ec4590fe-0524-4d95-97dd-8a98f4f262e9",
+      "plant_id": "e76b9dcb-0b69-43dc-b2ee-89ce16cebcaf",
       "plant_slug": "garcinia",
       "plant_local_name": "Garcinia",
       "target_storage_path": "",
@@ -930,7 +995,7 @@
     {
       "source_file": "data/media/docx-extract/129.png",
       "source_hash": "",
-      "plant_id": "a70fc4b3-5eee-4ef9-9083-ecbb898c6e45",
+      "plant_id": "a85d5ed6-61c3-4675-a3ed-c1bab63998b4",
       "plant_slug": "kopi-hijau",
       "plant_local_name": "Kopi Hijau",
       "target_storage_path": "",

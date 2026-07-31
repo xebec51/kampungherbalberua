@@ -1,7 +1,45 @@
 {
-  "generatedAt": "2026-07-31T17:08:10.577Z",
-  "installed": 0,
-  "skippedAlreadyHasPrimary": 0,
-  "reusedExistingMediaAsset": 0,
-  "failures": []
+  "generatedAt": "2026-07-31T22:43:36.237Z",
+  "context": "Tinjauan rujukan botani eksternal 5 gambar (#59, #88, #101, #105, #106) TIDAK menghasilkan kandidat instalasi lokal baru (katuk dari gambar #105 yang naik ke confirmed tidak ada di 17 tanaman database lokal) -- tidak ada apply yang dipicu oleh tinjauan ini.",
+  "reset_and_restore": {
+    "reason": "pgTAP (`supabase test db`) gagal pada tes 02/03/04 dengan \"duplicate key value violates unique constraint users_email_partial_key\" -- tabrakan antara user e2e (admin/editor/viewer@test.invalid) yang sudah ada dari `setup:e2e-users` sesi sebelumnya dengan fixture pgTAP yang mencoba insert user yang sama. Bukan disebabkan oleh perubahan match-report/upload-plan/reference-review hari ini.",
+    "action_taken": "npx supabase db reset (diperlukan agar pgTAP dapat lulus bersih)",
+    "consequence": "db reset menghapus seluruh storage bucket, media_assets, dan plant_media (termasuk foto Saga yang sebelumnya terinstal) kembali ke state seed kosong -- SESUAI PERINGATAN eksplisit di instruksi task, hasil apply lokal sebelumnya TIDAK dianggap persist setelah reset.",
+    "restoration_steps": [
+      "Rekreasi bucket media-originals dan media-public (create-if-missing)",
+      "plan (regenerasi terhadap DB baru, hasil: install=14, skip=73)",
+      "apply (reinstall 14 tanaman yang sebelumnya sudah confirmed terinstal, termasuk saga)",
+      "plan ulang (verifikasi: install=0, skip=87)",
+      "apply ulang (verifikasi idempotensi: installed=0, gagal=0)"
+    ]
+  },
+  "post_restore_apply_runs": [
+    {
+      "run": "reinstall (setelah reset)",
+      "installed": 14,
+      "skippedAlreadyHasPrimary": 0,
+      "reusedExistingMediaAsset": 0,
+      "failures": []
+    },
+    {
+      "run": "idempotency check (setelah reinstall)",
+      "installed": 0,
+      "skippedAlreadyHasPrimary": 0,
+      "reusedExistingMediaAsset": 0,
+      "failures": [],
+      "note": "skippedAlreadyHasPrimary=0 (bukan >0) karena plan yang dipakai apply ini sudah diregenerasi ulang pasca-reinstall sehingga seluruh 14 item sudah berstatus skip di plan itu sendiri, tidak masuk daftar item yang diproses apply sama sekali -- konsisten dengan idempotensi (0 perubahan), bukan penyimpangan dari pola sebelumnya."
+    }
+  ],
+  "saga_verification_post_restore": {
+    "plant_slug": "saga",
+    "primary_image_present": true,
+    "role": "cover",
+    "is_primary": true,
+    "note": "plant_id berubah setelah db reset (UUID baru dari seed ulang) -- ini normal untuk reset seed, bukan indikasi masalah."
+  },
+  "db_totals_post_restore": {
+    "media_assets": 23,
+    "plant_media": 14,
+    "note": "23 = 14 foto tanaman (termasuk saga) + 9 media_assets seed bawaan (papan jalan tematik, tidak terkait pipeline foto DOCX)."
+  }
 }

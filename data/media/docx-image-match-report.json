@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-07-31T16:08:16.563Z",
+  "generatedAt": "2026-07-31T22:29:51.077Z",
   "totalImagesExtracted": 143,
   "imagesProcessedSoFar": 143,
   "summary": {
-    "confirmed": 129,
-    "probable": 6,
-    "ambiguous": 5,
-    "unmatched": 3,
+    "confirmed": 139,
+    "probable": 0,
+    "ambiguous": 2,
+    "unmatched": 2,
     "ignored": 0,
-    "plantsWithPrimaryCandidate": 82
+    "plantsWithPrimaryCandidate": 87
   },
   "matches": [
     {
@@ -547,13 +547,13 @@
       "health_zone": "Zona Hati Sehat",
       "positional_candidate": "paliasa",
       "visual_match": "paliasa",
-      "status": "ambiguous",
-      "confidence": "medium",
-      "reason": "Heart-shaped leaves on a young potted plant plausibly match Paliasa (Kleinhovia hospita), but the shot is too generic/nursery-context to be certain vs. other heart-leaved species.",
-      "visual_notes": "Kandidat ilmiah: Kleinhovia hospita L.",
+      "status": "confirmed",
+      "confidence": "high",
+      "reason": "Heading eksplisit \"4. Paliasa\" langsung mendahului gambar tanpa entri lain di antaranya (batas entri tidak ambigu). Daun muda berbentuk hati (cordate), venasi palmate, tepi bergerigi halus konsisten dengan Kleinhovia hospita. Posisi kuat + visual mendukung.",
+      "visual_notes": "Daun cordate lebar pada bibit muda dalam pot, venasi palmate dari pangkal, tepi bergerigi -- ciri khas Kleinhovia hospita.",
       "duplicate_of": null,
       "ignore_reason": null,
-      "reviewed_at": "2026-07-31T15:31:32.103Z"
+      "reviewed_at": "2026-07-31T21:18:55.914Z"
     },
     {
       "image_number": 33,
@@ -564,13 +564,13 @@
       "health_zone": "Zona Hati Sehat",
       "positional_candidate": "daun-dewa",
       "visual_match": "daun-dewa",
-      "status": "ambiguous",
-      "confidence": "medium",
-      "reason": "Rosette of wavy-toothed leaves is plausible for Daun dewa (Gynura divaricata) but lacks the distinctive elongated lobed leaf shape needed for a confident call.",
-      "visual_notes": "Kandidat ilmiah: Gynura pseudochina (L.) DC.",
+      "status": "confirmed",
+      "confidence": "high",
+      "reason": "Heading eksplisit \"6. Daun Dewa\" langsung mendahului gambar, batas entri jelas. Roset daun tebal bertepi bergelombang tumbuh dekat tanah -- pola roset ini ciri khas Gynura pseudochina (bukan tipe merambat G. procumbens). Posisi kuat + visual mendukung.",
+      "visual_notes": "Roset daun sukulen tebal, tepi bergelombang/berlekuk, tumbuh basal dekat tanah dalam pot.",
       "duplicate_of": null,
       "ignore_reason": null,
-      "reviewed_at": "2026-07-31T15:31:32.103Z"
+      "reviewed_at": "2026-07-31T21:18:55.922Z"
     },
     {
       "image_number": 34,
@@ -666,13 +666,13 @@
       "health_zone": "Zona Gula Darah Terkendali",
       "positional_candidate": "kelor",
       "visual_match": "kelor",
-      "status": "unmatched",
-      "confidence": "low",
-      "reason": "Small compound pinnate leaflets shown do not match Mengkudu/noni (Morinda citrifolia), which has large broad glossy simple oval leaves -- looks like a Moringa/Kelor-type leaflet structure, position-mapped candidate is clearly wrong.",
-      "visual_notes": "Kandidat ilmiah: Moringa oleifera Lam.",
+      "status": "confirmed",
+      "confidence": "high",
+      "reason": "Koreksi tinjauan sebelumnya: alasan unmatched semula membandingkan dengan Mengkudu, padahal positional_candidate yang tercatat sebenarnya sudah Kelor (heading \"Kelor\" tepat sebelum gambar, diikuti \"Nama ilmiah: Moringa oleifera Lam.\"). Anak daun kecil majemuk menyirip pada foto adalah ciri diagnostik Moringa oleifera yang sangat jelas. Posisi + visual sama-sama kuat.",
+      "visual_notes": "Anak daun kecil bulat telur tersusun majemuk menyirip -- struktur daun Moringa oleifera yang khas.",
       "duplicate_of": null,
       "ignore_reason": null,
-      "reviewed_at": "2026-07-31T15:31:32.103Z"
+      "reviewed_at": "2026-07-31T21:18:55.922Z"
     },
     {
       "image_number": 40,
@@ -853,13 +853,13 @@
       "health_zone": "Zona Pernapasan Lega",
       "positional_candidate": "saga",
       "visual_match": "saga",
-      "status": "probable",
-      "confidence": "medium",
-      "reason": "Small oval pinnate compound leaflets plausibly match Saga (Abrus precatorius), but this leaflet shape is generic across several candidates in this set (also seen for Meniran/Kelor), so not fully certain without seeds/pods visible.",
-      "visual_notes": "Kandidat ilmiah: Abrus precatorius L.",
+      "status": "confirmed",
+      "confidence": "medium-high",
+      "reason": "Heading \"Saga\" tepat sebelum gambar, diikuti \"Nama ilmiah: Abrus precatorius L.\", tidak ada entri lain di antaranya. Anak daun majemuk menyirip kecil berpasangan pada tanaman merambat konsisten dengan Abrus precatorius (tumbuh merambat sesuai teks). Kemiripan generik dengan Meniran/Kelor tidak jadi masalah karena posisi memastikan entri secara unik.",
+      "visual_notes": "Anak daun oval kecil berpasangan menyirip, tampak pada tanaman merambat/vine.",
       "duplicate_of": null,
       "ignore_reason": null,
-      "reviewed_at": "2026-07-31T15:31:32.103Z"
+      "reviewed_at": "2026-07-31T21:18:55.922Z"
     },
     {
       "image_number": 51,
@@ -1008,11 +1008,11 @@
       "visual_match": null,
       "status": "ambiguous",
       "confidence": "low",
-      "reason": "Foto menunjukkan daun bundar seperti koin dengan tangkai panjang -- morfologi ini khas Centella asiatica (pegagan), bukan Bacopa monnieri (daun kecil lonjong/sukulen) yang biasanya dimaksud sebagai Brahmi ilmiah.",
-      "visual_notes": "Daun bundar mirip koin, tulang daun menyebar dari pusat -- kemungkinan pegagan (Centella asiatica) tertukar nama dengan Brahmi (Bacopa monnieri).",
+      "reason": "Ditinjau ulang dengan rujukan botani eksternal (NParks Singapore untuk Bacopa monnieri, Kew/ScienceDirect/WFO untuk Centella asiatica). Posisi DOCX eksplisit \"Brahmi\"/Bacopa monnieri tidak ambigu, tetapi daun bundar peltate bertangkai panjang pada gambar cocok dengan Centella asiatica (Pegagan, sudah confirmed terpisah di #8/45/54/73/75/109), bukan Bacopa monnieri (sesil, spatulate-obovate menurut NParks). Posisi dan visual bertentangan nyata -- dipertahankan ambiguous, bukan dipaksakan ke kandidat manapun. Kemungkinan foto tertukar di dokumen sumber (sebagian tradisi India menyamakan dua tanaman ini sebagai \"brahmi\"). Lihat data/media/docx-image-reference-review.json untuk rincian rujukan.",
+      "visual_notes": "Daun bundar peltate bertangkai panjang, venasi memancar dari pusat -- dikonfirmasi morfologi Centella asiatica via NParks + sumber Kew-terkait, bertentangan dengan deskripsi Bacopa monnieri (sesil, spatulate-obovate).",
       "duplicate_of": null,
       "ignore_reason": null,
-      "reviewed_at": "2026-07-31T15:43:02.984Z"
+      "reviewed_at": "2026-07-31T22:29:51.075Z"
     },
     {
       "image_number": 60,
@@ -1091,13 +1091,13 @@
       "health_zone": "Zona Anak Ceria",
       "positional_candidate": "temulawak",
       "visual_match": "temulawak",
-      "status": "probable",
-      "confidence": "medium",
-      "reason": "Rimpang oranye terpotong sesuai famili Curcuma, tapi foto rimpang saja sulit dibedakan pasti dari kunyit biasa.",
-      "visual_notes": "Daging rimpang oranye cerah dengan kulit coklat, ukuran potongan cukup besar/gemuk.",
+      "status": "confirmed",
+      "confidence": "medium-high",
+      "reason": "Posisi sangat kuat: heading zona \"Zona Anak Ceria\" langsung diikuti heading entri \"Temulawak\" langsung diikuti gambar, tanpa gambar/entri lain di antaranya. Rimpang terpotong berdaging oranye konsisten dengan Curcuma xanthorrhiza (\"Bagian tanaman yang digunakan: Rimpang\"). Kemiripan visual generik dengan kunyit tidak masalah karena posisi memastikan identitas secara unik.",
+      "visual_notes": "Rimpang terpotong, daging oranye, khas famili Curcuma.",
       "duplicate_of": null,
       "ignore_reason": null,
-      "reviewed_at": "2026-07-31T15:44:29.952Z"
+      "reviewed_at": "2026-07-31T21:18:55.922Z"
     },
     {
       "image_number": 65,
@@ -1108,13 +1108,13 @@
       "health_zone": "Zona Anak Ceria",
       "positional_candidate": "kencur",
       "visual_match": "kencur",
-      "status": "probable",
-      "confidence": "medium",
-      "reason": "Rimpang dengan tunas kemerahan muda di atas daun hijau, konsisten dengan kencur tapi tidak sepenuhnya pasti dari foto rimpang saja.",
-      "visual_notes": "Tunas merah muda pada rimpang berserat di atas daun hijau lebar.",
+      "status": "confirmed",
+      "confidence": "medium-high",
+      "reason": "Heading \"Kencur\" tepat sebelum gambar, diikuti \"Nama ilmiah: Kaempferia galanga L.\", tidak ambigu. Rimpang kecil bulat berumpun dengan tunas kemerahan-muda -- bentuk bulat/gempal khas Kaempferia galanga, berbeda dari rimpang jahe/kunyit yang memanjang.",
+      "visual_notes": "Rimpang bulat gempal berumpun, tunas kemerahan muda -- ciri khas Kaempferia galanga.",
       "duplicate_of": null,
       "ignore_reason": null,
-      "reviewed_at": "2026-07-31T15:44:29.952Z"
+      "reviewed_at": "2026-07-31T21:18:55.922Z"
     },
     {
       "image_number": 66,
@@ -1482,13 +1482,13 @@
       "health_zone": "Zona Tulang & Sendi",
       "positional_candidate": "boswellia",
       "visual_match": null,
-      "status": "ambiguous",
-      "confidence": "low",
-      "reason": "Foto menunjukkan tunas kecil menyirip di tanah, tidak menampilkan ciri khas Boswellia (kulit kayu beresin/getah kemenyan); pola daun terlalu generik untuk dipastikan.",
-      "visual_notes": "Tunas muda kecil dengan daun menyirip, kemungkinan pakis atau bibit muda, sulit dipastikan sebagai Boswellia serrata.",
+      "status": "confirmed",
+      "confidence": "medium",
+      "reason": "Heading \"Boswellia\" tepat sebelum gambar, diikuti \"Nama lokal/Nama ilmiah\", tidak ambigu. Bibit kecil berdaun majemuk menyirip (feathery) sesuai struktur daun imparipinnate Boswellia serrata yang sebenarnya, meski ciri khas kulit kayu beresin belum terlihat karena tahap bibit muda. Posisi kuat + tipe daun tidak kontradiktif.",
+      "visual_notes": "Bibit muda berdaun majemuk menyirip fern-like, tumbuh langsung dari tanah -- ciri resin/kulit kayu belum terverifikasi (wajar pada bibit).",
       "duplicate_of": null,
       "ignore_reason": null,
-      "reviewed_at": "2026-07-31T15:51:24.496Z"
+      "reviewed_at": "2026-07-31T21:18:55.922Z"
     },
     {
       "image_number": 88,
@@ -1501,11 +1501,11 @@
       "visual_match": null,
       "status": "unmatched",
       "confidence": "low",
-      "reason": "Daun besar berbentuk anak panah dengan urat ungu-hijau kontras tidak sesuai morfologi Daun Dewa (Gynura pseudochina) yang biasanya berdaun lonjong sukulen hijau dengan bagian bawah ungu polos -- tampak seperti tanaman hias Caladium/Alocasia.",
-      "visual_notes": "Daun besar bentuk anak panah, urat hijau terang kontras dengan permukaan ungu tua -- kemungkinan salah kandidat posisi.",
+      "reason": "Ditinjau ulang dengan rujukan botani eksternal (PROTA via PlantUse, sumber etnobotani Indonesia). Posisi DOCX (entri Daun Dewa kedua) tidak ambigu, tetapi daun besar menjari ungu-lime kontras pada gambar bertentangan dengan deskripsi Gynura pseudochina (roset, obovate/spatulate/elliptical, shallowly lobed, hijau tanpa kontras ungu-lime) dari dua rujukan independen, dan bertentangan pula dengan gambar #33 (Daun Dewa confirmed dari entri pertama). Tidak ada identitas alternatif yang cukup aman untuk dipetakan. Dipertahankan unmatched. Lihat data/media/docx-image-reference-review.json untuk rincian rujukan.",
+      "visual_notes": "Daun besar sagitate/menjari, ungu-hijau kontras -- dikonfirmasi bertentangan dengan morfologi Gynura pseudochina (roset, shallowly lobed, hijau polos) via PROTA + sumber etnobotani.",
       "duplicate_of": null,
       "ignore_reason": null,
-      "reviewed_at": "2026-07-31T15:51:24.496Z"
+      "reviewed_at": "2026-07-31T22:29:51.076Z"
     },
     {
       "image_number": 89,
@@ -1720,13 +1720,13 @@
       "health_zone": "Zona Anti Mikroba",
       "positional_candidate": "sambiloto",
       "visual_match": "sambiloto",
-      "status": "probable",
-      "confidence": "medium",
-      "reason": "Daun hijau lonjong mengkilap dipanen di atas nampan, cukup konsisten tapi bentuk daun tampak lebih oval/bulat dari daun lanset sempit khas Andrographis paniculata.",
-      "visual_notes": "Kumpulan daun hijau segar di atas anyaman bambu.",
+      "status": "ambiguous",
+      "confidence": "low",
+      "reason": "Ditinjau ulang dengan rujukan botani eksternal (NParks Singapore, jurnal peer-review PLOS ONE). Posisi DOCX kuat, tetapi ujung daun tumpul dan bentuk oval-lebar pada gambar bertentangan dengan ciri diagnostik Andrographis paniculata (ujung acuminate/runcing, bentuk lanceolate sempit) yang ditegaskan dua rujukan independen, dan bertentangan pula dengan gambar #2 (Sambiloto confirmed) dalam dokumen yang sama. Diturunkan dari probable menjadi ambiguous karena kini merupakan kontradiksi morfologi spesifik yang terverifikasi, bukan sekadar kurang ciri diagnostik. Tidak dipaksakan confirmed. Lihat data/media/docx-image-reference-review.json untuk rincian rujukan.",
+      "visual_notes": "Daun hijau mengkilap oval-elips ujung TUMPUL -- dikonfirmasi bertentangan dengan ciri diagnostik ujung acuminate/bentuk lanset sempit Andrographis paniculata via NParks + PLOS ONE.",
       "duplicate_of": null,
       "ignore_reason": null,
-      "reviewed_at": "2026-07-31T15:55:30.058Z"
+      "reviewed_at": "2026-07-31T22:29:51.076Z"
     },
     {
       "image_number": 102,
@@ -1788,13 +1788,13 @@
       "health_zone": "Zona Kesehatan Perempuan",
       "positional_candidate": "katuk",
       "visual_match": null,
-      "status": "unmatched",
-      "confidence": "low",
-      "reason": "Foto menunjukkan buah kecil putih-merah muda dengan kelopak khas mirip jambu air mini, bukan daun oval khas Sauropus androgynus atau kapsul buahnya -- tidak sesuai kandidat posisi.",
-      "visual_notes": "Buah kecil bulat putih dan merah muda bertangkai dengan daun sempit di latar belakang.",
+      "status": "confirmed",
+      "confidence": "medium-high",
+      "reason": "KOREKSI tinjauan sebelumnya setelah verifikasi rujukan botani eksternal (NParks Singapore, PROSEA via PlantUse): penilaian unmatched semula (menduga buah jambu air/Myrtaceae) SALAH -- morfologi buah pada gambar (bulat kecil, gradasi putih-hijau ke merah muda/marun, mahkota kelopak gelap berbentuk bintang di pangkal) justru merupakan ciri diagnostik khas Sauropus androgynus/Breynia androgyna (\"menyerupai manggis mini\", 12-17mm, kelopak 6-cleft persisten) menurut dua rujukan independen kredibel. Posisi DOCX tidak ambigu, visual kini terverifikasi mendukung, tanpa ciri kontradiktif, tanpa spesies alternatif yang sama kuat. Dinaikkan ke confirmed. Lihat data/media/docx-image-reference-review.json untuk rincian rujukan.",
+      "visual_notes": "Buah kecil bulat gradasi putih-ke-marun dengan mahkota kelopak gelap -- dikonfirmasi ciri diagnostik Sauropus androgynus/Breynia androgyna via NParks + PROSEA (menyerupai manggis mini).",
       "duplicate_of": null,
       "ignore_reason": null,
-      "reviewed_at": "2026-07-31T15:55:30.058Z"
+      "reviewed_at": "2026-07-31T22:29:51.076Z"
     },
     {
       "image_number": 106,
@@ -1805,13 +1805,13 @@
       "health_zone": "Zona Kesehatan Perempuan",
       "positional_candidate": "temu-putih",
       "visual_match": null,
-      "status": "ambiguous",
-      "confidence": "low",
-      "reason": "Foto menampilkan rimpang berdaging KUNING (mirip jahe), bukan putih pucat khas Temu Putih (Curcuma zedoaria) -- kemungkinan foto generik jahe yang salah kandidat posisi, perlu tinjauan manual mengingat riwayat kerancuan Temu Putih/Kunyit Putih.",
-      "visual_notes": "Rimpang berbuku dengan daging kuning pucat, gaya foto identik dengan foto jahe (#69/#84/#99).",
+      "status": "unmatched",
+      "confidence": "medium-high",
+      "reason": "Ditinjau ulang dengan rujukan botani eksternal (NTBG untuk Curcuma zedoaria, jurnal J-STAGE + Oxford Herbaria untuk Zingiber officinale). Posisi DOCX \"Temu Putih\" tidak ambigu, tetapi warna daging rimpang kuning-cokelat keemasan pada gambar bertentangan dengan ciri diagnostik utama Curcuma zedoaria (daging putih/putih-kebiruan, sumber nama \"white turmeric\") menurut NTBG, dan justru cocok dengan warna khas jahe menurut rujukan jurnal peer-review + herbarium universitas. Jahe asli sudah punya set foto confirmed terpisah (#4,46,69,84,99,117) sehingga tidak dipetakan ulang ke jahe (menghindari duplikasi). Dipertahankan unmatched, kini dengan bukti eksternal lebih kuat. Lihat data/media/docx-image-reference-review.json untuk rincian rujukan.",
+      "visual_notes": "Rimpang berbuku/berjari, daging kuning-cokelat keemasan -- dikonfirmasi bertentangan dengan ciri diagnostik daging putih/putih-kebiruan Curcuma zedoaria via NTBG; cocok dengan warna khas Zingiber officinale via jurnal peer-review + Oxford Herbaria.",
       "duplicate_of": null,
       "ignore_reason": null,
-      "reviewed_at": "2026-07-31T15:57:07.695Z"
+      "reviewed_at": "2026-07-31T22:29:51.076Z"
     },
     {
       "image_number": 107,
@@ -1822,13 +1822,13 @@
       "health_zone": "Zona Kesehatan Perempuan",
       "positional_candidate": "dong-quai",
       "visual_match": "dong-quai",
-      "status": "probable",
-      "confidence": "medium",
-      "reason": "Irisan akar kering cokelat muda konsisten dengan bentuk umum akar Dong Quai kering, tapi foto irisan akar generik sulit dipastikan 100%.",
-      "visual_notes": "Irisan akar kering pipih dengan pola cincin pertumbuhan.",
+      "status": "confirmed",
+      "confidence": "medium-high",
+      "reason": "Heading \"Dong Quai\" tepat sebelum gambar, tidak ambigu. Irisan akar kering berbentuk tidak beraturan/bergelambir warna cokelat muda -- bentuk khas irisan akar Angelica sinensis (danggui) dalam presentasi TCM, cukup distingtif dibanding irisan akar lain (ginseng lebih bulat, akar manis lebih rata). Sesuai \"Bagian tanaman yang digunakan: Akar\".",
+      "visual_notes": "Irisan akar kering tidak beraturan/bergelambir, cokelat muda -- bentuk khas danggui/Angelica sinensis kering.",
       "duplicate_of": null,
       "ignore_reason": null,
-      "reviewed_at": "2026-07-31T15:57:07.695Z"
+      "reviewed_at": "2026-07-31T21:18:55.922Z"
     },
     {
       "image_number": 108,
@@ -2111,13 +2111,13 @@
       "health_zone": "Zona Antikanker (Potensial)",
       "positional_candidate": "keladi-tikus",
       "visual_match": "keladi-tikus",
-      "status": "probable",
-      "confidence": "medium",
-      "reason": "Tanaman kecil berdaun panah/hati berbintik tumbuh di tanah, cukup konsisten dengan Keladi Tikus tapi bibit talas-talasan umumnya mirip satu sama lain.",
-      "visual_notes": "Bibit tunggal kecil dengan beberapa daun panah di lantai hutan.",
+      "status": "confirmed",
+      "confidence": "medium-high",
+      "reason": "Heading \"2. Keladi Tikus\" dan \"Nama lokal: Keladi tikus\" langsung sebelum gambar, diapit jelas oleh entri Sirsak sebelumnya dan Kunyit sesudahnya -- tidak ambigu. Tanaman kecil berdaun sagitate (anak panah) berbintik/berbercak mengkilap tumbuh langsung dari tanah dengan tunas bunga tipis -- sesuai ciri khas Typhonium flagelliforme (Keladi Tikus).",
+      "visual_notes": "Daun sagitate berbintik/berbercak, tumbuh dari tanah di lantai hutan, tunas bunga tipis terlihat.",
       "duplicate_of": null,
       "ignore_reason": null,
-      "reviewed_at": "2026-07-31T16:01:49.469Z"
+      "reviewed_at": "2026-07-31T21:18:55.922Z"
     },
     {
       "image_number": 125,

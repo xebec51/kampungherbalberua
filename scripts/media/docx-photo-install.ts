@@ -7,6 +7,14 @@
 //   node --experimental-strip-types scripts/media/docx-photo-install.ts plan
 //   node --experimental-strip-types scripts/media/docx-photo-install.ts dry-run
 //   node --experimental-strip-types scripts/media/docx-photo-install.ts apply
+//   node --experimental-strip-types scripts/media/docx-photo-install.ts dry-run-one <slug>
+//   node --experimental-strip-types scripts/media/docx-photo-install.ts apply-one <slug>
+//
+// dry-run-one / apply-one restrict every read and write to the single plan
+// item matching plant_slug === <slug> -- no other plant's row, storage
+// object, or media_assets/plant_media relation is ever touched, and the run
+// aborts if the plan somehow contains more than one install item for that
+// slug (a data-quality bug, not something to guess through).
 import { createHash } from "node:crypto";
 import {
   existsSync,
@@ -424,6 +432,153 @@ function runDryRun() {
   return report;
 }
 
+type ApplyLog = {
+  generatedAt: string;
+  installed: number;
+  skippedAlreadyHasPrimary: number;
+  reusedExistingMediaAsset: number;
+  failures: string[];
+};
+
+type PrimaryMediaMap = Map<string, { is_primary: boolean; media_id: string; plant_id: string }>;
+
+// Applies a single plan item (idempotent: re-checks primaryMedia right
+// before writing) and mutates `log` + `primaryMedia` in place. Shared by
+// runApply (all install items) and runApplyOne (exactly one, by slug).
+async function applyOneItem(
+  client: SupabaseClient<Database>,
+  item: PlanItem,
+  primaryMedia: PrimaryMediaMap,
+  log: ApplyLog,
+) {
+  if (primaryMedia.has(item.plant_id)) {
+    log.skippedAlreadyHasPrimary += 1;
+    return;
+  }
+
+  const sourcePath = resolve(process.cwd(), item.source_file);
+  const rawBuffer = readFileSync(sourcePath);
+
+  let original: Awaited<ReturnType<typeof optimizeWebp>>;
+  let cover: Awaited<ReturnType<typeof optimizeWebp>>;
+
+  try {
+    [original, cover] = await Promise.all([
+      optimizeWebp(rawBuffer, 2200, 2200),
+      optimizeWebp(rawBuffer, 1200, 900),
+    ]);
+  } catch (error) {
+    log.failures.push(
+      `${item.plant_slug}: gagal memproses gambar (${error instanceof Error ? error.message : "unknown"})`,
+    );
+    return;
+  }
+
+  const checksum = createHash("sha256").update(cover.data).digest("hex");
+  const originalPath = storageKey({
+    entityKey: item.plant_slug,
+    hash: checksum,
+    role: "original",
+    scope: "plants",
+  });
+  const publicPath = storageKey({
+    entityKey: item.plant_slug,
+    hash: checksum,
+    role: "cover",
+    scope: "plants",
+  });
+
+  const { data: existingMedia } = await client
+    .from("media_assets")
+    .select("id")
+    .eq("checksum_sha256", checksum)
+    .maybeSingle();
+
+  let mediaId = existingMedia?.id ?? null;
+
+  if (mediaId) {
+    log.reusedExistingMediaAsset += 1;
+  } else {
+    const originalUpload = await client.storage
+      .from("media-originals")
+      .upload(originalPath, original.data, {
+        cacheControl: "31536000",
+        contentType: "image/webp",
+        upsert: false,
+      });
+
+    if (originalUpload.error && !/already exists/i.test(originalUpload.error.message)) {
+      log.failures.push(`${item.plant_slug}: upload original gagal (${originalUpload.error.message})`);
+      return;
+    }
+
+    const publicUpload = await client.storage
+      .from("media-public")
+      .upload(publicPath, cover.data, {
+        cacheControl: "31536000",
+        contentType: "image/webp",
+        upsert: false,
+      });
+
+    if (publicUpload.error && !/already exists/i.test(publicUpload.error.message)) {
+      log.failures.push(`${item.plant_slug}: upload public gagal (${publicUpload.error.message})`);
+      return;
+    }
+
+    const { data: inserted, error: insertError } = await client
+      .from("media_assets")
+      .insert({
+        alt_text: `Foto ${item.plant_local_name}`,
+        asset_code: `media-docx-${checksum.slice(0, 16)}`,
+        changes_made:
+          "Diekstrak dari dokumen HerbaCode (herba code.docx); dikonversi ke WebP dan disesuaikan ukurannya untuk web.",
+        checksum_sha256: checksum,
+        content_status: "published",
+        file_size_bytes: cover.data.length,
+        height: cover.info.height,
+        image_type: "cover",
+        media_kind: "image",
+        mime_type: "image/webp",
+        original_bucket: "media-originals",
+        original_path: originalPath,
+        privacy_status: "not_required",
+        public_bucket: "media-public",
+        public_path: publicPath,
+        rights_status: "approved",
+        source_type: "kkn_documentation",
+        title: `Foto ${item.plant_local_name}`,
+        width: cover.info.width,
+      })
+      .select("id")
+      .single();
+
+    if (insertError || !inserted) {
+      log.failures.push(
+        `${item.plant_slug}: media_assets gagal disimpan (${insertError?.message ?? "kosong"})`,
+      );
+      return;
+    }
+
+    mediaId = inserted.id;
+  }
+
+  const { error: linkError } = await client.from("plant_media").insert({
+    is_primary: true,
+    media_id: mediaId,
+    plant_id: item.plant_id,
+    role: "cover",
+    sort_order: 0,
+  });
+
+  if (linkError) {
+    log.failures.push(`${item.plant_slug}: gagal menautkan plant_media (${linkError.message})`);
+    return;
+  }
+
+  primaryMedia.set(item.plant_id, { is_primary: true, media_id: mediaId, plant_id: item.plant_id });
+  log.installed += 1;
+}
+
 async function runApply() {
   runDryRun();
 
@@ -435,148 +590,134 @@ async function runApply() {
   const items = loadPlan().filter((item) => item.action === "install");
   const primaryMedia = await loadExistingPrimaryPlantMedia(client);
 
-  const log = {
+  const log: ApplyLog = {
     generatedAt: new Date().toISOString(),
     installed: 0,
     skippedAlreadyHasPrimary: 0,
     reusedExistingMediaAsset: 0,
-    failures: [] as string[],
+    failures: [],
   };
 
   for (const item of items) {
-    // Re-check right before writing (idempotent across repeated runs, and
-    // safe if something else linked a primary between plan and apply).
-    if (primaryMedia.has(item.plant_id)) {
-      log.skippedAlreadyHasPrimary += 1;
-      continue;
-    }
-
-    const sourcePath = resolve(process.cwd(), item.source_file);
-    const rawBuffer = readFileSync(sourcePath);
-
-    let original: Awaited<ReturnType<typeof optimizeWebp>>;
-    let cover: Awaited<ReturnType<typeof optimizeWebp>>;
-
-    try {
-      [original, cover] = await Promise.all([
-        optimizeWebp(rawBuffer, 2200, 2200),
-        optimizeWebp(rawBuffer, 1200, 900),
-      ]);
-    } catch (error) {
-      log.failures.push(
-        `${item.plant_slug}: gagal memproses gambar (${error instanceof Error ? error.message : "unknown"})`,
-      );
-      continue;
-    }
-
-    const checksum = createHash("sha256").update(cover.data).digest("hex");
-    const originalPath = storageKey({
-      entityKey: item.plant_slug,
-      hash: checksum,
-      role: "original",
-      scope: "plants",
-    });
-    const publicPath = storageKey({
-      entityKey: item.plant_slug,
-      hash: checksum,
-      role: "cover",
-      scope: "plants",
-    });
-
-    const { data: existingMedia } = await client
-      .from("media_assets")
-      .select("id")
-      .eq("checksum_sha256", checksum)
-      .maybeSingle();
-
-    let mediaId = existingMedia?.id ?? null;
-
-    if (mediaId) {
-      log.reusedExistingMediaAsset += 1;
-    } else {
-      const originalUpload = await client.storage
-        .from("media-originals")
-        .upload(originalPath, original.data, {
-          cacheControl: "31536000",
-          contentType: "image/webp",
-          upsert: false,
-        });
-
-      if (originalUpload.error && !/already exists/i.test(originalUpload.error.message)) {
-        log.failures.push(`${item.plant_slug}: upload original gagal (${originalUpload.error.message})`);
-        continue;
-      }
-
-      const publicUpload = await client.storage
-        .from("media-public")
-        .upload(publicPath, cover.data, {
-          cacheControl: "31536000",
-          contentType: "image/webp",
-          upsert: false,
-        });
-
-      if (publicUpload.error && !/already exists/i.test(publicUpload.error.message)) {
-        log.failures.push(`${item.plant_slug}: upload public gagal (${publicUpload.error.message})`);
-        continue;
-      }
-
-      const { data: inserted, error: insertError } = await client
-        .from("media_assets")
-        .insert({
-          alt_text: `Foto ${item.plant_local_name}`,
-          asset_code: `media-docx-${checksum.slice(0, 16)}`,
-          changes_made:
-            "Diekstrak dari dokumen HerbaCode (herba code.docx); dikonversi ke WebP dan disesuaikan ukurannya untuk web.",
-          checksum_sha256: checksum,
-          content_status: "published",
-          file_size_bytes: cover.data.length,
-          height: cover.info.height,
-          image_type: "cover",
-          media_kind: "image",
-          mime_type: "image/webp",
-          original_bucket: "media-originals",
-          original_path: originalPath,
-          privacy_status: "not_required",
-          public_bucket: "media-public",
-          public_path: publicPath,
-          rights_status: "approved",
-          source_type: "kkn_documentation",
-          title: `Foto ${item.plant_local_name}`,
-          width: cover.info.width,
-        })
-        .select("id")
-        .single();
-
-      if (insertError || !inserted) {
-        log.failures.push(
-          `${item.plant_slug}: media_assets gagal disimpan (${insertError?.message ?? "kosong"})`,
-        );
-        continue;
-      }
-
-      mediaId = inserted.id;
-    }
-
-    const { error: linkError } = await client.from("plant_media").insert({
-      is_primary: true,
-      media_id: mediaId,
-      plant_id: item.plant_id,
-      role: "cover",
-      sort_order: 0,
-    });
-
-    if (linkError) {
-      log.failures.push(`${item.plant_slug}: gagal menautkan plant_media (${linkError.message})`);
-      continue;
-    }
-
-    primaryMedia.set(item.plant_id, { is_primary: true, media_id: mediaId, plant_id: item.plant_id });
-    log.installed += 1;
+    await applyOneItem(client, item, primaryMedia, log);
   }
 
   writeJsonAtomic(APPLY_LOG_PATH, log);
   console.log(
     `Apply: installed=${log.installed}, skip_sudah_primary=${log.skippedAlreadyHasPrimary}, reuse_media=${log.reusedExistingMediaAsset}, gagal=${log.failures.length}`,
+  );
+
+  if (log.failures.length > 0) {
+    console.error("Kegagalan:");
+    for (const failure of log.failures) {
+      console.error(` - ${failure}`);
+    }
+  }
+
+  return log;
+}
+
+function findPlanItemBySlug(slug: string): PlanItem {
+  const items = loadPlan();
+  const matches = items.filter((item) => item.plant_slug === slug);
+  const installs = matches.filter((item) => item.action === "install");
+
+  if (matches.length === 0) {
+    throw new Error(`Tidak ada item di upload plan untuk slug "${slug}".`);
+  }
+
+  if (installs.length > 1) {
+    throw new Error(
+      `Lebih dari satu item action=install untuk slug "${slug}" di upload plan -- kemungkinan bug data, apply-one dibatalkan tanpa menebak.`,
+    );
+  }
+
+  // Prefer the install item if present; otherwise report the (skip) item so
+  // dry-run-one/apply-one can explain why nothing will happen.
+  return installs[0] ?? matches[0];
+}
+
+function runDryRunOne(slug: string) {
+  assertLocalSupabaseUrl(process.env.SUPABASE_URL ?? "http://127.0.0.1:54321");
+
+  const item = findPlanItemBySlug(slug);
+  const problems: string[] = [];
+  const sourcePath = resolve(process.cwd(), item.source_file);
+
+  if (item.action === "install") {
+    if (!existsSync(sourcePath)) {
+      problems.push(`File sumber tidak ditemukan: ${item.source_file}`);
+    } else {
+      const actualHash = createHash("sha256").update(readFileSync(sourcePath)).digest("hex");
+      if (item.source_hash && actualHash !== item.source_hash) {
+        problems.push(
+          `Checksum berbeda dari manifest: rencana=${item.source_hash}, aktual=${actualHash}`,
+        );
+      }
+    }
+
+    if (!item.plant_id) {
+      problems.push("plant_id tidak ditemukan untuk item ini.");
+    }
+
+    if (item.replace_existing) {
+      problems.push(`Item mencoba replace_existing tanpa aturan eksplisit: ${item.plant_slug}`);
+    }
+  }
+
+  console.log(`Dry-run-one [${slug}]:`);
+  console.log(`  source_file: ${item.source_file}`);
+  console.log(`  source_hash: ${item.source_hash || "(tidak berlaku)"}`);
+  console.log(`  target_storage_path: ${item.target_storage_path || "(tidak berlaku)"}`);
+  console.log(`  plant_id: ${item.plant_id || "(tidak berlaku)"}`);
+  console.log(`  action: ${item.action}`);
+  console.log(`  replace_existing: ${item.replace_existing}`);
+  console.log(`  status: ${item.status}`);
+  console.log(`  reason: ${item.reason}`);
+  console.log(`  planned_changes: ${item.action === "install" ? 1 : 0}`);
+
+  if (problems.length > 0) {
+    console.error("Dry-run-one menemukan masalah, hentikan sebelum apply-one:");
+    for (const problem of problems) {
+      console.error(` - ${problem}`);
+    }
+    process.exitCode = 1;
+  }
+
+  return { item, problems };
+}
+
+async function runApplyOne(slug: string) {
+  const { item, problems } = runDryRunOne(slug);
+
+  if (process.exitCode === 1 || problems.length > 0) {
+    throw new Error(`Dry-run-one gagal untuk "${slug}"; apply-one dibatalkan.`);
+  }
+
+  const client = getLocalAdminClient();
+
+  const log: ApplyLog = {
+    generatedAt: new Date().toISOString(),
+    installed: 0,
+    skippedAlreadyHasPrimary: 0,
+    reusedExistingMediaAsset: 0,
+    failures: [],
+  };
+
+  if (item.action !== "install") {
+    console.log(
+      `Apply-one [${slug}]: item bukan action=install (action=${item.action}: ${item.reason}); tidak ada perubahan.`,
+    );
+    writeJsonAtomic(APPLY_LOG_PATH, log);
+    return log;
+  }
+
+  const primaryMedia = await loadExistingPrimaryPlantMedia(client);
+  await applyOneItem(client, item, primaryMedia, log);
+
+  writeJsonAtomic(APPLY_LOG_PATH, log);
+  console.log(
+    `Apply-one [${slug}]: installed=${log.installed}, skip_sudah_primary=${log.skippedAlreadyHasPrimary}, reuse_media=${log.reusedExistingMediaAsset}, gagal=${log.failures.length}`,
   );
 
   if (log.failures.length > 0) {
@@ -612,7 +753,27 @@ async function main() {
     return;
   }
 
-  throw new Error(`Command tidak dikenal: ${command}. Gunakan audit|plan|dry-run|apply`);
+  if (command === "dry-run-one") {
+    const slug = process.argv[3];
+    if (!slug) {
+      throw new Error("Gunakan: dry-run-one <slug>");
+    }
+    runDryRunOne(slug);
+    return;
+  }
+
+  if (command === "apply-one") {
+    const slug = process.argv[3];
+    if (!slug) {
+      throw new Error("Gunakan: apply-one <slug>");
+    }
+    await runApplyOne(slug);
+    return;
+  }
+
+  throw new Error(
+    `Command tidak dikenal: ${command}. Gunakan audit|plan|dry-run|apply|dry-run-one|apply-one`,
+  );
 }
 
 main().catch((error: unknown) => {

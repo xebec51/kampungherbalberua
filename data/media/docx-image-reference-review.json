@@ -1,0 +1,195 @@
+[
+  {
+    "image_number": 59,
+    "image_file": "data/media/docx-extract/059.jpg",
+    "docx_candidate": "Brahmi",
+    "scientific_name": "Bacopa monnieri",
+    "previous_status": "ambiguous",
+    "final_status": "ambiguous",
+    "final_plant": null,
+    "confidence": "low",
+    "docx_position_evidence": "Heading \"Brahmi\" pada paragraf 2085 langsung mendahului gambar pada paragraf 2086, diikuti \"Nama ilmiah: Bacopa monnieri\" -- posisi tidak ambigu, tidak ada entri lain di antaranya.",
+    "visual_evidence": "Daun bundar seperti koin (peltate/reniform), venasi memancar dari titik pusat, bertangkai panjang, tumbuh merambat rapat membentuk tikar daun.",
+    "contradictory_evidence": "Bacopa monnieri (NParks Singapore, FloraFaunaWeb): daun sesil (tanpa tangkai), bentuk spatulate-obovate, hingga 2.5cm, tepi rata, berlawanan (opposite), semi-sukulen, TIDAK bundar/peltate dan TIDAK bertangkai panjang. Centella asiatica: daun orbicular-reniform (bundar-ginjal), venasi palmate, tangkai daun 2-4cm (bisa hingga 40-50cm pada cabang steril) -- morfologi pada gambar cocok dengan Centella asiatica, bukan Bacopa monnieri.",
+    "alternative_candidate": "Centella asiatica (Pegagan) -- sudah punya entri confirmed terpisah di gambar #8/45/54/73/75/109 dalam dokumen yang sama",
+    "references": [
+      {
+        "title": "Bacopa monnieri (L.) Pennell / Bacopa caroliniana - Flora & Fauna Web",
+        "source": "NParks Singapore (National Parks Board) - lembaga flora resmi",
+        "url": "https://www.nparks.gov.sg/florafaunaweb/flora/6/8/6847",
+        "scientific_name_used": "Bacopa monnieri",
+        "part_compared": "daun (bentuk, tangkai, susunan)",
+        "supporting_features": "tidak ada -- deskripsi kontradiktif dengan gambar",
+        "conflicting_features": "daun sesil (tanpa tangkai) spatulate-obovate, tepi rata, hingga 2.5cm -- gambar menunjukkan daun bundar besar bertangkai panjang",
+        "access_date": "2026-07-31"
+      },
+      {
+        "title": "Centella asiatica (L.) Urb. -- multiple botanical sources synthesized via web search (Kew POWO-derived, ScienceDirect Topics, WFO)",
+        "source": "Kew Plants of the World Online (referenced), ScienceDirect Topics, World Flora Online",
+        "url": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:1197718-2/general-information",
+        "scientific_name_used": "Centella asiatica",
+        "part_compared": "daun (bentuk, venasi, tangkai)",
+        "supporting_features": "daun orbicular-reniform, palmately veined, tangkai daun panjang (2-4cm hingga 40-50cm) -- cocok persis dengan morfologi pada gambar",
+        "conflicting_features": "tidak ada",
+        "access_date": "2026-07-31"
+      }
+    ],
+    "decision_reason": "Posisi DOCX eksplisit menyebut \"Brahmi\"/Bacopa monnieri, tetapi bukti visual (dikonfirmasi dua rujukan independen) menunjukkan morfologi Centella asiatica secara meyakinkan, bukan Bacopa monnieri. Karena posisi dan visual bertentangan secara nyata, dan Centella asiatica sudah memiliki entri confirmed terpisah dalam dokumen yang sama (sehingga memetakan ulang gambar ini ke pegagan berisiko duplikasi/kerancuan), dipertahankan sebagai ambiguous sesuai aturan konservatif -- tidak dipaksakan confirmed ke kandidat manapun. Kemungkinan penyebab: sebagian sumber tradisional India menyamakan \"brahmi\" dengan kedua spesies ini, sehingga foto tertukar di dokumen sumber.",
+    "reviewed_at": "2026-07-31T22:26:52.142Z"
+  },
+  {
+    "image_number": 88,
+    "image_file": "data/media/docx-extract/088.png",
+    "docx_candidate": "Daun Dewa",
+    "scientific_name": "Gynura pseudochina",
+    "previous_status": "unmatched",
+    "final_status": "unmatched",
+    "final_plant": null,
+    "confidence": "low",
+    "docx_position_evidence": "Heading \"Daun Dewa\" pada paragraf 2852 (satu paragraf dengan \"Nama lokal\") langsung mendahului gambar pada paragraf 2853 -- ini entri Daun Dewa KEDUA dalam dokumen (entri pertama, gambar #33, sudah confirmed di Zona Hati Sehat; entri ini di Zona Tulang & Sendi). Posisi tidak ambigu.",
+    "visual_evidence": "Daun besar berbentuk anak panah/menjari (sagitate/palmately lobed dalam), berwarna ungu tua kontras dengan urat hijau-lime terang, tampak seperti tanaman hias ornamental.",
+    "contradictory_evidence": "PROTA (Plant Resources of Tropical Africa) via PlantUse: daun Gynura pseudochina tersusun dalam roset, bentuk \"obovate, spatulate, elliptical or ovate\", hanya \"shallowly lobed\" (berlekuk dangkal), tidak menyebutkan warna ungu-lime kontras. Sumber etnobotani Indonesia (Amazing Flora/blog akademik-terverifikasi silang): daun tunggal, \"bentuk oval bulat\" (rounded-oval), permukaan atas hijau tua, bawah hijau muda -- BUKAN ungu dengan urat lime terang. Perbandingan langsung dengan gambar #33 (Daun Dewa confirmed dalam dokumen yang sama) menunjukkan daun oblong-sukulen polos hijau, sama sekali berbeda dari daun besar menjari ungu-lime pada gambar #88.",
+    "alternative_candidate": "Tidak teridentifikasi secara spesifik -- morfologi (daun besar menjari, ungu-hijau kontras tajam) konsisten dengan tanaman hias foliage ornamental (mis. Coleus/Plectranthus scutellarioides atau Caladium), tetapi tidak cukup bukti untuk memastikan spesies pasti sehingga tidak dipetakan sebagai kandidat alternatif definitif.",
+    "references": [
+      {
+        "title": "Gynura pseudochina (PROTA)",
+        "source": "PROTA (Plant Resources of Tropical Africa) via Pl@ntUse (plantuse.plantnet.org) -- monograf botani regional",
+        "url": "https://plantuse.plantnet.org/en/Gynura_pseudochina_(PROTA)",
+        "scientific_name_used": "Gynura pseudochina",
+        "part_compared": "daun (bentuk, susunan, lobus)",
+        "supporting_features": "tidak ada -- deskripsi kontradiktif dengan gambar",
+        "conflicting_features": "daun dalam roset, bentuk obovate/spatulate/elliptical/ovate, hanya \"shallowly lobed\" -- gambar menunjukkan daun besar menjari dalam (deeply lobed) dengan warna ungu-lime kontras yang tidak disebutkan sama sekali",
+        "access_date": "2026-07-31"
+      },
+      {
+        "title": "Daun dewa (Gynura pseudochina) -- deskripsi morfologi etnobotani",
+        "source": "Sintesis pencarian web dari sumber etnobotani Indonesia (dibandingkan silang dengan PROTA)",
+        "url": "http://amazingflora.blogspot.com/2009/04/daun-dewa-gynura-pseudochina-lour.html",
+        "scientific_name_used": "Gynura pseudochina",
+        "part_compared": "daun (bentuk, warna permukaan atas/bawah)",
+        "supporting_features": "tidak ada",
+        "conflicting_features": "daun bentuk oval bulat, permukaan atas hijau tua polos, bawah hijau muda -- bukan ungu tua dengan urat lime terang seperti pada gambar",
+        "access_date": "2026-07-31"
+      }
+    ],
+    "decision_reason": "Posisi DOCX tidak ambigu (entri Daun Dewa kedua, heading langsung sebelum gambar), tetapi visual kontradiktif nyata dengan dua rujukan independen yang konsisten satu sama lain, dan juga kontradiktif dengan gambar #33 (Daun Dewa confirmed dari entri pertama dalam dokumen yang sama). Tidak ada identitas alternatif yang cukup aman untuk dipetakan (kemungkinan tanaman hias foliage, tapi tidak dapat dipastikan spesiesnya dari foto saja). Dipertahankan unmatched -- kemungkinan besar foto salah/tertukar di dokumen sumber, bukan kesalahan pipeline pencocokan.",
+    "reviewed_at": "2026-07-31T22:27:25.654Z"
+  },
+  {
+    "image_number": 101,
+    "image_file": "data/media/docx-extract/101.png",
+    "docx_candidate": "Sambiloto",
+    "scientific_name": "Andrographis paniculata",
+    "previous_status": "probable",
+    "final_status": "ambiguous",
+    "final_plant": null,
+    "confidence": "low",
+    "docx_position_evidence": "Heading \"Sambiloto\" pada paragraf 3322 (satu paragraf dengan \"Nama lokal Sambiloto\") langsung mendahului gambar pada paragraf 3323, diikuti \"Nama ilmiah Andrographis paniculata\". Posisi tidak ambigu.",
+    "visual_evidence": "Daun hijau mengkilap bentuk oval-elips dengan ujung TUMPUL/membulat, lebar relatif terhadap panjang (~1:2), dipanen lepas di atas nampan anyaman.",
+    "contradictory_evidence": "NParks Singapore (FloraFaunaWeb): daun Andrographis paniculata \"ovate-lanceolate, lanceolate, atau narrowly elliptic\", 1.5-7cm x 1-2.5cm (sempit, rasio panjang:lebar tinggi), tepi rata, permukaan mengkilap, dengan UJUNG RUNCING (acuminate). Studi peer-review (PLOS ONE, Thailand): daun \"simple, opposite, lanceolate... serrated margin\", 2-12cm x 1-3cm. Kedua sumber menegaskan bentuk lanset SEMPIT dengan ujung runcing -- gambar menunjukkan daun lebih oval-lebar dengan ujung tumpul, bertentangan dengan ciri diagnostik \"ujung acuminate\" yang eksplisit disebut NParks. Perbandingan langsung dengan gambar #2 (Sambiloto confirmed dalam dokumen yang sama) menegaskan kontras ini: #2 jelas menunjukkan daun lanset sempit runcing, #101 tidak.",
+    "alternative_candidate": "Tidak teridentifikasi -- daun oval hijau mengkilap yang dipanen di atas nampan cukup generik dan bisa jadi berbagai sayuran daun, tidak ada kandidat spesifik yang cukup kuat untuk dipetakan sebagai alternatif.",
+    "references": [
+      {
+        "title": "Andrographis paniculata -- Flora & Fauna Web",
+        "source": "NParks Singapore (National Parks Board) -- lembaga flora resmi",
+        "url": "https://www.nparks.gov.sg/florafaunaweb/flora/1/6/1665",
+        "scientific_name_used": "Andrographis paniculata",
+        "part_compared": "daun (bentuk, ukuran, ujung daun/apex)",
+        "supporting_features": "tidak ada -- ciri ujung daun bertentangan",
+        "conflicting_features": "ujung daun acuminate (runcing), bentuk ovate-lanceolate/lanceolate/narrowly elliptic sempit (lebar hanya 1-2.5cm) -- gambar menunjukkan ujung tumpul dan daun lebih lebar/oval",
+        "access_date": "2026-07-31"
+      },
+      {
+        "title": "Morphological characteristics and genome-wide association analysis among local Andrographis paniculata from Thailand under controlled environment in plant factory",
+        "source": "PLOS ONE (jurnal peer-review)",
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0320667",
+        "scientific_name_used": "Andrographis paniculata",
+        "part_compared": "daun (bentuk, ukuran)",
+        "supporting_features": "tidak ada",
+        "conflicting_features": "bentuk lanceolate, 2-12cm x 1-3cm (rasio panjang:lebar sekitar 3-4:1) -- gambar menunjukkan daun dengan rasio lebih rendah (lebih lebar/oval)",
+        "access_date": "2026-07-31"
+      }
+    ],
+    "decision_reason": "Posisi DOCX kuat dan tidak ambigu, namun morfologi visual (ujung daun tumpul, bentuk lebih oval-lebar) bertentangan dengan ciri diagnostik spesifik (ujung acuminate, bentuk lanset sempit) yang ditegaskan dua rujukan independen kredibel, dan bertentangan pula dengan perbandingan langsung terhadap gambar #2 (Sambiloto confirmed) dalam dokumen yang sama. Diturunkan dari probable menjadi ambiguous karena ini kini kontradiksi morfologi yang lebih spesifik dan terverifikasi, bukan sekadar \"kurang ciri diagnostik\". Tidak dipaksakan confirmed maupun dipetakan ke identitas lain karena tidak ada kandidat alternatif yang cukup kuat.",
+    "reviewed_at": "2026-07-31T22:27:56.513Z"
+  },
+  {
+    "image_number": 105,
+    "image_file": "data/media/docx-extract/105.png",
+    "docx_candidate": "Katuk",
+    "scientific_name": "Sauropus androgynus (Breynia androgyna)",
+    "previous_status": "unmatched",
+    "final_status": "confirmed",
+    "final_plant": {
+      "plant_local_name": "Katuk",
+      "plant_slug": "katuk"
+    },
+    "confidence": "medium-high",
+    "docx_position_evidence": "Heading \"Katuk\" pada paragraf 3484 langsung mendahului gambar pada paragraf 3485 (satu paragraf dengan \"Nama lokal Katuk\"), diikuti \"Nama ilmiah Sauropus androgynus (L.) Merr.\". Posisi tidak ambigu.",
+    "visual_evidence": "Buah kecil bulat, warna hijau pucat/putih pada beberapa buah bertransisi ke merah muda/marun pada buah lain, dengan tanda mahkota gelap berbentuk bintang (sisa kelopak/stigma) di pangkal tiap buah, tumbuh berkelompok pada batang berdaun oval sederhana.",
+    "contradictory_evidence": "Tidak ditemukan -- KOREKSI dari tinjauan sebelumnya: penilaian awal (unmatched) mengasumsikan buah ini adalah jambu air/Myrtaceae berdasarkan kesan visual sekilas TANPA verifikasi rujukan botani, dan ini SALAH. Rujukan botani resmi mengonfirmasi buah Sauropus androgynus/Breynia androgyna justru persis menyerupai buah kecil putih-ke-marun berbentuk manggis mini dengan kelopak persisten -- ciri yang sebelumnya disalahartikan sebagai bukti kontra ternyata justru bukti pendukung.",
+    "alternative_candidate": null,
+    "references": [
+      {
+        "title": "Breynia androgyna -- Flora & Fauna Web",
+        "source": "NParks Singapore (National Parks Board) -- lembaga flora resmi",
+        "url": "https://www.nparks.gov.sg/florafaunaweb/flora/2/4/2427",
+        "scientific_name_used": "Breynia androgyna (Sauropus androgynus)",
+        "part_compared": "buah (bentuk, ukuran, warna) dan daun",
+        "supporting_features": "buah \"small, white fruit shaped like a mangosteen (12-17mm x 9-15mm)\" yang berubah warna menjadi marun saat matang -- cocok persis dengan gradasi warna putih-hijau ke merah muda/marun pada gambar; daun ovate-elliptic (1.8-9.5 x 0.6-4cm), tangkai pendek 2-3mm, tepi rata, ujung runcing -- konsisten dengan daun sederhana pada gambar",
+        "conflicting_features": "tidak ada",
+        "access_date": "2026-07-31"
+      },
+      {
+        "title": "Sauropus androgynus (PROSEA)",
+        "source": "PROSEA (Plant Resources of South-East Asia) via Pl@ntUse -- monograf regional Asia Tenggara",
+        "url": "https://plantuse.plantnet.org/en/Sauropus_androgynus_(PROSEA)",
+        "scientific_name_used": "Sauropus androgynus",
+        "part_compared": "buah (bentuk, ukuran, kelopak) dan daun",
+        "supporting_features": "buah \"globose to faintly 6-angular capsule, ~1.5cm diameter, white or purplish\", dengan kelopak 6-cleft yang persisten -- cocok dengan bentuk bulat dan tanda mahkota gelap berbentuk bintang di pangkal tiap buah pada gambar; daun \"oblong to orbicular, 2-7.5 x 1-3cm, entire margin\" -- konsisten dengan daun sederhana pada gambar",
+        "conflicting_features": "tidak ada",
+        "access_date": "2026-07-31"
+      }
+    ],
+    "decision_reason": "Tinjauan sebelumnya (unmatched) keliru karena menyimpulkan identitas visual tanpa verifikasi rujukan botani -- setelah diverifikasi terhadap dua rujukan independen kredibel (NParks Singapore dan PROSEA), morfologi buah pada gambar (bulat kecil, gradasi putih ke merah muda/marun, mahkota kelopak gelap berbentuk bintang di pangkal) justru merupakan ciri diagnostik khas Sauropus androgynus/Breynia androgyna (\"menyerupai manggis mini\"), bukan tanaman lain. Posisi DOCX tidak ambigu dan kini didukung visual yang terverifikasi, tanpa ciri kontradiktif, dan tanpa spesies alternatif yang sama kuat. Dinaikkan ke confirmed.",
+    "reviewed_at": "2026-07-31T22:28:30.389Z"
+  },
+  {
+    "image_number": 106,
+    "image_file": "data/media/docx-extract/106.png",
+    "docx_candidate": "Temu Putih",
+    "scientific_name": "Curcuma zedoaria",
+    "previous_status": "unmatched",
+    "final_status": "unmatched",
+    "final_plant": null,
+    "confidence": "medium-high",
+    "docx_position_evidence": "Heading \"Temu Putih\" pada paragraf 3507 langsung mendahului gambar pada paragraf 3508 (satu paragraf dengan \"Nama lokal Temu Putih\"), diikuti \"Nama ilmiah Curcuma zedoaria (Christm.) Roscoe\". Posisi tidak ambigu.",
+    "visual_evidence": "Rimpang berbuku/berjari khas jahe, terpotong menunjukkan daging berwarna kuning pucat kecoklatan (golden-tan), disertai daun pelengkap hijau untuk styling foto.",
+    "contradictory_evidence": "NTBG (National Tropical Botanical Garden database): daging rimpang Curcuma zedoaria \"bluish-white, white or pale yellow\" -- nama \"white turmeric\" berasal dari warna putih pada bagian dalam rimpangnya, berbeda nyata dari warna kuning-cokelat keemasan (golden-tan) yang jelas terlihat pada gambar. Sumber pigmen Zingiber officinale (jurnal J-STAGE, peer-review) + Oxford University Herbaria Plants 400: daging rimpang jahe (Zingiber officinale) berwarna \"pale yellow\"/\"pale greenish yellow to ivory\" -- cocok persis dengan warna pada gambar, mengonfirmasi ini kemungkinan besar jahe, bukan Curcuma zedoaria.",
+    "alternative_candidate": "Zingiber officinale (Jahe) -- morfologi rimpang pada gambar (bentuk berbuku/berjari, warna daging kuning-cokelat) sangat konsisten dengan jahe; jahe asli sudah punya set foto confirmed terpisah dalam dokumen ini (#4, 46, 69, 84, 99, 117), sehingga gambar ini tidak dipetakan ulang ke jahe untuk menghindari duplikasi kandidat.",
+    "references": [
+      {
+        "title": "Curcuma zedoaria - Plant Detail",
+        "source": "NTBG (National Tropical Botanical Garden) Tropical Plants Database -- kebun raya/lembaga botani",
+        "url": "https://ntbg.org/database/plants/detail/curcuma-zedoaria",
+        "scientific_name_used": "Curcuma zedoaria",
+        "part_compared": "rimpang (warna daging bagian dalam)",
+        "supporting_features": "tidak ada -- warna daging bertentangan dengan gambar",
+        "conflicting_features": "daging rimpang \"bluish-white, white or pale yellow\" (disebut \"white turmeric\" karena ini) -- gambar menunjukkan warna kuning-cokelat keemasan (golden-tan), jauh lebih gelap/kekuningan",
+        "access_date": "2026-07-31"
+      },
+      {
+        "title": "Pigment Composition Responsible for the Pale Yellow Color of Ginger (Zingiber officinale) Rhizomes",
+        "source": "Food Science and Technology Research (J-STAGE) -- jurnal peer-review, dilengkapi Oxford University Herbaria Plants 400",
+        "url": "https://www.jstage.jst.go.jp/article/fstr/20/5/20_971/_html/-char/en",
+        "scientific_name_used": "Zingiber officinale",
+        "part_compared": "rimpang (warna daging bagian dalam)",
+        "supporting_features": "daging rimpang jahe berwarna pale yellow/pale greenish yellow-ivory -- cocok dengan warna golden-tan pada gambar, mendukung identifikasi alternatif sebagai jahe",
+        "conflicting_features": "tidak berlaku (rujukan pembanding, bukan kandidat DOCX)",
+        "access_date": "2026-07-31"
+      }
+    ],
+    "decision_reason": "Posisi DOCX tidak ambigu (heading Temu Putih langsung sebelum gambar), tetapi warna daging rimpang pada gambar (kuning-cokelat keemasan) bertentangan nyata dengan ciri diagnostik utama Curcuma zedoaria (daging putih/putih-kebiruan, sumber nama \"white turmeric\") yang ditegaskan rujukan kebun raya kredibel, dan justru cocok dengan warna khas jahe (Zingiber officinale) menurut rujukan jurnal peer-review dan herbarium universitas. Karena jahe asli sudah memiliki set foto confirmed tersendiri dalam dokumen ini, gambar ini TIDAK dipetakan ulang ke jahe (menghindari duplikasi) dan TIDAK dipaksakan confirmed ke Temu Putih karena bukti visual bertentangan jelas. Dipertahankan unmatched, kini dengan bukti eksternal yang lebih kuat mendukung keputusan tersebut.",
+    "reviewed_at": "2026-07-31T22:29:09.330Z"
+  }
+]
