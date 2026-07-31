@@ -42,7 +42,24 @@ const LEGACY_ZONE_TITLE_TO_CODE: Record<string, string> = {
   [normalizeHerbaCodeName("Zona Kesehatan Perempuan")]: "khb-z09",
 };
 
-type PlantRow = Pick<
+// Manually-vetted equivalences for local-name spelling variants confirmed (by
+// direct production data audit, 2026-07-31) to be the SAME real-world plant
+// under a different spelling -- not a general fuzzy-matching mechanism.
+// "Jinten Hitam" and "Jintan Hitam" both resolved to separate plant rows on
+// first import (one from the poster/taxonomy pipeline, one from HerbaCode),
+// which the ambiguous-mapping detector correctly flagged; the two rows were
+// consolidated (relations moved, alias merged into canonical, duplicate
+// archived) and this entry keeps the document's "Jinten Hitam" wording
+// pointed at the canonical "Jintan Hitam" plant on every future re-import,
+// even if the merged alias were ever removed from other_names. This list
+// must stay short and human-reviewed: auto-resolving ambiguity is exactly
+// what must NOT happen for genuinely distinct plants like "Kunyit Putih" vs
+// "Temu Putih", which stays flagged, never entered here.
+const KNOWN_LOCAL_NAME_ALIAS_OVERRIDES: Record<string, string> = {
+  [normalizeHerbaCodeName("Jinten Hitam")]: normalizeHerbaCodeName("Jintan Hitam"),
+};
+
+export type PlantRow = Pick<
   Database["public"]["Tables"]["plants"]["Row"],
   | "canonical_local_name"
   | "category"
@@ -194,7 +211,7 @@ function getPrimaryName(value: string) {
   return value.replace(/\s*\([^)]*\)\s*/g, " ").replace(/\s+/g, " ").trim();
 }
 
-function buildExistingPlantIndexes(
+export function buildExistingPlantIndexes(
   plants: PlantRow[],
   plantNames: PlantNameRow[],
 ) {
@@ -241,7 +258,7 @@ function buildExistingPlantIndexes(
   return { aliases, plantById, scientific };
 }
 
-function findExistingPlantMatch(
+export function findExistingPlantMatch(
   plant: HerbaCodePlant,
   indexes: ReturnType<typeof buildExistingPlantIndexes>,
 ) {
@@ -256,13 +273,14 @@ function findExistingPlantMatch(
 
   for (const candidate of aliasCandidates) {
     const normalized = normalizeHerbaCodeName(candidate);
-    const plantId = indexes.aliases.get(normalized);
+    const overrideTarget = KNOWN_LOCAL_NAME_ALIAS_OVERRIDES[normalized];
+    const plantId = indexes.aliases.get(overrideTarget ?? normalized);
 
     if (plantId) {
       return {
         matchKey: candidate,
         method:
-          normalized === normalizeHerbaCodeName(plant.localName)
+          !overrideTarget && normalized === normalizeHerbaCodeName(plant.localName)
             ? "exact"
             : "alias",
         plantId,

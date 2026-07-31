@@ -11,9 +11,14 @@
   },
   "documentPath": "herba code (1).docx",
   "documentSha256": "d330d5415441533412ee0fd08434a38c268886989468df8d14b727d8a520dd85",
-  "dryRun": true,
+  "dryRun": false,
   "mapping": {
-    "alias": [],
+    "alias": [
+      {
+        "localName": "Jinten Hitam",
+        "matchKey": "Jinten Hitam"
+      }
+    ],
     "ambiguous": [
       {
         "localNames": [
@@ -133,6 +138,10 @@
         "matchKey": "Kemangi"
       },
       {
+        "localName": "Kencur",
+        "matchKey": "Kencur"
+      },
+      {
         "localName": "Ketumbar",
         "matchKey": "Ketumbar"
       },
@@ -219,6 +228,10 @@
       {
         "localName": "Sage",
         "matchKey": "Sage"
+      },
+      {
+        "localName": "Salam",
+        "matchKey": "Salam"
       },
       {
         "localName": "Sambiloto",
@@ -332,11 +345,6 @@
         "slug": "keladi-tikus"
       },
       {
-        "localName": "Kencur",
-        "scientificName": "Kaempferia galanga L.",
-        "slug": "kencur"
-      },
-      {
         "localName": "Kulit Manggis",
         "scientificName": "Garcinia mangostana L.",
         "slug": "kulit-manggis"
@@ -382,11 +390,6 @@
         "slug": "safron"
       },
       {
-        "localName": "Salam",
-        "scientificName": "Syzygium polyanthum",
-        "slug": "salam"
-      },
-      {
         "localName": "Sirsak",
         "scientificName": "Annona muricata L.",
         "slug": "sirsak"
@@ -411,18 +414,14 @@
       {
         "localName": "Daun Katuk",
         "matchKey": "Sauropus androgynus (L.) Merr."
-      },
-      {
-        "localName": "Jinten Hitam",
-        "matchKey": "Nigella sativa L."
       }
     ],
     "unresolved": []
   },
   "plants": {
-    "newCount": 28,
+    "newCount": 26,
     "retainedNotInDocument": [],
-    "updatedCount": 14
+    "updatedCount": 15
   },
   "relations": {
     "createdCount": 110,

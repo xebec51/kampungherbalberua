@@ -2,11 +2,14 @@ import { describe, expect, it } from "vitest";
 import {
   applyResolvedZoneCodes,
   buildAmbiguousScientificNameGroups,
+  buildExistingPlantIndexes,
+  findExistingPlantMatch,
   resolveZones,
   type HealthZoneRow,
   type ImportPlanPlant,
+  type PlantRow,
 } from "../../scripts/herbacode/import";
-import type { HerbaCodeData, HerbaCodeEntry, HerbaCodeZone } from "../../scripts/herbacode/extract";
+import type { HerbaCodeData, HerbaCodeEntry, HerbaCodePlant, HerbaCodeZone } from "../../scripts/herbacode/extract";
 
 function zone(title: string, displayOrder: number, slugOverride?: string): HerbaCodeZone {
   const slug = slugOverride ?? title.replace(/^Zona\s+/i, "").toLowerCase().replace(/\s+/g, "-");
@@ -252,6 +255,76 @@ describe("applyResolvedZoneCodes", () => {
     expect(
       patched.entries.find((e) => e.zoneSlug === "gula-darah-terkendali")?.zoneCode,
     ).toBe("khb-z10");
+  });
+});
+
+function plantRow(overrides: Partial<PlantRow>): PlantRow {
+  return {
+    canonical_local_name: overrides.local_name ?? "Plant",
+    category: "daun",
+    featured: false,
+    id: "plant-id",
+    identification_status: "candidate",
+    image_path: null,
+    local_name: "Plant",
+    other_names: [],
+    plant_code: "plant-code",
+    scientific_name: null,
+    slug: "plant",
+    ...overrides,
+  };
+}
+
+function herbaCodePlant(localName: string, scientificName: string | null): HerbaCodePlant {
+  return {
+    aliases: [],
+    localName,
+    plantKey: localName.toLowerCase().replace(/\s+/g, "-"),
+    scientificName,
+    slug: localName.toLowerCase().replace(/\s+/g, "-"),
+  };
+}
+
+describe("findExistingPlantMatch: known local-name alias overrides", () => {
+  it("mencocokkan 'Jinten Hitam' dari dokumen ke tanaman kanonis 'Jintan Hitam' walau other_names belum memuatnya", () => {
+    // Regression for the production consolidation on 2026-07-31: even if the
+    // merged alias were ever missing from other_names, the document's
+    // "Jinten Hitam" wording must still resolve deterministically to the one
+    // canonical plant, never re-creating a second ambiguous row.
+    const canonical = plantRow({
+      id: "canon-jintan-hitam",
+      local_name: "Jintan Hitam",
+      other_names: ["Habbatussauda"], // deliberately NOT including "Jinten Hitam"
+      scientific_name: "Nigella sativa L.",
+      slug: "jintan-hitam",
+    });
+    const indexes = buildExistingPlantIndexes([canonical], []);
+
+    const match = findExistingPlantMatch(herbaCodePlant("Jinten Hitam", "Nigella sativa"), indexes);
+
+    expect(match?.plantId).toBe("canon-jintan-hitam");
+  });
+
+  it("tidak menerapkan override apa pun ke pasangan Kunyit Putih / Temu Putih", () => {
+    const kunyitPutih = plantRow({
+      id: "id-kunyit-putih",
+      local_name: "Kunyit Putih",
+      scientific_name: "Curcuma zedoaria (Christm.) Roscoe.",
+      slug: "kunyit-putih",
+    });
+    const indexes = buildExistingPlantIndexes([kunyitPutih], []);
+
+    const match = findExistingPlantMatch(
+      herbaCodePlant("Temu Putih", "Curcuma zedoaria (Christm.) Roscoe"),
+      indexes,
+    );
+
+    // No local-name override exists for this pair, so "Temu Putih" must NOT
+    // resolve to the "Kunyit Putih" row via the override path. (It may still
+    // resolve via the separate scientific-name fallback if the document
+    // provides one -- which is what keeps them linked-but-flagged, not
+    // silently merged.)
+    expect(match?.method).not.toBe("alias");
   });
 });
 
