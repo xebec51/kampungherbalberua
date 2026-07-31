@@ -1,5 +1,11 @@
 import { createHash } from "node:crypto";
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import {
+  existsSync,
+  mkdirSync,
+  readdirSync,
+  readFileSync,
+  writeFileSync,
+} from "node:fs";
 import { dirname, resolve } from "node:path";
 import { inflateRawSync } from "node:zlib";
 
@@ -7,7 +13,6 @@ export const HERBACODE_DOCUMENT_PATH = "herba code.docx";
 export const HERBACODE_SOURCE_CODE = "KHB-HERBACODE-2026";
 export const HERBACODE_SOURCE_TITLE = "HerbaCode Kampung Herbal Harmony";
 export const HERBACODE_DATA_PATH = "data/herbacode/herbacode-data.json";
-export const HERBACODE_REPORT_PATH = "data/herbacode/import-report.json";
 
 type ZipEntry = {
   compressionMethod: number;
@@ -87,6 +92,7 @@ const documentXmlPath = "word/document.xml";
 const fieldLabelSource = [
   { key: "activeCompounds", label: "kandungan senyawa aktif" },
   { key: "benefits", label: "manfaat dalam bidang kesehatan" },
+  { key: "benefits", label: "manfaat kesehatan" },
   { key: "usedParts", label: "bagian tanaman yang digunakan" },
   { key: "cultivationTechniques", label: "teknik budidaya" },
   { key: "preparationMethods", label: "cara pemanfaatan" },
@@ -100,29 +106,10 @@ const fieldLabels = [...fieldLabelSource].sort(
   (left, right) => right.label.length - left.label.length,
 );
 
-const zoneOverrides: Record<
-  number,
-  {
-    correctedTitle: string;
-    reason: string;
-  }
-> = {
-  7: {
-    correctedTitle: "Zona Kesehatan Mulut",
-    reason:
-      "Judul kedua tertulis sama dengan zona sebelumnya, tetapi isi tanaman membahas rongga mulut, gusi, plak, sariawan, dan bau mulut.",
-  },
-  8: {
-    correctedTitle: "Zona Anti Mikroba",
-    reason:
-      "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema.",
-  },
-  9: {
-    correctedTitle: "Zona Kesehatan Perempuan",
-    reason:
-      "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema.",
-  },
-};
+// Zone title anomalies are detected from content, not from a hardcoded occurrence
+// index: different source documents put a different number of zones in a different
+// order, so a table keyed by "the 7th zone" would silently mislabel whichever real
+// zone happens to land on that position in a differently-shaped document.
 
 function readUInt16(buffer: Buffer, offset: number) {
   return buffer.readUInt16LE(offset);
@@ -266,12 +253,24 @@ function matchFieldLabel(line: string): { inlineValue: string; key: FieldKey } |
       };
     }
 
+    if (normalizedLine.startsWith(`${field.label}:`)) {
+      return {
+        inlineValue: line.slice(field.label.length + 1).trim(),
+        key: field.key,
+      };
+    }
+
+    // A few entries concatenate the label directly onto the value with no
+    // separator at all (e.g. "Nama ilmiahCinnamomum burmannii ..."). Only
+    // "nama ilmiah"/"nama lokal" are known to do this, so the fallback stays
+    // scoped to those two fields to avoid over-matching elsewhere. The colon
+    // strip is a safety net in case a colon ever slips through unmatched above.
     if (
-      (field.label === "nama ilmiah" || field.label === "nama lokal") &&
+      (field.key === "scientificName" || field.key === "localName") &&
       normalizedLine.startsWith(field.label)
     ) {
       return {
-        inlineValue: line.slice(field.label.length).trim(),
+        inlineValue: line.slice(field.label.length).trim().replace(/^:\s*/, ""),
         key: field.key,
       };
     }
@@ -372,27 +371,51 @@ function parseEntryTitle(value: string, fallbackOrder: number) {
   };
 }
 
-function correctionForZone(rawTitle: string, occurrence: number) {
-  const override = zoneOverrides[occurrence];
+function correctionForZone(
+  rawTitle: string,
+  occurrence: number,
+  previousCleanTitle: string | null,
+) {
+  const trimmedTitle = rawTitle.trim();
 
-  if (!override) {
-    return {
-      correction: null,
-      title: rawTitle,
+  // Case 1: a stray outline/source number leaked into the title, e.g.
+  // "Zona 18 – Anti Mikroba". Stripping it is a mechanical, content-free fix.
+  const numberArtifactMatch = trimmedTitle.match(/^(zona)\s+\d+\s*[-–—]?\s*(.+)$/i);
+
+  if (numberArtifactMatch) {
+    const correctedTitle = `${numberArtifactMatch[1]} ${numberArtifactMatch[2]}`.trim();
+    const correction: HerbaCodeTitleCorrection = {
+      correctedTitle,
+      occurrence,
+      rawTitle: trimmedTitle,
+      reason:
+        "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema.",
     };
+
+    return { correction, title: correctedTitle };
   }
 
-  const correction: HerbaCodeTitleCorrection = {
-    correctedTitle: override.correctedTitle,
-    occurrence,
-    rawTitle,
-    reason: override.reason,
-  };
+  // Case 2: the title exactly repeats the previous zone's title. This can't be
+  // resolved without reading the zone's content (which this parser deliberately
+  // does not do, to avoid inventing a semantic replacement), so it's flagged for
+  // manual review and mechanically disambiguated so the two zones never collide.
+  if (
+    previousCleanTitle &&
+    normalizeHerbaCodeName(trimmedTitle) === normalizeHerbaCodeName(previousCleanTitle)
+  ) {
+    const correctedTitle = `${trimmedTitle} (zona ke-${occurrence})`;
+    const correction: HerbaCodeTitleCorrection = {
+      correctedTitle,
+      occurrence,
+      rawTitle: trimmedTitle,
+      reason:
+        "Judul zona ini identik dengan judul zona sebelumnya di dokumen. Ditandai otomatis untuk ditinjau manual; isi tidak dibaca ulang untuk menebak tema yang benar.",
+    };
 
-  return {
-    correction,
-    title: override.correctedTitle,
-  };
+    return { correction, title: correctedTitle };
+  }
+
+  return { correction: null, title: trimmedTitle };
 }
 
 function buildEntriesForZone(
@@ -409,15 +432,33 @@ function buildEntriesForZone(
     }
   }
 
-  return localNameIndexes.map((localNameIndex, index) => {
-    const title = parseEntryTitle(paragraphs[localNameIndex - 1] ?? "", index + 1);
-    const nextLocalNameIndex = localNameIndexes[index + 1];
+  // Some zones never use an explicit "Nama lokal" label at all — the entry
+  // title doubles as the local name, and only "Nama ilmiah" appears once per
+  // entry. Without this fallback, those zones would silently yield zero
+  // entries. "Nama ilmiah" is used because it is the one label observed to
+  // appear exactly once in every entry across every formatting style in the
+  // source document.
+  let anchorIndexes = localNameIndexes;
+
+  if (anchorIndexes.length === 0) {
+    anchorIndexes = [];
+
+    for (let index = zoneStart + 1; index < zoneEnd; index += 1) {
+      if (matchFieldLabel(paragraphs[index] ?? "")?.key === "scientificName") {
+        anchorIndexes.push(index);
+      }
+    }
+  }
+
+  return anchorIndexes.map((anchorIndex, index) => {
+    const title = parseEntryTitle(paragraphs[anchorIndex - 1] ?? "", index + 1);
+    const nextAnchorIndex = anchorIndexes[index + 1];
     const entryEnd =
-      nextLocalNameIndex === undefined ? zoneEnd - 1 : nextLocalNameIndex - 2;
+      nextAnchorIndex === undefined ? zoneEnd - 1 : nextAnchorIndex - 2;
     const sections = new Map<FieldKey, string[]>();
     let currentField: FieldKey | null = null;
 
-    for (let cursor = localNameIndex; cursor <= entryEnd; cursor += 1) {
+    for (let cursor = anchorIndex; cursor <= entryEnd; cursor += 1) {
       const line = paragraphs[cursor] ?? "";
       const label = matchFieldLabel(line);
 
@@ -517,12 +558,14 @@ export function extractHerbaCodeFromParagraphs(
   const zones: HerbaCodeZone[] = [];
   const corrections: HerbaCodeTitleCorrection[] = [];
   const entries: HerbaCodeEntry[] = [];
+  let previousCleanTitle: string | null = null;
 
   zoneStarts.forEach((zoneStart, index) => {
     const occurrence = index + 1;
     const { correction, title } = correctionForZone(
       zoneStart.paragraph,
       occurrence,
+      previousCleanTitle,
     );
     const slug = slugifyHerbaCode(title.replace(/^zona\s+/i, ""));
     const zone: HerbaCodeZone = {
@@ -531,11 +574,15 @@ export function extractHerbaCodeFromParagraphs(
       slug,
       title,
       titleCorrection: correction,
+      // Document-position placeholder only. The real, permanent DB zone_code is
+      // resolved separately at import time by matching zones against existing
+      // production zones by title, never by this occurrence-based value.
       zoneCode: `khb-z${String(occurrence).padStart(2, "0")}`,
     };
     const nextZoneStart = zoneStarts[index + 1]?.index ?? paragraphs.length;
 
     zones.push(zone);
+    previousCleanTitle = title;
 
     if (correction) {
       corrections.push(correction);
@@ -558,7 +605,43 @@ export function extractHerbaCodeFromParagraphs(
   };
 }
 
-export function readDocxParagraphs(docxPath = HERBACODE_DOCUMENT_PATH) {
+// The working copy of the source document is never committed (it changes name
+// on every re-export from Word, e.g. "herba code (1).docx", "herba code (2).docx").
+// Rather than hardcoding one exact name, look for whichever "herba code*.docx"
+// file is actually present. If more than one candidate exists, fail loudly
+// instead of silently guessing -- the caller must pass an explicit path
+// (the CLI exposes this as --document) rather than have the wrong document
+// picked automatically.
+export function findHerbaCodeDocumentPath(dir = process.cwd()): string | null {
+  let entries: string[];
+
+  try {
+    entries = readdirSync(dir);
+  } catch {
+    return null;
+  }
+
+  const candidates = entries.filter((name) =>
+    /^herba code(\s*\(\d+\))?\.docx$/i.test(name),
+  );
+
+  if (candidates.length === 0) {
+    return null;
+  }
+
+  if (candidates.length > 1) {
+    throw new Error(
+      `Ditemukan lebih dari satu file DOCX HerbaCode di direktori proyek: ${candidates.join(", ")}. ` +
+        "Tentukan file yang dipakai secara eksplisit dengan flag --document.",
+    );
+  }
+
+  return candidates[0]!;
+}
+
+export function readDocxParagraphs(
+  docxPath = findHerbaCodeDocumentPath() ?? HERBACODE_DOCUMENT_PATH,
+) {
   const absolutePath = resolve(process.cwd(), docxPath);
   const docx = readFileSync(absolutePath);
   const documentXml = extractZipFile(docx, documentXmlPath).toString("utf8");
@@ -566,13 +649,17 @@ export function readDocxParagraphs(docxPath = HERBACODE_DOCUMENT_PATH) {
   return extractParagraphs(documentXml);
 }
 
-export function readFileSha256(path = HERBACODE_DOCUMENT_PATH) {
+export function readFileSha256(
+  path = findHerbaCodeDocumentPath() ?? HERBACODE_DOCUMENT_PATH,
+) {
   return createHash("sha256")
     .update(readFileSync(resolve(process.cwd(), path)))
     .digest("hex");
 }
 
-export function extractHerbaCodeFromDocx(docxPath = HERBACODE_DOCUMENT_PATH) {
+export function extractHerbaCodeFromDocx(
+  docxPath = findHerbaCodeDocumentPath() ?? HERBACODE_DOCUMENT_PATH,
+) {
   if (!existsSync(resolve(process.cwd(), docxPath))) {
     return JSON.parse(
       readFileSync(resolve(process.cwd(), HERBACODE_DATA_PATH), "utf8"),

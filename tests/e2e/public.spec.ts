@@ -71,7 +71,7 @@ test("beranda menampilkan ringkasan HerbaCode tanpa placeholder publik", async (
     }),
   ).toBeVisible();
   await expect(page.getByText("Relasi tanaman-zona")).toBeVisible();
-  await expect(page.getByText("95")).toBeVisible();
+  await expect(page.getByText("205")).toBeVisible();
   await expect(
     page.getByRole("img", { name: "Logo Kelompok KKN Kampung Herbal Berua" }).first(),
   ).toBeVisible();
@@ -84,7 +84,7 @@ test("beranda menampilkan ringkasan HerbaCode tanpa placeholder publik", async (
     page.getByLabel("Carousel tanaman pilihan").getByRole("link", {
       name: "Buka profil tanaman",
     }),
-  ).toHaveCount(50);
+  ).toHaveCount(90);
   await expect(page.getByRole("link", { exact: true, name: "Jahe" })).toBeVisible();
   await expect(page.getByRole("link", { exact: true, name: "Meniran" })).toBeVisible();
   await expect(page.getByText("Rimpang aromatik")).toBeVisible();
@@ -291,7 +291,10 @@ test("detail tanaman menampilkan HerbaCode dan manfaat tetap terpisah per zona",
   await expect(page.getByRole("link", { name: "Zona Pencernaan Sehat" })).toBeVisible();
   await expect(page.getByRole("link", { name: "Zona Tulang & Sendi" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Senyawa aktif" })).toBeVisible();
-  await expect(page.getByText("Gingerol")).toBeVisible();
+  // Jahe now appears in 8 zones (was 4), so "Gingerol" shows up in several
+  // compound chips/lists on the page -- match the first occurrence rather
+  // than requiring exactly one.
+  await expect(page.getByText("Gingerol").first()).toBeVisible();
   await expect(page.getByRole("heading", { name: "Manfaat per zona" })).toBeVisible();
   await expect(page.getByText("Membantu meredakan mual dan muntah.")).toBeVisible();
   await expect(page.getByText("Membantu meredakan nyeri dan kekakuan sendi.")).toBeVisible();
@@ -352,8 +355,8 @@ test("daftar zona memakai deskripsi topik kesehatan yang berbeda", async ({
     .locator("[data-zone-description]")
     .allTextContents();
 
-  expect(descriptions).toHaveLength(9);
-  expect(new Set(descriptions).size).toBe(9);
+  expect(descriptions).toHaveLength(20);
+  expect(new Set(descriptions).size).toBe(20);
   for (const description of descriptions) {
     expect(description.trim().length).toBeGreaterThan(0);
     expect(description).not.toBe(

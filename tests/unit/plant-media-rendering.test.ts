@@ -56,6 +56,7 @@ const plant: HerbaCodePlantProfile = {
       usedParts: ["Rimpang."],
       warnings: [],
       zoneCode: "khb-z02",
+      zoneDisplayOrder: 2,
       zoneId: "khb-z02",
       zoneSlug: "pencernaan-sehat",
       zoneShortDescription:
@@ -104,6 +105,7 @@ describe("plant media rendering", () => {
       "../../src/components/zones/HerbaCodeZoneCard"
     );
     const zone: HerbaCodeZoneSummary = {
+      displayOrder: 1,
       id: "khb-z01",
       plantCount: 11,
       slug: "imunitas-kuat",

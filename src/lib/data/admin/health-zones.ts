@@ -72,9 +72,11 @@ export async function getAllHealthZonesForAdmin(
     return { data: null, error: clientError };
   }
 
-  let query = client.from("health_zones").select("*").order("zone_code", {
-    ascending: true,
-  });
+  let query = client
+    .from("health_zones")
+    .select("*")
+    .order("display_order", { ascending: true, nullsFirst: false })
+    .order("zone_code", { ascending: true });
 
   if (filters.query) {
     const escapedQuery = filters.query.replaceAll("%", "\\%").replaceAll("_", "\\_");

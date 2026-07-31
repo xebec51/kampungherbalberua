@@ -20,6 +20,7 @@ type HerbaCodeRow =
       id: string;
       slug: string;
       short_description: string;
+      display_order: number | null;
       zone_code: string;
       zone_name: string;
     } | null;
@@ -62,6 +63,7 @@ type LocalHerbaCodeData = {
     slug: string;
   }>;
   zones: Array<{
+    displayOrder: number;
     slug: string;
     title: string;
     zoneCode: string;
@@ -165,6 +167,7 @@ function mapRowToEntry(row: HerbaCodeRow): HerbaCodePlantZoneEntry | null {
     usedParts: row.used_parts,
     warnings: row.warnings,
     zoneCode: row.health_zones.zone_code,
+    zoneDisplayOrder: row.health_zones.display_order,
     zoneId: row.health_zone_id,
     zoneSlug: row.health_zones.slug,
     zoneShortDescription: getHealthZoneShortDescription(
@@ -201,19 +204,40 @@ function localEntries(): HerbaCodePlantZoneEntry[] {
       usedParts: entry.usedParts,
       warnings: entry.warnings,
       zoneCode: entry.zoneCode,
+      zoneDisplayOrder: zone?.displayOrder ?? null,
       zoneId: entry.zoneCode,
       zoneSlug: zone?.slug ?? entry.zoneSlug,
       zoneShortDescription: getHealthZoneShortDescription(
         zone?.slug ?? entry.zoneSlug,
+        zone?.title ?? entry.zoneTitle,
       ),
       zoneTitle: zone?.title ?? entry.zoneTitle,
     } satisfies HerbaCodePlantZoneEntry;
   });
 }
 
+function compareZoneOrder(
+  left: { zoneCode: string; zoneDisplayOrder: number | null },
+  right: { zoneCode: string; zoneDisplayOrder: number | null },
+) {
+  if (left.zoneDisplayOrder !== null && right.zoneDisplayOrder !== null) {
+    return left.zoneDisplayOrder - right.zoneDisplayOrder;
+  }
+
+  if (left.zoneDisplayOrder !== null) {
+    return -1;
+  }
+
+  if (right.zoneDisplayOrder !== null) {
+    return 1;
+  }
+
+  return left.zoneCode.localeCompare(right.zoneCode, "id");
+}
+
 function sortEntries(entries: HerbaCodePlantZoneEntry[]) {
   return [...entries].sort((left, right) => {
-    const zoneOrder = left.zoneCode.localeCompare(right.zoneCode, "id");
+    const zoneOrder = compareZoneOrder(left, right);
 
     if (zoneOrder !== 0) {
       return zoneOrder;
@@ -292,7 +316,7 @@ async function fetchHerbaCodeProfilesFromDatabase() {
   const { data, error } = await client
     .from("herbacode_plant_zone_entries")
     .select(
-      "*, plants!inner(id, slug, local_name, scientific_name, other_names, image_path, short_description, description, content_status), health_zones(id, zone_code, slug, zone_name, short_description)",
+      "*, plants!inner(id, slug, local_name, scientific_name, other_names, image_path, short_description, description, content_status), health_zones(id, zone_code, slug, zone_name, short_description, display_order)",
     )
     .eq("content_status", "published")
     .eq("plants.content_status", "published")
@@ -381,6 +405,7 @@ export async function getHerbaCodeZoneSummaries(): Promise<HerbaCodeZoneSummary[
     }
 
     zones.set(entry.zoneCode, {
+      displayOrder: entry.zoneDisplayOrder,
       id: entry.zoneId,
       plantCount: 1,
       slug: entry.zoneSlug,
@@ -402,7 +427,10 @@ export async function getHerbaCodeZoneSummaries(): Promise<HerbaCodeZoneSummary[
   );
 
   return summaries.sort((left, right) =>
-    left.zoneCode.localeCompare(right.zoneCode, "id"),
+    compareZoneOrder(
+      { zoneCode: left.zoneCode, zoneDisplayOrder: left.displayOrder },
+      { zoneCode: right.zoneCode, zoneDisplayOrder: right.displayOrder },
+    ),
   );
 }
 
@@ -436,6 +464,7 @@ export async function getHerbaCodeZoneBySlug(
   }
 
   return {
+    displayOrder: firstEntry.zoneDisplayOrder,
     entries: sortEntries(entries),
     id: firstEntry.zoneId,
     plantCount: entries.length,

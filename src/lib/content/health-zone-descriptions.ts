@@ -40,7 +40,12 @@ export function getHealthZoneShortDescription(
     return existing;
   }
 
-  return descriptionsBySlug[slug] ?? "";
+  // No curated description exists for this zone yet (e.g. a zone newly added
+  // from a HerbaCode document update, pending manual curation). Fall back to
+  // the zone's own placeholder-shaped text rather than an empty string --
+  // showing the real, document-sourced title beats showing nothing, and this
+  // never fabricates content beyond what the source already provided.
+  return descriptionsBySlug[slug] ?? existing ?? "";
 }
 
 export function getHealthZoneDescriptionFallbacks() {

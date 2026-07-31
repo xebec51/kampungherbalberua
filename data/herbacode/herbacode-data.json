@@ -1,26 +1,7 @@
 {
-  "corrections": [
-    {
-      "correctedTitle": "Zona Kesehatan Mulut",
-      "occurrence": 7,
-      "rawTitle": "Zona Tulang & Sendi",
-      "reason": "Judul kedua tertulis sama dengan zona sebelumnya, tetapi isi tanaman membahas rongga mulut, gusi, plak, sariawan, dan bau mulut."
-    },
-    {
-      "correctedTitle": "Zona Anti Mikroba",
-      "occurrence": 8,
-      "rawTitle": "Zona 18 – Anti Mikroba",
-      "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
-    },
-    {
-      "correctedTitle": "Zona Kesehatan Perempuan",
-      "occurrence": 9,
-      "rawTitle": "Zona 19 Kesehatan Perempuan",
-      "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
-    }
-  ],
-  "documentPath": "herba code.docx",
-  "documentSha256": "4aaeb20c948df5ac3890afdf817281d294a49ecb49616afc7b8b72915d9c9fb9",
+  "corrections": [],
+  "documentPath": "herba code (1).docx",
+  "documentSha256": "d330d5415441533412ee0fd08434a38c268886989468df8d14b727d8a520dd85",
   "entries": [
     {
       "activeCompounds": [
@@ -2072,6 +2053,1870 @@
     },
     {
       "activeCompounds": [
+        "Charantin",
+        "Polypeptide-P (p-insulin)",
+        "Vicine",
+        "Momordicin"
+      ],
+      "benefits": [
+        "Menurunkan kadar gula darah melalui kandungan charantin dan polypeptide-P yang bekerja menyerupai insulin.",
+        "Membantu meningkatkan sensitivitas sel tubuh terhadap insulin.",
+        "Mendukung metabolisme karbohidrat agar penyerapan glukosa lebih terkontrol.",
+        "Antioksidan di dalamnya membantu melindungi sel pankreas dari kerusakan akibat radikal bebas."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak dengan biji.",
+        "Tumbuh merambat, memerlukan ajir/turus.",
+        "Membutuhkan sinar matahari penuh.",
+        "Buah muda dapat dipanen sekitar 2–3 bulan setelah tanam."
+      ],
+      "entryKey": "gula-darah-terkendali:pare",
+      "entryOrder": 1,
+      "localName": "Pare",
+      "plantKey": "pare",
+      "plantSlug": "pare",
+      "preparationMethods": [],
+      "rawEntryTitle": "Pare",
+      "rawZoneTitle": "Zona Gula Darah Terkendali",
+      "scientificName": "Momordica charantia L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Buah"
+      ],
+      "warnings": [
+        "Konsumsi berlebihan dapat menyebabkan gangguan pencernaan.",
+        "Tidak dianjurkan bagi ibu hamil.",
+        "Dapat berinteraksi dengan obat diabetes sehingga perlu pengawasan medis."
+      ],
+      "zoneCode": "khb-z10",
+      "zoneSlug": "gula-darah-terkendali",
+      "zoneTitle": "Zona Gula Darah Terkendali"
+    },
+    {
+      "activeCompounds": [
+        "Alkaloid berberin",
+        "Pikroretin",
+        "Tinokrisposid"
+      ],
+      "benefits": [
+        "Menurunkan kadar gula darah melalui senyawa pikroretin yang merangsang sekresi insulin.",
+        "Mendukung perbaikan sensitivitas insulin pada sel tubuh.",
+        "Aktivitas antiinflamasi membantu mengurangi peradangan kronis yang berkaitan dengan resistensi insulin.",
+        "Mendukung fungsi metabolisme tubuh secara umum pada penderita gangguan gula darah."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak dengan stek batang.",
+        "Tumbuh merambat dan tahan kekeringan.",
+        "Dapat dipanen setelah beberapa bulan pertumbuhan."
+      ],
+      "entryKey": "gula-darah-terkendali:brotowali",
+      "entryOrder": 2,
+      "localName": "Brotowali",
+      "plantKey": "brotowali",
+      "plantSlug": "brotowali",
+      "preparationMethods": [],
+      "rawEntryTitle": "Brotowali",
+      "rawZoneTitle": "Zona Gula Darah Terkendali",
+      "scientificName": "Tinospora crispa (L.)",
+      "titleCorrection": null,
+      "usedParts": [
+        "Batang"
+      ],
+      "warnings": [
+        "Memiliki rasa sangat pahit.",
+        "Penggunaan berlebihan dapat mengganggu fungsi hati.",
+        "Tidak dianjurkan bagi ibu hamil."
+      ],
+      "zoneCode": "khb-z10",
+      "zoneSlug": "gula-darah-terkendali",
+      "zoneTitle": "Zona Gula Darah Terkendali"
+    },
+    {
+      "activeCompounds": [
+        "Flavonoid",
+        "Tanin",
+        "Minyak atsiri (eugenol)"
+      ],
+      "benefits": [
+        "Menurunkan kadar gula darah dengan membantu menghambat penyerapan glukosa berlebih di usus.",
+        "Mendukung penurunan kadar kolesterol yang sering menyertai kondisi diabetes.",
+        "Flavonoid di dalamnya membantu melindungi sel dari stres oksidatif akibat kadar gula darah tinggi."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak dengan biji atau cangkok.",
+        "Dapat tumbuh baik di dataran rendah hingga dataran tinggi.",
+        "Daun dipanen secara berkala."
+      ],
+      "entryKey": "gula-darah-terkendali:salam",
+      "entryOrder": 3,
+      "localName": "Salam",
+      "plantKey": "salam",
+      "plantSlug": "salam",
+      "preparationMethods": [],
+      "rawEntryTitle": "Salam",
+      "rawZoneTitle": "Zona Gula Darah Terkendali",
+      "scientificName": "Syzygium polyanthum",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun"
+      ],
+      "warnings": [
+        "Konsumsi berlebihan dapat menurunkan tekanan darah terlalu rendah.",
+        "Perlu pengawasan pada penderita hipotensi."
+      ],
+      "zoneCode": "khb-z10",
+      "zoneSlug": "gula-darah-terkendali",
+      "zoneTitle": "Zona Gula Darah Terkendali"
+    },
+    {
+      "activeCompounds": [
+        "Flavonoid (quercetin)",
+        "Asam klorogenat",
+        "Vitamin C",
+        "Isothiocyanate"
+      ],
+      "benefits": [
+        "Mengontrol kadar gula darah melalui senyawa isothiocyanate yang mendukung kerja insulin.",
+        "Quercetin di dalamnya membantu meningkatkan sensitivitas insulin.",
+        "Antioksidan tinggi membantu mengurangi kerusakan sel akibat komplikasi diabetes."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak dengan biji atau stek batang.",
+        "Tahan kekeringan dan tumbuh relatif cepat.",
+        "Daun dapat dipanen mulai umur 2–3 bulan."
+      ],
+      "entryKey": "gula-darah-terkendali:kelor",
+      "entryOrder": 4,
+      "localName": "Kelor",
+      "plantKey": "kelor",
+      "plantSlug": "kelor",
+      "preparationMethods": [],
+      "rawEntryTitle": "Kelor",
+      "rawZoneTitle": "Zona Gula Darah Terkendali",
+      "scientificName": "Moringa oleifera Lam.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun"
+      ],
+      "warnings": [
+        "Akar dan getah tidak dianjurkan untuk dikonsumsi karena bersifat toksik.",
+        "Dosis berlebihan dapat menyebabkan gangguan pencernaan."
+      ],
+      "zoneCode": "khb-z10",
+      "zoneSlug": "gula-darah-terkendali",
+      "zoneTitle": "Zona Gula Darah Terkendali"
+    },
+    {
+      "activeCompounds": [
+        "Andrografolid",
+        "Flavonoid",
+        "Diterpenoid lakton"
+      ],
+      "benefits": [
+        "Menurunkan kadar gula darah melalui senyawa andrografolid yang meningkatkan penyerapan glukosa oleh sel.",
+        "Aktivitas antiinflamasi membantu mengurangi peradangan yang berkontribusi pada resistensi insulin.",
+        "Bersifat hepatoprotektif, mendukung fungsi hati dalam mengatur metabolisme glukosa."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak dengan biji.",
+        "Tumbuh baik di tempat lembap dengan sinar matahari cukup.",
+        "Dipanen pada umur sekitar 3–4 bulan."
+      ],
+      "entryKey": "gula-darah-terkendali:sambiloto",
+      "entryOrder": 5,
+      "localName": "Sambiloto",
+      "plantKey": "sambiloto",
+      "plantSlug": "sambiloto",
+      "preparationMethods": [],
+      "rawEntryTitle": "Sambiloto",
+      "rawZoneTitle": "Zona Gula Darah Terkendali",
+      "scientificName": "Andrographis paniculata",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun"
+      ],
+      "warnings": [
+        "Rasa sangat pahit.",
+        "Tidak dianjurkan bagi ibu hamil.",
+        "Penggunaan jangka panjang perlu pengawasan karena dapat memengaruhi fungsi hati."
+      ],
+      "zoneCode": "khb-z10",
+      "zoneSlug": "gula-darah-terkendali",
+      "zoneTitle": "Zona Gula Darah Terkendali"
+    },
+    {
+      "activeCompounds": [
+        "Cinnamaldehyde",
+        "Minyak atsiri",
+        "Polifenol"
+      ],
+      "benefits": [
+        "Menurunkan kadar gula darah dengan meningkatkan sensitivitas sel terhadap insulin melalui senyawa cinnamaldehyde.",
+        "Membantu memperlambat pengosongan lambung sehingga kenaikan gula darah setelah makan lebih terkontrol.",
+        "Antioksidan di dalamnya membantu mengurangi stres oksidatif akibat kadar gula darah tinggi."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak dengan biji.",
+        "Tumbuh baik di dataran tinggi.",
+        "Kulit batang dipanen setelah pohon berumur beberapa tahun."
+      ],
+      "entryKey": "gula-darah-terkendali:kayu-manis",
+      "entryOrder": 6,
+      "localName": "Kayu manis",
+      "plantKey": "kayu manis",
+      "plantSlug": "kayu-manis",
+      "preparationMethods": [],
+      "rawEntryTitle": "Kayu manis",
+      "rawZoneTitle": "Zona Gula Darah Terkendali",
+      "scientificName": "Cinnamomum burmannii",
+      "titleCorrection": null,
+      "usedParts": [
+        "Kulit batang"
+      ],
+      "warnings": [
+        "Konsumsi berlebihan (terutama jenis cassia) dapat mengganggu fungsi hati akibat kandungan kumarin."
+      ],
+      "zoneCode": "khb-z10",
+      "zoneSlug": "gula-darah-terkendali",
+      "zoneTitle": "Zona Gula Darah Terkendali"
+    },
+    {
+      "activeCompounds": [
+        "Alkaloid",
+        "Flavonoid",
+        "Polifenol",
+        "Saponin"
+      ],
+      "benefits": [
+        "Menurunkan kadar gula darah melalui aktivitas antioksidan dan antiinflamasi senyawa flavonoid.",
+        "Berpotensi mendukung perbaikan fungsi sel penghasil insulin.",
+        "Membantu melindungi tubuh dari komplikasi akibat kadar gula darah yang tinggi."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak dengan biji atau cangkok.",
+        "Tumbuh baik di dataran rendah.",
+        "Buah dipanen setelah matang."
+      ],
+      "entryKey": "gula-darah-terkendali:mahkota-dewa",
+      "entryOrder": 7,
+      "localName": "Mahkota Dewa",
+      "plantKey": "mahkota dewa",
+      "plantSlug": "mahkota-dewa",
+      "preparationMethods": [],
+      "rawEntryTitle": "Mahkota Dewa",
+      "rawZoneTitle": "Zona Gula Darah Terkendali",
+      "scientificName": "Phaleria macrocarpa",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daging buah dan kulit buah"
+      ],
+      "warnings": [
+        "Biji bersifat toksik dan tidak boleh dikonsumsi.",
+        "Penggunaan berlebihan dapat menyebabkan iritasi mulut dan tenggorokan."
+      ],
+      "zoneCode": "khb-z10",
+      "zoneSlug": "gula-darah-terkendali",
+      "zoneTitle": "Zona Gula Darah Terkendali"
+    },
+    {
+      "activeCompounds": [
+        "Scopoletin",
+        "Xeronine",
+        "Flavonoid",
+        "Antrakuinon"
+      ],
+      "benefits": [
+        "Mengontrol kadar gula darah melalui senyawa scopoletin yang berperan dalam regulasi metabolisme glukosa.",
+        "Antioksidan di dalamnya membantu melindungi sel dari kerusakan akibat kadar gula darah tinggi.",
+        "Mendukung penurunan tekanan darah yang sering menyertai kondisi diabetes."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak dengan biji atau stek.",
+        "Tahan terhadap berbagai kondisi tanah.",
+        "Buah dapat dipanen sepanjang tahun."
+      ],
+      "entryKey": "gula-darah-terkendali:mengkudu",
+      "entryOrder": 8,
+      "localName": "Mengkudu",
+      "plantKey": "mengkudu",
+      "plantSlug": "mengkudu",
+      "preparationMethods": [],
+      "rawEntryTitle": "Mengkudu",
+      "rawZoneTitle": "Zona Gula Darah Terkendali",
+      "scientificName": "Morinda citrifolia L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Buah"
+      ],
+      "warnings": [
+        "Memiliki bau dan rasa yang tajam.",
+        "Konsumsi berlebihan dapat membebani fungsi ginjal.",
+        "Perlu kehati-hatian bagi penderita gangguan"
+      ],
+      "zoneCode": "khb-z10",
+      "zoneSlug": "gula-darah-terkendali",
+      "zoneTitle": "Zona Gula Darah Terkendali"
+    },
+    {
+      "activeCompounds": [
+        "Antosianin",
+        "Asam hibiscus",
+        "Flavonoid",
+        "Vitamin C"
+      ],
+      "benefits": [
+        "Mengontrol kadar gula darah melalui aktivitas antioksidan dari antosianin.",
+        "Mendukung penurunan tekanan darah yang berkaitan erat dengan risiko komplikasi diabetes.",
+        "Membantu melindungi sel tubuh dari stres oksidatif akibat kadar gula darah tinggi."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak dengan biji.",
+        "Memerlukan sinar matahari penuh.",
+        "Kelopak bunga dipanen pada umur sekitar 3–4 bulan."
+      ],
+      "entryKey": "gula-darah-terkendali:rosella",
+      "entryOrder": 9,
+      "localName": "Rosella",
+      "plantKey": "rosella",
+      "plantSlug": "rosella",
+      "preparationMethods": [],
+      "rawEntryTitle": "Rosella",
+      "rawZoneTitle": "Zona Gula Darah Terkendali",
+      "scientificName": "Hibiscus sabdariffa L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Kelopak bunga"
+      ],
+      "warnings": [
+        "Dapat menurunkan tekanan darah secara signifikan.",
+        "Tidak dianjurkan dikonsumsi bersamaan dengan obat hipertensi tanpa pengawasan medis."
+      ],
+      "zoneCode": "khb-z10",
+      "zoneSlug": "gula-darah-terkendali",
+      "zoneTitle": "Zona Gula Darah Terkendali"
+    },
+    {
+      "activeCompounds": [
+        "Asiaticoside",
+        "Triterpenoid saponin",
+        "Flavonoid"
+      ],
+      "benefits": [
+        "Mendukung metabolisme gula darah melalui perbaikan sirkulasi darah.",
+        "Triterpenoid saponin berperan mendukung regenerasi jaringan yang terganggu akibat komplikasi diabetes.",
+        "Mendukung penyembuhan luka, yang penting bagi penderita diabetes karena luka lebih sulit sembuh."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak dengan stolon/anakan.",
+        "Tumbuh menjalar di tempat lembap dengan naungan sebagian.",
+        "Daun dipanen secara berkala."
+      ],
+      "entryKey": "gula-darah-terkendali:pegagan",
+      "entryOrder": 10,
+      "localName": "Pegagan",
+      "plantKey": "pegagan",
+      "plantSlug": "pegagan",
+      "preparationMethods": [],
+      "rawEntryTitle": "Pegagan",
+      "rawZoneTitle": "Zona Gula Darah Terkendali",
+      "scientificName": "Centella asiatica (L.)",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun"
+      ],
+      "warnings": [
+        "Konsumsi berlebihan dapat menyebabkan sakit kepala dan gangguan pencernaan.",
+        "Tidak dianjurkan bagi ibu hamil."
+      ],
+      "zoneCode": "khb-z10",
+      "zoneSlug": "gula-darah-terkendali",
+      "zoneTitle": "Zona Gula Darah Terkendali"
+    },
+    {
+      "activeCompounds": [
+        "Gingerol",
+        "Shogaol",
+        "Zingerone",
+        "Minyak atsiri"
+      ],
+      "benefits": [
+        "Membantu meredakan batuk dan melegakan tenggorokan.",
+        "Membantu mengencerkan dahak.",
+        "Memiliki aktivitas antiinflamasi pada saluran napas."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan potongan rimpang.",
+        "Memerlukan tanah gembur dan sinar matahari cukup.",
+        "Dipanen pada umur sekitar 8–10 bulan."
+      ],
+      "entryKey": "pernapasan-lega:jahe",
+      "entryOrder": 1,
+      "localName": "Jahe",
+      "plantKey": "jahe",
+      "plantSlug": "jahe",
+      "preparationMethods": [],
+      "rawEntryTitle": "Jahe",
+      "rawZoneTitle": "Zona Pernapasan Lega",
+      "scientificName": "Zingiber officinale",
+      "titleCorrection": null,
+      "usedParts": [
+        "Rimpang"
+      ],
+      "warnings": [
+        "Konsumsi berlebihan dapat menyebabkan iritasi lambung.",
+        "Perlu kehati-hatian bagi penderita gangguan pembekuan darah."
+      ],
+      "zoneCode": "khb-z11",
+      "zoneSlug": "pernapasan-lega",
+      "zoneTitle": "Zona Pernapasan Lega"
+    },
+    {
+      "activeCompounds": [
+        "Etil p-metoksisinamat",
+        "Minyak atsiri",
+        "Flavonoid"
+      ],
+      "benefits": [
+        "Membantu melegakan tenggorokan.",
+        "Membantu meredakan batuk.",
+        "Membantu mengencerkan dahak di saluran napas."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan potongan rimpang.",
+        "Memerlukan tanah gembur dan lembap.",
+        "Dipanen pada umur sekitar 6–9 bulan."
+      ],
+      "entryKey": "pernapasan-lega:kencur",
+      "entryOrder": 2,
+      "localName": "Kencur",
+      "plantKey": "kencur",
+      "plantSlug": "kencur",
+      "preparationMethods": [],
+      "rawEntryTitle": "Kencur",
+      "rawZoneTitle": "Zona Pernapasan Lega",
+      "scientificName": "Kaempferia galanga L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Rimpang."
+      ],
+      "warnings": [
+        "Konsumsi berlebihan dapat menimbulkan rasa mual.",
+        "Tidak dianjurkan bagi penderita maag akut."
+      ],
+      "zoneCode": "khb-z11",
+      "zoneSlug": "pernapasan-lega",
+      "zoneTitle": "Zona Pernapasan Lega"
+    },
+    {
+      "activeCompounds": [
+        "Vitamin C",
+        "Flavonoid",
+        "Minyak atsiri (limonene)"
+      ],
+      "benefits": [
+        "Membantu meredakan batuk dan gejala flu.",
+        "Membantu mengencerkan dahak.",
+        "Mendukung daya tahan saluran pernapasan."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak dengan biji atau cangkok.",
+        "Memerlukan sinar matahari penuh.",
+        "Buah dapat dipanen setelah pohon berumur 2–3 tahun."
+      ],
+      "entryKey": "pernapasan-lega:jeruk-nipis",
+      "entryOrder": 3,
+      "localName": "Jeruk Nipis",
+      "plantKey": "jeruk nipis",
+      "plantSlug": "jeruk-nipis",
+      "preparationMethods": [],
+      "rawEntryTitle": "Jeruk Nipis",
+      "rawZoneTitle": "Zona Pernapasan Lega",
+      "scientificName": "Citrus aurantiifolia (Christm.) Swingle",
+      "titleCorrection": null,
+      "usedParts": [
+        "Buah (air perasan)."
+      ],
+      "warnings": [
+        "Konsumsi berlebihan dapat mengiritasi lambung.",
+        "Dapat menyebabkan sensitivitas kulit terhadap sinar matahari jika dioleskan langsung."
+      ],
+      "zoneCode": "khb-z11",
+      "zoneSlug": "pernapasan-lega",
+      "zoneTitle": "Zona Pernapasan Lega"
+    },
+    {
+      "activeCompounds": [
+        "Kavikol",
+        "Eugenol",
+        "Minyak atsiri"
+      ],
+      "benefits": [
+        "Membantu meredakan batuk.",
+        "Memiliki aktivitas antibakteri pada saluran napas.",
+        "Membantu melegakan tenggorokan."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak dengan stek batang.",
+        "Tumbuh merambat dan memerlukan penyangga.",
+        "Cocok di tempat teduh dan lembap; daun dipanen secara berkala."
+      ],
+      "entryKey": "pernapasan-lega:sirih",
+      "entryOrder": 4,
+      "localName": "Sirih",
+      "plantKey": "sirih",
+      "plantSlug": "sirih",
+      "preparationMethods": [],
+      "rawEntryTitle": "Sirih",
+      "rawZoneTitle": "Zona Pernapasan Lega",
+      "scientificName": "Piper betle L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun."
+      ],
+      "warnings": [
+        "Penggunaan berlebihan dapat mengiritasi mukosa mulut dan tenggorokan.",
+        "Tidak dianjurkan dikonsumsi dalam jangka panjang tanpa pengawasan."
+      ],
+      "zoneCode": "khb-z11",
+      "zoneSlug": "pernapasan-lega",
+      "zoneTitle": "Zona Pernapasan Lega"
+    },
+    {
+      "activeCompounds": [
+        "Cineole (eukaliptol)",
+        "Terpinen-4-ol",
+        "Minyak atsiri"
+      ],
+      "benefits": [
+        "Membantu melegakan hidung tersumbat.",
+        "Membantu meredakan batuk dan pilek.",
+        "Bersifat ekspektoran (membantu mengeluarkan dahak)."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak dengan biji.",
+        "Tahan pada lahan kering.",
+        "Daun dipanen dan disuling menjadi minyak."
+      ],
+      "entryKey": "pernapasan-lega:kayu-putih",
+      "entryOrder": 5,
+      "localName": "Kayu Putih",
+      "plantKey": "kayu putih",
+      "plantSlug": "kayu-putih",
+      "preparationMethods": [],
+      "rawEntryTitle": "Kayu Putih",
+      "rawZoneTitle": "Zona Pernapasan Lega",
+      "scientificName": "Melaleuca cajuputi",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun (diambil minyaknya)."
+      ],
+      "warnings": [
+        "Penggunaan pada kulit perlu diencerkan terlebih dahulu.",
+        "Tidak dianjurkan untuk ditelan langsung.",
+        "Perlu kehati-hatian dalam penggunaan pada anak kecil dan bayi."
+      ],
+      "zoneCode": "khb-z11",
+      "zoneSlug": "pernapasan-lega",
+      "zoneTitle": "Zona Pernapasan Lega"
+    },
+    {
+      "activeCompounds": [
+        "Glycyrrhizin",
+        "Flavonoid",
+        "Saponin"
+      ],
+      "benefits": [
+        "Membantu meredakan batuk dan radang tenggorokan.",
+        "Membantu melegakan saluran napas."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak dengan biji.",
+        "Tumbuh merambat, memerlukan sinar matahari cukup.",
+        "Daun dipanen secara berkala."
+      ],
+      "entryKey": "pernapasan-lega:saga",
+      "entryOrder": 6,
+      "localName": "Saga",
+      "plantKey": "saga",
+      "plantSlug": "saga",
+      "preparationMethods": [],
+      "rawEntryTitle": "Saga",
+      "rawZoneTitle": "Zona Pernapasan Lega",
+      "scientificName": "Abrus precatorius L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun."
+      ],
+      "warnings": [
+        "Biji bersifat sangat toksik dan tidak boleh dikonsumsi.",
+        "Hanya bagian daun yang digunakan, dan tetap perlu dalam dosis wajar."
+      ],
+      "zoneCode": "khb-z11",
+      "zoneSlug": "pernapasan-lega",
+      "zoneTitle": "Zona Pernapasan Lega"
+    },
+    {
+      "activeCompounds": [
+        "Anethole",
+        "Minyak atsiri",
+        "Flavonoid"
+      ],
+      "benefits": [
+        "Membantu meredakan batuk.",
+        "Bersifat ekspektoran.",
+        "Membantu melegakan saluran pernapasan."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak dengan biji.",
+        "Memerlukan tanah gembur dan sinar matahari cukup.",
+        "Biji dipanen setelah tanaman berbunga dan mengering."
+      ],
+      "entryKey": "pernapasan-lega:adas",
+      "entryOrder": 7,
+      "localName": "Adas",
+      "plantKey": "adas",
+      "plantSlug": "adas",
+      "preparationMethods": [],
+      "rawEntryTitle": "Adas",
+      "rawZoneTitle": "Zona Pernapasan Lega",
+      "scientificName": "Foeniculum vulgare Mill.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Biji."
+      ],
+      "warnings": [
+        "Konsumsi berlebihan dapat memicu reaksi alergi pada sebagian orang.",
+        "Tidak dianjurkan bagi ibu hamil dalam dosis tinggi."
+      ],
+      "zoneCode": "khb-z11",
+      "zoneSlug": "pernapasan-lega",
+      "zoneTitle": "Zona Pernapasan Lega"
+    },
+    {
+      "activeCompounds": [
+        "Flavonoid",
+        "Tanin",
+        "Minyak atsiri"
+      ],
+      "benefits": [
+        "Membantu meredakan batuk.",
+        "Membantu mengurangi bau napas tak sedap yang terkait gangguan saluran napas.",
+        "Memiliki aktivitas antiinflamasi."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak dengan stek batang.",
+        "Tahan panas dan biasa ditanam sebagai pagar/semak.",
+        "Daun dipanen secara berkala."
+      ],
+      "entryKey": "pernapasan-lega:beluntas",
+      "entryOrder": 8,
+      "localName": "Beluntas",
+      "plantKey": "beluntas",
+      "plantSlug": "beluntas",
+      "preparationMethods": [],
+      "rawEntryTitle": "Beluntas",
+      "rawZoneTitle": "Zona Pernapasan Lega",
+      "scientificName": "Pluchea indica (L.)",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun."
+      ],
+      "warnings": [
+        "Konsumsi berlebihan dapat menimbulkan efek diuretik berlebih.",
+        "Perlu kehati-hatian bagi penderita gangguan ginjal."
+      ],
+      "zoneCode": "khb-z11",
+      "zoneSlug": "pernapasan-lega",
+      "zoneTitle": "Zona Pernapasan Lega"
+    },
+    {
+      "activeCompounds": [
+        "Sitral",
+        "Minyak atsiri",
+        "Flavonoid"
+      ],
+      "benefits": [
+        "Membantu meredakan batuk dan pilek.",
+        "Membantu melegakan saluran napas.",
+        "Memiliki aktivitas antimikroba pada saluran pernapasan."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak dengan anakan rumpun.",
+        "Dapat tumbuh di berbagai jenis tanah.",
+        "Dipanen setelah tanaman berumur 4–6 bulan."
+      ],
+      "entryKey": "pernapasan-lega:serai",
+      "entryOrder": 9,
+      "localName": "Serai",
+      "plantKey": "serai",
+      "plantSlug": "serai",
+      "preparationMethods": [],
+      "rawEntryTitle": "Serai",
+      "rawZoneTitle": "Zona Pernapasan Lega",
+      "scientificName": "Cymbopogon citratus",
+      "titleCorrection": null,
+      "usedParts": [
+        "Batang dan daun."
+      ],
+      "warnings": [
+        "Konsumsi berlebihan dapat menyebabkan mulut kering.",
+        "Perlu kehati-hatian bagi penderita gangguan lambung."
+      ],
+      "zoneCode": "khb-z11",
+      "zoneSlug": "pernapasan-lega",
+      "zoneTitle": "Zona Pernapasan Lega"
+    },
+    {
+      "activeCompounds": [
+        "Cineole (eukaliptol)",
+        "Minyak atsiri",
+        "Tanin"
+      ],
+      "benefits": [
+        "Membantu melegakan hidung tersumbat.",
+        "Membantu meredakan batuk.",
+        "Bersifat ekspektoran dan membantu membuka saluran napas."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak dengan biji.",
+        "Tumbuh cepat, terutama di dataran tinggi.",
+        "Daun dipanen dan disuling menjadi minyak."
+      ],
+      "entryKey": "pernapasan-lega:eucalyptus",
+      "entryOrder": 10,
+      "localName": "Eucalyptus",
+      "plantKey": "eucalyptus",
+      "plantSlug": "eucalyptus",
+      "preparationMethods": [],
+      "rawEntryTitle": "Eucalyptus",
+      "rawZoneTitle": "Zona Pernapasan Lega",
+      "scientificName": "Eucalyptus globulus",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun (diambil minyaknya)."
+      ],
+      "warnings": [
+        "Minyak murni tidak boleh ditelan langsung.",
+        "Penggunaan topikal perlu diencerkan terlebih dahulu.",
+        "Tidak dianjurkan untuk bayi dan anak balita."
+      ],
+      "zoneCode": "khb-z11",
+      "zoneSlug": "pernapasan-lega",
+      "zoneTitle": "Zona Pernapasan Lega"
+    },
+    {
+      "activeCompounds": [
+        "Asiaticoside",
+        "Triterpenoid saponin",
+        "Flavonoid"
+      ],
+      "benefits": [
+        "Membantu meningkatkan daya ingat.",
+        "Mendukung sirkulasi darah ke otak.",
+        "Bersifat neuroprotektif (melindungi sel saraf).",
+        "Membantu meningkatkan konsentrasi."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak dengan stolon/anakan.",
+        "Tumbuh menjalar di tempat lembap dengan naungan sebagian.",
+        "Daun dipanen secara berkala."
+      ],
+      "entryKey": "otak-cerdas:pegagan",
+      "entryOrder": 1,
+      "localName": "Pegagan",
+      "plantKey": "pegagan",
+      "plantSlug": "pegagan",
+      "preparationMethods": [],
+      "rawEntryTitle": "Pegagan",
+      "rawZoneTitle": "Zona Otak Cerdas",
+      "scientificName": "Centella asiatica",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun."
+      ],
+      "warnings": [
+        "Konsumsi berlebihan dapat menyebabkan sakit kepala dan gangguan pencernaan.",
+        "Tidak dianjurkan bagi ibu hamil."
+      ],
+      "zoneCode": "khb-z12",
+      "zoneSlug": "otak-cerdas",
+      "zoneTitle": "Zona Otak Cerdas"
+    },
+    {
+      "activeCompounds": [
+        "Asam rosmarinat",
+        "Cineole",
+        "Karnosol"
+      ],
+      "benefits": [
+        "Membantu meningkatkan daya ingat dan konsentrasi.",
+        "Antioksidan di dalamnya membantu melindungi sel otak dari kerusakan.",
+        "Mendukung kelancaran sirkulasi darah ke otak."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak dengan stek batang.",
+        "Memerlukan sinar matahari penuh dan tanah dengan drainase baik.",
+        "Daun dapat dipanen secara berkala setelah tanaman cukup rimbun."
+      ],
+      "entryKey": "otak-cerdas:rosemary",
+      "entryOrder": 2,
+      "localName": "Rosemary",
+      "plantKey": "rosemary",
+      "plantSlug": "rosemary",
+      "preparationMethods": [],
+      "rawEntryTitle": "Rosemary",
+      "rawZoneTitle": "Zona Otak Cerdas",
+      "scientificName": "Salvia rosmarinus",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun."
+      ],
+      "warnings": [
+        "Konsumsi dalam jumlah besar dapat menyebabkan iritasi lambung.",
+        "Tidak dianjurkan dalam dosis tinggi bagi ibu hamil."
+      ],
+      "zoneCode": "khb-z12",
+      "zoneSlug": "otak-cerdas",
+      "zoneTitle": "Zona Otak Cerdas"
+    },
+    {
+      "activeCompounds": [
+        "Linalool",
+        "Linalyl acetate",
+        "Minyak atsiri"
+      ],
+      "benefits": [
+        "Membantu menenangkan sistem saraf.",
+        "Membantu mengurangi stres yang dapat mengganggu fungsi kognitif.",
+        "Mendukung kualitas tidur yang berperan penting bagi fungsi otak."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak dengan stek atau biji.",
+        "Memerlukan sinar matahari penuh dan tanah berdrainase baik.",
+        "Bunga dipanen saat mulai mekar penuh."
+      ],
+      "entryKey": "otak-cerdas:lavender",
+      "entryOrder": 3,
+      "localName": "Lavender",
+      "plantKey": "lavender",
+      "plantSlug": "lavender",
+      "preparationMethods": [],
+      "rawEntryTitle": "Lavender",
+      "rawZoneTitle": "Zona Otak Cerdas",
+      "scientificName": "Lavandula angustifolia",
+      "titleCorrection": null,
+      "usedParts": [
+        "Bunga."
+      ],
+      "warnings": [
+        "Penggunaan minyak murni pada kulit perlu diencerkan.",
+        "Konsumsi berlebihan dapat menyebabkan kantuk berlebih."
+      ],
+      "zoneCode": "khb-z12",
+      "zoneSlug": "otak-cerdas",
+      "zoneTitle": "Zona Otak Cerdas"
+    },
+    {
+      "activeCompounds": [
+        "Flavonoid glikosida",
+        "Ginkgolide",
+        "Bilobalide"
+      ],
+      "benefits": [
+        "Meningkatkan sirkulasi darah ke otak.",
+        "Mendukung daya ingat dan kewaspadaan mental.",
+        "Antioksidan di dalamnya membantu melindungi sel saraf."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak dengan biji atau cangkok.",
+        "Tumbuh baik di daerah beriklim sejuk.",
+        "Daun dipanen setelah pohon berumur beberapa tahun."
+      ],
+      "entryKey": "otak-cerdas:ginkgo",
+      "entryOrder": 4,
+      "localName": "Ginkgo",
+      "plantKey": "ginkgo",
+      "plantSlug": "ginkgo",
+      "preparationMethods": [],
+      "rawEntryTitle": "Ginkgo",
+      "rawZoneTitle": "Zona Otak Cerdas",
+      "scientificName": "Ginkgo biloba L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun."
+      ],
+      "warnings": [
+        "Dapat meningkatkan risiko perdarahan, terutama bila dikombinasikan dengan obat pengencer darah.",
+        "Tidak dianjurkan bagi penderita gangguan pembekuan darah tanpa pengawasan medis."
+      ],
+      "zoneCode": "khb-z12",
+      "zoneSlug": "otak-cerdas",
+      "zoneTitle": "Zona Otak Cerdas"
+    },
+    {
+      "activeCompounds": [
+        "Asam rosmarinat",
+        "Cineole",
+        "Tujon"
+      ],
+      "benefits": [
+        "Mendukung daya ingat dan fungsi kognitif.",
+        "Aktivitas antioksidan membantu melindungi sel otak.",
+        "Membantu menjaga kewaspadaan mental."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak dengan biji atau stek.",
+        "Memerlukan sinar matahari penuh dan tanah berdrainase baik.",
+        "Daun dipanen secara berkala."
+      ],
+      "entryKey": "otak-cerdas:sage",
+      "entryOrder": 5,
+      "localName": "Sage",
+      "plantKey": "sage",
+      "plantSlug": "sage",
+      "preparationMethods": [],
+      "rawEntryTitle": "Sage",
+      "rawZoneTitle": "Zona Otak Cerdas",
+      "scientificName": "Salvia officinalis L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun."
+      ],
+      "warnings": [
+        "Kandungan tujon dalam jumlah besar dapat bersifat toksik.",
+        "Tidak dianjurkan dikonsumsi dalam jangka panjang atau dosis tinggi tanpa pengawasan."
+      ],
+      "zoneCode": "khb-z12",
+      "zoneSlug": "otak-cerdas",
+      "zoneTitle": "Zona Otak Cerdas"
+    },
+    {
+      "activeCompounds": [
+        "Bacoside A",
+        "Bacoside B",
+        "Saponin"
+      ],
+      "benefits": [
+        "Meningkatkan daya ingat dan kemampuan belajar.",
+        "Bersifat neuroprotektif.",
+        "Membantu mengurangi kecemasan yang dapat mengganggu konsentrasi."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak dengan stek batang.",
+        "Tumbuh baik di tempat lembap atau perairan dangkal.",
+        "Daun dipanen secara berkala."
+      ],
+      "entryKey": "otak-cerdas:brahmi",
+      "entryOrder": 6,
+      "localName": "Brahmi",
+      "plantKey": "brahmi",
+      "plantSlug": "brahmi",
+      "preparationMethods": [],
+      "rawEntryTitle": "Brahmi",
+      "rawZoneTitle": "Zona Otak Cerdas",
+      "scientificName": "Bacopa monnieri",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun."
+      ],
+      "warnings": [
+        "Konsumsi berlebihan dapat menyebabkan gangguan pencernaan.",
+        "Efeknya pada daya ingat umumnya memerlukan konsumsi rutin dalam jangka waktu tertentu."
+      ],
+      "zoneCode": "khb-z12",
+      "zoneSlug": "otak-cerdas",
+      "zoneTitle": "Zona Otak Cerdas"
+    },
+    {
+      "activeCompounds": [
+        "Asam rosmarinat",
+        "Citral",
+        "Flavonoid"
+      ],
+      "benefits": [
+        "Membantu menenangkan pikiran.",
+        "Membantu meningkatkan konsentrasi.",
+        "Mendukung suasana hati yang berpengaruh terhadap kinerja kognitif."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak dengan biji atau stek.",
+        "Tumbuh baik di tempat teduh sebagian dengan tanah lembap.",
+        "Daun dipanen secara berkala."
+      ],
+      "entryKey": "otak-cerdas:lemon-balm",
+      "entryOrder": 7,
+      "localName": "Lemon Balm",
+      "plantKey": "lemon balm",
+      "plantSlug": "lemon-balm",
+      "preparationMethods": [],
+      "rawEntryTitle": "Lemon Balm",
+      "rawZoneTitle": "Zona Otak Cerdas",
+      "scientificName": "Melissa officinalis L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun."
+      ],
+      "warnings": [
+        "Konsumsi berlebihan dapat menyebabkan kantuk.",
+        "Perlu kehati-hatian bila dikombinasikan dengan obat penenang."
+      ],
+      "zoneCode": "khb-z12",
+      "zoneSlug": "otak-cerdas",
+      "zoneTitle": "Zona Otak Cerdas"
+    },
+    {
+      "activeCompounds": [
+        "Withanolide",
+        "Alkaloid",
+        "Saponin"
+      ],
+      "benefits": [
+        "Membantu mengurangi stres yang berdampak pada fungsi kognitif.",
+        "Mendukung daya ingat.",
+        "Bersifat neuroprotektif."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak dengan biji.",
+        "Tumbuh baik di daerah kering dengan sinar matahari penuh.",
+        "Akar dipanen setelah tanaman berumur sekitar 6–12 bulan."
+      ],
+      "entryKey": "otak-cerdas:ashwagandha",
+      "entryOrder": 8,
+      "localName": "Ashwagandha",
+      "plantKey": "ashwagandha",
+      "plantSlug": "ashwagandha",
+      "preparationMethods": [],
+      "rawEntryTitle": "Ashwagandha",
+      "rawZoneTitle": "Zona Otak Cerdas",
+      "scientificName": "Withania somnifera",
+      "titleCorrection": null,
+      "usedParts": [
+        "Akar."
+      ],
+      "warnings": [
+        "Tidak dianjurkan bagi ibu hamil.",
+        "Dapat berinteraksi dengan obat penenang atau obat tiroid sehingga perlu pengawasan medis."
+      ],
+      "zoneCode": "khb-z12",
+      "zoneSlug": "otak-cerdas",
+      "zoneTitle": "Zona Otak Cerdas"
+    },
+    {
+      "activeCompounds": [
+        "Eugenol",
+        "Linalool",
+        "Flavonoid"
+      ],
+      "benefits": [
+        "Antioksidan di dalamnya membantu melindungi sel otak.",
+        "Membantu mengurangi stres oksidatif pada jaringan saraf.",
+        "Mendukung konsentrasi."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak dengan biji atau stek.",
+        "Memerlukan sinar matahari cukup dan penyiraman teratur.",
+        "Daun dipanen secara berkala."
+      ],
+      "entryKey": "otak-cerdas:kemangi",
+      "entryOrder": 9,
+      "localName": "Kemangi",
+      "plantKey": "kemangi",
+      "plantSlug": "kemangi",
+      "preparationMethods": [],
+      "rawEntryTitle": "Kemangi",
+      "rawZoneTitle": "Zona Otak Cerdas",
+      "scientificName": "Ocimum basilicum L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun."
+      ],
+      "warnings": [
+        "Konsumsi dalam jumlah sangat besar dapat memengaruhi kadar gula darah.",
+        "Perlu kehati-hatian bagi ibu hamil dalam dosis tinggi."
+      ],
+      "zoneCode": "khb-z12",
+      "zoneSlug": "otak-cerdas",
+      "zoneTitle": "Zona Otak Cerdas"
+    },
+    {
+      "activeCompounds": [
+        "Flavonoid (quercetin)",
+        "Asam klorogenat",
+        "Vitamin C"
+      ],
+      "benefits": [
+        "Antioksidan di dalamnya membantu melindungi sel saraf dari kerusakan.",
+        "Mendukung daya ingat.",
+        "Berpotensi bersifat neuroprotektif."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak dengan biji atau stek batang.",
+        "Tahan kekeringan dan tumbuh relatif cepat.",
+        "Daun dapat dipanen mulai umur 2–3 bulan."
+      ],
+      "entryKey": "otak-cerdas:kelor",
+      "entryOrder": 10,
+      "localName": "Kelor",
+      "plantKey": "kelor",
+      "plantSlug": "kelor",
+      "preparationMethods": [],
+      "rawEntryTitle": "Kelor",
+      "rawZoneTitle": "Zona Otak Cerdas",
+      "scientificName": "Moringa oleifera",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun."
+      ],
+      "warnings": [
+        "Akar dan getah tidak dianjurkan untuk dikonsumsi karena bersifat toksik.",
+        "Dosis berlebihan dapat menyebabkan gangguan pencernaan."
+      ],
+      "zoneCode": "khb-z12",
+      "zoneSlug": "otak-cerdas",
+      "zoneTitle": "Zona Otak Cerdas"
+    },
+    {
+      "activeCompounds": [
+        "Xanthorrhizol",
+        "Kurkuminoid",
+        "Minyak atsiri"
+      ],
+      "benefits": [
+        "Membantu meningkatkan nafsu makan sehingga anak lebih berenergi dan aktif.",
+        "Mendukung kesehatan sistem pencernaan.",
+        "Memiliki aktivitas antioksidan yang mendukung daya tahan tubuh anak."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan potongan rimpang.",
+        "Memerlukan tanah subur dan sinar matahari cukup.",
+        "Dipanen pada umur sekitar 9–12 bulan."
+      ],
+      "entryKey": "anak-ceria:temulawak",
+      "entryOrder": 1,
+      "localName": "Temulawak",
+      "plantKey": "temulawak",
+      "plantSlug": "temulawak",
+      "preparationMethods": [],
+      "rawEntryTitle": "Temulawak",
+      "rawZoneTitle": "Zona Anak Ceria",
+      "scientificName": "Curcuma xanthorrhiza",
+      "titleCorrection": null,
+      "usedParts": [
+        "Rimpang."
+      ],
+      "warnings": [
+        "Penggunaan dalam jumlah besar dapat menyebabkan gangguan lambung.",
+        "Untuk anak, dosis harus disesuaikan dan sebaiknya dikonsultasikan dengan dokter anak."
+      ],
+      "zoneCode": "khb-z13",
+      "zoneSlug": "anak-ceria",
+      "zoneTitle": "Zona Anak Ceria"
+    },
+    {
+      "activeCompounds": [
+        "Etil p-metoksisinamat",
+        "Minyak atsiri",
+        "Flavonoid"
+      ],
+      "benefits": [
+        "Membantu meningkatkan nafsu makan anak.",
+        "Membantu meredakan gejala masuk angin sehingga anak lebih nyaman beraktivitas.",
+        "Mendukung stamina anak sehari-hari."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan potongan rimpang.",
+        "Memerlukan tanah gembur dan lembap.",
+        "Dipanen pada umur sekitar 6–9 bulan."
+      ],
+      "entryKey": "anak-ceria:kencur",
+      "entryOrder": 2,
+      "localName": "Kencur",
+      "plantKey": "kencur",
+      "plantSlug": "kencur",
+      "preparationMethods": [],
+      "rawEntryTitle": "Kencur",
+      "rawZoneTitle": "Zona Anak Ceria",
+      "scientificName": "Kaempferia galanga L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Rimpang."
+      ],
+      "warnings": [
+        "Konsumsi berlebihan dapat menimbulkan rasa mual.",
+        "Perlu takaran yang sesuai usia anak dan sebaiknya dikonsultasikan dengan dokter anak."
+      ],
+      "zoneCode": "khb-z13",
+      "zoneSlug": "anak-ceria",
+      "zoneTitle": "Zona Anak Ceria"
+    },
+    {
+      "activeCompounds": [
+        "Flavonoid (quercetin)",
+        "Vitamin C",
+        "Zat besi dan protein nabati"
+      ],
+      "benefits": [
+        "Kaya nutrisi yang mendukung pertumbuhan dan energi anak.",
+        "Mendukung daya tahan tubuh.",
+        "Membantu menjaga stamina agar anak lebih aktif dan ceria."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak dengan biji atau stek batang.",
+        "Tahan kekeringan dan tumbuh relatif cepat.",
+        "Daun dapat dipanen mulai umur 2–3 bulan."
+      ],
+      "entryKey": "anak-ceria:kelor",
+      "entryOrder": 3,
+      "localName": "Kelor",
+      "plantKey": "kelor",
+      "plantSlug": "kelor",
+      "preparationMethods": [],
+      "rawEntryTitle": "Kelor",
+      "rawZoneTitle": "Zona Anak Ceria",
+      "scientificName": "Moringa oleifera Lam.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun."
+      ],
+      "warnings": [
+        "Akar dan getah tidak dianjurkan untuk dikonsumsi karena bersifat toksik.",
+        "Porsi untuk anak perlu disesuaikan agar tidak menimbulkan gangguan pencernaan."
+      ],
+      "zoneCode": "khb-z13",
+      "zoneSlug": "anak-ceria",
+      "zoneTitle": "Zona Anak Ceria"
+    },
+    {
+      "activeCompounds": [
+        "Flavonoid",
+        "Vitamin A",
+        "Zat besi dan protein nabati"
+      ],
+      "benefits": [
+        "Mendukung pertumbuhan anak.",
+        "Membantu menjaga daya tahan tubuh.",
+        "Mendukung energi harian anak agar tetap aktif."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak dengan stek batang.",
+        "Tumbuh baik di tempat lembap dengan sinar matahari cukup.",
+        "Daun dipanen secara berkala."
+      ],
+      "entryKey": "anak-ceria:katuk",
+      "entryOrder": 4,
+      "localName": "Katuk",
+      "plantKey": "katuk",
+      "plantSlug": "katuk",
+      "preparationMethods": [],
+      "rawEntryTitle": "Katuk",
+      "rawZoneTitle": "Zona Anak Ceria",
+      "scientificName": "Sauropus androgynus (L.)",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun."
+      ],
+      "warnings": [
+        "Konsumsi daun katuk mentah dalam jumlah besar tidak dianjurkan.",
+        "Sebaiknya diolah dengan matang dan dalam porsi wajar untuk anak."
+      ],
+      "zoneCode": "khb-z13",
+      "zoneSlug": "anak-ceria",
+      "zoneTitle": "Zona Anak Ceria"
+    },
+    {
+      "activeCompounds": [
+        "Anethole",
+        "Minyak atsiri",
+        "Flavonoid"
+      ],
+      "benefits": [
+        "Membantu meredakan perut kembung pada anak sehingga anak lebih nyaman.",
+        "Mendukung nafsu makan.",
+        "Membantu melancarkan pencernaan."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak dengan biji.",
+        "Memerlukan tanah gembur dan sinar matahari cukup.",
+        "Biji dipanen setelah tanaman berbunga dan mengering."
+      ],
+      "entryKey": "anak-ceria:adas",
+      "entryOrder": 5,
+      "localName": "Adas",
+      "plantKey": "adas",
+      "plantSlug": "adas",
+      "preparationMethods": [],
+      "rawEntryTitle": "Adas",
+      "rawZoneTitle": "Zona Anak Ceria",
+      "scientificName": "Foeniculum vulgare Mill.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Biji."
+      ],
+      "warnings": [
+        "Konsumsi berlebihan dapat memicu reaksi alergi pada sebagian anak.",
+        "Dosis untuk anak sebaiknya jauh lebih kecil daripada dosis dewasa."
+      ],
+      "zoneCode": "khb-z13",
+      "zoneSlug": "anak-ceria",
+      "zoneTitle": "Zona Anak Ceria"
+    },
+    {
+      "activeCompounds": [
+        "Gingerol",
+        "Shogaol",
+        "Minyak atsiri"
+      ],
+      "benefits": [
+        "Membantu menghangatkan tubuh dan meredakan masuk angin.",
+        "Mendukung nafsu makan anak.",
+        "Membantu melancarkan pencernaan."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan potongan rimpang.",
+        "Memerlukan tanah gembur dan sinar matahari cukup.",
+        "Dipanen pada umur sekitar 8–10 bulan."
+      ],
+      "entryKey": "anak-ceria:jahe",
+      "entryOrder": 6,
+      "localName": "Jahe",
+      "plantKey": "jahe",
+      "plantSlug": "jahe",
+      "preparationMethods": [],
+      "rawEntryTitle": "Jahe",
+      "rawZoneTitle": "Zona Anak Ceria",
+      "scientificName": "Zingiber officinale",
+      "titleCorrection": null,
+      "usedParts": [
+        "Rimpang."
+      ],
+      "warnings": [
+        "Rasa yang tajam dapat kurang disukai anak dan sebaiknya diberikan dalam jumlah sedikit.",
+        "Konsumsi berlebihan dapat menyebabkan iritasi lambung."
+      ],
+      "zoneCode": "khb-z13",
+      "zoneSlug": "anak-ceria",
+      "zoneTitle": "Zona Anak Ceria"
+    },
+    {
+      "activeCompounds": [
+        "Vitamin C",
+        "Flavonoid",
+        "Minyak atsiri"
+      ],
+      "benefits": [
+        "Mendukung daya tahan tubuh anak.",
+        "Membantu meredakan batuk dan pilek ringan.",
+        "Menyegarkan tubuh sehingga anak lebih bersemangat."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak dengan biji atau cangkok.",
+        "Memerlukan sinar matahari penuh.",
+        "Buah dapat dipanen setelah pohon berumur 2–3 tahun."
+      ],
+      "entryKey": "anak-ceria:jeruk-nipis",
+      "entryOrder": 7,
+      "localName": "Jeruk Nipis",
+      "plantKey": "jeruk nipis",
+      "plantSlug": "jeruk-nipis",
+      "preparationMethods": [],
+      "rawEntryTitle": "Jeruk Nipis",
+      "rawZoneTitle": "Zona Anak Ceria",
+      "scientificName": "Citrus aurantiifolia",
+      "titleCorrection": null,
+      "usedParts": [
+        "Buah (air perasan)."
+      ],
+      "warnings": [
+        "Rasa asam yang pekat sebaiknya diencerkan sebelum diberikan pada anak.",
+        "Konsumsi berlebihan dapat mengiritasi lambung."
+      ],
+      "zoneCode": "khb-z13",
+      "zoneSlug": "anak-ceria",
+      "zoneTitle": "Zona Anak Ceria"
+    },
+    {
+      "activeCompounds": [
+        "Tanin",
+        "Flavonoid (quercetin)",
+        "Vitamin C"
+      ],
+      "benefits": [
+        "Membantu menjaga kesehatan pencernaan anak.",
+        "Mendukung daya tahan tubuh.",
+        "Membantu meredakan diare ringan sehingga anak lebih nyaman beraktivitas."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak dengan biji atau cangkok.",
+        "Tumbuh baik pada berbagai jenis tanah dengan sinar matahari cukup.",
+        "Daun dipanen secara berkala."
+      ],
+      "entryKey": "anak-ceria:daun-jambu",
+      "entryOrder": 8,
+      "localName": "Daun Jambu",
+      "plantKey": "daun jambu",
+      "plantSlug": "daun-jambu",
+      "preparationMethods": [],
+      "rawEntryTitle": "Daun Jambu",
+      "rawZoneTitle": "Zona Anak Ceria",
+      "scientificName": "Psidium guajava L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun."
+      ],
+      "warnings": [
+        "Penggunaan berlebihan dapat menyebabkan sembelit.",
+        "Untuk anak, sebaiknya digunakan dalam jumlah terbatas dan tidak menggantikan penanganan medis diare."
+      ],
+      "zoneCode": "khb-z13",
+      "zoneSlug": "anak-ceria",
+      "zoneTitle": "Zona Anak Ceria"
+    },
+    {
+      "activeCompounds": [
+        "Antosianin",
+        "Vitamin C",
+        "Flavonoid"
+      ],
+      "benefits": [
+        "Kaya antioksidan yang mendukung daya tahan tubuh.",
+        "Menyegarkan tubuh sehingga anak lebih ceria.",
+        "Mendukung asupan vitamin harian anak."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak dengan biji.",
+        "Memerlukan sinar matahari penuh.",
+        "Kelopak bunga dipanen pada umur sekitar 3–4 bulan."
+      ],
+      "entryKey": "anak-ceria:rosella",
+      "entryOrder": 9,
+      "localName": "Rosella",
+      "plantKey": "rosella",
+      "plantSlug": "rosella",
+      "preparationMethods": [],
+      "rawEntryTitle": "Rosella",
+      "rawZoneTitle": "Zona Anak Ceria",
+      "scientificName": "Hibiscus sabdariffa L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Kelopak bunga."
+      ],
+      "warnings": [
+        "Rasa asam yang kuat sebaiknya diseduh encer dan diberi pemanis alami secukupnya untuk anak.",
+        "Konsumsi berlebihan dapat memengaruhi tekanan darah."
+      ],
+      "zoneCode": "khb-z13",
+      "zoneSlug": "anak-ceria",
+      "zoneTitle": "Zona Anak Ceria"
+    },
+    {
+      "activeCompounds": [
+        "Asiaticoside",
+        "Triterpenoid saponin",
+        "Flavonoid"
+      ],
+      "benefits": [
+        "Mendukung perkembangan konsentrasi dan daya ingat anak.",
+        "Membantu memperlancar sirkulasi darah.",
+        "Mendukung ketenangan anak sehingga lebih mudah fokus dan ceria dalam beraktivitas."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak dengan stolon/anakan.",
+        "Tumbuh menjalar di tempat lembap dengan naungan sebagian.",
+        "Daun dipanen secara berkala."
+      ],
+      "entryKey": "anak-ceria:pegagan",
+      "entryOrder": 10,
+      "localName": "Pegagan",
+      "plantKey": "pegagan",
+      "plantSlug": "pegagan",
+      "preparationMethods": [],
+      "rawEntryTitle": "Pegagan",
+      "rawZoneTitle": "Zona Anak Ceria",
+      "scientificName": "Centella asiatica",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun."
+      ],
+      "warnings": [
+        "Konsumsi berlebihan dapat menyebabkan sakit kepala dan gangguan pencernaan.",
+        "Perlu takaran yang sangat kecil dan hati-hati untuk anak."
+      ],
+      "zoneCode": "khb-z13",
+      "zoneSlug": "anak-ceria",
+      "zoneTitle": "Zona Anak Ceria"
+    },
+    {
+      "activeCompounds": [
+        "Polisakarida (acemannan)",
+        "Vitamin E dan vitamin C",
+        "Enzim"
+      ],
+      "benefits": [
+        "Membantu melembapkan kulit.",
+        "Mendukung proses penyembuhan luka ringan dan luka bakar ringan.",
+        "Membantu menenangkan kulit yang iritasi.",
+        "Antioksidan di dalamnya membantu menjaga elastisitas kulit."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak dengan anakan/tunas.",
+        "Tahan kekeringan dan memerlukan sinar matahari cukup.",
+        "Daun dipanen setelah cukup tua, sekitar umur 8–10 bulan."
+      ],
+      "entryKey": "kulit-cantik:lidah-buaya",
+      "entryOrder": 1,
+      "localName": "Lidah Buaya",
+      "plantKey": "lidah buaya",
+      "plantSlug": "lidah-buaya",
+      "preparationMethods": [],
+      "rawEntryTitle": "Lidah Buaya",
+      "rawZoneTitle": "Zona Kulit Cantik",
+      "scientificName": "Aloe vera (L.)",
+      "titleCorrection": null,
+      "usedParts": [
+        "Gel daun."
+      ],
+      "warnings": [
+        "Getah kuning di bawah kulit daun (aloin) dapat mengiritasi kulit sensitif.",
+        "Sebaiknya diuji coba pada area kulit kecil sebelum digunakan lebih luas."
+      ],
+      "zoneCode": "khb-z14",
+      "zoneSlug": "kulit-cantik",
+      "zoneTitle": "Zona Kulit Cantik"
+    },
+    {
+      "activeCompounds": [
+        "Asiaticoside",
+        "Madecassoside",
+        "Triterpenoid saponin"
+      ],
+      "benefits": [
+        "Membantu regenerasi sel kulit.",
+        "Mendukung produksi kolagen.",
+        "Membantu menyamarkan bekas luka.",
+        "Menenangkan kulit yang iritasi."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak dengan stolon/anakan.",
+        "Tumbuh menjalar di tempat lembap dengan naungan sebagian.",
+        "Daun dipanen secara berkala."
+      ],
+      "entryKey": "kulit-cantik:pegagan",
+      "entryOrder": 2,
+      "localName": "Pegagan",
+      "plantKey": "pegagan",
+      "plantSlug": "pegagan",
+      "preparationMethods": [],
+      "rawEntryTitle": "Pegagan",
+      "rawZoneTitle": "Zona Kulit Cantik",
+      "scientificName": "Centella asiatica",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun."
+      ],
+      "warnings": [
+        "Penggunaan topikal berlebihan dapat menyebabkan iritasi pada kulit sensitif.",
+        "Sebaiknya diuji pada area kecil terlebih dahulu."
+      ],
+      "zoneCode": "khb-z14",
+      "zoneSlug": "kulit-cantik",
+      "zoneTitle": "Zona Kulit Cantik"
+    },
+    {
+      "activeCompounds": [
+        "Flavonoid",
+        "Saponin",
+        "Asam askorbat"
+      ],
+      "benefits": [
+        "Membantu mempercepat penyembuhan luka pada kulit.",
+        "Memiliki aktivitas antioksidan.",
+        "Membantu menjaga kelembapan kulit."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak dengan stek batang atau umbi udara.",
+        "Tumbuh merambat dan memerlukan penyangga.",
+        "Daun dipanen secara berkala."
+      ],
+      "entryKey": "kulit-cantik:binahong",
+      "entryOrder": 3,
+      "localName": "Binahong",
+      "plantKey": "binahong",
+      "plantSlug": "binahong",
+      "preparationMethods": [],
+      "rawEntryTitle": "Binahong",
+      "rawZoneTitle": "Zona Kulit Cantik",
+      "scientificName": "Anredera cordifolia",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun."
+      ],
+      "warnings": [
+        "Penggunaan pada luka terbuka sebaiknya memakai daun yang bersih.",
+        "Tidak dianjurkan sebagai pengganti penanganan medis untuk luka serius."
+      ],
+      "zoneCode": "khb-z14",
+      "zoneSlug": "kulit-cantik",
+      "zoneTitle": "Zona Kulit Cantik"
+    },
+    {
+      "activeCompounds": [
+        "Flavonoid",
+        "Minyak atsiri",
+        "Tanin"
+      ],
+      "benefits": [
+        "Membantu meredakan peradangan pada kulit.",
+        "Memiliki aktivitas antibakteri yang mendukung kulit bebas jerawat.",
+        "Membantu penyembuhan luka ringan."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak dengan stek batang.",
+        "Tumbuh baik di tempat teduh sebagian.",
+        "Daun dipanen secara berkala."
+      ],
+      "entryKey": "kulit-cantik:miana",
+      "entryOrder": 4,
+      "localName": "Miana",
+      "plantKey": "miana",
+      "plantSlug": "miana",
+      "preparationMethods": [],
+      "rawEntryTitle": "Miana",
+      "rawZoneTitle": "Zona Kulit Cantik",
+      "scientificName": "Coleus scutellarioides",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun."
+      ],
+      "warnings": [
+        "Getah daun dapat menyebabkan iritasi pada kulit sensitif.",
+        "Sebaiknya diuji pada area kulit kecil terlebih dahulu."
+      ],
+      "zoneCode": "khb-z14",
+      "zoneSlug": "kulit-cantik",
+      "zoneTitle": "Zona Kulit Cantik"
+    },
+    {
+      "activeCompounds": [
+        "Kurkumin",
+        "Minyak atsiri",
+        "Flavonoid"
+      ],
+      "benefits": [
+        "Memiliki aktivitas antiinflamasi yang membantu menenangkan kulit meradang.",
+        "Antioksidan di dalamnya membantu menjaga elastisitas kulit.",
+        "Membantu mencerahkan tampilan kulit."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan potongan rimpang.",
+        "Memerlukan tanah gembur dan sinar matahari cukup.",
+        "Dipanen pada umur sekitar 8–10 bulan."
+      ],
+      "entryKey": "kulit-cantik:kunyit",
+      "entryOrder": 5,
+      "localName": "Kunyit",
+      "plantKey": "kunyit",
+      "plantSlug": "kunyit",
+      "preparationMethods": [],
+      "rawEntryTitle": "Kunyit",
+      "rawZoneTitle": "Zona Kulit Cantik",
+      "scientificName": "Curcuma longa L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Rimpang."
+      ],
+      "warnings": [
+        "Dapat meninggalkan warna kekuningan sementara pada kulit.",
+        "Sebaiknya diuji pada kulit sensitif sebelum pemakaian luas."
+      ],
+      "zoneCode": "khb-z14",
+      "zoneSlug": "kulit-cantik",
+      "zoneTitle": "Zona Kulit Cantik"
+    },
+    {
+      "activeCompounds": [
+        "Kavikol",
+        "Eugenol",
+        "Minyak atsiri"
+      ],
+      "benefits": [
+        "Memiliki aktivitas antibakteri yang mendukung kulit bebas dari infeksi ringan.",
+        "Membantu meredakan gatal pada kulit.",
+        "Membantu menjaga kebersihan kulit."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak dengan stek batang.",
+        "Tumbuh merambat dan memerlukan penyangga.",
+        "Daun dipanen secara berkala."
+      ],
+      "entryKey": "kulit-cantik:sirih",
+      "entryOrder": 6,
+      "localName": "Sirih",
+      "plantKey": "sirih",
+      "plantSlug": "sirih",
+      "preparationMethods": [],
+      "rawEntryTitle": "Sirih",
+      "rawZoneTitle": "Zona Kulit Cantik",
+      "scientificName": "Piper betle L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun."
+      ],
+      "warnings": [
+        "Penggunaan berlebihan dapat mengiritasi kulit sensitif.",
+        "Sebaiknya diencerkan terlebih dahulu sebelum digunakan langsung pada kulit."
+      ],
+      "zoneCode": "khb-z14",
+      "zoneSlug": "kulit-cantik",
+      "zoneTitle": "Zona Kulit Cantik"
+    },
+    {
+      "activeCompounds": [
+        "Linalool",
+        "Linalyl acetate",
+        "Minyak atsiri"
+      ],
+      "benefits": [
+        "Menenangkan kulit yang teriritasi.",
+        "Membantu mengurangi kemerahan pada kulit.",
+        "Aromanya mendukung relaksasi saat perawatan kulit."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak dengan stek atau biji.",
+        "Memerlukan sinar matahari penuh dan tanah berdrainase baik.",
+        "Bunga dipanen saat mulai mekar penuh."
+      ],
+      "entryKey": "kulit-cantik:lavender",
+      "entryOrder": 7,
+      "localName": "Lavender",
+      "plantKey": "lavender",
+      "plantSlug": "lavender",
+      "preparationMethods": [],
+      "rawEntryTitle": "Lavender",
+      "rawZoneTitle": "Zona Kulit Cantik",
+      "scientificName": "Lavandula angustifolia",
+      "titleCorrection": null,
+      "usedParts": [
+        "Bunga."
+      ],
+      "warnings": [
+        "Minyak murni perlu diencerkan sebelum digunakan pada kulit.",
+        "Dapat menimbulkan reaksi alergi pada sebagian orang."
+      ],
+      "zoneCode": "khb-z14",
+      "zoneSlug": "kulit-cantik",
+      "zoneTitle": "Zona Kulit Cantik"
+    },
+    {
+      "activeCompounds": [
+        "Flavonoid",
+        "Karotenoid",
+        "Triterpenoid saponin"
+      ],
+      "benefits": [
+        "Membantu mempercepat penyembuhan luka ringan pada kulit.",
+        "Menenangkan kulit yang meradang.",
+        "Memiliki aktivitas antioksidan."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak dengan biji.",
+        "Memerlukan sinar matahari penuh.",
+        "Bunga dipanen saat mekar."
+      ],
+      "entryKey": "kulit-cantik:calendula",
+      "entryOrder": 8,
+      "localName": "Calendula",
+      "plantKey": "calendula",
+      "plantSlug": "calendula",
+      "preparationMethods": [],
+      "rawEntryTitle": "Calendula",
+      "rawZoneTitle": "Zona Kulit Cantik",
+      "scientificName": "Calendula officinalis L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Bunga."
+      ],
+      "warnings": [
+        "Dapat menimbulkan reaksi alergi pada individu yang sensitif terhadap keluarga tanaman Asteraceae."
+      ],
+      "zoneCode": "khb-z14",
+      "zoneSlug": "kulit-cantik",
+      "zoneTitle": "Zona Kulit Cantik"
+    },
+    {
+      "activeCompounds": [
+        "Katekin (EGCG)",
+        "Polifenol",
+        "Kafein"
+      ],
+      "benefits": [
+        "Antioksidan tinggi membantu melindungi kulit dari kerusakan akibat radikal bebas.",
+        "Membantu mengontrol produksi minyak berlebih pada kulit.",
+        "Mendukung tampilan kulit yang lebih segar."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak dengan biji atau stek.",
+        "Tumbuh baik di dataran tinggi.",
+        "Daun dipetik secara berkala."
+      ],
+      "entryKey": "kulit-cantik:teh-hijau",
+      "entryOrder": 9,
+      "localName": "Teh Hijau",
+      "plantKey": "teh hijau",
+      "plantSlug": "teh-hijau",
+      "preparationMethods": [],
+      "rawEntryTitle": "Teh Hijau",
+      "rawZoneTitle": "Zona Kulit Cantik",
+      "scientificName": "Camellia sinensis",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun."
+      ],
+      "warnings": [
+        "Penggunaan topikal ekstrak pekat dapat mengiritasi kulit sensitif.",
+        "Sebaiknya diencerkan sebelum digunakan langsung."
+      ],
+      "zoneCode": "khb-z14",
+      "zoneSlug": "kulit-cantik",
+      "zoneTitle": "Zona Kulit Cantik"
+    },
+    {
+      "activeCompounds": [
+        "Apigenin",
+        "Bisabolol",
+        "Flavonoid"
+      ],
+      "benefits": [
+        "Menenangkan kulit yang iritasi.",
+        "Membantu mengurangi kemerahan dan peradangan ringan.",
+        "Mendukung kelembapan kulit."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak dengan biji.",
+        "Memerlukan sinar matahari cukup.",
+        "Bunga dipanen saat mekar."
+      ],
+      "entryKey": "kulit-cantik:chamomile",
+      "entryOrder": 10,
+      "localName": "Chamomile",
+      "plantKey": "chamomile",
+      "plantSlug": "chamomile",
+      "preparationMethods": [],
+      "rawEntryTitle": "Chamomile",
+      "rawZoneTitle": "Zona Kulit Cantik",
+      "scientificName": "Matricaria chamomilla L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Bunga."
+      ],
+      "warnings": [
+        "Dapat menimbulkan reaksi alergi pada individu yang sensitif terhadap keluarga tanaman Asteraceae."
+      ],
+      "zoneCode": "khb-z14",
+      "zoneSlug": "kulit-cantik",
+      "zoneTitle": "Zona Kulit Cantik"
+    },
+    {
+      "activeCompounds": [
         "Gingerol",
         "Shogaol",
         "Zingerone",
@@ -2486,14 +4331,9 @@
       "plantSlug": "sirih",
       "preparationMethods": [],
       "rawEntryTitle": "Sirih",
-      "rawZoneTitle": "Zona Tulang & Sendi",
+      "rawZoneTitle": "Zona Kesehatan Mulut",
       "scientificName": "Piper betle L.",
-      "titleCorrection": {
-        "correctedTitle": "Zona Kesehatan Mulut",
-        "occurrence": 7,
-        "rawTitle": "Zona Tulang & Sendi",
-        "reason": "Judul kedua tertulis sama dengan zona sebelumnya, tetapi isi tanaman membahas rongga mulut, gusi, plak, sariawan, dan bau mulut."
-      },
+      "titleCorrection": null,
       "usedParts": [
         "Daun."
       ],
@@ -2530,14 +4370,9 @@
       "plantSlug": "cengkeh",
       "preparationMethods": [],
       "rawEntryTitle": "Cengkeh",
-      "rawZoneTitle": "Zona Tulang & Sendi",
+      "rawZoneTitle": "Zona Kesehatan Mulut",
       "scientificName": "Syzygium aromaticum (L.) Merr. & L.M.Perry",
-      "titleCorrection": {
-        "correctedTitle": "Zona Kesehatan Mulut",
-        "occurrence": 7,
-        "rawTitle": "Zona Tulang & Sendi",
-        "reason": "Judul kedua tertulis sama dengan zona sebelumnya, tetapi isi tanaman membahas rongga mulut, gusi, plak, sariawan, dan bau mulut."
-      },
+      "titleCorrection": null,
       "usedParts": [
         "Kuncup bunga."
       ],
@@ -2574,14 +4409,9 @@
       "plantSlug": "kayu-manis",
       "preparationMethods": [],
       "rawEntryTitle": "Kayu Manis",
-      "rawZoneTitle": "Zona Tulang & Sendi",
+      "rawZoneTitle": "Zona Kesehatan Mulut",
       "scientificName": "Cinnamomum burmannii (Nees & T.Nees) Blume",
-      "titleCorrection": {
-        "correctedTitle": "Zona Kesehatan Mulut",
-        "occurrence": 7,
-        "rawTitle": "Zona Tulang & Sendi",
-        "reason": "Judul kedua tertulis sama dengan zona sebelumnya, tetapi isi tanaman membahas rongga mulut, gusi, plak, sariawan, dan bau mulut."
-      },
+      "titleCorrection": null,
       "usedParts": [
         "Kulit batang."
       ],
@@ -2618,14 +4448,9 @@
       "plantSlug": "daun-jambu",
       "preparationMethods": [],
       "rawEntryTitle": "Daun Jambu",
-      "rawZoneTitle": "Zona Tulang & Sendi",
+      "rawZoneTitle": "Zona Kesehatan Mulut",
       "scientificName": "Psidium guajava L.",
-      "titleCorrection": {
-        "correctedTitle": "Zona Kesehatan Mulut",
-        "occurrence": 7,
-        "rawTitle": "Zona Tulang & Sendi",
-        "reason": "Judul kedua tertulis sama dengan zona sebelumnya, tetapi isi tanaman membahas rongga mulut, gusi, plak, sariawan, dan bau mulut."
-      },
+      "titleCorrection": null,
       "usedParts": [
         "Daun."
       ],
@@ -2663,14 +4488,9 @@
       "plantSlug": "miswak",
       "preparationMethods": [],
       "rawEntryTitle": "Miswak",
-      "rawZoneTitle": "Zona Tulang & Sendi",
+      "rawZoneTitle": "Zona Kesehatan Mulut",
       "scientificName": "Salvadora persica L.",
-      "titleCorrection": {
-        "correctedTitle": "Zona Kesehatan Mulut",
-        "occurrence": 7,
-        "rawTitle": "Zona Tulang & Sendi",
-        "reason": "Judul kedua tertulis sama dengan zona sebelumnya, tetapi isi tanaman membahas rongga mulut, gusi, plak, sariawan, dan bau mulut."
-      },
+      "titleCorrection": null,
       "usedParts": [
         "Batang dan akar muda."
       ],
@@ -2707,14 +4527,9 @@
       "plantSlug": "mint",
       "preparationMethods": [],
       "rawEntryTitle": "Mint",
-      "rawZoneTitle": "Zona Tulang & Sendi",
+      "rawZoneTitle": "Zona Kesehatan Mulut",
       "scientificName": "Mentha × piperita L.",
-      "titleCorrection": {
-        "correctedTitle": "Zona Kesehatan Mulut",
-        "occurrence": 7,
-        "rawTitle": "Zona Tulang & Sendi",
-        "reason": "Judul kedua tertulis sama dengan zona sebelumnya, tetapi isi tanaman membahas rongga mulut, gusi, plak, sariawan, dan bau mulut."
-      },
+      "titleCorrection": null,
       "usedParts": [
         "Daun."
       ],
@@ -2751,14 +4566,9 @@
       "plantSlug": "sage",
       "preparationMethods": [],
       "rawEntryTitle": "Sage",
-      "rawZoneTitle": "Zona Tulang & Sendi",
+      "rawZoneTitle": "Zona Kesehatan Mulut",
       "scientificName": "Salvia officinalis L.",
-      "titleCorrection": {
-        "correctedTitle": "Zona Kesehatan Mulut",
-        "occurrence": 7,
-        "rawTitle": "Zona Tulang & Sendi",
-        "reason": "Judul kedua tertulis sama dengan zona sebelumnya, tetapi isi tanaman membahas rongga mulut, gusi, plak, sariawan, dan bau mulut."
-      },
+      "titleCorrection": null,
       "usedParts": [
         "Daun."
       ],
@@ -2795,14 +4605,9 @@
       "plantSlug": "teh-hijau",
       "preparationMethods": [],
       "rawEntryTitle": "Teh Hijau",
-      "rawZoneTitle": "Zona Tulang & Sendi",
+      "rawZoneTitle": "Zona Kesehatan Mulut",
       "scientificName": "Camellia sinensis (L.) Kuntze",
-      "titleCorrection": {
-        "correctedTitle": "Zona Kesehatan Mulut",
-        "occurrence": 7,
-        "rawTitle": "Zona Tulang & Sendi",
-        "reason": "Judul kedua tertulis sama dengan zona sebelumnya, tetapi isi tanaman membahas rongga mulut, gusi, plak, sariawan, dan bau mulut."
-      },
+      "titleCorrection": null,
       "usedParts": [
         "Daun muda."
       ],
@@ -2839,14 +4644,9 @@
       "plantSlug": "kemangi",
       "preparationMethods": [],
       "rawEntryTitle": "Kemangi",
-      "rawZoneTitle": "Zona Tulang & Sendi",
+      "rawZoneTitle": "Zona Kesehatan Mulut",
       "scientificName": "Ocimum basilicum L.",
-      "titleCorrection": {
-        "correctedTitle": "Zona Kesehatan Mulut",
-        "occurrence": 7,
-        "rawTitle": "Zona Tulang & Sendi",
-        "reason": "Judul kedua tertulis sama dengan zona sebelumnya, tetapi isi tanaman membahas rongga mulut, gusi, plak, sariawan, dan bau mulut."
-      },
+      "titleCorrection": null,
       "usedParts": [
         "Daun."
       ],
@@ -2884,14 +4684,9 @@
       "plantSlug": "jeruk-nipis",
       "preparationMethods": [],
       "rawEntryTitle": "Jeruk nipis",
-      "rawZoneTitle": "Zona Tulang & Sendi",
+      "rawZoneTitle": "Zona Kesehatan Mulut",
       "scientificName": "Citrus × aurantiifolia (Christm.) Swingle",
-      "titleCorrection": {
-        "correctedTitle": "Zona Kesehatan Mulut",
-        "occurrence": 7,
-        "rawTitle": "Zona Tulang & Sendi",
-        "reason": "Judul kedua tertulis sama dengan zona sebelumnya, tetapi isi tanaman membahas rongga mulut, gusi, plak, sariawan, dan bau mulut."
-      },
+      "titleCorrection": null,
       "usedParts": [
         "Buah."
       ],
@@ -2928,14 +4723,9 @@
       "plantSlug": "bawang-putih",
       "preparationMethods": [],
       "rawEntryTitle": "Bawang putih",
-      "rawZoneTitle": "Zona 18 – Anti Mikroba",
+      "rawZoneTitle": "Zona Anti Mikroba",
       "scientificName": "Allium sativum L.",
-      "titleCorrection": {
-        "correctedTitle": "Zona Anti Mikroba",
-        "occurrence": 8,
-        "rawTitle": "Zona 18 – Anti Mikroba",
-        "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
-      },
+      "titleCorrection": null,
       "usedParts": [
         "Umbi."
       ],
@@ -2973,14 +4763,9 @@
       "plantSlug": "sirih",
       "preparationMethods": [],
       "rawEntryTitle": "Sirih",
-      "rawZoneTitle": "Zona 18 – Anti Mikroba",
+      "rawZoneTitle": "Zona Anti Mikroba",
       "scientificName": "Piper betle L.",
-      "titleCorrection": {
-        "correctedTitle": "Zona Anti Mikroba",
-        "occurrence": 8,
-        "rawTitle": "Zona 18 – Anti Mikroba",
-        "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
-      },
+      "titleCorrection": null,
       "usedParts": [
         "Daun."
       ],
@@ -3017,14 +4802,9 @@
       "plantSlug": "kunyit",
       "preparationMethods": [],
       "rawEntryTitle": "Kunyit",
-      "rawZoneTitle": "Zona 18 – Anti Mikroba",
+      "rawZoneTitle": "Zona Anti Mikroba",
       "scientificName": "Curcuma longa L.",
-      "titleCorrection": {
-        "correctedTitle": "Zona Anti Mikroba",
-        "occurrence": 8,
-        "rawTitle": "Zona 18 – Anti Mikroba",
-        "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
-      },
+      "titleCorrection": null,
       "usedParts": [
         "Rimpang."
       ],
@@ -3061,14 +4841,9 @@
       "plantSlug": "jahe",
       "preparationMethods": [],
       "rawEntryTitle": "Jahe",
-      "rawZoneTitle": "Zona 18 – Anti Mikroba",
+      "rawZoneTitle": "Zona Anti Mikroba",
       "scientificName": "Zingiber officinale Roscoe",
-      "titleCorrection": {
-        "correctedTitle": "Zona Anti Mikroba",
-        "occurrence": 8,
-        "rawTitle": "Zona 18 – Anti Mikroba",
-        "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
-      },
+      "titleCorrection": null,
       "usedParts": [
         "Rimpang."
       ],
@@ -3105,14 +4880,9 @@
       "plantSlug": "cengkeh",
       "preparationMethods": [],
       "rawEntryTitle": "Cengkeh",
-      "rawZoneTitle": "Zona 18 – Anti Mikroba",
+      "rawZoneTitle": "Zona Anti Mikroba",
       "scientificName": "Syzygium aromaticum (L.) Merr. & L.M.Perry",
-      "titleCorrection": {
-        "correctedTitle": "Zona Anti Mikroba",
-        "occurrence": 8,
-        "rawTitle": "Zona 18 – Anti Mikroba",
-        "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
-      },
+      "titleCorrection": null,
       "usedParts": [
         "Kuncup bunga."
       ],
@@ -3149,14 +4919,9 @@
       "plantSlug": "kayu-manis",
       "preparationMethods": [],
       "rawEntryTitle": "Kayu manis",
-      "rawZoneTitle": "Zona 18 – Anti Mikroba",
+      "rawZoneTitle": "Zona Anti Mikroba",
       "scientificName": "Cinnamomum burmannii (Nees & T.Nees) Blume",
-      "titleCorrection": {
-        "correctedTitle": "Zona Anti Mikroba",
-        "occurrence": 8,
-        "rawTitle": "Zona 18 – Anti Mikroba",
-        "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
-      },
+      "titleCorrection": null,
       "usedParts": [
         "Kulit batang."
       ],
@@ -3193,14 +4958,9 @@
       "plantSlug": "sambiloto",
       "preparationMethods": [],
       "rawEntryTitle": "Sambiloto",
-      "rawZoneTitle": "Zona 18 – Anti Mikroba",
+      "rawZoneTitle": "Zona Anti Mikroba",
       "scientificName": "Andrographis paniculata (Burm.f.) Nees",
-      "titleCorrection": {
-        "correctedTitle": "Zona Anti Mikroba",
-        "occurrence": 8,
-        "rawTitle": "Zona 18 – Anti Mikroba",
-        "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
-      },
+      "titleCorrection": null,
       "usedParts": [
         "Daun dan batang."
       ],
@@ -3237,14 +4997,9 @@
       "plantSlug": "meniran",
       "preparationMethods": [],
       "rawEntryTitle": "Meniran",
-      "rawZoneTitle": "Zona 18 – Anti Mikroba",
+      "rawZoneTitle": "Zona Anti Mikroba",
       "scientificName": "Phyllanthus niruri L.",
-      "titleCorrection": {
-        "correctedTitle": "Zona Anti Mikroba",
-        "occurrence": 8,
-        "rawTitle": "Zona 18 – Anti Mikroba",
-        "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
-      },
+      "titleCorrection": null,
       "usedParts": [
         "Seluruh bagian tanaman."
       ],
@@ -3281,14 +5036,9 @@
       "plantSlug": "mimba",
       "preparationMethods": [],
       "rawEntryTitle": "Mimba",
-      "rawZoneTitle": "Zona 18 – Anti Mikroba",
+      "rawZoneTitle": "Zona Anti Mikroba",
       "scientificName": "Azadirachta indica A.Juss.",
-      "titleCorrection": {
-        "correctedTitle": "Zona Anti Mikroba",
-        "occurrence": 8,
-        "rawTitle": "Zona 18 – Anti Mikroba",
-        "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
-      },
+      "titleCorrection": null,
       "usedParts": [
         "Daun, kulit batang, dan biji."
       ],
@@ -3325,14 +5075,9 @@
       "plantSlug": "oregano",
       "preparationMethods": [],
       "rawEntryTitle": "Oregano",
-      "rawZoneTitle": "Zona 18 – Anti Mikroba",
+      "rawZoneTitle": "Zona Anti Mikroba",
       "scientificName": "Origanum vulgare L.",
-      "titleCorrection": {
-        "correctedTitle": "Zona Anti Mikroba",
-        "occurrence": 8,
-        "rawTitle": "Zona 18 – Anti Mikroba",
-        "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
-      },
+      "titleCorrection": null,
       "usedParts": [
         "Daun."
       ],
@@ -3369,14 +5114,9 @@
       "plantSlug": "kunyit",
       "preparationMethods": [],
       "rawEntryTitle": "Kunyit",
-      "rawZoneTitle": "Zona 19 Kesehatan Perempuan",
+      "rawZoneTitle": "Zona Kesehatan Perempuan",
       "scientificName": "Curcuma longa L.",
-      "titleCorrection": {
-        "correctedTitle": "Zona Kesehatan Perempuan",
-        "occurrence": 9,
-        "rawTitle": "Zona 19 Kesehatan Perempuan",
-        "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
-      },
+      "titleCorrection": null,
       "usedParts": [
         "Rimpang."
       ],
@@ -3414,14 +5154,9 @@
       "plantSlug": "katuk",
       "preparationMethods": [],
       "rawEntryTitle": "Katuk",
-      "rawZoneTitle": "Zona 19 Kesehatan Perempuan",
+      "rawZoneTitle": "Zona Kesehatan Perempuan",
       "scientificName": "Sauropus androgynus (L.) Merr.",
-      "titleCorrection": {
-        "correctedTitle": "Zona Kesehatan Perempuan",
-        "occurrence": 9,
-        "rawTitle": "Zona 19 Kesehatan Perempuan",
-        "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
-      },
+      "titleCorrection": null,
       "usedParts": [
         "Daun."
       ],
@@ -3458,14 +5193,9 @@
       "plantSlug": "temu-putih",
       "preparationMethods": [],
       "rawEntryTitle": "Temu Putih",
-      "rawZoneTitle": "Zona 19 Kesehatan Perempuan",
+      "rawZoneTitle": "Zona Kesehatan Perempuan",
       "scientificName": "Curcuma zedoaria (Christm.) Roscoe",
-      "titleCorrection": {
-        "correctedTitle": "Zona Kesehatan Perempuan",
-        "occurrence": 9,
-        "rawTitle": "Zona 19 Kesehatan Perempuan",
-        "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
-      },
+      "titleCorrection": null,
       "usedParts": [
         "Rimpang."
       ],
@@ -3503,14 +5233,9 @@
       "plantSlug": "sirih",
       "preparationMethods": [],
       "rawEntryTitle": "Sirih",
-      "rawZoneTitle": "Zona 19 Kesehatan Perempuan",
+      "rawZoneTitle": "Zona Kesehatan Perempuan",
       "scientificName": "Piper betle L.",
-      "titleCorrection": {
-        "correctedTitle": "Zona Kesehatan Perempuan",
-        "occurrence": 9,
-        "rawTitle": "Zona 19 Kesehatan Perempuan",
-        "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
-      },
+      "titleCorrection": null,
       "usedParts": [
         "Daun."
       ],
@@ -3547,14 +5272,9 @@
       "plantSlug": "dong-quai",
       "preparationMethods": [],
       "rawEntryTitle": "Dong Quai",
-      "rawZoneTitle": "Zona 19 Kesehatan Perempuan",
+      "rawZoneTitle": "Zona Kesehatan Perempuan",
       "scientificName": "Angelica sinensis (Oliv.) Diels",
-      "titleCorrection": {
-        "correctedTitle": "Zona Kesehatan Perempuan",
-        "occurrence": 9,
-        "rawTitle": "Zona 19 Kesehatan Perempuan",
-        "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
-      },
+      "titleCorrection": null,
       "usedParts": [
         "Akar."
       ],
@@ -3591,14 +5311,9 @@
       "plantSlug": "adas",
       "preparationMethods": [],
       "rawEntryTitle": "Adas",
-      "rawZoneTitle": "Zona 19 Kesehatan Perempuan",
+      "rawZoneTitle": "Zona Kesehatan Perempuan",
       "scientificName": "Foeniculum vulgare Mill.",
-      "titleCorrection": {
-        "correctedTitle": "Zona Kesehatan Perempuan",
-        "occurrence": 9,
-        "rawTitle": "Zona 19 Kesehatan Perempuan",
-        "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
-      },
+      "titleCorrection": null,
       "usedParts": [
         "Biji dan daun."
       ],
@@ -3635,14 +5350,9 @@
       "plantSlug": "kemangi",
       "preparationMethods": [],
       "rawEntryTitle": "Kemangi",
-      "rawZoneTitle": "Zona 19 Kesehatan Perempuan",
+      "rawZoneTitle": "Zona Kesehatan Perempuan",
       "scientificName": "Ocimum basilicum L.",
-      "titleCorrection": {
-        "correctedTitle": "Zona Kesehatan Perempuan",
-        "occurrence": 9,
-        "rawTitle": "Zona 19 Kesehatan Perempuan",
-        "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
-      },
+      "titleCorrection": null,
       "usedParts": [
         "Daun."
       ],
@@ -3680,14 +5390,9 @@
       "plantSlug": "rosella",
       "preparationMethods": [],
       "rawEntryTitle": "Rosella",
-      "rawZoneTitle": "Zona 19 Kesehatan Perempuan",
+      "rawZoneTitle": "Zona Kesehatan Perempuan",
       "scientificName": "Hibiscus sabdariffa L.",
-      "titleCorrection": {
-        "correctedTitle": "Zona Kesehatan Perempuan",
-        "occurrence": 9,
-        "rawTitle": "Zona 19 Kesehatan Perempuan",
-        "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
-      },
+      "titleCorrection": null,
       "usedParts": [
         "Kelopak bunga."
       ],
@@ -3724,14 +5429,9 @@
       "plantSlug": "pegagan",
       "preparationMethods": [],
       "rawEntryTitle": "Pegagan",
-      "rawZoneTitle": "Zona 19 Kesehatan Perempuan",
+      "rawZoneTitle": "Zona Kesehatan Perempuan",
       "scientificName": "Centella asiatica (L.) Urb.",
-      "titleCorrection": {
-        "correctedTitle": "Zona Kesehatan Perempuan",
-        "occurrence": 9,
-        "rawTitle": "Zona 19 Kesehatan Perempuan",
-        "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
-      },
+      "titleCorrection": null,
       "usedParts": [
         "Daun dan batang."
       ],
@@ -3742,6 +5442,1903 @@
       "zoneCode": "khb-z09",
       "zoneSlug": "kesehatan-perempuan",
       "zoneTitle": "Zona Kesehatan Perempuan"
+    },
+    {
+      "activeCompounds": [
+        "Antosianin",
+        "Hibiscus acid",
+        "Vitamin C",
+        "Flavonoid",
+        "Polifenol"
+      ],
+      "benefits": [
+        "Memiliki aktivitas antioksidan yang membantu melindungi sel tubuh dari radikal bebas.",
+        "Membantu mengurangi stres oksidatif.",
+        "Berpotensi membantu menjaga kesehatan jantung dan pembuluh darah.",
+        "Membantu mendukung daya tahan tubuh."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan biji.",
+        "Tumbuh baik pada daerah tropis dengan sinar matahari penuh.",
+        "Kelopak bunga dapat dipanen setelah tanaman berumur sekitar 4–5 bulan."
+      ],
+      "entryKey": "detoks-dan-antioksidan:rosella",
+      "entryOrder": 1,
+      "localName": "Rosella",
+      "plantKey": "rosella",
+      "plantSlug": "rosella",
+      "preparationMethods": [],
+      "rawEntryTitle": "Rosella",
+      "rawZoneTitle": "Zona Detoks dan Antioksidan",
+      "scientificName": "Hibiscus sabdariffa L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Kelopak bunga."
+      ],
+      "warnings": [
+        "Konsumsi berlebihan dapat menurunkan tekanan darah pada sebagian orang.",
+        "Gunakan dengan hati-hati pada pengguna obat antihipertensi."
+      ],
+      "zoneCode": "khb-z15",
+      "zoneSlug": "detoks-dan-antioksidan",
+      "zoneTitle": "Zona Detoks dan Antioksidan"
+    },
+    {
+      "activeCompounds": [
+        "Quercetin",
+        "Kaempferol",
+        "Vitamin C",
+        "β-Karoten",
+        "Klorogenat"
+      ],
+      "benefits": [
+        "Memiliki aktivitas antioksidan yang tinggi.",
+        "Membantu melindungi sel tubuh dari kerusakan akibat radikal bebas.",
+        "Membantu mendukung fungsi hati sebagai organ detoksifikasi.",
+        "Membantu memenuhi kebutuhan vitamin dan mineral."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan biji atau stek batang.",
+        "Tumbuh baik pada berbagai jenis tanah dengan sinar matahari penuh.",
+        "Daun dapat dipanen mulai umur sekitar 3–6 bulan."
+      ],
+      "entryKey": "detoks-dan-antioksidan:kelor",
+      "entryOrder": 2,
+      "localName": "Kelor",
+      "plantKey": "kelor",
+      "plantSlug": "kelor",
+      "preparationMethods": [],
+      "rawEntryTitle": "Kelor",
+      "rawZoneTitle": "Zona Detoks dan Antioksidan",
+      "scientificName": "Moringa oleifera Lam.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun."
+      ],
+      "warnings": [
+        "Hindari konsumsi akar karena mengandung senyawa yang berpotensi toksik.",
+        "Konsumsi secukupnya sebagai bagian dari pola makan sehat."
+      ],
+      "zoneCode": "khb-z15",
+      "zoneSlug": "detoks-dan-antioksidan",
+      "zoneTitle": "Zona Detoks dan Antioksidan"
+    },
+    {
+      "activeCompounds": [
+        "α-Mangostin",
+        "γ-Mangostin",
+        "Xanton",
+        "Tanin",
+        "Flavonoid"
+      ],
+      "benefits": [
+        "Memiliki aktivitas antioksidan yang kuat.",
+        "Membantu melindungi sel tubuh dari stres oksidatif.",
+        "Membantu mengurangi peradangan.",
+        "Berpotensi membantu menjaga kesehatan sistem imun."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan biji.",
+        "Tumbuh baik pada daerah tropis dengan curah hujan tinggi.",
+        "Buah mulai dipanen setelah pohon berumur sekitar 8–10 tahun."
+      ],
+      "entryKey": "detoks-dan-antioksidan:kulit-manggis",
+      "entryOrder": 3,
+      "localName": "Kulit Manggis",
+      "plantKey": "kulit manggis",
+      "plantSlug": "kulit-manggis",
+      "preparationMethods": [],
+      "rawEntryTitle": "Kulit manggis",
+      "rawZoneTitle": "Zona Detoks dan Antioksidan",
+      "scientificName": "Garcinia mangostana L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Kulit buah."
+      ],
+      "warnings": [
+        "Gunakan sesuai anjuran.",
+        "Konsultasikan dengan tenaga kesehatan apabila sedang mengonsumsi obat pengencer darah."
+      ],
+      "zoneCode": "khb-z15",
+      "zoneSlug": "detoks-dan-antioksidan",
+      "zoneTitle": "Zona Detoks dan Antioksidan"
+    },
+    {
+      "activeCompounds": [
+        "Epigallocatechin gallate (EGCG)",
+        "Katekin",
+        "Flavonoid",
+        "Kafein"
+      ],
+      "benefits": [
+        "Memiliki aktivitas antioksidan yang tinggi.",
+        "Membantu melindungi sel tubuh dari kerusakan oksidatif.",
+        "Membantu mendukung metabolisme tubuh.",
+        "Berpotensi membantu menjaga kesehatan jantung."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan biji atau stek.",
+        "Tumbuh baik pada daerah dataran tinggi.",
+        "Daun muda dipanen secara berkala."
+      ],
+      "entryKey": "detoks-dan-antioksidan:teh-hijau",
+      "entryOrder": 4,
+      "localName": "Teh Hijau",
+      "plantKey": "teh hijau",
+      "plantSlug": "teh-hijau",
+      "preparationMethods": [],
+      "rawEntryTitle": "Teh hijau",
+      "rawZoneTitle": "Zona Detoks dan Antioksidan",
+      "scientificName": "Camellia sinensis (L.) Kuntze",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun muda."
+      ],
+      "warnings": [
+        "Konsumsi berlebihan dapat meningkatkan asupan kafein.",
+        "Gunakan dalam jumlah yang wajar."
+      ],
+      "zoneCode": "khb-z15",
+      "zoneSlug": "detoks-dan-antioksidan",
+      "zoneTitle": "Zona Detoks dan Antioksidan"
+    },
+    {
+      "activeCompounds": [
+        "Sinamaldehida",
+        "Eugenol",
+        "Polifenol",
+        "Proantosianidin"
+      ],
+      "benefits": [
+        "Memiliki aktivitas antioksidan.",
+        "Membantu melindungi sel tubuh dari radikal bebas.",
+        "Membantu mengurangi stres oksidatif.",
+        "Berpotensi membantu menjaga kesehatan metabolisme tubuh."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan biji atau cangkok.",
+        "Tumbuh baik pada daerah dataran tinggi hingga sedang.",
+        "Dipanen setelah tanaman berumur sekitar 8–10 tahun."
+      ],
+      "entryKey": "detoks-dan-antioksidan:kayu-manis",
+      "entryOrder": 5,
+      "localName": "Kayu Manis",
+      "plantKey": "kayu manis",
+      "plantSlug": "kayu-manis",
+      "preparationMethods": [],
+      "rawEntryTitle": "Kayu manis",
+      "rawZoneTitle": "Zona Detoks dan Antioksidan",
+      "scientificName": "Cinnamomum burmannii (Nees & T.Nees) Blume",
+      "titleCorrection": null,
+      "usedParts": [
+        "Kulit batang."
+      ],
+      "warnings": [
+        "Konsumsi berlebihan tidak dianjurkan karena kandungan kumarin.",
+        "Gunakan sebagai bagian dari pola makan sehat."
+      ],
+      "zoneCode": "khb-z15",
+      "zoneSlug": "detoks-dan-antioksidan",
+      "zoneTitle": "Zona Detoks dan Antioksidan"
+    },
+    {
+      "activeCompounds": [
+        "Eugenol",
+        "Eugenyl asetat",
+        "β-Caryophyllene",
+        "Flavonoid"
+      ],
+      "benefits": [
+        "Memiliki aktivitas antioksidan yang tinggi.",
+        "Membantu melindungi sel tubuh dari kerusakan akibat radikal bebas.",
+        "Membantu mengurangi peradangan.",
+        "Berpotensi membantu menjaga daya tahan tubuh."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan biji.",
+        "Tumbuh baik pada daerah tropis dengan curah hujan cukup.",
+        "Mulai menghasilkan bunga pada umur sekitar 5–7 tahun."
+      ],
+      "entryKey": "detoks-dan-antioksidan:cengkeh",
+      "entryOrder": 6,
+      "localName": "Cengkeh",
+      "plantKey": "cengkeh",
+      "plantSlug": "cengkeh",
+      "preparationMethods": [],
+      "rawEntryTitle": "Cengkeh",
+      "rawZoneTitle": "Zona Detoks dan Antioksidan",
+      "scientificName": "Syzygium aromaticum (L.) Merr. & L.M.Perry",
+      "titleCorrection": null,
+      "usedParts": [
+        "Kuncup bunga."
+      ],
+      "warnings": [
+        "Minyak cengkeh pekat dapat menyebabkan iritasi bila digunakan langsung.",
+        "Gunakan sesuai anjuran."
+      ],
+      "zoneCode": "khb-z15",
+      "zoneSlug": "detoks-dan-antioksidan",
+      "zoneTitle": "Zona Detoks dan Antioksidan"
+    },
+    {
+      "activeCompounds": [
+        "Miristisin",
+        "Elemisin",
+        "Eugenol",
+        "Sabinene",
+        "Minyak atsiri"
+      ],
+      "benefits": [
+        "Memiliki aktivitas antioksidan.",
+        "Membantu melindungi sel tubuh dari stres oksidatif.",
+        "Membantu mengurangi peradangan.",
+        "Berpotensi membantu menjaga kesehatan sistem pencernaan."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan biji.",
+        "Tumbuh baik pada daerah tropis dengan tanah yang subur.",
+        "Mulai berbuah pada umur sekitar 7–9 tahun."
+      ],
+      "entryKey": "detoks-dan-antioksidan:pala",
+      "entryOrder": 7,
+      "localName": "Pala",
+      "plantKey": "pala",
+      "plantSlug": "pala",
+      "preparationMethods": [],
+      "rawEntryTitle": "Pala",
+      "rawZoneTitle": "Zona Detoks dan Antioksidan",
+      "scientificName": "Myristica fragrans Houtt.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Biji dan fuli (aril)."
+      ],
+      "warnings": [
+        "Konsumsi pala dalam jumlah besar dapat menyebabkan efek toksik, seperti halusinasi dan gangguan saraf.",
+        "Gunakan dalam jumlah yang wajar sebagai bumbu atau bahan herbal."
+      ],
+      "zoneCode": "khb-z15",
+      "zoneSlug": "detoks-dan-antioksidan",
+      "zoneTitle": "Zona Detoks dan Antioksidan"
+    },
+    {
+      "activeCompounds": [
+        "Flavanol",
+        "Katekin",
+        "Epikatekin",
+        "Teobromin",
+        "Polifenol"
+      ],
+      "benefits": [
+        "Memiliki aktivitas antioksidan yang tinggi.",
+        "Membantu melindungi sel tubuh dari kerusakan akibat radikal bebas.",
+        "Membantu menjaga kesehatan pembuluh darah.",
+        "Berpotensi mendukung kesehatan jantung."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan biji atau sambung pucuk.",
+        "Tumbuh baik pada daerah tropis dengan naungan sedang.",
+        "Mulai berbuah pada umur sekitar 3–5 tahun."
+      ],
+      "entryKey": "detoks-dan-antioksidan:kakao",
+      "entryOrder": 8,
+      "localName": "Kakao",
+      "plantKey": "kakao",
+      "plantSlug": "kakao",
+      "preparationMethods": [],
+      "rawEntryTitle": "Kakao",
+      "rawZoneTitle": "Zona Detoks dan Antioksidan",
+      "scientificName": "Theobroma cacao L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Biji."
+      ],
+      "warnings": [
+        "Produk kakao olahan sering mengandung gula tambahan.",
+        "Konsumsi dalam jumlah yang wajar sebagai bagian dari pola makan sehat."
+      ],
+      "zoneCode": "khb-z15",
+      "zoneSlug": "detoks-dan-antioksidan",
+      "zoneTitle": "Zona Detoks dan Antioksidan"
+    },
+    {
+      "activeCompounds": [
+        "Resveratrol",
+        "Antosianin",
+        "Quercetin",
+        "Katekin",
+        "Flavonoid"
+      ],
+      "benefits": [
+        "Memiliki aktivitas antioksidan.",
+        "Membantu melindungi sel tubuh dari radikal bebas.",
+        "Membantu menjaga kesehatan jantung dan pembuluh darah.",
+        "Berpotensi membantu mengurangi stres oksidatif."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan stek batang.",
+        "Memerlukan sinar matahari penuh dan drainase yang baik.",
+        "Mulai berbuah sekitar 1–2 tahun setelah tanam."
+      ],
+      "entryKey": "detoks-dan-antioksidan:anggur",
+      "entryOrder": 9,
+      "localName": "Anggur",
+      "plantKey": "anggur",
+      "plantSlug": "anggur",
+      "preparationMethods": [],
+      "rawEntryTitle": "Anggur",
+      "rawZoneTitle": "Zona Detoks dan Antioksidan",
+      "scientificName": "Vitis vinifera L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Buah dan kulit buah."
+      ],
+      "warnings": [
+        "Konsumsi buah secara berlebihan dapat meningkatkan asupan gula.",
+        "Cuci buah hingga bersih sebelum dikonsumsi."
+      ],
+      "zoneCode": "khb-z15",
+      "zoneSlug": "detoks-dan-antioksidan",
+      "zoneTitle": "Zona Detoks dan Antioksidan"
+    },
+    {
+      "activeCompounds": [
+        "Eugenol",
+        "Flavonoid",
+        "Tanin",
+        "Quercetin",
+        "Minyak atsiri"
+      ],
+      "benefits": [
+        "Memiliki aktivitas antioksidan.",
+        "Membantu melindungi sel tubuh dari kerusakan akibat radikal bebas.",
+        "Membantu mengurangi peradangan.",
+        "Berpotensi membantu menjaga kesehatan metabolisme tubuh."
+      ],
+      "cultivationTechniques": [
+        "Diperbanyak menggunakan biji atau cangkok.",
+        "Tumbuh baik pada daerah tropis dengan tanah yang subur.",
+        "Daun dapat dipanen setelah tanaman tumbuh dengan baik."
+      ],
+      "entryKey": "detoks-dan-antioksidan:daun-salam",
+      "entryOrder": 10,
+      "localName": "Daun Salam",
+      "plantKey": "daun salam",
+      "plantSlug": "daun-salam",
+      "preparationMethods": [],
+      "rawEntryTitle": "Daun salam",
+      "rawZoneTitle": "Zona Detoks dan Antioksidan",
+      "scientificName": "Syzygium polyanthum (Wight) Walp.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun."
+      ],
+      "warnings": [
+        "Tidak dianjurkan menggantikan pengobatan untuk penyakit metabolik.",
+        "Gunakan sebagai pelengkap pola makan sehat dan gaya hidup sehat."
+      ],
+      "zoneCode": "khb-z15",
+      "zoneSlug": "detoks-dan-antioksidan",
+      "zoneTitle": "Zona Detoks dan Antioksidan"
+    },
+    {
+      "activeCompounds": [
+        "Kurkumin dan kurkuminoid lain, minyak atsiri (turmeron, zingiberen)"
+      ],
+      "benefits": [
+        "Antiinflamasi, antioksidan, membantu meredakan nyeri sendi (termasuk osteoarthritis), mendukung kesehatan pencernaan dan hati"
+      ],
+      "cultivationTechniques": [
+        "Ditanam dari potongan rimpang bertunas, tanah gembur berdrainase baik, ketinggian 0–1500 mdpl, butuh naungan parsial pada awal pertumbuhan, dipanen setelah 8–10 bulan"
+      ],
+      "entryKey": "antiinflamasi-dan-nyeri:kunyit",
+      "entryOrder": 1,
+      "localName": "Kunyit, Kunir (Jawa), Koneng (Sunda)",
+      "plantKey": "kunyit",
+      "plantSlug": "kunyit",
+      "preparationMethods": [],
+      "rawEntryTitle": "Kunyit",
+      "rawZoneTitle": "Zona Antiinflamasi dan Nyeri",
+      "scientificName": "Curcuma longa L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Rimpang"
+      ],
+      "warnings": [
+        "Dapat berinteraksi dengan obat pengencer darah; dosis tinggi sebaiknya dihindari oleh penderita gangguan batu empedu; ibu hamil/menyusui sebaiknya konsultasi dokter"
+      ],
+      "zoneCode": "khb-z16",
+      "zoneSlug": "antiinflamasi-dan-nyeri",
+      "zoneTitle": "Zona Antiinflamasi dan Nyeri"
+    },
+    {
+      "activeCompounds": [
+        "Gingerol, shogaol, zingeron, minyak atsiri"
+      ],
+      "benefits": [
+        "Antiinflamasi, meredakan nyeri otot dan sendi, membantu mual, memperbaiki sirkulasi darah"
+      ],
+      "cultivationTechniques": [
+        "Bibit dari rimpang, tanah subur gembur, naungan parsial, ketinggian 200–1500 mdpl, panen 8–10 bulan setelah tanam"
+      ],
+      "entryKey": "antiinflamasi-dan-nyeri:jahe",
+      "entryOrder": 2,
+      "localName": "Jahe, Jae, Aliah",
+      "plantKey": "jahe",
+      "plantSlug": "jahe",
+      "preparationMethods": [],
+      "rawEntryTitle": "Jahe",
+      "rawZoneTitle": "Zona Antiinflamasi dan Nyeri",
+      "scientificName": "Zingiber officinale Roscoe",
+      "titleCorrection": null,
+      "usedParts": [
+        "Rimpang"
+      ],
+      "warnings": [
+        "Berpotensi meningkatkan risiko pendarahan bila dikombinasi antikoagulan; hati-hati pada penderita batu empedu"
+      ],
+      "zoneCode": "khb-z16",
+      "zoneSlug": "antiinflamasi-dan-nyeri",
+      "zoneTitle": "Zona Antiinflamasi dan Nyeri"
+    },
+    {
+      "activeCompounds": [
+        "Kurkuminoid, xanthorrhizol, minyak atsiri"
+      ],
+      "benefits": [
+        "Antiinflamasi, hepatoprotektif, meningkatkan nafsu makan, membantu meredakan nyeri sendi"
+      ],
+      "cultivationTechniques": [
+        "Serupa kunyit — tanah lempung berpasir subur, naungan ringan, ketinggian rendah–menengah, panen 9–12 bulan"
+      ],
+      "entryKey": "antiinflamasi-dan-nyeri:temulawak",
+      "entryOrder": 3,
+      "localName": "Temulawak, Koneng gede",
+      "plantKey": "temulawak",
+      "plantSlug": "temulawak",
+      "preparationMethods": [],
+      "rawEntryTitle": "Temulawak",
+      "rawZoneTitle": "Zona Antiinflamasi dan Nyeri",
+      "scientificName": "Curcuma zanthorrhiza Roxb.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Rimpang"
+      ],
+      "warnings": [
+        "Konsultasi dokter bagi penderita gangguan hati berat; potensi interaksi obat"
+      ],
+      "zoneCode": "khb-z16",
+      "zoneSlug": "antiinflamasi-dan-nyeri",
+      "zoneTitle": "Zona Antiinflamasi dan Nyeri"
+    },
+    {
+      "activeCompounds": [
+        "Flavonoid, saponin, minyak atsiri"
+      ],
+      "benefits": [
+        "Antiinflamasi, membantu penyembuhan luka, melancarkan peredaran darah, meredakan nyeri"
+      ],
+      "cultivationTechniques": [
+        "Perbanyakan stek batang/daun, tempat teduh dan lembap, dataran tinggi lebih optimal"
+      ],
+      "entryKey": "antiinflamasi-dan-nyeri:daun-dewa",
+      "entryOrder": 4,
+      "localName": "Daun dewa, Sambung nyawa (sering tertukar, beda spesies)",
+      "plantKey": "daun dewa",
+      "plantSlug": "daun-dewa",
+      "preparationMethods": [],
+      "rawEntryTitle": "Daun Dewa",
+      "rawZoneTitle": "Zona Antiinflamasi dan Nyeri",
+      "scientificName": "Gynura segetum (Lour.) Merr. / Gynura pseudochina (L.) DC.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun dan umbi akar"
+      ],
+      "warnings": [
+        "Bukti klinis pada manusia masih terbatas; hindari penggunaan jangka panjang tanpa pengawasan"
+      ],
+      "zoneCode": "khb-z16",
+      "zoneSlug": "antiinflamasi-dan-nyeri",
+      "zoneTitle": "Zona Antiinflamasi dan Nyeri"
+    },
+    {
+      "activeCompounds": [
+        "Sinensetin, glikosida orthosiphon, garam kalium, minyak atsiri"
+      ],
+      "benefits": [
+        "Diuretik, antiinflamasi, membantu mengurangi nyeri akibat asam urat, mendukung kesehatan ginjal"
+      ],
+      "cultivationTechniques": [
+        "Perbanyakan stek batang, tanah gembur subur, sinar matahari cukup, dataran rendah–menengah"
+      ],
+      "entryKey": "antiinflamasi-dan-nyeri:kumis-kucing",
+      "entryOrder": 5,
+      "localName": "Kumis kucing, Remujung",
+      "plantKey": "kumis kucing",
+      "plantSlug": "kumis-kucing",
+      "preparationMethods": [],
+      "rawEntryTitle": "Kumis Kucing",
+      "rawZoneTitle": "Zona Antiinflamasi dan Nyeri",
+      "scientificName": "Orthosiphon aristatus (Blume) Miq.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun"
+      ],
+      "warnings": [
+        "Efek diuretik cukup kuat — jaga asupan cairan; hati-hati pada penderita gangguan ginjal berat"
+      ],
+      "zoneCode": "khb-z16",
+      "zoneSlug": "antiinflamasi-dan-nyeri",
+      "zoneTitle": "Zona Antiinflamasi dan Nyeri"
+    },
+    {
+      "activeCompounds": [
+        "Eugenol (dominan), minyak atsiri lain"
+      ],
+      "benefits": [
+        "Antiinflamasi, analgesik (populer untuk nyeri gigi), antibakteri"
+      ],
+      "cultivationTechniques": [
+        "Tanaman tahunan/pohon, ketinggian 300–900 mdpl, iklim tropis lembap, mulai berbuah pada umur 6–8 tahun"
+      ],
+      "entryKey": "antiinflamasi-dan-nyeri:cengkeh",
+      "entryOrder": 6,
+      "localName": "Cengkeh",
+      "plantKey": "cengkeh",
+      "plantSlug": "cengkeh",
+      "preparationMethods": [],
+      "rawEntryTitle": "Cengkeh",
+      "rawZoneTitle": "Zona Antiinflamasi dan Nyeri",
+      "scientificName": "Syzygium aromaticum (L.) Merr. & L.M.Perry",
+      "titleCorrection": null,
+      "usedParts": [
+        "Kuncup bunga kering"
+      ],
+      "warnings": [
+        "Minyak eugenol pekat dapat mengiritasi kulit dan mukosa mulut bila digunakan berlebihan tanpa pengenceran"
+      ],
+      "zoneCode": "khb-z16",
+      "zoneSlug": "antiinflamasi-dan-nyeri",
+      "zoneTitle": "Zona Antiinflamasi dan Nyeri"
+    },
+    {
+      "activeCompounds": [
+        "Sitral, geraniol, minyak atsiri"
+      ],
+      "benefits": [
+        "Antiinflamasi, analgesik ringan, antimikroba, membantu relaksasi otot"
+      ],
+      "cultivationTechniques": [
+        "Perbanyakan anakan rumpun, tanah gembur, sinar matahari penuh, relatif mudah dan cepat tumbuh"
+      ],
+      "entryKey": "antiinflamasi-dan-nyeri:serai",
+      "entryOrder": 7,
+      "localName": "Serai, Sereh",
+      "plantKey": "serai",
+      "plantSlug": "serai",
+      "preparationMethods": [],
+      "rawEntryTitle": "Serai",
+      "rawZoneTitle": "Zona Antiinflamasi dan Nyeri",
+      "scientificName": "Cymbopogon citratus (DC.) Stapf",
+      "titleCorrection": null,
+      "usedParts": [
+        "Batang dan daun"
+      ],
+      "warnings": [
+        "Umumnya aman, tapi minyak atsiri pekat dapat mengiritasi kulit/mukosa bila tidak diencerkan"
+      ],
+      "zoneCode": "khb-z16",
+      "zoneSlug": "antiinflamasi-dan-nyeri",
+      "zoneTitle": "Zona Antiinflamasi dan Nyeri"
+    },
+    {
+      "activeCompounds": [
+        "Asam rosmarinat, asam karnosat, minyak atsiri (sineol, kamfer)"
+      ],
+      "benefits": [
+        "Antiinflamasi, antioksidan, membantu sirkulasi darah, sering dipakai topikal untuk nyeri otot"
+      ],
+      "cultivationTechniques": [
+        "Perbanyakan stek batang, iklim sejuk-kering, dataran tinggi, drainase tanah harus baik"
+      ],
+      "entryKey": "antiinflamasi-dan-nyeri:rosemary",
+      "entryOrder": 8,
+      "localName": "Rosemary (belum umum nama lokal Indonesia)",
+      "plantKey": "rosemary",
+      "plantSlug": "rosemary",
+      "preparationMethods": [],
+      "rawEntryTitle": "Rosemary",
+      "rawZoneTitle": "Zona Antiinflamasi dan Nyeri",
+      "scientificName": "Salvia rosmarinus Spenn. (sinonim Rosmarinus officinalis L.)",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun"
+      ],
+      "warnings": [
+        "Dosis tinggi berpotensi memicu kejang pada individu sensitif; sebaiknya dihindari dalam dosis terapeutik tinggi saat hamil"
+      ],
+      "zoneCode": "khb-z16",
+      "zoneSlug": "antiinflamasi-dan-nyeri",
+      "zoneTitle": "Zona Antiinflamasi dan Nyeri"
+    },
+    {
+      "activeCompounds": [
+        "Asam boswellic"
+      ],
+      "benefits": [
+        "Antiinflamasi, membantu osteoarthritis, sering diteliti untuk penyakit radang usus"
+      ],
+      "cultivationTechniques": [
+        "Pohon tahan kering, tumbuh alami di wilayah kering berbatu (India, Afrika Timur Laut); resin disadap dari sayatan kulit batang — bukan tanaman budidaya umum di iklim tropis lembap Indonesia"
+      ],
+      "entryKey": "antiinflamasi-dan-nyeri:boswellia",
+      "entryOrder": 9,
+      "localName": "Kemenyan India / Boswellia (belum umum di Indonesia)",
+      "plantKey": "boswellia",
+      "plantSlug": "boswellia",
+      "preparationMethods": [],
+      "rawEntryTitle": "Boswellia",
+      "rawZoneTitle": "Zona Antiinflamasi dan Nyeri",
+      "scientificName": ". ex Colebr.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Getah resin dari batang"
+      ],
+      "warnings": [
+        "Dapat berinteraksi dengan obat tertentu; efek samping saluran cerna ringan mungkin muncul; gunakan di bawah pengawasan untuk pemakaian jangka panjang"
+      ],
+      "zoneCode": "khb-z16",
+      "zoneSlug": "antiinflamasi-dan-nyeri",
+      "zoneTitle": "Zona Antiinflamasi dan Nyeri"
+    },
+    {
+      "activeCompounds": [
+        "Salisin (prekursor asam salisilat)"
+      ],
+      "benefits": [
+        "Analgesik dan antiinflamasi, membantu meredakan nyeri punggung dan sendi"
+      ],
+      "cultivationTechniques": [
+        "Pohon iklim sedang, biasa tumbuh di tepi sungai/tanah lembap; kurang cocok untuk dataran rendah tropis"
+      ],
+      "entryKey": "antiinflamasi-dan-nyeri:willow-bark",
+      "entryOrder": 10,
+      "localName": "Belum ada nama lokal umum di Indonesia",
+      "plantKey": "willow bark",
+      "plantSlug": "willow-bark",
+      "preparationMethods": [],
+      "rawEntryTitle": "Willow Bark (Kulit Kayu Willow)",
+      "rawZoneTitle": "Zona Antiinflamasi dan Nyeri",
+      "scientificName": null,
+      "titleCorrection": null,
+      "usedParts": [
+        "Kulit batang"
+      ],
+      "warnings": [
+        "Kerja mirip aspirin — hindari pada alergi salisilat, hindari pemberian pada anak-anak (risiko Reye's syndrome), potensi interaksi dengan obat pengencer darah"
+      ],
+      "zoneCode": "khb-z16",
+      "zoneSlug": "antiinflamasi-dan-nyeri",
+      "zoneTitle": "Zona Antiinflamasi dan Nyeri"
+    },
+    {
+      "activeCompounds": [
+        "Acetogenin, alkaloid, flavonoid, tanin"
+      ],
+      "benefits": [
+        "Diteliti secara in vitro/pra-klinis untuk potensi antikanker dan antioksidan; secara tradisional digunakan sebagai antiinflamasi dan penambah imun"
+      ],
+      "cultivationTechniques": [
+        "Perbanyakan biji atau cangkok, tanah subur berdrainase baik, dataran rendah–menengah (0–1000 mdpl), iklim tropis panas"
+      ],
+      "entryKey": "antikanker-potensial:sirsak",
+      "entryOrder": 1,
+      "localName": "Sirsak, Nangka landa, Nangka walanda",
+      "plantKey": "sirsak",
+      "plantSlug": "sirsak",
+      "preparationMethods": [],
+      "rawEntryTitle": "Sirsak",
+      "rawZoneTitle": "Zona Antikanker (Potensial)",
+      "scientificName": "Annona muricata L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun dan buah"
+      ],
+      "warnings": [
+        "Bukti efikasi antikanker pada manusia masih sangat terbatas (mayoritas studi laboratorium); konsumsi berlebihan dikaitkan dengan risiko gangguan neurologis (terkait senyawa annonacin); bukan pengganti terapi medis kanker"
+      ],
+      "zoneCode": "khb-z17",
+      "zoneSlug": "antikanker-potensial",
+      "zoneTitle": "Zona Antikanker (Potensial)"
+    },
+    {
+      "activeCompounds": [
+        "Ribosome-inactivating protein (RIP), flavonoid, saponin"
+      ],
+      "benefits": [
+        "Diteliti secara pra-klinis untuk potensi antikanker dan imunomodulator; digunakan tradisional sebagai pendukung pengobatan tumor"
+      ],
+      "cultivationTechniques": [
+        "Perbanyakan umbi/anakan, tempat teduh dan lembap, tanah gembur kaya humus"
+      ],
+      "entryKey": "antikanker-potensial:keladi-tikus",
+      "entryOrder": 2,
+      "localName": "Keladi tikus",
+      "plantKey": "keladi tikus",
+      "plantSlug": "keladi-tikus",
+      "preparationMethods": [],
+      "rawEntryTitle": "Keladi Tikus",
+      "rawZoneTitle": "Zona Antikanker (Potensial)",
+      "scientificName": "(Lodd.) Blume",
+      "titleCorrection": null,
+      "usedParts": [
+        "Umbi dan daun"
+      ],
+      "warnings": [
+        "Penelitian klinis pada manusia masih minim; jangan dijadikan pengganti kemoterapi atau pengobatan medis standar; konsultasikan dengan onkolog sebelum digunakan bersamaan terapi kanker"
+      ],
+      "zoneCode": "khb-z17",
+      "zoneSlug": "antikanker-potensial",
+      "zoneTitle": "Zona Antikanker (Potensial)"
+    },
+    {
+      "activeCompounds": [
+        "Kurkumin, kurkuminoid"
+      ],
+      "benefits": [
+        "Antioksidan kuat, antiinflamasi; kurkumin diteliti luas untuk potensi menghambat proliferasi sel kanker pada tingkat pra-klinis"
+      ],
+      "cultivationTechniques": [
+        "Ditanam dari rimpang bertunas, tanah gembur, naungan parsial, panen 8–10 bulan"
+      ],
+      "entryKey": "antikanker-potensial:kunyit",
+      "entryOrder": 3,
+      "localName": "Kunyit, Kunir (Jawa)",
+      "plantKey": "kunyit",
+      "plantSlug": "kunyit",
+      "preparationMethods": [],
+      "rawEntryTitle": "Kunyit",
+      "rawZoneTitle": "Zona Antikanker (Potensial)",
+      "scientificName": "Curcuma longa L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Rimpang"
+      ],
+      "warnings": [
+        "Bioavailabilitas kurkumin rendah bila dikonsumsi tanpa piperin/lemak; dosis tinggi berinteraksi dengan obat pengencer darah"
+      ],
+      "zoneCode": "khb-z17",
+      "zoneSlug": "antikanker-potensial",
+      "zoneTitle": "Zona Antikanker (Potensial)"
+    },
+    {
+      "activeCompounds": [
+        "Kurkuminoid, xanthorrhizol"
+      ],
+      "benefits": [
+        "Hepatoprotektif, antioksidan; xanthorrhizol diteliti pra-klinis untuk aktivitas antiproliferatif sel kanker"
+      ],
+      "cultivationTechniques": [
+        "Tanah lempung berpasir subur, naungan ringan, panen 9–12 bulan"
+      ],
+      "entryKey": "antikanker-potensial:temulawak",
+      "entryOrder": 4,
+      "localName": "Temulawak, Koneng gede",
+      "plantKey": "temulawak",
+      "plantSlug": "temulawak",
+      "preparationMethods": [],
+      "rawEntryTitle": "Temulawak",
+      "rawZoneTitle": "Zona Antikanker (Potensial)",
+      "scientificName": "Curcuma zanthorrhiza Roxb.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Rimpang"
+      ],
+      "warnings": [
+        "Hindari dosis tinggi pada gangguan hati berat; konsultasi dokter untuk penggunaan jangka panjang"
+      ],
+      "zoneCode": "khb-z17",
+      "zoneSlug": "antikanker-potensial",
+      "zoneTitle": "Zona Antikanker (Potensial)"
+    },
+    {
+      "activeCompounds": [
+        "Filantin, hipofilantin, flavonoid, lignan"
+      ],
+      "benefits": [
+        "Imunomodulator, hepatoprotektif; diteliti pra-klinis sebagai pendukung imun terkait kanker"
+      ],
+      "cultivationTechniques": [
+        "Tumbuh liar mudah, perbanyakan biji, tanah lembap, dataran rendah–menengah"
+      ],
+      "entryKey": "antikanker-potensial:meniran",
+      "entryOrder": 5,
+      "localName": "Meniran",
+      "plantKey": "meniran",
+      "plantSlug": "meniran",
+      "preparationMethods": [],
+      "rawEntryTitle": "Meniran",
+      "rawZoneTitle": "Zona Antikanker (Potensial)",
+      "scientificName": "Phyllanthus niruri L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Seluruh bagian tanaman (herba)"
+      ],
+      "warnings": [
+        "Data klinis manusia terbatas; hati-hati penggunaan bersamaan obat imunosupresan"
+      ],
+      "zoneCode": "khb-z17",
+      "zoneSlug": "antikanker-potensial",
+      "zoneTitle": "Zona Antikanker (Potensial)"
+    },
+    {
+      "activeCompounds": [
+        "Allicin, senyawa organosulfur"
+      ],
+      "benefits": [
+        "Antioksidan, antimikroba; studi epidemiologis mengaitkan konsumsi rutin dengan penurunan risiko beberapa jenis kanker (terutama saluran cerna)"
+      ],
+      "cultivationTechniques": [
+        "Ditanam dari siung, tanah gembur berdrainase baik, dataran tinggi (800–1200 mdpl) untuk hasil optimal"
+      ],
+      "entryKey": "antikanker-potensial:bawang-putih",
+      "entryOrder": 6,
+      "localName": "Bawang putih",
+      "plantKey": "bawang putih",
+      "plantSlug": "bawang-putih",
+      "preparationMethods": [],
+      "rawEntryTitle": "Bawang Putih",
+      "rawZoneTitle": "Zona Antikanker (Potensial)",
+      "scientificName": "Allium sativum L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Umbi"
+      ],
+      "warnings": [
+        "Dosis suplemen tinggi dapat meningkatkan risiko pendarahan, terutama bila dikombinasi antikoagulan atau sebelum operasi"
+      ],
+      "zoneCode": "khb-z17",
+      "zoneSlug": "antikanker-potensial",
+      "zoneTitle": "Zona Antikanker (Potensial)"
+    },
+    {
+      "activeCompounds": [
+        "Sulforafan, glukosinolat, indole-3-carbinol"
+      ],
+      "benefits": [
+        "Sulforafan diteliti luas untuk potensi mendukung detoksifikasi sel dan aktivitas antikanker; kaya antioksidan"
+      ],
+      "cultivationTechniques": [
+        "Ditanam dari benih/bibit semai, tanah subur pH netral, iklim sejuk, dataran tinggi (di atas 700 mdpl)"
+      ],
+      "entryKey": "antikanker-potensial:brokoli",
+      "entryOrder": 7,
+      "localName": "Brokoli",
+      "plantKey": "brokoli",
+      "plantSlug": "brokoli",
+      "preparationMethods": [],
+      "rawEntryTitle": "Brokoli",
+      "rawZoneTitle": "Zona Antikanker (Potensial)",
+      "scientificName": "var. italica",
+      "titleCorrection": null,
+      "usedParts": [
+        "Bunga/kuncup dan batang muda"
+      ],
+      "warnings": [
+        "Konsumsi berlebihan pada penderita gangguan tiroid tertentu perlu diperhatikan karena kandungan goitrogenik"
+      ],
+      "zoneCode": "khb-z17",
+      "zoneSlug": "antikanker-potensial",
+      "zoneTitle": "Zona Antikanker (Potensial)"
+    },
+    {
+      "activeCompounds": [
+        "Katekin (terutama EGCG), polifenol"
+      ],
+      "benefits": [
+        "Antioksidan kuat; EGCG diteliti pra-klinis dan epidemiologis terkait potensi penghambatan pertumbuhan sel kanker"
+      ],
+      "cultivationTechniques": [
+        "Dataran tinggi (di atas 800 mdpl), iklim sejuk lembap, perbanyakan stek/biji, perlu naungan parsial"
+      ],
+      "entryKey": "antikanker-potensial:teh-hijau",
+      "entryOrder": 8,
+      "localName": "Teh hijau",
+      "plantKey": "teh hijau",
+      "plantSlug": "teh-hijau",
+      "preparationMethods": [],
+      "rawEntryTitle": "Teh Hijau",
+      "rawZoneTitle": "Zona Antikanker (Potensial)",
+      "scientificName": "L.) Kuntze",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun (diproses minimal, tanpa fermentasi)"
+      ],
+      "warnings": [
+        "Konsumsi berlebihan (ekstrak dosis tinggi) dikaitkan dengan risiko gangguan hati; kandungan kafein perlu diperhatikan bagi penderita gangguan lambung/jantung"
+      ],
+      "zoneCode": "khb-z17",
+      "zoneSlug": "antikanker-potensial",
+      "zoneTitle": "Zona Antikanker (Potensial)"
+    },
+    {
+      "activeCompounds": [
+        "Antosianin, asam protokatekuat, flavonoid"
+      ],
+      "benefits": [
+        "Antioksidan tinggi; diteliti pra-klinis untuk aktivitas antiproliferatif; juga dikenal membantu menurunkan tekanan darah"
+      ],
+      "cultivationTechniques": [
+        "Ditanam dari biji, tanah gembur berdrainase baik, sinar matahari penuh, dataran rendah–menengah, panen kelopak 3–4 bulan setelah tanam"
+      ],
+      "entryKey": "antikanker-potensial:rosela",
+      "entryOrder": 9,
+      "localName": "Rosela, Bunga rosela",
+      "plantKey": "rosela",
+      "plantSlug": "rosela",
+      "preparationMethods": [],
+      "rawEntryTitle": "Rosela",
+      "rawZoneTitle": "Zona Antikanker (Potensial)",
+      "scientificName": "L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Kelopak bunga (kaliks)"
+      ],
+      "warnings": [
+        "Dapat menurunkan tekanan darah — hati-hati bagi penderita hipotensi atau yang mengonsumsi obat antihipertensi"
+      ],
+      "zoneCode": "khb-z17",
+      "zoneSlug": "antikanker-potensial",
+      "zoneTitle": "Zona Antikanker (Potensial)"
+    },
+    {
+      "activeCompounds": [
+        "Flavonoid, alkaloid, saponin, polifenol"
+      ],
+      "benefits": [
+        "Antioksidan, antiinflamasi; secara tradisional dan pra-klinis diteliti untuk potensi antikanker"
+      ],
+      "cultivationTechniques": [
+        "Perbanyakan biji atau cangkok, tanah subur, dataran rendah–menengah, cukup sinar matahari"
+      ],
+      "entryKey": "antikanker-potensial:mahkota-dewa",
+      "entryOrder": 10,
+      "localName": "Mahkota dewa",
+      "plantKey": "mahkota dewa",
+      "plantSlug": "mahkota-dewa",
+      "preparationMethods": [],
+      "rawEntryTitle": "Mahkota Dewa",
+      "rawZoneTitle": "Zona Antikanker (Potensial)",
+      "scientificName": "Phaleria macrocarpa (Scheff.) Boerl.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daging buah (dikeringkan), daun, dan biji (biji beracun, jarang dipakai)"
+      ],
+      "warnings": [
+        "Biji bersifat toksik dan tidak boleh dikonsumsi; penggunaan daging buah perlu pengolahan tepat; hindari penggunaan tanpa pengawasan tenaga kesehatan"
+      ],
+      "zoneCode": "khb-z17",
+      "zoneSlug": "antikanker-potensial",
+      "zoneTitle": "Zona Antikanker (Potensial)"
+    },
+    {
+      "activeCompounds": [
+        "Katekin (EGCG), kafein, polifenol"
+      ],
+      "benefits": [
+        "Membantu meningkatkan metabolisme dan oksidasi lemak, antioksidan, mendukung pengelolaan berat badan sebagai bagian dari pola hidup sehat"
+      ],
+      "cultivationTechniques": [
+        "Dataran tinggi (>800 mdpl), iklim sejuk lembap, perbanyakan stek/biji, naungan parsial"
+      ],
+      "entryKey": "obesitas-dan-metabolik:teh-hijau",
+      "entryOrder": 1,
+      "localName": "Teh hijau",
+      "plantKey": "teh hijau",
+      "plantSlug": "teh-hijau",
+      "preparationMethods": [],
+      "rawEntryTitle": "Teh Hijau",
+      "rawZoneTitle": "Zona Obesitas dan Metabolik",
+      "scientificName": "Camellia sinensis (L.) Kuntze",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun (diproses minimal)"
+      ],
+      "warnings": [
+        "Kandungan kafein dapat mengganggu tidur atau memicu jantung berdebar pada individu sensitif; dosis ekstrak tinggi berisiko bagi fungsi hati"
+      ],
+      "zoneCode": "khb-z18",
+      "zoneSlug": "obesitas-dan-metabolik",
+      "zoneTitle": "Zona Obesitas dan Metabolik"
+    },
+    {
+      "activeCompounds": [
+        "Flavonoid, asam klorogenat, isothiocyanate, vitamin & mineral tinggi"
+      ],
+      "benefits": [
+        "Antioksidan, membantu mengontrol gula darah, mendukung profil lipid yang lebih sehat, sumber nutrisi padat untuk pola makan sehat"
+      ],
+      "cultivationTechniques": [
+        "Perbanyakan stek batang atau biji, tahan kekeringan, tanah berdrainase baik, dataran rendah–menengah"
+      ],
+      "entryKey": "obesitas-dan-metabolik:kelor",
+      "entryOrder": 2,
+      "localName": "Kelor",
+      "plantKey": "kelor",
+      "plantSlug": "kelor",
+      "preparationMethods": [],
+      "rawEntryTitle": "Kelor",
+      "rawZoneTitle": "Zona Obesitas dan Metabolik",
+      "scientificName": "Moringa oleifera Lam.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun"
+      ],
+      "warnings": [
+        "Konsumsi berlebihan bagian tertentu (kulit akar) berisiko toksik; ibu hamil sebaiknya membatasi konsumsi akar dan kulit batang"
+      ],
+      "zoneCode": "khb-z18",
+      "zoneSlug": "obesitas-dan-metabolik",
+      "zoneTitle": "Zona Obesitas dan Metabolik"
+    },
+    {
+      "activeCompounds": [
+        "Sinamaldehid, kumarin, polifenol"
+      ],
+      "benefits": [
+        "Membantu meningkatkan sensitivitas insulin, mendukung regulasi gula darah, antioksidan"
+      ],
+      "cultivationTechniques": [
+        "Pohon tahunan, dataran tinggi (500–1500 mdpl), iklim tropis lembap, panen kulit batang setelah 5–15 tahun tergantung jenis"
+      ],
+      "entryKey": "obesitas-dan-metabolik:kayu-manis",
+      "entryOrder": 3,
+      "localName": "Kayu manis",
+      "plantKey": "kayu manis",
+      "plantSlug": "kayu-manis",
+      "preparationMethods": [],
+      "rawEntryTitle": "Kayu Manis",
+      "rawZoneTitle": "Zona Obesitas dan Metabolik",
+      "scientificName": "(Nees & T. Nees) Blume / Cinnamomum verum J.Presl",
+      "titleCorrection": null,
+      "usedParts": [
+        "Kulit batang"
+      ],
+      "warnings": [
+        "Kandungan kumarin tinggi (terutama jenis Cassia/C. burmannii) berisiko bagi fungsi hati bila dikonsumsi berlebihan jangka panjang; hati-hati pada penderita gangguan hati"
+      ],
+      "zoneCode": "khb-z18",
+      "zoneSlug": "obesitas-dan-metabolik",
+      "zoneTitle": "Zona Obesitas dan Metabolik"
+    },
+    {
+      "activeCompounds": [
+        "Asam hidroksisitrat (HCA)"
+      ],
+      "benefits": [
+        "Diteliti sebagai penghambat pembentukan lemak dan penekan nafsu makan, meski hasil studi klinis manusia masih beragam"
+      ],
+      "cultivationTechniques": [
+        "Pohon tahunan tropis, dataran rendah–menengah, perbanyakan biji atau cangkok, butuh waktu lama untuk berbuah"
+      ],
+      "entryKey": "obesitas-dan-metabolik:garcinia",
+      "entryOrder": 4,
+      "localName": "Asam gelugur / Kandis (tergantung spesies)",
+      "plantKey": "garcinia",
+      "plantSlug": "garcinia",
+      "preparationMethods": [],
+      "rawEntryTitle": "Garcinia",
+      "rawZoneTitle": "Zona Obesitas dan Metabolik",
+      "scientificName": "Garcinia cambogia (Gaertn.) Desr. / Garcinia atroviridis Griff. ex T.Anderson",
+      "titleCorrection": null,
+      "usedParts": [
+        "Kulit buah"
+      ],
+      "warnings": [
+        "Penggunaan dosis tinggi/jangka panjang dikaitkan dengan laporan gangguan hati pada beberapa kasus; hindari pada ibu hamil/menyusui dan penderita gangguan hati"
+      ],
+      "zoneCode": "khb-z18",
+      "zoneSlug": "obesitas-dan-metabolik",
+      "zoneTitle": "Zona Obesitas dan Metabolik"
+    },
+    {
+      "activeCompounds": [
+        "Gingerol, shogaol"
+      ],
+      "benefits": [
+        "Membantu termogenesis ringan, mendukung pencernaan, antiinflamasi yang relevan dengan peradangan metabolik"
+      ],
+      "cultivationTechniques": [
+        "Bibit rimpang, tanah gembur, naungan parsial, panen 8–10 bulan"
+      ],
+      "entryKey": "obesitas-dan-metabolik:jahe",
+      "entryOrder": 5,
+      "localName": "Jahe",
+      "plantKey": "jahe",
+      "plantSlug": "jahe",
+      "preparationMethods": [],
+      "rawEntryTitle": "Jahe",
+      "rawZoneTitle": "Zona Obesitas dan Metabolik",
+      "scientificName": "Zingiber officinale Roscoe",
+      "titleCorrection": null,
+      "usedParts": [
+        "Rimpang"
+      ],
+      "warnings": [
+        "Dosis tinggi berpotensi meningkatkan risiko pendarahan bila dikombinasi antikoagulan"
+      ],
+      "zoneCode": "khb-z18",
+      "zoneSlug": "obesitas-dan-metabolik",
+      "zoneTitle": "Zona Obesitas dan Metabolik"
+    },
+    {
+      "activeCompounds": [
+        "Kurkumin, kurkuminoid"
+      ],
+      "benefits": [
+        "Antiinflamasi (relevan untuk peradangan kronis terkait obesitas), antioksidan, diteliti untuk mendukung sensitivitas insulin"
+      ],
+      "cultivationTechniques": [
+        "Rimpang bertunas, tanah gembur, naungan parsial, panen 8–10 bulan"
+      ],
+      "entryKey": "obesitas-dan-metabolik:kunyit",
+      "entryOrder": 6,
+      "localName": "Kunyit",
+      "plantKey": "kunyit",
+      "plantSlug": "kunyit",
+      "preparationMethods": [],
+      "rawEntryTitle": "Kunyit",
+      "rawZoneTitle": "Zona Obesitas dan Metabolik",
+      "scientificName": "Curcuma longa L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Rimpang"
+      ],
+      "warnings": [
+        "Bioavailabilitas rendah tanpa piperin; interaksi dengan obat pengencer darah pada dosis tinggi"
+      ],
+      "zoneCode": "khb-z18",
+      "zoneSlug": "obesitas-dan-metabolik",
+      "zoneTitle": "Zona Obesitas dan Metabolik"
+    },
+    {
+      "activeCompounds": [
+        "Kurkuminoid, xanthorrhizol"
+      ],
+      "benefits": [
+        "Hepatoprotektif, membantu metabolisme lemak melalui dukungan fungsi hati, antiinflamasi"
+      ],
+      "cultivationTechniques": [
+        "Tanah lempung berpasir subur, naungan ringan, panen 9–12 bulan"
+      ],
+      "entryKey": "obesitas-dan-metabolik:temulawak",
+      "entryOrder": 7,
+      "localName": "Temulawak",
+      "plantKey": "temulawak",
+      "plantSlug": "temulawak",
+      "preparationMethods": [],
+      "rawEntryTitle": "Temulawak",
+      "rawZoneTitle": "Zona Obesitas dan Metabolik",
+      "scientificName": "Curcuma zanthorrhiza Roxb.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Rimpang"
+      ],
+      "warnings": [
+        "Konsultasi dokter untuk gangguan hati berat atau penggunaan jangka panjang"
+      ],
+      "zoneCode": "khb-z18",
+      "zoneSlug": "obesitas-dan-metabolik",
+      "zoneTitle": "Zona Obesitas dan Metabolik"
+    },
+    {
+      "activeCompounds": [
+        "Timokuinon, minyak atsiri"
+      ],
+      "benefits": [
+        "Antiinflamasi, antioksidan, diteliti untuk membantu regulasi gula darah dan profil lipid"
+      ],
+      "cultivationTechniques": [
+        "Tanaman semusim, iklim kering-sedang, tanah berdrainase baik, sinar matahari penuh, siklus tanam relatif singkat (3–4 bulan)"
+      ],
+      "entryKey": "obesitas-dan-metabolik:jinten-hitam",
+      "entryOrder": 8,
+      "localName": "Jinten hitam, Habbatussauda",
+      "plantKey": "jinten hitam",
+      "plantSlug": "jinten-hitam",
+      "preparationMethods": [],
+      "rawEntryTitle": "Jinten Hitam",
+      "rawZoneTitle": "Zona Obesitas dan Metabolik",
+      "scientificName": "Nigella sativa L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Biji"
+      ],
+      "warnings": [
+        "Dosis tinggi dapat menyebabkan gangguan pencernaan; hati-hati bagi ibu hamil dan penderita gangguan pembekuan darah"
+      ],
+      "zoneCode": "khb-z18",
+      "zoneSlug": "obesitas-dan-metabolik",
+      "zoneTitle": "Zona Obesitas dan Metabolik"
+    },
+    {
+      "activeCompounds": [
+        "Antosianin, asam protokatekuat, flavonoid"
+      ],
+      "benefits": [
+        "Membantu menurunkan tekanan darah, antioksidan, diteliti untuk mendukung profil lipid yang lebih sehat"
+      ],
+      "cultivationTechniques": [
+        "Biji, tanah gembur berdrainase baik, sinar matahari penuh, panen kelopak 3–4 bulan setelah tanam"
+      ],
+      "entryKey": "obesitas-dan-metabolik:rosella",
+      "entryOrder": 9,
+      "localName": "Rosela, Bunga rosela",
+      "plantKey": "rosella",
+      "plantSlug": "rosella",
+      "preparationMethods": [],
+      "rawEntryTitle": "Rosella",
+      "rawZoneTitle": "Zona Obesitas dan Metabolik",
+      "scientificName": "Hibiscus sabdariffa L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Kelopak bunga (kaliks)"
+      ],
+      "warnings": [
+        "Berpotensi menurunkan tekanan darah berlebihan bila dikombinasi obat antihipertensi"
+      ],
+      "zoneCode": "khb-z18",
+      "zoneSlug": "obesitas-dan-metabolik",
+      "zoneTitle": "Zona Obesitas dan Metabolik"
+    },
+    {
+      "activeCompounds": [
+        "Asam klorogenat, kafein"
+      ],
+      "benefits": [
+        "Diteliti untuk potensi membantu regulasi gula darah dan penurunan berat badan, meski bukti klinis manusia masih terbatas dan beragam"
+      ],
+      "cultivationTechniques": [
+        "Pohon tahunan, dataran tinggi (untuk arabika 800–2000 mdpl), iklim tropis sejuk, perbanyakan biji/bibit, mulai berbuah umur 3–4 tahun"
+      ],
+      "entryKey": "obesitas-dan-metabolik:kopi-hijau",
+      "entryOrder": 10,
+      "localName": "Kopi hijau (biji kopi yang belum disangrai)",
+      "plantKey": "kopi hijau",
+      "plantSlug": "kopi-hijau",
+      "preparationMethods": [],
+      "rawEntryTitle": "Kopi Hijau",
+      "rawZoneTitle": "Zona Obesitas dan Metabolik",
+      "scientificName": "Coffea canephora Pierre ex A.Froehner / Coffea arabica L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Biji (mentah, tidak disangrai)"
+      ],
+      "warnings": [
+        "Kandungan kafein tetap ada meski tidak disangrai — berisiko bagi penderita gangguan lambung, jantung berdebar, atau insomnia; hindari dosis tinggi pada ibu hamil"
+      ],
+      "zoneCode": "khb-z18",
+      "zoneSlug": "obesitas-dan-metabolik",
+      "zoneTitle": "Zona Obesitas dan Metabolik"
+    },
+    {
+      "activeCompounds": [
+        "Linalool, linalil asetat, minyak atsiri"
+      ],
+      "benefits": [
+        "Menenangkan sistem saraf, membantu meredakan kecemasan ringan, mendukung kualitas tidur (umumnya melalui aromaterapi)"
+      ],
+      "cultivationTechniques": [
+        "Iklim sejuk-kering, dataran tinggi, tanah berdrainase sangat baik (tidak toleran genangan air), perbanyakan stek atau biji, butuh sinar matahari penuh"
+      ],
+      "entryKey": "tidur-dan-relaksasi:lavender",
+      "entryOrder": 1,
+      "localName": "Lavender (belum umum nama lokal Indonesia)",
+      "plantKey": "lavender",
+      "plantSlug": "lavender",
+      "preparationMethods": [],
+      "rawEntryTitle": "Lavender",
+      "rawZoneTitle": "Zona Tidur dan Relaksasi",
+      "scientificName": "Lavandula angustifolia Mill.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Bunga"
+      ],
+      "warnings": [
+        "Konsumsi oral minyak esensial pekat dapat toksik; gunakan hanya untuk aromaterapi/topikal dengan pengenceran tepat; hati-hati pada anak-anak"
+      ],
+      "zoneCode": "khb-z19",
+      "zoneSlug": "tidur-dan-relaksasi",
+      "zoneTitle": "Zona Tidur dan Relaksasi"
+    },
+    {
+      "activeCompounds": [
+        "Apigenin, bisabolol, flavonoid, minyak atsiri"
+      ],
+      "benefits": [
+        "Menenangkan, membantu relaksasi otot dan pikiran, mendukung tidur, meredakan gangguan pencernaan ringan"
+      ],
+      "cultivationTechniques": [
+        "Iklim sejuk-sedang, dataran tinggi lebih optimal, tanah berdrainase baik, perbanyakan biji, sinar matahari cukup"
+      ],
+      "entryKey": "tidur-dan-relaksasi:chamomile",
+      "entryOrder": 2,
+      "localName": "Kamomil",
+      "plantKey": "chamomile",
+      "plantSlug": "chamomile",
+      "preparationMethods": [],
+      "rawEntryTitle": "Chamomile",
+      "rawZoneTitle": "Zona Tidur dan Relaksasi",
+      "scientificName": "Matricaria chamomilla L. (Chamomile Jerman) / Chamaemelum nobile (L.) All. (Chamomile Romawi)",
+      "titleCorrection": null,
+      "usedParts": [
+        "Bunga"
+      ],
+      "warnings": [
+        "Berpotensi menyebabkan reaksi alergi pada individu sensitif terhadap keluarga Asteraceae (mis. ragweed); dapat berinteraksi dengan obat pengencer darah"
+      ],
+      "zoneCode": "khb-z19",
+      "zoneSlug": "tidur-dan-relaksasi",
+      "zoneTitle": "Zona Tidur dan Relaksasi"
+    },
+    {
+      "activeCompounds": [
+        "Asam rosmarinat, sitral, minyak atsiri"
+      ],
+      "benefits": [
+        "Menenangkan sistem saraf, membantu meredakan kecemasan ringan dan gangguan tidur, mendukung pencernaan"
+      ],
+      "cultivationTechniques": [
+        "Iklim sedang-sejuk, tanah lembap subur, perbanyakan stek atau biji, dapat tumbuh dengan naungan parsial"
+      ],
+      "entryKey": "tidur-dan-relaksasi:lemon-balm",
+      "entryOrder": 3,
+      "localName": "Lemon balm, Serai wangi lemon (belum baku)",
+      "plantKey": "lemon balm",
+      "plantSlug": "lemon-balm",
+      "preparationMethods": [],
+      "rawEntryTitle": "Lemon Balm",
+      "rawZoneTitle": "Zona Tidur dan Relaksasi",
+      "scientificName": "L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun"
+      ],
+      "warnings": [
+        "Dapat berinteraksi dengan obat tiroid dan sedatif lain; hindari kombinasi berlebihan dengan obat penenang"
+      ],
+      "zoneCode": "khb-z19",
+      "zoneSlug": "tidur-dan-relaksasi",
+      "zoneTitle": "Zona Tidur dan Relaksasi"
+    },
+    {
+      "activeCompounds": [
+        "Asam valerenat, valepotriat, minyak atsiri"
+      ],
+      "benefits": [
+        "Membantu mengatasi insomnia, menenangkan sistem saraf pusat, mendukung relaksasi"
+      ],
+      "cultivationTechniques": [
+        "Iklim sedang-sejuk, tanah lembap kaya humus, kurang cocok di dataran rendah tropis panas"
+      ],
+      "entryKey": "tidur-dan-relaksasi:valerian",
+      "entryOrder": 4,
+      "localName": "Valerian (belum ada nama lokal Indonesia)",
+      "plantKey": "valerian",
+      "plantSlug": "valerian",
+      "preparationMethods": [],
+      "rawEntryTitle": "Valerian",
+      "rawZoneTitle": "Zona Tidur dan Relaksasi",
+      "scientificName": "Valeriana officinalis L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Akar dan rimpang"
+      ],
+      "warnings": [
+        "Dapat menyebabkan kantuk berlebihan bila dikombinasi obat sedatif/alkohol; hindari mengemudi setelah konsumsi; tidak dianjurkan untuk penggunaan jangka panjang tanpa pengawasan"
+      ],
+      "zoneCode": "khb-z19",
+      "zoneSlug": "tidur-dan-relaksasi",
+      "zoneTitle": "Zona Tidur dan Relaksasi"
+    },
+    {
+      "activeCompounds": [
+        "Flavonoid (vitexin, isovitexin), alkaloid harman"
+      ],
+      "benefits": [
+        "Membantu meredakan kecemasan, mendukung kualitas tidur, relaksasi otot"
+      ],
+      "cultivationTechniques": [
+        "Tanaman merambat, iklim tropis-subtropis, tanah berdrainase baik, butuh penopang rambatan, sinar matahari cukup"
+      ],
+      "entryKey": "tidur-dan-relaksasi:passion-flower",
+      "entryOrder": 5,
+      "localName": "Passion flower, Markisa hutan (kerabat dekat markisa)",
+      "plantKey": "passion flower",
+      "plantSlug": "passion-flower",
+      "preparationMethods": [],
+      "rawEntryTitle": "Passion Flower",
+      "rawZoneTitle": "Zona Tidur dan Relaksasi",
+      "scientificName": "Passiflora incarnata L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Bagian atas tanaman (daun, batang, bunga)"
+      ],
+      "warnings": [
+        "Dapat memperkuat efek obat sedatif; hindari kombinasi dengan alkohol/obat penenang tanpa pengawasan"
+      ],
+      "zoneCode": "khb-z19",
+      "zoneSlug": "tidur-dan-relaksasi",
+      "zoneTitle": "Zona Tidur dan Relaksasi"
+    },
+    {
+      "activeCompounds": [
+        "Asiaticoside, triterpenoid, flavonoid"
+      ],
+      "benefits": [
+        "Diteliti membantu mengurangi kecemasan ringan dan mendukung fungsi kognitif, juga dikenal untuk penyembuhan luka dan sirkulasi"
+      ],
+      "cultivationTechniques": [
+        "Tumbuh merambat di tanah lembap, tempat teduh-parsial, dataran rendah–menengah, perbanyakan stolon/stek"
+      ],
+      "entryKey": "tidur-dan-relaksasi:pegagan",
+      "entryOrder": 6,
+      "localName": "Pegagan, Antanan",
+      "plantKey": "pegagan",
+      "plantSlug": "pegagan",
+      "preparationMethods": [],
+      "rawEntryTitle": "Pegagan",
+      "rawZoneTitle": "Zona Tidur dan Relaksasi",
+      "scientificName": "(L.) Urb.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun"
+      ],
+      "warnings": [
+        "Penggunaan jangka panjang dosis tinggi berpotensi memengaruhi fungsi hati; hentikan sebelum operasi karena kemungkinan efek sedatif ringan"
+      ],
+      "zoneCode": "khb-z19",
+      "zoneSlug": "tidur-dan-relaksasi",
+      "zoneTitle": "Zona Tidur dan Relaksasi"
+    },
+    {
+      "activeCompounds": [
+        "Asam rosmarinat, asam karnosat, minyak atsiri"
+      ],
+      "benefits": [
+        "Aromaterapi rosemary dikaitkan dengan efek menyegarkan dan mengurangi stres ringan; secara tradisional juga mendukung sirkulasi dan fungsi kognitif"
+      ],
+      "cultivationTechniques": [
+        "Perbanyakan stek batang, iklim sejuk-kering, dataran tinggi, drainase tanah harus baik"
+      ],
+      "entryKey": "tidur-dan-relaksasi:rosemary",
+      "entryOrder": 7,
+      "localName": "Rosemary (belum umum nama lokal Indonesia)",
+      "plantKey": "rosemary",
+      "plantSlug": "rosemary",
+      "preparationMethods": [],
+      "rawEntryTitle": "Rosemary",
+      "rawZoneTitle": "Zona Tidur dan Relaksasi",
+      "scientificName": "(sinonim Rosmarinus officinalis L.)",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun"
+      ],
+      "warnings": [
+        "Dosis tinggi berpotensi memicu kejang pada individu sensitif; hindari dosis terapeutik tinggi saat hamil"
+      ],
+      "zoneCode": "khb-z19",
+      "zoneSlug": "tidur-dan-relaksasi",
+      "zoneTitle": "Zona Tidur dan Relaksasi"
+    },
+    {
+      "activeCompounds": [
+        "Withanolide, alkaloid"
+      ],
+      "benefits": [
+        "Adaptogen — membantu tubuh mengelola stres, mendukung kualitas tidur, diteliti untuk menurunkan kadar kortisol"
+      ],
+      "cultivationTechniques": [
+        "Iklim kering-hangat, tanah berpasir berdrainase baik, tahan kekeringan, perbanyakan biji"
+      ],
+      "entryKey": "tidur-dan-relaksasi:ashwagandha",
+      "entryOrder": 8,
+      "localName": "Ashwagandha (belum ada nama lokal Indonesia)",
+      "plantKey": "ashwagandha",
+      "plantSlug": "ashwagandha",
+      "preparationMethods": [],
+      "rawEntryTitle": "Ashwagandha",
+      "rawZoneTitle": "Zona Tidur dan Relaksasi",
+      "scientificName": "Withania somnifera (L.) Dunal",
+      "titleCorrection": null,
+      "usedParts": [
+        "Akar"
+      ],
+      "warnings": [
+        "Hindari pada kehamilan; dapat berinteraksi dengan obat tiroid, sedatif, dan imunosupresan; hati-hati pada penderita penyakit autoimun"
+      ],
+      "zoneCode": "khb-z19",
+      "zoneSlug": "tidur-dan-relaksasi",
+      "zoneTitle": "Zona Tidur dan Relaksasi"
+    },
+    {
+      "activeCompounds": [
+        "Eugenol, linalool, asam rosmarinat, minyak atsiri"
+      ],
+      "benefits": [
+        "Sifat adaptogen (terutama varietas tulsi) membantu mengelola stres, antioksidan, mendukung relaksasi"
+      ],
+      "cultivationTechniques": [
+        "Tanaman semusim, sinar matahari penuh, tanah subur gembur, mudah ditanam dari biji, dataran rendah–menengah"
+      ],
+      "entryKey": "tidur-dan-relaksasi:kemangi",
+      "entryOrder": 9,
+      "localName": "Kemangi",
+      "plantKey": "kemangi",
+      "plantSlug": "kemangi",
+      "preparationMethods": [],
+      "rawEntryTitle": "Kemangi",
+      "rawZoneTitle": "Zona Tidur dan Relaksasi",
+      "scientificName": "Ocimum basilicum L. (kemangi umum) / Ocimum tenuiflorum L. (kemangi suci/tulsi)",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun"
+      ],
+      "warnings": [
+        "Varietas tulsi dosis tinggi dapat memengaruhi kadar gula darah dan berinteraksi dengan obat pengencer darah"
+      ],
+      "zoneCode": "khb-z19",
+      "zoneSlug": "tidur-dan-relaksasi",
+      "zoneTitle": "Zona Tidur dan Relaksasi"
+    },
+    {
+      "activeCompounds": [
+        "Linalool, benzil asetat, minyak atsiri"
+      ],
+      "benefits": [
+        "Aromaterapi melati dikaitkan dengan efek menenangkan dan membantu meningkatkan kualitas tidur/relaksasi"
+      ],
+      "cultivationTechniques": [
+        "Tanaman perdu tropis, sinar matahari penuh–parsial, tanah gembur berdrainase baik, perbanyakan stek batang"
+      ],
+      "entryKey": "tidur-dan-relaksasi:melati",
+      "entryOrder": 10,
+      "localName": "Melati",
+      "plantKey": "melati",
+      "plantSlug": "melati",
+      "preparationMethods": [],
+      "rawEntryTitle": "Melati",
+      "rawZoneTitle": "Zona Tidur dan Relaksasi",
+      "scientificName": "L.) Aiton",
+      "titleCorrection": null,
+      "usedParts": [
+        "Bunga"
+      ],
+      "warnings": [
+        "Umumnya aman untuk aromaterapi/topikal; hindari konsumsi minyak esensial pekat secara oral"
+      ],
+      "zoneCode": "khb-z19",
+      "zoneSlug": "tidur-dan-relaksasi",
+      "zoneTitle": "Zona Tidur dan Relaksasi"
+    },
+    {
+      "activeCompounds": [
+        "Beta-karoten (prekursor vitamin A), lutein, alfa-karoten"
+      ],
+      "benefits": [
+        "Mendukung kesehatan retina dan penglihatan, terutama penglihatan pada cahaya redup; antioksidan"
+      ],
+      "cultivationTechniques": [
+        "Ditanam dari biji, tanah gembur berpasir bebas batu, dataran tinggi (di atas 700 mdpl) untuk hasil optimal, panen 70–100 hari"
+      ],
+      "entryKey": "kesehatan-mata:wortel",
+      "entryOrder": 1,
+      "localName": "Wortel",
+      "plantKey": "wortel",
+      "plantSlug": "wortel",
+      "preparationMethods": [],
+      "rawEntryTitle": "Wortel",
+      "rawZoneTitle": "Zona Kesehatan Mata",
+      "scientificName": "Daucus carota subsp. sativus (Hoffm.) Schübl. & G.Martens",
+      "titleCorrection": null,
+      "usedParts": [
+        "Umbi akar"
+      ],
+      "warnings": [
+        "Konsumsi beta-karoten berlebihan jangka panjang dapat menyebabkan karotenemia (kulit menguning), umumnya tidak berbahaya tapi perlu diperhatikan"
+      ],
+      "zoneCode": "khb-z20",
+      "zoneSlug": "kesehatan-mata",
+      "zoneTitle": "Zona Kesehatan Mata"
+    },
+    {
+      "activeCompounds": [
+        "Beta-karoten, vitamin A, lutein, zeaxanthin, flavonoid"
+      ],
+      "benefits": [
+        "Mendukung kesehatan mata melalui kandungan vitamin A dan antioksidan tinggi, membantu melindungi sel retina dari stres oksidatif"
+      ],
+      "cultivationTechniques": [
+        "Perbanyakan stek batang atau biji, tahan kekeringan, tanah berdrainase baik, dataran rendah–menengah"
+      ],
+      "entryKey": "kesehatan-mata:kelor",
+      "entryOrder": 2,
+      "localName": "Kelor",
+      "plantKey": "kelor",
+      "plantSlug": "kelor",
+      "preparationMethods": [],
+      "rawEntryTitle": "Kelor",
+      "rawZoneTitle": "Zona Kesehatan Mata",
+      "scientificName": "Moringa oleifera Lam.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun"
+      ],
+      "warnings": [
+        "Hindari konsumsi berlebihan bagian akar/kulit batang (berisiko toksik); ibu hamil sebaiknya membatasi bagian tersebut"
+      ],
+      "zoneCode": "khb-z20",
+      "zoneSlug": "kesehatan-mata",
+      "zoneTitle": "Zona Kesehatan Mata"
+    },
+    {
+      "activeCompounds": [
+        "Asiaticoside, triterpenoid, flavonoid"
+      ],
+      "benefits": [
+        "Mendukung sirkulasi mikro termasuk area mata, antioksidan, secara tradisional digunakan untuk kesehatan pembuluh darah"
+      ],
+      "cultivationTechniques": [
+        "Tumbuh merambat di tanah lembap, tempat teduh-parsial, dataran rendah–menengah, perbanyakan stolon/stek"
+      ],
+      "entryKey": "kesehatan-mata:pegagan",
+      "entryOrder": 3,
+      "localName": "Pegagan, Antanan",
+      "plantKey": "pegagan",
+      "plantSlug": "pegagan",
+      "preparationMethods": [],
+      "rawEntryTitle": "Pegagan",
+      "rawZoneTitle": "Zona Kesehatan Mata",
+      "scientificName": "Centella asiatica (L.) Urb.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun"
+      ],
+      "warnings": [
+        "Penggunaan jangka panjang dosis tinggi berpotensi memengaruhi fungsi hati"
+      ],
+      "zoneCode": "khb-z20",
+      "zoneSlug": "kesehatan-mata",
+      "zoneTitle": "Zona Kesehatan Mata"
+    },
+    {
+      "activeCompounds": [
+        "Antosianin, asam protokatekuat, flavonoid"
+      ],
+      "benefits": [
+        "Antosianin diteliti mendukung sirkulasi darah ke mata dan sifat antioksidan yang relevan untuk kesehatan retina"
+      ],
+      "cultivationTechniques": [
+        "Ditanam dari biji, tanah gembur berdrainase baik, sinar matahari penuh, panen kelopak 3–4 bulan setelah tanam"
+      ],
+      "entryKey": "kesehatan-mata:rosella",
+      "entryOrder": 4,
+      "localName": "Rosela, Bunga rosela",
+      "plantKey": "rosella",
+      "plantSlug": "rosella",
+      "preparationMethods": [],
+      "rawEntryTitle": "Rosella",
+      "rawZoneTitle": "Zona Kesehatan Mata",
+      "scientificName": "Hibiscus sabdariffa L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Kelopak bunga (kaliks)"
+      ],
+      "warnings": [
+        "Berpotensi menurunkan tekanan darah — hati-hati pada penderita hipotensi atau pengguna obat antihipertensi"
+      ],
+      "zoneCode": "khb-z20",
+      "zoneSlug": "kesehatan-mata",
+      "zoneTitle": "Zona Kesehatan Mata"
+    },
+    {
+      "activeCompounds": [
+        "Lutein, zeaxanthin, beta-karoten, antosianin, zat besi"
+      ],
+      "benefits": [
+        "Lutein dan zeaxanthin berperan penting melindungi makula dan mengurangi risiko degenerasi makula terkait usia"
+      ],
+      "cultivationTechniques": [
+        "Ditanam dari biji, tanah subur gembur, sinar matahari cukup, dataran rendah–menengah, panen cepat (25–30 hari)"
+      ],
+      "entryKey": "kesehatan-mata:bayam-merah",
+      "entryOrder": 5,
+      "localName": "Bayam merah",
+      "plantKey": "bayam merah",
+      "plantSlug": "bayam-merah",
+      "preparationMethods": [],
+      "rawEntryTitle": "Bayam Merah",
+      "rawZoneTitle": "Zona Kesehatan Mata",
+      "scientificName": "Amaranthus tricolor L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun"
+      ],
+      "warnings": [
+        "Umumnya aman dikonsumsi sebagai sayuran; kandungan oksalat perlu diperhatikan bagi penderita batu ginjal tertentu"
+      ],
+      "zoneCode": "khb-z20",
+      "zoneSlug": "kesehatan-mata",
+      "zoneTitle": "Zona Kesehatan Mata"
+    },
+    {
+      "activeCompounds": [
+        "Beta-karoten, vitamin A, lutein, klorofil"
+      ],
+      "benefits": [
+        "Mendukung kesehatan mata melalui kandungan vitamin A tinggi, antioksidan, tradisional juga digunakan untuk melancarkan ASI"
+      ],
+      "cultivationTechniques": [
+        "Perbanyakan stek batang, tanah subur lembap, sinar matahari cukup-parsial, dataran rendah–menengah"
+      ],
+      "entryKey": "kesehatan-mata:daun-katuk",
+      "entryOrder": 6,
+      "localName": "Daun katuk",
+      "plantKey": "daun katuk",
+      "plantSlug": "daun-katuk",
+      "preparationMethods": [],
+      "rawEntryTitle": "Daun Katuk",
+      "rawZoneTitle": "Zona Kesehatan Mata",
+      "scientificName": "Sauropus androgynus (L.) Merr.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Daun"
+      ],
+      "warnings": [
+        "Konsumsi jus daun katuk mentah dalam jumlah besar dan berkepanjangan dikaitkan dengan gangguan paru (kasus di Taiwan); sebaiknya dikonsumsi dalam bentuk dimasak dan tidak berlebihan"
+      ],
+      "zoneCode": "khb-z20",
+      "zoneSlug": "kesehatan-mata",
+      "zoneTitle": "Zona Kesehatan Mata"
+    },
+    {
+      "activeCompounds": [
+        "Lutein, zeaxanthin"
+      ],
+      "benefits": [
+        "Sumber utama lutein untuk suplemen kesehatan mata, membantu melindungi makula dan mengurangi risiko degenerasi makula"
+      ],
+      "cultivationTechniques": [
+        "Ditanam dari biji, sinar matahari penuh, tanah gembur berdrainase baik, dataran rendah–menengah, mudah tumbuh"
+      ],
+      "entryKey": "kesehatan-mata:marigold",
+      "entryOrder": 7,
+      "localName": "Marigold (kenikir bukan spesies yang sama — perlu dibedakan dari Cosmos caudatus)",
+      "plantKey": "marigold",
+      "plantSlug": "marigold",
+      "preparationMethods": [],
+      "rawEntryTitle": "Marigold",
+      "rawZoneTitle": "Zona Kesehatan Mata",
+      "scientificName": "Tagetes erecta L. (sumber lutein umum) — sumber lutein komersial utama biasanya dari Tagetes erecta",
+      "titleCorrection": null,
+      "usedParts": [
+        "Bunga (kelopak)"
+      ],
+      "warnings": [
+        "Bunga umumnya dipakai sebagai ekstrak/suplemen, bukan dikonsumsi langsung dalam jumlah besar; pastikan sumber bebas pestisida bila untuk konsumsi"
+      ],
+      "zoneCode": "khb-z20",
+      "zoneSlug": "kesehatan-mata",
+      "zoneTitle": "Zona Kesehatan Mata"
+    },
+    {
+      "activeCompounds": [
+        "Antosianin, flavonoid, antioksidan tinggi"
+      ],
+      "benefits": [
+        "Antosianin diteliti mendukung sirkulasi darah ke retina dan membantu adaptasi penglihatan pada cahaya redup"
+      ],
+      "cultivationTechniques": [
+        "Iklim sejuk-sedang (butuh chilling hours), tanah asam berdrainase baik, kurang cocok di dataran rendah tropis panas, memerlukan dataran tinggi khusus di Indonesia"
+      ],
+      "entryKey": "kesehatan-mata:blueberry",
+      "entryOrder": 8,
+      "localName": "Blueberry",
+      "plantKey": "blueberry",
+      "plantSlug": "blueberry",
+      "preparationMethods": [],
+      "rawEntryTitle": "Blueberry",
+      "rawZoneTitle": "Zona Kesehatan Mata",
+      "scientificName": "L. (dan spesies Vaccinium lain)",
+      "titleCorrection": null,
+      "usedParts": [
+        "Buah"
+      ],
+      "warnings": [
+        "Umumnya aman; suplemen ekstrak dosis tinggi sebaiknya dikonsultasikan bila sedang mengonsumsi obat pengencer darah"
+      ],
+      "zoneCode": "khb-z20",
+      "zoneSlug": "kesehatan-mata",
+      "zoneTitle": "Zona Kesehatan Mata"
+    },
+    {
+      "activeCompounds": [
+        "Crocin, crocetin, safranal"
+      ],
+      "benefits": [
+        "Crocin diteliti klinis membantu mendukung fungsi retina dan berpotensi bermanfaat pada degenerasi makula terkait usia"
+      ],
+      "cultivationTechniques": [
+        "Iklim sedang dengan musim dingin, tanah berdrainase sangat baik, tidak cocok untuk iklim tropis Indonesia, ditanam dari umbi (corm)"
+      ],
+      "entryKey": "kesehatan-mata:safron",
+      "entryOrder": 9,
+      "localName": "Safron (belum ada nama lokal Indonesia)",
+      "plantKey": "safron",
+      "plantSlug": "safron",
+      "preparationMethods": [],
+      "rawEntryTitle": "Safron",
+      "rawZoneTitle": "Zona Kesehatan Mata",
+      "scientificName": "L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Stigma bunga (kepala putik)"
+      ],
+      "warnings": [
+        "Dosis tinggi berpotensi toksik dan bersifat abortifasien (memicu kontraksi rahim) — hindari pada kehamilan; harga tinggi membuat produk di pasaran rentan pemalsuan"
+      ],
+      "zoneCode": "khb-z20",
+      "zoneSlug": "kesehatan-mata",
+      "zoneTitle": "Zona Kesehatan Mata"
+    },
+    {
+      "activeCompounds": [
+        "Zeaxanthin (kadar tinggi), polisakarida, karotenoid"
+      ],
+      "benefits": [
+        "Kandungan zeaxanthin tinggi mendukung kesehatan makula dan retina, antioksidan kuat"
+      ],
+      "cultivationTechniques": [
+        "Iklim sedang-kering, tahan dingin, tanah berdrainase baik, kurang optimal di iklim tropis lembap Indonesia"
+      ],
+      "entryKey": "kesehatan-mata:goji-berry",
+      "entryOrder": 10,
+      "localName": "Goji berry, Wolfberry (belum ada nama lokal Indonesia)",
+      "plantKey": "goji berry",
+      "plantSlug": "goji-berry",
+      "preparationMethods": [],
+      "rawEntryTitle": "Goji Berry",
+      "rawZoneTitle": "Zona Kesehatan Mata",
+      "scientificName": "L.",
+      "titleCorrection": null,
+      "usedParts": [
+        "Buah"
+      ],
+      "warnings": [
+        "Dapat berinteraksi dengan obat pengencer darah dan obat diabetes/tekanan darah; konsultasi dokter bila sedang menjalani terapi tersebut oleh dokter mata."
+      ],
+      "zoneCode": "khb-z20",
+      "zoneSlug": "kesehatan-mata",
+      "zoneTitle": "Zona Kesehatan Mata"
     }
   ],
   "sourceCode": "KHB-HERBACODE-2026",
@@ -3767,6 +7364,26 @@
     },
     {
       "aliases": [
+        "Anggur"
+      ],
+      "localName": "Anggur",
+      "plantKey": "anggur",
+      "scientificName": "Vitis vinifera L.",
+      "slug": "anggur"
+    },
+    {
+      "aliases": [
+        "Ashwagandha",
+        "Ashwagandha (belum ada nama lokal Indonesia)",
+        "belum ada nama lokal Indonesia"
+      ],
+      "localName": "Ashwagandha",
+      "plantKey": "ashwagandha",
+      "scientificName": "Withania somnifera",
+      "slug": "ashwagandha"
+    },
+    {
+      "aliases": [
         "Bawang putih",
         "Bawang Putih"
       ],
@@ -3774,6 +7391,16 @@
       "plantKey": "bawang putih",
       "scientificName": "Allium sativum L.",
       "slug": "bawang-putih"
+    },
+    {
+      "aliases": [
+        "Bayam merah",
+        "Bayam Merah"
+      ],
+      "localName": "Bayam Merah",
+      "plantKey": "bayam merah",
+      "scientificName": "Amaranthus tricolor L.",
+      "slug": "bayam-merah"
     },
     {
       "aliases": [
@@ -3787,14 +7414,80 @@
     },
     {
       "aliases": [
+        "Beluntas"
+      ],
+      "localName": "Beluntas",
+      "plantKey": "beluntas",
+      "scientificName": "Pluchea indica (L.)",
+      "slug": "beluntas"
+    },
+    {
+      "aliases": [
+        "Binahong"
+      ],
+      "localName": "Binahong",
+      "plantKey": "binahong",
+      "scientificName": "Anredera cordifolia",
+      "slug": "binahong"
+    },
+    {
+      "aliases": [
+        "Blueberry"
+      ],
+      "localName": "Blueberry",
+      "plantKey": "blueberry",
+      "scientificName": "L. (dan spesies Vaccinium lain)",
+      "slug": "blueberry"
+    },
+    {
+      "aliases": [
         "Boswellia (Kemenyan India)",
         "Boswellia",
-        "Kemenyan India"
+        "Kemenyan India",
+        "Kemenyan India / Boswellia (belum umum di Indonesia)",
+        "Kemenyan India / Boswellia",
+        "belum umum di Indonesia"
       ],
       "localName": "Boswellia",
       "plantKey": "boswellia",
       "scientificName": "Boswellia serrata Roxb. ex Colebr.",
       "slug": "boswellia"
+    },
+    {
+      "aliases": [
+        "Brahmi"
+      ],
+      "localName": "Brahmi",
+      "plantKey": "brahmi",
+      "scientificName": "Bacopa monnieri",
+      "slug": "brahmi"
+    },
+    {
+      "aliases": [
+        "Brokoli"
+      ],
+      "localName": "Brokoli",
+      "plantKey": "brokoli",
+      "scientificName": "var. italica",
+      "slug": "brokoli"
+    },
+    {
+      "aliases": [
+        "Brotowali"
+      ],
+      "localName": "Brotowali",
+      "plantKey": "brotowali",
+      "scientificName": "Tinospora crispa (L.)",
+      "slug": "brotowali"
+    },
+    {
+      "aliases": [
+        "Calendula"
+      ],
+      "localName": "Calendula",
+      "plantKey": "calendula",
+      "scientificName": "Calendula officinalis L.",
+      "slug": "calendula"
     },
     {
       "aliases": [
@@ -3804,6 +7497,16 @@
       "plantKey": "cengkeh",
       "scientificName": "Syzygium aromaticum (L.) Merr. & L.M.Perry",
       "slug": "cengkeh"
+    },
+    {
+      "aliases": [
+        "Chamomile",
+        "Kamomil"
+      ],
+      "localName": "Chamomile",
+      "plantKey": "chamomile",
+      "scientificName": "Matricaria chamomilla L.",
+      "slug": "chamomile"
     },
     {
       "aliases": [
@@ -3827,7 +7530,10 @@
     {
       "aliases": [
         "Daun dewa",
-        "Daun Dewa"
+        "Daun Dewa",
+        "Daun dewa, Sambung nyawa (sering tertukar, beda spesies)",
+        "Daun dewa, Sambung nyawa",
+        "sering tertukar, beda spesies"
       ],
       "localName": "Daun Dewa",
       "plantKey": "daun dewa",
@@ -3836,13 +7542,23 @@
     },
     {
       "aliases": [
-        "Daun Jambu Biji",
-        "Daun Jambu"
+        "Daun Jambu",
+        "Daun Jambu Biji"
       ],
       "localName": "Daun Jambu",
       "plantKey": "daun jambu",
       "scientificName": "Psidium guajava L.",
       "slug": "daun-jambu"
+    },
+    {
+      "aliases": [
+        "Daun katuk",
+        "Daun Katuk"
+      ],
+      "localName": "Daun Katuk",
+      "plantKey": "daun katuk",
+      "scientificName": "Sauropus androgynus (L.) Merr.",
+      "slug": "daun-katuk"
     },
     {
       "aliases": [
@@ -3877,7 +7593,50 @@
     },
     {
       "aliases": [
-        "Jahe"
+        "Eucalyptus"
+      ],
+      "localName": "Eucalyptus",
+      "plantKey": "eucalyptus",
+      "scientificName": "Eucalyptus globulus",
+      "slug": "eucalyptus"
+    },
+    {
+      "aliases": [
+        "Asam gelugur / Kandis (tergantung spesies)",
+        "Asam gelugur / Kandis",
+        "Garcinia",
+        "tergantung spesies"
+      ],
+      "localName": "Garcinia",
+      "plantKey": "garcinia",
+      "scientificName": "Garcinia cambogia (Gaertn.) Desr. / Garcinia atroviridis Griff. ex T.Anderson",
+      "slug": "garcinia"
+    },
+    {
+      "aliases": [
+        "Ginkgo"
+      ],
+      "localName": "Ginkgo",
+      "plantKey": "ginkgo",
+      "scientificName": "Ginkgo biloba L.",
+      "slug": "ginkgo"
+    },
+    {
+      "aliases": [
+        "Goji berry, Wolfberry (belum ada nama lokal Indonesia)",
+        "Goji berry, Wolfberry",
+        "Goji Berry",
+        "belum ada nama lokal Indonesia"
+      ],
+      "localName": "Goji Berry",
+      "plantKey": "goji berry",
+      "scientificName": "L.",
+      "slug": "goji-berry"
+    },
+    {
+      "aliases": [
+        "Jahe",
+        "Jahe, Jae, Aliah"
       ],
       "localName": "Jahe",
       "plantKey": "jahe",
@@ -3891,7 +7650,7 @@
       ],
       "localName": "Jeruk Nipis",
       "plantKey": "jeruk nipis",
-      "scientificName": "Citrus × aurantiifolia (Christm.) Swingle",
+      "scientificName": "Citrus aurantiifolia (Christm.) Swingle",
       "slug": "jeruk-nipis"
     },
     {
@@ -3908,6 +7667,25 @@
     },
     {
       "aliases": [
+        "Jinten hitam, Habbatussauda",
+        "Jinten Hitam"
+      ],
+      "localName": "Jinten Hitam",
+      "plantKey": "jinten hitam",
+      "scientificName": "Nigella sativa L.",
+      "slug": "jinten-hitam"
+    },
+    {
+      "aliases": [
+        "Kakao"
+      ],
+      "localName": "Kakao",
+      "plantKey": "kakao",
+      "scientificName": "Theobroma cacao L.",
+      "slug": "kakao"
+    },
+    {
+      "aliases": [
         "Kapulaga"
       ],
       "localName": "Kapulaga",
@@ -3921,18 +7699,27 @@
       ],
       "localName": "Katuk",
       "plantKey": "katuk",
-      "scientificName": "Sauropus androgynus (L.) Merr.",
+      "scientificName": "Sauropus androgynus (L.)",
       "slug": "katuk"
     },
     {
       "aliases": [
-        "Kayu Manis",
-        "Kayu manis"
+        "Kayu manis",
+        "Kayu Manis"
       ],
       "localName": "Kayu Manis",
       "plantKey": "kayu manis",
-      "scientificName": "Cinnamomum burmannii (Nees & T.Nees) Blume",
+      "scientificName": "Cinnamomum burmannii",
       "slug": "kayu-manis"
+    },
+    {
+      "aliases": [
+        "Kayu Putih"
+      ],
+      "localName": "Kayu Putih",
+      "plantKey": "kayu putih",
+      "scientificName": "Melaleuca cajuputi",
+      "slug": "kayu-putih"
     },
     {
       "aliases": [
@@ -3945,6 +7732,16 @@
       "plantKey": "keji beling",
       "scientificName": "Strobilanthes crispa (L.) Blume.",
       "slug": "keji-beling"
+    },
+    {
+      "aliases": [
+        "Keladi tikus",
+        "Keladi Tikus"
+      ],
+      "localName": "Keladi Tikus",
+      "plantKey": "keladi tikus",
+      "scientificName": "(Lodd.) Blume",
+      "slug": "keladi-tikus"
     },
     {
       "aliases": [
@@ -3966,6 +7763,15 @@
     },
     {
       "aliases": [
+        "Kencur"
+      ],
+      "localName": "Kencur",
+      "plantKey": "kencur",
+      "scientificName": "Kaempferia galanga L.",
+      "slug": "kencur"
+    },
+    {
+      "aliases": [
         "Ketumbar"
       ],
       "localName": "Ketumbar",
@@ -3975,8 +7781,31 @@
     },
     {
       "aliases": [
+        "Kopi hijau (biji kopi yang belum disangrai)",
+        "Kopi hijau",
+        "Kopi Hijau",
+        "biji kopi yang belum disangrai"
+      ],
+      "localName": "Kopi Hijau",
+      "plantKey": "kopi hijau",
+      "scientificName": "Coffea canephora Pierre ex A.Froehner / Coffea arabica L.",
+      "slug": "kopi-hijau"
+    },
+    {
+      "aliases": [
+        "Kulit Manggis",
+        "Kulit manggis"
+      ],
+      "localName": "Kulit Manggis",
+      "plantKey": "kulit manggis",
+      "scientificName": "Garcinia mangostana L.",
+      "slug": "kulit-manggis"
+    },
+    {
+      "aliases": [
         "Kumis kucing",
-        "Kumis Kucing"
+        "Kumis Kucing",
+        "Kumis kucing, Remujung"
       ],
       "localName": "Kumis Kucing",
       "plantKey": "kumis kucing",
@@ -3985,7 +7814,13 @@
     },
     {
       "aliases": [
-        "Kunyit"
+        "Kunyit",
+        "Kunyit, Kunir (Jawa), Koneng (Sunda)",
+        "Kunyit, Kunir , Koneng",
+        "Jawa",
+        "Sunda",
+        "Kunyit, Kunir (Jawa)",
+        "Kunyit, Kunir"
       ],
       "localName": "Kunyit",
       "plantKey": "kunyit",
@@ -4004,6 +7839,29 @@
     },
     {
       "aliases": [
+        "Lavender",
+        "Lavender (belum umum nama lokal Indonesia)",
+        "belum umum nama lokal Indonesia"
+      ],
+      "localName": "Lavender",
+      "plantKey": "lavender",
+      "scientificName": "Lavandula angustifolia",
+      "slug": "lavender"
+    },
+    {
+      "aliases": [
+        "Lemon Balm",
+        "Lemon balm, Serai wangi lemon (belum baku)",
+        "Lemon balm, Serai wangi lemon",
+        "belum baku"
+      ],
+      "localName": "Lemon Balm",
+      "plantKey": "lemon balm",
+      "scientificName": "Melissa officinalis L.",
+      "slug": "lemon-balm"
+    },
+    {
+      "aliases": [
         "Lidah buaya",
         "Lidah Buaya"
       ],
@@ -4011,6 +7869,45 @@
       "plantKey": "lidah buaya",
       "scientificName": "Aloe vera (L.) Burm.f.",
       "slug": "lidah-buaya"
+    },
+    {
+      "aliases": [
+        "Mahkota Dewa",
+        "Mahkota dewa"
+      ],
+      "localName": "Mahkota Dewa",
+      "plantKey": "mahkota dewa",
+      "scientificName": "Phaleria macrocarpa",
+      "slug": "mahkota-dewa"
+    },
+    {
+      "aliases": [
+        "Marigold (kenikir bukan spesies yang sama — perlu dibedakan dari Cosmos caudatus)",
+        "Marigold",
+        "kenikir bukan spesies yang sama — perlu dibedakan dari Cosmos caudatus"
+      ],
+      "localName": "Marigold",
+      "plantKey": "marigold",
+      "scientificName": "Tagetes erecta L. (sumber lutein umum) — sumber lutein komersial utama biasanya dari Tagetes erecta",
+      "slug": "marigold"
+    },
+    {
+      "aliases": [
+        "Melati"
+      ],
+      "localName": "Melati",
+      "plantKey": "melati",
+      "scientificName": "L.) Aiton",
+      "slug": "melati"
+    },
+    {
+      "aliases": [
+        "Mengkudu"
+      ],
+      "localName": "Mengkudu",
+      "plantKey": "mengkudu",
+      "scientificName": "Morinda citrifolia L.",
+      "slug": "mengkudu"
     },
     {
       "aliases": [
@@ -4072,6 +7969,15 @@
     },
     {
       "aliases": [
+        "Pala"
+      ],
+      "localName": "Pala",
+      "plantKey": "pala",
+      "scientificName": "Myristica fragrans Houtt.",
+      "slug": "pala"
+    },
+    {
+      "aliases": [
         "Paliasa"
       ],
       "localName": "Paliasa",
@@ -4081,7 +7987,29 @@
     },
     {
       "aliases": [
-        "Pegagan"
+        "Pare"
+      ],
+      "localName": "Pare",
+      "plantKey": "pare",
+      "scientificName": "Momordica charantia L.",
+      "slug": "pare"
+    },
+    {
+      "aliases": [
+        "Passion flower, Markisa hutan (kerabat dekat markisa)",
+        "Passion flower, Markisa hutan",
+        "Passion Flower",
+        "kerabat dekat markisa"
+      ],
+      "localName": "Passion Flower",
+      "plantKey": "passion flower",
+      "scientificName": "Passiflora incarnata L.",
+      "slug": "passion-flower"
+    },
+    {
+      "aliases": [
+        "Pegagan",
+        "Pegagan, Antanan"
       ],
       "localName": "Pegagan",
       "plantKey": "pegagan",
@@ -4100,7 +8028,18 @@
     },
     {
       "aliases": [
-        "Rosella"
+        "Rosela, Bunga rosela",
+        "Rosela"
+      ],
+      "localName": "Rosela",
+      "plantKey": "rosela",
+      "scientificName": "L.",
+      "slug": "rosela"
+    },
+    {
+      "aliases": [
+        "Rosella",
+        "Rosela, Bunga rosela"
       ],
       "localName": "Rosella",
       "plantKey": "rosella",
@@ -4109,12 +8048,34 @@
     },
     {
       "aliases": [
-        "Rosemary"
+        "Rosemary",
+        "Rosemary (belum umum nama lokal Indonesia)",
+        "belum umum nama lokal Indonesia"
       ],
       "localName": "Rosemary",
       "plantKey": "rosemary",
-      "scientificName": "Salvia rosmarinus Spenn.",
+      "scientificName": "Salvia rosmarinus",
       "slug": "rosemary"
+    },
+    {
+      "aliases": [
+        "Safron (belum ada nama lokal Indonesia)",
+        "Safron",
+        "belum ada nama lokal Indonesia"
+      ],
+      "localName": "Safron",
+      "plantKey": "safron",
+      "scientificName": "L.",
+      "slug": "safron"
+    },
+    {
+      "aliases": [
+        "Saga"
+      ],
+      "localName": "Saga",
+      "plantKey": "saga",
+      "scientificName": "Abrus precatorius L.",
+      "slug": "saga"
     },
     {
       "aliases": [
@@ -4124,6 +8085,15 @@
       "plantKey": "sage",
       "scientificName": "Salvia officinalis L.",
       "slug": "sage"
+    },
+    {
+      "aliases": [
+        "Salam"
+      ],
+      "localName": "Salam",
+      "plantKey": "salam",
+      "scientificName": "Syzygium polyanthum",
+      "slug": "salam"
     },
     {
       "aliases": [
@@ -4145,7 +8115,8 @@
     },
     {
       "aliases": [
-        "Serai"
+        "Serai",
+        "Serai, Sereh"
       ],
       "localName": "Serai",
       "plantKey": "serai",
@@ -4169,6 +8140,16 @@
       "plantKey": "sirih",
       "scientificName": "Piper betle L.",
       "slug": "sirih"
+    },
+    {
+      "aliases": [
+        "Sirsak, Nangka landa, Nangka walanda",
+        "Sirsak"
+      ],
+      "localName": "Sirsak",
+      "plantKey": "sirsak",
+      "scientificName": "Annona muricata L.",
+      "slug": "sirsak"
     },
     {
       "aliases": [
@@ -4220,12 +8201,44 @@
     },
     {
       "aliases": [
-        "Temulawak"
+        "Temulawak",
+        "Temulawak, Koneng gede"
       ],
       "localName": "Temulawak",
       "plantKey": "temulawak",
       "scientificName": "Curcuma xanthorrhiza Roxb.",
       "slug": "temulawak"
+    },
+    {
+      "aliases": [
+        "Valerian (belum ada nama lokal Indonesia)",
+        "Valerian",
+        "belum ada nama lokal Indonesia"
+      ],
+      "localName": "Valerian",
+      "plantKey": "valerian",
+      "scientificName": "Valeriana officinalis L.",
+      "slug": "valerian"
+    },
+    {
+      "aliases": [
+        "Belum ada nama lokal umum di Indonesia",
+        "Willow Bark (Kulit Kayu Willow)",
+        "Willow Bark"
+      ],
+      "localName": "Willow Bark",
+      "plantKey": "willow bark",
+      "scientificName": null,
+      "slug": "willow-bark"
+    },
+    {
+      "aliases": [
+        "Wortel"
+      ],
+      "localName": "Wortel",
+      "plantKey": "wortel",
+      "scientificName": "Daucus carota subsp. sativus (Hoffm.) Schübl. & G.Martens",
+      "slug": "wortel"
     }
   ],
   "zones": [
@@ -4271,6 +8284,46 @@
     },
     {
       "displayOrder": 6,
+      "rawTitle": "Zona Gula Darah Terkendali",
+      "slug": "gula-darah-terkendali",
+      "title": "Zona Gula Darah Terkendali",
+      "titleCorrection": null,
+      "zoneCode": "khb-z10"
+    },
+    {
+      "displayOrder": 7,
+      "rawTitle": "Zona Pernapasan Lega",
+      "slug": "pernapasan-lega",
+      "title": "Zona Pernapasan Lega",
+      "titleCorrection": null,
+      "zoneCode": "khb-z11"
+    },
+    {
+      "displayOrder": 8,
+      "rawTitle": "Zona Otak Cerdas",
+      "slug": "otak-cerdas",
+      "title": "Zona Otak Cerdas",
+      "titleCorrection": null,
+      "zoneCode": "khb-z12"
+    },
+    {
+      "displayOrder": 9,
+      "rawTitle": "Zona Anak Ceria",
+      "slug": "anak-ceria",
+      "title": "Zona Anak Ceria",
+      "titleCorrection": null,
+      "zoneCode": "khb-z13"
+    },
+    {
+      "displayOrder": 10,
+      "rawTitle": "Zona Kulit Cantik",
+      "slug": "kulit-cantik",
+      "title": "Zona Kulit Cantik",
+      "titleCorrection": null,
+      "zoneCode": "khb-z14"
+    },
+    {
+      "displayOrder": 11,
       "rawTitle": "Zona Tulang & Sendi",
       "slug": "tulang-dan-sendi",
       "title": "Zona Tulang & Sendi",
@@ -4278,43 +8331,76 @@
       "zoneCode": "khb-z06"
     },
     {
-      "displayOrder": 7,
-      "rawTitle": "Zona Tulang & Sendi",
+      "displayOrder": 12,
+      "rawTitle": "Zona Kesehatan Mulut",
       "slug": "kesehatan-mulut",
       "title": "Zona Kesehatan Mulut",
-      "titleCorrection": {
-        "correctedTitle": "Zona Kesehatan Mulut",
-        "occurrence": 7,
-        "rawTitle": "Zona Tulang & Sendi",
-        "reason": "Judul kedua tertulis sama dengan zona sebelumnya, tetapi isi tanaman membahas rongga mulut, gusi, plak, sariawan, dan bau mulut."
-      },
+      "titleCorrection": null,
       "zoneCode": "khb-z07"
     },
     {
-      "displayOrder": 8,
-      "rawTitle": "Zona 18 – Anti Mikroba",
+      "displayOrder": 13,
+      "rawTitle": "Zona Anti Mikroba",
       "slug": "anti-mikroba",
       "title": "Zona Anti Mikroba",
-      "titleCorrection": {
-        "correctedTitle": "Zona Anti Mikroba",
-        "occurrence": 8,
-        "rawTitle": "Zona 18 – Anti Mikroba",
-        "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
-      },
+      "titleCorrection": null,
       "zoneCode": "khb-z08"
     },
     {
-      "displayOrder": 9,
-      "rawTitle": "Zona 19 Kesehatan Perempuan",
+      "displayOrder": 14,
+      "rawTitle": "Zona Kesehatan Perempuan",
       "slug": "kesehatan-perempuan",
       "title": "Zona Kesehatan Perempuan",
-      "titleCorrection": {
-        "correctedTitle": "Zona Kesehatan Perempuan",
-        "occurrence": 9,
-        "rawTitle": "Zona 19 Kesehatan Perempuan",
-        "reason": "Nomor sumber pada judul dihapus agar konsisten dengan judul zona lain tanpa mengubah tema."
-      },
+      "titleCorrection": null,
       "zoneCode": "khb-z09"
+    },
+    {
+      "displayOrder": 15,
+      "rawTitle": "Zona Detoks dan Antioksidan",
+      "slug": "detoks-dan-antioksidan",
+      "title": "Zona Detoks dan Antioksidan",
+      "titleCorrection": null,
+      "zoneCode": "khb-z15"
+    },
+    {
+      "displayOrder": 16,
+      "rawTitle": "Zona Antiinflamasi dan Nyeri",
+      "slug": "antiinflamasi-dan-nyeri",
+      "title": "Zona Antiinflamasi dan Nyeri",
+      "titleCorrection": null,
+      "zoneCode": "khb-z16"
+    },
+    {
+      "displayOrder": 17,
+      "rawTitle": "Zona Antikanker (Potensial)",
+      "slug": "antikanker-potensial",
+      "title": "Zona Antikanker (Potensial)",
+      "titleCorrection": null,
+      "zoneCode": "khb-z17"
+    },
+    {
+      "displayOrder": 18,
+      "rawTitle": "Zona Obesitas dan Metabolik",
+      "slug": "obesitas-dan-metabolik",
+      "title": "Zona Obesitas dan Metabolik",
+      "titleCorrection": null,
+      "zoneCode": "khb-z18"
+    },
+    {
+      "displayOrder": 19,
+      "rawTitle": "Zona Tidur dan Relaksasi",
+      "slug": "tidur-dan-relaksasi",
+      "title": "Zona Tidur dan Relaksasi",
+      "titleCorrection": null,
+      "zoneCode": "khb-z19"
+    },
+    {
+      "displayOrder": 20,
+      "rawTitle": "Zona Kesehatan Mata",
+      "slug": "kesehatan-mata",
+      "title": "Zona Kesehatan Mata",
+      "titleCorrection": null,
+      "zoneCode": "khb-z20"
     }
   ]
 }

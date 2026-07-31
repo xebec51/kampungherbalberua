@@ -187,11 +187,11 @@ Panduan aset final, aturan ID objek, privasi, dan atribusi tersedia di [docs/map
 Konten tanaman publik memakai union katalog poster dan HerbaCode:
 
 - 89 nama poster dan 206 kemunculan poster dipertahankan sebagai katalog Harmony.
-- 50 tanaman HerbaCode dan 95 relasi tanaman-zona menyimpan detail senyawa aktif, manfaat per zona, bagian digunakan, budidaya, perhatian, dan cara pemanfaatan bila tersedia.
+- Dokumen HerbaCode terbaru memuat 20 zona kesehatan, 90 tanaman unik, dan 205 relasi tanaman-zona dengan detail senyawa aktif, manfaat per zona, bagian digunakan, budidaya, perhatian, dan cara pemanfaatan bila tersedia. 9 zona sebelumnya (`khb-z01`-`khb-z09`) dipertahankan lewat mapping judul eksplisit di `scripts/herbacode/import.ts` agar `zone_code` permanen tidak berubah; 11 zona baru mendapat `khb-z10`-`khb-z20`. Urutan tampil publik mengikuti `health_zones.display_order` (kolom terpisah dari `zone_code`), bukan lagi urutan leksikal `zone_code`.
 - Tanaman poster-only tetap tampil tanpa manfaat atau detail kesehatan buatan.
-- `data/herbacode/herbacode-data.json` menyimpan hasil ekstraksi dokumen.
-- `data/herbacode/import-report.json` menyimpan laporan import, koreksi judul, mapping, dan SHA-256 dokumen sumber.
-- `herba code.docx` tidak disimpan di working tree dan diabaikan oleh Git.
+- `data/herbacode/herbacode-data.json` menyimpan hasil ekstraksi dokumen (dijalankan lewat `npm run herbacode:extract`).
+- `data/herbacode/latest-import-report.json` dan `docs/herbacode-latest-import.md` menyimpan laporan import terbaru: tanaman baru/diperbarui/dipertahankan, perubahan zona, perubahan relasi tanaman-zona, mapping exact/alias/scientific/ambiguous/unresolved, dan SHA-256 dokumen sumber.
+- File DOCX sumber (mis. `herba code (1).docx`) tidak disimpan di working tree dan diabaikan oleh Git. Nama file boleh berubah setiap kali dokumen diekspor ulang; `npm run herbacode:extract`/`herbacode:import` mendeteksinya otomatis selama hanya ada satu file `herba code*.docx`, atau gunakan flag `--document <path>` untuk menentukan secara eksplisit.
 
 Status yang digunakan:
 
@@ -318,6 +318,8 @@ Migration baru harus diterapkan manual oleh pengelola project Supabase setelah r
 - `supabase/migrations/20260729183000_add_public_qr_keys.sql`
 - `supabase/migrations/20260730090000_admin_only_workflow.sql`
 - `supabase/migrations/20260730100000_admin_only_label_media_policies.sql`
+- `supabase/migrations/20260731090000_add_health_zone_display_order.sql`
+- `supabase/migrations/20260731091000_restore_import_service_role_bypass.sql` (wajib diterapkan sebelum menjalankan `herbacode:import:execute` terhadap remote; migration `20260730090000` di atas menghapus bypass service-role pada trigger workflow tanpa migration ini, sehingga script import service-role akan ditolak)
 
 Jangan menjalankan `npx supabase db push`, seed remote, reset database, atau koneksi ke project Supabase lain tanpa backup dan instruksi eksplisit.
 

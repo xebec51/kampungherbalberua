@@ -303,6 +303,7 @@ export type Database = {
           id: string;
           qr_key: string;
           zone_code: string;
+          display_order: number | null;
           slug: string;
           program_name: string;
           street_name: string | null;
@@ -335,6 +336,7 @@ export type Database = {
           id?: string;
           qr_key?: string;
           zone_code: string;
+          display_order?: number | null;
           slug: string;
           program_name?: string;
           street_name?: string | null;
@@ -367,6 +369,7 @@ export type Database = {
           id?: string;
           qr_key?: string;
           zone_code?: string;
+          display_order?: number | null;
           slug?: string;
           program_name?: string;
           street_name?: string | null;

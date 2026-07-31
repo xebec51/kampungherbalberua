@@ -1,0 +1,544 @@
+{
+  "countsAfter": {
+    "entries": 205,
+    "plants": 90,
+    "zones": 20
+  },
+  "countsBefore": {
+    "entries": 95,
+    "plants": 50,
+    "zones": 9
+  },
+  "documentPath": "herba code (1).docx",
+  "documentSha256": "d330d5415441533412ee0fd08434a38c268886989468df8d14b727d8a520dd85",
+  "dryRun": true,
+  "mapping": {
+    "alias": [],
+    "ambiguous": [
+      {
+        "localNames": [
+          "Kunyit Putih",
+          "Temu Putih"
+        ],
+        "normalizedScientificName": "curcuma zedoaria christm roscoe"
+      }
+    ],
+    "exact": [
+      {
+        "localName": "Adas",
+        "matchKey": "Adas"
+      },
+      {
+        "localName": "Alang-alang",
+        "matchKey": "Alang-alang"
+      },
+      {
+        "localName": "Bawang Putih",
+        "matchKey": "Bawang Putih"
+      },
+      {
+        "localName": "Belimbing Wuluh",
+        "matchKey": "Belimbing Wuluh"
+      },
+      {
+        "localName": "Beluntas",
+        "matchKey": "Beluntas"
+      },
+      {
+        "localName": "Boswellia",
+        "matchKey": "Boswellia"
+      },
+      {
+        "localName": "Brotowali",
+        "matchKey": "Brotowali"
+      },
+      {
+        "localName": "Cengkeh",
+        "matchKey": "Cengkeh"
+      },
+      {
+        "localName": "Cincau Hijau",
+        "matchKey": "Cincau Hijau"
+      },
+      {
+        "localName": "Cissus",
+        "matchKey": "Cissus"
+      },
+      {
+        "localName": "Daun Dewa",
+        "matchKey": "Daun Dewa"
+      },
+      {
+        "localName": "Daun Jambu",
+        "matchKey": "Daun Jambu"
+      },
+      {
+        "localName": "Daun Salam",
+        "matchKey": "Daun Salam"
+      },
+      {
+        "localName": "Daun Ungu",
+        "matchKey": "Daun Ungu"
+      },
+      {
+        "localName": "Dong Quai",
+        "matchKey": "Dong Quai"
+      },
+      {
+        "localName": "Eucalyptus",
+        "matchKey": "Eucalyptus"
+      },
+      {
+        "localName": "Garcinia",
+        "matchKey": "Garcinia"
+      },
+      {
+        "localName": "Jahe",
+        "matchKey": "Jahe"
+      },
+      {
+        "localName": "Jeruk Nipis",
+        "matchKey": "Jeruk Nipis"
+      },
+      {
+        "localName": "Jintan Hitam",
+        "matchKey": "Jintan Hitam"
+      },
+      {
+        "localName": "Kapulaga",
+        "matchKey": "Kapulaga"
+      },
+      {
+        "localName": "Katuk",
+        "matchKey": "Katuk"
+      },
+      {
+        "localName": "Kayu Manis",
+        "matchKey": "Kayu Manis"
+      },
+      {
+        "localName": "Kayu Putih",
+        "matchKey": "Kayu Putih"
+      },
+      {
+        "localName": "Keji Beling",
+        "matchKey": "Keji Beling"
+      },
+      {
+        "localName": "Kelor",
+        "matchKey": "Kelor"
+      },
+      {
+        "localName": "Kemangi",
+        "matchKey": "Kemangi"
+      },
+      {
+        "localName": "Ketumbar",
+        "matchKey": "Ketumbar"
+      },
+      {
+        "localName": "Kopi Hijau",
+        "matchKey": "Kopi Hijau"
+      },
+      {
+        "localName": "Kumis Kucing",
+        "matchKey": "Kumis Kucing"
+      },
+      {
+        "localName": "Kunyit",
+        "matchKey": "Kunyit"
+      },
+      {
+        "localName": "Kunyit Putih",
+        "matchKey": "Kunyit Putih"
+      },
+      {
+        "localName": "Lidah Buaya",
+        "matchKey": "Lidah Buaya"
+      },
+      {
+        "localName": "Mahkota Dewa",
+        "matchKey": "Mahkota Dewa"
+      },
+      {
+        "localName": "Mengkudu",
+        "matchKey": "Mengkudu"
+      },
+      {
+        "localName": "Meniran",
+        "matchKey": "Meniran"
+      },
+      {
+        "localName": "Miana",
+        "matchKey": "Miana"
+      },
+      {
+        "localName": "Mimba",
+        "matchKey": "Mimba"
+      },
+      {
+        "localName": "Mint",
+        "matchKey": "Mint"
+      },
+      {
+        "localName": "Miswak",
+        "matchKey": "Miswak"
+      },
+      {
+        "localName": "Oregano",
+        "matchKey": "Oregano"
+      },
+      {
+        "localName": "Paliasa",
+        "matchKey": "Paliasa"
+      },
+      {
+        "localName": "Pare",
+        "matchKey": "Pare"
+      },
+      {
+        "localName": "Pegagan",
+        "matchKey": "Pegagan"
+      },
+      {
+        "localName": "Rambut Jagung",
+        "matchKey": "Rambut Jagung"
+      },
+      {
+        "localName": "Rosella",
+        "matchKey": "Rosella"
+      },
+      {
+        "localName": "Rosemary",
+        "matchKey": "Rosemary"
+      },
+      {
+        "localName": "Saga",
+        "matchKey": "Saga"
+      },
+      {
+        "localName": "Sage",
+        "matchKey": "Sage"
+      },
+      {
+        "localName": "Sambiloto",
+        "matchKey": "Sambiloto"
+      },
+      {
+        "localName": "Seledri",
+        "matchKey": "Seledri"
+      },
+      {
+        "localName": "Serai",
+        "matchKey": "Serai"
+      },
+      {
+        "localName": "Sidaguri",
+        "matchKey": "Sidaguri"
+      },
+      {
+        "localName": "Sirih",
+        "matchKey": "Sirih"
+      },
+      {
+        "localName": "Tapak Liman",
+        "matchKey": "Tapak Liman"
+      },
+      {
+        "localName": "Teh Hijau",
+        "matchKey": "Teh Hijau"
+      },
+      {
+        "localName": "Tempuyung",
+        "matchKey": "Tempuyung"
+      },
+      {
+        "localName": "Temu Mangga",
+        "matchKey": "Temu Mangga"
+      },
+      {
+        "localName": "Temu Putih",
+        "matchKey": "Temu Putih"
+      },
+      {
+        "localName": "Temulawak",
+        "matchKey": "Temulawak"
+      }
+    ],
+    "new": [
+      {
+        "localName": "Anggur",
+        "scientificName": "Vitis vinifera L.",
+        "slug": "anggur"
+      },
+      {
+        "localName": "Ashwagandha",
+        "scientificName": "Withania somnifera",
+        "slug": "ashwagandha"
+      },
+      {
+        "localName": "Bayam Merah",
+        "scientificName": "Amaranthus tricolor L.",
+        "slug": "bayam-merah"
+      },
+      {
+        "localName": "Binahong",
+        "scientificName": "Anredera cordifolia",
+        "slug": "binahong"
+      },
+      {
+        "localName": "Blueberry",
+        "scientificName": "L. (dan spesies Vaccinium lain)",
+        "slug": "blueberry"
+      },
+      {
+        "localName": "Brahmi",
+        "scientificName": "Bacopa monnieri",
+        "slug": "brahmi"
+      },
+      {
+        "localName": "Brokoli",
+        "scientificName": "var. italica",
+        "slug": "brokoli"
+      },
+      {
+        "localName": "Calendula",
+        "scientificName": "Calendula officinalis L.",
+        "slug": "calendula"
+      },
+      {
+        "localName": "Chamomile",
+        "scientificName": "Matricaria chamomilla L.",
+        "slug": "chamomile"
+      },
+      {
+        "localName": "Ginkgo",
+        "scientificName": "Ginkgo biloba L.",
+        "slug": "ginkgo"
+      },
+      {
+        "localName": "Goji Berry",
+        "scientificName": "L.",
+        "slug": "goji-berry"
+      },
+      {
+        "localName": "Kakao",
+        "scientificName": "Theobroma cacao L.",
+        "slug": "kakao"
+      },
+      {
+        "localName": "Keladi Tikus",
+        "scientificName": "(Lodd.) Blume",
+        "slug": "keladi-tikus"
+      },
+      {
+        "localName": "Kencur",
+        "scientificName": "Kaempferia galanga L.",
+        "slug": "kencur"
+      },
+      {
+        "localName": "Kulit Manggis",
+        "scientificName": "Garcinia mangostana L.",
+        "slug": "kulit-manggis"
+      },
+      {
+        "localName": "Lavender",
+        "scientificName": "Lavandula angustifolia",
+        "slug": "lavender"
+      },
+      {
+        "localName": "Lemon Balm",
+        "scientificName": "Melissa officinalis L.",
+        "slug": "lemon-balm"
+      },
+      {
+        "localName": "Marigold",
+        "scientificName": "Tagetes erecta L. (sumber lutein umum) — sumber lutein komersial utama biasanya dari Tagetes erecta",
+        "slug": "marigold"
+      },
+      {
+        "localName": "Melati",
+        "scientificName": "L.) Aiton",
+        "slug": "melati"
+      },
+      {
+        "localName": "Pala",
+        "scientificName": "Myristica fragrans Houtt.",
+        "slug": "pala"
+      },
+      {
+        "localName": "Passion Flower",
+        "scientificName": "Passiflora incarnata L.",
+        "slug": "passion-flower"
+      },
+      {
+        "localName": "Rosela",
+        "scientificName": "L.",
+        "slug": "rosela"
+      },
+      {
+        "localName": "Safron",
+        "scientificName": "L.",
+        "slug": "safron"
+      },
+      {
+        "localName": "Salam",
+        "scientificName": "Syzygium polyanthum",
+        "slug": "salam"
+      },
+      {
+        "localName": "Sirsak",
+        "scientificName": "Annona muricata L.",
+        "slug": "sirsak"
+      },
+      {
+        "localName": "Valerian",
+        "scientificName": "Valeriana officinalis L.",
+        "slug": "valerian"
+      },
+      {
+        "localName": "Willow Bark",
+        "scientificName": null,
+        "slug": "willow-bark"
+      },
+      {
+        "localName": "Wortel",
+        "scientificName": "Daucus carota subsp. sativus (Hoffm.) Schübl. & G.Martens",
+        "slug": "wortel"
+      }
+    ],
+    "scientific": [
+      {
+        "localName": "Daun Katuk",
+        "matchKey": "Sauropus androgynus (L.) Merr."
+      },
+      {
+        "localName": "Jinten Hitam",
+        "matchKey": "Nigella sativa L."
+      }
+    ],
+    "unresolved": []
+  },
+  "plants": {
+    "newCount": 28,
+    "retainedNotInDocument": [],
+    "updatedCount": 14
+  },
+  "relations": {
+    "createdCount": 110,
+    "retainedNotInDocument": [],
+    "updatedCount": 95
+  },
+  "streetZoneRelationChanges": {
+    "changed": false,
+    "reason": "Dokumen sumber tidak memuat data jalan. Relasi zona-jalan (streets, health_zone_streets) tidak disentuh oleh import ini."
+  },
+  "titleCorrections": [],
+  "zones": {
+    "newlyAssigned": [
+      {
+        "displayOrder": 6,
+        "title": "Zona Gula Darah Terkendali",
+        "zoneCode": "khb-z10"
+      },
+      {
+        "displayOrder": 7,
+        "title": "Zona Pernapasan Lega",
+        "zoneCode": "khb-z11"
+      },
+      {
+        "displayOrder": 8,
+        "title": "Zona Otak Cerdas",
+        "zoneCode": "khb-z12"
+      },
+      {
+        "displayOrder": 9,
+        "title": "Zona Anak Ceria",
+        "zoneCode": "khb-z13"
+      },
+      {
+        "displayOrder": 10,
+        "title": "Zona Kulit Cantik",
+        "zoneCode": "khb-z14"
+      },
+      {
+        "displayOrder": 15,
+        "title": "Zona Detoks dan Antioksidan",
+        "zoneCode": "khb-z15"
+      },
+      {
+        "displayOrder": 16,
+        "title": "Zona Antiinflamasi dan Nyeri",
+        "zoneCode": "khb-z16"
+      },
+      {
+        "displayOrder": 17,
+        "title": "Zona Antikanker (Potensial)",
+        "zoneCode": "khb-z17"
+      },
+      {
+        "displayOrder": 18,
+        "title": "Zona Obesitas dan Metabolik",
+        "zoneCode": "khb-z18"
+      },
+      {
+        "displayOrder": 19,
+        "title": "Zona Tidur dan Relaksasi",
+        "zoneCode": "khb-z19"
+      },
+      {
+        "displayOrder": 20,
+        "title": "Zona Kesehatan Mata",
+        "zoneCode": "khb-z20"
+      }
+    ],
+    "renamed": [],
+    "retained": [
+      {
+        "displayOrder": 1,
+        "title": "Zona Imunitas Kuat",
+        "zoneCode": "khb-z01"
+      },
+      {
+        "displayOrder": 2,
+        "title": "Zona Pencernaan Sehat",
+        "zoneCode": "khb-z02"
+      },
+      {
+        "displayOrder": 3,
+        "title": "Zona Ginjal Sehat",
+        "zoneCode": "khb-z03"
+      },
+      {
+        "displayOrder": 4,
+        "title": "Zona Hati Sehat",
+        "zoneCode": "khb-z04"
+      },
+      {
+        "displayOrder": 5,
+        "title": "Zona Jantung Sehat",
+        "zoneCode": "khb-z05"
+      },
+      {
+        "displayOrder": 11,
+        "title": "Zona Tulang & Sendi",
+        "zoneCode": "khb-z06"
+      },
+      {
+        "displayOrder": 12,
+        "title": "Zona Kesehatan Mulut",
+        "zoneCode": "khb-z07"
+      },
+      {
+        "displayOrder": 13,
+        "title": "Zona Anti Mikroba",
+        "zoneCode": "khb-z08"
+      },
+      {
+        "displayOrder": 14,
+        "title": "Zona Kesehatan Perempuan",
+        "zoneCode": "khb-z09"
+      }
+    ]
+  }
+}

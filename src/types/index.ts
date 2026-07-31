@@ -83,6 +83,7 @@ export type HerbaCodeZoneSummary = {
   shortDescription: string;
   plantCount: number;
   streetNames: string[];
+  displayOrder: number | null;
 };
 
 export type HerbaCodeZoneDetail = HerbaCodeZoneSummary & {
@@ -100,6 +101,7 @@ export type HerbaCodePlantZoneEntry = {
   zoneSlug: string;
   zoneTitle: string;
   zoneShortDescription: string | null;
+  zoneDisplayOrder: number | null;
   entryOrder: number;
   localName: string;
   scientificName: string | null;
