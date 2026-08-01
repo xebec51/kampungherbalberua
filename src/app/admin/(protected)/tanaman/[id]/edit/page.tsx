@@ -5,6 +5,7 @@ import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { AdminStatusBadge } from "@/components/admin/AdminStatusBadge";
 import { PhotoUploadForm } from "@/components/admin/PhotoUploadForm";
 import { PlantAdminForm } from "@/components/admin/PlantAdminForm";
+import { PlantQrPanel } from "@/components/admin/PlantQrPanel";
 import {
   updatePlantAction,
   uploadPlantPhotoAction,
@@ -88,6 +89,7 @@ export default async function EditPlantPage({
       />
       <AdminNotice message={successMessages[query.success ?? ""]} />
       <AdminNotice message={errorMessages[query.error ?? ""]} tone="error" />
+      <PlantQrPanel plant={result.data} />
       <PhotoUploadForm
         action={uploadPlantPhotoAction}
         currentMedia={currentMedia}

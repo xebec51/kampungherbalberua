@@ -165,6 +165,7 @@ export type Database = {
       plants: {
         Row: {
           id: string;
+          qr_key: string;
           plant_code: string | null;
           canonical_local_name: string | null;
           slug: string;
@@ -202,6 +203,7 @@ export type Database = {
         };
         Insert: {
           id?: string;
+          qr_key?: string;
           plant_code?: string | null;
           canonical_local_name?: string | null;
           slug: string;
@@ -239,6 +241,7 @@ export type Database = {
         };
         Update: {
           id?: string;
+          qr_key?: string;
           plant_code?: string | null;
           canonical_local_name?: string | null;
           slug?: string;

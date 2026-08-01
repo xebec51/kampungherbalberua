@@ -2,6 +2,7 @@ import { beforeEach, describe, expect, it } from "vitest";
 import {
   getHealthZoneQrTarget,
   getLegacyHealthZoneQrTarget,
+  getPlantQrTarget,
   getStreetQrTarget,
 } from "@/lib/qr/health-zone-qr";
 
@@ -26,6 +27,12 @@ describe("target QR zona kesehatan", () => {
     process.env.NEXT_PUBLIC_SITE_URL = "https://example.test///";
     expect(getHealthZoneQrTarget("pencernaan-sehat")).toBe(
       "https://kampungherbalberua.web.id/qr/zona/pencernaan-sehat",
+    );
+  });
+
+  it("menggunakan qr_key publik dan URL absolut production untuk tanaman", () => {
+    expect(getPlantQrTarget("jahe-merah")).toBe(
+      "https://kampungherbalberua.web.id/qr/tanaman/jahe-merah",
     );
   });
 

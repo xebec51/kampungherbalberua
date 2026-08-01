@@ -77,6 +77,10 @@ export function getStreetQrTarget(qrKey: string) {
   return qrAbsoluteUrl(`/qr/jalan/${normalizeQrKey(qrKey)}`);
 }
 
+export function getPlantQrTarget(qrKey: string) {
+  return qrAbsoluteUrl(`/qr/tanaman/${normalizeQrKey(qrKey)}`);
+}
+
 export function getLegacyHealthZoneQrTarget(zoneCode: string) {
   return absoluteUrl(`/z/${normalizeZoneCode(zoneCode)}`);
 }
@@ -95,4 +99,12 @@ export async function createStreetQrSvg(qrKey: string) {
 
 export async function createStreetQrPng(qrKey: string) {
   return createQrPng(getStreetQrTarget(qrKey));
+}
+
+export async function createPlantQrSvg(qrKey: string) {
+  return createQrSvg(getPlantQrTarget(qrKey));
+}
+
+export async function createPlantQrPng(qrKey: string) {
+  return createQrPng(getPlantQrTarget(qrKey));
 }

@@ -29,7 +29,8 @@
     "media:report": "node --experimental-strip-types scripts/media/cli.ts report",
     "herbacode:extract": "node --experimental-strip-types scripts/herbacode/cli.ts extract",
     "herbacode:import": "node --experimental-strip-types scripts/herbacode/cli.ts import",
-    "herbacode:import:execute": "node --experimental-strip-types scripts/herbacode/cli.ts import --execute"
+    "herbacode:import:execute": "node --experimental-strip-types scripts/herbacode/cli.ts import --execute",
+    "qr:export": "node --experimental-strip-types scripts/qr/export-all.ts"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.3",

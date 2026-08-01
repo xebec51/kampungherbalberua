@@ -18,6 +18,12 @@ export type PublishedPlantDetail = {
   sourceNotes: string | null;
 };
 
+export type PublishedPlantQrTarget = {
+  localName: string;
+  qrKey: string;
+  slug: string;
+};
+
 async function withPublicPlantTimeout<T>(promise: Promise<T | null>) {
   let timeoutId: ReturnType<typeof setTimeout> | undefined;
 
@@ -109,6 +115,33 @@ export async function getFeaturedPlants(limit = 3): Promise<Plant[]> {
 export async function getPlantBySlug(slug: string): Promise<Plant | undefined> {
   const plants = await getPublishedPlantSource();
   return plants.find((plant) => plant.slug === slug);
+}
+
+export async function getPublishedPlantQrTargetByKey(
+  qrKey: string,
+): Promise<PublishedPlantQrTarget | undefined> {
+  const client = await createSupabaseServerClient();
+
+  if (!client) {
+    return undefined;
+  }
+
+  const { data, error } = await client
+    .from("plants")
+    .select("qr_key, slug, local_name")
+    .eq("content_status", "published")
+    .eq("qr_key", qrKey)
+    .maybeSingle();
+
+  if (error || !data) {
+    return undefined;
+  }
+
+  return {
+    localName: data.local_name,
+    qrKey: data.qr_key,
+    slug: data.slug,
+  };
 }
 
 export async function getPublishedPlantDetailBySlug(

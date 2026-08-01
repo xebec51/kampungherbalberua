@@ -1,0 +1,1045 @@
+{
+  "counts": {
+    "jalan": 9,
+    "tanaman": 86,
+    "zona": 20
+  },
+  "entities": [
+    {
+      "category": "jalan",
+      "name": "Jl. Digestia",
+      "pngPath": "data/qrcodes/jalan/qr-jalan-digestia.png",
+      "qrKey": "digestia",
+      "slug": "digestia",
+      "svgPath": "data/qrcodes/jalan/qr-jalan-digestia.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/jalan/digestia"
+    },
+    {
+      "category": "jalan",
+      "name": "Jl. Feminia",
+      "pngPath": "data/qrcodes/jalan/qr-jalan-feminia.png",
+      "qrKey": "feminia",
+      "slug": "feminia",
+      "svgPath": "data/qrcodes/jalan/qr-jalan-feminia.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/jalan/feminia"
+    },
+    {
+      "category": "jalan",
+      "name": "Jl. Glycemia",
+      "pngPath": "data/qrcodes/jalan/qr-jalan-glycemia.png",
+      "qrKey": "glycemia",
+      "slug": "glycemia",
+      "svgPath": "data/qrcodes/jalan/qr-jalan-glycemia.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/jalan/glycemia"
+    },
+    {
+      "category": "jalan",
+      "name": "Jl. Hepatia",
+      "pngPath": "data/qrcodes/jalan/qr-jalan-hepatia.png",
+      "qrKey": "hepatia",
+      "slug": "hepatia",
+      "svgPath": "data/qrcodes/jalan/qr-jalan-hepatia.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/jalan/hepatia"
+    },
+    {
+      "category": "jalan",
+      "name": "Jl. Imun",
+      "pngPath": "data/qrcodes/jalan/qr-jalan-imun.png",
+      "qrKey": "imun",
+      "slug": "imun",
+      "svgPath": "data/qrcodes/jalan/qr-jalan-imun.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/jalan/imun"
+    },
+    {
+      "category": "jalan",
+      "name": "Jl. Lipidia",
+      "pngPath": "data/qrcodes/jalan/qr-jalan-lipidia.png",
+      "qrKey": "lipidia",
+      "slug": "lipidia",
+      "svgPath": "data/qrcodes/jalan/qr-jalan-lipidia.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/jalan/lipidia"
+    },
+    {
+      "category": "jalan",
+      "name": "Jl. Pediatria",
+      "pngPath": "data/qrcodes/jalan/qr-jalan-pediatria.png",
+      "qrKey": "pediatria",
+      "slug": "pediatria",
+      "svgPath": "data/qrcodes/jalan/qr-jalan-pediatria.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/jalan/pediatria"
+    },
+    {
+      "category": "jalan",
+      "name": "Jl. Respiria",
+      "pngPath": "data/qrcodes/jalan/qr-jalan-respiria.png",
+      "qrKey": "respiria",
+      "slug": "respiria",
+      "svgPath": "data/qrcodes/jalan/qr-jalan-respiria.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/jalan/respiria"
+    },
+    {
+      "category": "jalan",
+      "name": "Jl. Vaskulia",
+      "pngPath": "data/qrcodes/jalan/qr-jalan-vaskulia.png",
+      "qrKey": "vaskulia",
+      "slug": "vaskulia",
+      "svgPath": "data/qrcodes/jalan/qr-jalan-vaskulia.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/jalan/vaskulia"
+    },
+    {
+      "category": "zona",
+      "name": "Zona Anak Ceria",
+      "pngPath": "data/qrcodes/zona/qr-zona-anak-ceria.png",
+      "qrKey": "anak-ceria",
+      "slug": "anak-ceria",
+      "svgPath": "data/qrcodes/zona/qr-zona-anak-ceria.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/zona/anak-ceria"
+    },
+    {
+      "category": "zona",
+      "name": "Zona Anti Mikroba",
+      "pngPath": "data/qrcodes/zona/qr-zona-anti-mikroba.png",
+      "qrKey": "anti-mikroba",
+      "slug": "anti-mikroba",
+      "svgPath": "data/qrcodes/zona/qr-zona-anti-mikroba.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/zona/anti-mikroba"
+    },
+    {
+      "category": "zona",
+      "name": "Zona Antiinflamasi dan Nyeri",
+      "pngPath": "data/qrcodes/zona/qr-zona-antiinflamasi-dan-nyeri.png",
+      "qrKey": "antiinflamasi-dan-nyeri",
+      "slug": "antiinflamasi-dan-nyeri",
+      "svgPath": "data/qrcodes/zona/qr-zona-antiinflamasi-dan-nyeri.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/zona/antiinflamasi-dan-nyeri"
+    },
+    {
+      "category": "zona",
+      "name": "Zona Antikanker (Potensial)",
+      "pngPath": "data/qrcodes/zona/qr-zona-antikanker-potensial.png",
+      "qrKey": "antikanker-potensial",
+      "slug": "antikanker-potensial",
+      "svgPath": "data/qrcodes/zona/qr-zona-antikanker-potensial.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/zona/antikanker-potensial"
+    },
+    {
+      "category": "zona",
+      "name": "Zona Detoks dan Antioksidan",
+      "pngPath": "data/qrcodes/zona/qr-zona-detoks-dan-antioksidan.png",
+      "qrKey": "detoks-dan-antioksidan",
+      "slug": "detoks-dan-antioksidan",
+      "svgPath": "data/qrcodes/zona/qr-zona-detoks-dan-antioksidan.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/zona/detoks-dan-antioksidan"
+    },
+    {
+      "category": "zona",
+      "name": "Zona Ginjal Sehat",
+      "pngPath": "data/qrcodes/zona/qr-zona-ginjal-sehat.png",
+      "qrKey": "ginjal-sehat",
+      "slug": "ginjal-sehat",
+      "svgPath": "data/qrcodes/zona/qr-zona-ginjal-sehat.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/zona/ginjal-sehat"
+    },
+    {
+      "category": "zona",
+      "name": "Zona Gula Darah Terkendali",
+      "pngPath": "data/qrcodes/zona/qr-zona-gula-darah-terkendali.png",
+      "qrKey": "gula-darah-terkendali",
+      "slug": "gula-darah-terkendali",
+      "svgPath": "data/qrcodes/zona/qr-zona-gula-darah-terkendali.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/zona/gula-darah-terkendali"
+    },
+    {
+      "category": "zona",
+      "name": "Zona Hati Sehat",
+      "pngPath": "data/qrcodes/zona/qr-zona-hati-sehat.png",
+      "qrKey": "hati-sehat",
+      "slug": "hati-sehat",
+      "svgPath": "data/qrcodes/zona/qr-zona-hati-sehat.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/zona/hati-sehat"
+    },
+    {
+      "category": "zona",
+      "name": "Zona Imunitas Kuat",
+      "pngPath": "data/qrcodes/zona/qr-zona-imunitas-kuat.png",
+      "qrKey": "imunitas-kuat",
+      "slug": "imunitas-kuat",
+      "svgPath": "data/qrcodes/zona/qr-zona-imunitas-kuat.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/zona/imunitas-kuat"
+    },
+    {
+      "category": "zona",
+      "name": "Zona Jantung Sehat",
+      "pngPath": "data/qrcodes/zona/qr-zona-jantung-sehat.png",
+      "qrKey": "jantung-sehat",
+      "slug": "jantung-sehat",
+      "svgPath": "data/qrcodes/zona/qr-zona-jantung-sehat.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/zona/jantung-sehat"
+    },
+    {
+      "category": "zona",
+      "name": "Zona Kesehatan Mata",
+      "pngPath": "data/qrcodes/zona/qr-zona-kesehatan-mata.png",
+      "qrKey": "kesehatan-mata",
+      "slug": "kesehatan-mata",
+      "svgPath": "data/qrcodes/zona/qr-zona-kesehatan-mata.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/zona/kesehatan-mata"
+    },
+    {
+      "category": "zona",
+      "name": "Zona Kesehatan Mulut",
+      "pngPath": "data/qrcodes/zona/qr-zona-kesehatan-mulut.png",
+      "qrKey": "kesehatan-mulut",
+      "slug": "kesehatan-mulut",
+      "svgPath": "data/qrcodes/zona/qr-zona-kesehatan-mulut.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/zona/kesehatan-mulut"
+    },
+    {
+      "category": "zona",
+      "name": "Zona Kesehatan Perempuan",
+      "pngPath": "data/qrcodes/zona/qr-zona-kesehatan-perempuan.png",
+      "qrKey": "kesehatan-perempuan",
+      "slug": "kesehatan-perempuan",
+      "svgPath": "data/qrcodes/zona/qr-zona-kesehatan-perempuan.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/zona/kesehatan-perempuan"
+    },
+    {
+      "category": "zona",
+      "name": "Zona Kulit Cantik",
+      "pngPath": "data/qrcodes/zona/qr-zona-kulit-cantik.png",
+      "qrKey": "kulit-cantik",
+      "slug": "kulit-cantik",
+      "svgPath": "data/qrcodes/zona/qr-zona-kulit-cantik.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/zona/kulit-cantik"
+    },
+    {
+      "category": "zona",
+      "name": "Zona Obesitas dan Metabolik",
+      "pngPath": "data/qrcodes/zona/qr-zona-obesitas-dan-metabolik.png",
+      "qrKey": "obesitas-dan-metabolik",
+      "slug": "obesitas-dan-metabolik",
+      "svgPath": "data/qrcodes/zona/qr-zona-obesitas-dan-metabolik.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/zona/obesitas-dan-metabolik"
+    },
+    {
+      "category": "zona",
+      "name": "Zona Otak Cerdas",
+      "pngPath": "data/qrcodes/zona/qr-zona-otak-cerdas.png",
+      "qrKey": "otak-cerdas",
+      "slug": "otak-cerdas",
+      "svgPath": "data/qrcodes/zona/qr-zona-otak-cerdas.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/zona/otak-cerdas"
+    },
+    {
+      "category": "zona",
+      "name": "Zona Pencernaan Sehat",
+      "pngPath": "data/qrcodes/zona/qr-zona-pencernaan-sehat.png",
+      "qrKey": "pencernaan-sehat",
+      "slug": "pencernaan-sehat",
+      "svgPath": "data/qrcodes/zona/qr-zona-pencernaan-sehat.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/zona/pencernaan-sehat"
+    },
+    {
+      "category": "zona",
+      "name": "Zona Pernapasan Lega",
+      "pngPath": "data/qrcodes/zona/qr-zona-pernapasan-lega.png",
+      "qrKey": "pernapasan-lega",
+      "slug": "pernapasan-lega",
+      "svgPath": "data/qrcodes/zona/qr-zona-pernapasan-lega.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/zona/pernapasan-lega"
+    },
+    {
+      "category": "zona",
+      "name": "Zona Tidur dan Relaksasi",
+      "pngPath": "data/qrcodes/zona/qr-zona-tidur-dan-relaksasi.png",
+      "qrKey": "tidur-dan-relaksasi",
+      "slug": "tidur-dan-relaksasi",
+      "svgPath": "data/qrcodes/zona/qr-zona-tidur-dan-relaksasi.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/zona/tidur-dan-relaksasi"
+    },
+    {
+      "category": "zona",
+      "name": "Zona Tulang & Sendi",
+      "pngPath": "data/qrcodes/zona/qr-zona-tulang-dan-sendi.png",
+      "qrKey": "tulang-dan-sendi",
+      "slug": "tulang-dan-sendi",
+      "svgPath": "data/qrcodes/zona/qr-zona-tulang-dan-sendi.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/zona/tulang-dan-sendi"
+    },
+    {
+      "category": "tanaman",
+      "name": "Adas",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-adas.png",
+      "qrKey": "adas",
+      "slug": "adas",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-adas.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/adas"
+    },
+    {
+      "category": "tanaman",
+      "name": "Alang-alang",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-alang-alang.png",
+      "qrKey": "alang-alang",
+      "slug": "alang-alang",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-alang-alang.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/alang-alang"
+    },
+    {
+      "category": "tanaman",
+      "name": "Anggur",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-anggur.png",
+      "qrKey": "anggur",
+      "slug": "anggur",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-anggur.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/anggur"
+    },
+    {
+      "category": "tanaman",
+      "name": "Ashwagandha",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-ashwagandha.png",
+      "qrKey": "ashwagandha",
+      "slug": "ashwagandha",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-ashwagandha.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/ashwagandha"
+    },
+    {
+      "category": "tanaman",
+      "name": "Bawang Putih",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-bawang-putih.png",
+      "qrKey": "bawang-putih",
+      "slug": "bawang-putih",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-bawang-putih.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/bawang-putih"
+    },
+    {
+      "category": "tanaman",
+      "name": "Bayam Merah",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-bayam-merah.png",
+      "qrKey": "bayam-merah",
+      "slug": "bayam-merah",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-bayam-merah.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/bayam-merah"
+    },
+    {
+      "category": "tanaman",
+      "name": "Belimbing Wuluh",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-belimbing-wuluh.png",
+      "qrKey": "belimbing-wuluh",
+      "slug": "belimbing-wuluh",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-belimbing-wuluh.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/belimbing-wuluh"
+    },
+    {
+      "category": "tanaman",
+      "name": "Beluntas",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-beluntas.png",
+      "qrKey": "beluntas",
+      "slug": "beluntas",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-beluntas.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/beluntas"
+    },
+    {
+      "category": "tanaman",
+      "name": "Binahong",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-binahong.png",
+      "qrKey": "binahong",
+      "slug": "binahong",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-binahong.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/binahong"
+    },
+    {
+      "category": "tanaman",
+      "name": "Blueberry",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-blueberry.png",
+      "qrKey": "blueberry",
+      "slug": "blueberry",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-blueberry.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/blueberry"
+    },
+    {
+      "category": "tanaman",
+      "name": "Boswellia",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-boswellia.png",
+      "qrKey": "boswellia",
+      "slug": "boswellia",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-boswellia.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/boswellia"
+    },
+    {
+      "category": "tanaman",
+      "name": "Brokoli",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-brokoli.png",
+      "qrKey": "brokoli",
+      "slug": "brokoli",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-brokoli.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/brokoli"
+    },
+    {
+      "category": "tanaman",
+      "name": "Brotowali",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-brotowali.png",
+      "qrKey": "brotowali",
+      "slug": "brotowali",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-brotowali.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/brotowali"
+    },
+    {
+      "category": "tanaman",
+      "name": "Bunga Telang",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-bunga-telang.png",
+      "qrKey": "bunga-telang",
+      "slug": "bunga-telang",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-bunga-telang.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/bunga-telang"
+    },
+    {
+      "category": "tanaman",
+      "name": "Calendula",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-calendula.png",
+      "qrKey": "calendula",
+      "slug": "calendula",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-calendula.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/calendula"
+    },
+    {
+      "category": "tanaman",
+      "name": "Cengkeh",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-cengkeh.png",
+      "qrKey": "cengkeh",
+      "slug": "cengkeh",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-cengkeh.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/cengkeh"
+    },
+    {
+      "category": "tanaman",
+      "name": "Chamomile",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-chamomile.png",
+      "qrKey": "chamomile",
+      "slug": "chamomile",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-chamomile.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/chamomile"
+    },
+    {
+      "category": "tanaman",
+      "name": "Cincau Hijau",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-cincau-hijau.png",
+      "qrKey": "cincau-hijau",
+      "slug": "cincau-hijau",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-cincau-hijau.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/cincau-hijau"
+    },
+    {
+      "category": "tanaman",
+      "name": "Cissus",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-cissus.png",
+      "qrKey": "cissus",
+      "slug": "cissus",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-cissus.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/cissus"
+    },
+    {
+      "category": "tanaman",
+      "name": "Daun Dewa",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-daun-dewa.png",
+      "qrKey": "daun-dewa",
+      "slug": "daun-dewa",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-daun-dewa.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/daun-dewa"
+    },
+    {
+      "category": "tanaman",
+      "name": "Daun Jambu",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-daun-jambu.png",
+      "qrKey": "daun-jambu",
+      "slug": "daun-jambu",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-daun-jambu.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/daun-jambu"
+    },
+    {
+      "category": "tanaman",
+      "name": "Daun Salam",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-daun-salam.png",
+      "qrKey": "daun-salam",
+      "slug": "daun-salam",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-daun-salam.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/daun-salam"
+    },
+    {
+      "category": "tanaman",
+      "name": "Daun Ungu",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-daun-ungu.png",
+      "qrKey": "daun-ungu",
+      "slug": "daun-ungu",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-daun-ungu.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/daun-ungu"
+    },
+    {
+      "category": "tanaman",
+      "name": "Delima",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-delima.png",
+      "qrKey": "delima",
+      "slug": "delima",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-delima.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/delima"
+    },
+    {
+      "category": "tanaman",
+      "name": "Dong Quai",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-dong-quai.png",
+      "qrKey": "dong-quai",
+      "slug": "dong-quai",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-dong-quai.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/dong-quai"
+    },
+    {
+      "category": "tanaman",
+      "name": "Eucalyptus",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-eucalyptus.png",
+      "qrKey": "eucalyptus",
+      "slug": "eucalyptus",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-eucalyptus.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/eucalyptus"
+    },
+    {
+      "category": "tanaman",
+      "name": "Garcinia",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-garcinia.png",
+      "qrKey": "garcinia",
+      "slug": "garcinia",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-garcinia.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/garcinia"
+    },
+    {
+      "category": "tanaman",
+      "name": "Ginkgo",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-ginkgo.png",
+      "qrKey": "ginkgo",
+      "slug": "ginkgo",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-ginkgo.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/ginkgo"
+    },
+    {
+      "category": "tanaman",
+      "name": "Goji Berry",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-goji-berry.png",
+      "qrKey": "goji-berry",
+      "slug": "goji-berry",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-goji-berry.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/goji-berry"
+    },
+    {
+      "category": "tanaman",
+      "name": "Jahe",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-jahe.png",
+      "qrKey": "jahe",
+      "slug": "jahe",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-jahe.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/jahe"
+    },
+    {
+      "category": "tanaman",
+      "name": "Jeruk Nipis",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-jeruk-nipis.png",
+      "qrKey": "jeruk-nipis",
+      "slug": "jeruk-nipis",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-jeruk-nipis.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/jeruk-nipis"
+    },
+    {
+      "category": "tanaman",
+      "name": "Jintan Hitam",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-jintan-hitam.png",
+      "qrKey": "jintan-hitam",
+      "slug": "jintan-hitam",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-jintan-hitam.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/jintan-hitam"
+    },
+    {
+      "category": "tanaman",
+      "name": "Kakao",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-kakao.png",
+      "qrKey": "kakao",
+      "slug": "kakao",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-kakao.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/kakao"
+    },
+    {
+      "category": "tanaman",
+      "name": "Kapulaga",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-kapulaga.png",
+      "qrKey": "kapulaga",
+      "slug": "kapulaga",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-kapulaga.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/kapulaga"
+    },
+    {
+      "category": "tanaman",
+      "name": "Katuk",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-katuk.png",
+      "qrKey": "katuk",
+      "slug": "katuk",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-katuk.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/katuk"
+    },
+    {
+      "category": "tanaman",
+      "name": "Kayu Manis",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-kayu-manis.png",
+      "qrKey": "kayu-manis",
+      "slug": "kayu-manis",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-kayu-manis.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/kayu-manis"
+    },
+    {
+      "category": "tanaman",
+      "name": "Kayu Putih",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-kayu-putih.png",
+      "qrKey": "kayu-putih",
+      "slug": "kayu-putih",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-kayu-putih.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/kayu-putih"
+    },
+    {
+      "category": "tanaman",
+      "name": "Keji Beling",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-keji-beling.png",
+      "qrKey": "keji-beling",
+      "slug": "keji-beling",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-keji-beling.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/keji-beling"
+    },
+    {
+      "category": "tanaman",
+      "name": "Keladi Tikus",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-keladi-tikus.png",
+      "qrKey": "keladi-tikus",
+      "slug": "keladi-tikus",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-keladi-tikus.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/keladi-tikus"
+    },
+    {
+      "category": "tanaman",
+      "name": "Kelor",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-kelor.png",
+      "qrKey": "kelor",
+      "slug": "kelor",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-kelor.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/kelor"
+    },
+    {
+      "category": "tanaman",
+      "name": "Kemangi",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-kemangi.png",
+      "qrKey": "kemangi",
+      "slug": "kemangi",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-kemangi.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/kemangi"
+    },
+    {
+      "category": "tanaman",
+      "name": "Ketumbar",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-ketumbar.png",
+      "qrKey": "ketumbar",
+      "slug": "ketumbar",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-ketumbar.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/ketumbar"
+    },
+    {
+      "category": "tanaman",
+      "name": "Kopi Hijau",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-kopi-hijau.png",
+      "qrKey": "kopi-hijau",
+      "slug": "kopi-hijau",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-kopi-hijau.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/kopi-hijau"
+    },
+    {
+      "category": "tanaman",
+      "name": "Kulit Manggis",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-kulit-manggis.png",
+      "qrKey": "kulit-manggis",
+      "slug": "kulit-manggis",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-kulit-manggis.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/kulit-manggis"
+    },
+    {
+      "category": "tanaman",
+      "name": "Kumis Kucing",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-kumis-kucing.png",
+      "qrKey": "kumis-kucing",
+      "slug": "kumis-kucing",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-kumis-kucing.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/kumis-kucing"
+    },
+    {
+      "category": "tanaman",
+      "name": "Kunyit",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-kunyit.png",
+      "qrKey": "kunyit",
+      "slug": "kunyit",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-kunyit.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/kunyit"
+    },
+    {
+      "category": "tanaman",
+      "name": "Kunyit Putih",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-kunyit-putih.png",
+      "qrKey": "kunyit-putih",
+      "slug": "kunyit-putih",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-kunyit-putih.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/kunyit-putih"
+    },
+    {
+      "category": "tanaman",
+      "name": "Lavender",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-lavender.png",
+      "qrKey": "lavender",
+      "slug": "lavender",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-lavender.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/lavender"
+    },
+    {
+      "category": "tanaman",
+      "name": "Lemon Balm",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-lemon-balm.png",
+      "qrKey": "lemon-balm",
+      "slug": "lemon-balm",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-lemon-balm.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/lemon-balm"
+    },
+    {
+      "category": "tanaman",
+      "name": "Lidah Buaya",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-lidah-buaya.png",
+      "qrKey": "lidah-buaya",
+      "slug": "lidah-buaya",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-lidah-buaya.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/lidah-buaya"
+    },
+    {
+      "category": "tanaman",
+      "name": "Mahkota Dewa",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-mahkota-dewa.png",
+      "qrKey": "mahkota-dewa",
+      "slug": "mahkota-dewa",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-mahkota-dewa.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/mahkota-dewa"
+    },
+    {
+      "category": "tanaman",
+      "name": "Marigold",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-marigold.png",
+      "qrKey": "marigold",
+      "slug": "marigold",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-marigold.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/marigold"
+    },
+    {
+      "category": "tanaman",
+      "name": "Melati",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-melati.png",
+      "qrKey": "melati",
+      "slug": "melati",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-melati.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/melati"
+    },
+    {
+      "category": "tanaman",
+      "name": "Mengkudu",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-mengkudu.png",
+      "qrKey": "mengkudu",
+      "slug": "mengkudu",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-mengkudu.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/mengkudu"
+    },
+    {
+      "category": "tanaman",
+      "name": "Meniran",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-meniran.png",
+      "qrKey": "meniran",
+      "slug": "meniran",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-meniran.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/meniran"
+    },
+    {
+      "category": "tanaman",
+      "name": "Miana",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-miana.png",
+      "qrKey": "miana",
+      "slug": "miana",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-miana.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/miana"
+    },
+    {
+      "category": "tanaman",
+      "name": "Mimba",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-mimba.png",
+      "qrKey": "mimba",
+      "slug": "mimba",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-mimba.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/mimba"
+    },
+    {
+      "category": "tanaman",
+      "name": "Mint",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-mint.png",
+      "qrKey": "mint",
+      "slug": "mint",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-mint.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/mint"
+    },
+    {
+      "category": "tanaman",
+      "name": "Miswak",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-miswak.png",
+      "qrKey": "miswak",
+      "slug": "miswak",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-miswak.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/miswak"
+    },
+    {
+      "category": "tanaman",
+      "name": "Oregano",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-oregano.png",
+      "qrKey": "oregano",
+      "slug": "oregano",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-oregano.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/oregano"
+    },
+    {
+      "category": "tanaman",
+      "name": "Pala",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-pala.png",
+      "qrKey": "pala",
+      "slug": "pala",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-pala.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/pala"
+    },
+    {
+      "category": "tanaman",
+      "name": "Paliasa",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-paliasa.png",
+      "qrKey": "paliasa",
+      "slug": "paliasa",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-paliasa.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/paliasa"
+    },
+    {
+      "category": "tanaman",
+      "name": "Pare",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-pare.png",
+      "qrKey": "pare",
+      "slug": "pare",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-pare.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/pare"
+    },
+    {
+      "category": "tanaman",
+      "name": "Passion Flower",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-passion-flower.png",
+      "qrKey": "passion-flower",
+      "slug": "passion-flower",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-passion-flower.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/passion-flower"
+    },
+    {
+      "category": "tanaman",
+      "name": "Pegagan",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-pegagan.png",
+      "qrKey": "pegagan",
+      "slug": "pegagan",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-pegagan.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/pegagan"
+    },
+    {
+      "category": "tanaman",
+      "name": "Rambut Jagung",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-rambut-jagung.png",
+      "qrKey": "rambut-jagung",
+      "slug": "rambut-jagung",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-rambut-jagung.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/rambut-jagung"
+    },
+    {
+      "category": "tanaman",
+      "name": "Rosella",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-rosella.png",
+      "qrKey": "rosella",
+      "slug": "rosella",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-rosella.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/rosella"
+    },
+    {
+      "category": "tanaman",
+      "name": "Rosemary",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-rosemary.png",
+      "qrKey": "rosemary",
+      "slug": "rosemary",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-rosemary.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/rosemary"
+    },
+    {
+      "category": "tanaman",
+      "name": "Safron",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-safron.png",
+      "qrKey": "safron",
+      "slug": "safron",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-safron.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/safron"
+    },
+    {
+      "category": "tanaman",
+      "name": "Saga",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-saga.png",
+      "qrKey": "saga",
+      "slug": "saga",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-saga.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/saga"
+    },
+    {
+      "category": "tanaman",
+      "name": "Sage",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-sage.png",
+      "qrKey": "sage",
+      "slug": "sage",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-sage.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/sage"
+    },
+    {
+      "category": "tanaman",
+      "name": "Sambiloto",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-sambiloto.png",
+      "qrKey": "sambiloto",
+      "slug": "sambiloto",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-sambiloto.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/sambiloto"
+    },
+    {
+      "category": "tanaman",
+      "name": "Seledri",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-seledri.png",
+      "qrKey": "seledri",
+      "slug": "seledri",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-seledri.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/seledri"
+    },
+    {
+      "category": "tanaman",
+      "name": "Serai",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-serai.png",
+      "qrKey": "serai",
+      "slug": "serai",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-serai.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/serai"
+    },
+    {
+      "category": "tanaman",
+      "name": "Sidaguri",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-sidaguri.png",
+      "qrKey": "sidaguri",
+      "slug": "sidaguri",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-sidaguri.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/sidaguri"
+    },
+    {
+      "category": "tanaman",
+      "name": "Sirih",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-daun-sirih.png",
+      "qrKey": "daun-sirih",
+      "slug": "daun-sirih",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-daun-sirih.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/daun-sirih"
+    },
+    {
+      "category": "tanaman",
+      "name": "Sirsak",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-sirsak.png",
+      "qrKey": "sirsak",
+      "slug": "sirsak",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-sirsak.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/sirsak"
+    },
+    {
+      "category": "tanaman",
+      "name": "Tapak Liman",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-tapak-liman.png",
+      "qrKey": "tapak-liman",
+      "slug": "tapak-liman",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-tapak-liman.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/tapak-liman"
+    },
+    {
+      "category": "tanaman",
+      "name": "Teh Hijau",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-teh-hijau.png",
+      "qrKey": "teh-hijau",
+      "slug": "teh-hijau",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-teh-hijau.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/teh-hijau"
+    },
+    {
+      "category": "tanaman",
+      "name": "Tempuyung",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-tempuyung.png",
+      "qrKey": "tempuyung",
+      "slug": "tempuyung",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-tempuyung.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/tempuyung"
+    },
+    {
+      "category": "tanaman",
+      "name": "Temu Mangga",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-temu-mangga.png",
+      "qrKey": "temu-mangga",
+      "slug": "temu-mangga",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-temu-mangga.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/temu-mangga"
+    },
+    {
+      "category": "tanaman",
+      "name": "Temu Putih",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-temu-putih.png",
+      "qrKey": "temu-putih",
+      "slug": "temu-putih",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-temu-putih.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/temu-putih"
+    },
+    {
+      "category": "tanaman",
+      "name": "Temulawak",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-temulawak.png",
+      "qrKey": "temulawak",
+      "slug": "temulawak",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-temulawak.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/temulawak"
+    },
+    {
+      "category": "tanaman",
+      "name": "Valerian",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-valerian.png",
+      "qrKey": "valerian",
+      "slug": "valerian",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-valerian.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/valerian"
+    },
+    {
+      "category": "tanaman",
+      "name": "Willow Bark",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-willow-bark.png",
+      "qrKey": "willow-bark",
+      "slug": "willow-bark",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-willow-bark.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/willow-bark"
+    },
+    {
+      "category": "tanaman",
+      "name": "Wortel",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-wortel.png",
+      "qrKey": "wortel",
+      "slug": "wortel",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-wortel.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/wortel"
+    }
+  ],
+  "sourceUrl": "https://xkvgpauprhggykaxffkh.supabase.co"
+}
