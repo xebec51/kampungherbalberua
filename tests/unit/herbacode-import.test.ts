@@ -305,6 +305,43 @@ describe("findExistingPlantMatch: known local-name alias overrides", () => {
     expect(match?.plantId).toBe("canon-jintan-hitam");
   });
 
+  it("mencocokkan 'Rosela' dari dokumen ke tanaman kanonis 'Rosella'", () => {
+    const canonical = plantRow({
+      id: "canon-rosella",
+      local_name: "Rosella",
+      other_names: ["Rosela, Bunga rosela"],
+      scientific_name: "Hibiscus sabdariffa L.",
+      slug: "rosella",
+    });
+    const indexes = buildExistingPlantIndexes([canonical], []);
+
+    const match = findExistingPlantMatch(herbaCodePlant("Rosela", null), indexes);
+
+    expect(match?.plantId).toBe("canon-rosella");
+  });
+
+  it("mencocokkan 'Rosela, Bunga rosela' ke tanaman kanonis 'Rosella' walau nama ilmiah dokumen tidak lengkap", () => {
+    // Regression for the production consolidation on 2026-08-01: the
+    // document occurrence in zone khb-z17 has an incomplete scientific name
+    // ("L." only, no genus/species), which is exactly what let this entry
+    // fall through past the scientific-name fallback and create a second
+    // "Rosela" plant on first import. The alias override must resolve it
+    // deterministically regardless of whether the scientific name is usable.
+    const canonical = plantRow({
+      id: "canon-rosella",
+      local_name: "Rosella",
+      other_names: ["Rosela, Bunga rosela"],
+      scientific_name: "Hibiscus sabdariffa L.",
+      slug: "rosella",
+    });
+    const indexes = buildExistingPlantIndexes([canonical], []);
+
+    const match = findExistingPlantMatch(herbaCodePlant("Rosela, Bunga rosela", "L."), indexes);
+
+    expect(match?.plantId).toBe("canon-rosella");
+    expect(match?.method).toBe("alias");
+  });
+
   it("tidak menerapkan override apa pun ke pasangan Kunyit Putih / Temu Putih", () => {
     const kunyitPutih = plantRow({
       id: "id-kunyit-putih",
@@ -380,6 +417,37 @@ describe("buildAmbiguousScientificNameGroups", () => {
         matchKey: "Sauropus androgynus (L.) Merr.",
         method: "scientific",
         plantId: "plant-katuk",
+      }),
+    ];
+
+    const ambiguous = buildAmbiguousScientificNameGroups(plans);
+
+    expect(ambiguous).toHaveLength(0);
+  });
+
+  it("tidak menandai Rosela dan Rosella sebagai ambiguous ketika keduanya cocok ke tanaman existing yang sama lewat override alias", () => {
+    // Regression for the production consolidation on 2026-08-01: with the
+    // KNOWN_LOCAL_NAME_ALIAS_OVERRIDES entry in place, every "Rosela, Bunga
+    // rosela" / "Rosela" occurrence resolves via the alias override to the
+    // same canonical "Rosella" plant_id -- including the zone khb-z17 entry
+    // whose scientific name is incomplete ("L.") and therefore never even
+    // reaches the scientific-name grouping check below. A re-import must
+    // never flag this pair or spawn a second "Rosela" row.
+    const plans = [
+      plan("Rosella", "Hibiscus sabdariffa L.", {
+        matchKey: "Rosella",
+        method: "exact",
+        plantId: "plant-rosella",
+      }),
+      plan("Rosela, Bunga rosela", "Hibiscus sabdariffa L.", {
+        matchKey: "Rosela, Bunga rosela",
+        method: "alias",
+        plantId: "plant-rosella",
+      }),
+      plan("Rosela, Bunga rosela", "L.", {
+        matchKey: "Rosela, Bunga rosela",
+        method: "alias",
+        plantId: "plant-rosella",
       }),
     ];
 

@@ -55,8 +55,21 @@ const LEGACY_ZONE_TITLE_TO_CODE: Record<string, string> = {
 // must stay short and human-reviewed: auto-resolving ambiguity is exactly
 // what must NOT happen for genuinely distinct plants like "Kunyit Putih" vs
 // "Temu Putih", which stays flagged, never entered here.
+// "Rosela" and "Rosella" resolved to separate plant rows for the same reason:
+// nine of the ten document occurrences carry the complete scientific name
+// "Hibiscus sabdariffa L." and matched the existing "Rosella" plant via the
+// scientific-name fallback, but one occurrence (zone khb-z17, entry order 9)
+// has an incomplete scientific name ("L." only) in the source document, which
+// does not match the scientific-name index and fell through to creating a new
+// "Rosela" plant instead (confirmed by direct production data audit,
+// 2026-08-01). Both spelling variants below cover every local-name form found
+// in the document for this plant, so the alias match now succeeds regardless
+// of whether that entry's scientific name is complete -- the root cause,
+// not just this one entry.
 const KNOWN_LOCAL_NAME_ALIAS_OVERRIDES: Record<string, string> = {
   [normalizeHerbaCodeName("Jinten Hitam")]: normalizeHerbaCodeName("Jintan Hitam"),
+  [normalizeHerbaCodeName("Rosela")]: normalizeHerbaCodeName("Rosella"),
+  [normalizeHerbaCodeName("Rosela, Bunga rosela")]: normalizeHerbaCodeName("Rosella"),
 };
 
 export type PlantRow = Pick<
