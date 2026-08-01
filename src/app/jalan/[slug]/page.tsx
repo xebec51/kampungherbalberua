@@ -126,9 +126,9 @@ export default async function StreetDetailPage({
               Tanaman pada jalan ini
             </h2>
             <p className="mt-2 max-w-3xl text-sm leading-6 text-herbal-muted">
-              Daftar ini mengikuti tema papan jalan dan koleksi tanaman pada
-              katalog Kampung Herbal. Data ini tidak diambil dari relasi
-              tanaman-zona HerbaCode.
+              Daftar ini mengikuti entri HerbaCode yang telah dipublikasikan
+              pada zona kesehatan pasangan jalan ini. Jalan dan zona tetap
+              merupakan entitas serta QR yang berbeda.
             </p>
             <div className="mt-4 grid gap-3">
               {street.plantEntries.map((entry) => (

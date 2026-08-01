@@ -1,7 +1,11 @@
 import { cache } from "react";
 import { createClient } from "@supabase/supabase-js";
-import posterPlantManifest from "../../../data/media/manifests/poster-plant-catalog.json";
-import { normalizePosterName } from "@/lib/data/poster-plants";
+import localHerbaCodeData from "../../../data/herbacode/herbacode-data.json";
+import {
+  getStreetZoneMappingByStreetSlug,
+  getStreetZoneMappingByZoneSlug,
+  STREET_ZONE_MAPPINGS,
+} from "@/lib/data/street-zone-mapping";
 import {
   getSupabaseConfig,
   supabaseFetchWithTimeout,
@@ -41,33 +45,143 @@ export type PublicStreetRelatedZone = {
 };
 
 const streetPhotoAttribution = "Dokumentasi KKN Kampung Herbal Berua, 2026.";
-const streetPhotoSourceNote =
-  "Foto papan jalan tematik Kampung Herbal Harmony memuat nama jalan, blok, dan tema kesehatan. Daftar tanaman jalan dipasangkan dari koleksi katalog Kampung Herbal berdasarkan tema papan, bukan dari relasi zona HerbaCode atau kode poster.";
+// Daftar tanaman jalan berasal dari entri HerbaCode published pada zona
+// kesehatan pasangan (lihat src/lib/data/street-zone-mapping.ts), bukan lagi
+// dari koleksi katalog poster. Jalan dan zona tetap entitas serta QR yang
+// berbeda -- lihat relatedZones untuk tautan ke halaman zona pasangan.
+const streetPlantSourceNote =
+  "Daftar tanaman pada jalan ini mengikuti entri HerbaCode yang telah dipublikasikan pada zona kesehatan pasangannya. Jalan dan zona tetap merupakan entitas serta QR yang berbeda.";
 const streetQueryTimeoutMs = 3_000;
 
-type ManifestPosterPlant = {
-  rawName: string;
-  normalizedName: string;
-  slug: string;
-  posterNumbers: number[];
-  collections: string[];
+type LocalHerbaCodeEntry = {
+  entryOrder: number;
+  localName: string;
+  plantSlug: string;
+  scientificName: string | null;
+  zoneSlug: string;
 };
 
-type StreetCatalogTheme = {
-  matchStatus: "exact" | "manual";
-  notes: string;
-  catalogCollectionTitle: string;
-  signThemeTitle: string;
+type LocalHerbaCodeData = {
+  entries: LocalHerbaCodeEntry[];
 };
+
+const localHerbaCode = localHerbaCodeData as LocalHerbaCodeData;
 
 type ThematicStreetSeed = Omit<
   PublicStreet,
-  "plantCount" | "plantEntries"
-> & {
-  catalogTheme: StreetCatalogTheme;
-};
+  "plantCount" | "plantEntries" | "relatedZones" | "sourceNotes"
+>;
 
-const posterPlants = posterPlantManifest as ManifestPosterPlant[];
+export const thematicStreetSeeds: ThematicStreetSeed[] = [
+  {
+    attributionText: streetPhotoAttribution,
+    blockRanges: ["E1-10", "H1-5"],
+    description:
+      "Jalan tematik dengan papan Digestia untuk edukasi pencernaan sehat di Kampung Herbal Harmony.",
+    id: "restored-street-digestia",
+    imageAlt: "Papan tanaman di Jl. Digestia",
+    imagePath: "/images/streets/digestia.jpg",
+    qrKey: "digestia",
+    slug: "digestia",
+    streetName: "Jl. Digestia",
+  },
+  {
+    attributionText: streetPhotoAttribution,
+    blockRanges: ["A1-7", "D1-4", "D9-14"],
+    description:
+      "Jalan tematik dengan papan Respiria untuk edukasi pernapasan sehat di Kampung Herbal Harmony.",
+    id: "restored-street-respiria",
+    imageAlt: "Papan tanaman di Jl. Respiria",
+    imagePath: "/images/streets/respiria.jpg",
+    qrKey: "respiria",
+    slug: "respiria",
+    streetName: "Jl. Respiria",
+  },
+  {
+    attributionText: streetPhotoAttribution,
+    blockRanges: ["H6-10", "J2-4"],
+    description:
+      "Jalan tematik dengan papan Glycemia untuk edukasi gula darah terkendali di Kampung Herbal Harmony.",
+    id: "restored-street-glycemia",
+    imageAlt: "Papan tanaman di Jl. Glycemia",
+    imagePath: "/images/streets/glycemia.jpg",
+    qrKey: "glycemia",
+    slug: "glycemia",
+    streetName: "Jl. Glycemia",
+  },
+  {
+    attributionText: streetPhotoAttribution,
+    blockRanges: ["D5-14", "E1-4", "E13-14"],
+    description:
+      "Jalan tematik dengan papan Lipidia untuk edukasi lemak sehat di Kampung Herbal Harmony.",
+    id: "restored-street-lipidia",
+    imageAlt: "Papan tanaman di Jl. Lipidia",
+    imagePath: "/images/streets/lipidia.jpg",
+    qrKey: "lipidia",
+    slug: "lipidia",
+    streetName: "Jl. Lipidia",
+  },
+  {
+    attributionText: streetPhotoAttribution,
+    blockRanges: ["B1-9", "C1-7"],
+    description:
+      "Jalan tematik dengan papan Imun untuk edukasi daya tahan tubuh di Kampung Herbal Harmony.",
+    id: "restored-street-imun",
+    imageAlt: "Papan tanaman di Jl. Imun",
+    imagePath: "/images/streets/imun.jpg",
+    qrKey: "imun",
+    slug: "imun",
+    streetName: "Jl. Imun",
+  },
+  {
+    attributionText: streetPhotoAttribution,
+    blockRanges: ["C8-13", "F1-5"],
+    description:
+      "Jalan tematik dengan papan Hepatia untuk edukasi hati sehat di Kampung Herbal Harmony.",
+    id: "restored-street-hepatia",
+    imageAlt: "Papan tanaman di Jl. Hepatia",
+    imagePath: "/images/streets/hepatia.jpg",
+    qrKey: "hepatia",
+    slug: "hepatia",
+    streetName: "Jl. Hepatia",
+  },
+  {
+    attributionText: streetPhotoAttribution,
+    blockRanges: ["F6-9", "G1-3", "G4-5"],
+    description:
+      "Jalan tematik dengan papan Feminia untuk edukasi wanita sehat alami di Kampung Herbal Harmony.",
+    id: "restored-street-feminia",
+    imageAlt: "Papan tanaman di Jl. Feminia",
+    imagePath: "/images/streets/feminia.jpg",
+    qrKey: "feminia",
+    slug: "feminia",
+    streetName: "Jl. Feminia",
+  },
+  {
+    attributionText: streetPhotoAttribution,
+    blockRanges: ["J5-8", "K1-6"],
+    description:
+      "Jalan tematik dengan papan Vaskulia untuk edukasi jantung dan pembuluh darah sehat di Kampung Herbal Harmony.",
+    id: "restored-street-vaskulia",
+    imageAlt: "Papan tanaman di Jl. Vaskulia",
+    imagePath: "/images/streets/vaskulia.jpg",
+    qrKey: "vaskulia",
+    slug: "vaskulia",
+    streetName: "Jl. Vaskulia",
+  },
+  {
+    attributionText: streetPhotoAttribution,
+    blockRanges: ["I1-4", "I5-11"],
+    description:
+      "Jalan tematik dengan papan Pediatria untuk edukasi anak ceria di Kampung Herbal Harmony.",
+    id: "restored-street-pediatria",
+    imageAlt: "Papan tanaman di Jl. Pediatria",
+    imagePath: "/images/streets/pediatria.jpg",
+    qrKey: "pediatria",
+    slug: "pediatria",
+    streetName: "Jl. Pediatria",
+  },
+];
 
 async function withStreetTimeout<T>(promise: Promise<T | null>) {
   let timeoutId: ReturnType<typeof setTimeout> | undefined;
@@ -84,236 +198,136 @@ async function withStreetTimeout<T>(promise: Promise<T | null>) {
   }
 }
 
-const thematicStreetSeeds: ThematicStreetSeed[] = [
-  {
-    attributionText: streetPhotoAttribution,
-    blockRanges: ["E1-10", "H1-5"],
-    description:
-      "Jalan tematik dengan papan Digestia untuk edukasi pencernaan sehat di Kampung Herbal Harmony.",
-    id: "restored-street-digestia",
-    imageAlt: "Papan tanaman di Jl. Digestia",
-    imagePath: "/images/streets/digestia.jpg",
-    catalogTheme: {
-      catalogCollectionTitle: "Zona Pencernaan Sehat",
-      matchStatus: "exact",
-      notes: "Tema pada papan cocok dengan koleksi poster.",
-      signThemeTitle: "Zona Pencernaan Sehat",
-    },
-    relatedZones: [{ slug: "pencernaan-sehat", title: "Zona Pencernaan Sehat" }],
-    qrKey: "digestia",
-    slug: "digestia",
-    sourceNotes: [streetPhotoSourceNote],
-    streetName: "Jl. Digestia",
-  },
-  {
-    attributionText: streetPhotoAttribution,
-    blockRanges: ["A1-7", "D1-4", "D9-14"],
-    description:
-      "Jalan tematik dengan papan Respiria untuk edukasi pernapasan sehat di Kampung Herbal Harmony.",
-    id: "restored-street-respiria",
-    imageAlt: "Papan tanaman di Jl. Respiria",
-    imagePath: "/images/streets/respiria.jpg",
-    catalogTheme: {
-      catalogCollectionTitle: "Zona Pernapasan Lega",
-      matchStatus: "manual",
-      notes:
-        "Papan menulis Zona Pernapasan Sehat; katalog poster memakai Zona Pernapasan Lega.",
-      signThemeTitle: "Zona Pernapasan Sehat",
-    },
-    relatedZones: [],
-    qrKey: "respiria",
-    slug: "respiria",
-    sourceNotes: [streetPhotoSourceNote],
-    streetName: "Jl. Respiria",
-  },
-  {
-    attributionText: streetPhotoAttribution,
-    blockRanges: ["H6-10", "J2-4"],
-    description:
-      "Jalan tematik dengan papan Glycemia untuk edukasi gula darah terkendali di Kampung Herbal Harmony.",
-    id: "restored-street-glycemia",
-    imageAlt: "Papan tanaman di Jl. Glycemia",
-    imagePath: "/images/streets/glycemia.jpg",
-    catalogTheme: {
-      catalogCollectionTitle: "Zona Gula Darah Terkendali",
-      matchStatus: "exact",
-      notes: "Tema pada papan cocok dengan koleksi poster.",
-      signThemeTitle: "Zona Gula Darah Terkendali",
-    },
-    relatedZones: [],
-    qrKey: "glycemia",
-    slug: "glycemia",
-    sourceNotes: [streetPhotoSourceNote],
-    streetName: "Jl. Glycemia",
-  },
-  {
-    attributionText: streetPhotoAttribution,
-    blockRanges: ["D5-14", "E1-4", "E13-14"],
-    description:
-      "Jalan tematik dengan papan Lipidia untuk edukasi lemak sehat di Kampung Herbal Harmony.",
-    id: "restored-street-lipidia",
-    imageAlt: "Papan tanaman di Jl. Lipidia",
-    imagePath: "/images/streets/lipidia.jpg",
-    catalogTheme: {
-      catalogCollectionTitle: "Zona Obesitas & Metabolik",
-      matchStatus: "manual",
-      notes:
-        "Papan menulis Zona Lemak Sehat; katalog poster paling dekat adalah Zona Obesitas & Metabolik.",
-      signThemeTitle: "Zona Lemak Sehat",
-    },
-    relatedZones: [],
-    qrKey: "lipidia",
-    slug: "lipidia",
-    sourceNotes: [streetPhotoSourceNote],
-    streetName: "Jl. Lipidia",
-  },
-  {
-    attributionText: streetPhotoAttribution,
-    blockRanges: ["B1-9", "C1-7"],
-    description:
-      "Jalan tematik dengan papan Imun untuk edukasi daya tahan tubuh di Kampung Herbal Harmony.",
-    id: "restored-street-imun",
-    imageAlt: "Papan tanaman di Jl. Imun",
-    imagePath: "/images/streets/imun.jpg",
-    catalogTheme: {
-      catalogCollectionTitle: "Zona Imunitas Kuat",
-      matchStatus: "manual",
-      notes:
-        "Papan menulis Zona Daya Tahan Tubuh; katalog poster memakai Zona Imunitas Kuat.",
-      signThemeTitle: "Zona Daya Tahan Tubuh",
-    },
-    relatedZones: [{ slug: "imunitas-kuat", title: "Zona Imunitas Kuat" }],
-    qrKey: "imun",
-    slug: "imun",
-    sourceNotes: [streetPhotoSourceNote],
-    streetName: "Jl. Imun",
-  },
-  {
-    attributionText: streetPhotoAttribution,
-    blockRanges: ["C8-13", "F1-5"],
-    description:
-      "Jalan tematik dengan papan Hepatia untuk edukasi hati sehat di Kampung Herbal Harmony.",
-    id: "restored-street-hepatia",
-    imageAlt: "Papan tanaman di Jl. Hepatia",
-    imagePath: "/images/streets/hepatia.jpg",
-    catalogTheme: {
-      catalogCollectionTitle: "Zona Hati Sehat",
-      matchStatus: "exact",
-      notes: "Tema pada papan cocok dengan koleksi poster.",
-      signThemeTitle: "Zona Hati Sehat",
-    },
-    relatedZones: [{ slug: "hati-sehat", title: "Zona Hati Sehat" }],
-    qrKey: "hepatia",
-    slug: "hepatia",
-    sourceNotes: [streetPhotoSourceNote],
-    streetName: "Jl. Hepatia",
-  },
-  {
-    attributionText: streetPhotoAttribution,
-    blockRanges: ["F6-9", "G1-3", "G4-5"],
-    description:
-      "Jalan tematik dengan papan Feminia untuk edukasi wanita sehat alami di Kampung Herbal Harmony.",
-    id: "restored-street-feminia",
-    imageAlt: "Papan tanaman di Jl. Feminia",
-    imagePath: "/images/streets/feminia.jpg",
-    catalogTheme: {
-      catalogCollectionTitle: "Zona Kesehatan Perempuan",
-      matchStatus: "manual",
-      notes:
-        "Papan menulis Zona Wanita Sehat Alami; katalog poster memakai Zona Kesehatan Perempuan.",
-      signThemeTitle: "Zona Wanita Sehat Alami",
-    },
-    relatedZones: [
-      { slug: "kesehatan-perempuan", title: "Zona Kesehatan Perempuan" },
-    ],
-    qrKey: "feminia",
-    slug: "feminia",
-    sourceNotes: [streetPhotoSourceNote],
-    streetName: "Jl. Feminia",
-  },
-  {
-    attributionText: streetPhotoAttribution,
-    blockRanges: ["J5-8", "K1-6"],
-    description:
-      "Jalan tematik dengan papan Vaskulia untuk edukasi jantung dan pembuluh darah sehat di Kampung Herbal Harmony.",
-    id: "restored-street-vaskulia",
-    imageAlt: "Papan tanaman di Jl. Vaskulia",
-    imagePath: "/images/streets/vaskulia.jpg",
-    catalogTheme: {
-      catalogCollectionTitle: "Zona Jantung Sehat",
-      matchStatus: "manual",
-      notes:
-        "Papan menulis Zona Jantung & Pembuluh Darah Sehat; katalog poster memakai Zona Jantung Sehat.",
-      signThemeTitle: "Zona Jantung & Pembuluh Darah Sehat",
-    },
-    relatedZones: [{ slug: "jantung-sehat", title: "Zona Jantung Sehat" }],
-    qrKey: "vaskulia",
-    slug: "vaskulia",
-    sourceNotes: [streetPhotoSourceNote],
-    streetName: "Jl. Vaskulia",
-  },
-  {
-    attributionText: streetPhotoAttribution,
-    blockRanges: ["I1-4", "I5-11"],
-    description:
-      "Jalan tematik dengan papan Pediatria untuk edukasi anak ceria di Kampung Herbal Harmony.",
-    id: "restored-street-pediatria",
-    imageAlt: "Papan tanaman di Jl. Pediatria",
-    imagePath: "/images/streets/pediatria.jpg",
-    catalogTheme: {
-      catalogCollectionTitle: "Zona Anak Ceria",
-      matchStatus: "exact",
-      notes: "Tema pada papan cocok dengan koleksi poster.",
-      signThemeTitle: "Zona Anak Ceria",
-    },
-    relatedZones: [],
-    qrKey: "pediatria",
-    slug: "pediatria",
-    sourceNotes: [streetPhotoSourceNote],
-    streetName: "Jl. Pediatria",
-  },
-];
+export function normalizeDisplayName(value: string) {
+  return value.trim().toLowerCase().replace(/\s+/g, " ");
+}
 
-const restoredStreetNamesByHerbaCodeZoneSlug = new Map<string, string[]>([
-  ["imunitas-kuat", ["Jl. Imun"]],
-  ["pencernaan-sehat", ["Jl. Digestia"]],
-  ["hati-sehat", ["Jl. Hepatia"]],
-  ["jantung-sehat", ["Jl. Vaskulia"]],
-  ["kesehatan-perempuan", ["Jl. Feminia"]],
-]);
+export function getRelatedZonesForStreetSlug(streetSlug: string): PublicStreetRelatedZone[] {
+  const mapping = getStreetZoneMappingByStreetSlug(streetSlug);
+  return mapping ? [{ slug: mapping.zoneSlug, title: mapping.zoneTitle }] : [];
+}
 
-async function buildThematicStreetCatalog() {
-  return thematicStreetSeeds.map((street) => {
-    const plantEntries = posterPlants
-      .filter((plant) =>
-        plant.collections.includes(street.catalogTheme.catalogCollectionTitle),
-      )
-      .sort((left, right) => left.rawName.localeCompare(right.rawName, "id"))
-      .map((plant, index) => {
-        const normalizedName = normalizePosterName(plant.rawName);
+// Local JSON fallback has no publish-workflow status fields at all (this is
+// a raw document-extraction snapshot, not gated by content_status /
+// validation_status the way the database is), so entries here cannot be
+// filtered the same way as fetchStreetPlantEntriesFromDatabase. This only
+// activates when the database is unreachable (see withStreetTimeout below);
+// the database result is always preferred when available.
+export function localStreetPlantEntries(zoneSlug: string): PublicStreetPlantEntry[] {
+  return localHerbaCode.entries
+    .filter((entry) => entry.zoneSlug === zoneSlug)
+    .sort(
+      (left, right) =>
+        left.entryOrder - right.entryOrder ||
+        left.localName.localeCompare(right.localName, "id"),
+    )
+    .map((entry) => ({
+      id: `${zoneSlug}:${entry.plantSlug}`,
+      matchStatus: "exact",
+      normalizedName: normalizeDisplayName(entry.localName),
+      notes:
+        "Tanaman ini termasuk dalam entri HerbaCode pada zona kesehatan pasangan jalan ini (data lokal cadangan; status publikasi tidak tersedia pada sumber ini).",
+      plantSlug: entry.plantSlug,
+      rawPlantName: entry.localName,
+      scientificName: entry.scientificName,
+      sortOrder: entry.entryOrder,
+    } satisfies PublicStreetPlantEntry));
+}
 
-        return {
-          id: `${street.slug}-${normalizedName}`,
-          matchStatus: street.catalogTheme.matchStatus,
-          normalizedName,
-          notes: `${street.catalogTheme.notes} Koleksi sumber ${street.catalogTheme.catalogCollectionTitle}.`,
-          plantSlug: plant.slug,
-          rawPlantName: plant.rawName,
-          scientificName: null,
-          sortOrder: index + 1,
-        } satisfies PublicStreetPlantEntry;
-      });
+async function fetchStreetPlantEntriesFromDatabase(
+  zoneSlug: string,
+): Promise<PublicStreetPlantEntry[] | null> {
+  const config = getSupabaseConfig();
+
+  if (!config) {
+    return null;
+  }
+
+  const client = createClient<Database>(config.url, config.publishableKey, {
+    auth: {
+      autoRefreshToken: false,
+      detectSessionInUrl: false,
+      persistSession: false,
+    },
+    global: {
+      fetch: supabaseFetchWithTimeout,
+    },
+  });
+
+  const { data, error } = await client
+    .from("herbacode_plant_zone_entries")
+    .select(
+      "id, local_name, scientific_name, entry_order, health_zones!inner(slug, content_status), plants!inner(slug, scientific_name, content_status, validation_status)",
+    )
+    .eq("health_zones.slug", zoneSlug)
+    .eq("health_zones.content_status", "published")
+    .eq("content_status", "published")
+    .eq("validation_status", "verified")
+    .eq("plants.content_status", "published")
+    .eq("plants.validation_status", "verified")
+    .order("entry_order", { ascending: true })
+    .order("local_name", { ascending: true });
+
+  if (error || !data) {
+    return null;
+  }
+
+  return data.map(
+    (row) =>
+      ({
+        id: row.id,
+        matchStatus: "exact",
+        normalizedName: normalizeDisplayName(row.local_name),
+        notes:
+          "Tanaman ini termasuk dalam entri HerbaCode published pada zona kesehatan pasangan jalan ini.",
+        plantSlug: row.plants?.slug ?? null,
+        rawPlantName: row.local_name,
+        scientificName: row.scientific_name ?? row.plants?.scientific_name ?? null,
+        sortOrder: row.entry_order,
+      }) satisfies PublicStreetPlantEntry,
+  );
+}
+
+async function getPlantEntriesForZoneSlug(
+  zoneSlug: string,
+): Promise<PublicStreetPlantEntry[]> {
+  const databaseEntries = await withStreetTimeout(
+    fetchStreetPlantEntriesFromDatabase(zoneSlug),
+  );
+
+  return databaseEntries ?? localStreetPlantEntries(zoneSlug);
+}
+
+async function buildPlantEntriesByStreetSlug() {
+  const pairs = await Promise.all(
+    STREET_ZONE_MAPPINGS.map(
+      async (mapping) =>
+        [mapping.streetSlug, await getPlantEntriesForZoneSlug(mapping.zoneSlug)] as const,
+    ),
+  );
+
+  return new Map(pairs);
+}
+
+function buildThematicStreetCatalog(
+  plantEntriesByStreetSlug: Map<string, PublicStreetPlantEntry[]>,
+): PublicStreet[] {
+  return thematicStreetSeeds.map((seed) => {
+    const plantEntries = plantEntriesByStreetSlug.get(seed.slug) ?? [];
 
     return {
-      ...street,
+      ...seed,
       plantCount: plantEntries.length,
       plantEntries,
+      relatedZones: getRelatedZonesForStreetSlug(seed.slug),
+      sourceNotes: [streetPlantSourceNote],
     } satisfies PublicStreet;
   });
 }
 
 async function fetchPublishedStreetsFromDatabase(
   fallbackCatalog: PublicStreet[],
+  plantEntriesByStreetSlug: Map<string, PublicStreetPlantEntry[]>,
 ) {
   const config = getSupabaseConfig();
 
@@ -346,6 +360,7 @@ async function fetchPublishedStreetsFromDatabase(
 
   return data.map((street) => {
     const fallback = fallbackBySlug.get(street.slug);
+    const plantEntries = plantEntriesByStreetSlug.get(street.slug) ?? fallback?.plantEntries ?? [];
 
     return {
       attributionText: fallback?.attributionText ?? "",
@@ -354,12 +369,12 @@ async function fetchPublishedStreetsFromDatabase(
       id: street.id,
       imageAlt: fallback?.imageAlt ?? `Papan tanaman di ${street.street_name}`,
       imagePath: fallback?.imagePath ?? null,
-      plantCount: fallback?.plantEntries.length ?? 0,
-      plantEntries: fallback?.plantEntries ?? [],
+      plantCount: plantEntries.length,
+      plantEntries,
       qrKey: street.qr_key,
-      relatedZones: fallback?.relatedZones ?? [],
+      relatedZones: getRelatedZonesForStreetSlug(street.slug),
       slug: street.slug,
-      sourceNotes: fallback?.sourceNotes ?? [],
+      sourceNotes: [streetPlantSourceNote],
       streetName: street.street_name,
     } satisfies PublicStreet;
   });
@@ -402,9 +417,10 @@ async function fetchPublishedStreetQrTargetFromDatabase(qrKey: string) {
 }
 
 export const getPublishedStreets = cache(async () => {
-  const thematicStreetCatalog = await buildThematicStreetCatalog();
+  const plantEntriesByStreetSlug = await buildPlantEntriesByStreetSlug();
+  const thematicStreetCatalog = buildThematicStreetCatalog(plantEntriesByStreetSlug);
   const databaseStreets = await withStreetTimeout(
-    fetchPublishedStreetsFromDatabase(thematicStreetCatalog),
+    fetchPublishedStreetsFromDatabase(thematicStreetCatalog, plantEntriesByStreetSlug),
   );
 
   return (databaseStreets ?? thematicStreetCatalog).sort(
@@ -438,12 +454,16 @@ export async function getPublishedStreetSlugs() {
   return streets.map((street) => street.slug);
 }
 
-export async function getRestoredStreetNamesByHerbaCodeZoneSlug(slug: string) {
+export async function getRestoredStreetNamesByHerbaCodeZoneSlug(zoneSlug: string) {
+  const mapping = getStreetZoneMappingByZoneSlug(zoneSlug);
+
+  if (!mapping) {
+    return [];
+  }
+
   const publishedNames = new Set(
     (await getPublishedStreets()).map((street) => street.streetName),
   );
 
-  return (restoredStreetNamesByHerbaCodeZoneSlug.get(slug) ?? []).filter(
-    (streetName) => publishedNames.has(streetName),
-  );
+  return publishedNames.has(mapping.streetName) ? [mapping.streetName] : [];
 }

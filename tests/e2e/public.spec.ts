@@ -421,10 +421,34 @@ test("peta menampilkan 9 jalan tematik yang dipulihkan", async ({ page }) => {
   await expectNoHorizontalOverflow(page);
 });
 
-test("jalan tematik menampilkan foto dan tidak memakai relasi zona sebagai tanaman", async ({
+const STREET_ZONE_PAIRS = [
+  { streetSlug: "digestia", streetName: "Digestia", zoneSlug: "pencernaan-sehat" },
+  { streetSlug: "respiria", streetName: "Respiria", zoneSlug: "pernapasan-lega" },
+  { streetSlug: "glycemia", streetName: "Glycemia", zoneSlug: "gula-darah-terkendali" },
+  { streetSlug: "lipidia", streetName: "Lipidia", zoneSlug: "obesitas-dan-metabolik" },
+  { streetSlug: "imun", streetName: "Imun", zoneSlug: "imunitas-kuat" },
+  { streetSlug: "hepatia", streetName: "Hepatia", zoneSlug: "hati-sehat" },
+  { streetSlug: "feminia", streetName: "Feminia", zoneSlug: "kesehatan-perempuan" },
+  { streetSlug: "vaskulia", streetName: "Vaskulia", zoneSlug: "jantung-sehat" },
+  { streetSlug: "pediatria", streetName: "Pediatria", zoneSlug: "anak-ceria" },
+] as const;
+
+async function getPlantSlugsOnPage(page: Page) {
+  const hrefs = await page.locator('a[href^="/tanaman/"]').evaluateAll((links) =>
+    links.map((link) => link.getAttribute("href") ?? ""),
+  );
+
+  return new Set(
+    hrefs
+      .map((href) => href.replace(/^\/tanaman\//, "").split(/[/?#]/)[0])
+      .filter((slug): slug is string => Boolean(slug)),
+  );
+}
+
+test("jalan tematik menampilkan foto dan daftar tanaman mengikuti zona kesehatan pasangan", async ({
   page,
 }) => {
-  test.setTimeout(120_000);
+  test.setTimeout(180_000);
 
   await page.goto("/jalan");
 
@@ -433,17 +457,7 @@ test("jalan tematik menampilkan foto dan tidak memakai relasi zona sebagai tanam
   ).toBeVisible();
   await expect(page.getByRole("link", { name: /Buka detail Jl\./ })).toHaveCount(9);
 
-  for (const streetName of [
-    "Digestia",
-    "Respiria",
-    "Glycemia",
-    "Lipidia",
-    "Imun",
-    "Hepatia",
-    "Feminia",
-    "Vaskulia",
-    "Pediatria",
-  ]) {
+  for (const { streetName } of STREET_ZONE_PAIRS) {
     await expect(
       page.getByRole("img", { name: `Papan tanaman di Jl. ${streetName}` }),
     ).toBeVisible();
@@ -456,20 +470,35 @@ test("jalan tematik menampilkan foto dan tidak memakai relasi zona sebagai tanam
   ).toBeVisible();
   await expect(page.getByText("Dokumentasi KKN Kampung Herbal Berua, 2026.")).toBeVisible();
   await expect(
-    page.getByText("Data ini tidak diambil dari relasi tanaman-zona HerbaCode."),
+    page.getByText(
+      "Daftar ini mengikuti entri HerbaCode yang telah dipublikasikan pada zona kesehatan pasangan jalan ini.",
+    ),
   ).toBeVisible();
   await expect(page.getByRole("heading", { name: "Tanaman pada jalan ini" })).toBeVisible();
-  await expect(page.locator('a[href="/tanaman/meniran"]').first()).toBeVisible();
-  await expect(page.locator('a[href="/tanaman/jahe"]').first()).toBeVisible();
-  await expect(page.locator('a[href="/tanaman/miana"]').first()).toBeVisible();
-  await expect(page.getByText("Urutan 11")).toBeVisible();
   await expect(page.getByRole("link", { name: "Zona Imunitas Kuat" })).toBeVisible();
 
   await page.goto("/zona-kesehatan/imunitas-kuat");
   await expect(page.getByRole("img", { name: /Papan tanaman di Jl\./ })).toHaveCount(0);
 
+  // Core requirement: each street's displayed plant slugs must be identical
+  // to its paired health zone's displayed plant slugs (published entries
+  // only) -- not a hardcoded list, so this stays correct as HerbaCode
+  // content changes.
+  for (const { streetSlug, zoneSlug } of STREET_ZONE_PAIRS) {
+    await page.goto(`/jalan/${streetSlug}`);
+    const streetPlantSlugs = await getPlantSlugsOnPage(page);
+
+    await page.goto(`/zona-kesehatan/${zoneSlug}`);
+    const zonePlantSlugs = await getPlantSlugsOnPage(page);
+
+    expect(streetPlantSlugs.size).toBeGreaterThan(0);
+    expect([...streetPlantSlugs].sort()).toEqual([...zonePlantSlugs].sort());
+  }
+
+  await page.goto("/jalan/imun");
   await expectNoPublicPlaceholderText(page);
   await expectNoHorizontalOverflow(page);
+  await expectNoBrokenImages(page);
 
   await page.setViewportSize({ height: 900, width: 320 });
   await page.goto("/peta");

@@ -20,7 +20,7 @@ export default async function StreetsPage() {
   return (
     <>
       <PageHero
-        description="Jalan tematik adalah dokumentasi fisik wilayah. Data tanaman jalan dipasangkan dari tema papan dan katalog poster Kampung Herbal, bukan dari relasi zona HerbaCode."
+        description="Jalan tematik adalah dokumentasi fisik wilayah. Daftar tanaman pada setiap jalan mengikuti entri HerbaCode yang telah dipublikasikan pada zona kesehatan pasangannya."
         eyebrow="Jalan Tematik"
         title="Jalan Tematik Kampung Herbal"
       />
