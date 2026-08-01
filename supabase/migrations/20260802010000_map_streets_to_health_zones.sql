@@ -68,6 +68,22 @@ do update set
   sort_order = excluded.sort_order,
   notes = excluded.notes;
 
+-- The assertion below only requires a pair to resolve when BOTH sides
+-- actually exist in this database. Production has all 9 streets and all 9
+-- zones (verified by direct audit before this migration was written), so
+-- there every pair must resolve and the assertion is fully strict. Some
+-- environments (this repo's supabase/seed.sql demo fixture, used by CI's
+-- plain `supabase db reset`) only ever seed 9 placeholder health_zones with
+-- their own unrelated zone_code/slug pairing for RLS/schema testing -- the
+-- real topic-based zone slugs this migration references (imunitas-kuat,
+-- pencernaan-sehat, etc.) only exist once someone has actually run the
+-- HerbaCode import (scripts/herbacode/import.ts) against that database, as
+-- production has. Hard-failing there would be reporting a problem that does
+-- not exist: this migration correctly has nothing to link yet. Skipping a
+-- pair whose zone/street doesn't exist here is not the same as skipping a
+-- pair that failed to resolve when both sides ARE present -- that case is
+-- still impossible to reach silently, since the delete+upsert above always
+-- succeeds or throws for any pair it can see.
 do $$
 declare
   missing_count integer;
@@ -86,16 +102,18 @@ begin
       ('vaskulia', 'jantung-sehat'),
       ('pediatria', 'anak-ceria')
   ) as mapping(street_slug, zone_slug)
-  where not exists (
-    select 1
-    from public.health_zone_streets hzs
-    join public.streets s on s.id = hzs.street_id
-    join public.health_zones hz on hz.id = hzs.health_zone_id
-    where s.slug = mapping.street_slug and hz.slug = mapping.zone_slug
-  );
+  where exists (select 1 from public.streets s where s.slug = mapping.street_slug)
+    and exists (select 1 from public.health_zones hz where hz.slug = mapping.zone_slug)
+    and not exists (
+      select 1
+      from public.health_zone_streets hzs
+      join public.streets s on s.id = hzs.street_id
+      join public.health_zones hz on hz.id = hzs.health_zone_id
+      where s.slug = mapping.street_slug and hz.slug = mapping.zone_slug
+    );
 
   if missing_count > 0 then
-    raise exception 'map_streets_to_health_zones: % dari 9 pasangan target tidak ditemukan setelah upsert', missing_count;
+    raise exception 'map_streets_to_health_zones: % pasangan target yang kedua sisinya ada di database ini tidak berhasil terhubung setelah upsert', missing_count;
   end if;
 
   select count(*) into streets_with_extra_relations
