@@ -7,6 +7,7 @@ import { HoverCard } from "@/components/motion/HoverCard";
 import { Reveal } from "@/components/motion/Reveal";
 import { StaggerGroup } from "@/components/motion/StaggerGroup";
 import { StaggerItem } from "@/components/motion/StaggerItem";
+import { teamMembers } from "@/data/team";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = createPageMetadata({
@@ -46,6 +47,13 @@ const timelineSteps = [
       "Merangkum hasil pendataan, zona kesehatan, kegiatan, dan produk warga ke dalam portal ini agar dapat diakses publik secara bertahap.",
   },
 ];
+
+function getInitials(name: string) {
+  const words = name.replace(/\./g, "").split(" ").filter(Boolean);
+  const first = words[0]?.[0] ?? "";
+  const second = words.length > 1 ? words[words.length - 1][0] : "";
+  return (first + second).toUpperCase();
+}
 
 export default function AboutPage() {
   return (
@@ -254,6 +262,68 @@ export default function AboutPage() {
             lapangan. Halaman ini akan diperbarui sejalan dengan perkembangan
             program.
           </p>
+        </Container>
+      </section>
+
+      <section className="bg-herbal-cream py-12 sm:py-16">
+        <Container>
+          <Reveal>
+            <SectionHeading
+              description="Sepuluh mahasiswa KKN Universitas Hasanuddin angkatan 2023 dari enam bidang studi yang berkolaborasi menjalankan program Kampung Herbal Berua. Foto masih berupa placeholder dan akan diperbarui bertahap."
+              eyebrow="Tim KKN"
+              title="Orang-orang di balik Kampung Herbal Berua"
+            />
+          </Reveal>
+          <StaggerGroup className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {teamMembers.map((member) => (
+              <StaggerItem key={member.id}>
+                <HoverCard
+                  as="article"
+                  className="h-full rounded-md border border-herbal-green/10 bg-white p-5 shadow-sm transition-shadow duration-200 hover:shadow-[var(--shadow-lift)]"
+                >
+                  <div className="flex items-center gap-4">
+                    <div
+                      aria-hidden="true"
+                      className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-herbal-soft text-lg font-bold text-herbal-deep"
+                    >
+                      {getInitials(member.name)}
+                    </div>
+                    <div>
+                      <h3 className="text-base font-bold leading-tight text-herbal-ink">
+                        {member.name}
+                      </h3>
+                      <StatusBadge className="mt-2" tone="green">
+                        {member.studyProgram}
+                      </StatusBadge>
+                    </div>
+                  </div>
+                  <dl className="mt-4 grid gap-1.5 border-t border-herbal-green/10 pt-4 text-xs leading-5 text-herbal-muted">
+                    <div className="flex justify-between gap-3">
+                      <dt className="font-semibold text-herbal-brown">
+                        Fakultas
+                      </dt>
+                      <dd className="text-right">{member.faculty}</dd>
+                    </div>
+                    <div className="flex justify-between gap-3">
+                      <dt className="font-semibold text-herbal-brown">
+                        Angkatan
+                      </dt>
+                      <dd>{member.entryYear}</dd>
+                    </div>
+                  </dl>
+                </HoverCard>
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-sm leading-6 text-herbal-muted">
+              Kontribusi lebih rinci dari setiap anggota tim dapat dilihat di
+              halaman Tim KKN.
+            </p>
+            <LinkButton href="/tim" variant="secondary">
+              Lihat Detail Kontribusi
+            </LinkButton>
+          </div>
         </Container>
       </section>
     </>

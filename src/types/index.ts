@@ -256,5 +256,7 @@ export type TeamMember = {
   id: string;
   name: string;
   studyProgram: string;
+  faculty: string;
+  entryYear: number;
   contribution: string;
 };
