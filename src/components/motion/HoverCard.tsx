@@ -3,6 +3,7 @@
 import type { ReactNode } from "react";
 import { useReducedMotion } from "framer-motion";
 import { tagMap, type MotionTagName } from "./motionTag";
+import { useHydrated } from "./useHydrated";
 
 type HoverCardProps = {
   children: ReactNode;
@@ -29,6 +30,11 @@ const TRANSITION = { duration: 0.25, ease: [0.22, 1, 0.36, 1] as const };
  * whatever CSS transitions (e.g. shadow/border-color) the wrapped element
  * already defines.
  *
+ * SSR/hydration safe: gesture props (and the `tabIndex`/focus handling
+ * Framer Motion attaches for them) are only enabled once `useHydrated()`
+ * flips to true, so the server-rendered markup and the very first client
+ * render are identical — avoids a hydration attribute mismatch.
+ *
  * Usage:
  * ```tsx
  * <HoverCard as="article" className="rounded-[var(--radius-card)] shadow-[var(--shadow-soft)] transition-shadow hover:shadow-[var(--shadow-lift)]">
@@ -44,12 +50,14 @@ export function HoverCard({
   scale = 1.012,
 }: HoverCardProps) {
   const shouldReduceMotion = useReducedMotion();
+  const hydrated = useHydrated();
   const MotionTag = tagMap[as];
 
-  const hoverState = shouldReduceMotion ? undefined : { y: -lift, scale };
-  const tapState = shouldReduceMotion
-    ? undefined
-    : { scale: Math.max(scale - 0.02, 0.98) };
+  const gesturesEnabled = hydrated && !shouldReduceMotion;
+  const hoverState = gesturesEnabled ? { y: -lift, scale } : undefined;
+  const tapState = gesturesEnabled
+    ? { scale: Math.max(scale - 0.02, 0.98) }
+    : undefined;
 
   return (
     <MotionTag
