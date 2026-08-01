@@ -6,6 +6,11 @@ import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { BrandCard } from "@/components/ui/BrandCard";
 import { Container } from "@/components/ui/Container";
 import { StatusBadge } from "@/components/ui/StatusBadge";
+import { Reveal } from "@/components/motion/Reveal";
+import { StaggerGroup } from "@/components/motion/StaggerGroup";
+import { StaggerItem } from "@/components/motion/StaggerItem";
+import { StreetPlantMiniCard } from "@/components/streets/StreetPlantMiniCard";
+import { getHerbaCodePlantCatalog } from "@/lib/data/herbacode";
 import {
   getPublishedStreetBySlug,
   getPublishedStreetSlugs,
@@ -59,6 +64,9 @@ export default async function StreetDetailPage({
     notFound();
   }
 
+  const plantCatalog = await getHerbaCodePlantCatalog();
+  const plantBySlug = new Map(plantCatalog.map((plant) => [plant.slug, plant]));
+
   return (
     <article className="bg-herbal-cream py-10 sm:py-14">
       <Container>
@@ -66,7 +74,10 @@ export default async function StreetDetailPage({
           items={[{ label: "Jalan Tematik", href: "/jalan" }, { label: street.streetName }]}
         />
 
-        <div className="mt-8 grid gap-8 rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-5 shadow-[var(--shadow-soft)] sm:p-7 lg:grid-cols-[minmax(0,0.9fr)_minmax(20rem,1.1fr)] lg:items-start">
+        <Reveal
+          as="div"
+          className="mt-8 grid gap-8 rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-5 shadow-[var(--shadow-soft)] sm:p-7 lg:grid-cols-[minmax(0,0.9fr)_minmax(20rem,1.1fr)] lg:items-start"
+        >
           <div className="min-w-0">
             <div className="flex flex-wrap gap-2">
               <StatusBadge tone="brown">Jalan tematik</StatusBadge>
@@ -118,94 +129,69 @@ export default async function StreetDetailPage({
               </figcaption>
             </figure>
           ) : null}
-        </div>
+        </Reveal>
 
         {street.plantEntries.length > 0 ? (
           <section className="mt-8">
-            <h2 className="text-xl font-bold text-herbal-ink">
-              Tanaman pada jalan ini
-            </h2>
-            <p className="mt-2 max-w-3xl text-sm leading-6 text-herbal-muted">
-              Daftar ini mengikuti entri HerbaCode yang telah dipublikasikan
-              pada zona kesehatan pasangan jalan ini. Jalan dan zona tetap
-              merupakan entitas serta QR yang berbeda.
-            </p>
-            <div className="mt-4 grid gap-3">
-              {street.plantEntries.map((entry) => (
-                <StreetPlantEntryCard entry={entry} key={entry.id} />
+            <Reveal>
+              <h2 className="text-xl font-bold text-herbal-ink">
+                Tanaman pada jalan ini
+              </h2>
+              <p className="mt-2 max-w-3xl text-sm leading-6 text-herbal-muted">
+                Daftar ini mengikuti entri HerbaCode yang telah dipublikasikan
+                pada zona kesehatan pasangan jalan ini. Jalan dan zona tetap
+                merupakan entitas serta QR yang berbeda.
+              </p>
+            </Reveal>
+            <StaggerGroup className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {street.plantEntries.map((entry, index) => (
+                <StaggerItem key={entry.id}>
+                  <StreetPlantMiniCard
+                    entry={entry}
+                    plant={
+                      entry.plantSlug ? plantBySlug.get(entry.plantSlug) : undefined
+                    }
+                    priority={index < 3}
+                  />
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerGroup>
           </section>
         ) : (
-          <BrandCard as="section" className="mt-8 text-sm leading-7 text-herbal-muted">
-            <h2 className="text-base font-bold text-herbal-ink">
-              Catatan sumber foto
-            </h2>
-            <p className="mt-3">
-              Foto papan {street.streetName} belum terhubung dengan daftar
-              tanaman yang dapat diverifikasi.
-            </p>
-          </BrandCard>
+          <Reveal>
+            <BrandCard as="section" className="mt-8 text-sm leading-7 text-herbal-muted">
+              <h2 className="text-base font-bold text-herbal-ink">
+                Catatan sumber foto
+              </h2>
+              <p className="mt-3">
+                Foto papan {street.streetName} belum terhubung dengan daftar
+                tanaman yang dapat diverifikasi.
+              </p>
+            </BrandCard>
+          </Reveal>
         )}
 
         {street.relatedZones.length > 0 ? (
-          <BrandCard as="section" className="mt-8">
-            <h2 className="text-base font-bold text-herbal-ink">
-              Zona terkait
-            </h2>
-            <div className="mt-4 flex flex-wrap gap-3">
-              {street.relatedZones.map((zone) => (
-                <Link
-                  className="inline-flex min-h-10 items-center rounded-md border border-herbal-green bg-white px-4 py-2 text-sm font-semibold text-herbal-green transition hover:bg-herbal-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
-                  href={`/zona-kesehatan/${zone.slug}`}
-                  key={zone.slug}
-                >
-                  {zone.title}
-                </Link>
-              ))}
-            </div>
-          </BrandCard>
+          <Reveal>
+            <BrandCard as="section" className="mt-8">
+              <h2 className="text-base font-bold text-herbal-ink">
+                Zona terkait
+              </h2>
+              <div className="mt-4 flex flex-wrap gap-3">
+                {street.relatedZones.map((zone) => (
+                  <Link
+                    className="inline-flex min-h-10 items-center rounded-md border border-herbal-green bg-white px-4 py-2 text-sm font-semibold text-herbal-green transition hover:bg-herbal-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
+                    href={`/zona-kesehatan/${zone.slug}`}
+                    key={zone.slug}
+                  >
+                    {zone.title}
+                  </Link>
+                ))}
+              </div>
+            </BrandCard>
+          </Reveal>
         ) : null}
       </Container>
     </article>
-  );
-}
-
-function StreetPlantEntryCard({
-  entry,
-}: {
-  entry: NonNullable<Awaited<ReturnType<typeof getPublishedStreetBySlug>>>["plantEntries"][number];
-}) {
-  const content = (
-    <>
-      <span className="text-xs font-bold uppercase tracking-[0.12em] text-herbal-brown">
-        Urutan {entry.sortOrder}
-      </span>
-      <span className="mt-1 block text-lg font-bold text-herbal-ink">
-        {entry.rawPlantName}
-      </span>
-      {entry.scientificName ? (
-        <span className="mt-1 block text-sm italic text-herbal-muted">
-          {entry.scientificName}
-        </span>
-      ) : null}
-    </>
-  );
-
-  if (!entry.plantSlug) {
-    return (
-      <BrandCard className="p-4">
-        {content}
-      </BrandCard>
-    );
-  }
-
-  return (
-    <Link
-      className="rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-4 shadow-[var(--shadow-soft)] transition hover:border-herbal-green/35 hover:bg-herbal-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
-      href={`/tanaman/${entry.plantSlug}`}
-    >
-      {content}
-    </Link>
   );
 }

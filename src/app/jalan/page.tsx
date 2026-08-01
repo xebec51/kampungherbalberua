@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { StreetCard } from "@/components/streets/StreetCard";
 import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/ui/PageHero";
+import { StaggerGroup } from "@/components/motion/StaggerGroup";
+import { StaggerItem } from "@/components/motion/StaggerItem";
 import { getPublishedStreets } from "@/lib/data/streets";
 import { createPageMetadata } from "@/lib/metadata";
 
@@ -26,13 +28,14 @@ export default async function StreetsPage() {
       />
       <section className="bg-herbal-cream py-10 sm:py-12">
         <Container>
-
-        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {streets.map((street, index) => (
-            <StreetCard key={street.slug} priority={index === 0} street={street} />
-          ))}
-        </div>
-      </Container>
+          <StaggerGroup className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {streets.map((street, index) => (
+              <StaggerItem key={street.slug}>
+                <StreetCard priority={index === 0} street={street} />
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
+        </Container>
       </section>
     </>
   );
