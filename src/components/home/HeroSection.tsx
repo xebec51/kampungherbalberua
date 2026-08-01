@@ -1,6 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
+import { HoverCard } from "@/components/motion/HoverCard";
+import { StaggerGroup } from "@/components/motion/StaggerGroup";
+import { StaggerItem } from "@/components/motion/StaggerItem";
 
 export function HeroSection() {
   return (
@@ -22,32 +25,52 @@ export function HeroSection() {
       <div className="absolute inset-x-0 bottom-0 -z-10 h-48 bg-gradient-to-t from-herbal-ink to-transparent" />
 
       <Container className="py-24 sm:py-28 lg:py-32">
-        <div className="max-w-3xl">
-          <p className="text-sm font-bold uppercase tracking-[0.18em] text-herbal-gold">
-            RT 009/RW 006 Kelurahan Berua
-          </p>
-          <h1 className="mt-4 max-w-4xl break-words text-3xl font-bold leading-tight tracking-normal text-white drop-shadow-[0_5px_24px_rgba(0,0,0,0.72)] sm:text-5xl lg:text-6xl">
-            Kampung Herbal Harmony Berua
-          </h1>
-          <p className="mt-6 max-w-2xl break-words text-base leading-8 text-white/88 drop-shadow-[0_3px_16px_rgba(0,0,0,0.5)] sm:text-lg">
-            Portal digital untuk mengenal tanaman herbal, jalan tematik, zona
-            edukasi kesehatan, peta wilayah, kegiatan, dan produk warga Berua.
-          </p>
-          <div className="mt-8 flex w-full max-w-xl flex-col gap-3 sm:flex-row">
+        <StaggerGroup amount={0.4} className="max-w-3xl" staggerDelay={0.12}>
+          <StaggerItem>
+            <p className="text-sm font-bold uppercase tracking-[0.18em] text-herbal-gold">
+              RT 009/RW 006 Kelurahan Berua
+            </p>
+          </StaggerItem>
+          <StaggerItem>
+            <h1 className="mt-4 max-w-4xl break-words text-3xl font-bold leading-tight tracking-normal text-white drop-shadow-[0_5px_24px_rgba(0,0,0,0.72)] sm:text-5xl lg:text-6xl">
+              Kampung Herbal Harmony Berua
+            </h1>
+          </StaggerItem>
+          <StaggerItem>
+            <p className="mt-6 max-w-2xl break-words text-base leading-8 text-white/88 drop-shadow-[0_3px_16px_rgba(0,0,0,0.5)] sm:text-lg">
+              Portal digital untuk mengenal tanaman herbal, jalan tematik,
+              zona edukasi kesehatan, peta wilayah, kegiatan, dan produk warga
+              Berua.
+            </p>
+          </StaggerItem>
+          <StaggerItem
+            as="div"
+            className="mt-8 flex w-full max-w-xl flex-col gap-3 sm:flex-row"
+          >
             <Link
-              className="inline-flex min-h-14 items-center justify-center rounded-md bg-herbal-gold px-7 py-3 text-base font-bold !text-herbal-ink shadow-[0_18px_45px_rgba(0,0,0,0.28)] transition hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-herbal-gold"
+              className="block rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-herbal-gold"
               href="/tanaman"
             >
-              Jelajahi Tanaman
+              <HoverCard
+                as="div"
+                className="flex min-h-14 items-center justify-center rounded-md bg-herbal-gold px-7 py-3 text-base font-bold !text-herbal-ink shadow-[0_18px_45px_rgba(0,0,0,0.28)] transition-colors hover:bg-white"
+              >
+                Jelajahi Tanaman
+              </HoverCard>
             </Link>
             <Link
-              className="inline-flex min-h-14 items-center justify-center rounded-md border border-white/[0.55] bg-white/[0.14] px-7 py-3 text-base font-bold text-white shadow-[0_18px_45px_rgba(0,0,0,0.18)] backdrop-blur transition hover:bg-white hover:!text-[#111b15] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+              className="block rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
               href="/jalan"
             >
-              Lihat Jalan Tematik
+              <HoverCard
+                as="div"
+                className="flex min-h-14 items-center justify-center rounded-md border border-white/[0.55] bg-white/[0.14] px-7 py-3 text-base font-bold text-white shadow-[0_18px_45px_rgba(0,0,0,0.18)] backdrop-blur transition-colors hover:bg-white hover:!text-[#111b15]"
+              >
+                Lihat Jalan Tematik
+              </HoverCard>
             </Link>
-          </div>
-        </div>
+          </StaggerItem>
+        </StaggerGroup>
       </Container>
     </section>
   );

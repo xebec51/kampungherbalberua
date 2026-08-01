@@ -111,8 +111,7 @@ textarea {
   position: relative;
   transition:
     border-color 320ms ease,
-    box-shadow 320ms ease,
-    transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+    box-shadow 320ms ease;
 }
 
 .public-card::before {
@@ -130,7 +129,6 @@ textarea {
 .public-card:focus-within {
   border-color: rgba(12, 62, 34, 0.28);
   box-shadow: var(--shadow-lift);
-  transform: translateY(-0.18rem);
 }
 
 .public-card:hover::before,

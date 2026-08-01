@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { HoverCard } from "@/components/motion/HoverCard";
 import { cn } from "@/lib/utils";
 
 type PublicCardProps = {
@@ -21,14 +22,15 @@ type PublicCardActionProps = {
 
 export function PublicCard({ children, className }: PublicCardProps) {
   return (
-    <article
+    <HoverCard
+      as="article"
       className={cn(
         "public-card group/card flex h-full flex-col overflow-hidden rounded-[var(--radius-card)] border border-herbal-green/10 bg-white/96 shadow-[var(--shadow-soft)] ring-1 ring-white/70",
         className,
       )}
     >
       {children}
-    </article>
+    </HoverCard>
   );
 }
 
