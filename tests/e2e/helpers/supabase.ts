@@ -75,7 +75,7 @@ export function createE2ESupabaseClient() {
   });
 }
 
-function createLocalAdminClient() {
+export function createLocalAdminClient() {
   const serviceRoleKey = optionalServiceRoleKey();
 
   if (!serviceRoleKey) {

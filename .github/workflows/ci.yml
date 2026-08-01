@@ -171,6 +171,9 @@ jobs:
       - name: Create E2E Auth users
         run: npm run setup:e2e-users
 
+      - name: Bootstrap media storage buckets
+        run: npm run setup:e2e-buckets
+
       - name: Run Playwright E2E
         env:
           PLAYWRIGHT_BASE_URL: http://127.0.0.1:3000

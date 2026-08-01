@@ -3,6 +3,7 @@ import sharp from "sharp";
 import { loginAs } from "./helpers/auth";
 import {
   cleanupE2EData,
+  createLocalAdminClient,
   hasSupabaseE2EEnv,
   signInE2EClient,
 } from "./helpers/supabase";
@@ -12,7 +13,26 @@ test.skip(
   "Supabase lokal dibutuhkan untuk E2E unggah foto admin.",
 );
 
+const REQUIRED_MEDIA_BUCKETS = ["media-originals", "media-public"];
+
+// supabase db reset wipes storage buckets along with the database, and
+// nothing recreates them automatically -- npm run setup:e2e-buckets
+// (scripts/media/ensure-local-buckets.ts) must run first. Assert that
+// explicitly here so a missing-bucket setup gap fails with a clear message
+// instead of cryptic "Bucket not found" errors deep inside upload assertions.
 test.beforeAll(async () => {
+  const admin = createLocalAdminClient();
+  if (admin) {
+    for (const bucketId of REQUIRED_MEDIA_BUCKETS) {
+      const { data, error } = await admin.storage.getBucket(bucketId);
+      if (error || !data) {
+        throw new Error(
+          `Bucket "${bucketId}" tidak ditemukan. Jalankan "npm run setup:e2e-buckets" setelah supabase db reset sebelum menjalankan E2E ini.`,
+        );
+      }
+    }
+  }
+
   await cleanupE2EData();
 });
 
