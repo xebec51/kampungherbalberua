@@ -25,11 +25,11 @@ export default function Home() {
       <HeroSection />
       <ProfileSection />
       <QuickAccessSection />
+      <HerbaCodeSection />
+      <MapPreviewSection />
       <FeaturedStreetsSection />
       <FeaturedHealthZonesSection />
       <FeaturedPlantsSection />
-      <HerbaCodeSection />
-      <MapPreviewSection />
       <FeaturedProductsSection />
       <LatestActivitiesSection />
       <DataDisclaimerSection />
