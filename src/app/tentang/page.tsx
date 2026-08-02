@@ -24,10 +24,31 @@ export const metadata: Metadata = createPageMetadata({
 
 const misiList = [
   "Menumbuhkan budaya menanam dan merawat TOGA di pekarangan warga.",
-  "Memberi edukasi kesehatan berbasis tanaman herbal yang aman dipakai.",
+  "Memberi edukasi umum tentang pemanfaatan tradisional tanaman herbal secara bijak.",
   "Mendata tanaman, produk, dan kegiatan warga dalam satu portal digital.",
   "Membantu warga memasarkan produk herbal buatan sendiri.",
   "Mengajak warga ikut aktif merawat dan mengembangkan kampung herbal.",
+];
+
+const programHighlights = [
+  {
+    label: "Katalog",
+    text: "Tanaman, zona kesehatan, produk warga, dan kegiatan lapangan disusun dalam halaman yang mudah dipindai.",
+  },
+  {
+    label: "QR",
+    text: "Akses papan jalan, tanaman, dan zona diarahkan ke halaman permanen agar informasi tetap mudah diperbarui.",
+  },
+  {
+    label: "Aspirasi",
+    text: "Kotak saran disiapkan untuk masukan warga tanpa meminta data kesehatan pribadi.",
+  },
+];
+
+const prinsipKerja = [
+  "Informasi kesehatan ditulis sebagai edukasi umum, bukan pengganti konsultasi tenaga kesehatan.",
+  "Data warga yang sensitif seperti alamat rumah, nomor telepon, dan data kesehatan pribadi tidak ditampilkan.",
+  "Konten tanaman dan media diperbarui bertahap mengikuti verifikasi lapangan dan kelayakan publikasi.",
 ];
 
 const teamMembers = getDisplayOrderedTeamMembers();
@@ -80,28 +101,54 @@ export default function AboutPage() {
           <Reveal className="mt-6" delay={0.1}>
             <HoverCard
               as="article"
-              className="rounded-md border border-herbal-green/10 bg-white p-6 shadow-sm transition-shadow duration-200 hover:shadow-[var(--shadow-lift)]"
+              className="rounded-md border border-herbal-green/10 bg-white p-5 shadow-sm transition-shadow duration-200 hover:shadow-[var(--shadow-lift)] sm:p-6"
             >
-              <p className="text-sm leading-7 text-herbal-muted">
-                Kampung Herbal Harmony adalah program pengenalan tanaman obat
-                keluarga (TOGA) yang dijalankan 10 mahasiswa KKN Universitas
-                Hasanuddin bersama warga RT 009/RW 006. Website ini memuat
-                katalog tanaman, zona kesehatan, peta, dan kegiatan warga.
-              </p>
-              <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-                <LinkButton href="/tim" variant="secondary">
-                  Lihat Tim KKN
-                </LinkButton>
-                <LinkButton href="/kegiatan" variant="ghost">
-                  Lihat Kegiatan
-                </LinkButton>
+              <div className="grid gap-5 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+                <div>
+                  <p className="text-sm leading-7 text-herbal-muted">
+                    Kampung Herbal Harmony adalah program pengenalan tanaman
+                    obat keluarga (TOGA) yang dijalankan 10 mahasiswa KKN
+                    Universitas Hasanuddin bersama warga RT 009/RW 006. Website
+                    ini menjadi ruang dokumentasi publik untuk melihat tanaman,
+                    zona kesehatan, peta kampung, produk warga, kegiatan, dan
+                    kanal saran dalam satu tempat.
+                  </p>
+                  <p className="mt-3 text-sm leading-7 text-herbal-muted">
+                    Konten disusun agar warga dapat menemukan informasi praktis
+                    tanpa membuka data pribadi, sementara pengelola tetap bisa
+                    memperbarui materi seiring verifikasi lapangan berjalan.
+                  </p>
+                  <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+                    <LinkButton href="/tim" variant="secondary">
+                      Lihat Tim KKN
+                    </LinkButton>
+                    <LinkButton href="/kegiatan" variant="ghost">
+                      Lihat Kegiatan
+                    </LinkButton>
+                  </div>
+                </div>
+                <dl className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
+                  {programHighlights.map((item) => (
+                    <div
+                      className="border-l-2 border-herbal-green/20 pl-3"
+                      key={item.label}
+                    >
+                      <dt className="text-xs font-bold uppercase tracking-[0.14em] text-herbal-brown">
+                        {item.label}
+                      </dt>
+                      <dd className="mt-1 text-xs leading-5 text-herbal-muted">
+                        {item.text}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
               </div>
             </HoverCard>
           </Reveal>
         </Container>
       </section>
 
-      <section className="bg-white py-12 sm:py-16">
+      <section className="bg-white py-10 sm:py-14">
         <Container>
           <Reveal>
             <SectionHeading
@@ -110,8 +157,8 @@ export default function AboutPage() {
               title="Arah yang Dituju"
             />
           </Reveal>
-          <div className="mt-8 grid gap-5 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-            <Reveal delay={0.05}>
+          <div className="mt-7 grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
+            <Reveal className="h-full" delay={0.05}>
               <HoverCard
                 as="article"
                 className="h-full rounded-md border border-herbal-green/10 bg-white p-6 shadow-sm transition-shadow duration-200 hover:shadow-[var(--shadow-lift)]"
@@ -121,6 +168,22 @@ export default function AboutPage() {
                   Menjadikan RT 009/RW 006 Kelurahan Berua sebagai kampung
                   herbal yang sehat dan mandiri secara pengetahuan.
                 </p>
+                <div className="mt-5 border-t border-herbal-green/10 pt-4">
+                  <p className="text-xs font-bold uppercase tracking-[0.14em] text-herbal-brown">
+                    Prinsip Kerja
+                  </p>
+                  <ul className="mt-3 space-y-2 text-sm leading-6 text-herbal-muted">
+                    {prinsipKerja.map((item) => (
+                      <li className="flex gap-2" key={item}>
+                        <span
+                          aria-hidden="true"
+                          className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-herbal-green/45"
+                        />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </HoverCard>
             </Reveal>
             <div>

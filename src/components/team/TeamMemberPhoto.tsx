@@ -19,7 +19,7 @@ export function TeamMemberPhoto({ member, className }: TeamMemberPhotoProps) {
       <div className={cn("relative overflow-hidden bg-herbal-soft", className)}>
         <Image
           alt={`Foto ${member.name}`}
-          className="object-cover"
+          className="object-cover object-[center_28%]"
           fill
           sizes="(max-width: 640px) 40vw, 200px"
           src={member.photoPath}
