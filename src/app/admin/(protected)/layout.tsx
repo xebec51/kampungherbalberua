@@ -24,7 +24,7 @@ export default async function AdminProtectedLayout({
       <Container>
         <div className="grid gap-6 lg:grid-cols-[17rem_1fr]">
           <AdminSidebar displayName={displayName} role={profile.role} />
-          <div className="min-w-0" id="konten-utama">
+          <div className="min-w-0 focus:outline-none" id="konten-utama" tabIndex={-1}>
             {children}
           </div>
         </div>

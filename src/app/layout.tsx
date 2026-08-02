@@ -53,7 +53,9 @@ export default function RootLayout({
         <SplashScreen />
         <SkipLink />
         <Header />
-        <main id="konten-utama">{children}</main>
+        <main className="scroll-mt-24 focus:outline-none" id="konten-utama" tabIndex={-1}>
+          {children}
+        </main>
         <Footer />
         <StructuredData />
       </body>
