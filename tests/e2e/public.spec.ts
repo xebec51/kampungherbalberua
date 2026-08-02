@@ -279,10 +279,6 @@ test("katalog tanaman gabungan dapat dicari dan tidak menggandakan tanaman berul
   await expect(
     page.getByText("Nomor poster lama", { exact: true }),
   ).toBeVisible();
-  await expect(
-    page.getByText("Menampilkan 206 dari 216 nomor poster sumber."),
-  ).toBeVisible();
-  await expect(page.getByRole("link", { name: /No\. 216\s+Daun Salam/ })).toBeVisible();
   await expectNoPublicPlaceholderText(page);
 });
 

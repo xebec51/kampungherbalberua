@@ -97,10 +97,7 @@ export default async function PlantsPage() {
           </StaggerItem>
         </StaggerGroup>
         <Suspense fallback={<p className="mt-8 text-sm text-herbal-muted">Memuat katalog tanaman.</p>}>
-          <PosterPlantCatalog
-            claimedPosterEntryCount={POSTER_CLAIMED_ENTRY_COUNT}
-            plants={plants}
-          />
+          <PosterPlantCatalog plants={plants} />
         </Suspense>
         <div className="mt-8">
           <Disclaimer>

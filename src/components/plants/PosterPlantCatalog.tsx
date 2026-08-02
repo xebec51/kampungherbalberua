@@ -7,7 +7,6 @@ import {
   useMemo,
   useState,
 } from "react";
-import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import type { PosterPlantCatalogItem } from "@/types";
 import { StaggerGroup } from "@/components/motion/StaggerGroup";
@@ -18,7 +17,6 @@ import { FilterChip } from "@/components/ui/FilterChip";
 import { SearchInput } from "@/components/ui/SearchInput";
 
 type PosterPlantCatalogProps = {
-  claimedPosterEntryCount: number;
   plants: PosterPlantCatalogItem[];
 };
 
@@ -42,7 +40,6 @@ function normalize(value: string) {
 }
 
 export function PosterPlantCatalog({
-  claimedPosterEntryCount,
   plants,
 }: PosterPlantCatalogProps) {
   const router = useRouter();
@@ -81,21 +78,6 @@ export function PosterPlantCatalog({
       ),
     [plants],
   );
-  const posterEntries = useMemo(
-    () =>
-      plants
-        .flatMap((plant) =>
-          plant.posterNumbers.map((posterNumber) => ({
-            href: `/tanaman/${plant.linkedPlantSlug ?? plant.slug}`,
-            name: plant.rawName,
-            posterNumber,
-            zones: plant.collections,
-          })),
-        )
-        .sort((left, right) => left.posterNumber - right.posterNumber),
-    [plants],
-  );
-
   const updateParam = useCallback(
     (key: string, value: string) => {
       const params = new URLSearchParams(searchParamsString);
@@ -321,44 +303,6 @@ export function PosterPlantCatalog({
           />
         </div>
       )}
-
-      {posterEntries.length > 0 ? (
-        <section className="mt-10 rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-5 shadow-[var(--shadow-soft)]">
-          <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <h2 className="text-lg font-bold text-herbal-ink">
-                Daftar nomor poster lama
-              </h2>
-              <p className="mt-2 text-sm leading-6 text-herbal-muted">
-                Menampilkan {posterEntries.length} dari{" "}
-                {claimedPosterEntryCount} nomor poster sumber. Nomor 157-166
-                tidak ada pada sumber poster yang terbaca.
-              </p>
-            </div>
-          </div>
-          <div className="mt-5 grid grid-cols-2 gap-2 lg:grid-cols-3 xl:grid-cols-4">
-            {posterEntries.map((entry) => (
-              <Link
-                className="rounded-md border border-herbal-green/10 bg-herbal-cream/40 p-3 text-sm transition hover:border-herbal-green/35 hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
-                href={entry.href}
-                key={entry.posterNumber}
-              >
-                <span className="text-xs font-bold uppercase tracking-[0.12em] text-herbal-brown">
-                  No. {entry.posterNumber}
-                </span>
-                <span className="mt-1 block font-bold text-herbal-ink">
-                  {entry.name}
-                </span>
-                {entry.zones.length > 0 ? (
-                  <span className="mt-1 line-clamp-2 block text-xs leading-5 text-herbal-muted">
-                    {entry.zones.join(", ")}
-                  </span>
-                ) : null}
-              </Link>
-            ))}
-          </div>
-        </section>
-      ) : null}
     </div>
   );
 }
