@@ -38,10 +38,10 @@ export function QuickAccessSection() {
       <Container>
         <Reveal className="mb-7 max-w-3xl">
           <p className="text-sm font-bold uppercase tracking-[0.16em] text-herbal-brown">
-            Akses Utama
+            Akses Cepat
           </p>
           <h2 className="mt-3 text-2xl font-bold text-herbal-ink sm:text-3xl">
-            Mulai dari kebutuhan paling sering dicari
+            Langsung ke Halaman yang Sering Dicari
           </h2>
         </Reveal>
         <StaggerGroup className="grid grid-cols-2 gap-2 rounded-[var(--radius-card)] border border-herbal-green/10 bg-white/76 p-2 shadow-[var(--shadow-soft)] backdrop-blur sm:gap-3 sm:p-3 lg:grid-cols-4">
