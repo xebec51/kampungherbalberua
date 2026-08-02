@@ -25,17 +25,19 @@ test("preview deployment public smoke @preview", async ({ page, request }) => {
   const nav = page.getByRole("navigation", { name: "Navigasi utama" });
   await expect(nav.getByRole("link", { exact: true, name: "Beranda" })).toBeVisible();
   await expect(nav.getByRole("button", { name: "Edukasi" })).toBeVisible();
-  await expect(nav.getByRole("link", { exact: true, name: "Peta Kampung" })).toBeVisible();
-  await expect(nav.getByRole("button", { name: "Informasi Kampung" })).toBeVisible();
+  await expect(nav.getByRole("button", { name: "Jelajahi" })).toBeVisible();
+  await expect(nav.getByRole("button", { name: "Layanan Warga" })).toBeVisible();
+  await expect(nav.getByRole("link", { exact: true, name: "Tentang" })).toBeVisible();
   await nav.getByRole("button", { name: "Edukasi" }).click();
   await expect(page.getByRole("menuitem", { name: "Tanaman TOGA" })).toBeVisible();
   await expect(page.getByRole("menuitem", { name: "Zona Kesehatan" })).toBeVisible();
   await page.keyboard.press("Escape");
-  await nav.getByRole("button", { name: "Informasi Kampung" }).click();
+  await nav.getByRole("button", { name: "Jelajahi" }).click();
+  await expect(page.getByRole("menuitem", { name: "Peta Kampung" })).toBeVisible();
   await expect(page.getByRole("menuitem", { name: "Jalan Tematik" })).toBeVisible();
+  await page.keyboard.press("Escape");
+  await nav.getByRole("button", { name: "Layanan Warga" }).click();
   await expect(page.getByRole("menuitem", { name: "Produk Warga" })).toBeVisible();
-  await expect(page.getByRole("menuitem", { name: "Peta Kampung" })).toHaveCount(0);
-  await expect(page.getByRole("menuitem", { name: "Tentang" })).toBeVisible();
   await page.keyboard.press("Escape");
 
   await page.goto("/tanaman");

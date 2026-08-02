@@ -127,8 +127,10 @@ test("desktop dan mobile navbar tetap accessible dengan struktur publik", async 
   const nav = page.getByRole("navigation", { name: "Navigasi utama" });
   await expect(nav.getByRole("link", { exact: true, name: "Beranda" })).toBeVisible();
   await expect(nav.getByRole("button", { name: "Edukasi" })).toBeVisible();
-  await expect(nav.getByRole("link", { exact: true, name: "Peta Kampung" })).toBeVisible();
-  await expect(nav.getByRole("button", { name: "Informasi Kampung" })).toBeVisible();
+  await expect(nav.getByRole("button", { name: "Jelajahi" })).toBeVisible();
+  await expect(nav.getByRole("button", { name: "Layanan Warga" })).toBeVisible();
+  await expect(nav.getByRole("link", { exact: true, name: "Tentang" })).toBeVisible();
+  await expect(nav.getByRole("link", { exact: true, name: "Peta Kampung" })).toHaveCount(0);
   await expect(nav.getByRole("link", { exact: true, name: "Kotak Saran" })).toHaveCount(0);
 
   const edukasiButton = nav.getByRole("button", { name: "Edukasi" });
@@ -144,11 +146,17 @@ test("desktop dan mobile navbar tetap accessible dengan struktur publik", async 
 
   await page.keyboard.press("Escape");
   await expect(edukasiButton).toHaveAttribute("aria-expanded", "false");
-  const infoButton = nav.getByRole("button", { name: "Informasi Kampung" });
-  await infoButton.click();
+  const jelajahiButton = nav.getByRole("button", { name: "Jelajahi" });
+  await jelajahiButton.click();
+  await expect(page.getByRole("menuitem", { name: "Peta Kampung" })).toBeVisible();
   await expect(page.getByRole("menuitem", { name: "Jalan Tematik" })).toBeVisible();
+  await page.keyboard.press("Escape");
+
+  const layananButton = nav.getByRole("button", { name: "Layanan Warga" });
+  await layananButton.click();
   await expect(page.getByRole("menuitem", { name: "Produk Warga" })).toBeVisible();
-  await expect(page.getByRole("menuitem", { name: "Peta Kampung" })).toHaveCount(0);
+  await expect(page.getByRole("menuitem", { name: "Kinerja RT" })).toBeVisible();
+  await expect(page.getByRole("menuitem", { name: "Kotak Saran" })).toBeVisible();
   await page.keyboard.press("Escape");
 
   await page.setViewportSize({ height: 812, width: 375 });

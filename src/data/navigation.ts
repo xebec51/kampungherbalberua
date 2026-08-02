@@ -31,18 +31,24 @@ export const mainNavigation: NavigationItem[] = [
       { type: "link", label: "Zona Kesehatan", href: "/zona-kesehatan" },
     ],
   },
-  { type: "link", label: "Peta Kampung", href: "/peta" },
   {
     type: "group",
-    label: "Informasi Kampung",
+    label: "Jelajahi",
     children: [
-      { type: "link", label: "Tentang", href: "/tentang" },
+      { type: "link", label: "Peta Kampung", href: "/peta" },
       { type: "link", label: "Jalan Tematik", href: "/jalan" },
+    ],
+  },
+  {
+    type: "group",
+    label: "Layanan Warga",
+    children: [
       { type: "link", label: "Produk Warga", href: "/produk" },
       { type: "link", label: "Kinerja RT", href: "/kinerja-rt" },
       { type: "link", label: "Kotak Saran", href: "/kotak-saran" },
     ],
   },
+  { type: "link", label: "Tentang", href: "/tentang" },
 ];
 
 export const footerMainNavigation: DirectNavigationItem[] = [
