@@ -7,8 +7,10 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { TeamMemberPhoto } from "@/components/team/TeamMemberPhoto";
-import { teamMembers } from "@/data/team";
+import { getDisplayOrderedTeamMembers } from "@/data/team";
 import { createPageMetadata } from "@/lib/metadata";
+
+const teamMembers = getDisplayOrderedTeamMembers();
 
 export const metadata: Metadata = createPageMetadata({
   title: "Tim KKN",

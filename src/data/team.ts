@@ -108,3 +108,23 @@ export const programSupervisor: ProgramSupervisor = {
   role: "Dosen Pembimbing Kelompok (DPK)",
   photoPath: "/images/team/dpk-suhasman.jpeg",
 };
+
+export const communityLeader: ProgramSupervisor = {
+  name: "Dr. dr. Anna Khuzaimah, M.Kes",
+  role: "Bu RT Kampung Herbal Harmony",
+};
+
+const priorityMemberId = "muh-rinaldi-ruslan";
+
+export function getDisplayOrderedTeamMembers(): TeamMember[] {
+  const priorityMember = teamMembers.find(
+    (member) => member.id === priorityMemberId,
+  );
+  const restSortedByName = teamMembers
+    .filter((member) => member.id !== priorityMemberId)
+    .sort((a, b) => a.name.localeCompare(b.name, "id"));
+
+  return priorityMember
+    ? [priorityMember, ...restSortedByName]
+    : restSortedByName;
+}

@@ -8,7 +8,11 @@ import { Reveal } from "@/components/motion/Reveal";
 import { StaggerGroup } from "@/components/motion/StaggerGroup";
 import { StaggerItem } from "@/components/motion/StaggerItem";
 import { TeamMemberPhoto } from "@/components/team/TeamMemberPhoto";
-import { programSupervisor, teamMembers } from "@/data/team";
+import {
+  communityLeader,
+  getDisplayOrderedTeamMembers,
+  programSupervisor,
+} from "@/data/team";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = createPageMetadata({
@@ -19,35 +23,15 @@ export const metadata: Metadata = createPageMetadata({
 });
 
 const misiList = [
-  "Menumbuhkan budaya menanam dan merawat tanaman obat keluarga (TOGA) di pekarangan dan lorong warga.",
-  "Menyediakan edukasi kesehatan berbasis tanaman herbal yang aman, mudah dipahami, dan dapat dipertanggungjawabkan.",
-  "Mendokumentasikan potensi wilayah, produk, dan kegiatan warga dalam satu portal digital yang mudah diakses.",
-  "Mendorong pemberdayaan ekonomi warga melalui pengembangan produk dan potensi lokal berbasis herbal.",
-  "Memperkuat partisipasi dan kebersamaan warga lewat pendekatan komunikasi yang hangat dan inklusif.",
+  "Menumbuhkan budaya menanam dan merawat TOGA di pekarangan warga.",
+  "Memberi edukasi kesehatan berbasis tanaman herbal yang aman dipakai.",
+  "Mendata tanaman, produk, dan kegiatan warga dalam satu portal digital.",
+  "Membantu warga memasarkan produk herbal buatan sendiri.",
+  "Mengajak warga ikut aktif merawat dan mengembangkan kampung herbal.",
 ];
 
-const timelineSteps = [
-  {
-    title: "Pendataan & Perencanaan",
-    description:
-      "Mengumpulkan data wilayah, tanaman yang sudah tumbuh di pekarangan warga, serta aspirasi warga sebagai dasar penyusunan program.",
-  },
-  {
-    title: "Penanaman & Zonasi TOGA",
-    description:
-      "Menata dan melengkapi tanaman obat keluarga bersama warga per zona, termasuk penandaan dan pengelompokan berdasarkan manfaatnya.",
-  },
-  {
-    title: "Edukasi & Pendampingan Warga",
-    description:
-      "Menyampaikan informasi kesehatan berbasis tanaman herbal secara aman lewat kegiatan tatap muka maupun materi digital.",
-  },
-  {
-    title: "Integrasi Digital & Publikasi",
-    description:
-      "Merangkum hasil pendataan, zona kesehatan, kegiatan, dan produk warga ke dalam portal digital ini agar mudah diakses publik.",
-  },
-];
+const teamMembers = getDisplayOrderedTeamMembers();
+const programLeaders = [programSupervisor, communityLeader];
 
 export default function AboutPage() {
   return (
@@ -56,9 +40,9 @@ export default function AboutPage() {
         <Container>
           <Reveal>
             <SectionHeading
-              description="Kampung Herbal Berua dikembangkan sebagai ruang kolaborasi warga dan mahasiswa KKN untuk mengenalkan tanaman obat keluarga, ramuan tradisional yang aman, potensi wilayah, produk masyarakat, dan layanan aspirasi publik."
+              description="Portal edukasi tanaman obat keluarga (TOGA) di RT 009/RW 006, Kelurahan Berua, Kecamatan Biringkanaya, Kota Makassar."
               eyebrow="Tentang"
-              title="Profil Kampung Herbal Berua"
+              title="Kampung Herbal Berua"
             />
           </Reveal>
           <Reveal className="mt-5" delay={0.05}>
@@ -93,58 +77,27 @@ export default function AboutPage() {
               </a>
             </div>
           </Reveal>
-          <StaggerGroup className="mt-6 grid gap-5 lg:grid-cols-[1fr_0.8fr]">
-            <StaggerItem>
-              <HoverCard
-                as="article"
-                className="h-full rounded-md border border-herbal-green/10 bg-white p-6 shadow-sm transition-shadow duration-200 hover:shadow-[var(--shadow-lift)]"
-              >
-                <h2 className="text-2xl font-bold text-herbal-ink">
-                  Portal digital warga
-                </h2>
-                <div className="mt-4 grid gap-4 text-sm leading-7 text-herbal-muted">
-                  <p>
-                    Website ini menjadi fondasi portal publik Kampung Herbal RT
-                    009/RW 006 Kelurahan Berua, Kecamatan Biringkanaya, Kota
-                    Makassar. Tujuannya adalah memudahkan warga dan pengunjung
-                    mengenal tanaman TOGA, dokumentasi kegiatan, peta wilayah, dan
-                    produk masyarakat.
-                  </p>
-                  <p>
-                    Kampung Herbal Harmony adalah bagian dari inisiatif ini:
-                    pengenalan tanaman, zona edukasi kesehatan, dan informasi
-                    wilayah yang bisa dipahami pengunjung meskipun tidak sedang
-                    berada di lokasi.
-                  </p>
-                </div>
-              </HoverCard>
-            </StaggerItem>
-            <StaggerItem>
-              <HoverCard
-                as="article"
-                className="h-full rounded-md border border-herbal-green/10 bg-white p-6 shadow-sm transition-shadow duration-200 hover:shadow-[var(--shadow-lift)]"
-              >
-                <StatusBadge tone="brown">Kolaborasi Lintas Bidang</StatusBadge>
-                <h2 className="mt-4 text-2xl font-bold text-herbal-ink">
-                  Ruang integrasi proker
-                </h2>
-                <p className="mt-4 text-sm leading-7 text-herbal-muted">
-                  Portal ini mengintegrasikan hasil program dari bidang Sistem
-                  Informasi, Farmasi, Perencanaan Wilayah dan Kota, Administrasi
-                  Publik, Ilmu Ekonomi, dan Psikologi berdasarkan hasil pendataan
-                  lapangan.
-                </p>
-                <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-                  <LinkButton href="/tim" variant="secondary">
-                    Lihat Tim KKN
-                  </LinkButton>
-                  <LinkButton href="/kegiatan" variant="ghost">
-                    Lihat Kegiatan
-                  </LinkButton>
-                </div>
-              </HoverCard>
-            </StaggerItem>
-          </StaggerGroup>
+          <Reveal className="mt-6" delay={0.1}>
+            <HoverCard
+              as="article"
+              className="rounded-md border border-herbal-green/10 bg-white p-6 shadow-sm transition-shadow duration-200 hover:shadow-[var(--shadow-lift)]"
+            >
+              <p className="text-sm leading-7 text-herbal-muted">
+                Kampung Herbal Harmony adalah program pengenalan tanaman obat
+                keluarga (TOGA) yang dijalankan 10 mahasiswa KKN Universitas
+                Hasanuddin bersama warga RT 009/RW 006. Website ini memuat
+                katalog tanaman, zona kesehatan, peta, dan kegiatan warga.
+              </p>
+              <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+                <LinkButton href="/tim" variant="secondary">
+                  Lihat Tim KKN
+                </LinkButton>
+                <LinkButton href="/kegiatan" variant="ghost">
+                  Lihat Kegiatan
+                </LinkButton>
+              </div>
+            </HoverCard>
+          </Reveal>
         </Container>
       </section>
 
@@ -152,69 +105,9 @@ export default function AboutPage() {
         <Container>
           <Reveal>
             <SectionHeading
-              description="Sebuah cerita singkat tentang titik awal Kampung Herbal Berua, dari pekarangan warga hingga menjadi program bersama."
-              eyebrow="Latar Belakang"
-              title="Kenapa Kampung Herbal Berua hadir"
-            />
-          </Reveal>
-          <div className="mt-8 grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
-            <Reveal
-              className="rounded-[var(--radius-card)] border border-herbal-green/15 bg-herbal-mist p-6 shadow-[var(--shadow-soft)]"
-              delay={0.05}
-            >
-              <p className="text-sm leading-7 text-herbal-muted">
-                Program ini lahir dari kegiatan Kuliah Kerja Nyata (KKN)
-                Universitas Hasanuddin di RT 009/RW 006, Kelurahan Berua,
-                Kecamatan Biringkanaya, Kota Makassar. Banyak warga sudah
-                menanam dan memanfaatkan tanaman obat keluarga (TOGA) secara
-                turun-temurun, namun pengetahuan tersebut sebagian besar masih
-                tersebar lisan antarwarga dan belum terdokumentasi.
-              </p>
-              <p className="mt-4 text-sm leading-7 text-herbal-muted">
-                Dari kondisi itulah gagasan Kampung Herbal Berua tumbuh:
-                menjadikan pekarangan dan lorong warga sebagai ruang belajar
-                bersama tentang TOGA, sekaligus merapikan informasinya agar
-                mudah diakses siapa pun. Mahasiswa KKN dari bidang Sistem
-                Informasi, Farmasi, Perencanaan Wilayah dan Kota, Administrasi
-                Publik, Ilmu Ekonomi, dan Psikologi berkolaborasi bersama
-                warga serta pengurus RT/RW untuk merancang pendekatan yang
-                saling melengkapi, mulai dari pendataan tanaman dan wilayah,
-                edukasi kesehatan yang aman, hingga penyusunan portal digital
-                seperti yang sedang dikunjungi ini.
-              </p>
-            </Reveal>
-            <Reveal
-              className="h-full rounded-[var(--radius-card)] border-l-4 border-herbal-gold bg-herbal-cream/70 p-6 shadow-sm"
-              delay={0.12}
-            >
-              <h3 className="text-sm font-bold uppercase tracking-[0.14em] text-herbal-brown">
-                Fokus Utama
-              </h3>
-              <p className="mt-3 text-sm leading-6 text-herbal-muted">
-                Tanaman obat keluarga (TOGA) menjadi titik awal seluruh
-                program: pengenalan jenis tanaman, manfaat tradisionalnya, dan
-                cara pemanfaatan yang aman bagi warga, sebelum meluas ke
-                potensi wilayah dan produk masyarakat lainnya.
-              </p>
-              <LinkButton
-                className="mt-5"
-                href="/zona-kesehatan"
-                variant="ghost"
-              >
-                Lihat Zona Kesehatan
-              </LinkButton>
-            </Reveal>
-          </div>
-        </Container>
-      </section>
-
-      <section className="bg-herbal-cream py-12 sm:py-16">
-        <Container>
-          <Reveal>
-            <SectionHeading
-              description="Arah bersama yang menjadi pegangan warga dan mahasiswa KKN dalam menjalankan program Kampung Herbal Berua."
+              description="Visi dan misi program Kampung Herbal Berua."
               eyebrow="Visi & Misi"
-              title="Arah yang ingin dituju bersama"
+              title="Arah yang Dituju"
             />
           </Reveal>
           <div className="mt-8 grid gap-5 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
@@ -226,9 +119,7 @@ export default function AboutPage() {
                 <StatusBadge tone="green">Visi</StatusBadge>
                 <p className="mt-4 text-lg font-bold leading-8 text-herbal-ink">
                   Menjadikan RT 009/RW 006 Kelurahan Berua sebagai kampung
-                  herbal yang sehat, mandiri secara pengetahuan, dan dikenal
-                  luas melalui pemanfaatan tanaman obat keluarga secara
-                  berkelanjutan.
+                  herbal yang sehat dan mandiri secara pengetahuan.
                 </p>
               </HoverCard>
             </Reveal>
@@ -256,63 +147,49 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section className="bg-white py-12 sm:py-16">
-        <Container>
-          <Reveal>
-            <SectionHeading
-              description="Empat tahap besar yang menjadi kerangka kerja program, dari pendataan awal hingga terintegrasi ke portal digital ini."
-              eyebrow="Tahapan Program"
-              title="Perjalanan Kampung Herbal Berua"
-            />
-          </Reveal>
-          <StaggerGroup as="ol" className="mt-8 grid grid-cols-2 gap-3 sm:gap-4">
-            {timelineSteps.map((step, index) => (
-              <StaggerItem as="li" key={step.title}>
-                <HoverCard
-                  as="div"
-                  className="h-full rounded-md border border-herbal-green/10 bg-herbal-mist p-6 shadow-sm transition-shadow duration-200 hover:shadow-[var(--shadow-lift)]"
-                >
-                  <StatusBadge tone="neutral">Tahap {index + 1}</StatusBadge>
-                  <h3 className="mt-4 text-lg font-bold text-herbal-ink">
-                    {step.title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-6 text-herbal-muted">
-                    {step.description}
-                  </p>
-                </HoverCard>
-              </StaggerItem>
-            ))}
-          </StaggerGroup>
-        </Container>
-      </section>
-
       <section className="bg-herbal-cream py-12 sm:py-16">
         <Container>
           <Reveal>
             <SectionHeading
-              description="Sepuluh mahasiswa KKN Universitas Hasanuddin angkatan 2023 dari enam bidang studi yang berkolaborasi menjalankan program Kampung Herbal Berua, di bawah bimbingan satu dosen pembimbing kelompok."
+              description="Sepuluh mahasiswa KKN Unhas dari enam bidang studi, didampingi dosen pembimbing dan Ketua RT."
               eyebrow="Tim KKN"
-              title="Orang-orang di balik Kampung Herbal Berua"
+              title="Orang-orang di Balik Kampung Herbal Berua"
             />
           </Reveal>
+
           <Reveal className="mt-6" delay={0.05}>
-            <HoverCard
-              as="article"
-              className="flex overflow-hidden rounded-md border border-herbal-green/10 bg-white shadow-sm transition-shadow duration-200 hover:shadow-[var(--shadow-lift)] sm:max-w-md"
-            >
-              <TeamMemberPhoto
-                className="w-28 shrink-0 sm:w-36"
-                member={programSupervisor}
-              />
-              <div className="flex min-w-0 flex-1 flex-col justify-center p-4 sm:p-5">
-                <StatusBadge tone="brown">{programSupervisor.role}</StatusBadge>
-                <h3 className="mt-2 text-base font-bold leading-tight text-herbal-ink sm:text-lg">
-                  {programSupervisor.name}
-                </h3>
-              </div>
-            </HoverCard>
+            <p className="text-xs font-bold uppercase tracking-[0.14em] text-herbal-brown">
+              Pembina Program
+            </p>
           </Reveal>
-          <StaggerGroup className="mt-6 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
+          <StaggerGroup className="mt-3 grid gap-3 sm:grid-cols-2 sm:gap-4">
+            {programLeaders.map((leader) => (
+              <StaggerItem key={leader.name}>
+                <HoverCard
+                  as="article"
+                  className="flex h-full overflow-hidden rounded-md border border-herbal-green/10 bg-white shadow-sm transition-shadow duration-200 hover:shadow-[var(--shadow-lift)]"
+                >
+                  <TeamMemberPhoto
+                    className="w-28 shrink-0 sm:w-32"
+                    member={leader}
+                  />
+                  <div className="flex min-w-0 flex-1 flex-col justify-center p-4 sm:p-5">
+                    <StatusBadge tone="brown">{leader.role}</StatusBadge>
+                    <h3 className="mt-2 line-clamp-2 text-sm font-bold leading-tight text-herbal-ink sm:text-base">
+                      {leader.name}
+                    </h3>
+                  </div>
+                </HoverCard>
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
+
+          <Reveal className="mt-8" delay={0.05}>
+            <p className="text-xs font-bold uppercase tracking-[0.14em] text-herbal-brown">
+              Mahasiswa KKN
+            </p>
+          </Reveal>
+          <StaggerGroup className="mt-3 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
             {teamMembers.map((member) => (
               <StaggerItem key={member.id}>
                 <HoverCard
@@ -338,6 +215,7 @@ export default function AboutPage() {
               </StaggerItem>
             ))}
           </StaggerGroup>
+
           <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-sm leading-6 text-herbal-muted">
               Kontribusi lebih rinci dari setiap anggota tim dapat dilihat di
