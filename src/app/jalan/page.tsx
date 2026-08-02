@@ -28,7 +28,7 @@ export default async function StreetsPage() {
       />
       <section className="bg-herbal-cream py-10 sm:py-12">
         <Container>
-          <StaggerGroup className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <StaggerGroup className="mt-8 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
             {streets.map((street, index) => (
               <StaggerItem key={street.slug}>
                 <StreetCard priority={index === 0} street={street} />

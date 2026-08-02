@@ -50,23 +50,23 @@ export default async function MapPage() {
               eyebrow="Zona kesehatan"
               title="Daftar Zona Kesehatan"
             />
-            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-6 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
               {zones.map((zone) => (
                 <Link
-                  className="public-card rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-5 shadow-[var(--shadow-soft)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
+                  className="public-card rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-3.5 shadow-[var(--shadow-soft)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown sm:p-5"
                   href={`/zona-kesehatan/${zone.slug}`}
                   key={zone.slug}
                 >
-                  <p className="text-xs font-bold uppercase tracking-[0.14em] text-herbal-brown">
+                  <p className="text-[0.65rem] font-bold uppercase tracking-[0.14em] text-herbal-brown sm:text-xs">
                     Zona kesehatan
                   </p>
-                  <h3 className="mt-3 text-lg font-bold leading-tight text-herbal-ink">
+                  <h3 className="mt-2 line-clamp-2 text-sm font-bold leading-tight text-herbal-ink sm:mt-3 sm:text-lg">
                     {zone.title}
                   </h3>
-                  <p className="mt-3 line-clamp-3 text-sm leading-6 text-herbal-muted">
+                  <p className="mt-2 line-clamp-2 text-xs leading-5 text-herbal-muted sm:mt-3 sm:line-clamp-3 sm:text-sm sm:leading-6">
                     {zone.shortDescription}
                   </p>
-                  <p className="mt-4 text-sm font-bold text-herbal-green">
+                  <p className="mt-3 text-xs font-bold text-herbal-green sm:mt-4 sm:text-sm">
                     {zone.plantCount} tanaman
                   </p>
                 </Link>
@@ -81,7 +81,7 @@ export default async function MapPage() {
                 eyebrow="Jalan tematik"
                 title="Daftar Jalan Tematik"
               />
-              <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="mt-6 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
                 {streets.map((street) => (
                   <StreetCard key={street.slug} street={street} />
                 ))}

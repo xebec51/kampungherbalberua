@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { StatusBadge } from "@/components/ui/StatusBadge";
+import { TeamMemberPhoto } from "@/components/team/TeamMemberPhoto";
 import { teamMembers } from "@/data/team";
 import { createPageMetadata } from "@/lib/metadata";
 
@@ -21,19 +22,25 @@ export default function TeamPage() {
           eyebrow="Tim KKN"
           title="Kolaborasi lintas bidang"
         />
-        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
           {teamMembers.map((member) => (
             <article
-              className="rounded-md border border-herbal-green/10 bg-white p-5 shadow-sm"
+              className="flex overflow-hidden rounded-md border border-herbal-green/10 bg-white shadow-sm"
               key={member.id}
             >
-              <StatusBadge tone="green">{member.studyProgram}</StatusBadge>
-              <h2 className="mt-4 text-xl font-bold text-herbal-ink">
-                {member.name}
-              </h2>
-              <p className="mt-3 text-sm leading-6 text-herbal-muted">
-                {member.contribution}
-              </p>
+              <TeamMemberPhoto
+                className="w-[34%] shrink-0 sm:w-[32%]"
+                member={member}
+              />
+              <div className="flex min-w-0 flex-1 flex-col p-3 sm:p-5">
+                <StatusBadge tone="green">{member.studyProgram}</StatusBadge>
+                <h2 className="mt-2 line-clamp-2 text-sm font-bold text-herbal-ink sm:mt-4 sm:text-xl">
+                  {member.name}
+                </h2>
+                <p className="mt-1.5 line-clamp-3 text-xs leading-5 text-herbal-muted sm:mt-3 sm:text-sm sm:leading-6">
+                  {member.contribution}
+                </p>
+              </div>
             </article>
           ))}
         </div>

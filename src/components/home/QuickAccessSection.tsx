@@ -44,7 +44,7 @@ export function QuickAccessSection() {
             Mulai dari kebutuhan paling sering dicari
           </h2>
         </Reveal>
-        <StaggerGroup className="grid gap-3 rounded-[var(--radius-card)] border border-herbal-green/10 bg-white/76 p-3 shadow-[var(--shadow-soft)] backdrop-blur sm:grid-cols-2 lg:grid-cols-4">
+        <StaggerGroup className="grid grid-cols-2 gap-2 rounded-[var(--radius-card)] border border-herbal-green/10 bg-white/76 p-2 shadow-[var(--shadow-soft)] backdrop-blur sm:gap-3 sm:p-3 lg:grid-cols-4">
           {quickLinks.map((item) => (
             <StaggerItem key={item.href}>
               <Link
@@ -53,18 +53,18 @@ export function QuickAccessSection() {
               >
                 <HoverCard
                   as="div"
-                  className="group grid h-full min-h-40 rounded-md border border-herbal-green/10 bg-white p-5 transition-colors duration-300 hover:border-herbal-green/25 hover:bg-herbal-mist hover:shadow-[0_14px_32px_rgba(17,27,21,0.11)]"
+                  className="group grid h-full min-h-32 rounded-md border border-herbal-green/10 bg-white p-3.5 transition-colors duration-300 hover:border-herbal-green/25 hover:bg-herbal-mist hover:shadow-[0_14px_32px_rgba(17,27,21,0.11)] sm:min-h-40 sm:p-5"
                 >
-                  <span className="flex h-10 w-10 items-center justify-center rounded-md bg-herbal-gold text-sm font-bold text-herbal-ink">
+                  <span className="flex h-8 w-8 items-center justify-center rounded-md bg-herbal-gold text-xs font-bold text-herbal-ink sm:h-10 sm:w-10 sm:text-sm">
                     {item.index}
                   </span>
-                  <h3 className="mt-4 text-lg font-bold text-herbal-ink group-hover:text-herbal-green">
+                  <h3 className="mt-3 text-sm font-bold text-herbal-ink group-hover:text-herbal-green sm:mt-4 sm:text-lg">
                     {item.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-6 text-herbal-muted">
+                  <p className="mt-2 line-clamp-2 text-xs leading-5 text-herbal-muted sm:mt-3 sm:line-clamp-none sm:text-sm sm:leading-6">
                     {item.description}
                   </p>
-                  <span className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-herbal-green group-hover:text-herbal-deep">
+                  <span className="mt-3 inline-flex items-center gap-1.5 text-xs font-bold text-herbal-green group-hover:text-herbal-deep sm:mt-5 sm:gap-2 sm:text-sm">
                     Buka halaman
                     <svg
                       aria-hidden="true"

@@ -282,7 +282,7 @@ export function PosterPlantCatalog({
 
       {filteredPlants.length > 0 ? (
         <>
-          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="mt-6 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3 xl:grid-cols-4">
             {visiblePlants.map((plant, index) => (
               <PosterPlantCard
                 className="catalog-card"
@@ -333,7 +333,7 @@ export function PosterPlantCatalog({
               </p>
             </div>
           </div>
-          <div className="mt-5 grid gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="mt-5 grid grid-cols-2 gap-2 lg:grid-cols-3 xl:grid-cols-4">
             {posterEntries.map((entry) => (
               <Link
                 className="rounded-md border border-herbal-green/10 bg-herbal-cream/40 p-3 text-sm transition hover:border-herbal-green/35 hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"

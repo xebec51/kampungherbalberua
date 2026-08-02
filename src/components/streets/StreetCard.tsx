@@ -43,25 +43,25 @@ export function StreetCard({
           />
         </div>
       ) : null}
-      <div className={compact ? "flex flex-1 flex-col p-4" : "flex flex-1 flex-col p-5"}>
-        <p className="text-xs font-bold uppercase tracking-[0.14em] text-herbal-brown">
+      <div className={compact ? "flex flex-1 flex-col p-3 sm:p-4" : "flex flex-1 flex-col p-3.5 sm:p-5"}>
+        <p className="text-[0.65rem] font-bold uppercase tracking-[0.14em] text-herbal-brown sm:text-xs">
           Jalan tematik
         </p>
         <h3
           className={
             compact
-              ? "mt-2 text-base font-bold leading-tight text-herbal-ink"
-              : "mt-3 text-lg font-bold leading-tight text-herbal-ink"
+              ? "mt-2 line-clamp-2 text-sm font-bold leading-tight text-herbal-ink sm:text-base"
+              : "mt-2 line-clamp-2 text-sm font-bold leading-tight text-herbal-ink sm:mt-3 sm:text-lg"
           }
         >
           {street.streetName}
         </h3>
         {street.description && !compact ? (
-          <p className="mt-3 text-sm leading-6 text-herbal-muted">
+          <p className="mt-2 line-clamp-2 text-xs leading-5 text-herbal-muted sm:mt-3 sm:line-clamp-none sm:text-sm sm:leading-6">
             {street.description}
           </p>
         ) : null}
-        <p className="mt-auto pt-3 text-sm font-bold text-herbal-green">
+        <p className="mt-auto pt-2 text-xs font-bold text-herbal-green sm:pt-3 sm:text-sm">
           {street.plantCount} entri tanaman
         </p>
       </div>

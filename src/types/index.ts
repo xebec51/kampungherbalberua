@@ -259,4 +259,5 @@ export type TeamMember = {
   faculty: string;
   entryYear: number;
   contribution: string;
+  photoPath?: string;
 };

@@ -32,11 +32,13 @@ export function PlantCard({
         src={plant.image}
       />
       <PublicCardBody>
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
           <StatusBadge tone="green">{plant.category}</StatusBadge>
-          <StatusBadge tone="brown">Edukasi umum</StatusBadge>
+          <StatusBadge className="hidden sm:inline-flex" tone="brown">
+            Edukasi umum
+          </StatusBadge>
         </div>
-        <h3 className="mt-4 line-clamp-2 text-lg font-bold leading-tight text-herbal-ink">
+        <h3 className="mt-3 line-clamp-2 text-sm font-bold leading-tight text-herbal-ink sm:mt-4 sm:text-lg">
           <Link
             className="transition hover:text-herbal-green"
             href={`/tanaman/${plant.slug}`}
@@ -44,10 +46,10 @@ export function PlantCard({
             {plant.localName}
           </Link>
         </h3>
-        <p className="mt-1 text-sm italic text-herbal-muted">
+        <p className="mt-1 line-clamp-1 text-xs italic text-herbal-muted sm:text-sm">
           {plant.scientificName}
         </p>
-        <p className="mt-3 line-clamp-3 flex-1 text-sm leading-6 text-herbal-muted">
+        <p className="mt-2 line-clamp-2 flex-1 text-xs leading-5 text-herbal-muted sm:mt-3 sm:line-clamp-3 sm:text-sm sm:leading-6">
           {plant.shortDescription}
         </p>
         <PublicCardAction href={`/tanaman/${plant.slug}`}>

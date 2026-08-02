@@ -51,7 +51,7 @@ export function PosterPlantCard({
             <StatusBadge tone="neutral">Profil edukasi tersedia</StatusBadge>
           ) : null}
         </div>
-        <h3 className={partCategory || plant.linkedPlantId ? "mt-4 line-clamp-2 text-lg font-bold leading-tight text-herbal-ink" : "line-clamp-2 text-lg font-bold leading-tight text-herbal-ink"}>
+        <h3 className={partCategory || plant.linkedPlantId ? "mt-3 line-clamp-2 text-sm font-bold leading-tight text-herbal-ink sm:mt-4 sm:text-lg" : "line-clamp-2 text-sm font-bold leading-tight text-herbal-ink sm:text-lg"}>
           <Link
             className="transition hover:text-herbal-green"
             href={href}
@@ -60,17 +60,17 @@ export function PosterPlantCard({
           </Link>
         </h3>
         {plant.scientificName ? (
-          <p className="mt-1 text-sm italic text-herbal-muted">
+          <p className="mt-1 line-clamp-1 text-xs italic text-herbal-muted sm:text-sm">
             {plant.scientificName}
           </p>
         ) : null}
-        <p className="mt-3 text-sm font-semibold leading-6 text-herbal-deep">
+        <p className="mt-2 line-clamp-2 text-xs font-semibold leading-5 text-herbal-deep sm:mt-3 sm:text-sm sm:leading-6">
           Dikenalkan di {plant.collections.length} zona
           {plant.posterOccurrenceCount > 1
             ? ` melalui ${plant.posterOccurrenceCount} titik katalog`
             : ""}.
         </p>
-        <p className="mt-2 line-clamp-2 text-sm leading-6 text-herbal-muted">
+        <p className="mt-1.5 line-clamp-1 text-xs leading-5 text-herbal-muted sm:mt-2 sm:line-clamp-2 sm:leading-6">
           Zona: {plant.collections.slice(0, 3).join(", ")}
           {plant.collections.length > 3 ? "..." : ""}
         </p>

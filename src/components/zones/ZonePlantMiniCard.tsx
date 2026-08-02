@@ -20,13 +20,13 @@ export function ZonePlantMiniCard({
 
   return (
     <Link
-      className="group/card grid h-full grid-cols-[6.75rem_1fr] overflow-hidden rounded-[var(--radius-card)] border border-herbal-green/10 bg-white shadow-[var(--shadow-soft)] transition duration-200 hover:-translate-y-0.5 hover:border-herbal-green/35 hover:shadow-[var(--shadow-lift)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown sm:grid-cols-1"
+      className="group/card grid h-full grid-cols-1 overflow-hidden rounded-[var(--radius-card)] border border-herbal-green/10 bg-white shadow-[var(--shadow-soft)] transition duration-200 hover:-translate-y-0.5 hover:border-herbal-green/35 hover:shadow-[var(--shadow-lift)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
       data-zone-plant-card
       href={`/tanaman/${slug}`}
     >
       <SafeImage
         alt={`Tanaman ${localName}`}
-        className="h-full min-h-[8.25rem] !rounded-none !border-0 !shadow-none sm:aspect-[4/3] sm:min-h-0"
+        className="aspect-[4/3] !rounded-none !border-0 !shadow-none"
         fallbackLabel={`Tanaman ${localName}`}
         fallbackVariant="plant"
         imageClassName="object-cover"
@@ -35,8 +35,8 @@ export function ZonePlantMiniCard({
         sizes="(max-width: 640px) 7rem, (max-width: 1024px) 42vw, 28vw"
         src={plant?.image}
       />
-      <span className="flex min-w-0 flex-col p-4">
-        <span className="line-clamp-2 text-base font-bold leading-snug text-herbal-ink transition group-hover/card:text-herbal-green">
+      <span className="flex min-w-0 flex-col p-3 sm:p-4">
+        <span className="line-clamp-2 text-sm font-bold leading-snug text-herbal-ink transition group-hover/card:text-herbal-green sm:text-base">
           {localName}
         </span>
         {scientificName ? (
@@ -45,11 +45,11 @@ export function ZonePlantMiniCard({
           </span>
         ) : null}
         {shortDescription ? (
-          <span className="mt-3 line-clamp-3 text-sm leading-6 text-herbal-muted">
+          <span className="mt-2 line-clamp-2 text-xs leading-5 text-herbal-muted sm:mt-3 sm:line-clamp-3 sm:text-sm sm:leading-6">
             {shortDescription}
           </span>
         ) : null}
-        <span className="mt-auto pt-4 text-sm font-bold text-herbal-green">
+        <span className="mt-auto pt-3 text-xs font-bold text-herbal-green sm:pt-4 sm:text-sm">
           Lihat tanaman
         </span>
       </span>

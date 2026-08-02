@@ -35,7 +35,7 @@ export function HealthZoneCard({ priority = false, zone }: HealthZoneCardProps) 
             {getValidationStatusLabel(zone.validationStatus)}
           </StatusBadge>
         </div>
-        <h3 className="mt-4 line-clamp-2 text-lg font-extrabold leading-tight text-herbal-ink">
+        <h3 className="mt-3 line-clamp-2 text-sm font-extrabold leading-tight text-herbal-ink sm:mt-4 sm:text-lg">
           <Link
             className="transition hover:text-herbal-green"
             href={`/zona-kesehatan/${zone.slug}`}
@@ -44,16 +44,16 @@ export function HealthZoneCard({ priority = false, zone }: HealthZoneCardProps) 
           </Link>
         </h3>
         {zone.streetName ? (
-          <p className="mt-1 text-sm font-semibold text-herbal-green">
+          <p className="mt-1 line-clamp-1 text-xs font-semibold text-herbal-green sm:text-sm">
             {zone.streetName}
           </p>
         ) : null}
         {zone.blockRanges.length > 0 ? (
-          <p className="mt-3 text-sm text-herbal-muted">
+          <p className="mt-2 line-clamp-1 text-xs text-herbal-muted sm:mt-3 sm:text-sm">
           Blok {zone.blockRanges.join(", ")}
           </p>
         ) : null}
-        <p className="mt-3 line-clamp-3 flex-1 text-sm leading-6 text-herbal-muted">
+        <p className="mt-2 line-clamp-2 flex-1 text-xs leading-5 text-herbal-muted sm:mt-3 sm:line-clamp-3 sm:text-sm sm:leading-6">
           {zone.shortDescription}
         </p>
         <PublicCardAction href={`/zona-kesehatan/${zone.slug}`}>

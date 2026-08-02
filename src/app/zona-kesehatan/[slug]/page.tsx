@@ -123,7 +123,7 @@ export default async function HealthZoneDetailPage({
             Informasi tanaman dan pemanfaatan tradisional pada bagian ini
             bersumber dari HerbaCode.
           </p>
-          <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-5 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
             {uniqueEntries.map((entry, index) => (
               <ZonePlantMiniCard
                 entry={entry}

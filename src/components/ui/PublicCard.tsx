@@ -36,7 +36,9 @@ export function PublicCard({ children, className }: PublicCardProps) {
 
 export function PublicCardBody({ children, className }: PublicCardBodyProps) {
   return (
-    <div className={cn("flex flex-1 flex-col p-5", className)}>{children}</div>
+    <div className={cn("flex flex-1 flex-col p-3.5 sm:p-5", className)}>
+      {children}
+    </div>
   );
 }
 
@@ -58,7 +60,7 @@ export function PublicCardAction({
   return (
     <Link
       className={cn(
-        "mt-5 inline-flex min-h-11 items-center justify-between gap-3 rounded-md border px-4 py-2.5 text-sm font-bold transition duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown",
+        "mt-3 inline-flex min-h-10 items-center justify-between gap-2 rounded-md border px-3 py-2 text-xs font-bold transition duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown sm:mt-5 sm:min-h-11 sm:gap-3 sm:px-4 sm:py-2.5 sm:text-sm",
         actionVariants[variant],
         className,
       )}

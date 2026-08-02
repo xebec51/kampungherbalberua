@@ -143,7 +143,7 @@ export default async function StreetDetailPage({
                 merupakan entitas serta QR yang berbeda.
               </p>
             </Reveal>
-            <StaggerGroup className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <StaggerGroup className="mt-5 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
               {street.plantEntries.map((entry, index) => (
                 <StaggerItem key={entry.id}>
                   <StreetPlantMiniCard

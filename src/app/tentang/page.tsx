@@ -7,6 +7,7 @@ import { HoverCard } from "@/components/motion/HoverCard";
 import { Reveal } from "@/components/motion/Reveal";
 import { StaggerGroup } from "@/components/motion/StaggerGroup";
 import { StaggerItem } from "@/components/motion/StaggerItem";
+import { TeamMemberPhoto } from "@/components/team/TeamMemberPhoto";
 import { teamMembers } from "@/data/team";
 import { createPageMetadata } from "@/lib/metadata";
 
@@ -47,13 +48,6 @@ const timelineSteps = [
       "Merangkum hasil pendataan, zona kesehatan, kegiatan, dan produk warga ke dalam portal digital ini agar mudah diakses publik.",
   },
 ];
-
-function getInitials(name: string) {
-  const words = name.replace(/\./g, "").split(" ").filter(Boolean);
-  const first = words[0]?.[0] ?? "";
-  const second = words.length > 1 ? words[words.length - 1][0] : "";
-  return (first + second).toUpperCase();
-}
 
 export default function AboutPage() {
   return (
@@ -239,7 +233,7 @@ export default function AboutPage() {
               title="Perjalanan Kampung Herbal Berua"
             />
           </Reveal>
-          <StaggerGroup as="ol" className="mt-8 grid gap-4 sm:grid-cols-2">
+          <StaggerGroup as="ol" className="mt-8 grid grid-cols-2 gap-3 sm:gap-4">
             {timelineSteps.map((step, index) => (
               <StaggerItem as="li" key={step.title}>
                 <HoverCard
@@ -269,43 +263,39 @@ export default function AboutPage() {
               title="Orang-orang di balik Kampung Herbal Berua"
             />
           </Reveal>
-          <StaggerGroup className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <StaggerGroup className="mt-8 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
             {teamMembers.map((member) => (
               <StaggerItem key={member.id}>
                 <HoverCard
                   as="article"
-                  className="h-full rounded-md border border-herbal-green/10 bg-white p-5 shadow-sm transition-shadow duration-200 hover:shadow-[var(--shadow-lift)]"
+                  className="flex h-full overflow-hidden rounded-md border border-herbal-green/10 bg-white shadow-sm transition-shadow duration-200 hover:shadow-[var(--shadow-lift)]"
                 >
-                  <div className="flex items-center gap-4">
-                    <div
-                      aria-hidden="true"
-                      className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-herbal-soft text-lg font-bold text-herbal-deep"
-                    >
-                      {getInitials(member.name)}
-                    </div>
-                    <div>
-                      <h3 className="text-base font-bold leading-tight text-herbal-ink">
-                        {member.name}
-                      </h3>
-                      <StatusBadge className="mt-2" tone="green">
-                        {member.studyProgram}
-                      </StatusBadge>
-                    </div>
+                  <TeamMemberPhoto
+                    className="w-[34%] shrink-0 sm:w-[32%]"
+                    member={member}
+                  />
+                  <div className="flex min-w-0 flex-1 flex-col p-3 sm:p-5">
+                    <h3 className="line-clamp-2 text-sm font-bold leading-tight text-herbal-ink sm:text-base">
+                      {member.name}
+                    </h3>
+                    <StatusBadge className="mt-2" tone="green">
+                      {member.studyProgram}
+                    </StatusBadge>
+                    <dl className="mt-3 space-y-1.5 border-t border-herbal-green/10 pt-3 text-[0.65rem] leading-5 text-herbal-muted sm:text-xs">
+                      <div>
+                        <dt className="font-semibold text-herbal-brown">
+                          Fakultas
+                        </dt>
+                        <dd className="line-clamp-2">{member.faculty}</dd>
+                      </div>
+                      <div>
+                        <dt className="font-semibold text-herbal-brown">
+                          Angkatan
+                        </dt>
+                        <dd>{member.entryYear}</dd>
+                      </div>
+                    </dl>
                   </div>
-                  <dl className="mt-4 grid gap-1.5 border-t border-herbal-green/10 pt-4 text-xs leading-5 text-herbal-muted">
-                    <div className="flex justify-between gap-3">
-                      <dt className="font-semibold text-herbal-brown">
-                        Fakultas
-                      </dt>
-                      <dd className="text-right">{member.faculty}</dd>
-                    </div>
-                    <div className="flex justify-between gap-3">
-                      <dt className="font-semibold text-herbal-brown">
-                        Angkatan
-                      </dt>
-                      <dd>{member.entryYear}</dd>
-                    </div>
-                  </dl>
                 </HoverCard>
               </StaggerItem>
             ))}
