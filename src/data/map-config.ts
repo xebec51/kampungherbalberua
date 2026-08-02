@@ -14,12 +14,12 @@ export const communityMapConfig = {
     "Kecamatan Biringkanaya",
   ],
   mapTitle: "Peta Kompleks Kampung Herbal",
-  mapStatus: "Dalam penyusunan",
+  mapStatus: "Denah Kompleks",
   mapPreparedBy: "Tim Perencanaan Wilayah dan Kota",
   privacyNote:
     "Peta publik tidak menampilkan koordinat rumah, titik warga, data kesehatan perorangan, atau informasi pribadi.",
   attributionNote:
-    "Aset peta final akan mencantumkan penyusun, tanggal versi, dan sumber dokumentasi wilayah yang digunakan.",
+    "Peta ini disusun oleh Tim Perencanaan Wilayah dan Kota berdasarkan dokumentasi wilayah Kampung Herbal Berua.",
 } as const;
 
 export const communityMapLegend: MapLegendCategory[] = [
@@ -42,7 +42,7 @@ export const communityMapLegend: MapLegendCategory[] = [
     swatchClassName: "bg-herbal-sage",
   },
   {
-    description: "Akses masuk kawasan bila sudah diverifikasi oleh tim peta.",
+    description: "Titik akses masuk resmi ke kawasan kampung.",
     id: "entrances",
     label: "Pintu masuk",
     swatchClassName: "bg-herbal-gold",

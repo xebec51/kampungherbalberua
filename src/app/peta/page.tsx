@@ -16,7 +16,7 @@ import { createPageMetadata } from "@/lib/metadata";
 export const metadata: Metadata = createPageMetadata({
   title: "Peta Kampung",
   description:
-    "Fondasi integrasi peta Kampung Herbal Harmony Berua tanpa data pribadi warga.",
+    "Akses lokasi, jalan tematik, dan zona kesehatan Kampung Herbal Harmony Berua tanpa data pribadi warga.",
   path: "/peta",
 });
 
@@ -29,7 +29,7 @@ export default async function MapPage() {
   return (
     <>
       <PageHero
-        description="Fondasi peta publik Kampung Herbal Harmony Berua disiapkan untuk menampilkan jalan tematik, zona kesehatan, fasilitas, pintu masuk, dan titik informasi setelah aset final tersedia."
+        description="Peta publik Kampung Herbal Harmony Berua menampilkan jalan tematik, zona kesehatan, fasilitas, pintu masuk, dan titik informasi kampung."
         eyebrow="Pemetaan"
         title="Peta Kampung Herbal"
       />
@@ -46,7 +46,7 @@ export default async function MapPage() {
 
           <section className="mt-10">
             <SectionHeading
-              description="Daftar ini menjadi navigasi sementara menuju detail zona kesehatan sampai aset peta final dipasang."
+              description="Daftar ini menjadi navigasi menuju detail setiap zona kesehatan Kampung Herbal Berua."
               eyebrow="Zona kesehatan"
               title="Daftar Zona Kesehatan"
             />
@@ -77,7 +77,7 @@ export default async function MapPage() {
           {streets.length > 0 ? (
             <section className="mt-12">
               <SectionHeading
-                description="Daftar jalan tematik tetap tersedia sebagai navigasi aksesibel tanpa menunggu peta visual selesai."
+                description="Daftar jalan tematik tersedia sebagai navigasi aksesibel ke setiap papan dokumentasi."
                 eyebrow="Jalan tematik"
                 title="Daftar Jalan Tematik"
               />

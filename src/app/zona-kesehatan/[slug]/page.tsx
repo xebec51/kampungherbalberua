@@ -50,7 +50,7 @@ export async function generateMetadata({
 
     return createPageMetadata({
       title: "Zona tidak ditemukan",
-      description: "Data zona kesehatan yang diminta belum tersedia.",
+      description: "Data zona kesehatan yang diminta tidak tersedia.",
       path: "/zona-kesehatan",
     });
   }

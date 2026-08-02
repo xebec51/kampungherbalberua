@@ -14,7 +14,7 @@ export function MapLegend() {
         className="mt-3 text-xl font-bold leading-tight text-herbal-ink"
         id="map-legend-title"
       >
-        Kategori yang disiapkan
+        Kategori pada Peta
       </h2>
       <ul className="mt-5 grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
         {communityMapLegend.map((item) => (

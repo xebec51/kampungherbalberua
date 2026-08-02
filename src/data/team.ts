@@ -8,7 +8,7 @@ export const teamMembers: TeamMember[] = [
     faculty: "Fakultas Matematika dan Ilmu Pengetahuan Alam",
     entryYear: 2023,
     contribution:
-      "Pengembangan fondasi portal digital dan integrasi data program secara bertahap.",
+      "Pengembangan fondasi portal digital dan integrasi data program.",
   },
   {
     id: "ananda-lukman",
@@ -44,7 +44,7 @@ export const teamMembers: TeamMember[] = [
     faculty: "Fakultas Farmasi",
     entryYear: 2023,
     contribution:
-      "Dukungan verifikasi informasi tanaman dan edukasi ramuan sehat secara bertahap.",
+      "Dukungan verifikasi informasi tanaman dan edukasi ramuan sehat.",
   },
   {
     id: "buyung-rachmat-toar",

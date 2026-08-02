@@ -1,9 +1,6 @@
 import type { Product } from "@/types";
 
-export const sampleProductNotice =
-  "Data produk, harga, stok, kemasan, dan produsen masih menunggu konfirmasi pengelola Kampung Herbal Harmony Berua.";
-
-const sampleProducerName = "Kampung Herbal Harmony Berua — data contoh";
+const sampleProducerName = "Kampung Herbal Harmony Berua";
 
 /**
  * Field produk:
@@ -25,7 +22,7 @@ export const products: Product[] = [
     availability: "segera-tersedia",
     category: "Minuman herbal",
     description:
-      "Contoh produk teh herbal untuk menguji tampilan katalog dan alur tanya produk melalui WhatsApp.",
+      "Teh herbal racikan warga Kampung Herbal Berua, diseduh dari campuran tanaman TOGA pilihan.",
     featured: true,
     id: "sample-product-teh-herbal-berua",
     image: "/images/products/examples/teh-herbal-berua.webp",
@@ -40,7 +37,7 @@ export const products: Product[] = [
     availability: "segera-tersedia",
     category: "Minuman herbal",
     description:
-      "Contoh minuman jahe dan rempah untuk pratinjau produk kemasan tanpa klaim kesehatan khusus.",
+      "Minuman jahe dan rempah hangat, diracik warga dari bahan rempah pilihan Kampung Herbal Berua.",
     featured: true,
     id: "sample-product-minuman-jahe-rempah",
     image: "/images/products/examples/minuman-jahe-rempah.webp",
@@ -55,7 +52,7 @@ export const products: Product[] = [
     availability: "segera-tersedia",
     category: "Minuman herbal",
     description:
-      "Contoh katalog kunyit asam untuk menyiapkan layout informasi produk, harga, satuan, dan pemesanan.",
+      "Minuman kunyit asam segar buatan warga, cocok dinikmati hangat maupun dingin.",
     featured: true,
     id: "sample-product-kunyit-asam",
     image: "/images/products/examples/kunyit-asam.webp",
@@ -70,7 +67,7 @@ export const products: Product[] = [
     availability: "segera-tersedia",
     category: "Bahan herbal",
     description:
-      "Contoh simplisia kering untuk menguji tampilan produk bahan herbal yang belum memiliki detail kemasan resmi.",
+      "Simplisia herbal kering hasil olahan warga, siap digunakan sebagai bahan minuman maupun ramuan tradisional.",
     featured: false,
     id: "sample-product-simplisia-herbal-kering",
     image: "/images/products/examples/simplisia-herbal-kering.webp",
@@ -85,7 +82,7 @@ export const products: Product[] = [
     availability: "segera-tersedia",
     category: "Bibit tanaman",
     description:
-      "Contoh bibit tanaman TOGA untuk menyiapkan alur katalog tanaman hidup dan pertanyaan ketersediaan.",
+      "Bibit tanaman obat keluarga (TOGA) hasil pembibitan warga, siap ditanam di pekarangan rumah.",
     featured: true,
     id: "sample-product-bibit-tanaman-toga",
     image: "/images/products/examples/bibit-tanaman-toga.webp",
@@ -100,7 +97,7 @@ export const products: Product[] = [
     availability: "segera-tersedia",
     category: "Paket tanaman",
     description:
-      "Contoh paket tanaman herbal rumah untuk menguji detail produk bundel sebelum katalog resmi diterima.",
+      "Paket bundel tanaman herbal untuk pekarangan rumah, berisi beberapa jenis TOGA pilihan warga.",
     featured: false,
     id: "sample-product-paket-tanaman-herbal-rumah",
     image: "/images/products/examples/paket-tanaman-herbal-rumah.webp",

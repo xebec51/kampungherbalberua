@@ -76,7 +76,7 @@ test("preview deployment public smoke @preview", async ({ page, request }) => {
       name: "Peta Kompleks Kampung Herbal",
     }),
   ).toBeVisible();
-  await expect(page.getByText("Dalam penyusunan")).toBeVisible();
+  await expect(page.getByText("Denah Kompleks")).toBeVisible();
   await expect(page.getByText("Jalan tematik", { exact: true }).first()).toBeVisible();
   await expect(page.getByText("Zona kesehatan", { exact: true }).first()).toBeVisible();
 

@@ -23,11 +23,6 @@ const profilePoints = [
     value:
       "Informasi kesehatan ditulis sebagai pemanfaatan tradisional dan bukan pengganti konsultasi tenaga kesehatan.",
   },
-  {
-    label: "Status",
-    value:
-      "Sebagian materi masih dapat diperbarui setelah pendataan dan verifikasi selesai.",
-  },
 ];
 
 export function ProfileSection() {

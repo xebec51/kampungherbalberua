@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { products } from "@/data/products";
 
-describe("data produk contoh", () => {
+describe("data produk warga", () => {
   it("memiliki slug stabil dan unik", () => {
     const slugs = products.map((product) => product.slug);
 
@@ -17,11 +17,9 @@ describe("data produk contoh", () => {
     ]);
   });
 
-  it("menandai seluruh produk sebagai contoh sementara", () => {
+  it("memiliki produsen dan ketersediaan yang konsisten", () => {
     for (const product of products) {
-      expect(product.producerName).toBe(
-        "Kampung Herbal Harmony Berua — data contoh",
-      );
+      expect(product.producerName).toBe("Kampung Herbal Harmony Berua");
       expect(product.whatsappNumber).toBeNull();
       expect(product.price).toBeNull();
       expect(product.availability).toBe("segera-tersedia");

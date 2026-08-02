@@ -32,7 +32,7 @@ export async function generateMetadata({
   if (!recipe) {
     return createPageMetadata({
       title: "Ramuan tidak ditemukan",
-      description: "Data ramuan yang diminta belum tersedia.",
+      description: "Data ramuan yang diminta tidak tersedia.",
       path: "/ramuan",
     });
   }
@@ -66,7 +66,7 @@ export default async function RecipeDetailPage({
         <div className="mt-8 grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
           <div>
             <ImagePlaceholder
-              label={`Gambar sementara ramuan ${recipe.name}`}
+              label={`Gambar ramuan ${recipe.name}`}
               variant="recipe"
             />
             <div className="mt-5 rounded-md border border-herbal-green/10 bg-white p-5 text-sm leading-6 text-herbal-muted shadow-sm">

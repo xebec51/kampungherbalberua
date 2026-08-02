@@ -3,7 +3,7 @@ import { AutoCarousel } from "@/components/ui/AutoCarousel";
 import { Container } from "@/components/ui/Container";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { featuredProducts, sampleProductNotice } from "@/data/products";
+import { featuredProducts } from "@/data/products";
 
 export function FeaturedProductsSection() {
   if (featuredProducts.length === 0) {
@@ -15,14 +15,9 @@ export function FeaturedProductsSection() {
       <Container>
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <SectionHeading
-            description={
-              <>
-                Cuplikan produk contoh untuk menguji katalog dan tautan WhatsApp.{" "}
-                {sampleProductNotice}
-              </>
-            }
+            description="Cuplikan produk warga yang dapat dipesan langsung melalui WhatsApp."
             eyebrow="Produk Warga"
-            title="Contoh Produk Kampung Herbal"
+            title="Produk Kampung Herbal"
           />
           <LinkButton href="/produk" variant="secondary">
             Lihat Katalog Produk

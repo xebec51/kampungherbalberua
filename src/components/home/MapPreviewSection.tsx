@@ -18,7 +18,7 @@ export async function MapPreviewSection() {
           <CommunityMapPlaceholder compact />
           <div>
             <SectionHeading
-              description="Peta final sedang disiapkan oleh tim Perencanaan Wilayah dan Kota. Sementara itu, halaman peta menyediakan akses ke jalan tematik dan zona kesehatan tanpa menampilkan titik rumah atau data pribadi."
+              description="Halaman peta menyediakan akses ke jalan tematik dan zona kesehatan Kampung Herbal Berua tanpa menampilkan titik rumah atau data pribadi warga."
               eyebrow="Pemetaan"
               title="Peta Kampung Herbal"
             />

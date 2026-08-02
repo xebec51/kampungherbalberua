@@ -21,7 +21,7 @@ export function getAvailabilityLabel(status: ProductAvailability) {
     tersedia: "Tersedia",
     terbatas: "Terbatas",
     habis: "Habis",
-    "segera-tersedia": "Segera tersedia",
+    "segera-tersedia": "Pesan Khusus",
   };
 
   return labels[status];
@@ -43,7 +43,7 @@ export function getCategoryLabel(category: PlantCategory) {
 
 export function formatPrice(price: number | null, unit: string | null) {
   if (price === null) {
-    return "Belum dikonfirmasi";
+    return "Hubungi untuk harga";
   }
 
   const formatted = new Intl.NumberFormat("id-ID", {

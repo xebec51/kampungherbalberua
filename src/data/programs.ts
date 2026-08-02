@@ -21,7 +21,7 @@ export const programs: Program[] = [
     title: "Workshop Ramuan Sehat",
     category: "Edukasi kesehatan",
     description:
-      "Kegiatan edukasi pemanfaatan tradisional tanaman herbal dengan pendekatan aman dan menunggu verifikasi tenaga kesehatan.",
+      "Kegiatan edukasi pemanfaatan tradisional tanaman herbal dengan pendekatan yang aman bagi warga.",
     status: "planned",
     progress: null,
     startDate: null,
@@ -35,7 +35,7 @@ export const programs: Program[] = [
     title: "Pendataan Tanaman HerbaCode",
     category: "Digitalisasi",
     description:
-      "Pendataan tanaman TOGA untuk disiapkan sebagai halaman digital dan QR Code setelah data diverifikasi.",
+      "Pendataan tanaman TOGA untuk didokumentasikan sebagai halaman digital dan QR Code HerbaCode.",
     status: "ongoing",
     progress: null,
     startDate: null,

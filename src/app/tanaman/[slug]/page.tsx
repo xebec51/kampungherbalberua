@@ -78,7 +78,7 @@ export async function generateMetadata({
 
     return createPageMetadata({
       title: "Tanaman tidak ditemukan",
-      description: "Data tanaman yang diminta belum tersedia.",
+      description: "Data tanaman yang diminta tidak tersedia.",
       path: "/tanaman",
     });
   }

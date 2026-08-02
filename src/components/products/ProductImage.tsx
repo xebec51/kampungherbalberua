@@ -25,7 +25,7 @@ export function ProductImage({
           size === "detail" ? "aspect-[4/3]" : "aspect-[16/10]",
           className,
         )}
-        label={`Ilustrasi produk contoh ${product.name}`}
+        label={`Ilustrasi produk ${product.name}`}
         variant="product"
       />
     );
@@ -42,7 +42,7 @@ export function ProductImage({
       )}
     >
       <Image
-        alt={`Ilustrasi produk contoh: ${product.name}`}
+        alt={`Ilustrasi produk ${product.name}`}
         className="object-cover transition duration-500 group-hover/card:scale-[1.03]"
         fill
         priority={priority}

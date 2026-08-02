@@ -4,10 +4,10 @@ import { ProductImage } from "@/components/products/ProductImage";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
 import { StatusBadge } from "@/components/ui/StatusBadge";
-import { getProductBySlug, products, sampleProductNotice } from "@/data/products";
+import { getProductBySlug, products } from "@/data/products";
 import { formatPrice, getAvailabilityLabel } from "@/lib/formatters";
 import { createPageMetadata } from "@/lib/metadata";
-import { getProductWhatsAppAction, isSampleProduct } from "@/lib/product-actions";
+import { getProductWhatsAppAction } from "@/lib/product-actions";
 
 type ProductDetailPageProps = {
   params: Promise<{
@@ -30,7 +30,7 @@ export async function generateMetadata({
   if (!product) {
     return createPageMetadata({
       title: "Produk tidak ditemukan",
-      description: "Data produk yang diminta belum tersedia.",
+      description: "Data produk yang diminta tidak tersedia.",
       path: "/produk",
     });
   }
@@ -68,9 +68,6 @@ export default async function ProductDetailPage({
 
           <div>
             <div className="flex flex-wrap gap-2">
-              {isSampleProduct(product) ? (
-                <StatusBadge tone="brown">Produk contoh</StatusBadge>
-              ) : null}
               <StatusBadge tone="green">{product.category}</StatusBadge>
               <StatusBadge tone="neutral">
                 {getAvailabilityLabel(product.availability)}
@@ -85,20 +82,13 @@ export default async function ProductDetailPage({
 
             <dl className="mt-8 grid gap-4 sm:grid-cols-2">
               <ProductInfo label="Harga" value={formatPrice(product.price, product.unit)} />
-              <ProductInfo label="Satuan" value={product.unit ?? "Belum dikonfirmasi"} />
+              <ProductInfo label="Satuan" value={product.unit ?? "Per item"} />
               <ProductInfo label="Produsen" value={product.producerName} />
               <ProductInfo
                 label="Status"
                 value={getAvailabilityLabel(product.availability)}
               />
             </dl>
-
-            {isSampleProduct(product) ? (
-              <div className="mt-6 rounded-[var(--radius-card)] border border-herbal-brown/20 bg-white p-5 text-sm leading-7 text-herbal-muted shadow-sm">
-                <strong className="block text-herbal-ink">Produk contoh</strong>
-                <span>{sampleProductNotice}</span>
-              </div>
-            ) : null}
 
             <div className="mt-8">
               {whatsappAction.disabled ? (
@@ -120,9 +110,8 @@ export default async function ProductDetailPage({
                 </a>
               )}
               <p className="mt-3 text-sm leading-6 text-herbal-muted">
-                Transaksi diselesaikan langsung melalui WhatsApp. Website ini
-                tidak memproses checkout, pembayaran, pengiriman, atau
-                penyimpanan pesanan.
+                Transaksi, pembayaran, dan pengiriman diselesaikan langsung
+                bersama pengelola produk melalui WhatsApp.
               </p>
             </div>
           </div>

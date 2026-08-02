@@ -9,11 +9,10 @@ export default function NotFound() {
           Halaman tidak ditemukan
         </p>
         <h1 className="mt-4 text-4xl font-bold text-herbal-ink sm:text-5xl">
-          Data yang dicari belum tersedia
+          Halaman yang dicari tidak ditemukan
         </h1>
         <p className="mt-5 text-base leading-8 text-herbal-muted">
-          Halaman mungkin belum dibuat, slug tidak valid, atau data masih dalam
-          proses pendataan lapangan.
+          Alamat halaman mungkin salah ketik atau tautan sudah tidak berlaku.
         </p>
         <div className="mt-8 flex justify-center">
           <LinkButton href="/">Kembali ke Beranda</LinkButton>

@@ -17,7 +17,7 @@ export default function TeamPage() {
     <section className="bg-herbal-cream py-12 sm:py-16">
       <Container>
         <SectionHeading
-          description="Kontribusi setiap bidang akan diintegrasikan bertahap berdasarkan hasil program kerja. Halaman ini tidak menampilkan NIM, nomor telepon, alamat, atau data pribadi lainnya."
+          description="Kontribusi setiap bidang terintegrasi berdasarkan hasil program kerja di lapangan. Halaman ini tidak menampilkan NIM, nomor telepon, alamat, atau data pribadi lainnya."
           eyebrow="Tim KKN"
           title="Kolaborasi lintas bidang"
         />

@@ -10,7 +10,7 @@ type ProductWhatsAppAction =
   | {
       disabled: true;
       href: null;
-      label: "Kontak segera tersedia" | "Stok habis";
+      label: "Hubungi Pengelola" | "Stok habis";
     };
 
 export function getProductWhatsAppAction(product: Product): ProductWhatsAppAction {
@@ -28,7 +28,7 @@ export function getProductWhatsAppAction(product: Product): ProductWhatsAppActio
     return {
       disabled: true,
       href: null,
-      label: "Kontak segera tersedia",
+      label: "Hubungi Pengelola",
     };
   }
 
@@ -40,8 +40,4 @@ export function getProductWhatsAppAction(product: Product): ProductWhatsAppActio
         ? "Tanyakan via WhatsApp"
         : "Pesan via WhatsApp",
   };
-}
-
-export function isSampleProduct(product: Product) {
-  return product.producerName.toLocaleLowerCase("id").includes("data contoh");
 }

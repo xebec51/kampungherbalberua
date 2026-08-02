@@ -12,7 +12,7 @@ export function ActivityCard({ activity }: ActivityCardProps) {
     <PublicCard>
       <ImagePlaceholder
         className="aspect-[16/10] !rounded-none !border-0 !shadow-none"
-        label={`Gambar sementara kegiatan ${activity.title}`}
+        label={`Gambar kegiatan ${activity.title}`}
         variant={activity.image.includes("map") ? "map" : "activity"}
       />
       <PublicCardBody>

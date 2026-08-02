@@ -164,8 +164,8 @@ export default async function StreetDetailPage({
                 Catatan sumber foto
               </h2>
               <p className="mt-3">
-                Foto papan {street.streetName} belum terhubung dengan daftar
-                tanaman yang dapat diverifikasi.
+                Belum ada entri tanaman HerbaCode yang tercatat untuk papan{" "}
+                {street.streetName}.
               </p>
             </BrandCard>
           </Reveal>

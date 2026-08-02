@@ -46,9 +46,9 @@ export function CommunityMapPlaceholder({
             {communityMapConfig.mapTitle}
           </h2>
           <p className="mt-4 max-w-2xl text-sm leading-7 text-white/82 sm:text-base">
-            Peta kompleks sedang dibuat oleh {communityMapConfig.mapPreparedBy}.
-            Area ini disiapkan agar aset final dapat diganti dengan SVG, WebP,
-            atau komponen interaktif tanpa mengubah alur halaman.
+            Denah kompleks Kampung Herbal Berua disusun oleh{" "}
+            {communityMapConfig.mapPreparedBy}, memetakan jalan tematik, zona
+            kesehatan, dan fasilitas kampung.
           </p>
         </div>
         <div className="mt-8 grid gap-3 text-xs font-semibold uppercase tracking-[0.14em] text-white/70 sm:grid-cols-3">

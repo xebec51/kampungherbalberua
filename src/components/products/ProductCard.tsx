@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/PublicCard";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { formatPrice, getAvailabilityLabel } from "@/lib/formatters";
-import { getProductWhatsAppAction, isSampleProduct } from "@/lib/product-actions";
+import { getProductWhatsAppAction } from "@/lib/product-actions";
 
 type ProductCardProps = {
   product: Product;
@@ -22,9 +22,6 @@ export function ProductCard({ product }: ProductCardProps) {
       <ProductImage className="!rounded-none !border-0 !shadow-none" product={product} />
       <PublicCardBody>
         <div className="flex flex-wrap items-center gap-2">
-          {isSampleProduct(product) ? (
-            <StatusBadge tone="brown">Produk contoh</StatusBadge>
-          ) : null}
           <StatusBadge tone="green">{product.category}</StatusBadge>
           <StatusBadge tone="neutral">
             {getAvailabilityLabel(product.availability)}

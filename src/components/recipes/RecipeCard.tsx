@@ -18,7 +18,7 @@ export function RecipeCard({ recipe }: RecipeCardProps) {
     <PublicCard>
       <ImagePlaceholder
         className="aspect-[16/10] !rounded-none !border-0 !shadow-none"
-        label={`Gambar sementara ramuan ${recipe.name}`}
+        label={`Gambar ramuan ${recipe.name}`}
         variant="recipe"
       />
       <PublicCardBody>

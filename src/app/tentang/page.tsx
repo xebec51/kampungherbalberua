@@ -44,7 +44,7 @@ const timelineSteps = [
   {
     title: "Integrasi Digital & Publikasi",
     description:
-      "Merangkum hasil pendataan, zona kesehatan, kegiatan, dan produk warga ke dalam portal ini agar dapat diakses publik secara bertahap.",
+      "Merangkum hasil pendataan, zona kesehatan, kegiatan, dan produk warga ke dalam portal digital ini agar mudah diakses publik.",
   },
 ];
 
@@ -98,14 +98,14 @@ export default function AboutPage() {
                 as="article"
                 className="h-full rounded-md border border-herbal-green/10 bg-white p-6 shadow-sm transition-shadow duration-200 hover:shadow-[var(--shadow-lift)]"
               >
-                <StatusBadge tone="brown">Berkembang bertahap</StatusBadge>
+                <StatusBadge tone="brown">Kolaborasi Lintas Bidang</StatusBadge>
                 <h2 className="mt-4 text-2xl font-bold text-herbal-ink">
                   Ruang integrasi proker
                 </h2>
                 <p className="mt-4 text-sm leading-7 text-herbal-muted">
-                  Hasil program dari bidang Sistem Informasi, Farmasi, Perencanaan
-                  Wilayah dan Kota, Administrasi Publik, Ilmu Ekonomi, dan Psikologi
-                  akan diintegrasikan secara bertahap berdasarkan hasil pendataan
+                  Portal ini mengintegrasikan hasil program dari bidang Sistem
+                  Informasi, Farmasi, Perencanaan Wilayah dan Kota, Administrasi
+                  Publik, Ilmu Ekonomi, dan Psikologi berdasarkan hasil pendataan
                   lapangan.
                 </p>
                 <div className="mt-6 flex flex-col gap-3 sm:flex-row">
@@ -236,7 +236,7 @@ export default function AboutPage() {
             <SectionHeading
               description="Empat tahap besar yang menjadi kerangka kerja program, dari pendataan awal hingga terintegrasi ke portal digital ini."
               eyebrow="Tahapan Program"
-              title="Perjalanan bertahap Kampung Herbal Berua"
+              title="Perjalanan Kampung Herbal Berua"
             />
           </Reveal>
           <StaggerGroup as="ol" className="mt-8 grid gap-4 sm:grid-cols-2">
@@ -257,11 +257,6 @@ export default function AboutPage() {
               </StaggerItem>
             ))}
           </StaggerGroup>
-          <p className="mt-6 text-sm leading-6 text-herbal-muted">
-            Kecepatan setiap tahap menyesuaikan hasil pendataan dan kondisi
-            lapangan. Halaman ini akan diperbarui sejalan dengan perkembangan
-            program.
-          </p>
         </Container>
       </section>
 
@@ -269,7 +264,7 @@ export default function AboutPage() {
         <Container>
           <Reveal>
             <SectionHeading
-              description="Sepuluh mahasiswa KKN Universitas Hasanuddin angkatan 2023 dari enam bidang studi yang berkolaborasi menjalankan program Kampung Herbal Berua. Foto masih berupa placeholder dan akan diperbarui bertahap."
+              description="Sepuluh mahasiswa KKN Universitas Hasanuddin angkatan 2023 dari enam bidang studi yang berkolaborasi menjalankan program Kampung Herbal Berua."
               eyebrow="Tim KKN"
               title="Orang-orang di balik Kampung Herbal Berua"
             />
