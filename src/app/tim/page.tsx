@@ -33,18 +33,18 @@ export default function TeamPage() {
             <StaggerItem key={member.id}>
               <HoverCard
                 as="article"
-                className="flex overflow-hidden rounded-md border border-herbal-green/10 bg-white shadow-sm"
+                className="flex h-full overflow-hidden rounded-md border border-herbal-green/10 bg-white shadow-sm"
               >
                 <TeamMemberPhoto
-                  className="w-[34%] shrink-0 sm:w-[32%]"
+                  className="w-[40%] shrink-0 sm:w-[38%]"
                   member={member}
                 />
                 <div className="flex min-w-0 flex-1 flex-col p-3 sm:p-5">
                   <StatusBadge tone="green">{member.studyProgram}</StatusBadge>
-                  <h2 className="mt-2 line-clamp-2 text-sm font-bold text-herbal-ink sm:mt-4 sm:text-xl">
+                  <h2 className="mt-2 line-clamp-2 text-sm font-bold text-herbal-ink sm:mt-3 sm:text-base">
                     {member.name}
                   </h2>
-                  <p className="mt-1.5 line-clamp-3 text-xs leading-5 text-herbal-muted sm:mt-3 sm:text-sm sm:leading-6">
+                  <p className="mt-1.5 line-clamp-2 text-xs leading-5 text-herbal-muted sm:mt-2 sm:text-sm sm:leading-6">
                     {member.contribution}
                   </p>
                 </div>

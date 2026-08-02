@@ -8,7 +8,7 @@ import { Reveal } from "@/components/motion/Reveal";
 import { StaggerGroup } from "@/components/motion/StaggerGroup";
 import { StaggerItem } from "@/components/motion/StaggerItem";
 import { TeamMemberPhoto } from "@/components/team/TeamMemberPhoto";
-import { teamMembers } from "@/data/team";
+import { programSupervisor, teamMembers } from "@/data/team";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = createPageMetadata({
@@ -61,7 +61,39 @@ export default function AboutPage() {
               title="Profil Kampung Herbal Berua"
             />
           </Reveal>
-          <StaggerGroup className="mt-8 grid gap-5 lg:grid-cols-[1fr_0.8fr]">
+          <Reveal className="mt-5" delay={0.05}>
+            <div className="flex flex-wrap items-center gap-2">
+              <StatusBadge tone="green">KKN Prestasi Gelombang 116</StatusBadge>
+              <StatusBadge tone="brown">Juli–Agustus 2026</StatusBadge>
+              <a
+                className="inline-flex items-center gap-1.5 rounded-full border border-herbal-green/20 bg-white px-3 py-1 text-xs font-bold text-herbal-green transition hover:border-herbal-green hover:bg-herbal-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
+                href="https://www.instagram.com/kknprestasi116_berua/"
+                rel="noreferrer"
+                target="_blank"
+              >
+                <svg
+                  aria-hidden="true"
+                  className="h-3.5 w-3.5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <rect
+                    height="18"
+                    rx="5"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    width="18"
+                    x="3"
+                    y="3"
+                  />
+                  <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.8" />
+                  <circle cx="17.5" cy="6.5" fill="currentColor" r="1.1" />
+                </svg>
+                @kknprestasi116_berua
+              </a>
+            </div>
+          </Reveal>
+          <StaggerGroup className="mt-6 grid gap-5 lg:grid-cols-[1fr_0.8fr]">
             <StaggerItem>
               <HoverCard
                 as="article"
@@ -258,12 +290,29 @@ export default function AboutPage() {
         <Container>
           <Reveal>
             <SectionHeading
-              description="Sepuluh mahasiswa KKN Universitas Hasanuddin angkatan 2023 dari enam bidang studi yang berkolaborasi menjalankan program Kampung Herbal Berua."
+              description="Sepuluh mahasiswa KKN Universitas Hasanuddin angkatan 2023 dari enam bidang studi yang berkolaborasi menjalankan program Kampung Herbal Berua, di bawah bimbingan satu dosen pembimbing kelompok."
               eyebrow="Tim KKN"
               title="Orang-orang di balik Kampung Herbal Berua"
             />
           </Reveal>
-          <StaggerGroup className="mt-8 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
+          <Reveal className="mt-6" delay={0.05}>
+            <HoverCard
+              as="article"
+              className="flex overflow-hidden rounded-md border border-herbal-green/10 bg-white shadow-sm transition-shadow duration-200 hover:shadow-[var(--shadow-lift)] sm:max-w-md"
+            >
+              <TeamMemberPhoto
+                className="w-28 shrink-0 sm:w-36"
+                member={programSupervisor}
+              />
+              <div className="flex min-w-0 flex-1 flex-col justify-center p-4 sm:p-5">
+                <StatusBadge tone="brown">{programSupervisor.role}</StatusBadge>
+                <h3 className="mt-2 text-base font-bold leading-tight text-herbal-ink sm:text-lg">
+                  {programSupervisor.name}
+                </h3>
+              </div>
+            </HoverCard>
+          </Reveal>
+          <StaggerGroup className="mt-6 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
             {teamMembers.map((member) => (
               <StaggerItem key={member.id}>
                 <HoverCard
@@ -271,7 +320,7 @@ export default function AboutPage() {
                   className="flex h-full overflow-hidden rounded-md border border-herbal-green/10 bg-white shadow-sm transition-shadow duration-200 hover:shadow-[var(--shadow-lift)]"
                 >
                   <TeamMemberPhoto
-                    className="w-[34%] shrink-0 sm:w-[32%]"
+                    className="w-[40%] shrink-0 sm:w-[38%]"
                     member={member}
                   />
                   <div className="flex min-w-0 flex-1 flex-col p-3 sm:p-5">
@@ -281,20 +330,9 @@ export default function AboutPage() {
                     <StatusBadge className="mt-2" tone="green">
                       {member.studyProgram}
                     </StatusBadge>
-                    <dl className="mt-3 space-y-1.5 border-t border-herbal-green/10 pt-3 text-[0.65rem] leading-5 text-herbal-muted sm:text-xs">
-                      <div>
-                        <dt className="font-semibold text-herbal-brown">
-                          Fakultas
-                        </dt>
-                        <dd className="line-clamp-2">{member.faculty}</dd>
-                      </div>
-                      <div>
-                        <dt className="font-semibold text-herbal-brown">
-                          Angkatan
-                        </dt>
-                        <dd>{member.entryYear}</dd>
-                      </div>
-                    </dl>
+                    <p className="mt-2 line-clamp-2 text-[0.65rem] leading-5 text-herbal-muted sm:text-xs">
+                      {member.faculty} · Angkatan {member.entryYear}
+                    </p>
                   </div>
                 </HoverCard>
               </StaggerItem>

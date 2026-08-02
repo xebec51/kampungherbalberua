@@ -261,3 +261,9 @@ export type TeamMember = {
   contribution: string;
   photoPath?: string;
 };
+
+export type ProgramSupervisor = {
+  name: string;
+  role: string;
+  photoPath?: string;
+};

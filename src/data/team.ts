@@ -1,4 +1,4 @@
-import type { TeamMember } from "@/types";
+import type { ProgramSupervisor, TeamMember } from "@/types";
 
 export const teamMembers: TeamMember[] = [
   {
@@ -9,6 +9,7 @@ export const teamMembers: TeamMember[] = [
     entryYear: 2023,
     contribution:
       "Pengembangan fondasi portal digital dan integrasi data program.",
+    photoPath: "/images/team/muh-rinaldi-ruslan.jpeg",
   },
   {
     id: "ananda-lukman",
@@ -18,6 +19,7 @@ export const teamMembers: TeamMember[] = [
     entryYear: 2023,
     contribution:
       "Dukungan perspektif ekonomi warga dan pengembangan katalog produk masyarakat.",
+    photoPath: "/images/team/ananda-lukman.jpeg",
   },
   {
     id: "siti-aulia-felinda-wijaya",
@@ -27,6 +29,7 @@ export const teamMembers: TeamMember[] = [
     entryYear: 2023,
     contribution:
       "Dukungan pemetaan wilayah, denah, dan rencana integrasi data spasial.",
+    photoPath: "/images/team/siti-aulia-felinda-wijaya.jpeg",
   },
   {
     id: "anisa-nursalsabila-rahman",
@@ -36,6 +39,7 @@ export const teamMembers: TeamMember[] = [
     entryYear: 2023,
     contribution:
       "Dukungan informasi layanan warga, kinerja RT, dan pengelolaan aspirasi masyarakat.",
+    photoPath: "/images/team/anisa-nursalsabila-rahman.jpeg",
   },
   {
     id: "anastasia-eugenia",
@@ -45,6 +49,7 @@ export const teamMembers: TeamMember[] = [
     entryYear: 2023,
     contribution:
       "Dukungan verifikasi informasi tanaman dan edukasi ramuan sehat.",
+    photoPath: "/images/team/anastasia-eugenia.jpeg",
   },
   {
     id: "buyung-rachmat-toar",
@@ -54,6 +59,7 @@ export const teamMembers: TeamMember[] = [
     entryYear: 2023,
     contribution:
       "Dukungan penyusunan informasi pemanfaatan tradisional tanaman herbal.",
+    photoPath: "/images/team/buyung-rachmat-toar.jpeg",
   },
   {
     id: "malika-az-zahra-bahtiar",
@@ -63,6 +69,7 @@ export const teamMembers: TeamMember[] = [
     entryYear: 2023,
     contribution:
       "Dukungan pendekatan komunikasi warga dan penguatan partisipasi masyarakat.",
+    photoPath: "/images/team/malika-az-zahra-bahtiar.jpeg",
   },
   {
     id: "muh-akbar",
@@ -72,6 +79,7 @@ export const teamMembers: TeamMember[] = [
     entryYear: 2023,
     contribution:
       "Dukungan penyusunan data peta dan potensi wilayah Kampung Herbal.",
+    photoPath: "/images/team/muh-akbar.jpeg",
   },
   {
     id: "nun-salsabila-maddeppungeng",
@@ -81,6 +89,7 @@ export const teamMembers: TeamMember[] = [
     entryYear: 2023,
     contribution:
       "Dukungan edukasi kesehatan umum dan validasi konten ramuan tradisional.",
+    photoPath: "/images/team/nun-salsabila-maddeppungeng.jpeg",
   },
   {
     id: "nur-aulia",
@@ -90,5 +99,12 @@ export const teamMembers: TeamMember[] = [
     entryYear: 2023,
     contribution:
       "Dukungan penyusunan informasi tanaman TOGA dengan bahasa kesehatan yang aman.",
+    photoPath: "/images/team/nur-aulia.jpeg",
   },
 ];
+
+export const programSupervisor: ProgramSupervisor = {
+  name: "Prof. Dr. Ir. Suhasman, S.Hut., M.Si.",
+  role: "Dosen Pembimbing Kelompok (DPK)",
+  photoPath: "/images/team/dpk-suhasman.jpeg",
+};

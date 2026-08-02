@@ -1,9 +1,8 @@
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import type { TeamMember } from "@/types";
 
 type TeamMemberPhotoProps = {
-  member: TeamMember;
+  member: { name: string; photoPath?: string };
   className?: string;
 };
 
