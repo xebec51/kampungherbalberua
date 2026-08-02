@@ -15,7 +15,7 @@ export function BrandCard({
   return (
     <Component
       className={cn(
-        "rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-5 shadow-[var(--shadow-soft)]",
+        "h-full rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-5 shadow-[var(--shadow-soft)]",
         className,
       )}
     >
