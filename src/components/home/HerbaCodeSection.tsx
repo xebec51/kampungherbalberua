@@ -32,7 +32,7 @@ export async function HerbaCodeSection() {
             </LinkButton>
           </div>
         </div>
-        <dl className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
+        <dl className="grid grid-cols-3 gap-2 sm:gap-3 lg:grid-cols-1">
           <Metric label="Zona" value={zones.length} />
           <Metric label="Tanaman unik" value={plants.length} />
           <Metric label="Relasi tanaman-zona" value={relationCount} />
@@ -44,9 +44,11 @@ export async function HerbaCodeSection() {
 
 function Metric({ label, value }: { label: string; value: number }) {
   return (
-    <div className="rounded-md border border-white/12 bg-white/10 p-5 shadow-sm backdrop-blur">
-      <dt className="text-sm font-bold text-white/72">{label}</dt>
-      <dd className="mt-2 text-3xl font-bold text-herbal-gold">
+    <div className="rounded-md border border-white/12 bg-white/10 p-3 shadow-sm backdrop-blur sm:p-5">
+      <dt className="text-xs font-bold leading-tight text-white/72 sm:text-sm">
+        {label}
+      </dt>
+      <dd className="mt-2 text-xl font-bold text-herbal-gold sm:text-3xl">
         {value}
       </dd>
     </div>

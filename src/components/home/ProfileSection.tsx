@@ -5,23 +5,19 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 const profilePoints = [
   {
     label: "Wilayah",
-    value:
-      "RT 009/RW 006, Kelurahan Berua, Kecamatan Biringkanaya, Kota Makassar.",
+    value: "RT 009/RW 006, Kelurahan Berua",
   },
   {
-    label: "Harmony",
-    value:
-      "Kampung Herbal Harmony adalah program pengenalan tanaman, zona edukasi kesehatan, dan potensi kampung dalam satu identitas digital.",
+    label: "Program",
+    value: "Kampung Herbal Harmony",
   },
   {
-    label: "Katalog",
-    value:
-      "Pengunjung dapat mengenali nama tanaman, zona tempat tanaman dikenalkan, dan gambar pendamping tanpa harus berada di lokasi.",
+    label: "Fokus",
+    value: "Tanaman & zona kesehatan",
   },
   {
-    label: "Edukasi",
-    value:
-      "Informasi kesehatan ditulis sebagai pemanfaatan tradisional dan bukan pengganti konsultasi tenaga kesehatan.",
+    label: "Sifat",
+    value: "Edukasi umum, bukan resep medis",
   },
 ];
 
@@ -31,36 +27,30 @@ export function ProfileSection() {
       <Container className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
         <div>
           <SectionHeading
-            description="Portal ini memperkenalkan Kampung Herbal Harmony sebagai program edukasi berbasis wilayah. Pengunjung dapat memahami tanaman, zona kesehatan, peta kampung, produk warga, dan kegiatan program dari satu tempat."
+            description="Portal edukasi digital untuk mengenal tanaman, zona kesehatan, peta kampung, dan produk warga Kampung Herbal Berua."
             eyebrow="Profil Singkat"
             title="Kampung Herbal Berua"
           />
-          <p className="mt-6 border-l-4 border-herbal-gold bg-herbal-cream/70 px-5 py-4 text-base leading-7 text-herbal-muted shadow-sm">
-            Website ini bukan hanya papan informasi digital. Isinya disusun
-            agar warga, pengunjung, dan mitra program dapat memahami konteks
-            Kampung Herbal Harmony meskipun tidak sedang berada di Berua.
-          </p>
           <div className="mt-6 rounded-[var(--radius-card)] border border-herbal-green/15 bg-herbal-soft p-5">
             <h3 className="text-sm font-bold uppercase tracking-[0.14em] text-herbal-brown">
               Kolaborasi Program
             </h3>
-            <p className="mt-3 text-sm leading-6 text-herbal-muted">
-              Logo Kelompok KKN, Universitas Hasanuddin, dan Pemerintah Kota
-              Makassar ditampilkan sebagai bagian dari dokumentasi program.
+            <p className="mt-2 text-sm leading-6 text-herbal-muted">
+              KKN Universitas Hasanuddin bersama Pemerintah Kota Makassar.
             </p>
             <PartnerLogos className="mt-4" />
           </div>
         </div>
-        <dl className="overflow-hidden rounded-[var(--radius-card)] border border-herbal-green/15 bg-white shadow-[var(--shadow-soft)]">
+        <dl className="grid grid-cols-2 gap-3">
           {profilePoints.map((item) => (
             <div
-              className="grid gap-2 border-b border-herbal-green/10 p-5 last:border-b-0 sm:grid-cols-[9rem_1fr] sm:p-6"
+              className="rounded-[var(--radius-card)] border border-herbal-green/12 bg-herbal-soft/40 p-4 sm:p-5"
               key={item.label}
             >
-              <dt className="text-sm font-bold uppercase tracking-[0.14em] text-herbal-brown">
+              <dt className="text-xs font-bold uppercase tracking-[0.14em] text-herbal-brown">
                 {item.label}
               </dt>
-              <dd className="text-sm leading-6 text-herbal-muted sm:text-base sm:leading-7">
+              <dd className="mt-2 text-sm font-semibold leading-6 text-herbal-ink">
                 {item.value}
               </dd>
             </div>

@@ -193,10 +193,10 @@ export default async function PlantDetailPage({ params }: PlantDetailPageProps) 
                 Nama lain: {plant.aliases.join(", ")}
               </p>
             ) : null}
-            <div className="mt-6 flex flex-wrap gap-3">
+            <div className="mt-4 flex flex-wrap gap-1.5">
               {plant.zoneEntries.map((entry) => (
                 <Link
-                  className="inline-flex min-h-10 items-center rounded-md border border-herbal-green bg-white px-4 py-2 text-sm font-semibold text-herbal-green transition hover:bg-herbal-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
+                  className="inline-flex items-center rounded-full border border-herbal-green/30 bg-herbal-soft px-2.5 py-1 text-xs font-bold text-herbal-green transition hover:border-herbal-green hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
                   href={`/zona-kesehatan/${entry.zoneSlug}`}
                   key={entry.zoneCode}
                 >

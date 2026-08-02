@@ -47,11 +47,6 @@ export function Footer() {
                 </Link>
               </li>
             ))}
-            <li>
-              <Link className="text-white/52 hover:text-white hover:underline" href="/admin">
-                Admin
-              </Link>
-            </li>
           </ul>
         </nav>
       </Container>

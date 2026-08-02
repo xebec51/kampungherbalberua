@@ -22,20 +22,20 @@ export async function MapPreviewSection() {
               eyebrow="Pemetaan"
               title="Peta Kampung Herbal"
             />
-            <dl className="mt-6 grid gap-3 sm:grid-cols-2">
-              <div className="rounded-md border border-herbal-green/10 bg-white p-4 shadow-sm">
+            <dl className="mt-6 grid grid-cols-2 gap-3">
+              <div className="rounded-md border border-herbal-green/10 bg-white p-3 shadow-sm sm:p-4">
                 <dt className="text-xs font-bold uppercase tracking-[0.14em] text-herbal-brown">
                   Jalan tematik
                 </dt>
-                <dd className="mt-2 text-3xl font-extrabold text-herbal-deep">
+                <dd className="mt-2 text-2xl font-extrabold text-herbal-deep sm:text-3xl">
                   {streets.length}
                 </dd>
               </div>
-              <div className="rounded-md border border-herbal-brown/20 bg-white p-4 shadow-sm">
+              <div className="rounded-md border border-herbal-brown/20 bg-white p-3 shadow-sm sm:p-4">
                 <dt className="text-xs font-bold uppercase tracking-[0.14em] text-herbal-brown">
                   Zona kesehatan
                 </dt>
-                <dd className="mt-2 text-3xl font-extrabold text-herbal-deep">
+                <dd className="mt-2 text-2xl font-extrabold text-herbal-deep sm:text-3xl">
                   {zones.length}
                 </dd>
               </div>
