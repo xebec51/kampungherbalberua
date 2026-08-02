@@ -8,6 +8,9 @@ import { Disclaimer } from "@/components/ui/Disclaimer";
 import { ImageFrame } from "@/components/ui/ImageFrame";
 import { SafeImage } from "@/components/ui/SafeImage";
 import { StatusBadge } from "@/components/ui/StatusBadge";
+import { Reveal } from "@/components/motion/Reveal";
+import { StaggerGroup } from "@/components/motion/StaggerGroup";
+import { StaggerItem } from "@/components/motion/StaggerItem";
 import {
   getHerbaCodePlantBySlug,
   getHerbaCodePlantSlugs,
@@ -173,7 +176,7 @@ export default async function PlantDetailPage({ params }: PlantDetailPageProps) 
 
         <div className="mt-8 rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-5 shadow-[var(--shadow-soft)] sm:p-7">
           <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(19rem,0.78fr)] lg:items-start">
-            <div className="min-w-0">
+            <Reveal className="min-w-0">
             <div className="flex flex-wrap gap-2">
               <StatusBadge tone="green">HerbaCode</StatusBadge>
               <StatusBadge tone="brown">
@@ -204,29 +207,54 @@ export default async function PlantDetailPage({ params }: PlantDetailPageProps) 
                 </Link>
               ))}
             </div>
-            </div>
+            </Reveal>
 
             <PlantDetailImage priority visual={visual} />
           </div>
         </div>
 
-        <div className="mt-8 grid gap-6 lg:grid-cols-2">
-          <DetailSection title="Senyawa aktif" values={activeCompounds} />
-          <DetailSection title="Bagian yang digunakan" values={usedParts} />
-          <DetailSection
-            title="Teknik budidaya"
-            values={cultivationTechniques}
-          />
-          <DetailSection title="Cara pemanfaatan" values={preparationMethods} />
-          <DetailSection title="Perhatian" values={warnings} />
-        </div>
+        <StaggerGroup className="mt-8 grid gap-6 lg:grid-cols-2">
+          {activeCompounds.length > 0 ? (
+            <StaggerItem>
+              <DetailSection title="Senyawa aktif" values={activeCompounds} />
+            </StaggerItem>
+          ) : null}
+          {usedParts.length > 0 ? (
+            <StaggerItem>
+              <DetailSection title="Bagian yang digunakan" values={usedParts} />
+            </StaggerItem>
+          ) : null}
+          {cultivationTechniques.length > 0 ? (
+            <StaggerItem>
+              <DetailSection
+                title="Teknik budidaya"
+                values={cultivationTechniques}
+              />
+            </StaggerItem>
+          ) : null}
+          {preparationMethods.length > 0 ? (
+            <StaggerItem>
+              <DetailSection
+                title="Cara pemanfaatan"
+                values={preparationMethods}
+              />
+            </StaggerItem>
+          ) : null}
+          {warnings.length > 0 ? (
+            <StaggerItem>
+              <DetailSection title="Perhatian" values={warnings} />
+            </StaggerItem>
+          ) : null}
+        </StaggerGroup>
 
         <BenefitsByZone entries={plant.zoneEntries} />
 
-        <BrandCard as="section" className="mt-8 text-sm leading-6 text-herbal-muted">
-          <h2 className="text-base font-bold text-herbal-ink">Sumber</h2>
-          <p className="mt-3">{plant.sourceDocumentName}</p>
-        </BrandCard>
+        <Reveal>
+          <BrandCard as="section" className="mt-8 text-sm leading-6 text-herbal-muted">
+            <h2 className="text-base font-bold text-herbal-ink">Sumber</h2>
+            <p className="mt-3">{plant.sourceDocumentName}</p>
+          </BrandCard>
+        </Reveal>
 
         <div className="mt-8">
           <Disclaimer>

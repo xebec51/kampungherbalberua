@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
+import { Reveal } from "@/components/motion/Reveal";
 import { ZoneCatalog } from "@/components/zones/ZoneCatalog";
 import { Container } from "@/components/ui/Container";
 import { Disclaimer } from "@/components/ui/Disclaimer";
@@ -37,7 +38,7 @@ export default async function HealthZonesPage() {
         >
           <ZoneCatalog zones={zones} />
         </Suspense>
-        <div className="mt-8">
+        <Reveal className="mt-8">
           <Disclaimer>
             Materi pada halaman ini disediakan sebagai edukasi umum mengenai
             tema kesehatan pada Zona Kampung Herbal Harmony. Informasi ini bukan
@@ -45,7 +46,7 @@ export default async function HealthZonesPage() {
             maupun tenaga kesehatan lainnya. Informasi tanaman herbal harus
             diverifikasi sebelum digunakan.
           </Disclaimer>
-        </div>
+        </Reveal>
       </Container>
       </section>
     </>

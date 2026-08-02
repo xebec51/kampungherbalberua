@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Reveal } from "@/components/motion/Reveal";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { createPageMetadata } from "@/lib/metadata";
@@ -13,11 +14,13 @@ export default function TourismPage() {
   return (
     <section className="bg-herbal-cream py-12 sm:py-16">
       <Container>
-        <SectionHeading
-          description="Data kunjungan edukasi yang telah memiliki informasi publik akan ditampilkan di halaman ini."
-          eyebrow="Kunjungan Edukasi"
-          title="Kunjungan Edukasi Kampung Herbal"
-        />
+        <Reveal>
+          <SectionHeading
+            description="Data kunjungan edukasi yang telah memiliki informasi publik akan ditampilkan di halaman ini."
+            eyebrow="Kunjungan Edukasi"
+            title="Kunjungan Edukasi Kampung Herbal"
+          />
+        </Reveal>
       </Container>
     </section>
   );

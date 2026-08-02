@@ -1,3 +1,4 @@
+import { Reveal } from "@/components/motion/Reveal";
 import { ProductCard } from "@/components/products/ProductCard";
 import { AutoCarousel } from "@/components/ui/AutoCarousel";
 import { Container } from "@/components/ui/Container";
@@ -13,16 +14,18 @@ export function FeaturedProductsSection() {
   return (
     <section className="home-section bg-gradient-to-b from-white via-herbal-cream to-white py-14 sm:py-16">
       <Container>
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-          <SectionHeading
-            description="Cuplikan produk warga yang dapat dipesan langsung melalui WhatsApp."
-            eyebrow="Produk Warga"
-            title="Produk Kampung Herbal"
-          />
-          <LinkButton href="/produk" variant="secondary">
-            Lihat Katalog Produk
-          </LinkButton>
-        </div>
+        <Reveal>
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+            <SectionHeading
+              description="Cuplikan produk warga yang dapat dipesan langsung melalui WhatsApp."
+              eyebrow="Produk Warga"
+              title="Produk Kampung Herbal"
+            />
+            <LinkButton href="/produk" variant="secondary">
+              Lihat Katalog Produk
+            </LinkButton>
+          </div>
+        </Reveal>
         <AutoCarousel
           ariaLabel="Carousel produk pilihan warga"
           className="mt-8"

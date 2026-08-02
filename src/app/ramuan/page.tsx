@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { RecipeCatalog } from "@/components/recipes/RecipeCatalog";
+import { Reveal } from "@/components/motion/Reveal";
 import { Container } from "@/components/ui/Container";
 import { Disclaimer } from "@/components/ui/Disclaimer";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -18,11 +19,13 @@ export default function RecipesPage() {
   return (
     <section className="bg-herbal-cream py-12 sm:py-16">
       <Container>
-        <SectionHeading
-          description="Ramuan yang telah memiliki data publik akan ditampilkan di halaman ini. Cara pemanfaatan dari HerbaCode tersedia pada detail tanaman dan zona terkait."
-          eyebrow="Ramuan Sehat"
-          title="Edukasi ramuan berbasis tanaman sekitar"
-        />
+        <Reveal>
+          <SectionHeading
+            description="Ramuan yang telah memiliki data publik akan ditampilkan di halaman ini. Cara pemanfaatan dari HerbaCode tersedia pada detail tanaman dan zona terkait."
+            eyebrow="Ramuan Sehat"
+            title="Edukasi ramuan berbasis tanaman sekitar"
+          />
+        </Reveal>
         {recipes.length > 0 ? (
           <Suspense
             fallback={
@@ -34,15 +37,17 @@ export default function RecipesPage() {
             <RecipeCatalog recipes={recipes} />
           </Suspense>
         ) : null}
-        <div className="mt-8">
-          <Disclaimer>
-            Informasi ramuan pada website ini bukan diagnosis, resep, atau
-            pengganti konsultasi dengan dokter, apoteker, maupun tenaga kesehatan
-            lainnya. Ibu hamil, anak-anak, lansia, penderita penyakit tertentu,
-            dan pengguna obat rutin perlu berkonsultasi sebelum mengonsumsi
-            ramuan.
-          </Disclaimer>
-        </div>
+        <Reveal>
+          <div className="mt-8">
+            <Disclaimer>
+              Informasi ramuan pada website ini bukan diagnosis, resep, atau
+              pengganti konsultasi dengan dokter, apoteker, maupun tenaga kesehatan
+              lainnya. Ibu hamil, anak-anak, lansia, penderita penyakit tertentu,
+              dan pengguna obat rutin perlu berkonsultasi sebelum mengonsumsi
+              ramuan.
+            </Disclaimer>
+          </div>
+        </Reveal>
       </Container>
     </section>
   );

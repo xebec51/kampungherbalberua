@@ -1,3 +1,4 @@
+import { Reveal } from "@/components/motion/Reveal";
 import { HerbaCodePlantCard } from "@/components/plants/HerbaCodePlantCard";
 import { AutoCarousel } from "@/components/ui/AutoCarousel";
 import { Container } from "@/components/ui/Container";
@@ -11,18 +12,20 @@ export async function FeaturedPlantsSection() {
   return (
     <section className="home-section bg-white py-14 sm:py-16">
       <Container>
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-          <SectionHeading
-            description="Cuplikan tanaman dari HerbaCode Kampung Herbal Harmony, termasuk tanaman yang muncul di beberapa zona kesehatan."
-            eyebrow="Tanaman Pilihan"
-            title="Kenali tanaman herbal kampung"
-          />
-          <div className="flex flex-wrap gap-3">
-            <LinkButton href="/tanaman" variant="secondary">
-              Lihat katalog tanaman Harmony
-            </LinkButton>
+        <Reveal>
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+            <SectionHeading
+              description="Cuplikan tanaman dari HerbaCode Kampung Herbal Harmony, termasuk tanaman yang muncul di beberapa zona kesehatan."
+              eyebrow="Tanaman Pilihan"
+              title="Kenali tanaman herbal kampung"
+            />
+            <div className="flex flex-wrap gap-3">
+              <LinkButton href="/tanaman" variant="secondary">
+                Lihat katalog tanaman Harmony
+              </LinkButton>
+            </div>
           </div>
-        </div>
+        </Reveal>
         <AutoCarousel
           ariaLabel="Carousel tanaman pilihan"
           className="mt-8"

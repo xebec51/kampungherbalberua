@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { Reveal } from "@/components/motion/Reveal";
+import { StaggerGroup } from "@/components/motion/StaggerGroup";
+import { StaggerItem } from "@/components/motion/StaggerItem";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { BrandCard } from "@/components/ui/BrandCard";
 import { Container } from "@/components/ui/Container";
@@ -93,7 +96,7 @@ export default async function HealthZoneDetailPage({
         />
 
         <div className="mt-8 rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-5 shadow-[var(--shadow-soft)] sm:p-7">
-          <div>
+          <Reveal>
             <div className="flex flex-wrap gap-2">
               <StatusBadge tone="green">Zona HerbaCode</StatusBadge>
               <StatusBadge tone="brown">{zone.entries.length} tanaman</StatusBadge>
@@ -112,33 +115,38 @@ export default async function HealthZoneDetailPage({
             <p className="mt-6 max-w-3xl text-base leading-8 text-herbal-muted">
               {zone.shortDescription}
             </p>
-          </div>
+          </Reveal>
         </div>
 
         <section className="mt-8">
-          <h2 className="text-xl font-bold text-herbal-ink">
-            Tanaman pada zona ini
-          </h2>
-          <p className="mt-2 max-w-3xl text-sm leading-6 text-herbal-muted">
-            Informasi tanaman dan pemanfaatan tradisional pada bagian ini
-            bersumber dari HerbaCode.
-          </p>
-          <div className="mt-5 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
+          <Reveal>
+            <h2 className="text-xl font-bold text-herbal-ink">
+              Tanaman pada zona ini
+            </h2>
+            <p className="mt-2 max-w-3xl text-sm leading-6 text-herbal-muted">
+              Informasi tanaman dan pemanfaatan tradisional pada bagian ini
+              bersumber dari HerbaCode.
+            </p>
+          </Reveal>
+          <StaggerGroup className="mt-5 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
             {uniqueEntries.map((entry, index) => (
-              <ZonePlantMiniCard
-                entry={entry}
-                key={entry.plantSlug}
-                plant={plantBySlug.get(entry.plantSlug)}
-                priority={index < 3}
-              />
+              <StaggerItem key={entry.plantSlug}>
+                <ZonePlantMiniCard
+                  entry={entry}
+                  plant={plantBySlug.get(entry.plantSlug)}
+                  priority={index < 3}
+                />
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGroup>
         </section>
 
-        <BrandCard as="section" className="mt-8 text-sm leading-6 text-herbal-muted">
-          <h2 className="text-base font-bold text-herbal-ink">Sumber</h2>
-          <p className="mt-3">HerbaCode Kampung Herbal Harmony</p>
-        </BrandCard>
+        <Reveal>
+          <BrandCard as="section" className="mt-8 text-sm leading-6 text-herbal-muted">
+            <h2 className="text-base font-bold text-herbal-ink">Sumber</h2>
+            <p className="mt-3">HerbaCode Kampung Herbal Harmony</p>
+          </BrandCard>
+        </Reveal>
 
         <div className="mt-8">
           <Disclaimer>
@@ -209,7 +217,7 @@ function CatalogZoneDetail({ zone }: { zone: HealthZone }) {
             />
           ) : null}
 
-          <div>
+          <Reveal>
             <div className="flex flex-wrap gap-2">
               <StatusBadge tone="brown">Katalog zona</StatusBadge>
             </div>
@@ -227,18 +235,46 @@ function CatalogZoneDetail({ zone }: { zone: HealthZone }) {
             <p className="mt-6 max-w-3xl text-base leading-8 text-herbal-muted">
               {zone.shortDescription}
             </p>
-          </div>
+          </Reveal>
         </div>
 
-        <div className="mt-8 grid gap-6 lg:grid-cols-2">
-          <TextSection title="Fokus materi" value={zone.healthTopic} />
-          <TextSection title="Gambaran umum" value={zone.overview} />
-          <ListSection title="Blok" values={zone.blockRanges} />
-          <ListSection title="Poin edukasi" values={zone.educationalPoints} />
-          <ListSection title="Kebiasaan sehat" values={zone.healthyHabits} />
-          <ListSection title="Catatan penting" values={zone.importantNotes} />
-          <ListSection title="Sumber" values={zone.sourceNotes} />
-        </div>
+        <StaggerGroup className="mt-8 grid gap-6 lg:grid-cols-2">
+          {zone.healthTopic?.trim() ? (
+            <StaggerItem>
+              <TextSection title="Fokus materi" value={zone.healthTopic} />
+            </StaggerItem>
+          ) : null}
+          {zone.overview?.trim() ? (
+            <StaggerItem>
+              <TextSection title="Gambaran umum" value={zone.overview} />
+            </StaggerItem>
+          ) : null}
+          {zone.blockRanges.length > 0 ? (
+            <StaggerItem>
+              <ListSection title="Blok" values={zone.blockRanges} />
+            </StaggerItem>
+          ) : null}
+          {zone.educationalPoints.length > 0 ? (
+            <StaggerItem>
+              <ListSection title="Poin edukasi" values={zone.educationalPoints} />
+            </StaggerItem>
+          ) : null}
+          {zone.healthyHabits.length > 0 ? (
+            <StaggerItem>
+              <ListSection title="Kebiasaan sehat" values={zone.healthyHabits} />
+            </StaggerItem>
+          ) : null}
+          {zone.importantNotes.length > 0 ? (
+            <StaggerItem>
+              <ListSection title="Catatan penting" values={zone.importantNotes} />
+            </StaggerItem>
+          ) : null}
+          {zone.sourceNotes.length > 0 ? (
+            <StaggerItem>
+              <ListSection title="Sumber" values={zone.sourceNotes} />
+            </StaggerItem>
+          ) : null}
+        </StaggerGroup>
 
         <div className="mt-8">
           <Disclaimer>

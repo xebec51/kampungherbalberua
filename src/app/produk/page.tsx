@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { ProductCatalog } from "@/components/products/ProductCatalog";
+import { Reveal } from "@/components/motion/Reveal";
 import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/ui/PageHero";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -24,11 +25,13 @@ export default function ProductsPage() {
       />
       <section className="bg-herbal-cream py-10 sm:py-12">
         <Container>
-          <SectionHeading
-            description="Pertanyaan dan pemesanan produk dilayani langsung melalui WhatsApp pengelola."
-            eyebrow="Katalog Produk"
-            title="Produk Warga Kampung Herbal"
-          />
+          <Reveal>
+            <SectionHeading
+              description="Pertanyaan dan pemesanan produk dilayani langsung melalui WhatsApp pengelola."
+              eyebrow="Katalog Produk"
+              title="Produk Warga Kampung Herbal"
+            />
+          </Reveal>
           <Suspense
             fallback={
               <p className="mt-8 text-sm text-herbal-muted">

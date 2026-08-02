@@ -1,3 +1,4 @@
+import { Reveal } from "@/components/motion/Reveal";
 import { ActivityCard } from "@/components/programs/ActivityCard";
 import { AutoCarousel } from "@/components/ui/AutoCarousel";
 import { Container } from "@/components/ui/Container";
@@ -13,16 +14,18 @@ export function LatestActivitiesSection() {
   return (
     <section className="home-section bg-herbal-cream py-14 sm:py-16">
       <Container>
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-          <SectionHeading
-            description="Dokumentasi kegiatan yang telah siap dipublikasikan ditampilkan pada bagian ini."
-            eyebrow="Kegiatan Terbaru"
-            title="Ruang dokumentasi KKN dan Kampung Herbal"
-          />
-          <LinkButton href="/kegiatan" variant="secondary">
-            Lihat Kegiatan
-          </LinkButton>
-        </div>
+        <Reveal>
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+            <SectionHeading
+              description="Dokumentasi kegiatan yang telah siap dipublikasikan ditampilkan pada bagian ini."
+              eyebrow="Kegiatan Terbaru"
+              title="Ruang dokumentasi KKN dan Kampung Herbal"
+            />
+            <LinkButton href="/kegiatan" variant="secondary">
+              Lihat Kegiatan
+            </LinkButton>
+          </div>
+        </Reveal>
         <AutoCarousel
           ariaLabel="Carousel kegiatan terbaru"
           className="mt-8"

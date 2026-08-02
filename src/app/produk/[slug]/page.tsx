@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ProductImage } from "@/components/products/ProductImage";
+import { Reveal } from "@/components/motion/Reveal";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
 import { StatusBadge } from "@/components/ui/StatusBadge";
@@ -63,59 +64,61 @@ export default async function ProductDetailPage({
             { label: product.name },
           ]}
         />
-        <div className="mt-8 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-          <ProductImage priority product={product} size="detail" />
+        <Reveal>
+          <div className="mt-8 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+            <ProductImage priority product={product} size="detail" />
 
-          <div>
-            <div className="flex flex-wrap gap-2">
-              <StatusBadge tone="green">{product.category}</StatusBadge>
-              <StatusBadge tone="neutral">
-                {getAvailabilityLabel(product.availability)}
-              </StatusBadge>
-            </div>
-            <h1 className="mt-5 text-4xl font-bold text-herbal-ink sm:text-5xl">
-              {product.name}
-            </h1>
-            <p className="mt-5 text-base leading-8 text-herbal-muted">
-              {product.description}
-            </p>
-
-            <dl className="mt-8 grid gap-4 sm:grid-cols-2">
-              <ProductInfo label="Harga" value={formatPrice(product.price, product.unit)} />
-              <ProductInfo label="Satuan" value={product.unit ?? "Per item"} />
-              <ProductInfo label="Produsen" value={product.producerName} />
-              <ProductInfo
-                label="Status"
-                value={getAvailabilityLabel(product.availability)}
-              />
-            </dl>
-
-            <div className="mt-8">
-              {whatsappAction.disabled ? (
-                <button
-                  className="inline-flex min-h-11 cursor-not-allowed items-center justify-center rounded-md border border-herbal-green/20 bg-white px-5 py-2.5 text-sm font-semibold text-herbal-muted"
-                  disabled
-                  type="button"
-                >
-                  {whatsappAction.label}
-                </button>
-              ) : (
-                <a
-                  className="inline-flex min-h-11 items-center justify-center rounded-md bg-herbal-green px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-herbal-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
-                  href={whatsappAction.href}
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  {whatsappAction.label}
-                </a>
-              )}
-              <p className="mt-3 text-sm leading-6 text-herbal-muted">
-                Transaksi, pembayaran, dan pengiriman diselesaikan langsung
-                bersama pengelola produk melalui WhatsApp.
+            <div>
+              <div className="flex flex-wrap gap-2">
+                <StatusBadge tone="green">{product.category}</StatusBadge>
+                <StatusBadge tone="neutral">
+                  {getAvailabilityLabel(product.availability)}
+                </StatusBadge>
+              </div>
+              <h1 className="mt-5 text-4xl font-bold text-herbal-ink sm:text-5xl">
+                {product.name}
+              </h1>
+              <p className="mt-5 text-base leading-8 text-herbal-muted">
+                {product.description}
               </p>
+
+              <dl className="mt-8 grid gap-4 sm:grid-cols-2">
+                <ProductInfo label="Harga" value={formatPrice(product.price, product.unit)} />
+                <ProductInfo label="Satuan" value={product.unit ?? "Per item"} />
+                <ProductInfo label="Produsen" value={product.producerName} />
+                <ProductInfo
+                  label="Status"
+                  value={getAvailabilityLabel(product.availability)}
+                />
+              </dl>
+
+              <div className="mt-8">
+                {whatsappAction.disabled ? (
+                  <button
+                    className="inline-flex min-h-11 cursor-not-allowed items-center justify-center rounded-md border border-herbal-green/20 bg-white px-5 py-2.5 text-sm font-semibold text-herbal-muted"
+                    disabled
+                    type="button"
+                  >
+                    {whatsappAction.label}
+                  </button>
+                ) : (
+                  <a
+                    className="inline-flex min-h-11 items-center justify-center rounded-md bg-herbal-green px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-herbal-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
+                    href={whatsappAction.href}
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    {whatsappAction.label}
+                  </a>
+                )}
+                <p className="mt-3 text-sm leading-6 text-herbal-muted">
+                  Transaksi, pembayaran, dan pengiriman diselesaikan langsung
+                  bersama pengelola produk melalui WhatsApp.
+                </p>
+              </div>
             </div>
           </div>
-        </div>
+        </Reveal>
       </Container>
     </article>
   );

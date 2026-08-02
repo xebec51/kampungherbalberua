@@ -1,4 +1,7 @@
 import { CommunityMapPlaceholder } from "@/components/maps/CommunityMapPlaceholder";
+import { Reveal } from "@/components/motion/Reveal";
+import { StaggerGroup } from "@/components/motion/StaggerGroup";
+import { StaggerItem } from "@/components/motion/StaggerItem";
 import { Container } from "@/components/ui/Container";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -17,29 +20,35 @@ export async function MapPreviewSection() {
         <div className="grid gap-7 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.72fr)] lg:items-center">
           <CommunityMapPlaceholder compact />
           <div>
-            <SectionHeading
-              description="Halaman peta menyediakan akses ke jalan tematik dan zona kesehatan Kampung Herbal Berua tanpa menampilkan titik rumah atau data pribadi warga."
-              eyebrow="Pemetaan"
-              title="Peta Kampung Herbal"
-            />
-            <dl className="mt-6 grid grid-cols-2 gap-3">
-              <div className="rounded-md border border-herbal-green/10 bg-white p-3 shadow-sm sm:p-4">
-                <dt className="text-xs font-bold uppercase tracking-[0.14em] text-herbal-brown">
-                  Jalan tematik
-                </dt>
-                <dd className="mt-2 text-2xl font-extrabold text-herbal-deep sm:text-3xl">
-                  {streets.length}
-                </dd>
-              </div>
-              <div className="rounded-md border border-herbal-brown/20 bg-white p-3 shadow-sm sm:p-4">
-                <dt className="text-xs font-bold uppercase tracking-[0.14em] text-herbal-brown">
-                  Zona kesehatan
-                </dt>
-                <dd className="mt-2 text-2xl font-extrabold text-herbal-deep sm:text-3xl">
-                  {zones.length}
-                </dd>
-              </div>
-            </dl>
+            <Reveal>
+              <SectionHeading
+                description="Halaman peta menyediakan akses ke jalan tematik dan zona kesehatan Kampung Herbal Berua tanpa menampilkan titik rumah atau data pribadi warga."
+                eyebrow="Pemetaan"
+                title="Peta Kampung Herbal"
+              />
+            </Reveal>
+            <StaggerGroup as="dl" className="mt-6 grid grid-cols-2 gap-3">
+              <StaggerItem>
+                <div className="rounded-md border border-herbal-green/10 bg-white p-3 shadow-sm sm:p-4">
+                  <dt className="text-xs font-bold uppercase tracking-[0.14em] text-herbal-brown">
+                    Jalan tematik
+                  </dt>
+                  <dd className="mt-2 text-2xl font-extrabold text-herbal-deep sm:text-3xl">
+                    {streets.length}
+                  </dd>
+                </div>
+              </StaggerItem>
+              <StaggerItem>
+                <div className="rounded-md border border-herbal-brown/20 bg-white p-3 shadow-sm sm:p-4">
+                  <dt className="text-xs font-bold uppercase tracking-[0.14em] text-herbal-brown">
+                    Zona kesehatan
+                  </dt>
+                  <dd className="mt-2 text-2xl font-extrabold text-herbal-deep sm:text-3xl">
+                    {zones.length}
+                  </dd>
+                </div>
+              </StaggerItem>
+            </StaggerGroup>
             <div className="mt-7">
               <LinkButton href="/peta" variant="secondary">
                 Lihat Peta Kampung

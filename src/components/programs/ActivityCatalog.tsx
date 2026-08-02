@@ -9,6 +9,8 @@ import {
 } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import type { Activity } from "@/types";
+import { StaggerGroup } from "@/components/motion/StaggerGroup";
+import { StaggerItem } from "@/components/motion/StaggerItem";
 import { ActivityCard } from "@/components/programs/ActivityCard";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { FilterChip } from "@/components/ui/FilterChip";
@@ -206,11 +208,13 @@ export function ActivityCatalog({ activities }: ActivityCatalogProps) {
       </div>
 
       {filteredActivities.length > 0 ? (
-        <div className="mt-8 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
+        <StaggerGroup className="mt-8 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
           {filteredActivities.map((activity) => (
-            <ActivityCard activity={activity} key={activity.id} />
+            <StaggerItem key={activity.id}>
+              <ActivityCard activity={activity} />
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerGroup>
       ) : (
         <div className="mt-6">
           <EmptyState

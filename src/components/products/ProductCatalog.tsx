@@ -9,6 +9,8 @@ import {
 } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import type { Product } from "@/types";
+import { StaggerGroup } from "@/components/motion/StaggerGroup";
+import { StaggerItem } from "@/components/motion/StaggerItem";
 import { ProductCard } from "@/components/products/ProductCard";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { FilterChip } from "@/components/ui/FilterChip";
@@ -273,13 +275,14 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
       </div>
 
       {filteredProducts.length > 0 ? (
-        <div
-          className="mt-8 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3"
-          data-product-grid
-        >
-          {filteredProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
+        <div data-product-grid>
+          <StaggerGroup className="mt-8 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
+            {filteredProducts.map((product) => (
+              <StaggerItem key={product.id}>
+                <ProductCard product={product} />
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
         </div>
       ) : (
         <div className="mt-6">

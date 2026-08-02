@@ -9,6 +9,8 @@ import {
 } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import type { HerbaCodeZoneSummary } from "@/types";
+import { StaggerGroup } from "@/components/motion/StaggerGroup";
+import { StaggerItem } from "@/components/motion/StaggerItem";
 import { HerbaCodeZoneCard } from "@/components/zones/HerbaCodeZoneCard";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { FilterChip } from "@/components/ui/FilterChip";
@@ -177,11 +179,13 @@ export function ZoneCatalog({ zones }: ZoneCatalogProps) {
       </div>
 
       {filteredZones.length > 0 ? (
-        <div className="mt-8 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
+        <StaggerGroup className="mt-8 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
           {filteredZones.map((zone) => (
-            <HerbaCodeZoneCard key={zone.zoneCode} zone={zone} />
+            <StaggerItem key={zone.zoneCode}>
+              <HerbaCodeZoneCard zone={zone} />
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerGroup>
       ) : (
         <div className="mt-6">
           <EmptyState

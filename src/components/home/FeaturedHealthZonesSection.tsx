@@ -1,3 +1,4 @@
+import { Reveal } from "@/components/motion/Reveal";
 import { HerbaCodeZoneCard } from "@/components/zones/HerbaCodeZoneCard";
 import { AutoCarousel } from "@/components/ui/AutoCarousel";
 import { Container } from "@/components/ui/Container";
@@ -11,16 +12,18 @@ export async function FeaturedHealthZonesSection() {
   return (
     <section className="home-section bg-herbal-soft py-14 sm:py-16">
       <Container>
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-          <SectionHeading
-            description="Zona HerbaCode mengelompokkan tanaman berdasarkan tema kesehatan dan menyimpan manfaat sesuai zona masing-masing."
-            eyebrow="Zona Kesehatan"
-            title="Jelajahi Zona Kesehatan"
-          />
-          <LinkButton href="/zona-kesehatan" variant="secondary">
-            Lihat Semua Zona
-          </LinkButton>
-        </div>
+        <Reveal>
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+            <SectionHeading
+              description="Zona HerbaCode mengelompokkan tanaman berdasarkan tema kesehatan dan menyimpan manfaat sesuai zona masing-masing."
+              eyebrow="Zona Kesehatan"
+              title="Jelajahi Zona Kesehatan"
+            />
+            <LinkButton href="/zona-kesehatan" variant="secondary">
+              Lihat Semua Zona
+            </LinkButton>
+          </div>
+        </Reveal>
         <AutoCarousel
           ariaLabel="Carousel zona kesehatan"
           className="mt-8"

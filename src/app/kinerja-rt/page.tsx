@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import { Reveal } from "@/components/motion/Reveal";
+import { StaggerGroup } from "@/components/motion/StaggerGroup";
+import { StaggerItem } from "@/components/motion/StaggerItem";
 import { ProgramCard } from "@/components/programs/ProgramCard";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -17,19 +20,23 @@ export default function RtPerformancePage() {
   return (
     <section className="bg-herbal-cream py-12 sm:py-16">
       <Container>
-        <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
-          <SectionHeading
-            description="Halaman ini menampilkan program, kategori, status, dan progres RT secara transparan."
-            eyebrow="Kinerja RT"
-            title="Program dan capaian RT"
-          />
-          <StatusBadge tone="brown">Laporan Program RT</StatusBadge>
-        </div>
-        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <Reveal>
+          <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+            <SectionHeading
+              description="Halaman ini menampilkan program, kategori, status, dan progres RT secara transparan."
+              eyebrow="Kinerja RT"
+              title="Program dan capaian RT"
+            />
+            <StatusBadge tone="brown">Laporan Program RT</StatusBadge>
+          </div>
+        </Reveal>
+        <StaggerGroup className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {programs.map((program) => (
-            <ProgramCard key={program.id} program={program} />
+            <StaggerItem key={program.id}>
+              <ProgramCard program={program} />
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerGroup>
       </Container>
     </section>
   );

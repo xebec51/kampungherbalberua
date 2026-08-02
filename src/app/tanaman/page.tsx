@@ -4,6 +4,8 @@ import { PosterPlantCatalog } from "@/components/plants/PosterPlantCatalog";
 import { Container } from "@/components/ui/Container";
 import { Disclaimer } from "@/components/ui/Disclaimer";
 import { PageHero } from "@/components/ui/PageHero";
+import { StaggerGroup } from "@/components/motion/StaggerGroup";
+import { StaggerItem } from "@/components/motion/StaggerItem";
 import {
   POSTER_CLAIMED_ENTRY_COUNT,
   getPosterPlantCatalog,
@@ -50,38 +52,50 @@ export default async function PlantsPage() {
       />
       <section className="bg-herbal-cream py-10 sm:py-12">
         <Container>
-        <dl className="mt-6 grid grid-cols-2 gap-3 lg:grid-cols-6">
-          <CatalogMetric
-            label="Katalog final"
-            value={String(plants.length)}
-            description="Union poster dan HerbaCode setelah deduplikasi nama."
-          />
-          <CatalogMetric
-            label="Nama poster"
-            value={String(posterPlants.length)}
-            description="Nama tanaman dari katalog poster."
-          />
-          <CatalogMetric
-            label="Nomor poster lama"
-            value={`${posterOccurrenceCount}/${POSTER_CLAIMED_ENTRY_COUNT}`}
-            description="Entri terbaca dari sumber poster 216 tanaman."
-          />
-          <CatalogMetric
-            label="Tanaman HerbaCode"
-            value={String(herbaCodePlants.length)}
-            description="Tanaman unik yang memiliki detail HerbaCode."
-          />
-          <CatalogMetric
-            label="Zona HerbaCode"
-            value={String(zones.length)}
-            description="Zona kesehatan yang terbaca dari dokumen sumber."
-          />
-          <CatalogMetric
-            label="Relasi tanaman-zona"
-            value={String(entryCount)}
-            description="Setiap relasi menyimpan manfaat sesuai zona."
-          />
-        </dl>
+        <StaggerGroup className="mt-6 grid grid-cols-2 gap-3 lg:grid-cols-6">
+          <StaggerItem>
+            <CatalogMetric
+              label="Katalog final"
+              value={String(plants.length)}
+              description="Union poster dan HerbaCode setelah deduplikasi nama."
+            />
+          </StaggerItem>
+          <StaggerItem>
+            <CatalogMetric
+              label="Nama poster"
+              value={String(posterPlants.length)}
+              description="Nama tanaman dari katalog poster."
+            />
+          </StaggerItem>
+          <StaggerItem>
+            <CatalogMetric
+              label="Nomor poster lama"
+              value={`${posterOccurrenceCount}/${POSTER_CLAIMED_ENTRY_COUNT}`}
+              description="Entri terbaca dari sumber poster 216 tanaman."
+            />
+          </StaggerItem>
+          <StaggerItem>
+            <CatalogMetric
+              label="Tanaman HerbaCode"
+              value={String(herbaCodePlants.length)}
+              description="Tanaman unik yang memiliki detail HerbaCode."
+            />
+          </StaggerItem>
+          <StaggerItem>
+            <CatalogMetric
+              label="Zona HerbaCode"
+              value={String(zones.length)}
+              description="Zona kesehatan yang terbaca dari dokumen sumber."
+            />
+          </StaggerItem>
+          <StaggerItem>
+            <CatalogMetric
+              label="Relasi tanaman-zona"
+              value={String(entryCount)}
+              description="Setiap relasi menyimpan manfaat sesuai zona."
+            />
+          </StaggerItem>
+        </StaggerGroup>
         <Suspense fallback={<p className="mt-8 text-sm text-herbal-muted">Memuat katalog tanaman.</p>}>
           <PosterPlantCatalog
             claimedPosterEntryCount={POSTER_CLAIMED_ENTRY_COUNT}

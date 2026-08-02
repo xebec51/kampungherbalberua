@@ -3,6 +3,10 @@ import Link from "next/link";
 import { CommunityMapPlaceholder } from "@/components/maps/CommunityMapPlaceholder";
 import { MapLegend } from "@/components/maps/MapLegend";
 import { MapLocationCard } from "@/components/maps/MapLocationCard";
+import { HoverCard } from "@/components/motion/HoverCard";
+import { Reveal } from "@/components/motion/Reveal";
+import { StaggerGroup } from "@/components/motion/StaggerGroup";
+import { StaggerItem } from "@/components/motion/StaggerItem";
 import { StreetCard } from "@/components/streets/StreetCard";
 import { BrandCard } from "@/components/ui/BrandCard";
 import { Container } from "@/components/ui/Container";
@@ -45,47 +49,59 @@ export default async function MapPage() {
           </div>
 
           <section className="mt-10">
-            <SectionHeading
-              description="Daftar ini menjadi navigasi menuju detail setiap zona kesehatan Kampung Herbal Berua."
-              eyebrow="Zona kesehatan"
-              title="Daftar Zona Kesehatan"
-            />
-            <div className="mt-6 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
+            <Reveal>
+              <SectionHeading
+                description="Daftar ini menjadi navigasi menuju detail setiap zona kesehatan Kampung Herbal Berua."
+                eyebrow="Zona kesehatan"
+                title="Daftar Zona Kesehatan"
+              />
+            </Reveal>
+            <StaggerGroup className="mt-6 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
               {zones.map((zone) => (
-                <Link
-                  className="public-card rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-3.5 shadow-[var(--shadow-soft)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown sm:p-5"
-                  href={`/zona-kesehatan/${zone.slug}`}
-                  key={zone.slug}
-                >
-                  <p className="text-[0.65rem] font-bold uppercase tracking-[0.14em] text-herbal-brown sm:text-xs">
-                    Zona kesehatan
-                  </p>
-                  <h3 className="mt-2 line-clamp-2 text-sm font-bold leading-tight text-herbal-ink sm:mt-3 sm:text-lg">
-                    {zone.title}
-                  </h3>
-                  <p className="mt-2 line-clamp-2 text-xs leading-5 text-herbal-muted sm:mt-3 sm:line-clamp-3 sm:text-sm sm:leading-6">
-                    {zone.shortDescription}
-                  </p>
-                  <p className="mt-3 text-xs font-bold text-herbal-green sm:mt-4 sm:text-sm">
-                    {zone.plantCount} tanaman
-                  </p>
-                </Link>
+                <StaggerItem key={zone.slug}>
+                  <Link
+                    className="block h-full rounded-[var(--radius-card)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
+                    href={`/zona-kesehatan/${zone.slug}`}
+                  >
+                    <HoverCard
+                      as="div"
+                      className="public-card h-full rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-3.5 shadow-[var(--shadow-soft)] sm:p-5"
+                    >
+                      <p className="text-[0.65rem] font-bold uppercase tracking-[0.14em] text-herbal-brown sm:text-xs">
+                        Zona kesehatan
+                      </p>
+                      <h3 className="mt-2 line-clamp-2 text-sm font-bold leading-tight text-herbal-ink sm:mt-3 sm:text-lg">
+                        {zone.title}
+                      </h3>
+                      <p className="mt-2 line-clamp-2 text-xs leading-5 text-herbal-muted sm:mt-3 sm:line-clamp-3 sm:text-sm sm:leading-6">
+                        {zone.shortDescription}
+                      </p>
+                      <p className="mt-3 text-xs font-bold text-herbal-green sm:mt-4 sm:text-sm">
+                        {zone.plantCount} tanaman
+                      </p>
+                    </HoverCard>
+                  </Link>
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerGroup>
           </section>
 
           {streets.length > 0 ? (
             <section className="mt-12">
-              <SectionHeading
-                description="Daftar jalan tematik tersedia sebagai navigasi aksesibel ke setiap papan dokumentasi."
-                eyebrow="Jalan tematik"
-                title="Daftar Jalan Tematik"
-              />
-              <div className="mt-6 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
+              <Reveal>
+                <SectionHeading
+                  description="Daftar jalan tematik tersedia sebagai navigasi aksesibel ke setiap papan dokumentasi."
+                  eyebrow="Jalan tematik"
+                  title="Daftar Jalan Tematik"
+                />
+              </Reveal>
+              <StaggerGroup className="mt-6 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
                 {streets.map((street) => (
-                  <StreetCard key={street.slug} street={street} />
+                  <StaggerItem key={street.slug}>
+                    <StreetCard street={street} />
+                  </StaggerItem>
                 ))}
-              </div>
+              </StaggerGroup>
             </section>
           ) : null}
 

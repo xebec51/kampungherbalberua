@@ -1,3 +1,6 @@
+import { Reveal } from "@/components/motion/Reveal";
+import { StaggerGroup } from "@/components/motion/StaggerGroup";
+import { StaggerItem } from "@/components/motion/StaggerItem";
 import { Container } from "@/components/ui/Container";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -20,23 +23,31 @@ export async function HerbaCodeSection() {
     <section className="home-section brand-pattern bg-herbal-green py-16 text-white">
       <Container className="grid gap-8 lg:grid-cols-[1fr_0.8fr] lg:items-start">
         <div>
-          <SectionHeading
-            description="HerbaCode menghubungkan tanaman dengan zona kesehatan, senyawa aktif, bagian yang digunakan, manfaat, teknik budidaya, perhatian, dan cara pemanfaatan bila tersedia."
-            eyebrow="HerbaCode"
-            title="Data tanaman dan zona dari dokumen HerbaCode"
-            tone="dark"
-          />
+          <Reveal>
+            <SectionHeading
+              description="HerbaCode menghubungkan tanaman dengan zona kesehatan, senyawa aktif, bagian yang digunakan, manfaat, teknik budidaya, perhatian, dan cara pemanfaatan bila tersedia."
+              eyebrow="HerbaCode"
+              title="Data tanaman dan zona dari dokumen HerbaCode"
+              tone="dark"
+            />
+          </Reveal>
           <div className="mt-6">
             <LinkButton href="/tanaman" variant="secondary">
               Buka Katalog HerbaCode
             </LinkButton>
           </div>
         </div>
-        <dl className="grid grid-cols-3 gap-2 sm:gap-3 lg:grid-cols-1">
-          <Metric label="Zona" value={zones.length} />
-          <Metric label="Tanaman unik" value={plants.length} />
-          <Metric label="Relasi tanaman-zona" value={relationCount} />
-        </dl>
+        <StaggerGroup as="dl" className="grid grid-cols-3 gap-2 sm:gap-3 lg:grid-cols-1">
+          <StaggerItem>
+            <Metric label="Zona" value={zones.length} />
+          </StaggerItem>
+          <StaggerItem>
+            <Metric label="Tanaman unik" value={plants.length} />
+          </StaggerItem>
+          <StaggerItem>
+            <Metric label="Relasi tanaman-zona" value={relationCount} />
+          </StaggerItem>
+        </StaggerGroup>
       </Container>
     </section>
   );

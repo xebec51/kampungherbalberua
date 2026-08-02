@@ -10,6 +10,8 @@ import {
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import type { PosterPlantCatalogItem } from "@/types";
+import { StaggerGroup } from "@/components/motion/StaggerGroup";
+import { StaggerItem } from "@/components/motion/StaggerItem";
 import { PosterPlantCard } from "@/components/plants/PosterPlantCard";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { FilterChip } from "@/components/ui/FilterChip";
@@ -282,16 +284,17 @@ export function PosterPlantCatalog({
 
       {filteredPlants.length > 0 ? (
         <>
-          <div className="mt-6 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3 xl:grid-cols-4">
+          <StaggerGroup className="mt-6 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3 xl:grid-cols-4">
             {visiblePlants.map((plant, index) => (
-              <PosterPlantCard
-                className="catalog-card"
-                key={plant.normalizedName}
-                plant={plant}
-                priority={index === 0}
-              />
+              <StaggerItem key={plant.normalizedName}>
+                <PosterPlantCard
+                  className="catalog-card"
+                  plant={plant}
+                  priority={index === 0}
+                />
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGroup>
           {hasMore ? (
             <div className="mt-8 flex justify-center">
               <button

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { Reveal } from "@/components/motion/Reveal";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
 import { Disclaimer } from "@/components/ui/Disclaimer";
@@ -63,7 +64,7 @@ export default async function RecipeDetailPage({
             { label: recipe.name },
           ]}
         />
-        <div className="mt-8 grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
+        <Reveal className="mt-8 grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
           <div>
             <ImagePlaceholder
               label={`Gambar ramuan ${recipe.name}`}
@@ -127,7 +128,7 @@ export default async function RecipeDetailPage({
               </Disclaimer>
             </div>
           </div>
-        </div>
+        </Reveal>
       </Container>
     </article>
   );
