@@ -215,16 +215,6 @@ export default function AboutPage() {
               </StaggerItem>
             ))}
           </StaggerGroup>
-
-          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <p className="text-sm leading-6 text-herbal-muted">
-              Kontribusi lebih rinci dari setiap anggota tim dapat dilihat di
-              halaman Tim KKN.
-            </p>
-            <LinkButton href="/tim" variant="secondary">
-              Lihat Detail Kontribusi
-            </LinkButton>
-          </div>
         </Container>
       </section>
     </>
