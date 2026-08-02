@@ -13,6 +13,16 @@ const partnerLogos = [
     width: 900,
   },
   {
+    alt: "Logo KKN Universitas Hasanuddin",
+    height: 199,
+    imageClassName: "max-h-16 max-w-[7.75rem]",
+    imageClassNameCompact: "max-h-10 max-w-[4.85rem]",
+    name: "KKN Universitas Hasanuddin",
+    sizes: "(max-width: 640px) 4.85rem, 7.75rem",
+    src: "/images/partners/logo-kkn-unhas.webp",
+    width: 384,
+  },
+  {
     alt: "Logo Universitas Hasanuddin",
     height: 836,
     imageClassName: "max-h-16 max-w-[4.75rem]",
