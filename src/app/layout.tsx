@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { SkipLink } from "@/components/layout/SkipLink";
+import { SplashScreen } from "@/components/layout/SplashScreen";
 import { StructuredData } from "@/components/seo/StructuredData";
 import { createRootMetadata } from "@/lib/metadata";
 import "./globals.css";
@@ -49,6 +50,7 @@ export default function RootLayout({
   return (
     <html className={poppins.variable} data-scroll-behavior="smooth" lang="id">
       <body>
+        <SplashScreen />
         <SkipLink />
         <Header />
         <main id="konten-utama">{children}</main>

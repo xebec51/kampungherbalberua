@@ -268,6 +268,43 @@ textarea {
   }
 }
 
+@keyframes splash-icon-in {
+  from {
+    opacity: 0;
+    transform: scale3d(0.8, 0.8, 1);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes splash-screen-out {
+  0%,
+  58% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+  }
+}
+
+/*
+ * Pure-CSS so the splash still disappears on its own if JS never loads or
+ * hydrates -- it must never be able to permanently cover the real page.
+ */
+.splash-screen {
+  animation: splash-screen-out 1.3s ease-out forwards;
+}
+
+.splash-screen-icon {
+  animation: splash-icon-in 0.5s ease-out both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -289,6 +326,17 @@ textarea {
   }
 
   .navigation-dropdown-menu {
+    animation: none;
+  }
+
+  .splash-screen {
+    animation: none;
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+  }
+
+  .splash-screen-icon {
     animation: none;
   }
 
