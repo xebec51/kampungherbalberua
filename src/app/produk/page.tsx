@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { ProductCard } from "@/components/products/ProductCard";
+import { Suspense } from "react";
+import { ProductCatalog } from "@/components/products/ProductCatalog";
 import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/ui/PageHero";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -28,14 +29,15 @@ export default function ProductsPage() {
             eyebrow="Katalog Produk"
             title="Produk Warga Kampung Herbal"
           />
-          <div
-            className="mt-8 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3"
-            data-product-grid
+          <Suspense
+            fallback={
+              <p className="mt-8 text-sm text-herbal-muted">
+                Memuat katalog produk.
+              </p>
+            }
           >
-            {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
+            <ProductCatalog products={products} />
+          </Suspense>
         </Container>
       </section>
     </>

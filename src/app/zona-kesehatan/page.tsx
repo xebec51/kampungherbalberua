@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { HerbaCodeZoneCard } from "@/components/zones/HerbaCodeZoneCard";
+import { Suspense } from "react";
+import { ZoneCatalog } from "@/components/zones/ZoneCatalog";
 import { Container } from "@/components/ui/Container";
 import { Disclaimer } from "@/components/ui/Disclaimer";
 import { PageHero } from "@/components/ui/PageHero";
@@ -27,11 +28,15 @@ export default async function HealthZonesPage() {
       />
       <section className="bg-herbal-cream py-10 sm:py-12">
         <Container>
-        <div className="mt-8 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
-          {zones.map((zone) => (
-            <HerbaCodeZoneCard key={zone.zoneCode} zone={zone} />
-          ))}
-        </div>
+        <Suspense
+          fallback={
+            <p className="mt-8 text-sm text-herbal-muted">
+              Memuat katalog zona kesehatan.
+            </p>
+          }
+        >
+          <ZoneCatalog zones={zones} />
+        </Suspense>
         <div className="mt-8">
           <Disclaimer>
             Materi pada halaman ini disediakan sebagai edukasi umum mengenai

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { ActivityCard } from "@/components/programs/ActivityCard";
+import { Suspense } from "react";
+import { ActivityCatalog } from "@/components/programs/ActivityCatalog";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { activities } from "@/data/activities";
@@ -21,11 +22,15 @@ export default function ActivitiesPage() {
           title="Kegiatan KKN dan Kampung Herbal"
         />
         {activities.length > 0 ? (
-          <div className="mt-8 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
-            {activities.map((activity) => (
-              <ActivityCard activity={activity} key={activity.id} />
-            ))}
-          </div>
+          <Suspense
+            fallback={
+              <p className="mt-8 text-sm text-herbal-muted">
+                Memuat katalog kegiatan.
+              </p>
+            }
+          >
+            <ActivityCatalog activities={activities} />
+          </Suspense>
         ) : null}
       </Container>
     </section>

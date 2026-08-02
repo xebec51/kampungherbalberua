@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { RecipeCard } from "@/components/recipes/RecipeCard";
+import { Suspense } from "react";
+import { RecipeCatalog } from "@/components/recipes/RecipeCatalog";
 import { Container } from "@/components/ui/Container";
 import { Disclaimer } from "@/components/ui/Disclaimer";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -23,11 +24,15 @@ export default function RecipesPage() {
           title="Edukasi ramuan berbasis tanaman sekitar"
         />
         {recipes.length > 0 ? (
-          <div className="mt-8 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
-            {recipes.map((recipe) => (
-              <RecipeCard key={recipe.id} recipe={recipe} />
-            ))}
-          </div>
+          <Suspense
+            fallback={
+              <p className="mt-8 text-sm text-herbal-muted">
+                Memuat katalog ramuan.
+              </p>
+            }
+          >
+            <RecipeCatalog recipes={recipes} />
+          </Suspense>
         ) : null}
         <div className="mt-8">
           <Disclaimer>
