@@ -1466,6 +1466,45 @@ export type Database = {
           },
         ];
       };
+      suggestions: {
+        Row: {
+          id: string;
+          category: string;
+          title: string;
+          content: string;
+          location: string | null;
+          submitter_name: string | null;
+          submitter_contact: string | null;
+          is_anonymous: boolean;
+          status: string;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          category: string;
+          title: string;
+          content: string;
+          location?: string | null;
+          submitter_name?: string | null;
+          submitter_contact?: string | null;
+          is_anonymous?: boolean;
+          status?: string;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          category?: string;
+          title?: string;
+          content?: string;
+          location?: string | null;
+          submitter_name?: string | null;
+          submitter_contact?: string | null;
+          is_anonymous?: boolean;
+          status?: string;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
     };
     Views: Record<string, never>;
     Functions: {

@@ -13,9 +13,8 @@ export function SuggestionCtaSection() {
             Bantu lengkapi kebutuhan Kampung Herbal
           </h2>
           <p className="mt-4 text-base leading-7 text-white/[0.86] sm:text-lg">
-            Kotak saran disiapkan sebagai antarmuka awal. Penyimpanan database
-            belum aktif pada tahap pertama, sehingga pengguna akan diberi
-            pemberitahuan yang jelas saat mengirim formulir.
+            Sampaikan saran, keluhan, atau ide untuk Kampung Herbal Berua.
+            Saran Anda akan ditinjau langsung oleh pengurus RT/RW.
           </p>
         </div>
         <LinkButton

@@ -40,6 +40,7 @@ export const mainNavigation: NavigationItem[] = [
       { type: "link", label: "Jalan Tematik", href: "/jalan" },
       { type: "link", label: "Produk Warga", href: "/produk" },
       { type: "link", label: "Kinerja RT", href: "/kinerja-rt" },
+      { type: "link", label: "Kotak Saran", href: "/kotak-saran" },
     ],
   },
 ];
@@ -55,4 +56,5 @@ export const footerNavigation: DirectNavigationItem[] = [
   { type: "link", label: "Jalan Tematik", href: "/jalan" },
   { type: "link", label: "Produk Warga", href: "/produk" },
   { type: "link", label: "Tim KKN", href: "/tim" },
+  { type: "link", label: "Kotak Saran", href: "/kotak-saran" },
 ];

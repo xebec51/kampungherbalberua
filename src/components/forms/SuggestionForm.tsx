@@ -1,6 +1,9 @@
 "use client";
 
 import { type FormEvent, type ReactNode, useState } from "react";
+import { submitSuggestionAction } from "@/app/kotak-saran/actions";
+
+type SubmitStatus = "idle" | "submitting" | "success" | "error";
 
 type FormState = {
   category: string;
@@ -37,12 +40,13 @@ const categories = [
   "Lainnya",
 ];
 
-const inactiveStorageMessage =
-  "Formulir telah diperiksa, tetapi penyimpanan saran belum diaktifkan. Integrasi database akan tersedia pada tahap pengembangan berikutnya.";
+const successMessage =
+  "Terima kasih, saran Anda sudah terkirim dan akan ditinjau oleh pengurus Kampung Herbal Berua.";
 
 export function SuggestionForm() {
   const [form, setForm] = useState<FormState>(initialState);
   const [errors, setErrors] = useState<FormErrors>({});
+  const [status, setStatus] = useState<SubmitStatus>("idle");
   const [notice, setNotice] = useState("");
 
   function updateField<K extends keyof FormState>(field: K, value: FormState[K]) {
@@ -71,7 +75,7 @@ export function SuggestionForm() {
     return nextErrors;
   }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setNotice("");
 
@@ -82,7 +86,28 @@ export function SuggestionForm() {
       return;
     }
 
-    setNotice(inactiveStorageMessage);
+    setStatus("submitting");
+
+    const result = await submitSuggestionAction({
+      category: form.category,
+      title: form.title,
+      content: form.content,
+      location: form.location,
+      name: form.name,
+      contact: form.contact,
+      anonymous: form.anonymous,
+    });
+
+    if (result.status === "success") {
+      setStatus("success");
+      setNotice(successMessage);
+      setForm(initialState);
+      setErrors({});
+      return;
+    }
+
+    setStatus("error");
+    setNotice(result.message);
   }
 
   function handleAnonymousChange(checked: boolean) {
@@ -199,8 +224,8 @@ export function SuggestionForm() {
               type="checkbox"
             />
             <span>
-              Saya memahami bahwa formulir tahap pertama belum menyimpan data
-              dan setuju data diproses saat integrasi database diaktifkan.
+              Saya setuju data pada formulir ini disimpan dan digunakan oleh
+              pengurus Kampung Herbal Berua untuk menindaklanjuti saran ini.
               <span className="text-herbal-brown"> *</span>
             </span>
           </label>
@@ -214,8 +239,12 @@ export function SuggestionForm() {
 
       {notice ? (
         <div
-          className="mt-6 rounded-md border border-herbal-green/20 bg-herbal-soft p-4 text-sm font-medium leading-6 text-herbal-deep"
-          role="status"
+          className={
+            status === "error"
+              ? "mt-6 rounded-md border border-herbal-brown/20 bg-[#F5E9DF] p-4 text-sm font-medium leading-6 text-herbal-brown"
+              : "mt-6 rounded-md border border-herbal-green/20 bg-herbal-soft p-4 text-sm font-medium leading-6 text-herbal-deep"
+          }
+          role={status === "error" ? "alert" : "status"}
         >
           {notice}
         </div>
@@ -223,14 +252,12 @@ export function SuggestionForm() {
 
       <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
         <button
-          className="inline-flex min-h-11 items-center justify-center rounded-md bg-herbal-green px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-herbal-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
+          className="inline-flex min-h-11 items-center justify-center rounded-md bg-herbal-green px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-herbal-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown disabled:cursor-not-allowed disabled:opacity-70"
+          disabled={status === "submitting"}
           type="submit"
         >
-          Periksa formulir
+          {status === "submitting" ? "Mengirim..." : "Kirim Saran"}
         </button>
-        <p className="text-sm leading-6 text-herbal-muted">
-          Belum ada data yang dikirim ke server pada tahap ini.
-        </p>
       </div>
     </form>
   );

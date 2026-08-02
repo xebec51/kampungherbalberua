@@ -8,6 +8,7 @@ const adminNavigation = [
   { href: "/admin/tanaman", label: "Tanaman" },
   { href: "/admin/zona", label: "Zona Kesehatan" },
   { href: "/admin/media", label: "Media" },
+  { href: "/admin/kotak-saran", label: "Kotak Saran" },
   { href: "/", label: "Lihat Website" },
 ];
 
