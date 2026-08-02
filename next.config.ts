@@ -38,6 +38,7 @@ const remotePatterns = configuredSupabaseStoragePattern &&
     : [fallbackSupabaseStoragePattern];
 
 const nextConfig: NextConfig = {
+  allowedDevOrigins: ["127.0.0.1", "localhost"],
   experimental: {
     serverActions: {
       // Raw admin photo uploads (before server-side WebP compression) can
