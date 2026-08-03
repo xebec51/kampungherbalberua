@@ -1,6 +1,13 @@
 "use client";
 
-import { useCallback, useDeferredValue, useEffect, useMemo, useState } from "react";
+import {
+  useCallback,
+  useDeferredValue,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import type { PublicStreet } from "@/lib/data/streets";
 import { StaggerGroup } from "@/components/motion/StaggerGroup";
@@ -8,6 +15,7 @@ import { StaggerItem } from "@/components/motion/StaggerItem";
 import { StreetCard } from "@/components/streets/StreetCard";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { FilterChip } from "@/components/ui/FilterChip";
+import { FilterDialog } from "@/components/ui/FilterDialog";
 import { SearchInput } from "@/components/ui/SearchInput";
 
 type StreetCatalogProps = {
@@ -34,6 +42,7 @@ export function StreetCatalog({ streets }: StreetCatalogProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const searchParamsString = searchParams.toString();
+  const paramsRef = useRef(searchParamsString);
   const query = searchParams.get("q") ?? "";
   const zone = searchParams.get("zona") ?? "";
   const sort = allowedSorts.has(searchParams.get("urut") ?? "")
@@ -53,9 +62,13 @@ export function StreetCatalog({ streets }: StreetCatalogProps) {
     [streets],
   );
 
+  useEffect(() => {
+    paramsRef.current = searchParamsString;
+  }, [searchParamsString]);
+
   const updateParam = useCallback(
     (key: string, value: string) => {
-      const params = new URLSearchParams(searchParamsString);
+      const params = new URLSearchParams(paramsRef.current);
 
       if (value) {
         params.set(key, value);
@@ -69,8 +82,9 @@ export function StreetCatalog({ streets }: StreetCatalogProps) {
           scroll: false,
         },
       );
+      paramsRef.current = params.toString();
     },
-    [pathname, router, searchParamsString],
+    [pathname, router],
   );
 
   useEffect(() => {
@@ -126,6 +140,7 @@ export function StreetCatalog({ streets }: StreetCatalogProps) {
 
   function resetFilters() {
     setQueryInput("");
+    paramsRef.current = "";
     router.replace(pathname, { scroll: false });
   }
 
@@ -134,12 +149,25 @@ export function StreetCatalog({ streets }: StreetCatalogProps) {
       ? { key: "q", label: `Cari: ${deferredQueryInput}` }
       : null,
     zone ? { key: "zona", label: `Zona: ${zone}` } : null,
+    sort !== "default"
+      ? {
+          key: "urut",
+          label: `Urutan: ${
+            sortOptions.find((option) => option.value === sort)?.label ?? sort
+          }`,
+        }
+      : null,
   ].filter((item): item is { key: string; label: string } => Boolean(item));
 
   return (
     <div className="mt-8">
-      <div className="rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-4 shadow-[var(--shadow-soft)] sm:p-5">
-        <div className="grid gap-4 lg:grid-cols-[minmax(16rem,1fr)_200px_170px_auto] lg:items-end">
+      <FilterDialog
+        activeCount={activeFilters.length}
+        onReset={resetFilters}
+        resultSummary={`Menampilkan ${filteredStreets.length} dari ${streets.length} jalan.`}
+        title="Atur filter jalan"
+      >
+        <div className="sm:col-span-2">
           <SearchInput
             id="street-search"
             label="Cari jalan"
@@ -147,6 +175,7 @@ export function StreetCatalog({ streets }: StreetCatalogProps) {
             placeholder="Contoh: imun, digestia, blok E"
             value={queryInput}
           />
+        </div>
           <div>
             <label
               className="block text-sm font-medium text-herbal-ink"
@@ -182,35 +211,24 @@ export function StreetCatalog({ streets }: StreetCatalogProps) {
               ))}
             </select>
           </label>
-          <button
-            className="h-11 rounded-md border border-herbal-green/20 px-4 text-sm font-bold text-herbal-green transition hover:bg-herbal-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
-            onClick={resetFilters}
-            type="button"
-          >
-            Reset filter
-          </button>
+      </FilterDialog>
+      {activeFilters.length > 0 ? (
+        <div className="mt-3 flex flex-wrap gap-2">
+          {activeFilters.map((filter) => (
+            <FilterChip
+              key={filter.key}
+              onClick={() => {
+                if (filter.key === "q") {
+                  setQueryInput("");
+                }
+                updateParam(filter.key, "");
+              }}
+            >
+              {filter.label} - hapus
+            </FilterChip>
+          ))}
         </div>
-        <p className="mt-4 text-sm text-herbal-muted" aria-live="polite">
-          Menampilkan {filteredStreets.length} dari {streets.length} jalan.
-        </p>
-        {activeFilters.length > 0 ? (
-          <div className="mt-3 flex flex-wrap gap-2">
-            {activeFilters.map((filter) => (
-              <FilterChip
-                key={filter.key}
-                onClick={() => {
-                  if (filter.key === "q") {
-                    setQueryInput("");
-                  }
-                  updateParam(filter.key, "");
-                }}
-              >
-                {filter.label} - hapus
-              </FilterChip>
-            ))}
-          </div>
-        ) : null}
-      </div>
+      ) : null}
 
       {filteredStreets.length > 0 ? (
         <StaggerGroup className="mt-8 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">

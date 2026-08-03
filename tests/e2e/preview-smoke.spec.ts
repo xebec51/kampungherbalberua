@@ -41,6 +41,8 @@ test("preview deployment public smoke @preview", async ({ page, request }) => {
   await page.keyboard.press("Escape");
 
   await page.goto("/tanaman");
+  await expect(page.getByRole("button", { name: /Atur filter/ })).toBeVisible();
+  await page.getByRole("button", { name: /Atur filter/ }).click();
   await expect(page.getByLabel("Cari tanaman")).toBeVisible();
 
   await page.goto("/zona-kesehatan");
@@ -78,7 +80,7 @@ test("preview deployment public smoke @preview", async ({ page, request }) => {
       name: "Peta Kompleks Kampung Herbal",
     }),
   ).toBeVisible();
-  await expect(page.getByText("Denah Kompleks")).toBeVisible();
+  await expect(page.getByText("Denah Kompleks", { exact: true }).first()).toBeVisible();
   await expect(page.getByText("Jalan tematik", { exact: true }).first()).toBeVisible();
   await expect(page.getByText("Zona kesehatan", { exact: true }).first()).toBeVisible();
 

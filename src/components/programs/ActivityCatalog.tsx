@@ -5,6 +5,7 @@ import {
   useDeferredValue,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -14,6 +15,7 @@ import { StaggerItem } from "@/components/motion/StaggerItem";
 import { ActivityCard } from "@/components/programs/ActivityCard";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { FilterChip } from "@/components/ui/FilterChip";
+import { FilterDialog } from "@/components/ui/FilterDialog";
 import { SearchInput } from "@/components/ui/SearchInput";
 
 type ActivityCatalogProps = {
@@ -39,6 +41,7 @@ export function ActivityCatalog({ activities }: ActivityCatalogProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const searchParamsString = searchParams.toString();
+  const paramsRef = useRef(searchParamsString);
   const query = searchParams.get("q") ?? "";
   const category = searchParams.get("kategori") ?? "";
   const sort = allowedSorts.has(searchParams.get("urut") ?? "")
@@ -54,9 +57,13 @@ export function ActivityCatalog({ activities }: ActivityCatalogProps) {
     [activities],
   );
 
+  useEffect(() => {
+    paramsRef.current = searchParamsString;
+  }, [searchParamsString]);
+
   const updateParam = useCallback(
     (key: string, value: string) => {
-      const params = new URLSearchParams(searchParamsString);
+      const params = new URLSearchParams(paramsRef.current);
 
       if (value) {
         params.set(key, value);
@@ -70,8 +77,9 @@ export function ActivityCatalog({ activities }: ActivityCatalogProps) {
           scroll: false,
         },
       );
+      paramsRef.current = params.toString();
     },
-    [pathname, router, searchParamsString],
+    [pathname, router],
   );
 
   useEffect(() => {
@@ -120,6 +128,7 @@ export function ActivityCatalog({ activities }: ActivityCatalogProps) {
 
   function resetFilters() {
     setQueryInput("");
+    paramsRef.current = "";
     router.replace(pathname, { scroll: false });
   }
 
@@ -128,12 +137,25 @@ export function ActivityCatalog({ activities }: ActivityCatalogProps) {
       ? { key: "q", label: `Cari: ${deferredQueryInput}` }
       : null,
     category ? { key: "kategori", label: `Kategori: ${category}` } : null,
+    sort !== "default"
+      ? {
+          key: "urut",
+          label: `Urutan: ${
+            sortOptions.find((option) => option.value === sort)?.label ?? sort
+          }`,
+        }
+      : null,
   ].filter((item): item is { key: string; label: string } => Boolean(item));
 
   return (
     <div className="mt-8">
-      <div className="rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-4 shadow-[var(--shadow-soft)] sm:p-5">
-        <div className="grid gap-4 lg:grid-cols-[minmax(16rem,1fr)_190px_170px_auto] lg:items-end">
+      <FilterDialog
+        activeCount={activeFilters.length}
+        onReset={resetFilters}
+        resultSummary={`Menampilkan ${filteredActivities.length} dari ${activities.length} kegiatan.`}
+        title="Atur filter kegiatan"
+      >
+        <div className="sm:col-span-2">
           <SearchInput
             id="activity-search"
             label="Cari kegiatan"
@@ -141,6 +163,7 @@ export function ActivityCatalog({ activities }: ActivityCatalogProps) {
             placeholder="Contoh: penanaman, edukasi, gotong royong"
             value={queryInput}
           />
+        </div>
           <div>
             <label
               className="block text-sm font-medium text-herbal-ink"
@@ -176,36 +199,24 @@ export function ActivityCatalog({ activities }: ActivityCatalogProps) {
               ))}
             </select>
           </label>
-          <button
-            className="h-11 rounded-md border border-herbal-green/20 px-4 text-sm font-bold text-herbal-green transition hover:bg-herbal-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
-            onClick={resetFilters}
-            type="button"
-          >
-            Reset filter
-          </button>
+      </FilterDialog>
+      {activeFilters.length > 0 ? (
+        <div className="mt-3 flex flex-wrap gap-2">
+          {activeFilters.map((filter) => (
+            <FilterChip
+              key={filter.key}
+              onClick={() => {
+                if (filter.key === "q") {
+                  setQueryInput("");
+                }
+                updateParam(filter.key, "");
+              }}
+            >
+              {filter.label} - hapus
+            </FilterChip>
+          ))}
         </div>
-        <p className="mt-4 text-sm text-herbal-muted" aria-live="polite">
-          Menampilkan {filteredActivities.length} dari {activities.length}{" "}
-          kegiatan.
-        </p>
-        {activeFilters.length > 0 ? (
-          <div className="mt-3 flex flex-wrap gap-2">
-            {activeFilters.map((filter) => (
-              <FilterChip
-                key={filter.key}
-                onClick={() => {
-                  if (filter.key === "q") {
-                    setQueryInput("");
-                  }
-                  updateParam(filter.key, "");
-                }}
-              >
-                {filter.label} - hapus
-              </FilterChip>
-            ))}
-          </div>
-        ) : null}
-      </div>
+      ) : null}
 
       {filteredActivities.length > 0 ? (
         <StaggerGroup className="mt-8 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">

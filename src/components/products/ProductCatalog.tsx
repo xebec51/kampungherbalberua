@@ -5,6 +5,7 @@ import {
   useDeferredValue,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -14,6 +15,7 @@ import { StaggerItem } from "@/components/motion/StaggerItem";
 import { ProductCard } from "@/components/products/ProductCard";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { FilterChip } from "@/components/ui/FilterChip";
+import { FilterDialog } from "@/components/ui/FilterDialog";
 import { SearchInput } from "@/components/ui/SearchInput";
 import { getAvailabilityLabel } from "@/lib/formatters";
 
@@ -44,6 +46,7 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const searchParamsString = searchParams.toString();
+  const paramsRef = useRef(searchParamsString);
   const query = searchParams.get("q") ?? "";
   const category = searchParams.get("kategori") ?? "";
   const availability = searchParams.get("ketersediaan") ?? "";
@@ -76,9 +79,13 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
     return labels;
   }, [availabilities]);
 
+  useEffect(() => {
+    paramsRef.current = searchParamsString;
+  }, [searchParamsString]);
+
   const updateParam = useCallback(
     (key: string, value: string) => {
-      const params = new URLSearchParams(searchParamsString);
+      const params = new URLSearchParams(paramsRef.current);
 
       if (value) {
         params.set(key, value);
@@ -92,8 +99,9 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
           scroll: false,
         },
       );
+      paramsRef.current = params.toString();
     },
-    [pathname, router, searchParamsString],
+    [pathname, router],
   );
 
   useEffect(() => {
@@ -163,6 +171,7 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
 
   function resetFilters() {
     setQueryInput("");
+    paramsRef.current = "";
     router.replace(pathname, { scroll: false });
   }
 
@@ -179,12 +188,25 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
           }`,
         }
       : null,
+    sort !== "default"
+      ? {
+          key: "urut",
+          label: `Urutan: ${
+            sortOptions.find((option) => option.value === sort)?.label ?? sort
+          }`,
+        }
+      : null,
   ].filter((item): item is { key: string; label: string } => Boolean(item));
 
   return (
     <div className="mt-8">
-      <div className="rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-4 shadow-[var(--shadow-soft)] sm:p-5">
-        <div className="grid gap-4 lg:grid-cols-[minmax(15rem,1fr)_180px_170px_170px_auto] lg:items-end">
+      <FilterDialog
+        activeCount={activeFilters.length}
+        onReset={resetFilters}
+        resultSummary={`Menampilkan ${filteredProducts.length} dari ${products.length} produk.`}
+        title="Atur filter produk"
+      >
+        <div className="sm:col-span-2">
           <SearchInput
             id="product-search"
             label="Cari produk"
@@ -192,6 +214,7 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
             placeholder="Contoh: teh herbal, jahe, bibit"
             value={queryInput}
           />
+        </div>
           <div>
             <label
               className="block text-sm font-medium text-herbal-ink"
@@ -244,35 +267,24 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
               ))}
             </select>
           </label>
-          <button
-            className="h-11 rounded-md border border-herbal-green/20 px-4 text-sm font-bold text-herbal-green transition hover:bg-herbal-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
-            onClick={resetFilters}
-            type="button"
-          >
-            Reset filter
-          </button>
+      </FilterDialog>
+      {activeFilters.length > 0 ? (
+        <div className="mt-3 flex flex-wrap gap-2">
+          {activeFilters.map((filter) => (
+            <FilterChip
+              key={filter.key}
+              onClick={() => {
+                if (filter.key === "q") {
+                  setQueryInput("");
+                }
+                updateParam(filter.key, "");
+              }}
+            >
+              {filter.label} - hapus
+            </FilterChip>
+          ))}
         </div>
-        <p className="mt-4 text-sm text-herbal-muted" aria-live="polite">
-          Menampilkan {filteredProducts.length} dari {products.length} produk.
-        </p>
-        {activeFilters.length > 0 ? (
-          <div className="mt-3 flex flex-wrap gap-2">
-            {activeFilters.map((filter) => (
-              <FilterChip
-                key={filter.key}
-                onClick={() => {
-                  if (filter.key === "q") {
-                    setQueryInput("");
-                  }
-                  updateParam(filter.key, "");
-                }}
-              >
-                {filter.label} - hapus
-              </FilterChip>
-            ))}
-          </div>
-        ) : null}
-      </div>
+      ) : null}
 
       {filteredProducts.length > 0 ? (
         <div data-product-grid>

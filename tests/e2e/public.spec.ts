@@ -264,16 +264,29 @@ test("katalog tanaman gabungan dapat dicari dan tidak menggandakan tanaman berul
   await expect(
     page.getByRole("link", { exact: true, name: "Cincau Hijau" }),
   ).toBeVisible();
-  await expect(
-    page.locator('[data-placeholder-variant="plant"]').first(),
-  ).toBeVisible();
+  await expect(page.locator(".catalog-card").first()).toBeVisible();
 
+  await expect(page.getByRole("button", { name: /Atur filter/ })).toBeVisible();
+  await expect(page.getByLabel("Cari tanaman")).toBeHidden();
+  await expect(page.getByText(/Halaman 1 dari \d+/)).toBeVisible();
+  await expect(page.getByRole("button", { name: "Sebelumnya" })).toBeDisabled();
+  await page.getByRole("button", { name: "Selanjutnya" }).click();
+  await expect(page).toHaveURL(/[?&]halaman=2/);
+  await expect(page.getByText(/Halaman 2 dari \d+/)).toBeVisible();
+  await expect(page.getByRole("button", { name: "Sebelumnya" })).toBeEnabled();
+
+  await page.getByRole("button", { name: /Atur filter/ }).click();
   await page.getByLabel("Cari tanaman").fill("jahe");
+  await page.getByRole("button", { name: "Terapkan" }).click();
+  await expect(page).toHaveURL(/[?&]q=jahe/);
+  await expect(page).not.toHaveURL(/[?&]halaman=/);
   await expect(page.getByText(/Menampilkan 1 dari \d+ tanaman\./)).toBeVisible();
   await expect(page.getByRole("link", { exact: true, name: "Jahe" })).toHaveCount(1);
 
+  await page.getByRole("button", { name: /Atur filter/ }).click();
   await page.getByLabel("Cari tanaman").fill("");
   await page.getByLabel("Filter zona").selectOption("Zona Jantung Sehat");
+  await page.getByRole("button", { name: "Terapkan" }).click();
   await expect(page.getByText(/Menampilkan \d+ dari \d+ tanaman\./)).toBeVisible();
   await expect(page.locator('a[href="/tanaman/seledri"]').first()).toBeVisible();
   await expectNoPublicPlaceholderText(page);

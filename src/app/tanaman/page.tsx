@@ -4,6 +4,7 @@ import { PosterPlantCatalog } from "@/components/plants/PosterPlantCatalog";
 import { Container } from "@/components/ui/Container";
 import { Disclaimer } from "@/components/ui/Disclaimer";
 import { PageHero } from "@/components/ui/PageHero";
+import { filterAndSortPlantCatalog } from "@/lib/plant-catalog-filter";
 import {
   getPosterPlantCatalog,
   normalizePosterName,
@@ -14,6 +15,8 @@ import type { HerbaCodePlantProfile, PosterPlantCatalogItem } from "@/types";
 
 export const revalidate = 300;
 
+const PLANT_PAGE_SIZE = 24;
+
 export const metadata: Metadata = createPageMetadata({
   title: "Katalog Tanaman Kampung Herbal Harmony",
   description:
@@ -21,12 +24,50 @@ export const metadata: Metadata = createPageMetadata({
   path: "/tanaman",
 });
 
-export default async function PlantsPage() {
+type PlantsPageProps = {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
+
+function firstParam(value: string | string[] | undefined): string {
+  return (Array.isArray(value) ? value[0] : value) ?? "";
+}
+
+export default async function PlantsPage({ searchParams }: PlantsPageProps) {
+  const params = await searchParams;
   const [herbaCodePlants, posterPlants] = await Promise.all([
     getHerbaCodePlantCatalog(),
     getPosterPlantCatalog(),
   ]);
   const plants = buildUnifiedPlantCatalog(posterPlants, herbaCodePlants);
+
+  const collections = Array.from(
+    new Set(plants.flatMap((plant) => plant.collections)),
+  ).sort((a, b) => a.localeCompare(b, "id"));
+  const parts = Array.from(
+    new Set(plants.map((plant) => plant.partCategory)),
+  ).sort((a, b) => a.localeCompare(b, "id"));
+
+  const filterParams = {
+    q: firstParam(params.q),
+    zona: firstParam(params.zona),
+    bagian: firstParam(params.bagian),
+    gambar: firstParam(params.gambar),
+    urut: firstParam(params.urut),
+  };
+  const filteredPlants = filterAndSortPlantCatalog(plants, filterParams);
+  const totalPages = Math.max(
+    1,
+    Math.ceil(filteredPlants.length / PLANT_PAGE_SIZE),
+  );
+  const requestedPage = Number.parseInt(firstParam(params.halaman), 10);
+  const currentPage =
+    Number.isFinite(requestedPage) && requestedPage > 0
+      ? Math.min(requestedPage, totalPages)
+      : 1;
+  const pageItems = filteredPlants.slice(
+    (currentPage - 1) * PLANT_PAGE_SIZE,
+    currentPage * PLANT_PAGE_SIZE,
+  );
 
   return (
     <>
@@ -37,18 +78,32 @@ export default async function PlantsPage() {
       />
       <section className="bg-herbal-cream py-10 sm:py-12">
         <Container>
-        <Suspense fallback={<p className="mt-8 text-sm text-herbal-muted">Memuat katalog tanaman.</p>}>
-          <PosterPlantCatalog plants={plants} />
-        </Suspense>
-        <div className="mt-8">
-          <Disclaimer>
-            Informasi tanaman pada website ini disediakan untuk edukasi mengenai
-            pemanfaatan tradisional. Informasi ini bukan diagnosis, resep, atau
-            pengganti konsultasi dengan dokter, apoteker, maupun tenaga kesehatan
-            lainnya.
-          </Disclaimer>
-        </div>
-      </Container>
+          <Suspense
+            fallback={
+              <p className="mt-8 text-sm text-herbal-muted">
+                Memuat katalog tanaman.
+              </p>
+            }
+          >
+            <PosterPlantCatalog
+              collections={collections}
+              currentPage={currentPage}
+              filteredCount={filteredPlants.length}
+              items={pageItems}
+              parts={parts}
+              totalCount={plants.length}
+              totalPages={totalPages}
+            />
+          </Suspense>
+          <div className="mt-8">
+            <Disclaimer>
+              Informasi tanaman pada website ini disediakan untuk edukasi
+              mengenai pemanfaatan tradisional. Informasi ini bukan diagnosis,
+              resep, atau pengganti konsultasi dengan dokter, apoteker, maupun
+              tenaga kesehatan lainnya.
+            </Disclaimer>
+          </div>
+        </Container>
       </section>
     </>
   );
