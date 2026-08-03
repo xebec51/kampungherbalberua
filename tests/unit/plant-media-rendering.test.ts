@@ -75,7 +75,7 @@ describe("plant media rendering", () => {
 
     expect(html).toContain(STORAGE_IMAGE_URL);
     expect(html).toContain("Tanaman Jahe");
-    expect(html).toContain("Rimpang aromatik");
+    expect(html).not.toContain("Rimpang aromatik");
     expect(html).not.toContain("Zona Pencernaan Sehat");
     expect(html).toContain(
       "(max-width: 640px) 92vw, (max-width: 1024px) 46vw, (max-width: 1279px) 30vw, 18rem",

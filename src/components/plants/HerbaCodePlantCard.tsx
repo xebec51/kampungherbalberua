@@ -52,13 +52,7 @@ export function HerbaCodePlantCard({
             {plant.scientificName}
           </p>
         ) : null}
-        {plant.shortDescription ? (
-          <p className="mt-2 line-clamp-2 flex-1 text-xs leading-5 text-herbal-muted sm:mt-3 sm:line-clamp-3 sm:text-sm sm:leading-6">
-            {plant.shortDescription}
-          </p>
-        ) : (
-          <span className="flex-1" aria-hidden="true" />
-        )}
+        <span className="flex-1" aria-hidden="true" />
         <PublicCardAction href={`/tanaman/${plant.slug}`}>
           Buka profil tanaman
         </PublicCardAction>
