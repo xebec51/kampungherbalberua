@@ -31,12 +31,12 @@ describe("nomor WhatsApp", () => {
 
 describe("order produk via WhatsApp", () => {
   it("menggunakan pesan produk terpilih dan tidak memuat nilai kosong", () => {
-    const product = products.find((item) => item.slug === "bibit-tanaman-toga");
+    const product = products.find((item) => item.slug === "jahe-rempah");
 
     expect(product).toBeTruthy();
     const message = createProductOrderMessage(product!);
 
-    expect(message).toContain("Produk: Bibit Tanaman TOGA");
+    expect(message).toContain("Produk: Jahe Rempah");
     expect(message).toContain("Harga: Hubungi untuk harga");
     expect(message).toContain("Jumlah: 1");
     expect(message).toContain("Mohon info ketersediaan dan cara pemesanan.");
@@ -47,24 +47,24 @@ describe("order produk via WhatsApp", () => {
   });
 
   it("memakai nomor fallback pusat ketika produk belum punya nomor khusus", () => {
-    const product = products.find((item) => item.slug === "bibit-tanaman-toga");
+    const product = products.find((item) => item.slug === "jahe-rempah");
     const url = createProductOrderWhatsAppUrl(product!);
 
     expect(url).toContain("https://wa.me/6289623080501");
     expect(new URL(url ?? "").searchParams.get("text")).toContain(
-      "Produk: Bibit Tanaman TOGA",
+      "Produk: Jahe Rempah",
     );
-    expect(url).toContain("Produk%3A%20Bibit%20Tanaman%20TOGA");
+    expect(url).toContain("Produk%3A%20Jahe%20Rempah");
     expect(url).toContain("%0A");
   });
 
   it("membedakan pesan antara dua produk", () => {
-    const tea = products.find((item) => item.slug === "teh-herbal-berua");
-    const ginger = products.find((item) => item.slug === "minuman-jahe-rempah");
+    const tea = products.find((item) => item.slug === "empon-empon");
+    const ginger = products.find((item) => item.slug === "jahe-rempah");
 
-    expect(createProductOrderMessage(tea!)).toContain("Produk: Teh Herbal Berua");
+    expect(createProductOrderMessage(tea!)).toContain("Produk: Empon-Empon");
     expect(createProductOrderMessage(ginger!)).toContain(
-      "Produk: Minuman Jahe Rempah",
+      "Produk: Jahe Rempah",
     );
     expect(createProductOrderMessage(tea!)).not.toBe(
       createProductOrderMessage(ginger!),
