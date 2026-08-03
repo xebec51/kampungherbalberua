@@ -230,13 +230,13 @@ export default function AboutPage() {
               <StaggerItem key={leader.name}>
                 <HoverCard
                   as="article"
-                  className="flex h-full overflow-hidden rounded-md border border-herbal-green/10 bg-white shadow-sm transition-shadow duration-200 hover:shadow-[var(--shadow-lift)]"
+                  className="flex min-h-32 overflow-hidden rounded-md border border-herbal-green/10 bg-white shadow-sm transition-shadow duration-200 hover:shadow-[var(--shadow-lift)] sm:min-h-36"
                 >
                   <TeamMemberPhoto
-                    className="w-28 shrink-0 sm:w-32"
+                    className="w-32 shrink-0 sm:w-40"
                     member={leader}
                   />
-                  <div className="flex min-w-0 flex-1 flex-col justify-center p-4 sm:p-5">
+                  <div className="flex min-w-0 flex-1 flex-col justify-center p-4 sm:p-6">
                     <StatusBadge tone="brown">{leader.role}</StatusBadge>
                     <h3 className="mt-2 line-clamp-2 text-sm font-bold leading-tight text-herbal-ink sm:text-base">
                       {leader.name}
