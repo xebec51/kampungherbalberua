@@ -14,8 +14,15 @@ type StaggerGroupProps = {
   staggerDelay?: number;
   /** Seconds to wait before the first child starts. Defaults to 0. */
   delayChildren?: number;
-  /** Fraction of the group that must be visible to trigger. Defaults to 0.15. */
-  amount?: number;
+  /**
+   * Fraction of the group that must be visible to trigger ("some" = any
+   * part). Defaults to "some" rather than a fraction because `amount` is
+   * relative to the group's own height -- for a long list (many rows) a
+   * fixed fraction like 0.15 can require scrolling far past the first rows
+   * before enough of the (very tall) group has entered view to trigger,
+   * leaving already-visible items stuck at opacity 0.
+   */
+  amount?: "some" | "all" | number;
 };
 
 /**
@@ -46,7 +53,7 @@ export function StaggerGroup({
   as = "div",
   staggerDelay = 0.08,
   delayChildren = 0,
-  amount = 0.15,
+  amount = "some",
 }: StaggerGroupProps) {
   const ref = useRef<HTMLDivElement>(null);
   const shouldReduceMotion = useReducedMotion();

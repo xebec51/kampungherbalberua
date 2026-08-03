@@ -410,7 +410,7 @@ test("peta menampilkan 9 jalan tematik yang dipulihkan", async ({ page }) => {
   await expect(
     page.getByRole("heading", { name: "Peta Kompleks Kampung Herbal" }),
   ).toBeVisible();
-  await expect(page.getByText("Denah Kompleks")).toBeVisible();
+  await expect(page.getByText("Denah Kompleks", { exact: true })).toBeVisible();
   for (const legend of [
     "Jalan tematik",
     "Zona kesehatan",
