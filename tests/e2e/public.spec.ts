@@ -276,9 +276,6 @@ test("katalog tanaman gabungan dapat dicari dan tidak menggandakan tanaman berul
   await page.getByLabel("Filter zona").selectOption("Zona Jantung Sehat");
   await expect(page.getByText(/Menampilkan \d+ dari \d+ tanaman\./)).toBeVisible();
   await expect(page.locator('a[href="/tanaman/seledri"]').first()).toBeVisible();
-  await expect(
-    page.getByText("Nomor poster lama", { exact: true }),
-  ).toBeVisible();
   await expectNoPublicPlaceholderText(page);
 });
 

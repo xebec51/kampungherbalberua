@@ -4,17 +4,11 @@ import { PosterPlantCatalog } from "@/components/plants/PosterPlantCatalog";
 import { Container } from "@/components/ui/Container";
 import { Disclaimer } from "@/components/ui/Disclaimer";
 import { PageHero } from "@/components/ui/PageHero";
-import { StaggerGroup } from "@/components/motion/StaggerGroup";
-import { StaggerItem } from "@/components/motion/StaggerItem";
 import {
-  POSTER_CLAIMED_ENTRY_COUNT,
   getPosterPlantCatalog,
   normalizePosterName,
 } from "@/lib/data/poster-plants";
-import {
-  getHerbaCodePlantCatalog,
-  getHerbaCodeZoneSummaries,
-} from "@/lib/data/herbacode";
+import { getHerbaCodePlantCatalog } from "@/lib/data/herbacode";
 import { createPageMetadata } from "@/lib/metadata";
 import type { HerbaCodePlantProfile, PosterPlantCatalogItem } from "@/types";
 
@@ -28,20 +22,11 @@ export const metadata: Metadata = createPageMetadata({
 });
 
 export default async function PlantsPage() {
-  const [herbaCodePlants, posterPlants, zones] = await Promise.all([
+  const [herbaCodePlants, posterPlants] = await Promise.all([
     getHerbaCodePlantCatalog(),
     getPosterPlantCatalog(),
-    getHerbaCodeZoneSummaries(),
   ]);
   const plants = buildUnifiedPlantCatalog(posterPlants, herbaCodePlants);
-  const entryCount = herbaCodePlants.reduce(
-    (total, plant) => total + plant.zoneEntries.length,
-    0,
-  );
-  const posterOccurrenceCount = posterPlants.reduce(
-    (total, plant) => total + plant.posterOccurrenceCount,
-    0,
-  );
 
   return (
     <>
@@ -52,50 +37,6 @@ export default async function PlantsPage() {
       />
       <section className="bg-herbal-cream py-10 sm:py-12">
         <Container>
-        <StaggerGroup className="mt-6 grid grid-cols-2 gap-3 lg:grid-cols-6">
-          <StaggerItem>
-            <CatalogMetric
-              label="Katalog final"
-              value={String(plants.length)}
-              description="Union poster dan HerbaCode setelah deduplikasi nama."
-            />
-          </StaggerItem>
-          <StaggerItem>
-            <CatalogMetric
-              label="Nama poster"
-              value={String(posterPlants.length)}
-              description="Nama tanaman dari katalog poster."
-            />
-          </StaggerItem>
-          <StaggerItem>
-            <CatalogMetric
-              label="Nomor poster lama"
-              value={`${posterOccurrenceCount}/${POSTER_CLAIMED_ENTRY_COUNT}`}
-              description="Entri terbaca dari sumber poster 216 tanaman."
-            />
-          </StaggerItem>
-          <StaggerItem>
-            <CatalogMetric
-              label="Tanaman HerbaCode"
-              value={String(herbaCodePlants.length)}
-              description="Tanaman unik yang memiliki detail HerbaCode."
-            />
-          </StaggerItem>
-          <StaggerItem>
-            <CatalogMetric
-              label="Zona HerbaCode"
-              value={String(zones.length)}
-              description="Zona kesehatan yang terbaca dari dokumen sumber."
-            />
-          </StaggerItem>
-          <StaggerItem>
-            <CatalogMetric
-              label="Relasi tanaman-zona"
-              value={String(entryCount)}
-              description="Setiap relasi menyimpan manfaat sesuai zona."
-            />
-          </StaggerItem>
-        </StaggerGroup>
         <Suspense fallback={<p className="mt-8 text-sm text-herbal-muted">Memuat katalog tanaman.</p>}>
           <PosterPlantCatalog plants={plants} />
         </Suspense>
@@ -250,28 +191,4 @@ function dedupeCanonicalPlants(plants: PosterPlantCatalogItem[]) {
   }
 
   return Array.from(byCanonicalKey.values());
-}
-
-function CatalogMetric({
-  description,
-  label,
-  value,
-}: {
-  description: string;
-  label: string;
-  value: string;
-}) {
-  return (
-    <div className="rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-3 shadow-[var(--shadow-soft)] sm:p-4">
-      <dt className="text-xs font-bold uppercase tracking-[0.12em] text-herbal-muted">
-        {label}
-      </dt>
-      <dd className="mt-2 text-xl font-extrabold text-herbal-deep sm:text-2xl">
-        {value}
-      </dd>
-      <p className="mt-2 text-[0.72rem] leading-5 text-herbal-muted sm:text-xs">
-        {description}
-      </p>
-    </div>
-  );
 }
