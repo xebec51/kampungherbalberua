@@ -244,7 +244,7 @@ export function RecipeCatalog({ recipes }: RecipeCatalogProps) {
       ) : null}
 
       {filteredRecipes.length > 0 ? (
-        <StaggerGroup className="mt-5 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
+        <StaggerGroup className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-5 lg:grid-cols-4 xl:grid-cols-5">
           {filteredRecipes.map((recipe) => (
             <StaggerItem key={recipe.id}>
               <RecipeCard recipe={recipe} />

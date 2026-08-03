@@ -213,7 +213,7 @@ export function PosterPlantCatalog({
 
       {items.length > 0 ? (
         <>
-          <StaggerGroup className="mt-5 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3 xl:grid-cols-4">
+          <StaggerGroup className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4 xl:grid-cols-5">
             {items.map((plant, index) => (
               <StaggerItem key={plant.normalizedName}>
                 <PosterPlantCard

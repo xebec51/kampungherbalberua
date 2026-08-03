@@ -219,7 +219,7 @@ export function ActivityCatalog({ activities }: ActivityCatalogProps) {
       ) : null}
 
       {filteredActivities.length > 0 ? (
-        <StaggerGroup className="mt-5 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
+        <StaggerGroup className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-5 lg:grid-cols-4 xl:grid-cols-5">
           {filteredActivities.map((activity) => (
             <StaggerItem key={activity.id}>
               <ActivityCard activity={activity} />

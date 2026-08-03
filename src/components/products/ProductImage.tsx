@@ -49,7 +49,7 @@ export function ProductImage({
         sizes={
           size === "detail"
             ? "(max-width: 1024px) 92vw, 42rem"
-            : "(max-width: 640px) 92vw, (max-width: 1024px) 44vw, 28rem"
+            : "(max-width: 639px) 46vw, (max-width: 1023px) 30vw, (max-width: 1279px) 23vw, 230px"
         }
         src={image}
       />

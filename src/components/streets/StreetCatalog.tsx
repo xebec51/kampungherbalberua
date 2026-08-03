@@ -231,7 +231,7 @@ export function StreetCatalog({ streets }: StreetCatalogProps) {
       ) : null}
 
       {filteredStreets.length > 0 ? (
-        <StaggerGroup className="mt-5 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
+        <StaggerGroup className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-5 lg:grid-cols-4 xl:grid-cols-5">
           {filteredStreets.map((street, index) => (
             <StaggerItem key={street.slug}>
               <StreetCard priority={index === 0} street={street} />

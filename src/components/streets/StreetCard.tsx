@@ -39,7 +39,7 @@ export function StreetCard({
               sizes={
                 compact
                   ? "(max-width: 640px) 92vw, (max-width: 1024px) 44vw, 18rem"
-                  : "(max-width: 640px) 92vw, (max-width: 1024px) 44vw, 26rem"
+                  : "(max-width: 639px) 46vw, (max-width: 1023px) 30vw, (max-width: 1279px) 23vw, 230px"
               }
               src={street.imagePath}
             />
