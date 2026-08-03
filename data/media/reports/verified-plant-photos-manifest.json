@@ -1,0 +1,57 @@
+{
+  "generatedAt": "2026-08-02T23:45:00.000Z",
+  "purpose": "Manually curated, individually-verified plant photos for delima, brahmi, and temu-putih -- sourced independently of the HerbaCode DOCX extraction pipeline (data/media/docx-image-match-report.json), because delima has no DOCX candidate at all and brahmi's/temu-putih's DOCX candidates were rejected as ambiguous/unmatched (see that report). Each entry below was fetched from Wikimedia Commons, downloaded to data/media-downloads/verified-plant-photos/ (gitignored), and visually inspected image-by-image before being marked confirmed.",
+  "entries": [
+    {
+      "plant_slug": "delima",
+      "plant_local_name": "Delima",
+      "status": "confirmed",
+      "confidence": "high",
+      "local_file": "data/media-downloads/verified-plant-photos/delima-punica-granatum-nana.jpg",
+      "sha256": "911f9b00b5e23cbe409a8666e45a982dc8ce13a7ee07601346675eab957d2595",
+      "scientific_name": "Punica granatum L. 'Nana'",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Punica_granatum_L._Nana.jpg",
+      "source_file_url": "https://upload.wikimedia.org/wikipedia/commons/Punica_granatum_L._Nana.jpg",
+      "creator_name": "Jebulon",
+      "license_code": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "attribution_text": "Punica granatum L. 'Nana' oleh Jebulon, Public Domain, sumber: https://commons.wikimedia.org/wiki/File:Punica_granatum_L._Nana.jpg",
+      "photographed_at": "Jardin des Plantes (botanical garden), Paris, France; 2010-10-09",
+      "verification_notes": "Visually confirmed: image clearly shows a young pomegranate fruit (round, deep red/maroon, with characteristic calyx crown) plus a red tubular flower bud, on narrow glossy pomegranate foliage. Unambiguous match for Punica granatum. 'Nana' is a dwarf ornamental cultivar of the same species -- same identification is valid for the site's generic 'Delima' plant record (plants.scientific_name currently empty in production)."
+    },
+    {
+      "plant_slug": "brahmi",
+      "plant_local_name": "Brahmi",
+      "status": "confirmed",
+      "confidence": "high",
+      "local_file": "data/media-downloads/verified-plant-photos/brahmi-bacopa-monnieri-flower.jpg",
+      "sha256": "6760ff1e672c5381feaa71fe9ef03fd87adf8df9e9be539ca3e3ad3c56754f3e",
+      "scientific_name": "Bacopa monnieri",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Bacopa_monnieri_Brahmi_flower.jpg",
+      "source_file_url": "https://upload.wikimedia.org/wikipedia/commons/Bacopa_monnieri_Brahmi_flower.jpg",
+      "creator_name": "Aseedtolife",
+      "license_code": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "attribution_text": "Bacopa monnieri Brahmi flower oleh Aseedtolife, CC BY-SA 4.0, sumber: https://commons.wikimedia.org/wiki/File:Bacopa_monnieri_Brahmi_flower.jpg",
+      "photographed_at": "Own work (uploader); uploaded 2023-09-04",
+      "verification_notes": "Visually confirmed: small 5-petaled white/pale-lavender flower with purple streaks and black anthers, on small opposite sessile spatulate-obovate leaves. Matches NParks Singapore's Bacopa monnieri description (sessile, spatulate-obovate leaves; single axillary flowers) used in the earlier internal audit. Explicitly inconsistent with Centella asiatica (peltate, long-petioled round leaves; small umbellate flower clusters), which is what the previously-rejected DOCX-extracted image (#59) actually showed -- see data/media/docx-image-match-report.json entry for brahmi, status ambiguous. plants.scientific_name in production is already 'Bacopa monnieri', consistent with this photo, not with the DOCX image."
+    },
+    {
+      "plant_slug": "temu-putih",
+      "plant_local_name": "Temu Putih",
+      "status": "confirmed",
+      "confidence": "high",
+      "local_file": "data/media-downloads/verified-plant-photos/temu-putih-curcuma-zedoaria-bluete.jpg",
+      "sha256": "2966887f6dcce211f64c4267d5911ac982baa11f4d67f9d00640fca891d69b23",
+      "scientific_name": "Curcuma zedoaria",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Curcuma_zedoaria_Bluete.jpg",
+      "source_file_url": "https://upload.wikimedia.org/wikipedia/commons/Curcuma_zedoaria_Bluete.jpg",
+      "creator_name": "Michael Wolf",
+      "license_code": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "attribution_text": "Curcuma zedoaria mit Bluete oleh Michael Wolf, CC BY-SA 3.0, sumber: https://commons.wikimedia.org/wiki/File:Curcuma_zedoaria_Bluete.jpg",
+      "photographed_at": "2007-03-17 (uploaded 2007-03-26); used across multiple Wikipedia language editions",
+      "verification_notes": "Deliberately NOT the DOCX-extracted candidate (#106, status unmatched, confidence medium-high that it actually shows Zingiber officinale / ginger -- see data/media/docx-image-match-report.json). New candidate independently researched and cross-checked three ways: (1) this photo shows a cone-like inflorescence with green/purple-veined bracts and pale pink-white flowers, matching Curcuma zedoaria's characteristic 'false spike'; (2) a companion photo by the same photographer, same specimen, same day (File:Curcuma_zedoaria_Habitus.jpg) shows the whole plant next to an official botanical-garden identification placard, readable in-frame, describing rhizome uses (Melanesian folk remedy, liqueur aromatic, Taiwanese/Indian vegetable) consistent with known zedoary uses; (3) Curcuma_zedoaria's English Wikipedia infobox image is the 1897 Koehler's Medizinal-Pflanzen scientific plate (public domain), which explicitly includes a side-by-side comparison flower from Curcuma aromatica specifically to aid differentiation, depicts the same pink/white flower structure as this photo, and states the rhizome interior is white (confirmed in Wikipedia article text: 'The edible rhizome of zedoary has a white interior') -- directly corroborating, not contradicting, the earlier internal finding that rejected the ginger-colored DOCX photo. File is multi-licensed (GFDL 1.2+, CC BY-SA 3.0, CC BY 2.5); CC BY-SA 3.0 selected deliberately as the chosen license (this project's automated license.ts whitelist rejects GFDL as a marker if naively string-matched against the full multi-license blob, so GFDL must not be recorded as the chosen license even though the file offers it as one option)."
+    }
+  ]
+}
