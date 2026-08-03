@@ -30,7 +30,7 @@ export async function FeaturedPlantsSection() {
           ariaLabel="Carousel tanaman pilihan"
           className="mt-8"
           edgeTone="cream"
-          itemClassName="basis-[82%] sm:basis-[46%] lg:basis-[30%] xl:basis-[23%] xl:max-w-[18rem]"
+          itemClassName="basis-[82%] sm:basis-[46%] lg:basis-[24%] xl:basis-[19%]"
         >
           {featuredPlants.map((plant) => (
             <HerbaCodePlantCard key={plant.id} plant={plant} />

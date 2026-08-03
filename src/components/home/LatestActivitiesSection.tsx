@@ -29,7 +29,7 @@ export function LatestActivitiesSection() {
         <AutoCarousel
           ariaLabel="Carousel kegiatan terbaru"
           className="mt-8"
-          itemClassName="basis-[82%] sm:basis-[46%] lg:basis-[30%] xl:basis-[23%] xl:max-w-[18rem]"
+          itemClassName="basis-[82%] sm:basis-[46%] lg:basis-[24%] xl:basis-[19%]"
         >
           {featuredActivities.map((activity) => (
             <ActivityCard activity={activity} key={activity.id} />

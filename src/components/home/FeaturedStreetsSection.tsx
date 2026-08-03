@@ -32,7 +32,7 @@ export async function FeaturedStreetsSection() {
           ariaLabel="Carousel jalan tematik"
           className="mt-8"
           edgeTone="white"
-          itemClassName="basis-[84%] sm:basis-[48%] lg:basis-[31%] xl:basis-[24%]"
+          itemClassName="basis-[84%] sm:basis-[48%] lg:basis-[24%] xl:basis-[19%]"
         >
           {streets.map((street, index) => (
             <StreetCard key={street.slug} priority={index === 0} street={street} />

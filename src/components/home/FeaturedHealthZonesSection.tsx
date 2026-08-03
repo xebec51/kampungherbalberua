@@ -27,7 +27,7 @@ export async function FeaturedHealthZonesSection() {
         <AutoCarousel
           ariaLabel="Carousel zona kesehatan"
           className="mt-8"
-          itemClassName="basis-[82%] sm:basis-[46%] lg:basis-[30%] xl:basis-[23%] xl:max-w-[18rem]"
+          itemClassName="basis-[82%] sm:basis-[46%] lg:basis-[24%] xl:basis-[19%]"
         >
           {zones.map((zone) => (
             <HerbaCodeZoneCard key={zone.zoneCode} zone={zone} />
