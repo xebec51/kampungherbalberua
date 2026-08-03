@@ -92,6 +92,23 @@ export default async function ProductDetailPage({
                 />
               </dl>
 
+              {product.benefits.length > 0 ? (
+                <section className="mt-8">
+                  <h2 className="text-lg font-bold text-herbal-ink">Manfaat</h2>
+                  <ul className="mt-3 grid gap-2 text-sm leading-6 text-herbal-muted">
+                    {product.benefits.map((benefit) => (
+                      <li className="flex gap-2" key={benefit}>
+                        <span
+                          aria-hidden="true"
+                          className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-herbal-green"
+                        />
+                        <span>{benefit}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              ) : null}
+
               <div className="mt-8">
                 {whatsappAction.disabled ? (
                   <button

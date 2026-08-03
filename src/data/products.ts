@@ -10,6 +10,8 @@ const kknProducerName = "Kampung Herbal Harmony Berua";
  * - name: nama produk yang tampil kepada pengunjung.
  * - category: kelompok produk ringkas untuk filter/kartu.
  * - description: deskripsi netral tanpa klaim menyembuhkan.
+ * - benefits: klaim manfaat dari katalog produk, dihaluskan jadi "membantu/mendukung"
+ *   (bukan pernyataan pasti) supaya konsisten dengan gaya manfaat HerbaCode lainnya.
  * - price: harga dalam rupiah; null bila belum dikonfirmasi.
  * - unit: satuan jual; null bila belum dikonfirmasi.
  * - image: path aset lokal atau string kosong untuk fallback visual.
@@ -21,6 +23,14 @@ const kknProducerName = "Kampung Herbal Harmony Berua";
 export const products: Product[] = [
   {
     availability: "tersedia",
+    benefits: [
+      "Membantu melancarkan peredaran darah.",
+      "Membantu mencegah infeksi ringan.",
+      "Membantu mengurangi peradangan.",
+      "Membantu meningkatkan kekebalan tubuh.",
+      "Mendukung kesehatan pencernaan dan reproduksi.",
+      "Menjadi sumber antioksidan.",
+    ],
     category: "Minuman herbal",
     description:
       "Racikan bubuk empon-empon dari temulawak, jahe merah, dan kunyit, diseduh sebagai teh hangat sehari-hari untuk menjaga daya tahan tubuh dan pencernaan.",
@@ -36,6 +46,15 @@ export const products: Product[] = [
   },
   {
     availability: "tersedia",
+    benefits: [
+      "Membantu meningkatkan daya tahan tubuh.",
+      "Mendukung kesehatan sistem kardiovaskuler.",
+      "Menjadi sumber antioksidan.",
+      "Membantu meringankan batuk berdahak.",
+      "Membantu meningkatkan nafsu makan anak.",
+      "Membantu meringankan gangguan pencernaan.",
+      "Membantu meringankan stres.",
+    ],
     category: "Minuman herbal",
     description:
       "Bubuk beras kencur dengan campuran jahe dan kunyit, diseduh hangat untuk menjaga daya tahan tubuh dan meredakan batuk berdahak.",
@@ -51,6 +70,16 @@ export const products: Product[] = [
   },
   {
     availability: "tersedia",
+    benefits: [
+      "Menjadi sumber antioksidan.",
+      "Mendukung kesehatan otak.",
+      "Membantu menenangkan dan meredakan stres.",
+      "Membantu mencegah gangguan pencernaan.",
+      "Membantu meringankan kadar kolesterol.",
+      "Membantu mencegah penuaan dini.",
+      "Mendukung kesehatan kulit.",
+      "Membantu mengatasi sembelit.",
+    ],
     category: "Minuman herbal",
     description:
       "Teh bubuk dari kelopak bunga telang dan rempah pilihan, menghasilkan seduhan ungu yang kaya antioksidan dan menenangkan.",
@@ -66,6 +95,13 @@ export const products: Product[] = [
   },
   {
     availability: "tersedia",
+    benefits: [
+      "Menjadi sumber antioksidan.",
+      "Membantu meningkatkan stamina.",
+      "Membantu mencegah peningkatan kolesterol.",
+      "Membantu mencegah anemia.",
+      "Mendukung produksi ASI.",
+    ],
     category: "Minuman herbal",
     description:
       "Bubuk daun kelor dicampur rempah hangat, diseduh sebagai teh harian untuk menjaga stamina dan kadar kolesterol.",
@@ -81,6 +117,15 @@ export const products: Product[] = [
   },
   {
     availability: "tersedia",
+    benefits: [
+      "Membantu meningkatkan vitalitas.",
+      "Membantu melancarkan peredaran darah.",
+      "Membantu meredakan gangguan pencernaan.",
+      "Membantu meredakan gejala asam urat.",
+      "Membantu meredakan pegal linu.",
+      "Mendukung kesehatan tulang.",
+      "Menjadi sumber antioksidan.",
+    ],
     category: "Minuman herbal",
     description:
       "Teh bubuk kayu secang berpadu jahe dan rempah lain, diseduh hangat untuk melancarkan peredaran darah dan meredakan pegal linu.",
@@ -96,6 +141,15 @@ export const products: Product[] = [
   },
   {
     availability: "tersedia",
+    benefits: [
+      "Membantu melancarkan peredaran darah.",
+      "Membantu meredakan masuk angin dan gejala flu atau batuk.",
+      "Membantu meningkatkan vitalitas.",
+      "Membantu meningkatkan kekebalan tubuh.",
+      "Membantu meredakan nyeri haid.",
+      "Membantu meredakan nyeri kepala.",
+      "Mendukung kesehatan pencernaan.",
+    ],
     category: "Minuman herbal",
     description:
       "Teh bubuk jahe merah dengan kayu manis dan rempah hangat lain, diseduh untuk meredakan masuk angin dan menjaga daya tahan tubuh.",
@@ -111,6 +165,7 @@ export const products: Product[] = [
   },
   {
     availability: "tersedia",
+    benefits: [],
     category: "Perawatan rumah tangga",
     description:
       "Sabun cair dari fermentasi limbah dapur (eco-enzyme), diproses warga menjadi pembersih alami yang ramah lingkungan.",
@@ -126,6 +181,7 @@ export const products: Product[] = [
   },
   {
     availability: "tersedia",
+    benefits: [],
     category: "Bahan herbal",
     description:
       "Bubuk jahe murni tanpa bahan tambahan, siap diseduh sebagai minuman hangat atau dicampur ke masakan sehari-hari.",

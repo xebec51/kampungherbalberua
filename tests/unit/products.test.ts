@@ -28,6 +28,26 @@ describe("data produk warga", () => {
       expect(product.price).toBeNull();
       expect(product.availability).toBe("tersedia");
       expect(product.image).toMatch(/^\/images\/products\/.+\.jpg$/);
+      expect(Array.isArray(product.benefits)).toBe(true);
+    }
+  });
+
+  it("mencantumkan manfaat untuk produk yang punya data manfaat dari katalog", () => {
+    const withBenefits = products.filter((product) => product.benefits.length > 0);
+
+    expect(withBenefits.map((product) => product.slug)).toEqual([
+      "empon-empon",
+      "beras-kencur",
+      "bunga-telang-rempah",
+      "kelor-rempah",
+      "secang-rempah",
+      "jahe-rempah",
+    ]);
+
+    for (const product of withBenefits) {
+      for (const benefit of product.benefits) {
+        expect(benefit.length).toBeGreaterThan(0);
+      }
     }
   });
 });

@@ -216,6 +216,7 @@ export type Product = {
   name: string;
   category: string;
   description: string;
+  benefits: string[];
   price: number | null;
   unit: string | null;
   image: string;
