@@ -21,15 +21,15 @@ export default async function StreetsPage() {
   return (
     <>
       <PageHero
-        description="Jalan tematik adalah dokumentasi fisik wilayah. Daftar tanaman pada setiap jalan mengikuti entri HerbaCode yang telah dipublikasikan pada zona kesehatan pasangannya."
+        className="py-6 sm:py-7 lg:py-8"
         eyebrow="Jalan Tematik"
         title="Jalan Tematik Kampung Herbal"
       />
-      <section className="bg-herbal-cream py-10 sm:py-12">
+      <section className="bg-herbal-cream py-4 sm:py-5">
         <Container>
           <Suspense
             fallback={
-              <p className="mt-8 text-sm text-herbal-muted">
+              <p className="text-sm text-herbal-muted">
                 Memuat katalog jalan tematik.
               </p>
             }

@@ -23,31 +23,31 @@ export default async function HealthZonesPage() {
   return (
     <>
       <PageHero
-        description="Setiap zona HerbaCode mengelompokkan tanaman, senyawa aktif, bagian yang digunakan, manfaat, budidaya, perhatian, dan cara pemanfaatan bila tersedia."
+        className="py-6 sm:py-7 lg:py-8"
         eyebrow="Kampung Herbal Harmony"
         title="Zona Kesehatan"
       />
-      <section className="bg-herbal-cream py-10 sm:py-12">
+      <section className="bg-herbal-cream py-4 sm:py-5">
         <Container>
-        <Suspense
-          fallback={
-            <p className="mt-8 text-sm text-herbal-muted">
-              Memuat katalog zona kesehatan.
-            </p>
-          }
-        >
-          <ZoneCatalog zones={zones} />
-        </Suspense>
-        <Reveal className="mt-8">
-          <Disclaimer>
-            Materi pada halaman ini disediakan sebagai edukasi umum mengenai
-            tema kesehatan pada Zona Kampung Herbal Harmony. Informasi ini bukan
-            diagnosis, resep, atau pengganti konsultasi dengan dokter, apoteker,
-            maupun tenaga kesehatan lainnya. Informasi tanaman herbal harus
-            diverifikasi sebelum digunakan.
-          </Disclaimer>
-        </Reveal>
-      </Container>
+          <Suspense
+            fallback={
+              <p className="text-sm text-herbal-muted">
+                Memuat katalog zona kesehatan.
+              </p>
+            }
+          >
+            <ZoneCatalog zones={zones} />
+          </Suspense>
+          <Reveal className="mt-6 sm:mt-8">
+            <Disclaimer>
+              Materi pada halaman ini disediakan sebagai edukasi umum mengenai
+              tema kesehatan pada Zona Kampung Herbal Harmony. Informasi ini bukan
+              diagnosis, resep, atau pengganti konsultasi dengan dokter, apoteker,
+              maupun tenaga kesehatan lainnya. Informasi tanaman herbal harus
+              diverifikasi sebelum digunakan.
+            </Disclaimer>
+          </Reveal>
+        </Container>
       </section>
     </>
   );

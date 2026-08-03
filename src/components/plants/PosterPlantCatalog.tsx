@@ -126,7 +126,7 @@ export function PosterPlantCatalog({
   ].filter((item): item is { key: string; label: string } => Boolean(item));
 
   return (
-    <div className="mt-8">
+    <div>
       <FilterDialog
         activeCount={activeFilters.length}
         onReset={resetFilters}
@@ -194,7 +194,7 @@ export function PosterPlantCatalog({
         </label>
       </FilterDialog>
       {activeFilters.length > 0 ? (
-        <div className="mt-3 flex flex-wrap gap-2">
+        <div className="mt-2 flex flex-wrap gap-2">
           {activeFilters.map((filter) => (
             <FilterChip
               key={filter.key}
@@ -213,7 +213,7 @@ export function PosterPlantCatalog({
 
       {items.length > 0 ? (
         <>
-          <StaggerGroup className="mt-6 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3 xl:grid-cols-4">
+          <StaggerGroup className="mt-5 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3 xl:grid-cols-4">
             {items.map((plant, index) => (
               <StaggerItem key={plant.normalizedName}>
                 <PosterPlantCard

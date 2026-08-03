@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
 import { markSuggestionDoneAction } from "@/app/admin/(protected)/kotak-saran/actions";
+import { AdminEmptyState } from "@/components/admin/AdminEmptyState";
+import { AdminFilterBar } from "@/components/admin/AdminFilterBar";
+import { AdminPagination } from "@/components/admin/AdminPagination";
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
+import { SelectField, TextField } from "@/components/admin/fields";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { getAllSuggestionsForAdmin } from "@/lib/data/admin/suggestions";
 import { createPageMetadata } from "@/lib/metadata";
+import { paginateItems, parsePageParam } from "@/lib/pagination";
 
 export const dynamic = "force-dynamic";
 
@@ -13,10 +18,70 @@ export const metadata: Metadata = createPageMetadata({
   path: "/admin/kotak-saran",
 });
 
-export default async function AdminSuggestionsPage() {
+type AdminSuggestionsPageProps = {
+  searchParams: Promise<{
+    halaman?: string;
+    kategori?: string;
+    q?: string;
+    status?: string;
+  }>;
+};
+
+const ADMIN_SUGGESTIONS_PAGE_SIZE = 8;
+
+function parseSuggestionStatus(value?: string) {
+  return value === "baru" || value === "selesai" ? value : "";
+}
+
+export default async function AdminSuggestionsPage({
+  searchParams,
+}: AdminSuggestionsPageProps) {
+  const params = await searchParams;
+  const query = params.q?.trim() ?? "";
+  const category = params.kategori?.trim() ?? "";
+  const status = parseSuggestionStatus(params.status);
   const result = await getAllSuggestionsForAdmin();
   const suggestions = result.data ?? [];
   const newCount = suggestions.filter((item) => item.status !== "selesai").length;
+  const categories = Array.from(
+    new Set(suggestions.map((suggestion) => suggestion.category)),
+  ).sort((left, right) => left.localeCompare(right, "id"));
+  const normalizedQuery = query.toLowerCase();
+  const filteredSuggestions = suggestions.filter((suggestion) => {
+    const matchesCategory = !category || suggestion.category === category;
+    const matchesStatus =
+      !status ||
+      (status === "selesai"
+        ? suggestion.status === "selesai"
+        : suggestion.status !== "selesai");
+    const searchableText = [
+      suggestion.title,
+      suggestion.content,
+      suggestion.category,
+      suggestion.location ?? "",
+      suggestion.is_anonymous ? "Anonim" : suggestion.submitter_name ?? "",
+    ]
+      .join(" ")
+      .toLowerCase();
+
+    return (
+      matchesCategory &&
+      matchesStatus &&
+      searchableText.includes(normalizedQuery)
+    );
+  });
+  const pagination = paginateItems(
+    filteredSuggestions,
+    parsePageParam(params.halaman),
+    ADMIN_SUGGESTIONS_PAGE_SIZE,
+  );
+  const pageSuggestions = pagination.items;
+  const activeFilterCount = [query, category, status].filter(Boolean).length;
+  const resultSummary = result.error
+    ? "Filter kotak saran belum dapat dimuat."
+    : pagination.totalItems > 0
+      ? `Menampilkan ${pagination.startItem}-${pagination.endItem} dari ${pagination.totalItems} saran.`
+      : "Tidak ada saran yang cocok dengan filter.";
 
   return (
     <div className="grid gap-6">
@@ -27,18 +92,55 @@ export default async function AdminSuggestionsPage() {
         title="Kotak Saran"
       />
 
+      <AdminFilterBar
+        activeCount={activeFilterCount}
+        resetHref="/admin/kotak-saran"
+        resultSummary={resultSummary}
+        title="Atur filter kotak saran"
+      >
+        <TextField
+          className="lg:w-72"
+          defaultValue={query}
+          label="Cari saran"
+          name="q"
+          type="search"
+        />
+        <SelectField
+          className="lg:w-48"
+          defaultValue={category}
+          label="Kategori"
+          name="kategori"
+          options={[
+            { label: "Semua", value: "" },
+            ...categories.map((item) => ({ label: item, value: item })),
+          ]}
+        />
+        <SelectField
+          className="lg:w-48"
+          defaultValue={status}
+          label="Status"
+          name="status"
+          options={[
+            { label: "Semua", value: "" },
+            { label: "Baru", value: "baru" },
+            { label: "Selesai", value: "selesai" },
+          ]}
+        />
+      </AdminFilterBar>
+
       {result.error ? (
-        <section className="rounded-md border border-herbal-brown/20 bg-[#F5E9DF] p-5 text-sm leading-6 text-herbal-brown shadow-sm">
-          <h3 className="text-base font-bold">Daftar saran belum dapat dimuat</h3>
-          <p className="mt-2">{result.error}</p>
-        </section>
-      ) : suggestions.length === 0 ? (
-        <section className="rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-6 text-sm leading-6 text-herbal-muted shadow-[var(--shadow-soft)]">
-          Belum ada saran yang masuk.
-        </section>
+        <AdminEmptyState
+          description={result.error}
+          title="Daftar saran belum dapat dimuat"
+        />
+      ) : pageSuggestions.length === 0 ? (
+        <AdminEmptyState
+          description="Coba ubah kata kunci, kategori, atau status."
+          title="Belum ada saran yang cocok"
+        />
       ) : (
         <div className="grid gap-4">
-          {suggestions.map((suggestion) => (
+          {pageSuggestions.map((suggestion) => (
             <article
               className="grid gap-3 rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-5 shadow-[var(--shadow-soft)]"
               key={suggestion.id}
@@ -96,6 +198,17 @@ export default async function AdminSuggestionsPage() {
           ))}
         </div>
       )}
+      {!result.error ? (
+        <AdminPagination
+          currentPage={pagination.currentPage}
+          endItem={pagination.endItem}
+          params={{ kategori: category, q: query, status }}
+          pathname="/admin/kotak-saran"
+          startItem={pagination.startItem}
+          totalItems={pagination.totalItems}
+          totalPages={pagination.totalPages}
+        />
+      ) : null}
     </div>
   );
 }

@@ -72,15 +72,15 @@ export default async function PlantsPage({ searchParams }: PlantsPageProps) {
   return (
     <>
       <PageHero
-        description="Katalog gabungan dari poster Kampung Herbal dan HerbaCode. Tanaman yang sudah memiliki profil edukasi menampilkan zona, senyawa aktif, bagian tanaman, budidaya, perhatian, dan pemanfaatan tradisional sesuai sumber."
+        className="py-6 sm:py-7 lg:py-8"
         eyebrow="Katalog Tanaman"
         title="Katalog Tanaman Kampung Herbal Harmony"
       />
-      <section className="bg-herbal-cream py-10 sm:py-12">
+      <section className="bg-herbal-cream py-4 sm:py-5">
         <Container>
           <Suspense
             fallback={
-              <p className="mt-8 text-sm text-herbal-muted">
+              <p className="text-sm text-herbal-muted">
                 Memuat katalog tanaman.
               </p>
             }
@@ -95,7 +95,7 @@ export default async function PlantsPage({ searchParams }: PlantsPageProps) {
               totalPages={totalPages}
             />
           </Suspense>
-          <div className="mt-8">
+          <div className="mt-6 sm:mt-8">
             <Disclaimer>
               Informasi tanaman pada website ini disediakan untuk edukasi
               mengenai pemanfaatan tradisional. Informasi ini bukan diagnosis,

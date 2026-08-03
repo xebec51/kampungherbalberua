@@ -17,11 +17,10 @@ export const metadata: Metadata = createPageMetadata({
 
 export default function RecipesPage() {
   return (
-    <section className="bg-herbal-cream py-12 sm:py-16">
+    <section className="bg-herbal-cream py-8 sm:py-10">
       <Container>
         <Reveal>
           <SectionHeading
-            description="Ramuan yang telah memiliki data publik akan ditampilkan di halaman ini. Cara pemanfaatan dari HerbaCode tersedia pada detail tanaman dan zona terkait."
             eyebrow="Ramuan Sehat"
             title="Edukasi ramuan berbasis tanaman sekitar"
           />
@@ -29,7 +28,7 @@ export default function RecipesPage() {
         {recipes.length > 0 ? (
           <Suspense
             fallback={
-              <p className="mt-8 text-sm text-herbal-muted">
+              <p className="mt-5 text-sm text-herbal-muted">
                 Memuat katalog ramuan.
               </p>
             }

@@ -15,11 +15,10 @@ export const metadata: Metadata = createPageMetadata({
 
 export default function ActivitiesPage() {
   return (
-    <section className="bg-herbal-cream py-12 sm:py-16">
+    <section className="bg-herbal-cream py-8 sm:py-10">
       <Container>
         <Reveal>
           <SectionHeading
-            description="Dokumentasi kegiatan yang telah memiliki data publik akan ditampilkan di halaman ini."
             eyebrow="Dokumentasi"
             title="Kegiatan KKN dan Kampung Herbal"
           />
@@ -27,7 +26,7 @@ export default function ActivitiesPage() {
         {activities.length > 0 ? (
           <Suspense
             fallback={
-              <p className="mt-8 text-sm text-herbal-muted">
+              <p className="mt-5 text-sm text-herbal-muted">
                 Memuat katalog kegiatan.
               </p>
             }

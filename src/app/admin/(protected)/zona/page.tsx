@@ -3,6 +3,7 @@ import { AdminActionBar, AdminActionLink } from "@/components/admin/AdminActionB
 import { AdminEmptyState } from "@/components/admin/AdminEmptyState";
 import { AdminFilterBar } from "@/components/admin/AdminFilterBar";
 import { AdminNotice } from "@/components/admin/AdminNotice";
+import { AdminPagination } from "@/components/admin/AdminPagination";
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { AdminStatusBadge, AdminToneBadge } from "@/components/admin/AdminStatusBadge";
 import { DeleteConfirmForm } from "@/components/admin/DeleteConfirmForm";
@@ -21,16 +22,20 @@ import {
 } from "@/lib/data/admin/health-zones";
 import type { ContentStatus, ValidationStatus } from "@/lib/supabase/database.types";
 import { createPageMetadata } from "@/lib/metadata";
+import { paginateItems, parsePageParam } from "@/lib/pagination";
 
 type AdminZonesPageProps = {
   searchParams: Promise<{
     content_status?: string;
     error?: string;
+    halaman?: string;
     q?: string;
     success?: string;
     validation_status?: string;
   }>;
 };
+
+const ADMIN_ZONES_PAGE_SIZE = 6;
 
 const contentLabels: Record<ContentStatus, string> = {
   archived: "Diarsipkan",
@@ -108,7 +113,22 @@ export default async function AdminZonesPage({ searchParams }: AdminZonesPagePro
     validationStatus: parseValidationStatus(params.validation_status),
   };
   const result = await getAllHealthZonesForAdmin(filters);
-  const zones = result.data;
+  const pagination = paginateItems(
+    result.data ?? [],
+    parsePageParam(params.halaman),
+    ADMIN_ZONES_PAGE_SIZE,
+  );
+  const zones = pagination.items;
+  const activeFilterCount = [
+    filters.query,
+    filters.contentStatus !== "all" ? filters.contentStatus : "",
+    filters.validationStatus !== "all" ? filters.validationStatus : "",
+  ].filter(Boolean).length;
+  const resultSummary = result.error
+    ? "Filter daftar zona belum dapat dimuat."
+    : pagination.totalItems > 0
+      ? `Menampilkan ${pagination.startItem}-${pagination.endItem} dari ${pagination.totalItems} zona.`
+      : "Tidak ada zona yang cocok dengan filter.";
 
   return (
     <div className="grid gap-6">
@@ -128,10 +148,15 @@ export default async function AdminZonesPage({ searchParams }: AdminZonesPagePro
       <AdminNotice message={successMessages[params.success ?? ""]} />
       <AdminNotice message={errorMessages[params.error ?? ""]} tone="error" />
 
-      <AdminFilterBar>
+      <AdminFilterBar
+        activeCount={activeFilterCount}
+        resetHref="/admin/zona"
+        resultSummary={resultSummary}
+        title="Atur filter zona"
+      >
         <TextField
           className="lg:w-72"
-          defaultValue={params.q ?? ""}
+          defaultValue={filters.query ?? ""}
           label="Cari zona"
           name="q"
           type="search"
@@ -162,17 +187,9 @@ export default async function AdminZonesPage({ searchParams }: AdminZonesPagePro
             })),
           ]}
         />
-        <AdminActionBar>
-          <button
-            className="inline-flex min-h-11 items-center justify-center rounded-md border border-herbal-green bg-white px-4 py-2 text-sm font-semibold text-herbal-green transition hover:bg-herbal-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
-            type="submit"
-          >
-            Terapkan
-          </button>
-        </AdminActionBar>
       </AdminFilterBar>
 
-      {result.error || !zones ? (
+      {result.error || !result.data ? (
         <AdminEmptyState
           description={result.error ?? "Daftar zona belum dapat dimuat."}
           title="Daftar zona belum dapat dimuat"
@@ -195,6 +212,21 @@ export default async function AdminZonesPage({ searchParams }: AdminZonesPagePro
           ))}
         </section>
       )}
+      {!result.error && result.data ? (
+        <AdminPagination
+          currentPage={pagination.currentPage}
+          endItem={pagination.endItem}
+          params={{
+            content_status: filters.contentStatus,
+            q: filters.query,
+            validation_status: filters.validationStatus,
+          }}
+          pathname="/admin/zona"
+          startItem={pagination.startItem}
+          totalItems={pagination.totalItems}
+          totalPages={pagination.totalPages}
+        />
+      ) : null}
     </div>
   );
 }

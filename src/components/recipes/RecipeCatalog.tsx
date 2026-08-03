@@ -173,7 +173,7 @@ export function RecipeCatalog({ recipes }: RecipeCatalogProps) {
   ].filter((item): item is { key: string; label: string } => Boolean(item));
 
   return (
-    <div className="mt-8">
+    <div className="mt-5">
       <FilterDialog
         activeCount={activeFilters.length}
         onReset={resetFilters}
@@ -189,44 +189,44 @@ export function RecipeCatalog({ recipes }: RecipeCatalogProps) {
             value={queryInput}
           />
         </div>
-          <div>
-            <label
-              className="block text-sm font-medium text-herbal-ink"
-              htmlFor="recipe-status"
-            >
-              Filter status verifikasi
-            </label>
-            <select
-              className="mt-2 h-11 w-full rounded-md border border-herbal-green/20 bg-white px-3 text-sm text-herbal-ink outline-none transition focus:border-herbal-green focus:ring-2 focus:ring-herbal-green/20"
-              id="recipe-status"
-              onChange={(event) => updateParam("status", event.target.value)}
-              value={status}
-            >
-              <option value="">{allStatusLabel}</option>
-              {statusOptions.map((item) => (
-                <option key={item} value={item}>
-                  {getValidationStatusLabel(item)}
-                </option>
-              ))}
-            </select>
-          </div>
-          <label className="grid gap-2 text-sm font-medium text-herbal-ink">
-            Urutkan
-            <select
-              className="h-11 w-full rounded-md border border-herbal-green/20 bg-white px-3 text-sm text-herbal-ink outline-none transition focus:border-herbal-green focus:ring-2 focus:ring-herbal-green/20"
-              onChange={(event) => updateParam("urut", event.target.value)}
-              value={sort}
-            >
-              {sortOptions.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
+        <div>
+          <label
+            className="block text-sm font-medium text-herbal-ink"
+            htmlFor="recipe-status"
+          >
+            Filter status verifikasi
           </label>
+          <select
+            className="mt-2 h-11 w-full rounded-md border border-herbal-green/20 bg-white px-3 text-sm text-herbal-ink outline-none transition focus:border-herbal-green focus:ring-2 focus:ring-herbal-green/20"
+            id="recipe-status"
+            onChange={(event) => updateParam("status", event.target.value)}
+            value={status}
+          >
+            <option value="">{allStatusLabel}</option>
+            {statusOptions.map((item) => (
+              <option key={item} value={item}>
+                {getValidationStatusLabel(item)}
+              </option>
+            ))}
+          </select>
+        </div>
+        <label className="grid gap-2 text-sm font-medium text-herbal-ink">
+          Urutkan
+          <select
+            className="h-11 w-full rounded-md border border-herbal-green/20 bg-white px-3 text-sm text-herbal-ink outline-none transition focus:border-herbal-green focus:ring-2 focus:ring-herbal-green/20"
+            onChange={(event) => updateParam("urut", event.target.value)}
+            value={sort}
+          >
+            {sortOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+        </label>
       </FilterDialog>
       {activeFilters.length > 0 ? (
-        <div className="mt-3 flex flex-wrap gap-2">
+        <div className="mt-2 flex flex-wrap gap-2">
           {activeFilters.map((filter) => (
             <FilterChip
               key={filter.key}
@@ -244,7 +244,7 @@ export function RecipeCatalog({ recipes }: RecipeCatalogProps) {
       ) : null}
 
       {filteredRecipes.length > 0 ? (
-        <StaggerGroup className="mt-8 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
+        <StaggerGroup className="mt-5 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
           {filteredRecipes.map((recipe) => (
             <StaggerItem key={recipe.id}>
               <RecipeCard recipe={recipe} />

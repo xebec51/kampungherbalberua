@@ -3,11 +3,13 @@ import type { Metadata } from "next";
 import { AdminActionLink } from "@/components/admin/AdminActionBar";
 import { AdminEmptyState } from "@/components/admin/AdminEmptyState";
 import { AdminFilterBar } from "@/components/admin/AdminFilterBar";
+import { AdminPagination } from "@/components/admin/AdminPagination";
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { SelectField, TextField } from "@/components/admin/fields";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { getAdminMediaAssets } from "@/lib/data/admin/media";
 import { createPageMetadata } from "@/lib/metadata";
+import { paginateItems, parsePageParam } from "@/lib/pagination";
 
 export const dynamic = "force-dynamic";
 
@@ -19,19 +21,36 @@ export const metadata: Metadata = createPageMetadata({
 
 type AdminMediaPageProps = {
   searchParams?: Promise<{
+    halaman?: string;
     q?: string;
     status?: string;
   }>;
 };
 
+const ADMIN_MEDIA_PAGE_SIZE = 12;
+
 export default async function AdminMediaPage({
   searchParams,
 }: AdminMediaPageProps) {
   const params = await searchParams;
+  const query = params?.q?.trim() ?? "";
+  const status = params?.status ?? "";
   const result = await getAdminMediaAssets({
-    q: params?.q,
-    status: params?.status,
+    q: query,
+    status,
   });
+  const pagination = paginateItems(
+    result.data,
+    parsePageParam(params?.halaman),
+    ADMIN_MEDIA_PAGE_SIZE,
+  );
+  const mediaItems = pagination.items;
+  const activeFilterCount = [query, status].filter(Boolean).length;
+  const resultSummary = result.error
+    ? "Filter pustaka media belum dapat dimuat."
+    : pagination.totalItems > 0
+      ? `Menampilkan ${pagination.startItem}-${pagination.endItem} dari ${pagination.totalItems} media.`
+      : "Tidak ada media yang cocok dengan filter.";
 
   return (
     <div className="grid gap-6">
@@ -46,17 +65,22 @@ export default async function AdminMediaPage({
         title="Pustaka Media Global"
       />
 
-      <AdminFilterBar>
+      <AdminFilterBar
+        activeCount={activeFilterCount}
+        resetHref="/admin/media"
+        resultSummary={resultSummary}
+        title="Atur filter media"
+      >
         <TextField
           className="lg:w-72"
-          defaultValue={params?.q ?? ""}
+          defaultValue={query}
           label="Cari media"
           name="q"
           type="search"
         />
         <SelectField
           className="lg:w-48"
-          defaultValue={params?.status ?? ""}
+          defaultValue={status}
           label="Status"
           name="status"
           options={[
@@ -67,12 +91,6 @@ export default async function AdminMediaPage({
             { label: "Diarsipkan", value: "archived" },
           ]}
         />
-        <button
-          className="inline-flex min-h-11 items-center justify-center rounded-md bg-herbal-green px-4 py-2 text-sm font-bold text-white transition hover:bg-herbal-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
-          type="submit"
-        >
-          Terapkan
-        </button>
       </AdminFilterBar>
 
       {result.error ? (
@@ -86,12 +104,12 @@ export default async function AdminMediaPage({
             <span>Checksum</span>
           </div>
           <div className="divide-y divide-herbal-green/10">
-            {result.data.length === 0 ? (
+            {mediaItems.length === 0 ? (
               <p className="p-5 text-sm text-herbal-muted">
                 Belum ada media yang cocok dengan filter.
               </p>
             ) : (
-              result.data.map((media) => (
+              mediaItems.map((media) => (
                 <article
                   className="grid gap-3 px-4 py-4 text-sm md:grid-cols-[1.3fr_0.8fr_0.8fr_0.8fr] md:items-center"
                   key={media.id}
@@ -122,6 +140,17 @@ export default async function AdminMediaPage({
           </div>
         </section>
       )}
+      {!result.error ? (
+        <AdminPagination
+          currentPage={pagination.currentPage}
+          endItem={pagination.endItem}
+          params={{ q: query, status }}
+          pathname="/admin/media"
+          startItem={pagination.startItem}
+          totalItems={pagination.totalItems}
+          totalPages={pagination.totalPages}
+        />
+      ) : null}
     </div>
   );
 }

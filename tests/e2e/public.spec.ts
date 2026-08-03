@@ -186,6 +186,9 @@ test("produk warga tampil dan WhatsApp memuat produk yang dipilih", async ({
   await expect(
     page.getByRole("heading", { name: "Katalog Produk Kampung Herbal" }),
   ).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Produk Warga Kampung Herbal" }),
+  ).toHaveCount(0);
   await expect(page.locator("[data-product-grid] article")).toHaveCount(6);
 
   const products = [
@@ -205,22 +208,14 @@ test("produk warga tampil dan WhatsApp memuat produk yang dipilih", async ({
     await expect(page.locator(`a[href="/produk/${slug}"]`).first()).toBeVisible();
   }
 
-  const firstHref = await page
-    .locator('a[href^="https://wa.me/6289623080501"]')
-    .nth(0)
-    .getAttribute("href");
-  const secondHref = await page
-    .locator('a[href^="https://wa.me/6289623080501"]')
-    .nth(1)
-    .getAttribute("href");
-  const firstMessage = new URL(firstHref ?? "").searchParams.get("text") ?? "";
-  const secondMessage = new URL(secondHref ?? "").searchParams.get("text") ?? "";
+  const productGrid = page.locator("[data-product-grid]");
+  await expect(productGrid.getByText("Minuman herbal")).toHaveCount(0);
+  await expect(productGrid.getByText("Pesan Khusus")).toHaveCount(0);
+  await expect(page.getByRole("link", { name: "Detail produk" })).toHaveCount(0);
+  await page.getByRole("link", { exact: true, name: "Teh Herbal Berua" }).click();
+  await expect(page).toHaveURL(/\/produk\/teh-herbal-berua$/);
 
-  expect(firstMessage).toContain("Produk: Teh Herbal Berua");
-  expect(secondMessage).toContain("Produk: Minuman Jahe Rempah");
-  expect(firstMessage).not.toBe(secondMessage);
-  expect(firstMessage).toContain("Harga: Hubungi untuk harga");
-  expect(firstMessage).not.toMatch(/undefined|null/i);
+  const whatsappMessages: string[] = [];
 
   for (const [slug, name] of products) {
     await page.goto(`/produk/${slug}`);
@@ -230,12 +225,26 @@ test("produk warga tampil dan WhatsApp memuat produk yang dipilih", async ({
     ).toBeVisible();
     await expect(page.getByText("Hubungi untuk harga").first()).toBeVisible();
     await expect(page.getByText("Pesan Khusus").first()).toBeVisible();
-    await expect(
-      page.getByRole("link", { name: "Tanyakan via WhatsApp" }),
-    ).toHaveAttribute("href", /https:\/\/wa\.me\/6289623080501/);
+    const whatsappLink = page.getByRole("link", { name: "Tanyakan via WhatsApp" });
+    await expect(whatsappLink).toHaveAttribute(
+      "href",
+      /https:\/\/wa\.me\/6289623080501/,
+    );
+    const whatsappHref = await whatsappLink.getAttribute("href");
+    whatsappMessages.push(
+      new URL(whatsappHref ?? "").searchParams.get("text") ?? "",
+    );
     await expectNoBrokenImages(page);
     await expectNoUndefinedOrNull(page);
   }
+
+  const firstMessage = whatsappMessages[0] ?? "";
+  const secondMessage = whatsappMessages[1] ?? "";
+  expect(firstMessage).toContain("Produk: Teh Herbal Berua");
+  expect(secondMessage).toContain("Produk: Minuman Jahe Rempah");
+  expect(firstMessage).not.toBe(secondMessage);
+  expect(firstMessage).toContain("Harga: Hubungi untuk harga");
+  expect(firstMessage).not.toMatch(/undefined|null/i);
 
   await page.setViewportSize({ height: 900, width: 320 });
   await page.goto("/produk");

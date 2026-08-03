@@ -199,7 +199,7 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
   ].filter((item): item is { key: string; label: string } => Boolean(item));
 
   return (
-    <div className="mt-8">
+    <div className="mt-5">
       <FilterDialog
         activeCount={activeFilters.length}
         onReset={resetFilters}
@@ -215,61 +215,61 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
             value={queryInput}
           />
         </div>
-          <div>
-            <label
-              className="block text-sm font-medium text-herbal-ink"
-              htmlFor="product-category"
-            >
-              Filter kategori
-            </label>
-            <select
-              className="mt-2 h-11 w-full rounded-md border border-herbal-green/20 bg-white px-3 text-sm text-herbal-ink outline-none transition focus:border-herbal-green focus:ring-2 focus:ring-herbal-green/20"
-              id="product-category"
-              onChange={(event) => updateParam("kategori", event.target.value)}
-              value={category}
-            >
-              <option value="">{allCategoriesLabel}</option>
-              {categories.map((item) => (
-                <option key={item} value={item}>
-                  {item}
-                </option>
-              ))}
-            </select>
-          </div>
-          <label className="grid gap-2 text-sm font-medium text-herbal-ink">
-            Filter ketersediaan
-            <select
-              className="h-11 w-full rounded-md border border-herbal-green/20 bg-white px-3 text-sm text-herbal-ink outline-none transition focus:border-herbal-green focus:ring-2 focus:ring-herbal-green/20"
-              onChange={(event) =>
-                updateParam("ketersediaan", event.target.value)
-              }
-              value={availability}
-            >
-              <option value="">{allAvailabilityLabel}</option>
-              {availabilities.map((item) => (
-                <option key={item} value={item}>
-                  {getAvailabilityLabel(item)}
-                </option>
-              ))}
-            </select>
+        <div>
+          <label
+            className="block text-sm font-medium text-herbal-ink"
+            htmlFor="product-category"
+          >
+            Filter kategori
           </label>
-          <label className="grid gap-2 text-sm font-medium text-herbal-ink">
-            Urutkan
-            <select
-              className="h-11 w-full rounded-md border border-herbal-green/20 bg-white px-3 text-sm text-herbal-ink outline-none transition focus:border-herbal-green focus:ring-2 focus:ring-herbal-green/20"
-              onChange={(event) => updateParam("urut", event.target.value)}
-              value={sort}
-            >
-              {sortOptions.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
-          </label>
+          <select
+            className="mt-2 h-11 w-full rounded-md border border-herbal-green/20 bg-white px-3 text-sm text-herbal-ink outline-none transition focus:border-herbal-green focus:ring-2 focus:ring-herbal-green/20"
+            id="product-category"
+            onChange={(event) => updateParam("kategori", event.target.value)}
+            value={category}
+          >
+            <option value="">{allCategoriesLabel}</option>
+            {categories.map((item) => (
+              <option key={item} value={item}>
+                {item}
+              </option>
+            ))}
+          </select>
+        </div>
+        <label className="grid gap-2 text-sm font-medium text-herbal-ink">
+          Filter ketersediaan
+          <select
+            className="h-11 w-full rounded-md border border-herbal-green/20 bg-white px-3 text-sm text-herbal-ink outline-none transition focus:border-herbal-green focus:ring-2 focus:ring-herbal-green/20"
+            onChange={(event) =>
+              updateParam("ketersediaan", event.target.value)
+            }
+            value={availability}
+          >
+            <option value="">{allAvailabilityLabel}</option>
+            {availabilities.map((item) => (
+              <option key={item} value={item}>
+                {getAvailabilityLabel(item)}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label className="grid gap-2 text-sm font-medium text-herbal-ink">
+          Urutkan
+          <select
+            className="h-11 w-full rounded-md border border-herbal-green/20 bg-white px-3 text-sm text-herbal-ink outline-none transition focus:border-herbal-green focus:ring-2 focus:ring-herbal-green/20"
+            onChange={(event) => updateParam("urut", event.target.value)}
+            value={sort}
+          >
+            {sortOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+        </label>
       </FilterDialog>
       {activeFilters.length > 0 ? (
-        <div className="mt-3 flex flex-wrap gap-2">
+        <div className="mt-2 flex flex-wrap gap-2">
           {activeFilters.map((filter) => (
             <FilterChip
               key={filter.key}
@@ -288,7 +288,7 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
 
       {filteredProducts.length > 0 ? (
         <div data-product-grid>
-          <StaggerGroup className="mt-8 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
+          <StaggerGroup className="mt-5 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
             {filteredProducts.map((product) => (
               <StaggerItem key={product.id}>
                 <ProductCard product={product} />

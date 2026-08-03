@@ -4,6 +4,7 @@ import { AdminActionBar, AdminActionLink } from "@/components/admin/AdminActionB
 import { AdminEmptyState } from "@/components/admin/AdminEmptyState";
 import { AdminFilterBar } from "@/components/admin/AdminFilterBar";
 import { AdminNotice } from "@/components/admin/AdminNotice";
+import { AdminPagination } from "@/components/admin/AdminPagination";
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { AdminStatusBadge } from "@/components/admin/AdminStatusBadge";
 import { SelectField, TextField } from "@/components/admin/fields";
@@ -17,17 +18,21 @@ import {
   type HerbaCodeAdminEntry,
 } from "@/lib/data/admin/herbacode";
 import { createPageMetadata } from "@/lib/metadata";
+import { paginateItems, parsePageParam } from "@/lib/pagination";
 import type { ContentStatus, ValidationStatus } from "@/lib/supabase/database.types";
 
 type HerbaCodeAdminPageProps = {
   searchParams: Promise<{
     content?: ContentStatus | "all";
     error?: string;
+    halaman?: string;
     q?: string;
     success?: string;
     validation?: ValidationStatus | "all";
   }>;
 };
+
+const ADMIN_HERBACODE_PAGE_SIZE = 12;
 
 const contentLabels: Record<ContentStatus | "all", string> = {
   all: "Semua",
@@ -78,8 +83,23 @@ export default async function HerbaCodeAdminPage({
     }),
     getHerbaCodeHistoryForAdmin(),
   ]);
-  const entries = entriesResult.data ?? [];
+  const pagination = paginateItems(
+    entriesResult.data ?? [],
+    parsePageParam(query.halaman),
+    ADMIN_HERBACODE_PAGE_SIZE,
+  );
+  const entries = pagination.items;
   const canMutate = canPublishContent(profile.role);
+  const activeFilterCount = [
+    query.q?.trim(),
+    query.content && query.content !== "all" ? query.content : "",
+    query.validation && query.validation !== "all" ? query.validation : "",
+  ].filter(Boolean).length;
+  const resultSummary = entriesResult.error
+    ? "Filter entri HerbaCode belum dapat dimuat."
+    : pagination.totalItems > 0
+      ? `Menampilkan ${pagination.startItem}-${pagination.endItem} dari ${pagination.totalItems} entri.`
+      : "Tidak ada entri HerbaCode yang cocok dengan filter.";
 
   return (
     <div className="grid gap-6">
@@ -95,10 +115,15 @@ export default async function HerbaCodeAdminPage({
         <AdminNotice message={entriesResult.error} tone="error" />
       ) : null}
 
-      <AdminFilterBar>
+      <AdminFilterBar
+        activeCount={activeFilterCount}
+        resetHref="/admin/herbacode"
+        resultSummary={resultSummary}
+        title="Atur filter HerbaCode"
+      >
         <TextField
           className="lg:w-72"
-          defaultValue={query.q ?? ""}
+          defaultValue={query.q?.trim() ?? ""}
           label="Cari tanaman atau zona"
           name="q"
           type="search"
@@ -121,14 +146,6 @@ export default async function HerbaCodeAdminPage({
             Object.keys(validationLabels) as Array<ValidationStatus | "all">
           ).map((value) => ({ label: validationLabels[value], value }))}
         />
-        <AdminActionBar>
-          <button
-            className="inline-flex min-h-11 items-center justify-center rounded-md bg-herbal-deep px-4 py-2 text-sm font-bold text-white transition hover:bg-herbal-green focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
-            type="submit"
-          >
-            Cari
-          </button>
-        </AdminActionBar>
       </AdminFilterBar>
 
       <section aria-label="Daftar entri HerbaCode" className="grid gap-3">
@@ -142,6 +159,22 @@ export default async function HerbaCodeAdminPage({
           />
         ) : null}
       </section>
+
+      {!entriesResult.error ? (
+        <AdminPagination
+          currentPage={pagination.currentPage}
+          endItem={pagination.endItem}
+          params={{
+            content: query.content,
+            q: query.q?.trim(),
+            validation: query.validation,
+          }}
+          pathname="/admin/herbacode"
+          startItem={pagination.startItem}
+          totalItems={pagination.totalItems}
+          totalPages={pagination.totalPages}
+        />
+      ) : null}
 
       <section className="rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-5 shadow-[var(--shadow-soft)]">
         <h2 className="text-lg font-bold text-herbal-ink">Riwayat perubahan</h2>

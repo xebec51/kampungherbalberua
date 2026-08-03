@@ -3,6 +3,7 @@ import { AdminActionBar, AdminActionLink } from "@/components/admin/AdminActionB
 import { AdminEmptyState } from "@/components/admin/AdminEmptyState";
 import { AdminFilterBar } from "@/components/admin/AdminFilterBar";
 import { AdminNotice } from "@/components/admin/AdminNotice";
+import { AdminPagination } from "@/components/admin/AdminPagination";
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { AdminStatusBadge, AdminToneBadge } from "@/components/admin/AdminStatusBadge";
 import { DeleteConfirmForm } from "@/components/admin/DeleteConfirmForm";
@@ -21,16 +22,20 @@ import {
 } from "@/lib/data/admin/plants";
 import type { ContentStatus, ValidationStatus } from "@/lib/supabase/database.types";
 import { createPageMetadata } from "@/lib/metadata";
+import { paginateItems, parsePageParam } from "@/lib/pagination";
 
 type AdminPlantsPageProps = {
   searchParams: Promise<{
     content_status?: string;
     error?: string;
+    halaman?: string;
     q?: string;
     success?: string;
     validation_status?: string;
   }>;
 };
+
+const ADMIN_PLANTS_PAGE_SIZE = 10;
 
 const contentLabels: Record<ContentStatus, string> = {
   archived: "Diarsipkan",
@@ -110,7 +115,22 @@ export default async function AdminPlantsPage({
     validationStatus: parseValidationStatus(params.validation_status),
   };
   const result = await getAllPlantsForAdmin(filters);
-  const plants = result.data;
+  const pagination = paginateItems(
+    result.data ?? [],
+    parsePageParam(params.halaman),
+    ADMIN_PLANTS_PAGE_SIZE,
+  );
+  const plants = pagination.items;
+  const activeFilterCount = [
+    filters.query,
+    filters.contentStatus !== "all" ? filters.contentStatus : "",
+    filters.validationStatus !== "all" ? filters.validationStatus : "",
+  ].filter(Boolean).length;
+  const resultSummary = result.error
+    ? "Filter daftar tanaman belum dapat dimuat."
+    : pagination.totalItems > 0
+      ? `Menampilkan ${pagination.startItem}-${pagination.endItem} dari ${pagination.totalItems} tanaman.`
+      : "Tidak ada tanaman yang cocok dengan filter.";
 
   return (
     <div className="grid gap-6">
@@ -130,10 +150,15 @@ export default async function AdminPlantsPage({
       <AdminNotice message={successMessages[params.success ?? ""]} />
       <AdminNotice message={errorMessages[params.error ?? ""]} tone="error" />
 
-      <AdminFilterBar>
+      <AdminFilterBar
+        activeCount={activeFilterCount}
+        resetHref="/admin/tanaman"
+        resultSummary={resultSummary}
+        title="Atur filter tanaman"
+      >
         <TextField
           className="lg:w-72"
-          defaultValue={params.q ?? ""}
+          defaultValue={filters.query ?? ""}
           label="Cari tanaman"
           name="q"
           type="search"
@@ -164,17 +189,9 @@ export default async function AdminPlantsPage({
             })),
           ]}
         />
-        <AdminActionBar>
-          <button
-            className="inline-flex min-h-11 items-center justify-center rounded-md border border-herbal-green bg-white px-4 py-2 text-sm font-semibold text-herbal-green transition hover:bg-herbal-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
-            type="submit"
-          >
-            Terapkan
-          </button>
-        </AdminActionBar>
       </AdminFilterBar>
 
-      {result.error || !plants ? (
+      {result.error || !result.data ? (
         <AdminEmptyState
           description={result.error ?? "Daftar tanaman belum dapat dimuat."}
           title="Daftar tanaman belum dapat dimuat"
@@ -197,6 +214,21 @@ export default async function AdminPlantsPage({
           ))}
         </section>
       )}
+      {!result.error && result.data ? (
+        <AdminPagination
+          currentPage={pagination.currentPage}
+          endItem={pagination.endItem}
+          params={{
+            content_status: filters.contentStatus,
+            q: filters.query,
+            validation_status: filters.validationStatus,
+          }}
+          pathname="/admin/tanaman"
+          startItem={pagination.startItem}
+          totalItems={pagination.totalItems}
+          totalPages={pagination.totalPages}
+        />
+      ) : null}
     </div>
   );
 }
