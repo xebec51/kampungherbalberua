@@ -14,7 +14,7 @@ function plant(
     changesMade: null,
     collections: ["Zona Jantung Sehat"],
     creatorName: null,
-    description: null,
+    description: "",
     id: normalizedName,
     image: null,
     imageDuplicateStatus: null,

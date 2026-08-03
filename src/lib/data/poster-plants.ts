@@ -1,12 +1,14 @@
 import { cache } from "react";
-import { createClient } from "@supabase/supabase-js";
+import { unstable_cache } from "next/cache";
 import posterPlantManifest from "../../../data/media/manifests/poster-plant-catalog.json";
 import { getPosterPlantPartCategory } from "../../../data/poster-plants/part-categories";
 import { posterPlantSearchAliases } from "../../../data/poster-plants/search-aliases";
 import { mapMediaAssetRowToPublicMedia } from "@/lib/data/media-mapper";
 import type { MediaAssetRow } from "@/lib/data/media-mapper";
-import { getSupabaseConfig } from "@/lib/supabase/config";
-import type { Database } from "@/lib/supabase/database.types";
+import {
+  createSupabasePublicClient,
+  getSupabaseConfig,
+} from "@/lib/supabase/config";
 import type {
   MediaRelevanceStatus,
   PlantCategory,
@@ -238,20 +240,24 @@ function fallbackPosterCatalog() {
   );
 }
 
-export const getPosterPlantCatalog = cache(async () => {
+const getCachedPosterPlantCatalog = unstable_cache(
+  fetchPosterPlantCatalogFromDatabase,
+  ["poster-plant-catalog"],
+  { revalidate: 300 },
+);
+
+export const getPosterPlantCatalog = cache(getCachedPosterPlantCatalog);
+
+async function fetchPosterPlantCatalogFromDatabase(): Promise<
+  PosterPlantCatalogItem[]
+> {
   const config = getSupabaseConfig();
 
   if (!config) {
     return fallbackPosterCatalog();
   }
 
-  const client = createClient<Database>(config.url, config.publishableKey, {
-    auth: {
-      autoRefreshToken: false,
-      detectSessionInUrl: false,
-      persistSession: false,
-    },
-  });
+  const client = createSupabasePublicClient(config);
 
   const { data: source, error: sourceError } = await client
     .from("plant_sources")
@@ -414,7 +420,7 @@ export const getPosterPlantCatalog = cache(async () => {
       } satisfies PosterPlantCatalogItem;
     })
     .sort((a, b) => a.rawName.localeCompare(b.rawName, "id"));
-});
+}
 
 export async function getPosterPlantBySlug(slug: string) {
   const catalog = await getPosterPlantCatalog();

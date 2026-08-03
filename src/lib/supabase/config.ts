@@ -1,3 +1,6 @@
+import { createClient } from "@supabase/supabase-js";
+import type { Database } from "@/lib/supabase/database.types";
+
 export type SupabaseRuntimeConfig = {
   url: string;
   publishableKey: string;
@@ -43,6 +46,21 @@ export function getSupabaseConfig(): SupabaseRuntimeConfig | null {
 
 export function isSupabaseConfigured(): boolean {
   return getSupabaseConfig() !== null;
+}
+
+/**
+ * Anonymous (no-cookies) Supabase client for public data reads that need to
+ * be cacheable with unstable_cache -- cookie-aware clients (createSupabaseServerClient)
+ * call next/headers' cookies(), which unstable_cache forbids.
+ */
+export function createSupabasePublicClient(config: SupabaseRuntimeConfig) {
+  return createClient<Database>(config.url, config.publishableKey, {
+    auth: {
+      autoRefreshToken: false,
+      detectSessionInUrl: false,
+      persistSession: false,
+    },
+  });
 }
 
 export async function supabaseFetchWithTimeout(
