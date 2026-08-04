@@ -16,7 +16,6 @@ import type { ProductAvailability } from "@/lib/supabase/database.types";
 import {
   isAllowed,
   isValidSlug,
-  normalizeImagePath,
   normalizeOptionalText,
   parseTextareaLines,
   productAvailabilities,
@@ -66,7 +65,6 @@ function parseProductFormData(formData: FormData): ParsedProductInput {
   const producerName = readText(formData, "producer_name");
   const description = readText(formData, "description");
   const availability = readText(formData, "availability");
-  const imagePathResult = normalizeImagePath(readText(formData, "image_path"));
   const priceResult = parsePrice(readText(formData, "price"));
 
   if (!isValidSlug(slug)) {
@@ -88,10 +86,6 @@ function parseProductFormData(formData: FormData): ParsedProductInput {
     return { data: null, error: "Status ketersediaan tidak valid." };
   }
 
-  if (imagePathResult.error) {
-    return { data: null, error: imagePathResult.error };
-  }
-
   if (priceResult.error) {
     return { data: null, error: priceResult.error };
   }
@@ -103,7 +97,6 @@ function parseProductFormData(formData: FormData): ParsedProductInput {
       category,
       description,
       featured: formData.get("featured") === "on",
-      image_path: imagePathResult.value,
       name,
       price: priceResult.value,
       producer_name: producerName,

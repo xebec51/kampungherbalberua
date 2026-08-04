@@ -121,13 +121,6 @@ export function ProductAdminForm({
             name="availability"
             options={availabilityOptions}
           />
-          <TextField
-            defaultValue={text(product?.image_path)}
-            disabled={disabled}
-            help="Opsional. Harus diawali /images/. Foto sampul dari Media Library (di bawah) diprioritaskan bila tersedia."
-            label="Path gambar cadangan"
-            name="image_path"
-          />
         </div>
         <label className="flex items-start gap-3 text-sm font-semibold text-herbal-ink">
           <input

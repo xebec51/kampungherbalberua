@@ -7,13 +7,16 @@ import type { StaffRole } from "@/lib/auth/permissions";
 
 export type ProductAdminRecord = Database["public"]["Tables"]["products"]["Row"];
 
+// image_path is deliberately absent -- it has no admin form field (removed;
+// see ProductAdminForm.tsx) and must never be included in an insert/update
+// payload here, or every edit would silently null out a product's existing
+// legacy fallback image before it has a real Media Library photo.
 export type ProductAdminInput = {
   availability: ProductAvailability;
   benefits: string[];
   category: string;
   description: string;
   featured: boolean;
-  image_path: string | null;
   name: string;
   price: number | null;
   producer_name: string;
