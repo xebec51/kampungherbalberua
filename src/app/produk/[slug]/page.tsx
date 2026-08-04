@@ -5,7 +5,7 @@ import { Reveal } from "@/components/motion/Reveal";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
 import { StatusBadge } from "@/components/ui/StatusBadge";
-import { getProductBySlug, products } from "@/data/products";
+import { getProductBySlug, getProductSlugs } from "@/lib/data/products";
 import { formatPrice, getAvailabilityLabel } from "@/lib/formatters";
 import { createPageMetadata } from "@/lib/metadata";
 import { getProductWhatsAppAction } from "@/lib/product-actions";
@@ -18,15 +18,16 @@ type ProductDetailPageProps = {
 
 export const dynamicParams = false;
 
-export function generateStaticParams() {
-  return products.map((product) => ({ slug: product.slug }));
+export async function generateStaticParams() {
+  const slugs = await getProductSlugs();
+  return slugs.map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
   params,
 }: ProductDetailPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const product = getProductBySlug(slug);
+  const product = await getProductBySlug(slug);
 
   if (!product) {
     return createPageMetadata({
@@ -47,7 +48,7 @@ export default async function ProductDetailPage({
   params,
 }: ProductDetailPageProps) {
   const { slug } = await params;
-  const product = getProductBySlug(slug);
+  const product = await getProductBySlug(slug);
 
   if (!product) {
     notFound();

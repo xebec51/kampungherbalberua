@@ -1,11 +1,11 @@
 import type { MetadataRoute } from "next";
-import { products } from "@/data/products";
 import { recipes } from "@/data/recipes";
 import {
   getHerbaCodePlantSlugs,
   getHerbaCodeZoneSummaries,
 } from "@/lib/data/herbacode";
 import { getPosterPlantSlugs } from "@/lib/data/poster-plants";
+import { getProductSlugs } from "@/lib/data/products";
 import { getPublishedStreetSlugs } from "@/lib/data/streets";
 import { absoluteUrl } from "@/lib/metadata";
 
@@ -22,12 +22,13 @@ const staticRoutes = [
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
-  const [herbaCodePlantSlugs, posterPlantSlugs, zones, streetSlugs] =
+  const [herbaCodePlantSlugs, posterPlantSlugs, zones, streetSlugs, productSlugs] =
     await Promise.all([
     getHerbaCodePlantSlugs(),
     getPosterPlantSlugs(),
     getHerbaCodeZoneSummaries(),
     getPublishedStreetSlugs(),
+    getProductSlugs(),
   ]);
   const plantSlugs = Array.from(
     new Set([...herbaCodePlantSlugs, ...posterPlantSlugs]),
@@ -40,7 +41,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...recipes
       .filter((recipe) => recipe.published)
       .map((recipe) => `/ramuan/${recipe.slug}`),
-    ...products.map((product) => `/produk/${product.slug}`),
+    ...productSlugs.map((slug) => `/produk/${slug}`),
   ];
 
   return [...staticRoutes, ...dynamicRoutes].map((route) => ({

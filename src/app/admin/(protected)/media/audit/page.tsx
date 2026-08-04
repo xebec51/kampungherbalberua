@@ -31,8 +31,6 @@ export default async function AdminMediaAuditPage() {
   return (
     <div className="grid gap-6">
       <AdminPageHeader
-        backHref="/admin/media"
-        backLabel="Kembali ke Media"
         description="Pantau gambar katalog Harmony yang masih generik, penggunaan ulang berlebihan, metadata lisensi, dan item yang perlu ditinjau."
         eyebrow="Audit Media"
         title="Kualitas Gambar Katalog"

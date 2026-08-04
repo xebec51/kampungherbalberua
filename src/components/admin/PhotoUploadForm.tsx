@@ -10,16 +10,19 @@ type PhotoUploadFormProps = {
   currentMedia: PublicMediaAsset | null;
   entityId: string;
   entityLabel: string;
+  fallbackVariant?: "plant" | "recipe" | "product" | "activity" | "map";
 };
 
 // Uploads through uploadContentCoverPhoto (media_assets + plant_media /
-// health_zone_media), not the legacy plants/health_zones.image_path text
-// field -- see src/lib/data/admin/media-upload.ts for why.
+// health_zone_media / content_media_slots), not the legacy
+// plants/health_zones.image_path text field -- see
+// src/lib/data/admin/media-upload.ts for why.
 export function PhotoUploadForm({
   action,
   currentMedia,
   entityId,
   entityLabel,
+  fallbackVariant = "plant",
 }: PhotoUploadFormProps) {
   return (
     <AdminFormSection
@@ -31,7 +34,7 @@ export function PhotoUploadForm({
           alt={`Foto ${entityLabel}`}
           className="aspect-[4/3] w-full"
           fallbackLabel={`Foto ${entityLabel}`}
-          fallbackVariant="plant"
+          fallbackVariant={fallbackVariant}
           media={currentMedia}
         />
         <form action={action} className="grid gap-3">

@@ -24,6 +24,12 @@ export type ValidationStatus =
 
 export type PlantCategory = "rimpang" | "daun" | "bunga" | "batang" | "lainnya";
 
+export type ProductAvailability =
+  | "tersedia"
+  | "terbatas"
+  | "habis"
+  | "segera-tersedia";
+
 export type IdentificationStatus =
   | "unresolved"
   | "candidate"
@@ -294,6 +300,81 @@ export type Database = {
           },
           {
             foreignKeyName: "plants_updated_by_fkey";
+            columns: ["updated_by"];
+            isOneToOne: false;
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      products: {
+        Row: {
+          id: string;
+          slug: string;
+          name: string;
+          category: string;
+          description: string;
+          benefits: string[];
+          price: number | null;
+          unit: string | null;
+          image_path: string | null;
+          producer_name: string;
+          whatsapp_number: string | null;
+          availability: ProductAvailability;
+          featured: boolean;
+          created_by: string | null;
+          updated_by: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          slug: string;
+          name: string;
+          category: string;
+          description: string;
+          benefits?: string[];
+          price?: number | null;
+          unit?: string | null;
+          image_path?: string | null;
+          producer_name: string;
+          whatsapp_number?: string | null;
+          availability?: ProductAvailability;
+          featured?: boolean;
+          created_by?: string | null;
+          updated_by?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          slug?: string;
+          name?: string;
+          category?: string;
+          description?: string;
+          benefits?: string[];
+          price?: number | null;
+          unit?: string | null;
+          image_path?: string | null;
+          producer_name?: string;
+          whatsapp_number?: string | null;
+          availability?: ProductAvailability;
+          featured?: boolean;
+          created_by?: string | null;
+          updated_by?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "products_created_by_fkey";
+            columns: ["created_by"];
+            isOneToOne: false;
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "products_updated_by_fkey";
             columns: ["updated_by"];
             isOneToOne: false;
             referencedRelation: "profiles";

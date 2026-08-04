@@ -4,9 +4,11 @@ import { AutoCarousel } from "@/components/ui/AutoCarousel";
 import { Container } from "@/components/ui/Container";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { featuredProducts } from "@/data/products";
+import { getFeaturedProducts } from "@/lib/data/products";
 
-export function FeaturedProductsSection() {
+export async function FeaturedProductsSection() {
+  const featuredProducts = await getFeaturedProducts();
+
   if (featuredProducts.length === 0) {
     return null;
   }

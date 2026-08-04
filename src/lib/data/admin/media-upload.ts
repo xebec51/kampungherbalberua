@@ -7,7 +7,7 @@ import {
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import type { Database } from "@/lib/supabase/database.types";
 
-export type MediaUploadTarget = "health_zone" | "plant";
+export type MediaUploadTarget = "health_zone" | "plant" | "product";
 
 export type MediaUploadResult =
   | { data: { mediaId: string }; error: null }
@@ -20,6 +20,7 @@ const MEDIA_ORIGINALS_MAX_BYTES = 6 * 1024 * 1024;
 const scopeByTarget: Record<MediaUploadTarget, string> = {
   health_zone: "health-zones",
   plant: "plants",
+  product: "products",
 };
 
 // Uploads an admin-supplied cover photo through the same media_assets +
@@ -182,50 +183,71 @@ export async function uploadContentCoverPhoto(input: {
     mediaId = inserted.id;
   }
 
-  const linkResult =
-    input.target === "plant"
-      ? await (async () => {
-          const unlink = await client
-            .from("plant_media")
-            .delete()
-            .eq("plant_id", input.entityId)
-            .eq("role", "cover");
+  let linkResult: { message: string } | null;
 
-          if (unlink.error) {
-            return unlink.error;
-          }
+  if (input.target === "plant") {
+    const unlink = await client
+      .from("plant_media")
+      .delete()
+      .eq("plant_id", input.entityId)
+      .eq("role", "cover");
 
-          const link = await client.from("plant_media").insert({
-            is_primary: true,
-            media_id: mediaId as string,
-            plant_id: input.entityId,
-            role: "cover",
-            sort_order: 0,
-          });
+    linkResult = unlink.error;
 
-          return link.error;
-        })()
-      : await (async () => {
-          const unlink = await client
-            .from("health_zone_media")
-            .delete()
-            .eq("health_zone_id", input.entityId)
-            .eq("role", "cover");
+    if (!linkResult) {
+      const link = await client.from("plant_media").insert({
+        is_primary: true,
+        media_id: mediaId as string,
+        plant_id: input.entityId,
+        role: "cover",
+        sort_order: 0,
+      });
 
-          if (unlink.error) {
-            return unlink.error;
-          }
+      linkResult = link.error;
+    }
+  } else if (input.target === "health_zone") {
+    const unlink = await client
+      .from("health_zone_media")
+      .delete()
+      .eq("health_zone_id", input.entityId)
+      .eq("role", "cover");
 
-          const link = await client.from("health_zone_media").insert({
-            health_zone_id: input.entityId,
-            is_primary: true,
-            media_id: mediaId as string,
-            role: "cover",
-            sort_order: 0,
-          });
+    linkResult = unlink.error;
 
-          return link.error;
-        })();
+    if (!linkResult) {
+      const link = await client.from("health_zone_media").insert({
+        health_zone_id: input.entityId,
+        is_primary: true,
+        media_id: mediaId as string,
+        role: "cover",
+        sort_order: 0,
+      });
+
+      linkResult = link.error;
+    }
+  } else {
+    const unlink = await client
+      .from("content_media_slots")
+      .delete()
+      .eq("content_type", "product")
+      .eq("content_key", input.entityId)
+      .eq("role", "cover");
+
+    linkResult = unlink.error;
+
+    if (!linkResult) {
+      const link = await client.from("content_media_slots").insert({
+        content_key: input.entityId,
+        content_type: "product",
+        is_primary: true,
+        media_id: mediaId as string,
+        role: "cover",
+        sort_order: 0,
+      });
+
+      linkResult = link.error;
+    }
+  }
 
   if (linkResult) {
     return { data: null, error: `Gagal menautkan foto: ${linkResult.message}` };

@@ -11,7 +11,7 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = createPageMetadata({
   title: "Detail Media",
   description: "Detail metadata Media Library Kampung Herbal Berua.",
-  path: "/admin/media",
+  path: "/admin/media/audit",
 });
 
 type AdminMediaDetailPageProps = {
@@ -40,8 +40,8 @@ export default async function AdminMediaDetailPage({
             <StatusBadge tone="neutral">{media.privacyStatus}</StatusBadge>
           </div>
         }
-        backHref="/admin/media"
-        backLabel="Kembali ke Media"
+        backHref="/admin/media/audit"
+        backLabel="Kembali ke Audit Media"
         eyebrow="Media Library"
         title={media.title}
       />

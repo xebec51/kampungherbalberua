@@ -1,6 +1,5 @@
 import { getPublicMediaUrl } from "@/lib/data/media-mapper";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
-import type { ContentStatus } from "@/lib/supabase/database.types";
 
 export type AdminMediaListItem = {
   id: string;
@@ -29,22 +28,6 @@ export type AdminMediaDetail = AdminMediaListItem & {
   width: number | null;
 };
 
-type MediaQueryOptions = {
-  q?: string;
-  status?: string;
-};
-
-const contentStatuses: readonly ContentStatus[] = [
-  "draft",
-  "pending_review",
-  "published",
-  "archived",
-];
-
-function isContentStatus(value: string | undefined): value is ContentStatus {
-  return Boolean(value && contentStatuses.includes(value as ContentStatus));
-}
-
 function mapListItem(row: {
   checksum_sha256: string;
   content_status: string;
@@ -70,41 +53,6 @@ function mapListItem(row: {
     sourceType: row.source_type,
     title: row.title,
   };
-}
-
-export async function getAdminMediaAssets(options: MediaQueryOptions = {}) {
-  const client = await createSupabaseServerClient();
-
-  if (!client) {
-    return { data: [], error: "Supabase belum dikonfigurasi." };
-  }
-
-  let query = client
-    .from("media_assets")
-    .select(
-      "id,title,public_bucket,public_path,source_type,license_code,rights_status,privacy_status,content_status,checksum_sha256,created_at",
-    )
-    .order("created_at", { ascending: false })
-    .limit(80);
-
-  if (isContentStatus(options.status)) {
-    query = query.eq("content_status", options.status);
-  }
-
-  if (options.q) {
-    const escapedQuery = options.q.replaceAll("%", "\\%");
-    query = query.or(
-      `title.ilike.%${escapedQuery}%,asset_code.ilike.%${escapedQuery}%,source_type.ilike.%${escapedQuery}%`,
-    );
-  }
-
-  const { data, error } = await query;
-
-  if (error) {
-    return { data: [], error: "Data media belum dapat dimuat." };
-  }
-
-  return { data: (data ?? []).map(mapListItem), error: null };
 }
 
 export async function getAdminMediaAssetById(id: string) {

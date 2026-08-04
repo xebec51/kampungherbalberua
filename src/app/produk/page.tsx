@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { ProductCatalog } from "@/components/products/ProductCatalog";
 import { PageHero } from "@/components/ui/PageHero";
-import { products } from "@/data/products";
+import { getProducts } from "@/lib/data/products";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = createPageMetadata({
@@ -12,7 +12,9 @@ export const metadata: Metadata = createPageMetadata({
   path: "/produk",
 });
 
-export default function ProductsPage() {
+export default async function ProductsPage() {
+  const products = await getProducts();
+
   return (
     <PageHero
       className="py-6 sm:py-7 lg:py-8"

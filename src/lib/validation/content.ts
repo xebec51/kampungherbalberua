@@ -2,6 +2,7 @@ import type {
   AppRole,
   ContentStatus,
   PlantCategory,
+  ProductAvailability,
   ValidationStatus,
 } from "@/lib/supabase/database.types";
 
@@ -26,6 +27,13 @@ export const plantCategories = [
   "batang",
   "lainnya",
 ] as const satisfies readonly PlantCategory[];
+
+export const productAvailabilities = [
+  "tersedia",
+  "terbatas",
+  "habis",
+  "segera-tersedia",
+] as const satisfies readonly ProductAvailability[];
 
 export function isAllowed<T extends string>(
   value: string,
