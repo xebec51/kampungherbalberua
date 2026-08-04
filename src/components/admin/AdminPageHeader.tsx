@@ -24,7 +24,7 @@ export function AdminPageHeader({
   return (
     <header
       className={cn(
-        "rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-5 shadow-[var(--shadow-soft)] sm:p-6",
+        "rounded-[var(--radius-card)] border border-admin-rail/12 bg-white p-5 shadow-[var(--shadow-soft)] sm:p-6",
         className,
       )}
     >

@@ -5,7 +5,7 @@ import { AdminFilterBar } from "@/components/admin/AdminFilterBar";
 import { AdminPagination } from "@/components/admin/AdminPagination";
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { SelectField, TextField } from "@/components/admin/fields";
-import { StatusBadge } from "@/components/ui/StatusBadge";
+import { AdminToneBadge as StatusBadge } from "@/components/admin/AdminStatusBadge";
 import { getAllSuggestionsForAdmin } from "@/lib/data/admin/suggestions";
 import { createPageMetadata } from "@/lib/metadata";
 import { paginateItems, parsePageParam } from "@/lib/pagination";

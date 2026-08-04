@@ -6,7 +6,7 @@ import { AdminFilterBar } from "@/components/admin/AdminFilterBar";
 import { AdminPagination } from "@/components/admin/AdminPagination";
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { SelectField, TextField } from "@/components/admin/fields";
-import { StatusBadge } from "@/components/ui/StatusBadge";
+import { AdminToneBadge as StatusBadge } from "@/components/admin/AdminStatusBadge";
 import { getAdminMediaAssets } from "@/lib/data/admin/media";
 import { createPageMetadata } from "@/lib/metadata";
 import { paginateItems, parsePageParam } from "@/lib/pagination";
@@ -97,7 +97,7 @@ export default async function AdminMediaPage({
         <AdminEmptyState description={result.error} title="Pustaka media belum dapat dimuat" />
       ) : (
         <section className="overflow-hidden rounded-md border border-herbal-green/10 bg-white shadow-sm">
-          <div className="grid gap-3 border-b border-herbal-green/10 bg-herbal-soft px-4 py-3 text-xs font-bold uppercase tracking-[0.12em] text-herbal-muted md:grid-cols-[1.3fr_0.8fr_0.8fr_0.8fr]">
+          <div className="hidden gap-3 border-b border-herbal-green/10 bg-herbal-soft px-4 py-3 text-xs font-bold uppercase tracking-[0.12em] text-herbal-muted md:grid md:grid-cols-[1.3fr_0.8fr_0.8fr_0.8fr]">
             <span>Media</span>
             <span>Sumber</span>
             <span>Status</span>
@@ -125,15 +125,30 @@ export default async function AdminMediaPage({
                       {media.licenseCode ?? "Lisensi belum tersedia"}
                     </p>
                   </div>
-                  <span className="text-herbal-muted">{media.sourceType}</span>
-                  <div className="flex flex-wrap gap-2">
-                    <StatusBadge tone="green">{media.contentStatus}</StatusBadge>
-                    <StatusBadge tone="brown">{media.rightsStatus}</StatusBadge>
-                    <StatusBadge tone="neutral">{media.privacyStatus}</StatusBadge>
+                  <div>
+                    <span className="mb-1 block text-[0.65rem] font-bold uppercase tracking-[0.1em] text-herbal-brown md:hidden">
+                      Sumber
+                    </span>
+                    <span className="text-herbal-muted">{media.sourceType}</span>
                   </div>
-                  <span className="break-all font-mono text-xs text-herbal-muted">
-                    {media.checksumSha256.slice(0, 16)}
-                  </span>
+                  <div>
+                    <span className="mb-1 block text-[0.65rem] font-bold uppercase tracking-[0.1em] text-herbal-brown md:hidden">
+                      Status
+                    </span>
+                    <div className="flex flex-wrap gap-2">
+                      <StatusBadge tone="green">{media.contentStatus}</StatusBadge>
+                      <StatusBadge tone="brown">{media.rightsStatus}</StatusBadge>
+                      <StatusBadge tone="neutral">{media.privacyStatus}</StatusBadge>
+                    </div>
+                  </div>
+                  <div>
+                    <span className="mb-1 block text-[0.65rem] font-bold uppercase tracking-[0.1em] text-herbal-brown md:hidden">
+                      Checksum
+                    </span>
+                    <span className="break-all font-mono text-xs text-herbal-muted">
+                      {media.checksumSha256.slice(0, 16)}
+                    </span>
+                  </div>
                 </article>
               ))
             )}

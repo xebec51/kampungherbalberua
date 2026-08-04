@@ -1,8 +1,18 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import {
+  Camera,
+  Copy,
+  Eye,
+  FileWarning,
+  Image as ImageIcon,
+  Paperclip,
+  ZoomOut,
+  type LucideIcon,
+} from "lucide-react";
 import { AdminEmptyState } from "@/components/admin/AdminEmptyState";
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
-import { StatusBadge } from "@/components/ui/StatusBadge";
+import { AdminToneBadge as StatusBadge } from "@/components/admin/AdminStatusBadge";
 import { getAdminMediaAuditSummary } from "@/lib/data/admin/media-audit";
 import { createPageMetadata } from "@/lib/metadata";
 
@@ -36,14 +46,26 @@ export default async function AdminMediaAuditPage() {
       ) : (
         <>
           <section className="grid gap-4 md:grid-cols-4">
-            <MetricCard label="Total media" value={audit.totalMedia} />
-            <MetricCard label="Attachment katalog" value={audit.posterAttachments} />
-            <MetricCard label="Foto spesifik" value={audit.specificPosterImages} />
-            <MetricCard label="Visual sementara" value={audit.genericPosterImages} />
-            <MetricCard label="Reuse berlebihan" value={audit.excessiveReuse.length} />
-            <MetricCard label="Resolusi rendah" value={audit.lowResolution} />
-            <MetricCard label="Atribusi belum lengkap" value={audit.incompleteAttribution} />
-            <MetricCard label="Needs review" value={audit.needsReview} />
+            <MetricCard icon={ImageIcon} label="Total media" value={audit.totalMedia} />
+            <MetricCard
+              icon={Paperclip}
+              label="Attachment katalog"
+              value={audit.posterAttachments}
+            />
+            <MetricCard icon={Camera} label="Foto spesifik" value={audit.specificPosterImages} />
+            <MetricCard
+              icon={ImageIcon}
+              label="Visual sementara"
+              value={audit.genericPosterImages}
+            />
+            <MetricCard icon={Copy} label="Reuse berlebihan" value={audit.excessiveReuse.length} />
+            <MetricCard icon={ZoomOut} label="Resolusi rendah" value={audit.lowResolution} />
+            <MetricCard
+              icon={FileWarning}
+              label="Atribusi belum lengkap"
+              value={audit.incompleteAttribution}
+            />
+            <MetricCard icon={Eye} label="Needs review" value={audit.needsReview} />
           </section>
 
           <section className="rounded-md border border-herbal-green/10 bg-white p-5 shadow-sm">
@@ -94,10 +116,23 @@ export default async function AdminMediaAuditPage() {
   );
 }
 
-function MetricCard({ label, value }: { label: string; value: number }) {
+function MetricCard({
+  icon: Icon,
+  label,
+  value,
+}: {
+  icon: LucideIcon;
+  label: string;
+  value: number;
+}) {
   return (
     <article className="rounded-md border border-herbal-green/10 bg-white p-5 shadow-sm">
-      <p className="text-sm font-semibold text-herbal-muted">{label}</p>
+      <div className="flex items-center gap-2.5">
+        <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-admin-canvas text-admin-rail-active">
+          <Icon aria-hidden="true" className="h-4 w-4" />
+        </span>
+        <p className="text-sm font-semibold text-herbal-muted">{label}</p>
+      </div>
       <p className="mt-2 text-3xl font-bold text-herbal-ink">{value}</p>
     </article>
   );

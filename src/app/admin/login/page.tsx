@@ -30,7 +30,7 @@ export default async function AdminLoginPage({
   const nextPath = getSafeAdminRedirect(params.next, "/admin");
 
   return (
-    <section className="brand-pattern min-h-screen bg-herbal-cream py-12 sm:py-16">
+    <main className="brand-pattern min-h-screen bg-admin-canvas py-12 sm:py-16" id="konten-utama">
       <Container className="max-w-xl">
         <div className="rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-6 shadow-[var(--shadow-soft)] sm:p-8">
           <Logo className="mb-7" />
@@ -53,6 +53,6 @@ export default async function AdminLoginPage({
           </Link>
         </div>
       </Container>
-    </section>
+    </main>
   );
 }

@@ -20,7 +20,7 @@ export function AdminFormSection({
   return (
     <section
       className={cn(
-        "grid gap-4 rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-5 shadow-[var(--shadow-soft)]",
+        "grid gap-4 rounded-[var(--radius-card)] border border-admin-rail/12 bg-white p-5 shadow-[var(--shadow-soft)]",
         className,
       )}
     >

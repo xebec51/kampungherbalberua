@@ -14,6 +14,15 @@
   --color-herbal-mist: #f9f7ed;
   --color-herbal-gold: #e5ba21;
   --color-herbal-danger: #a3352b;
+
+  /* Admin dashboard surface -- reuses the existing dark brand greens for the
+     nav rail instead of a bolted-on generic admin palette; admin-canvas is
+     the one genuinely new value, sitting between herbal-cream and herbal-soft
+     so the admin workspace reads as distinct without leaving the brand family. */
+  --color-admin-canvas: #eef0e6;
+  --color-admin-rail: #082719;
+  --color-admin-rail-active: #0c3e22;
+  --color-admin-accent: #e5ba21;
 }
 
 :root {

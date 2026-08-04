@@ -1,8 +1,18 @@
 import type { Metadata } from "next";
+import {
+  Archive,
+  CheckCircle2,
+  Clock,
+  FileEdit,
+  HeartPulse,
+  Leaf,
+  ShieldCheck,
+  type LucideIcon,
+} from "lucide-react";
 import { AdminActionLink } from "@/components/admin/AdminActionBar";
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { CopyQrUrlButton } from "@/components/admin/CopyQrUrlButton";
-import { StatusBadge } from "@/components/ui/StatusBadge";
+import { AdminToneBadge as StatusBadge } from "@/components/admin/AdminStatusBadge";
 import { getAdminDashboardStats } from "@/lib/data/admin/dashboard";
 import { getAllHealthZonesForAdmin } from "@/lib/data/admin/health-zones";
 import { getAllStreetsForAdmin } from "@/lib/data/admin/streets";
@@ -46,18 +56,24 @@ export default async function AdminDashboardPage() {
         </section>
       ) : (
         <section aria-label="Statistik dashboard" className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          <StatCard label="Seluruh tanaman" value={stats.totalPlants} />
-          <StatCard label="Tanaman draft" value={stats.draftPlants} />
+          <StatCard icon={Leaf} label="Seluruh tanaman" value={stats.totalPlants} />
+          <StatCard icon={FileEdit} label="Tanaman draft" value={stats.draftPlants} />
           <StatCard
+            icon={Clock}
             label="Tanaman pending review"
             value={stats.pendingReviewPlants}
           />
-          <StatCard label="Tanaman published" value={stats.publishedPlants} />
-          <StatCard label="Tanaman archived" value={stats.archivedPlants} />
-          <StatCard label="Zona kesehatan" value={stats.totalHealthZones} />
-          <StatCard label="Zona draft" value={stats.zoneDrafts} />
-          <StatCard label="Zona published" value={stats.zonePublished} />
           <StatCard
+            icon={CheckCircle2}
+            label="Tanaman published"
+            value={stats.publishedPlants}
+          />
+          <StatCard icon={Archive} label="Tanaman archived" value={stats.archivedPlants} />
+          <StatCard icon={HeartPulse} label="Zona kesehatan" value={stats.totalHealthZones} />
+          <StatCard icon={FileEdit} label="Zona draft" value={stats.zoneDrafts} />
+          <StatCard icon={CheckCircle2} label="Zona published" value={stats.zonePublished} />
+          <StatCard
+            icon={ShieldCheck}
             label="Materi menunggu verifikasi"
             value={stats.pendingVerificationItems}
           />
@@ -162,14 +178,20 @@ function QrList({ emptyText, items, title }: QrListProps) {
 }
 
 type StatCardProps = {
+  icon: LucideIcon;
   label: string;
   value: number | null;
 };
 
-function StatCard({ label, value }: StatCardProps) {
+function StatCard({ icon: Icon, label, value }: StatCardProps) {
   return (
     <article className="rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-5 shadow-[var(--shadow-soft)]">
-      <p className="text-sm font-semibold text-herbal-muted">{label}</p>
+      <div className="flex items-center gap-2.5">
+        <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-admin-canvas text-admin-rail-active">
+          <Icon aria-hidden="true" className="h-4 w-4" />
+        </span>
+        <p className="text-sm font-semibold text-herbal-muted">{label}</p>
+      </div>
       <p className="mt-3 text-3xl font-bold text-herbal-ink">
         {value === null ? "Belum tersedia" : value}
       </p>

@@ -83,7 +83,7 @@ export function AdminFilterBar({
   }
 
   return (
-    <div className="rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-4 shadow-[var(--shadow-soft)]">
+    <div className="rounded-[var(--radius-card)] border border-admin-rail/12 bg-white p-4 shadow-[var(--shadow-soft)]">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-sm leading-6 text-herbal-muted" aria-live="polite">
           {resultSummary}

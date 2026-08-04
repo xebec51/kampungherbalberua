@@ -9,7 +9,9 @@ import { getWorkflowState } from "@/lib/workflow/status-labels";
 
 const toneClass: Record<AdminStatusTone, string> = {
   archived: "border-herbal-muted/25 bg-herbal-muted/10 text-herbal-muted",
+  brown: "border-herbal-brown/20 bg-[#f7e9dc] text-herbal-brown",
   danger: "border-herbal-danger/30 bg-herbal-danger/10 text-herbal-danger",
+  green: "border-herbal-green/20 bg-herbal-soft text-herbal-deep",
   neutral: "border-herbal-muted/16 bg-white text-herbal-muted",
   published: "border-herbal-green/20 bg-herbal-soft text-herbal-deep",
   review: "border-herbal-gold/40 bg-herbal-gold/12 text-herbal-brown",

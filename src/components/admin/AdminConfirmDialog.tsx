@@ -48,7 +48,7 @@ export function AdminConfirmDialog({
       aria-describedby={description ? descriptionId : undefined}
       aria-labelledby={titleId}
       className={cn(
-        "m-auto w-[min(28rem,calc(100vw-2rem))] rounded-[var(--radius-card)] border border-herbal-green/15 bg-white p-0 shadow-[var(--shadow-lift)] backdrop:bg-herbal-ink/45",
+        "m-auto w-[min(28rem,calc(100vw-2rem))] rounded-[var(--radius-card)] border border-admin-rail/15 bg-white p-0 shadow-[var(--shadow-lift)] backdrop:bg-herbal-ink/45",
         className,
       )}
       onCancel={onClose}

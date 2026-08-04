@@ -5,6 +5,7 @@ import { Header } from "@/components/layout/Header";
 import { SkipLink } from "@/components/layout/SkipLink";
 import { SplashScreen } from "@/components/layout/SplashScreen";
 import { StructuredData } from "@/components/seo/StructuredData";
+import { SiteChrome } from "@/components/SiteChrome";
 import { createRootMetadata } from "@/lib/metadata";
 import "./globals.css";
 
@@ -50,14 +51,15 @@ export default function RootLayout({
   return (
     <html className={poppins.variable} data-scroll-behavior="smooth" lang="id">
       <body>
-        <SplashScreen />
-        <SkipLink />
-        <Header />
-        <main className="scroll-mt-24 focus:outline-none" id="konten-utama" tabIndex={-1}>
+        <SiteChrome
+          footer={<Footer />}
+          header={<Header />}
+          skipLink={<SkipLink />}
+          splash={<SplashScreen />}
+          structuredData={<StructuredData />}
+        >
           {children}
-        </main>
-        <Footer />
-        <StructuredData />
+        </SiteChrome>
       </body>
     </html>
   );

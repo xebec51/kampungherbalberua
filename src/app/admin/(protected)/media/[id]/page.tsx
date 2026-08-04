@@ -2,7 +2,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
-import { StatusBadge } from "@/components/ui/StatusBadge";
+import { AdminToneBadge as StatusBadge } from "@/components/admin/AdminStatusBadge";
 import { getAdminMediaAssetById } from "@/lib/data/admin/media";
 import { createPageMetadata } from "@/lib/metadata";
 

@@ -33,7 +33,7 @@ export function AdminPagination({
   return (
     <nav
       aria-label="Navigasi halaman admin"
-      className="flex flex-col gap-3 rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-4 shadow-[var(--shadow-soft)] sm:flex-row sm:items-center sm:justify-between"
+      className="flex flex-col gap-3 rounded-[var(--radius-card)] border border-admin-rail/12 bg-white p-4 shadow-[var(--shadow-soft)] sm:flex-row sm:items-center sm:justify-between"
     >
       <p className="text-sm text-herbal-muted">
         Menampilkan {startItem}-{endItem} dari {totalItems} data

@@ -18,7 +18,9 @@ export type AdminStatusTone =
   | "published"
   | "review"
   | "danger"
-  | "verified";
+  | "verified"
+  | "green"
+  | "brown";
 
 export type WorkflowState = {
   label: WorkflowStateLabel;
