@@ -79,7 +79,7 @@ export function AdminSidebar({ displayName, role }: AdminSidebarProps) {
         </button>
       </div>
 
-      <aside className="hidden lg:sticky lg:top-24 lg:block lg:h-fit">
+      <aside className="hidden lg:block lg:h-fit">
         <div className="overflow-hidden rounded-[var(--radius-card)] bg-admin-rail shadow-[var(--shadow-soft)]">
           <AdminNavContent
             displayName={displayName}
