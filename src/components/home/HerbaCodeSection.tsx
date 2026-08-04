@@ -8,13 +8,18 @@ import {
   getHerbaCodePlantCatalog,
   getHerbaCodeZoneSummaries,
 } from "@/lib/data/herbacode";
+import { getPosterPlantCatalog } from "@/lib/data/poster-plants";
+import { buildUnifiedPlantCatalog } from "@/lib/plant-catalog-filter";
 
 export async function HerbaCodeSection() {
-  const [plants, zones] = await Promise.all([
+  const [herbaCodePlants, posterPlants, zones] = await Promise.all([
     getHerbaCodePlantCatalog(),
+    getPosterPlantCatalog(),
     getHerbaCodeZoneSummaries(),
   ]);
-  const relationCount = plants.reduce(
+  const uniquePlantCount = buildUnifiedPlantCatalog(posterPlants, herbaCodePlants)
+    .length;
+  const relationCount = herbaCodePlants.reduce(
     (total, plant) => total + plant.zoneEntries.length,
     0,
   );
@@ -42,7 +47,7 @@ export async function HerbaCodeSection() {
             <Metric label="Zona" value={zones.length} />
           </StaggerItem>
           <StaggerItem>
-            <Metric label="Tanaman unik" value={plants.length} />
+            <Metric label="Tanaman unik" value={uniquePlantCount} />
           </StaggerItem>
           <StaggerItem>
             <Metric label="Relasi tanaman-zona" value={relationCount} />
