@@ -47,11 +47,11 @@ export function PosterPlantCard({
           {partCategory ? (
             <StatusBadge tone="green">{partCategory}</StatusBadge>
           ) : null}
-          {plant.linkedPlantId ? (
-            <StatusBadge tone="neutral">Profil edukasi tersedia</StatusBadge>
-          ) : null}
+          <StatusBadge tone="brown">
+            {plant.collections.length} zona
+          </StatusBadge>
         </div>
-        <h3 className={partCategory || plant.linkedPlantId ? "mt-3 line-clamp-2 text-sm font-bold leading-tight text-herbal-ink sm:mt-4 sm:text-lg" : "line-clamp-2 text-sm font-bold leading-tight text-herbal-ink sm:text-lg"}>
+        <h3 className="mt-3 line-clamp-2 text-sm font-bold leading-tight text-herbal-ink sm:mt-4 sm:text-lg">
           <Link
             className="transition hover:text-herbal-green"
             href={href}
@@ -64,16 +64,7 @@ export function PosterPlantCard({
             {plant.scientificName}
           </p>
         ) : null}
-        <p className="mt-2 line-clamp-2 text-xs font-semibold leading-5 text-herbal-deep sm:mt-3 sm:text-sm sm:leading-6">
-          Dikenalkan di {plant.collections.length} zona
-          {plant.posterOccurrenceCount > 1
-            ? ` melalui ${plant.posterOccurrenceCount} titik katalog`
-            : ""}.
-        </p>
-        <p className="mt-1.5 line-clamp-1 text-xs leading-5 text-herbal-muted sm:mt-2 sm:line-clamp-2 sm:leading-6">
-          Zona: {plant.collections.slice(0, 3).join(", ")}
-          {plant.collections.length > 3 ? "..." : ""}
-        </p>
+        <span className="flex-1" aria-hidden="true" />
         <PublicCardAction href={href}>
           Lihat detail
         </PublicCardAction>

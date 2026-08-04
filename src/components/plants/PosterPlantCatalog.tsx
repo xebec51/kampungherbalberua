@@ -3,7 +3,9 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import type { PosterPlantCatalogItem } from "@/types";
+import { getPaginationWindow } from "@/lib/pagination";
 import { plantCatalogSortOptions } from "@/lib/plant-catalog-filter";
+import { cn } from "@/lib/utils";
 import { StaggerGroup } from "@/components/motion/StaggerGroup";
 import { StaggerItem } from "@/components/motion/StaggerItem";
 import { PosterPlantCard } from "@/components/plants/PosterPlantCard";
@@ -227,26 +229,41 @@ export function PosterPlantCatalog({
           {totalPages > 1 ? (
             <nav
               aria-label="Navigasi halaman katalog tanaman"
-              className="mt-8 flex flex-wrap items-center justify-center gap-2"
+              className="mt-8 flex items-center justify-center gap-1.5"
             >
               <button
-                className="inline-flex min-h-10 items-center justify-center rounded-md border border-herbal-green/20 bg-white px-4 text-sm font-bold text-herbal-green transition hover:bg-herbal-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-white"
+                aria-label="Halaman sebelumnya"
+                className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-herbal-green/20 bg-white text-herbal-green transition hover:bg-herbal-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-white"
                 disabled={currentPage <= 1}
                 onClick={() => goToPage(currentPage - 1)}
                 type="button"
               >
-                Sebelumnya
+                <PaginationChevron direction="left" />
               </button>
-              <span className="px-2 text-sm font-semibold text-herbal-muted">
-                Halaman {currentPage} dari {totalPages}
-              </span>
+              {getPaginationWindow(currentPage, totalPages).map((page) => (
+                <button
+                  aria-current={page === currentPage ? "page" : undefined}
+                  className={cn(
+                    "inline-flex h-10 min-w-10 shrink-0 items-center justify-center rounded-md border px-2 text-sm font-bold transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown",
+                    page === currentPage
+                      ? "border-herbal-green bg-herbal-green text-white"
+                      : "border-herbal-green/20 bg-white text-herbal-green hover:bg-herbal-soft",
+                  )}
+                  key={page}
+                  onClick={() => goToPage(page)}
+                  type="button"
+                >
+                  {page}
+                </button>
+              ))}
               <button
-                className="inline-flex min-h-10 items-center justify-center rounded-md border border-herbal-green/20 bg-white px-4 text-sm font-bold text-herbal-green transition hover:bg-herbal-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-white"
+                aria-label="Halaman berikutnya"
+                className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-herbal-green/20 bg-white text-herbal-green transition hover:bg-herbal-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-white"
                 disabled={currentPage >= totalPages}
                 onClick={() => goToPage(currentPage + 1)}
                 type="button"
               >
-                Selanjutnya
+                <PaginationChevron direction="right" />
               </button>
             </nav>
           ) : null}
@@ -260,5 +277,25 @@ export function PosterPlantCatalog({
         </div>
       )}
     </div>
+  );
+}
+
+function PaginationChevron({ direction }: { direction: "left" | "right" }) {
+  return (
+    <svg
+      aria-hidden="true"
+      className="h-4 w-4"
+      fill="none"
+      viewBox="0 0 20 20"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d={direction === "right" ? "M7 4.5 12.5 10 7 15.5" : "M13 4.5 7.5 10 13 15.5"}
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+      />
+    </svg>
   );
 }

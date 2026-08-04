@@ -277,12 +277,20 @@ test("katalog tanaman gabungan dapat dicari dan tidak menggandakan tanaman berul
 
   await expect(page.getByRole("button", { name: /Atur filter/ })).toBeVisible();
   await expect(page.getByLabel("Cari tanaman")).toBeHidden();
-  await expect(page.getByText(/Halaman 1 dari \d+/)).toBeVisible();
-  await expect(page.getByRole("button", { name: "Sebelumnya" })).toBeDisabled();
-  await page.getByRole("button", { name: "Selanjutnya" }).click();
+  await expect(
+    page.getByRole("button", { name: "1", exact: true }),
+  ).toHaveAttribute("aria-current", "page");
+  await expect(
+    page.getByRole("button", { name: "Halaman sebelumnya" }),
+  ).toBeDisabled();
+  await page.getByRole("button", { name: "Halaman berikutnya" }).click();
   await expect(page).toHaveURL(/[?&]halaman=2/);
-  await expect(page.getByText(/Halaman 2 dari \d+/)).toBeVisible();
-  await expect(page.getByRole("button", { name: "Sebelumnya" })).toBeEnabled();
+  await expect(
+    page.getByRole("button", { name: "2", exact: true }),
+  ).toHaveAttribute("aria-current", "page");
+  await expect(
+    page.getByRole("button", { name: "Halaman sebelumnya" }),
+  ).toBeEnabled();
 
   await page.getByRole("button", { name: /Atur filter/ }).click();
   await page.getByLabel("Cari tanaman").fill("jahe");
