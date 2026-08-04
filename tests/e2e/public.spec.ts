@@ -87,7 +87,6 @@ test("beranda menampilkan ringkasan HerbaCode tanpa placeholder publik", async (
   ).toHaveCount(90);
   await expect(page.getByRole("link", { exact: true, name: "Jahe" })).toBeVisible();
   await expect(page.getByRole("link", { exact: true, name: "Meniran" })).toBeVisible();
-  await expect(page.getByText("Rimpang aromatik")).toBeVisible();
   await expect(page.getByRole("heading", { name: "Peta Kompleks Kampung Herbal" })).toBeVisible();
   await expect(page.getByText("Denah Kompleks").first()).toBeVisible();
   await expect(page.getByText("9", { exact: true }).first()).toBeVisible();
@@ -189,15 +188,17 @@ test("produk warga tampil dan WhatsApp memuat produk yang dipilih", async ({
   await expect(
     page.getByRole("heading", { name: "Produk Warga Kampung Herbal" }),
   ).toHaveCount(0);
-  await expect(page.locator("[data-product-grid] article")).toHaveCount(6);
+  await expect(page.locator("[data-product-grid] article")).toHaveCount(8);
 
   const products = [
-    ["teh-herbal-berua", "Teh Herbal Berua"],
-    ["minuman-jahe-rempah", "Minuman Jahe Rempah"],
-    ["kunyit-asam", "Kunyit Asam"],
-    ["simplisia-herbal-kering", "Simplisia Herbal Kering"],
-    ["bibit-tanaman-toga", "Bibit Tanaman TOGA"],
-    ["paket-tanaman-herbal-rumah", "Paket Tanaman Herbal Rumah"],
+    ["empon-empon", "Empon-Empon"],
+    ["beras-kencur", "Beras Kencur"],
+    ["bunga-telang-rempah", "Bunga Telang Rempah"],
+    ["kelor-rempah", "Kelor Rempah"],
+    ["secang-rempah", "Secang Rempah"],
+    ["jahe-rempah", "Jahe Rempah"],
+    ["ecoenzym-soap", "EcoEnzym Soap"],
+    ["jahe-bubuk", "Jahe Bubuk"],
   ] as const;
 
   for (const [slug, name] of products) {
@@ -212,8 +213,8 @@ test("produk warga tampil dan WhatsApp memuat produk yang dipilih", async ({
   await expect(productGrid.getByText("Minuman herbal")).toHaveCount(0);
   await expect(productGrid.getByText("Pesan Khusus")).toHaveCount(0);
   await expect(page.getByRole("link", { name: "Detail produk" })).toHaveCount(0);
-  await page.getByRole("link", { exact: true, name: "Teh Herbal Berua" }).click();
-  await expect(page).toHaveURL(/\/produk\/teh-herbal-berua$/);
+  await page.getByRole("link", { exact: true, name: "Empon-Empon" }).click();
+  await expect(page).toHaveURL(/\/produk\/empon-empon$/);
 
   const whatsappMessages: string[] = [];
 
@@ -224,8 +225,8 @@ test("produk warga tampil dan WhatsApp memuat produk yang dipilih", async ({
       page.getByRole("img", { name: `Ilustrasi produk ${name}` }),
     ).toBeVisible();
     await expect(page.getByText("Hubungi untuk harga").first()).toBeVisible();
-    await expect(page.getByText("Pesan Khusus").first()).toBeVisible();
-    const whatsappLink = page.getByRole("link", { name: "Tanyakan via WhatsApp" });
+    await expect(page.getByText("Tersedia").first()).toBeVisible();
+    const whatsappLink = page.getByRole("link", { name: "Pesan via WhatsApp" });
     await expect(whatsappLink).toHaveAttribute(
       "href",
       /https:\/\/wa\.me\/6289623080501/,
@@ -240,8 +241,8 @@ test("produk warga tampil dan WhatsApp memuat produk yang dipilih", async ({
 
   const firstMessage = whatsappMessages[0] ?? "";
   const secondMessage = whatsappMessages[1] ?? "";
-  expect(firstMessage).toContain("Produk: Teh Herbal Berua");
-  expect(secondMessage).toContain("Produk: Minuman Jahe Rempah");
+  expect(firstMessage).toContain("Produk: Empon-Empon");
+  expect(secondMessage).toContain("Produk: Beras Kencur");
   expect(firstMessage).not.toBe(secondMessage);
   expect(firstMessage).toContain("Harga: Hubungi untuk harga");
   expect(firstMessage).not.toMatch(/undefined|null/i);
