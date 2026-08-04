@@ -1,7 +1,6 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
 import { PosterPlantCatalog } from "@/components/plants/PosterPlantCatalog";
-import { Container } from "@/components/ui/Container";
 import { Disclaimer } from "@/components/ui/Disclaimer";
 import { PageHero } from "@/components/ui/PageHero";
 import {
@@ -69,42 +68,35 @@ export default async function PlantsPage({ searchParams }: PlantsPageProps) {
   );
 
   return (
-    <>
-      <PageHero
-        className="py-6 sm:py-7 lg:py-8"
-        eyebrow="Katalog Tanaman"
-        title="Katalog Tanaman Kampung Herbal Harmony"
-      />
-      <section className="bg-herbal-cream py-4 sm:py-5">
-        <Container>
-          <Suspense
-            fallback={
-              <p className="text-sm text-herbal-muted">
-                Memuat katalog tanaman.
-              </p>
-            }
-          >
-            <PosterPlantCatalog
-              collections={collections}
-              currentPage={currentPage}
-              filteredCount={filteredPlants.length}
-              items={pageItems}
-              parts={parts}
-              totalCount={plants.length}
-              totalPages={totalPages}
-            />
-          </Suspense>
-          <div className="mt-6 sm:mt-8">
-            <Disclaimer>
-              Informasi tanaman pada website ini disediakan untuk edukasi
-              mengenai pemanfaatan tradisional. Informasi ini bukan diagnosis,
-              resep, atau pengganti konsultasi dengan dokter, apoteker, maupun
-              tenaga kesehatan lainnya.
-            </Disclaimer>
-          </div>
-        </Container>
-      </section>
-    </>
+    <PageHero
+      className="py-6 sm:py-7 lg:py-8"
+      eyebrow="Katalog Tanaman"
+      title="Tanaman Kampung Herbal Harmony"
+    >
+      <Suspense
+        fallback={
+          <p className="text-sm text-herbal-muted">Memuat katalog tanaman.</p>
+        }
+      >
+        <PosterPlantCatalog
+          collections={collections}
+          currentPage={currentPage}
+          filteredCount={filteredPlants.length}
+          items={pageItems}
+          parts={parts}
+          totalCount={plants.length}
+          totalPages={totalPages}
+        />
+      </Suspense>
+      <div className="mt-6 sm:mt-8">
+        <Disclaimer>
+          Informasi tanaman pada website ini disediakan untuk edukasi mengenai
+          pemanfaatan tradisional. Informasi ini bukan diagnosis, resep, atau
+          pengganti konsultasi dengan dokter, apoteker, maupun tenaga
+          kesehatan lainnya.
+        </Disclaimer>
+      </div>
+    </PageHero>
   );
 }
 

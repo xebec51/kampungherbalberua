@@ -267,10 +267,10 @@ test("katalog tanaman gabungan dapat dicari dan tidak menggandakan tanaman berul
 
   await expect(
     page.getByRole("heading", {
-      name: "Katalog Tanaman Kampung Herbal Harmony",
+      name: "Tanaman Kampung Herbal Harmony",
     }),
   ).toBeVisible();
-  await expect(page.getByText(/Menampilkan \d+ dari \d+ tanaman\./)).toBeVisible();
+  await expect(page.getByText(/Menampilkan \d+ dari \d+ tanaman\./)).toBeHidden();
   await expect(
     page.getByRole("link", { exact: true, name: "Cincau Hijau" }),
   ).toBeVisible();

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { StreetCatalog } from "@/components/streets/StreetCatalog";
-import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/ui/PageHero";
 import { getPublishedStreets } from "@/lib/data/streets";
 import { createPageMetadata } from "@/lib/metadata";
@@ -19,25 +18,20 @@ export default async function StreetsPage() {
   const streets = await getPublishedStreets();
 
   return (
-    <>
-      <PageHero
-        className="py-6 sm:py-7 lg:py-8"
-        eyebrow="Jalan Tematik"
-        title="Jalan Tematik Kampung Herbal"
-      />
-      <section className="bg-herbal-cream py-4 sm:py-5">
-        <Container>
-          <Suspense
-            fallback={
-              <p className="text-sm text-herbal-muted">
-                Memuat katalog jalan tematik.
-              </p>
-            }
-          >
-            <StreetCatalog streets={streets} />
-          </Suspense>
-        </Container>
-      </section>
-    </>
+    <PageHero
+      className="py-6 sm:py-7 lg:py-8"
+      eyebrow="Jelajahi"
+      title="Jalan Tematik Kampung Herbal"
+    >
+      <Suspense
+        fallback={
+          <p className="text-sm text-herbal-muted">
+            Memuat katalog jalan tematik.
+          </p>
+        }
+      >
+        <StreetCatalog streets={streets} />
+      </Suspense>
+    </PageHero>
   );
 }

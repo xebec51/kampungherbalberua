@@ -65,9 +65,13 @@ export function FilterDialog({
   return (
     <div className="rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-4 shadow-[var(--shadow-soft)] sm:p-5">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-sm text-herbal-muted" aria-live="polite">
-          {resultSummary}
-        </p>
+        {activeCount > 0 ? (
+          <p className="text-sm text-herbal-muted" aria-live="polite">
+            {resultSummary}
+          </p>
+        ) : (
+          <span aria-hidden="true" />
+        )}
         <div className="flex flex-wrap gap-2">
           <button
             aria-expanded={isOpen}
