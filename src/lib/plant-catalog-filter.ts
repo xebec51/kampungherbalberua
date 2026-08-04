@@ -106,6 +106,69 @@ const manualHerbaToPosterNames = new Map([
   ["salam", ["daun salam"]],
 ]);
 
+// The source HerbaCode document spells this plant two different ways in two
+// different zones ("Jintan hitam" under imunitas-kuat, "Jinten hitam" under
+// obesitas-dan-metabolik), so the import produced two separate plant records
+// for the same species (Nigella sativa) instead of one with two zone
+// entries. Collapse known spelling-variant duplicates here before matching
+// against the poster catalog, so the unified list never shows the same
+// plant twice.
+const knownDuplicateHerbaPlantNames: string[][] = [["jintan hitam", "jinten hitam"]];
+
+function canonicalizeHerbaCodePlants(
+  herbaCodePlants: HerbaCodePlantProfile[],
+): HerbaCodePlantProfile[] {
+  const groupIndexByNormalizedName = new Map<string, number>();
+
+  knownDuplicateHerbaPlantNames.forEach((group, index) => {
+    for (const name of group) {
+      groupIndexByNormalizedName.set(name, index);
+    }
+  });
+
+  const canonicalIndexByGroup = new Map<number, number>();
+  const merged: HerbaCodePlantProfile[] = [];
+
+  for (const plant of herbaCodePlants) {
+    const groupIndex = groupIndexByNormalizedName.get(
+      normalizePosterName(plant.localName),
+    );
+
+    if (groupIndex === undefined) {
+      merged.push(plant);
+      continue;
+    }
+
+    const existingIndex = canonicalIndexByGroup.get(groupIndex);
+
+    if (existingIndex === undefined) {
+      canonicalIndexByGroup.set(groupIndex, merged.length);
+      merged.push(plant);
+      continue;
+    }
+
+    const canonical = merged[existingIndex];
+    const existingZoneTitles = new Set(
+      canonical.zoneEntries.map((entry) => entry.zoneTitle),
+    );
+
+    merged[existingIndex] = {
+      ...canonical,
+      aliases: Array.from(
+        new Set([...canonical.aliases, ...plant.aliases, plant.localName]),
+      ),
+      zoneEntries: [
+        ...canonical.zoneEntries,
+        ...plant.zoneEntries.filter(
+          (entry) => !existingZoneTitles.has(entry.zoneTitle),
+        ),
+      ],
+    };
+  }
+
+  return merged;
+}
+
 /**
  * Merges the poster catalog and the HerbaCode catalog into one deduplicated
  * plant list -- the canonical "how many unique plants does the site have"
@@ -115,8 +178,9 @@ const manualHerbaToPosterNames = new Map([
  */
 export function buildUnifiedPlantCatalog(
   posterPlants: PosterPlantCatalogItem[],
-  herbaCodePlants: HerbaCodePlantProfile[],
+  herbaCodePlantsInput: HerbaCodePlantProfile[],
 ) {
+  const herbaCodePlants = canonicalizeHerbaCodePlants(herbaCodePlantsInput);
   const herbaByPosterName = new Map<string, HerbaCodePlantProfile>();
   const matchedHerbaPlantIds = new Set<string>();
 
