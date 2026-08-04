@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { ProductCatalog } from "@/components/products/ProductCatalog";
-import { PageHero } from "@/components/ui/PageHero";
+import { Container } from "@/components/ui/Container";
 import { getProducts } from "@/lib/data/products";
 import { createPageMetadata } from "@/lib/metadata";
 
@@ -16,18 +16,20 @@ export default async function ProductsPage() {
   const products = await getProducts();
 
   return (
-    <PageHero
-      className="py-6 sm:py-7 lg:py-8"
-      eyebrow="Produk Warga"
-      title="Katalog Produk Kampung Herbal"
-    >
-      <Suspense
-        fallback={
-          <p className="text-sm text-herbal-muted">Memuat katalog produk.</p>
-        }
-      >
-        <ProductCatalog products={products} />
-      </Suspense>
-    </PageHero>
+    <section className="brand-pattern border-b border-herbal-green/10 bg-herbal-cream py-6 text-herbal-ink sm:py-7 lg:py-8">
+      <Container>
+        <Suspense
+          fallback={
+            <p className="text-sm text-herbal-muted">Memuat katalog produk.</p>
+          }
+        >
+          <ProductCatalog
+            eyebrow="Produk Warga"
+            products={products}
+            title="Katalog Produk Kampung Herbal"
+          />
+        </Suspense>
+      </Container>
+    </section>
   );
 }

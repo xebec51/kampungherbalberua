@@ -13,13 +13,16 @@ import type { PublicStreet } from "@/lib/data/streets";
 import { StaggerGroup } from "@/components/motion/StaggerGroup";
 import { StaggerItem } from "@/components/motion/StaggerItem";
 import { StreetCard } from "@/components/streets/StreetCard";
+import { CatalogPageHeader } from "@/components/ui/CatalogPageHeader";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { FilterChip } from "@/components/ui/FilterChip";
 import { FilterDialog } from "@/components/ui/FilterDialog";
 import { SearchInput } from "@/components/ui/SearchInput";
 
 type StreetCatalogProps = {
+  eyebrow: string;
   streets: PublicStreet[];
+  title: string;
 };
 
 const allZonesLabel = "Semua zona";
@@ -37,7 +40,7 @@ function normalize(value: string) {
   return value.toLowerCase().trim();
 }
 
-export function StreetCatalog({ streets }: StreetCatalogProps) {
+export function StreetCatalog({ eyebrow, streets, title }: StreetCatalogProps) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -159,72 +162,76 @@ export function StreetCatalog({ streets }: StreetCatalogProps) {
       : null,
   ].filter((item): item is { key: string; label: string } => Boolean(item));
 
-  return (
-    <div className="mt-5">
-      <FilterDialog
-        activeCount={activeFilters.length}
-        onReset={resetFilters}
-        resultSummary={`Menampilkan ${filteredStreets.length} dari ${streets.length} jalan.`}
-        title="Atur filter jalan"
-      >
-        <div className="sm:col-span-2">
-          <SearchInput
-            id="street-search"
-            label="Cari jalan"
-            onChange={(event) => setQueryInput(event.target.value)}
-            placeholder="Contoh: imun, digestia, blok E"
-            value={queryInput}
-          />
-        </div>
-        <div>
-          <label
-            className="block text-sm font-medium text-herbal-ink"
-            htmlFor="street-zone"
-          >
-            Filter zona
-          </label>
-          <select
-            className="mt-2 h-11 w-full rounded-md border border-herbal-green/20 bg-white px-3 text-sm text-herbal-ink outline-none transition focus:border-herbal-green focus:ring-2 focus:ring-herbal-green/20"
-            id="street-zone"
-            onChange={(event) => updateParam("zona", event.target.value)}
-            value={zone}
-          >
-            <option value="">{allZonesLabel}</option>
-            {zones.map((item) => (
-              <option key={item} value={item}>
-                {item}
-              </option>
-            ))}
-          </select>
-        </div>
-        <label className="grid gap-2 text-sm font-medium text-herbal-ink">
-          Urutkan
-          <select
-            className="h-11 w-full rounded-md border border-herbal-green/20 bg-white px-3 text-sm text-herbal-ink outline-none transition focus:border-herbal-green focus:ring-2 focus:ring-herbal-green/20"
-            onChange={(event) => updateParam("urut", event.target.value)}
-            value={sort}
-          >
-            {sortOptions.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
+  const filterDialog = (
+    <FilterDialog
+      activeCount={activeFilters.length}
+      onReset={resetFilters}
+      resultSummary={`Menampilkan ${filteredStreets.length} dari ${streets.length} jalan.`}
+      title="Atur filter jalan"
+    >
+      <div className="sm:col-span-2">
+        <SearchInput
+          id="street-search"
+          label="Cari jalan"
+          onChange={(event) => setQueryInput(event.target.value)}
+          placeholder="Contoh: imun, digestia, blok E"
+          value={queryInput}
+        />
+      </div>
+      <div>
+        <label
+          className="block text-sm font-medium text-herbal-ink"
+          htmlFor="street-zone"
+        >
+          Filter zona
         </label>
-      </FilterDialog>
+        <select
+          className="mt-2 h-11 w-full rounded-md border border-herbal-green/20 bg-white px-3 text-sm text-herbal-ink outline-none transition focus:border-herbal-green focus:ring-2 focus:ring-herbal-green/20"
+          id="street-zone"
+          onChange={(event) => updateParam("zona", event.target.value)}
+          value={zone}
+        >
+          <option value="">{allZonesLabel}</option>
+          {zones.map((item) => (
+            <option key={item} value={item}>
+              {item}
+            </option>
+          ))}
+        </select>
+      </div>
+      <label className="grid gap-2 text-sm font-medium text-herbal-ink">
+        Urutkan
+        <select
+          className="h-11 w-full rounded-md border border-herbal-green/20 bg-white px-3 text-sm text-herbal-ink outline-none transition focus:border-herbal-green focus:ring-2 focus:ring-herbal-green/20"
+          onChange={(event) => updateParam("urut", event.target.value)}
+          value={sort}
+        >
+          {sortOptions.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+      </label>
+    </FilterDialog>
+  );
+
+  return (
+    <div>
+      <CatalogPageHeader eyebrow={eyebrow} filter={filterDialog} title={title} />
       {activeFilters.length > 0 ? (
-        <div className="mt-2 flex flex-wrap gap-2">
-          {activeFilters.map((filter) => (
+        <div className="mt-3 flex flex-wrap gap-2">
+          {activeFilters.map((activeFilter) => (
             <FilterChip
-              key={filter.key}
+              key={activeFilter.key}
               onClick={() => {
-                if (filter.key === "q") {
+                if (activeFilter.key === "q") {
                   setQueryInput("");
                 }
-                updateParam(filter.key, "");
+                updateParam(activeFilter.key, "");
               }}
             >
-              {filter.label} - hapus
+              {activeFilter.label} - hapus
             </FilterChip>
           ))}
         </div>

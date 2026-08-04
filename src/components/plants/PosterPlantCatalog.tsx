@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import { StaggerGroup } from "@/components/motion/StaggerGroup";
 import { StaggerItem } from "@/components/motion/StaggerItem";
 import { PosterPlantCard } from "@/components/plants/PosterPlantCard";
+import { CatalogPageHeader } from "@/components/ui/CatalogPageHeader";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { FilterChip } from "@/components/ui/FilterChip";
 import { FilterDialog } from "@/components/ui/FilterDialog";
@@ -17,9 +18,11 @@ import { SearchInput } from "@/components/ui/SearchInput";
 type PosterPlantCatalogProps = {
   collections: string[];
   currentPage: number;
+  eyebrow: string;
   filteredCount: number;
   items: PosterPlantCatalogItem[];
   parts: string[];
+  title: string;
   totalCount: number;
   totalPages: number;
 };
@@ -30,9 +33,11 @@ const allPartsLabel = "Semua bagian";
 export function PosterPlantCatalog({
   collections,
   currentPage,
+  eyebrow,
   filteredCount,
   items,
   parts,
+  title,
   totalCount,
   totalPages,
 }: PosterPlantCatalogProps) {
@@ -127,87 +132,91 @@ export function PosterPlantCatalog({
       : null,
   ].filter((item): item is { key: string; label: string } => Boolean(item));
 
+  const filterDialog = (
+    <FilterDialog
+      activeCount={activeFilters.length}
+      onReset={resetFilters}
+      resultSummary={`Menampilkan ${filteredCount} dari ${totalCount} tanaman.`}
+      title="Atur filter tanaman"
+    >
+      <div className="sm:col-span-2">
+        <SearchInput
+          id="plant-search"
+          label="Cari tanaman"
+          onChange={(event) => setQueryInput(event.target.value)}
+          placeholder="Contoh: jahe, cincau, willow"
+          value={queryInput}
+        />
+      </div>
+      <div>
+        <label
+          className="block text-sm font-medium text-herbal-ink"
+          htmlFor="plant-collection"
+        >
+          Filter zona
+        </label>
+        <select
+          className="mt-2 h-11 w-full rounded-md border border-herbal-green/20 bg-white px-3 text-sm text-herbal-ink outline-none transition focus:border-herbal-green focus:ring-2 focus:ring-herbal-green/20"
+          id="plant-collection"
+          onChange={(event) => updateParams({ zona: event.target.value })}
+          value={collection}
+        >
+          <option value="">{allCollectionsLabel}</option>
+          {collections.map((item) => (
+            <option key={item} value={item}>
+              {item}
+            </option>
+          ))}
+        </select>
+      </div>
+      <label className="grid gap-2 text-sm font-medium text-herbal-ink">
+        Filter bagian
+        <select
+          className="h-11 w-full rounded-md border border-herbal-green/20 bg-white px-3 text-sm text-herbal-ink outline-none transition focus:border-herbal-green focus:ring-2 focus:ring-herbal-green/20"
+          onChange={(event) => updateParams({ bagian: event.target.value })}
+          value={part}
+        >
+          <option value="">{allPartsLabel}</option>
+          {parts.map((item) => (
+            <option key={item} value={item}>
+              {item}
+            </option>
+          ))}
+        </select>
+      </label>
+      <label className="grid gap-2 text-sm font-medium text-herbal-ink">
+        Urutkan
+        <select
+          className="h-11 w-full rounded-md border border-herbal-green/20 bg-white px-3 text-sm text-herbal-ink outline-none transition focus:border-herbal-green focus:ring-2 focus:ring-herbal-green/20"
+          onChange={(event) => updateParams({ urut: event.target.value })}
+          value={sort}
+        >
+          {plantCatalogSortOptions.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+      </label>
+    </FilterDialog>
+  );
+
   return (
     <div>
-      <FilterDialog
-        activeCount={activeFilters.length}
-        onReset={resetFilters}
-        resultSummary={`Menampilkan ${filteredCount} dari ${totalCount} tanaman.`}
-        title="Atur filter tanaman"
-      >
-        <div className="sm:col-span-2">
-          <SearchInput
-            id="plant-search"
-            label="Cari tanaman"
-            onChange={(event) => setQueryInput(event.target.value)}
-            placeholder="Contoh: jahe, cincau, willow"
-            value={queryInput}
-          />
-        </div>
-        <div>
-          <label
-            className="block text-sm font-medium text-herbal-ink"
-            htmlFor="plant-collection"
-          >
-            Filter zona
-          </label>
-          <select
-            className="mt-2 h-11 w-full rounded-md border border-herbal-green/20 bg-white px-3 text-sm text-herbal-ink outline-none transition focus:border-herbal-green focus:ring-2 focus:ring-herbal-green/20"
-            id="plant-collection"
-            onChange={(event) => updateParams({ zona: event.target.value })}
-            value={collection}
-          >
-            <option value="">{allCollectionsLabel}</option>
-            {collections.map((item) => (
-              <option key={item} value={item}>
-                {item}
-              </option>
-            ))}
-          </select>
-        </div>
-        <label className="grid gap-2 text-sm font-medium text-herbal-ink">
-          Filter bagian
-          <select
-            className="h-11 w-full rounded-md border border-herbal-green/20 bg-white px-3 text-sm text-herbal-ink outline-none transition focus:border-herbal-green focus:ring-2 focus:ring-herbal-green/20"
-            onChange={(event) => updateParams({ bagian: event.target.value })}
-            value={part}
-          >
-            <option value="">{allPartsLabel}</option>
-            {parts.map((item) => (
-              <option key={item} value={item}>
-                {item}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label className="grid gap-2 text-sm font-medium text-herbal-ink">
-          Urutkan
-          <select
-            className="h-11 w-full rounded-md border border-herbal-green/20 bg-white px-3 text-sm text-herbal-ink outline-none transition focus:border-herbal-green focus:ring-2 focus:ring-herbal-green/20"
-            onChange={(event) => updateParams({ urut: event.target.value })}
-            value={sort}
-          >
-            {plantCatalogSortOptions.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
-        </label>
-      </FilterDialog>
+      <CatalogPageHeader eyebrow={eyebrow} filter={filterDialog} title={title} />
       {activeFilters.length > 0 ? (
-        <div className="mt-2 flex flex-wrap gap-2">
-          {activeFilters.map((filter) => (
+        <div className="mt-3 flex flex-wrap gap-2">
+          {activeFilters.map((activeFilter) => (
             <FilterChip
-              key={filter.key}
+              key={activeFilter.key}
               onClick={() => {
-                if (filter.key === "q") {
+                if (activeFilter.key === "q") {
                   setQueryInput("");
                 }
-                updateParams({ [filter.key]: "" });
+                updateParams({ [activeFilter.key]: "" });
               }}
             >
-              {filter.label} - hapus
+              {activeFilter.label} - hapus
             </FilterChip>
           ))}
         </div>

@@ -7,6 +7,7 @@ import {
   type ReactNode,
   type MouseEvent,
 } from "react";
+import { cn } from "@/lib/utils";
 
 type FilterDialogProps = {
   activeCount: number;
@@ -62,16 +63,27 @@ export function FilterDialog({
     closeDialog();
   }
 
+  const hasActiveFilters = activeCount > 0;
+
   return (
-    <div className="rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-4 shadow-[var(--shadow-soft)] sm:p-5">
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        {activeCount > 0 ? (
+    <div
+      className={
+        hasActiveFilters
+          ? "rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-4 shadow-[var(--shadow-soft)] sm:p-5"
+          : undefined
+      }
+    >
+      <div
+        className={cn(
+          "flex flex-wrap items-center gap-2",
+          hasActiveFilters && "sm:justify-between",
+        )}
+      >
+        {hasActiveFilters ? (
           <p className="text-sm text-herbal-muted" aria-live="polite">
             {resultSummary}
           </p>
-        ) : (
-          <span aria-hidden="true" />
-        )}
+        ) : null}
         <div className="flex flex-wrap gap-2">
           <button
             aria-expanded={isOpen}
@@ -82,13 +94,13 @@ export function FilterDialog({
             type="button"
           >
             Atur filter
-            {activeCount > 0 ? (
+            {hasActiveFilters ? (
               <span className="ml-2 inline-flex h-6 min-w-6 items-center justify-center rounded-full bg-white px-1.5 text-xs text-herbal-green">
                 {activeCount}
               </span>
             ) : null}
           </button>
-          {activeCount > 0 ? (
+          {hasActiveFilters ? (
             <button
               className="inline-flex min-h-11 items-center justify-center rounded-md border border-herbal-green/20 px-4 py-2 text-sm font-bold text-herbal-green transition hover:bg-herbal-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
               onClick={onReset}
