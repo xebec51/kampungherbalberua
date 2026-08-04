@@ -48,20 +48,31 @@ type PartnerLogosProps = {
   className?: string;
   compact?: boolean;
   itemClassName?: string;
+  /** Force exactly one row (4 equal columns that shrink to fit) instead of wrapping. */
+  singleRow?: boolean;
 };
 
 export function PartnerLogos({
   className,
   compact = false,
   itemClassName,
+  singleRow = false,
 }: PartnerLogosProps) {
   return (
-    <div className={cn("flex flex-wrap items-center gap-3", className)}>
+    <div
+      className={cn(
+        singleRow
+          ? "grid grid-cols-4 gap-1.5 sm:gap-2"
+          : "flex flex-wrap items-center gap-3",
+        className,
+      )}
+    >
       {partnerLogos.map((partner) => (
         <div
           className={cn(
-            "flex items-center justify-center rounded-md border border-herbal-green/15 bg-white px-4 shadow-sm",
-            compact ? "h-14" : "h-20",
+            "flex items-center justify-center rounded-md border border-herbal-green/15 bg-white shadow-sm",
+            singleRow ? "h-11 px-1 sm:h-12 sm:px-1.5" : "px-4",
+            !singleRow && (compact ? "h-14" : "h-20"),
             itemClassName,
           )}
           key={partner.name}
@@ -69,15 +80,18 @@ export function PartnerLogos({
           <Image
             alt={partner.alt}
             className={cn(
-              "h-auto w-auto object-contain",
-              compact
-                ? partner.imageClassNameCompact
-                : partner.imageClassName,
+              "object-contain",
+              singleRow
+                ? "h-auto max-h-7 w-full sm:max-h-8"
+                : cn(
+                    "h-auto w-auto",
+                    compact ? partner.imageClassNameCompact : partner.imageClassName,
+                  ),
             )}
             height={partner.height}
             loading="lazy"
             quality={76}
-            sizes={partner.sizes}
+            sizes={singleRow ? "18vw" : partner.sizes}
             src={partner.src}
             width={partner.width}
           />

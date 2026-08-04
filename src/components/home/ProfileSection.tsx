@@ -44,7 +44,7 @@ export function ProfileSection() {
             <p className="mt-2 text-sm leading-6 text-herbal-muted">
               KKN Universitas Hasanuddin bersama Pemerintah Kota Makassar.
             </p>
-            <PartnerLogos className="mt-4" />
+            <PartnerLogos className="mt-4" singleRow />
           </div>
         </div>
         <div>

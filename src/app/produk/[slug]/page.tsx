@@ -82,7 +82,7 @@ export default async function ProductDetailPage({
                 {product.description}
               </p>
 
-              <dl className="mt-8 grid gap-4 sm:grid-cols-2">
+              <dl className="mt-8 grid grid-cols-2 gap-3 sm:gap-4">
                 <ProductInfo label="Harga" value={formatPrice(product.price, product.unit)} />
                 <ProductInfo label="Satuan" value={product.unit ?? "Per item"} />
                 <ProductInfo label="Produsen" value={product.producerName} />
@@ -148,9 +148,11 @@ type ProductInfoProps = {
 
 function ProductInfo({ label, value }: ProductInfoProps) {
   return (
-    <div className="rounded-md border border-herbal-green/10 bg-white p-5 shadow-sm">
-      <dt className="text-sm font-semibold text-herbal-muted">{label}</dt>
-      <dd className="mt-2 text-base font-bold text-herbal-ink">{value}</dd>
+    <div className="rounded-md border border-herbal-green/10 bg-white p-3.5 shadow-sm sm:p-5">
+      <dt className="text-xs font-semibold text-herbal-muted sm:text-sm">{label}</dt>
+      <dd className="mt-1 line-clamp-2 text-sm font-bold text-herbal-ink sm:mt-2 sm:text-base">
+        {value}
+      </dd>
     </div>
   );
 }
