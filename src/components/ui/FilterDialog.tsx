@@ -7,21 +7,25 @@ import {
   type ReactNode,
   type MouseEvent,
 } from "react";
-import { cn } from "@/lib/utils";
 
 type FilterDialogProps = {
   activeCount: number;
   children: ReactNode;
   onReset: () => void;
-  resultSummary: ReactNode;
   title: string;
 };
 
+// The trigger is always a compact icon button (text label only at < lg,
+// where it has its own full-width row anyway) so it never competes with a
+// page title sharing the same row at lg:+ -- see CatalogPageHeader.tsx. The
+// result-count text and quick Reset link live with the active-filter chips
+// in the calling catalog component instead of growing this button into a
+// box, which is what used to squeeze the title into wrapping once a filter
+// was applied.
 export function FilterDialog({
   activeCount,
   children,
   onReset,
-  resultSummary,
   title,
 }: FilterDialogProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -66,51 +70,29 @@ export function FilterDialog({
   const hasActiveFilters = activeCount > 0;
 
   return (
-    <div
-      className={
-        hasActiveFilters
-          ? "rounded-[var(--radius-card)] border border-herbal-green/10 bg-white p-4 shadow-[var(--shadow-soft)] sm:p-5"
-          : undefined
-      }
-    >
-      <div
-        className={cn(
-          "flex flex-wrap items-center gap-2",
-          hasActiveFilters && "sm:justify-between",
-        )}
+    <>
+      <button
+        aria-expanded={isOpen}
+        aria-haspopup="dialog"
+        aria-label={hasActiveFilters ? `Atur filter, ${activeCount} aktif` : "Atur filter"}
+        className="relative inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-herbal-green px-4 text-sm font-bold text-white transition hover:bg-herbal-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown lg:h-11 lg:w-11 lg:px-0"
+        onClick={openDialog}
+        ref={triggerRef}
+        type="button"
       >
+        <FilterIcon />
+        <span aria-hidden="true" className="lg:hidden">
+          Atur filter
+        </span>
         {hasActiveFilters ? (
-          <p className="text-sm text-herbal-muted" aria-live="polite">
-            {resultSummary}
-          </p>
-        ) : null}
-        <div className="flex flex-wrap gap-2">
-          <button
-            aria-expanded={isOpen}
-            aria-haspopup="dialog"
-            className="inline-flex min-h-11 items-center justify-center rounded-md bg-herbal-green px-4 py-2 text-sm font-bold text-white transition hover:bg-herbal-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
-            onClick={openDialog}
-            ref={triggerRef}
-            type="button"
+          <span
+            aria-hidden="true"
+            className="absolute -right-1.5 -top-1.5 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-herbal-gold px-1 text-[0.65rem] font-bold text-herbal-ink"
           >
-            Atur filter
-            {hasActiveFilters ? (
-              <span className="ml-2 inline-flex h-6 min-w-6 items-center justify-center rounded-full bg-white px-1.5 text-xs text-herbal-green">
-                {activeCount}
-              </span>
-            ) : null}
-          </button>
-          {hasActiveFilters ? (
-            <button
-              className="inline-flex min-h-11 items-center justify-center rounded-md border border-herbal-green/20 px-4 py-2 text-sm font-bold text-herbal-green transition hover:bg-herbal-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
-              onClick={onReset}
-              type="button"
-            >
-              Reset filter
-            </button>
-          ) : null}
-        </div>
-      </div>
+            {activeCount}
+          </span>
+        ) : null}
+      </button>
 
       <dialog
         aria-labelledby={titleId}
@@ -160,6 +142,26 @@ export function FilterDialog({
           </div>
         </div>
       </dialog>
-    </div>
+    </>
+  );
+}
+
+function FilterIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      className="h-4 w-4 shrink-0"
+      fill="none"
+      viewBox="0 0 20 20"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M3 5h14M6.5 10h7M9.5 15h1"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+      />
+    </svg>
   );
 }

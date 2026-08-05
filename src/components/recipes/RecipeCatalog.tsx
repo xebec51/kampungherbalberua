@@ -177,7 +177,6 @@ export function RecipeCatalog({ recipes }: RecipeCatalogProps) {
       <FilterDialog
         activeCount={activeFilters.length}
         onReset={resetFilters}
-        resultSummary={`Menampilkan ${filteredRecipes.length} dari ${recipes.length} ramuan.`}
         title="Atur filter ramuan"
       >
         <div className="sm:col-span-2">
@@ -226,20 +225,34 @@ export function RecipeCatalog({ recipes }: RecipeCatalogProps) {
         </label>
       </FilterDialog>
       {activeFilters.length > 0 ? (
-        <div className="mt-2 flex flex-wrap gap-2">
-          {activeFilters.map((filter) => (
-            <FilterChip
-              key={filter.key}
-              onClick={() => {
-                if (filter.key === "q") {
-                  setQueryInput("");
-                }
-                updateParam(filter.key, "");
-              }}
+        <div className="mt-3 flex flex-col gap-2">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <p className="text-sm text-herbal-muted" aria-live="polite">
+              {`Menampilkan ${filteredRecipes.length} dari ${recipes.length} ramuan.`}
+            </p>
+            <button
+              className="text-sm font-bold text-herbal-green hover:underline"
+              onClick={resetFilters}
+              type="button"
             >
-              {filter.label} - hapus
-            </FilterChip>
-          ))}
+              Reset filter
+            </button>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {activeFilters.map((filter) => (
+              <FilterChip
+                key={filter.key}
+                onClick={() => {
+                  if (filter.key === "q") {
+                    setQueryInput("");
+                  }
+                  updateParam(filter.key, "");
+                }}
+              >
+                {filter.label} - hapus
+              </FilterChip>
+            ))}
+          </div>
         </div>
       ) : null}
 

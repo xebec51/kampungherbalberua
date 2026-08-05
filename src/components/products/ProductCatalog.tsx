@@ -205,7 +205,6 @@ export function ProductCatalog({ eyebrow, products, title }: ProductCatalogProps
     <FilterDialog
       activeCount={activeFilters.length}
       onReset={resetFilters}
-      resultSummary={`Menampilkan ${filteredProducts.length} dari ${products.length} produk.`}
       title="Atur filter produk"
     >
       <div className="sm:col-span-2">
@@ -276,20 +275,34 @@ export function ProductCatalog({ eyebrow, products, title }: ProductCatalogProps
     <div>
       <CatalogPageHeader eyebrow={eyebrow} filter={filterDialog} title={title} />
       {activeFilters.length > 0 ? (
-        <div className="mt-3 flex flex-wrap gap-2">
-          {activeFilters.map((activeFilter) => (
-            <FilterChip
-              key={activeFilter.key}
-              onClick={() => {
-                if (activeFilter.key === "q") {
-                  setQueryInput("");
-                }
-                updateParam(activeFilter.key, "");
-              }}
+        <div className="mt-3 flex flex-col gap-2">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <p className="text-sm text-herbal-muted" aria-live="polite">
+              {`Menampilkan ${filteredProducts.length} dari ${products.length} produk.`}
+            </p>
+            <button
+              className="text-sm font-bold text-herbal-green hover:underline"
+              onClick={resetFilters}
+              type="button"
             >
-              {activeFilter.label} - hapus
-            </FilterChip>
-          ))}
+              Reset filter
+            </button>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {activeFilters.map((activeFilter) => (
+              <FilterChip
+                key={activeFilter.key}
+                onClick={() => {
+                  if (activeFilter.key === "q") {
+                    setQueryInput("");
+                  }
+                  updateParam(activeFilter.key, "");
+                }}
+              >
+                {activeFilter.label} - hapus
+              </FilterChip>
+            ))}
+          </div>
         </div>
       ) : null}
 

@@ -136,7 +136,6 @@ export function PosterPlantCatalog({
     <FilterDialog
       activeCount={activeFilters.length}
       onReset={resetFilters}
-      resultSummary={`Menampilkan ${filteredCount} dari ${totalCount} tanaman.`}
       title="Atur filter tanaman"
     >
       <div className="sm:col-span-2">
@@ -205,20 +204,34 @@ export function PosterPlantCatalog({
     <div>
       <CatalogPageHeader eyebrow={eyebrow} filter={filterDialog} title={title} />
       {activeFilters.length > 0 ? (
-        <div className="mt-3 flex flex-wrap gap-2">
-          {activeFilters.map((activeFilter) => (
-            <FilterChip
-              key={activeFilter.key}
-              onClick={() => {
-                if (activeFilter.key === "q") {
-                  setQueryInput("");
-                }
-                updateParams({ [activeFilter.key]: "" });
-              }}
+        <div className="mt-3 flex flex-col gap-2">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <p className="text-sm text-herbal-muted" aria-live="polite">
+              {`Menampilkan ${filteredCount} dari ${totalCount} tanaman.`}
+            </p>
+            <button
+              className="text-sm font-bold text-herbal-green hover:underline"
+              onClick={resetFilters}
+              type="button"
             >
-              {activeFilter.label} - hapus
-            </FilterChip>
-          ))}
+              Reset filter
+            </button>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {activeFilters.map((activeFilter) => (
+              <FilterChip
+                key={activeFilter.key}
+                onClick={() => {
+                  if (activeFilter.key === "q") {
+                    setQueryInput("");
+                  }
+                  updateParams({ [activeFilter.key]: "" });
+                }}
+              >
+                {activeFilter.label} - hapus
+              </FilterChip>
+            ))}
+          </div>
         </div>
       ) : null}
 
