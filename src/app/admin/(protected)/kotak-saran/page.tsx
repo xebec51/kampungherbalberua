@@ -6,9 +6,14 @@ import { AdminPagination } from "@/components/admin/AdminPagination";
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { SelectField, TextField } from "@/components/admin/fields";
 import { AdminToneBadge as StatusBadge } from "@/components/admin/AdminStatusBadge";
+import { StaticPageQrPanel } from "@/components/admin/StaticPageQrPanel";
 import { getAllSuggestionsForAdmin } from "@/lib/data/admin/suggestions";
 import { createPageMetadata } from "@/lib/metadata";
 import { paginateItems, parsePageParam } from "@/lib/pagination";
+import {
+  createSuggestionBoxQrSvg,
+  getSuggestionBoxQrTarget,
+} from "@/lib/qr/health-zone-qr";
 
 export const dynamic = "force-dynamic";
 
@@ -82,6 +87,8 @@ export default async function AdminSuggestionsPage({
     : pagination.totalItems > 0
       ? `Menampilkan ${pagination.startItem}-${pagination.endItem} dari ${pagination.totalItems} saran.`
       : "Tidak ada saran yang cocok dengan filter.";
+  const suggestionBoxQrTarget = getSuggestionBoxQrTarget();
+  const suggestionBoxQrSvg = await createSuggestionBoxQrSvg();
 
   return (
     <div className="grid gap-6">
@@ -90,6 +97,16 @@ export default async function AdminSuggestionsPage({
         description="Saran warga yang dikirim lewat formulir publik /kotak-saran. Data ini hanya dapat dibaca oleh admin."
         eyebrow="Admin"
         title="Kotak Saran"
+      />
+
+      <StaticPageQrPanel
+        destinationHref="/kotak-saran"
+        destinationLabel="Buka halaman tujuan"
+        downloadBaseHref="/admin/kotak-saran/qr"
+        heading="QR permanen kotak saran"
+        previewLabel="Pratinjau QR untuk kotak saran"
+        svg={suggestionBoxQrSvg}
+        targetUrl={suggestionBoxQrTarget}
       />
 
       <AdminFilterBar

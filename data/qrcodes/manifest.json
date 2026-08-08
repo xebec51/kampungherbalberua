@@ -1,7 +1,7 @@
 {
   "counts": {
     "jalan": 9,
-    "tanaman": 86,
+    "tanaman": 88,
     "zona": 20
   },
   "entities": [
@@ -367,6 +367,15 @@
     },
     {
       "category": "tanaman",
+      "name": "Brahmi",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-brahmi.png",
+      "qrKey": "brahmi",
+      "slug": "brahmi",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-brahmi.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/brahmi"
+    },
+    {
+      "category": "tanaman",
       "name": "Brokoli",
       "pngPath": "data/qrcodes/tanaman/qr-tanaman-brokoli.png",
       "qrKey": "brokoli",
@@ -634,6 +643,15 @@
       "slug": "kemangi",
       "svgPath": "data/qrcodes/tanaman/qr-tanaman-kemangi.svg",
       "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/kemangi"
+    },
+    {
+      "category": "tanaman",
+      "name": "Kencur",
+      "pngPath": "data/qrcodes/tanaman/qr-tanaman-kencur.png",
+      "qrKey": "kencur",
+      "slug": "kencur",
+      "svgPath": "data/qrcodes/tanaman/qr-tanaman-kencur.svg",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/kencur"
     },
     {
       "category": "tanaman",
@@ -1041,5 +1059,23 @@
       "targetUrl": "https://kampungherbalberua.web.id/qr/tanaman/wortel"
     }
   ],
-  "sourceUrl": "https://xkvgpauprhggykaxffkh.supabase.co"
+  "sourceUrl": "https://xkvgpauprhggykaxffkh.supabase.co",
+  "staticPages": [
+    {
+      "category": "produk",
+      "name": "Katalog Produk",
+      "pngPath": "data/qrcodes/produk/qr-produk-katalog.png",
+      "svgPath": "data/qrcodes/produk/qr-produk-katalog.svg",
+      "targetPath": "/produk",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/produk"
+    },
+    {
+      "category": "kotak-saran",
+      "name": "Kotak Saran",
+      "pngPath": "data/qrcodes/kotak-saran/qr-kotak-saran.png",
+      "svgPath": "data/qrcodes/kotak-saran/qr-kotak-saran.svg",
+      "targetPath": "/kotak-saran",
+      "targetUrl": "https://kampungherbalberua.web.id/qr/kotak-saran"
+    }
+  ]
 }

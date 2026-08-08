@@ -1,9 +1,12 @@
 // Bulk-exports every published street ("jalan"), health zone ("zona"), and
 // plant ("tanaman") QR code to data/qrcodes/{jalan,zona,tanaman}/ as SVG +
-// PNG, plus a manifest.json index. Read-only against Supabase (anon/
-// publishable key only -- streets/health_zones/plants all grant anon SELECT
-// on published rows, see supabase/migrations/*_create_*.sql RLS policies),
-// so this is safe to run against production.
+// PNG, plus a manifest.json index. Also exports the two fixed static-page
+// QR codes (products catalog, suggestion box) to
+// data/qrcodes/{produk,kotak-saran}/ the same way. Read-only against
+// Supabase (anon/publishable key only -- streets/health_zones/plants all
+// grant anon SELECT on published rows, see
+// supabase/migrations/*_create_*.sql RLS policies), so this is safe to run
+// against production.
 //
 // QR pixel/target parameters below are kept byte-identical to
 // src/lib/qr/health-zone-qr.ts and the *_qr_key_format check constraints
@@ -38,6 +41,31 @@ type ManifestEntry = {
   qrKey: string;
   slug: string;
   svgPath: string;
+  targetUrl: string;
+};
+
+// Static, single-instance pages (not database rows) that still get a
+// permanent printable QR -- e.g. the products catalog and the suggestion
+// box form. Unlike jalan/zona/tanaman there is no per-row qr_key/slug: the
+// QR always points at /qr/{category}, which src/app/qr/{category}/route.ts
+// redirects to the fixed target path below.
+type StaticPageCategory = "kotak-saran" | "produk";
+
+const staticPages: {
+  category: StaticPageCategory;
+  name: string;
+  targetPath: string;
+}[] = [
+  { category: "produk", name: "Katalog Produk", targetPath: "/produk" },
+  { category: "kotak-saran", name: "Kotak Saran", targetPath: "/kotak-saran" },
+];
+
+type StaticPageManifestEntry = {
+  category: StaticPageCategory;
+  name: string;
+  pngPath: string;
+  svgPath: string;
+  targetPath: string;
   targetUrl: string;
 };
 
@@ -139,6 +167,35 @@ async function exportEntity(
   });
 }
 
+async function exportStaticPage(
+  category: StaticPageCategory,
+  name: string,
+  targetPath: string,
+  manifest: StaticPageManifestEntry[],
+) {
+  const targetUrl = `${productionQrSiteUrl}/qr/${category}`;
+  const filenameBase = `qr-${category === "produk" ? "produk-katalog" : category}`;
+  const svgPath = resolve(outDir, category, `${filenameBase}.svg`);
+  const pngPath = resolve(outDir, category, `${filenameBase}.png`);
+
+  const [svg, png] = await Promise.all([
+    createQrSvg(targetUrl),
+    createQrPng(targetUrl),
+  ]);
+
+  writeFileSync(svgPath, svg, "utf8");
+  writeFileSync(pngPath, png);
+
+  manifest.push({
+    category,
+    name,
+    pngPath: relative(process.cwd(), pngPath).replaceAll("\\", "/"),
+    svgPath: relative(process.cwd(), svgPath).replaceAll("\\", "/"),
+    targetPath,
+    targetUrl,
+  });
+}
+
 async function main() {
   const { url, publishableKey } = loadSupabasePublicConfig();
   const client = createClient<Database>(url, publishableKey, {
@@ -153,7 +210,12 @@ async function main() {
     mkdirSync(resolve(outDir, category), { recursive: true });
   }
 
+  for (const page of staticPages) {
+    mkdirSync(resolve(outDir, page.category), { recursive: true });
+  }
+
   const manifest: ManifestEntry[] = [];
+  const staticPageManifest: StaticPageManifestEntry[] = [];
 
   const { data: streets, error: streetsError } = await client
     .from("streets")
@@ -197,6 +259,10 @@ async function main() {
     await exportEntity("tanaman", plant.qr_key, plant.slug, plant.local_name, manifest);
   }
 
+  for (const page of staticPages) {
+    await exportStaticPage(page.category, page.name, page.targetPath, staticPageManifest);
+  }
+
   writeFileSync(
     resolve(outDir, "manifest.json"),
     `${JSON.stringify(
@@ -208,6 +274,7 @@ async function main() {
         },
         entities: manifest,
         sourceUrl: url,
+        staticPages: staticPageManifest,
       },
       null,
       2,
@@ -216,7 +283,7 @@ async function main() {
   );
 
   console.log(
-    `QR export selesai: jalan=${streets?.length ?? 0}, zona=${zones?.length ?? 0}, tanaman=${plants?.length ?? 0}, total file=${manifest.length * 2}.`,
+    `QR export selesai: jalan=${streets?.length ?? 0}, zona=${zones?.length ?? 0}, tanaman=${plants?.length ?? 0}, halaman statis=${staticPageManifest.length}, total file=${(manifest.length + staticPageManifest.length) * 2}.`,
   );
 }
 

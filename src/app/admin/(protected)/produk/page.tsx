@@ -8,6 +8,7 @@ import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { AdminToneBadge } from "@/components/admin/AdminStatusBadge";
 import { DeleteConfirmForm } from "@/components/admin/DeleteConfirmForm";
 import { SelectField, TextField } from "@/components/admin/fields";
+import { StaticPageQrPanel } from "@/components/admin/StaticPageQrPanel";
 import { deleteProductAction } from "@/app/admin/(protected)/produk/actions";
 import { canDeleteContent, canEditContent } from "@/lib/auth/permissions";
 import { requireStaff } from "@/lib/auth/require-staff";
@@ -19,6 +20,10 @@ import {
 import type { ProductAvailability } from "@/lib/supabase/database.types";
 import { createPageMetadata } from "@/lib/metadata";
 import { paginateItems, parsePageParam } from "@/lib/pagination";
+import {
+  createProductCatalogQrSvg,
+  getProductCatalogQrTarget,
+} from "@/lib/qr/health-zone-qr";
 
 type AdminProductsPageProps = {
   searchParams: Promise<{
@@ -108,6 +113,8 @@ export default async function AdminProductsPage({
     : pagination.totalItems > 0
       ? `Menampilkan ${pagination.startItem}-${pagination.endItem} dari ${pagination.totalItems} produk.`
       : "Tidak ada produk yang cocok dengan filter.";
+  const productCatalogQrTarget = getProductCatalogQrTarget();
+  const productCatalogQrSvg = await createProductCatalogQrSvg();
 
   return (
     <div className="grid gap-6">
@@ -122,6 +129,16 @@ export default async function AdminProductsPage({
         description="Kelola katalog produk warga melalui Supabase. Tidak ada alur draf/publikasi -- perubahan langsung tampil publik."
         eyebrow="Admin Produk"
         title="Daftar Produk"
+      />
+
+      <StaticPageQrPanel
+        destinationHref="/produk"
+        destinationLabel="Buka halaman tujuan"
+        downloadBaseHref="/admin/produk/qr"
+        heading="QR permanen katalog produk"
+        previewLabel="Pratinjau QR untuk katalog produk"
+        svg={productCatalogQrSvg}
+        targetUrl={productCatalogQrTarget}
       />
 
       <AdminNotice message={successMessages[params.success ?? ""]} />

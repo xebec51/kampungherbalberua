@@ -81,6 +81,14 @@ export function getPlantQrTarget(qrKey: string) {
   return qrAbsoluteUrl(`/qr/tanaman/${normalizeQrKey(qrKey)}`);
 }
 
+export function getProductCatalogQrTarget() {
+  return qrAbsoluteUrl("/qr/produk");
+}
+
+export function getSuggestionBoxQrTarget() {
+  return qrAbsoluteUrl("/qr/kotak-saran");
+}
+
 export function getLegacyHealthZoneQrTarget(zoneCode: string) {
   return absoluteUrl(`/z/${normalizeZoneCode(zoneCode)}`);
 }
@@ -107,4 +115,20 @@ export async function createPlantQrSvg(qrKey: string) {
 
 export async function createPlantQrPng(qrKey: string) {
   return createQrPng(getPlantQrTarget(qrKey));
+}
+
+export async function createProductCatalogQrSvg() {
+  return createQrSvg(getProductCatalogQrTarget());
+}
+
+export async function createProductCatalogQrPng() {
+  return createQrPng(getProductCatalogQrTarget());
+}
+
+export async function createSuggestionBoxQrSvg() {
+  return createQrSvg(getSuggestionBoxQrTarget());
+}
+
+export async function createSuggestionBoxQrPng() {
+  return createQrPng(getSuggestionBoxQrTarget());
 }

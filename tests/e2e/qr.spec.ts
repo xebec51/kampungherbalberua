@@ -245,6 +245,81 @@ test("route legacy zona tetap redirect untuk kompatibilitas", async ({ request }
   expect(invalid.status()).toBe(404);
 });
 
+test("QR katalog produk dan kotak saran redirect ke halaman statis yang tepat", async ({
+  request,
+}) => {
+  const productRedirect = await request.get("/qr/produk", { maxRedirects: 0 });
+  expect(productRedirect.status()).toBe(307);
+  expect(productRedirect.headers().location).toContain("/produk");
+  expect(productRedirect.headers().location).not.toContain("/kotak-saran");
+
+  const suggestionRedirect = await request.get("/qr/kotak-saran", {
+    maxRedirects: 0,
+  });
+  expect(suggestionRedirect.status()).toBe(307);
+  expect(suggestionRedirect.headers().location).toContain("/kotak-saran");
+});
+
+test("endpoint download QR produk dan kotak saran menghasilkan SVG/PNG production", async ({
+  page,
+}) => {
+  skipWithoutSupabaseE2E();
+
+  await loginAs(page, "admin");
+
+  await page.goto("/admin/produk");
+  await expect(
+    page.getByText("https://kampungherbalberua.web.id/qr/produk"),
+  ).toBeVisible();
+
+  const productSvg = await page.request.get("/admin/produk/qr?format=svg", {
+    maxRedirects: 0,
+  });
+  expect(productSvg.status()).toBe(200);
+  expect(productSvg.headers()["content-type"]).toContain("image/svg+xml");
+  expect(productSvg.headers()["content-disposition"]).toContain(
+    "qr-produk-katalog.svg",
+  );
+  expect(await productSvg.text()).toContain("<svg");
+
+  const productPng = await page.request.get("/admin/produk/qr?format=png", {
+    maxRedirects: 0,
+  });
+  expect(productPng.status()).toBe(200);
+  expect(productPng.headers()["content-type"]).toContain("image/png");
+  expect(productPng.headers()["content-disposition"]).toContain(
+    "qr-produk-katalog.png",
+  );
+  expect((await productPng.body()).byteLength).toBeGreaterThan(1000);
+
+  await page.goto("/admin/kotak-saran");
+  await expect(
+    page.getByText("https://kampungherbalberua.web.id/qr/kotak-saran"),
+  ).toBeVisible();
+
+  const suggestionSvg = await page.request.get(
+    "/admin/kotak-saran/qr?format=svg",
+    { maxRedirects: 0 },
+  );
+  expect(suggestionSvg.status()).toBe(200);
+  expect(suggestionSvg.headers()["content-type"]).toContain("image/svg+xml");
+  expect(suggestionSvg.headers()["content-disposition"]).toContain(
+    "qr-kotak-saran.svg",
+  );
+  expect(await suggestionSvg.text()).toContain("<svg");
+
+  const suggestionPng = await page.request.get(
+    "/admin/kotak-saran/qr?format=png",
+    { maxRedirects: 0 },
+  );
+  expect(suggestionPng.status()).toBe(200);
+  expect(suggestionPng.headers()["content-type"]).toContain("image/png");
+  expect(suggestionPng.headers()["content-disposition"]).toContain(
+    "qr-kotak-saran.png",
+  );
+  expect((await suggestionPng.body()).byteLength).toBeGreaterThan(1000);
+});
+
 test("endpoint download QR zona dan jalan menghasilkan SVG/PNG production", async ({
   page,
 }) => {
