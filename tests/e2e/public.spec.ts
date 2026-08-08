@@ -229,7 +229,7 @@ test("produk warga tampil dan WhatsApp memuat produk yang dipilih", async ({
     const whatsappLink = page.getByRole("link", { name: "Pesan via WhatsApp" });
     await expect(whatsappLink).toHaveAttribute(
       "href",
-      /https:\/\/wa\.me\/6289623080501/,
+      /https:\/\/wa\.me\/6282193700886/,
     );
     const whatsappHref = await whatsappLink.getAttribute("href");
     whatsappMessages.push(

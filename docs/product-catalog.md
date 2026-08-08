@@ -40,7 +40,7 @@ Produk contoh harus dihapus setelah katalog resmi diterima agar pengunjung tidak
 
 ## Format Nomor WhatsApp
 
-Nomor ditulis sekali di `src/config/contacts.ts` dalam format lokal, misalnya `089623080501`. Helper `normalizeWhatsAppNumber` mengubahnya menjadi format `wa.me`, yaitu `6289623080501`.
+Nomor ditulis sekali di `src/config/contacts.ts` dalam format lokal, saat ini `082193700886`. Helper `normalizeWhatsAppNumber` mengubahnya menjadi format `wa.me`, yaitu `6282193700886`.
 
 Jangan menyalin nomor yang sama ke banyak komponen. Produk dengan `whatsappNumber: null` memakai nomor global.
 

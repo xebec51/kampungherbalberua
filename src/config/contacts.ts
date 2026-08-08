@@ -1,3 +1,3 @@
 export const productOrderContact = {
-  whatsappNumber: "089623080501",
+  whatsappNumber: "082193700886",
 };

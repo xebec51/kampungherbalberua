@@ -6,8 +6,8 @@ Katalog produk menyediakan tombol WhatsApp pada kartu produk dan halaman detail 
 
 Nomor kontak sementara produk disimpan di `src/config/contacts.ts`.
 
-- Nomor input: `089623080501`
-- Nomor untuk `wa.me`: `6289623080501`
+- Nomor input: `082193700886`
+- Nomor untuk `wa.me`: `6282193700886`
 - Produk dengan `whatsappNumber: null` memakai nomor fallback tersebut.
 - Produk tetap dapat memakai nomor khusus melalui field `whatsappNumber` bila pendataan produsen sudah selesai.
 

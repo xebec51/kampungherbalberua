@@ -50,7 +50,7 @@ describe("order produk via WhatsApp", () => {
     const product = products.find((item) => item.slug === "jahe-rempah");
     const url = createProductOrderWhatsAppUrl(product!);
 
-    expect(url).toContain("https://wa.me/6289623080501");
+    expect(url).toContain("https://wa.me/6282193700886");
     expect(new URL(url ?? "").searchParams.get("text")).toContain(
       "Produk: Jahe Rempah",
     );
