@@ -20,6 +20,28 @@ const descriptionsBySlug: Record<string, string> = {
     "Sistem pencernaan mengolah makanan, menyerap zat gizi, dan membuang sisa yang tidak diperlukan tubuh. Zona ini membahas kebiasaan makan seimbang, cukup serat, hidrasi, dan pola hidup yang mendukung fungsi cerna.",
   "tulang-dan-sendi":
     "Tulang memberi struktur dan melindungi organ, sedangkan sendi membantu tubuh bergerak. Zona ini membahas dukungan umum untuk kekuatan tulang dan kenyamanan gerak melalui aktivitas fisik aman, gizi, dan kewaspadaan cedera.",
+  "gula-darah-terkendali":
+    "Metabolisme glukosa membantu tubuh mengubah makanan menjadi energi sekaligus menjaga kadar gula darah tetap stabil. Zona ini menekankan kebiasaan seperti pola makan seimbang, aktivitas fisik rutin, menjaga berat badan ideal, dan pemeriksaan gula darah berkala.",
+  "pernapasan-lega":
+    "Sistem pernapasan, yang terdiri atas paru-paru dan saluran napas, berfungsi menyalurkan udara serta memungkinkan pertukaran oksigen dan karbon dioksida dalam tubuh. Zona ini membahas kebiasaan umum untuk mendukung fungsi pernapasan, seperti menjaga kualitas udara, menghindari asap rokok, olahraga teratur, dan pemeriksaan bila ada keluhan pernapasan.",
+  "otak-cerdas":
+    "Otak berperan dalam mengatur pikiran, ingatan, konsentrasi, dan koordinasi tubuh sehari-hari. Zona ini menekankan kebiasaan seperti tidur cukup, gizi seimbang, aktivitas fisik, dan latihan mental.",
+  "anak-ceria":
+    "Tumbuh kembang anak mencakup pertumbuhan fisik, perkembangan motorik, serta kemampuan berpikir dan berinteraksi yang berlangsung sejak usia dini. Zona ini mendukung kebiasaan dasar seperti gizi seimbang, pola tidur cukup, aktivitas bermain, dan pemantauan tumbuh kembang secara rutin.",
+  "kulit-cantik":
+    "Kulit adalah organ terluar tubuh yang melindungi dari kuman, sinar matahari, dan perubahan lingkungan, sekaligus berperan menjaga keseimbangan suhu tubuh. Zona ini menekankan kebiasaan seperti kecukupan cairan, gizi seimbang, kebersihan kulit, dan perlindungan dari paparan sinar matahari.",
+  "detoks-dan-antioksidan":
+    "Tubuh memiliki mekanisme alami, terutama melalui hati dan ginjal, untuk menetralkan dan mengeluarkan zat sisa metabolisme, sementara antioksidan membantu melindungi sel dari kerusakan akibat radikal bebas. Zona ini menekankan kebiasaan seperti cukup minum air putih, konsumsi sayur dan buah berwarna, istirahat cukup, serta menghindari asap rokok dan polusi.",
+  "antiinflamasi-dan-nyeri":
+    "Peradangan adalah respons alami tubuh terhadap cedera, infeksi, atau iritasi, sedangkan nyeri adalah sinyal yang membantu tubuh menghindari kerusakan lebih lanjut. Zona ini membahas kebiasaan umum seperti pola makan, istirahat cukup, aktivitas fisik ringan, dan pengelolaan stres.",
+  "antikanker-potensial":
+    "Tubuh terus-menerus terpapar radikal bebas dari polusi, asap rokok, dan proses metabolisme sehari-hari yang berpotensi memicu kerusakan sel dari waktu ke waktu. Zona ini menekankan pola hidup sehat secara umum, seperti konsumsi sayur dan buah kaya antioksidan, menghindari asap rokok, aktivitas fisik teratur, dan pemeriksaan kesehatan berkala.",
+  "obesitas-dan-metabolik":
+    "Metabolisme adalah proses tubuh mengolah makanan menjadi energi serta menjaga keseimbangan berat badan. Zona ini menekankan kebiasaan seperti pola makan seimbang, aktivitas fisik rutin, tidur cukup, dan pemantauan berat badan secara berkala.",
+  "tidur-dan-relaksasi":
+    "Tidur dan relaksasi membantu tubuh memulihkan energi, menjaga konsentrasi, dan menyeimbangkan suasana hati setelah beraktivitas seharian. Zona ini menekankan kebiasaan seperti waktu tidur teratur, relaksasi sebelum tidur, pengurangan stres, dan lingkungan tidur yang nyaman.",
+  "kesehatan-mata":
+    "Mata membantu tubuh menangkap cahaya dan mengirimkan informasi visual ke otak sehingga kita dapat melihat serta mengenali lingkungan sekitar. Zona ini menekankan kebiasaan seperti istirahat mata secara berkala, gizi yang mendukung penglihatan, pencahayaan yang cukup saat beraktivitas, dan pemeriksaan mata rutin.",
 };
 
 export function getHealthZoneShortDescription(
