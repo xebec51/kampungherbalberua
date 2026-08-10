@@ -382,6 +382,105 @@ export type Database = {
           },
         ];
       };
+      health_conditions: {
+        Row: {
+          id: string;
+          slug: string;
+          name: string;
+          short_description: string;
+          description: string;
+          benefits: string[];
+          sort_order: number;
+          created_by: string | null;
+          updated_by: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          slug: string;
+          name: string;
+          short_description: string;
+          description: string;
+          benefits?: string[];
+          sort_order: number;
+          created_by?: string | null;
+          updated_by?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          slug?: string;
+          name?: string;
+          short_description?: string;
+          description?: string;
+          benefits?: string[];
+          sort_order?: number;
+          created_by?: string | null;
+          updated_by?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "health_conditions_created_by_fkey";
+            columns: ["created_by"];
+            isOneToOne: false;
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "health_conditions_updated_by_fkey";
+            columns: ["updated_by"];
+            isOneToOne: false;
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      health_condition_plants: {
+        Row: {
+          id: string;
+          health_condition_id: string;
+          plant_id: string | null;
+          display_name: string;
+          sort_order: number;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          health_condition_id: string;
+          plant_id?: string | null;
+          display_name: string;
+          sort_order: number;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          health_condition_id?: string;
+          plant_id?: string | null;
+          display_name?: string;
+          sort_order?: number;
+          created_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "health_condition_plants_health_condition_id_fkey";
+            columns: ["health_condition_id"];
+            isOneToOne: false;
+            referencedRelation: "health_conditions";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "health_condition_plants_plant_id_fkey";
+            columns: ["plant_id"];
+            isOneToOne: false;
+            referencedRelation: "plants";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
       health_zones: {
         Row: {
           id: string;

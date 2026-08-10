@@ -14,6 +14,7 @@ import {
   Menu,
   QrCode,
   ShoppingBag,
+  Stethoscope,
   X,
   type LucideIcon,
 } from "lucide-react";
@@ -27,6 +28,7 @@ const adminNavigation: Array<{ href: string; icon: LucideIcon; label: string }> 
   { href: "/admin/tanaman", icon: Leaf, label: "Tanaman" },
   { href: "/admin/zona", icon: HeartPulse, label: "Zona Kesehatan" },
   { href: "/admin/produk", icon: ShoppingBag, label: "Produk" },
+  { href: "/admin/penyakit", icon: Stethoscope, label: "Katalog Penyakit" },
   { href: "/admin/media/audit", icon: ImageIcon, label: "Audit Media" },
   { href: "/admin/kotak-saran", icon: Inbox, label: "Kotak Saran" },
   { href: "/", icon: ExternalLink, label: "Lihat Website" },

@@ -12,6 +12,10 @@ import { Reveal } from "@/components/motion/Reveal";
 import { StaggerGroup } from "@/components/motion/StaggerGroup";
 import { StaggerItem } from "@/components/motion/StaggerItem";
 import {
+  getHealthConditionsForPlant,
+  type PlantHealthConditionLink,
+} from "@/lib/data/health-conditions";
+import {
   getHerbaCodePlantBySlug,
   getHerbaCodePlantSlugs,
 } from "@/lib/data/herbacode";
@@ -95,19 +99,22 @@ export async function generateMetadata({
 
 export default async function PlantDetailPage({ params }: PlantDetailPageProps) {
   const { slug } = await params;
-  const plant = await getHerbaCodePlantBySlug(slug);
+  const [plant, linkedConditions] = await Promise.all([
+    getHerbaCodePlantBySlug(slug),
+    getHealthConditionsForPlant(slug),
+  ]);
 
   if (!plant) {
     const catalogPlant = await getPublishedPlantDetailBySlug(slug);
 
     if (catalogPlant) {
-      return <CatalogPlantDetail plant={catalogPlant} />;
+      return <CatalogPlantDetail linkedConditions={linkedConditions} plant={catalogPlant} />;
     }
 
     const posterPlant = await getPosterPlantBySlug(slug);
 
     if (posterPlant) {
-      return <PosterPlantDetail plant={posterPlant} />;
+      return <PosterPlantDetail linkedConditions={linkedConditions} plant={posterPlant} />;
     }
 
     notFound();
@@ -249,6 +256,8 @@ export default async function PlantDetailPage({ params }: PlantDetailPageProps) 
 
         <BenefitsByZone entries={plant.zoneEntries} />
 
+        <LinkedHealthConditions conditions={linkedConditions} />
+
         <Reveal>
           <BrandCard as="section" className="mt-8 text-sm leading-6 text-herbal-muted">
             <h2 className="text-base font-bold text-herbal-ink">Sumber</h2>
@@ -269,7 +278,13 @@ export default async function PlantDetailPage({ params }: PlantDetailPageProps) 
   );
 }
 
-function CatalogPlantDetail({ plant }: { plant: PublishedPlantDetail }) {
+function CatalogPlantDetail({
+  linkedConditions,
+  plant,
+}: {
+  linkedConditions: PlantHealthConditionLink[];
+  plant: PublishedPlantDetail;
+}) {
   const sourceNotes = plant.sourceNotes?.trim();
   const hasSeparateDescription =
     plant.description.trim() !== plant.shortDescription.trim();
@@ -334,6 +349,8 @@ function CatalogPlantDetail({ plant }: { plant: PublishedPlantDetail }) {
           </BrandCard>
         ) : null}
 
+        <LinkedHealthConditions conditions={linkedConditions} />
+
         <div className="mt-8">
           <Disclaimer>
             Informasi tanaman dan ramuan pada website ini disediakan untuk
@@ -347,7 +364,13 @@ function CatalogPlantDetail({ plant }: { plant: PublishedPlantDetail }) {
   );
 }
 
-function PosterPlantDetail({ plant }: { plant: PosterPlantCatalogItem }) {
+function PosterPlantDetail({
+  linkedConditions,
+  plant,
+}: {
+  linkedConditions: PlantHealthConditionLink[];
+  plant: PosterPlantCatalogItem;
+}) {
   const image = visibleDetailImageSrc(plant.image);
   const visual = image
     ? {
@@ -417,6 +440,8 @@ function PosterPlantDetail({ plant }: { plant: PosterPlantCatalogItem }) {
           <DetailSection title="Sumber" values={sourceDetails} />
         </div>
 
+        <LinkedHealthConditions conditions={linkedConditions} />
+
         <div className="mt-8">
           <Disclaimer>
             Entri katalog poster ini tidak menambahkan manfaat atau cara
@@ -426,6 +451,35 @@ function PosterPlantDetail({ plant }: { plant: PosterPlantCatalogItem }) {
         </div>
       </Container>
     </article>
+  );
+}
+
+function LinkedHealthConditions({
+  conditions,
+}: {
+  conditions: PlantHealthConditionLink[];
+}) {
+  if (conditions.length === 0) {
+    return null;
+  }
+
+  return (
+    <section className="mt-8">
+      <h2 className="text-lg font-bold text-herbal-ink">
+        Membantu meringankan
+      </h2>
+      <div className="mt-3 flex flex-wrap gap-2">
+        {conditions.map((condition) => (
+          <Link
+            className="inline-flex items-center rounded-full border border-herbal-green/30 bg-herbal-soft px-3 py-1.5 text-sm font-semibold text-herbal-green transition hover:border-herbal-green hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-herbal-brown"
+            href={`/penyakit/${condition.slug}`}
+            key={condition.slug}
+          >
+            {condition.name}
+          </Link>
+        ))}
+      </div>
+    </section>
   );
 }
 

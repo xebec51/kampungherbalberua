@@ -226,6 +226,22 @@ export type Product = {
   featured: boolean;
 };
 
+export type HealthConditionPlantLink = {
+  displayName: string;
+  plantSlug: string | null;
+};
+
+export type HealthCondition = {
+  id: string;
+  slug: string;
+  name: string;
+  shortDescription: string;
+  description: string;
+  benefits: string[];
+  sortOrder: number;
+  linkedPlants: HealthConditionPlantLink[];
+};
+
 export type ProgramStatus = "planned" | "ongoing" | "completed";
 
 export type Program = {

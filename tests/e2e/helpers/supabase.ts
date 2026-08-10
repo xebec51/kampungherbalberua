@@ -160,6 +160,16 @@ async function deleteE2EData(client: SupabaseClient<Database>) {
   if (streetSlugCleanup.error) {
     throw streetSlugCleanup.error;
   }
+
+  // health_condition_plants cascades on health_condition_id, so deleting the
+  // parent row alone is enough to clean up any linked-plant rows too.
+  const healthConditionSlugCleanup = await client
+    .from("health_conditions")
+    .delete()
+    .like("slug", "e2e-%");
+  if (healthConditionSlugCleanup.error) {
+    throw healthConditionSlugCleanup.error;
+  }
 }
 
 export async function cleanupE2EData(options?: { failOnError?: boolean }) {

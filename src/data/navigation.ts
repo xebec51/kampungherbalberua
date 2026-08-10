@@ -29,6 +29,7 @@ export const mainNavigation: NavigationItem[] = [
     children: [
       { type: "link", label: "Tanaman TOGA", href: "/tanaman" },
       { type: "link", label: "Zona Kesehatan", href: "/zona-kesehatan" },
+      { type: "link", label: "Katalog Penyakit", href: "/penyakit" },
     ],
   },
   {

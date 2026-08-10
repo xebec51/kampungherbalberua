@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { recipes } from "@/data/recipes";
+import { getHealthConditionSlugs } from "@/lib/data/health-conditions";
 import {
   getHerbaCodePlantSlugs,
   getHerbaCodeZoneSummaries,
@@ -22,13 +23,20 @@ const staticRoutes = [
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
-  const [herbaCodePlantSlugs, posterPlantSlugs, zones, streetSlugs, productSlugs] =
-    await Promise.all([
+  const [
+    herbaCodePlantSlugs,
+    posterPlantSlugs,
+    zones,
+    streetSlugs,
+    productSlugs,
+    healthConditionSlugs,
+  ] = await Promise.all([
     getHerbaCodePlantSlugs(),
     getPosterPlantSlugs(),
     getHerbaCodeZoneSummaries(),
     getPublishedStreetSlugs(),
     getProductSlugs(),
+    getHealthConditionSlugs(),
   ]);
   const plantSlugs = Array.from(
     new Set([...herbaCodePlantSlugs, ...posterPlantSlugs]),
@@ -42,6 +50,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       .filter((recipe) => recipe.published)
       .map((recipe) => `/ramuan/${recipe.slug}`),
     ...productSlugs.map((slug) => `/produk/${slug}`),
+    ...healthConditionSlugs.map((slug) => `/penyakit/${slug}`),
   ];
 
   return [...staticRoutes, ...dynamicRoutes].map((route) => ({
