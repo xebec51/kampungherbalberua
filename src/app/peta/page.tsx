@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CommunityMapPlaceholder } from "@/components/maps/CommunityMapPlaceholder";
+import { InteractiveMap } from "@/components/maps/InteractiveMap";
 import { MapLegend } from "@/components/maps/MapLegend";
 import { MapLocationCard } from "@/components/maps/MapLocationCard";
 import { HoverCard } from "@/components/motion/HoverCard";
@@ -42,6 +43,10 @@ export default async function MapPage() {
           <div className="grid gap-6 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1fr)] lg:items-stretch">
             <MapLocationCard />
             <CommunityMapPlaceholder />
+          </div>
+
+          <div className="mt-6">
+            <InteractiveMap />
           </div>
 
           <div className="mt-6">
