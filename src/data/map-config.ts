@@ -16,6 +16,10 @@ export const communityMapConfig = {
   mapTitle: "Peta Kompleks Kampung Herbal",
   mapStatus: "Denah Kompleks",
   mapPreparedBy: "Tim Perencanaan Wilayah dan Kota",
+  mapImageSrc: "/images/peta/peta-visual-kampung-harmony.webp",
+  mapImageDownloadSrc: "/images/peta/peta-visual-kampung-harmony.png",
+  mapImageWidth: 5670,
+  mapImageHeight: 3995,
   privacyNote:
     "Peta publik tidak menampilkan koordinat rumah, titik warga, data kesehatan perorangan, atau informasi pribadi.",
   attributionNote:

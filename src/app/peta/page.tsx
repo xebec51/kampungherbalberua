@@ -40,8 +40,9 @@ export default async function MapPage() {
       />
       <section className="bg-herbal-cream py-10 sm:py-12">
         <Container>
-          <div className="grid gap-6 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1fr)] lg:items-stretch">
-            <MapLocationCard />
+          <MapLocationCard />
+
+          <div className="mt-6">
             <CommunityMapPlaceholder />
           </div>
 
