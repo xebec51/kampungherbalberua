@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Reveal } from "@/components/motion/Reveal";
 import { StaggerGroup } from "@/components/motion/StaggerGroup";
 import { StaggerItem } from "@/components/motion/StaggerItem";
+import { AgeDistributionMapSection } from "@/components/maps/AgeDistributionMapSection";
 import { ProgramCard } from "@/components/programs/ProgramCard";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -12,7 +13,7 @@ import { createPageMetadata } from "@/lib/metadata";
 export const metadata: Metadata = createPageMetadata({
   title: "Kinerja RT",
   description:
-    "Informasi program, kategori, dan progres RT Kampung Herbal Berua.",
+    "Informasi program, kategori, progres RT, dan dokumentasi Peta Persebaran Kelompok Usia RT 009/RW 006 Berua.",
   path: "/kinerja-rt",
 });
 
@@ -37,6 +38,10 @@ export default function RtPerformancePage() {
             </StaggerItem>
           ))}
         </StaggerGroup>
+
+        <Reveal>
+          <AgeDistributionMapSection />
+        </Reveal>
       </Container>
     </section>
   );
