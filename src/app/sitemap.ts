@@ -6,6 +6,7 @@ import {
   getHerbaCodeZoneSummaries,
 } from "@/lib/data/herbacode";
 import { getPosterPlantSlugs } from "@/lib/data/poster-plants";
+import { getPeduliGuidanceSlugs } from "@/lib/data/peduli";
 import { getProductSlugs } from "@/lib/data/products";
 import { getPublishedStreetSlugs } from "@/lib/data/streets";
 import { absoluteUrl } from "@/lib/metadata";
@@ -17,6 +18,7 @@ const staticRoutes = [
   "/jalan",
   "/peta",
   "/zona-kesehatan",
+  "/peduli",
   "/kinerja-rt",
   "/tim",
 ];
@@ -30,6 +32,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     streetSlugs,
     productSlugs,
     healthConditionSlugs,
+    peduliGuidanceSlugs,
   ] = await Promise.all([
     getHerbaCodePlantSlugs(),
     getPosterPlantSlugs(),
@@ -37,6 +40,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     getPublishedStreetSlugs(),
     getProductSlugs(),
     getHealthConditionSlugs(),
+    getPeduliGuidanceSlugs(),
   ]);
   const plantSlugs = Array.from(
     new Set([...herbaCodePlantSlugs, ...posterPlantSlugs]),
@@ -51,6 +55,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       .map((recipe) => `/ramuan/${recipe.slug}`),
     ...productSlugs.map((slug) => `/produk/${slug}`),
     ...healthConditionSlugs.map((slug) => `/penyakit/${slug}`),
+    ...peduliGuidanceSlugs.map((slug) => `/peduli/${slug}`),
   ];
 
   return [...staticRoutes, ...dynamicRoutes].map((route) => ({

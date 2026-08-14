@@ -141,6 +141,7 @@ test("desktop dan mobile navbar tetap accessible dengan struktur publik", async 
   await expect(page.locator(`[id="${edukasiMenuId}"]`)).toBeVisible();
   await expect(page.getByRole("menuitem", { name: "Tanaman TOGA" })).toBeVisible();
   await expect(page.getByRole("menuitem", { name: "Zona Kesehatan" })).toBeVisible();
+  await expect(page.getByRole("menuitem", { name: "PEDULI" })).toBeVisible();
   await expect(page.getByRole("menuitem", { name: "Ramuan Sehat" })).toHaveCount(0);
 
   await page.keyboard.press("Escape");
@@ -165,6 +166,7 @@ test("desktop dan mobile navbar tetap accessible dengan struktur publik", async 
   const mobileNav = page.getByRole("navigation", { name: "Navigasi mobile" });
   await expect(mobileNav.getByRole("link", { name: "Tanaman TOGA" })).toBeVisible();
   await expect(mobileNav.getByRole("link", { name: "Zona Kesehatan" })).toBeVisible();
+  await expect(mobileNav.getByRole("link", { name: "PEDULI" })).toBeVisible();
   await expect(mobileNav.getByRole("link", { name: "Peta Kampung" })).toBeVisible();
   await expect(mobileNav.getByRole("link", { name: "Jalan Tematik" })).toBeVisible();
   await expect(mobileNav.getByRole("link", { name: "Produk Warga" })).toBeVisible();
@@ -588,6 +590,8 @@ test("halaman publik utama bebas placeholder, undefined, dan null", async ({
     "/jalan/imun",
     "/zona-kesehatan",
     "/zona-kesehatan/imunitas-kuat",
+    "/peduli",
+    "/peduli/infancy",
     "/peta",
     "/kotak-saran",
     "/produk",
@@ -615,6 +619,7 @@ test("sitemap dan robots memakai route HerbaCode tanpa route QR", async ({
   expect(sitemapText).toContain("/tanaman/willow-bark");
   expect(sitemapText).toContain("/jalan/imun");
   expect(sitemapText).toContain("/zona-kesehatan/imunitas-kuat");
+  expect(sitemapText).toContain("/peduli/infancy");
   expect(sitemapText).not.toContain("/sumber-gambar");
   expect(sitemapText).not.toContain("/z/khb-z01");
 

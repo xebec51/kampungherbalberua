@@ -30,6 +30,7 @@ export const mainNavigation: NavigationItem[] = [
       { type: "link", label: "Tanaman TOGA", href: "/tanaman" },
       { type: "link", label: "Zona Kesehatan", href: "/zona-kesehatan" },
       { type: "link", label: "Katalog Penyakit", href: "/penyakit" },
+      { type: "link", label: "PEDULI", href: "/peduli" },
     ],
   },
   {
@@ -56,6 +57,7 @@ export const footerMainNavigation: DirectNavigationItem[] = [
   { type: "link", label: "Tentang", href: "/tentang" },
   { type: "link", label: "Tanaman TOGA", href: "/tanaman" },
   { type: "link", label: "Zona Kesehatan", href: "/zona-kesehatan" },
+  { type: "link", label: "PEDULI", href: "/peduli" },
   { type: "link", label: "Peta Kampung", href: "/peta" },
 ];
 
