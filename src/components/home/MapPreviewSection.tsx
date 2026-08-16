@@ -1,54 +1,31 @@
 import { CommunityMapPlaceholder } from "@/components/maps/CommunityMapPlaceholder";
+import { InteractiveMap } from "@/components/maps/InteractiveMap";
+import { MapLocationCard } from "@/components/maps/MapLocationCard";
 import { Reveal } from "@/components/motion/Reveal";
-import { StaggerGroup } from "@/components/motion/StaggerGroup";
-import { StaggerItem } from "@/components/motion/StaggerItem";
 import { Container } from "@/components/ui/Container";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { getHerbaCodeZoneSummaries } from "@/lib/data/herbacode";
-import { getPublishedStreets } from "@/lib/data/streets";
 
-export async function MapPreviewSection() {
-  const [zones, streets] = await Promise.all([
-    getHerbaCodeZoneSummaries(),
-    getPublishedStreets(),
-  ]);
-
+export function MapPreviewSection() {
   return (
     <section className="home-section bg-herbal-cream py-14 sm:py-16">
       <Container>
-        <div className="grid gap-7 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.72fr)] lg:items-center">
-          <CommunityMapPlaceholder compact />
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-start">
+          <div className="grid gap-6">
+            <CommunityMapPlaceholder compact />
+            <InteractiveMap />
+          </div>
           <div>
             <Reveal>
               <SectionHeading
-                description="Halaman peta menyediakan akses ke jalan tematik dan zona kesehatan Kampung Herbal Berua tanpa menampilkan titik rumah atau data pribadi warga."
+                description="Denah kompleks, peta interaktif, dan lokasi Google Maps Kampung Herbal Berua tanpa menampilkan titik rumah atau data pribadi warga."
                 eyebrow="Pemetaan"
                 title="Peta Kampung Herbal"
               />
             </Reveal>
-            <StaggerGroup as="dl" className="mt-6 grid grid-cols-2 gap-3">
-              <StaggerItem>
-                <div className="rounded-md border border-herbal-green/10 bg-white p-3 shadow-sm sm:p-4">
-                  <dt className="text-xs font-bold uppercase tracking-[0.14em] text-herbal-brown">
-                    Jalan tematik
-                  </dt>
-                  <dd className="mt-2 text-2xl font-extrabold text-herbal-deep sm:text-3xl">
-                    {streets.length}
-                  </dd>
-                </div>
-              </StaggerItem>
-              <StaggerItem>
-                <div className="rounded-md border border-herbal-brown/20 bg-white p-3 shadow-sm sm:p-4">
-                  <dt className="text-xs font-bold uppercase tracking-[0.14em] text-herbal-brown">
-                    Zona kesehatan
-                  </dt>
-                  <dd className="mt-2 text-2xl font-extrabold text-herbal-deep sm:text-3xl">
-                    {zones.length}
-                  </dd>
-                </div>
-              </StaggerItem>
-            </StaggerGroup>
+            <div className="mt-6">
+              <MapLocationCard />
+            </div>
             <div className="mt-7">
               <LinkButton href="/peta" variant="secondary">
                 Lihat Peta Kampung

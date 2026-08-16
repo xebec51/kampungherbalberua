@@ -38,9 +38,10 @@ export function HeroSection() {
           </StaggerItem>
           <StaggerItem>
             <p className="mt-6 max-w-2xl break-words text-base leading-8 text-white/88 drop-shadow-[0_3px_16px_rgba(0,0,0,0.5)] sm:text-lg">
-              Portal digital untuk mengenal tanaman herbal, jalan tematik,
-              zona edukasi kesehatan, peta wilayah, kegiatan, dan produk warga
-              Berua.
+              Kampung Herbal Harmony merupakan kawasan permukiman sehat,
+              hijau, dan produktif yang mengintegrasikan tanaman herbal, zero
+              waste, dan urban farming sebagai gaya hidup masyarakat
+              perkotaan yang berkelanjutan.
             </p>
           </StaggerItem>
           <StaggerItem

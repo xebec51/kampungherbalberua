@@ -1,8 +1,10 @@
 import { DataDisclaimerSection } from "@/components/home/DataDisclaimerSection";
 import { FeaturedStreetsSection } from "@/components/home/FeaturedStreetsSection";
+import { FeaturedHealthConditionsSection } from "@/components/home/FeaturedHealthConditionsSection";
 import { FeaturedPlantsSection } from "@/components/home/FeaturedPlantsSection";
 import { FeaturedHealthZonesSection } from "@/components/home/FeaturedHealthZonesSection";
 import { FeaturedProductsSection } from "@/components/home/FeaturedProductsSection";
+import { FeaturedProgramsSection } from "@/components/home/FeaturedProgramsSection";
 import { HerbaCodeSection } from "@/components/home/HerbaCodeSection";
 import { HeroSection } from "@/components/home/HeroSection";
 import { LatestActivitiesSection } from "@/components/home/LatestActivitiesSection";
@@ -24,14 +26,16 @@ export default function Home() {
   return (
     <>
       <HeroSection />
+      <MapPreviewSection />
       <ProfileSection />
       <QuickAccessSection />
       <HerbaCodeSection />
-      <MapPreviewSection />
       <FeaturedStreetsSection />
       <FeaturedHealthZonesSection />
+      <FeaturedHealthConditionsSection />
       <FeaturedPlantsSection />
       <FeaturedProductsSection />
+      <FeaturedProgramsSection />
       <LatestActivitiesSection />
       <SuggestionCtaSection />
       <DataDisclaimerSection />
