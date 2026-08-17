@@ -1,3 +1,4 @@
+import { AgeDistributionMapSection } from "@/components/maps/AgeDistributionMapSection";
 import { CommunityMapPlaceholder } from "@/components/maps/CommunityMapPlaceholder";
 import { InteractiveMap } from "@/components/maps/InteractiveMap";
 import { MapLocationCard } from "@/components/maps/MapLocationCard";
@@ -33,6 +34,8 @@ export function MapPreviewSection() {
             </div>
           </div>
         </div>
+
+        <AgeDistributionMapSection />
       </Container>
     </section>
   );
